@@ -10,7 +10,7 @@
             <lru maxElements="10" maxBytes="10mb"/>
             <overflowToDisk maxOverflowBytes="1mb"/>
             <expiration timeToLive="1s"/>
-            <dataSource className="cacheonix.cache.datasource.PropertyCacheDataSource"/>
+            <dataSource className="org.cacheonix.cache.datasource.PropertyCacheDataSource"/>
          </store>
       </localCache>
    </local>
