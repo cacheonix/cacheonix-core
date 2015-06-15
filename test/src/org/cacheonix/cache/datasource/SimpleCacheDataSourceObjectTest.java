@@ -55,6 +55,18 @@ public final class SimpleCacheDataSourceObjectTest extends TestCase {
    }
 
 
+   public void testEqualsSame() {
+
+      assertTrue(cacheDataSourceObject.equals(cacheDataSourceObject));
+   }
+
+
+   public void testEqualsDifferentClass() {
+
+      assertFalse(cacheDataSourceObject.equals(new Object()));
+   }
+
+
    protected void setUp() throws Exception {
 
       super.setUp();
