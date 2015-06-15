@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="org.springframework.showcase.carplant.dao" auto-import="true">
+    <class name="Part" table="t_car_part">
+        <id name="partNo" type="string" column="number" access="field">
+            <generator class="assigned"/>
+        </id>
+        <property name="name" column="name" length="32" not-null="true" />
+        <property name="model" column="model" length="32" not-null="true"/>
+        <property name="stock" column="stock" access="field" not-null="true"/>        
+    </class>
+</hibernate-mapping>

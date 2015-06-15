@@ -1,0 +1,21 @@
+<?xml version ="1.0"?>
+
+<cacheonix xmlns="http://www.cacheonix.com/schema/configuration"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.cacheonix.com/schema/configuration http://www.cacheonix.com/schema/cacheonix-config-2.0.xsd">
+
+   <local>
+
+      <localCache name="local.cache.with.data.source">
+         <store>
+            <lru maxBytes="1mb" maxElements="1000"/>
+            <expiration timeToLive="60seconds" idleTime="60seconds"/>
+            <dataSource className="com.test.DataSource">
+               <param name="driverName" value="test"/>
+               <prefetch enabled="true"/>
+            </dataSource>
+         </store>
+      </localCache>
+   </local>
+
+</cacheonix>

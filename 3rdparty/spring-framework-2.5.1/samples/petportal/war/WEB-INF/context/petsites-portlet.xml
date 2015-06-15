@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	- DispatcherPortlet application context for PetPortal's petsites portlet.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:p="http://www.springframework.org/schema/p" xmlns:util="http://www.springframework.org/schema/util"
+  xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd">
+
+	<util:properties id="petSites" location="WEB-INF/petsites.properties"/>
+
+  <bean class="org.springframework.web.portlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+    <property name="interceptors">
+      <!-- This interceptor forwards the mapping request parameter from an ActionRequest to be used as a render parameter. -->
+      <bean class="org.springframework.web.portlet.handler.ParameterMappingInterceptor"/>
+    </property>
+  </bean>
+
+  <bean class="org.springframework.samples.petportal.portlet.PetSitesRedirectController">
+    <property name="petSites" ref="petSites"/>
+  </bean>
+
+  <bean class="org.springframework.samples.petportal.portlet.PetSitesEditController">
+    <property name="petSites" ref="petSites"/>
+  </bean>
+
+</beans>

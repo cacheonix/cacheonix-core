@@ -1,0 +1,593 @@
+<project name="cacheonix" default="usage">
+
+   <!-- Environment variables -->
+   <property environment="env"/>
+   <property file="core.properties"/>
+
+   <!-- Location of source files -->
+   <property name="config.dir" value="conf"/>
+   <property name="test.data.dir" value="test/data"/>
+
+   <!-- Results -->
+   <property name="test.classes.dir" value="temp/test/classes"/>
+   <property name="annotations.classes.dir" value="temp/annotations/core/classes"/>
+   <property name="annotations.test.classes.dir" value="temp/annotations/test/classes"/>
+
+   <!-- Working directories -->
+   <property name="build.temp.dir" value="temp/build/temp"/>
+   <property name="generated.dir" value="temp/generated"/>
+   <property name="test.temp.dir" value="temp/test/temp"/>
+   <property name="clover.dir" value="temp/clover"/>
+   <property name="clover.db.dir" value="${clover.dir}/db"/>
+
+   <!-- 3rd party -->
+   <property name="asm.home" value="3rdparty/asm-3.1"/>
+   <property name="junit.jar" value="3rdparty/junit3.8.2/junit.jar"/>
+   <property name="mockito.jar" value="3rdparty/mockito-1.8.5/mockito-all-1.8.5.jar"/>
+   <property name="mx4j-jmx.jar" value="3rdparty/mx4j-3.0.2/lib/mx4j-jmx.jar"/>
+   <property name="mail.jar" value="3rdparty/mail/mail.jar"/>
+   <property name="jms.jar" value="3rdparty/jms-1.1/jms.jar"/>
+   <property name="clover.jar" value="3rdparty/clover1312/lib/clover.jar"/>
+   <property name="cenquatasks.jar" value="3rdparty/clover1312/etc/cenquatasks.jar"/>
+   <property name="ibatis.jar" value="3rdparty/ibatis-2.3.0.677/lib/ibatis-2.3.0.677.jar"/>
+   <property name="hibernate.jar" value="3rdparty/hibernate-3.2/hibernate3.jar"/>
+   <property name="gsbase.jar" value="3rdparty/gbase20/gsbase-2.0.jar"/>
+   <property name="servlets.jar" value="3rdparty/servlets-2.3/servletapi-2.3.jar"/>
+   <property name="commons-math.jar" value="3rdparty/commons-math-1.2/commons-math-1.2.jar"/>
+   <property name="array-utils.jar" value="3rdparty/cacheonix-array-utils-1.0.3/cacheonix-array-utils-1.0.3.jar"/>
+   <property name="mybatis.jar" value="3rdparty/mybatis-3.0.5/mybatis-3.0.5.jar"/>
+   <property name="spring-modules-cache.jar"
+             value="3rdparty/spring-modules-integration-proxy/spring-modules-cache.jar"/>
+   <property name="spring.jar" value="3rdparty/spring-framework-2.5.1/dist/spring.jar"/>
+   <property name="activation.jar" value="3rdparty/jaf-1.0.2/activation.jar"/>
+   <property name="catalina-7.0.30.jar" value="3rdparty/apache-tomcat-7.0.30/catalina.jar"/>
+
+   <!-- Tasks -->
+   <taskdef resource="com/cenqua/ant/antlib.xml" classpath="${cenquatasks.jar}"/>
+   <taskdef name="if" classname="ise.antelope.tasks.IfTask" classpath="${antelope.jar}"/>
+   <extendclasspath path="${clover.jar}"/>
+   <taskdef resource="clovertasks" classpath="${clover.jar}"/>
+
+
+   <!-- Defines source files -->
+   <path id="src">
+      <fileset dir="${src.dir}">
+         <include name="**/*.java"/>
+         <exclude name="org/cacheonix/impl/util/logging/jmx/*.**,
+                     org/cacheonix/impl/util/logging/misc/*,
+                     org/cacheonix/impl/util/logging/**/UnitTest*.java,
+                     org/cacheonix/impl/util/logging/**/StressCategory.java,
+                     org/cacheonix/impl/util/logging/**/doc-files/*,
+                     org/cacheonix/impl/util/logging/net/JMS*.java,
+                     org/cacheonix/impl/util/logging/or/jms/*.java"/>
+      </fileset>
+   </path>
+
+
+   <!--
+   Defines classpath to build cacheonix
+   -->
+   <path id="build.classpath">
+      <pathelement path="${activation.jar}"/>
+      <pathelement path="${array-utils.jar}"/>
+      <pathelement path="${clover.jar}"/>
+      <pathelement path="${hibernate.jar}"/>
+      <pathelement path="${ibatis.jar}"/>
+      <pathelement path="${jms.jar}"/>
+      <pathelement path="${mail.jar}"/>
+      <pathelement path="${mx4j-jmx.jar}"/>
+      <pathelement path="${servlets.jar}"/>
+      <pathelement path="${spring.jar}"/>
+      <pathelement path="${spring-modules-cache.jar}"/>
+      <pathelement path="${catalina-7.0.30.jar}"/>
+      <pathelement path="${mybatis.jar}"/>
+   </path>
+
+
+   <!--
+   Defines classpath to build tests
+   -->
+   <path id="test.classpath">
+      <path refid="build.classpath"/>
+      <pathelement path="${classes.dir}"/>
+      <pathelement path="${commons-math.jar}"/>
+      <pathelement path="${gsbase.jar}"/>
+      <pathelement path="${junit.jar}"/>
+      <pathelement path="${mockito.jar}"/>
+   </path>
+
+
+   <!--
+   Defines classpath to run tests
+   -->
+   <path id="junit.classpath">
+      <path refid="test.classpath"/>
+      <pathelement path="${test.classes.dir}/"/>
+      <pathelement path="conf/jar"/>
+      <pathelement path="test/conf"/>
+      <pathelement path="test/data"/>
+   </path>
+
+   <path id="cacheonix-agent.build.classpath">
+      <pathelement path="${asm.home}/asm-analysis-3.1.jar"/>
+      <pathelement path="${asm.home}/asm-commons-3.1.jar"/>
+      <pathelement path="${asm.home}/asm-tree-3.1.jar"/>
+      <pathelement path="${asm.home}/asm-util-3.1.jar"/>
+      <pathelement path="${asm.home}/asm-xml-3.1.jar"/>
+      <pathelement path="${asm.home}/asm-3.1.jar"/>
+      <pathelement path="${classes.dir}"/>
+   </path>
+
+   <path id="cacheonix-agent.tests.build.classpath">
+      <path refid="cacheonix-agent.build.classpath"/>
+      <pathelement path="${annotations.classes.dir}"/>
+      <pathelement path="${classes.dir}"/>
+      <pathelement path="${junit.jar}"/>
+   </path>
+
+   <!--
+   Defines classpath to run annotations tests
+   -->
+   <path id="junit.annotations.classpath">
+      <path refid="cacheonix-agent.tests.build.classpath"/>
+      <pathelement path="${annotations.test.classes.dir}/"/>
+      <pathelement path="test/annotations/conf"/>
+      <pathelement path="test/annotations/data"/>
+      <pathelement path="conf/jar"/>
+   </path>
+
+   <!--
+   Outputs usage information
+   -->
+   <target name="usage">
+      <echo message="all              - builds all"/>
+      <echo message="all.clean        - builds all cleanly"/>
+      <echo message="test             - runs unit tests"/>
+      <echo message="with.clover test - runs unit tests with clover instrumentation enabled"/>
+   </target>
+
+
+   <!--
+   Prepares
+   -->
+   <target name="init">
+      <mkdir dir="${annotations.test.classes.dir}"/>
+      <mkdir dir="${annotations.classes.dir}"/>
+      <mkdir dir="${dist.bin.staging.dir}"/>
+      <mkdir dir="${test.classes.dir}"/>
+      <mkdir dir="${build.temp.dir}"/>
+      <mkdir dir="${test.temp.dir}"/>
+      <mkdir dir="${test.log.dir}"/>
+      <mkdir dir="${classes.dir}"/>
+   </target>
+
+
+   <!--
+   Cleans everything
+   -->
+   <target name="clean">
+      <delete dir="temp"/>
+   </target>
+
+
+   <!--
+   Replaces version information with actual build values.
+   -->
+   <target name="version">
+
+      <!-- Prepare version tokens -->
+      <echo message="Set tokens"/>
+      <if name="env.CACHEONIX_BUILD_NUMBER">
+         <property name="release.build" value="${env.CACHEONIX_BUILD_NUMBER}"/>
+         <property name="release.change" value="${env.CACHEONIX_CHANGE_LIST_NUMBER}"/>
+         <property name="release.date" value="${env.CACHEONIX_BUILD_TIMESTAMP}"/>
+         <if name="env.CACHEONIX_VERSION">
+            <property name="release.patch" value="${env.CACHEONIX_VERSION}"/>
+            <break/>
+            <else>
+               <property name="release.patch" value="i"/>
+            </else>
+         </if>
+         <break/>
+         <else>
+            <property name="release.build" value="i"/>
+            <property name="release.change" value="i"/>
+            <property name="release.patch" value="i"/>
+            <tstamp>
+               <format property="release.date" pattern="yyyyMMddHHmmss" locale="en"/>
+            </tstamp>
+         </else>
+      </if>
+
+      <!-- Generate version file -->
+      <property name="release.major" value="2"/>
+      <property name="release.minor" value="0"/>
+      <property name="release.version" value="${release.major}.${release.minor}.${release.patch}"/>
+      <property name="release.suffix" value="-${release.build}"/>
+      <property name="release.media" value="cacheonix-${release.version}-${release.suffix}"/>
+      <echo message="  Release version : ${release.version}"/>
+      <echo message="     Build number : ${release.build}"/>
+      <echo message="      Change list : ${release.change}"/>
+      <echo message="       Build date : ${release.date}"/>
+      <echo message="    Media pattern : ${release.media}"/>
+
+      <echo message="Generate version file"/>
+      <propertyfile file="temp/version.properties" comment="Release version">
+         <entry key="release.major" value="${release.major}"/>
+         <entry key="release.minor" value="${release.minor}"/>
+         <entry key="release.patch" value="${release.patch}"/>
+         <entry key="release.date" value="${release.date}"/>
+         <entry key="release.change" value="${release.change}"/>
+         <entry key="release.suffix" value="${release.suffix}"/>
+         <entry key="release.version" value="${release.version}"/>
+         <entry key="release.media" value="${release.media}"/>
+         <entry key="release.build" value="${release.build}"/>
+      </propertyfile>
+
+      <echo message="Generate version class"/>
+      <mkdir dir="${generated.dir}/cacheonix"/>
+      <copy file="src/org/cacheonix/Version.java" todir="${generated.dir}/cacheonix" overwrite="yes">
+         <filterset>
+            <filter token="release.patch.version" value="${release.patch}"/>
+            <filter token="release.change" value="${release.change}"/>
+            <filter token="release.build" value="${release.build}"/>
+            <filter token="release.date" value="${release.date}"/>
+         </filterset>
+      </copy>
+   </target>
+
+
+   <!--
+   Initializes build to run with clover instrumentation
+   -->
+   <target name="with.clover" depends="init">
+      <property name="is.with.clover" value="true"/>
+      <mkdir dir="${clover.db.dir}"/>
+      <clover-setup initString="${clover.db.dir}/coverage.db" source="1.5">
+         <files>
+            <include name="**/*.java"/>
+            <exclude name="org/cacheonix/impl/util/concurrent/**/*.java"/>
+            <exclude name="org/cacheonix/impl/util/logging/**/*.java"/>
+            <exclude name="org/cacheonix/impl/util/**/*.java"/>
+         </files>
+      </clover-setup>
+   </target>
+
+
+   <!--
+   Compiles version
+   -->
+   <target name="javac.version" depends="init, version">
+      <javac srcdir="${generated.dir}" destdir="${classes.dir}" includes="cacheonix/Version.java"
+             fork="yes" debug="yes">
+      </javac>
+   </target>
+
+
+   <!--
+   Compiles product
+   -->
+   <target name="javac.core" depends="javac.version">
+      <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="build.classpath" excludes="org/cacheonix/impl/util/logging/jmx/*.**,
+                  org/cacheonix/impl/util/logging/misc/*, org/cacheonix/impl/util/logging/**/UnitTest*.java,
+                  org/cacheonix/impl/util/logging/**/StressCategory.java,
+                  org/cacheonix/impl/util/logging/**/doc-files/*,
+                  org/cacheonix/impl/util/logging/net/JMS*.java,
+                  org/cacheonix/impl/util/logging/or/jms/*.java"
+             fork="yes" debug="yes">
+      </javac>
+   </target>
+
+
+   <!--
+   Compiles tests
+   -->
+   <target name="javac.tests" depends="init, version">
+      <!-- Disable clover for tests -->
+      <clover-setup initString="${clover.db.dir}/coverage.db" enabled="no"/>
+      <javac srcdir="${test.src.dir}" destdir="${test.classes.dir}" classpathref="test.classpath"
+             fork="yes" debug="yes">
+      </javac>
+   </target>
+
+   <!--
+   Compiles Annotations
+   -->
+   <target name="javac.annotations" depends="javac.core">
+      <!--     <mkdir dir="${annotations.classes.dir}"/> -->
+      <javac destdir="${annotations.classes.dir}" classpathref="cacheonix-agent.build.classpath" fork="yes"
+             debug="no">
+         <src path="${annotations.src.dir}"/>
+      </javac>
+   </target>
+
+   <!--
+   Compiles Annotations Tests
+   -->
+   <target name="javac.annotations.tests" depends="javac.annotations">
+      <!-- <mkdir dir="${annotations.test.classes.dir}"/> -->
+      <javac destdir="${annotations.test.classes.dir}"
+             classpathref="cacheonix-agent.tests.build.classpath" fork="yes" debug="yes"
+             includes="**/*.*">
+         <src path="${annotations.tests.src.dir}"/>
+      </javac>
+   </target>
+
+   <!--
+   Compiles everything
+   -->
+   <target name="javac"
+           depends="javac.version, javac.core, javac.tests, javac.annotations, javac.annotations.tests"/>
+
+
+   <!-- Runs tests -->
+   <target name="test.cacheonix" depends="javac">
+      <junit fork="yes" printsummary="on" haltonfailure="${fail.fast}" haltonerror="${fail.fast}" showoutput="yes"
+             errorproperty="test.errors" failureproperty="test.failures">
+         <classpath refid="junit.classpath"/>
+         <jvmarg value="-Xms1024m"/>
+         <jvmarg value="-Xmx1024m"/>
+         <jvmarg value="-Dcacheonix.auto.create.cache=false"/>
+         <jvmarg value="-Dcacheonix.client.request.timeout=120s"/>
+         <jvmarg value="-Dcacheonix.home.alone.timeout=5000"/>
+         <jvmarg value="-Dcacheonix.logging.level=debug"/>
+         <jvmarg value="-Dcacheonix.multicast.ttl=0"/>
+         <jvmarg value="-Djava.awt.headless=true"/>
+         <jvmarg value="-Djava.io.tmpdir=${test.temp.dir}"/>
+         <jvmarg value="-Djava.net.preferIPv4Stack=true"/>
+         <jvmarg value="-Dtest.data.home=${test.data.dir}"/>
+         <jvmarg value="-Dtest.temp.dir=${test.temp.dir}"/>
+         <!-- Run only test defined by test.single property -->
+         <batchtest todir="${test.log.dir}" if="test.single">
+            <fileset dir="${test.classes.dir}">
+               <include name="**/${test.single}*.class"/>
+               <exclude name="**/*$*.class"/>
+            </fileset>
+         </batchtest>
+
+         <!-- Run all standlalone tests as a batch -->
+         <batchtest todir="${test.log.dir}" unless="test.single">
+            <fileset dir="${test.classes.dir}">
+               <include name="**/*Test.class"/>
+               <exclude name="**/*$*.class"/>
+               <exclude name="**/PerformanceTest*.class"/>
+            </fileset>
+         </batchtest>
+
+         <formatter type="xml" if="env.CACHEONIX_BUILD_NAME"/>
+         <formatter type="plain" usefile="false"/>
+      </junit>
+   </target>
+
+   <!--
+   Annotation Tests
+   -->
+   <target name="test.annotations" depends="javac,jar.agent">
+      <junit fork="yes" printsummary="on" haltonfailure="${fail.fast}" haltonerror="${fail.fast}"
+             errorproperty="test.errors" failureproperty="test.failures">
+         <classpath refid="junit.annotations.classpath"/>
+         <jvmarg value="-Xms300m"/>
+         <jvmarg value="-Xmx300m"/>
+         <jvmarg line="-javaagent:${dist.cacheonix-agent.jar}"/>
+         <jvmarg value="-Dcacheonix.auto.create.cache=true"/>
+         <jvmarg value="-Dcacheonix.home.alone.timeout=5000"/>
+         <jvmarg value="-Dcacheonix.multicast.ttl=0"/>
+         <jvmarg value="-Djava.awt.headless=true"/>
+         <jvmarg value="-Djava.io.tmpdir=${test.temp.dir}"/>
+         <jvmarg value="-Djava.net.preferIPv4Stack=true"/>
+         <jvmarg value="-Dcacheonix.logging.configuration=log4j.properties"/>
+         <jvmarg value="-Dtest.data.home=${test.data.dir}"/>
+         <jvmarg value="-Dtest.temp.dir=${test.temp.dir}"/>
+
+         <!-- Run only test defined by test.single property -->
+         <batchtest todir="${test.log.dir}" if="test.single">
+            <fileset dir="${annotations.test.classes.dir}">
+               <include name="**/${test.single}*.class"/>
+               <exclude name="org/cacheonix/impl/annotations/tests/*"/>
+               <exclude name="**/*$*.class"/>
+            </fileset>
+         </batchtest>
+
+         <!-- Run all standlalone tests as a batch -->
+         <batchtest todir="${test.log.dir}" unless="test.single">
+            <fileset dir="${annotations.test.classes.dir}">
+               <include name="**/*Test.class"/>
+               <exclude name="org/cacheonix/impl/annotations/tests/*"/>
+               <exclude name="**/*$*.class"/>
+            </fileset>
+         </batchtest>
+      </junit>
+   </target>
+
+   <target name="test" depends="all, test.cacheonix, test.annotations"/>
+
+   <!--
+   Generates clover report
+   -->
+   <target name="clover.report" depends="with.clover, test">
+      <clover-report>
+         <current outfile="${clover.dir}/html_report" title="Cacheonix Test Coverage">
+            <format type="html"/>
+         </current>
+      </clover-report>
+   </target>
+
+
+   <!--
+   Generates Javadoc
+   -->
+   <target name="javadoc.core" depends="javac">
+      <mkdir dir="${dist.javadoc.dir}"/>
+      <javadoc destdir="${dist.javadoc.dir}" sourcepath="${src.dir}" packagenames="org.cacheonix.*"
+               windowtitle="Cacheonix ${release.version} API" package="true" author="true" version="true"
+               noindex="true" use="true">
+         <classpath refid="build.classpath"/>
+         <tag name="noinspection" enabled="false"/>
+         <doctitle><![CDATA[<h1>Cacheonix</h1>]]></doctitle>
+         <bottom>
+            <![CDATA[<a href="http://www.org.cacheonix.com/support.htm">Cacheonix Support</a> |
+            <a href="http://wiki.org.cacheonix.com/display/CCHNX/Cacheonix+Knowledge+Base">Cacheonix Knowledgebase</a> |
+            <i>Copyright &#169; 2006-2012 <a href="http://www.org.cacheonix.com">Cacheonix Systems</a>. All Rights Reserved.</i>]]></bottom>
+      </javadoc>
+   </target>
+
+   <!--
+   Generates Annotations Javadoc
+   -->
+   <target name="javadoc.annotations" depends="javac">
+      <mkdir dir="${dist.javadoc.annotations.dir}"/>
+      <javadoc destdir="${dist.javadoc.annotations.dir}" sourcepath="${annotations.src.dir}" packagenames="org.cacheonix.*"
+               windowtitle="Cacheonix Annotations ${release.version}" package="true" author="true" version="true"
+               noindex="true" use="true">
+         <classpath refid="cacheonix-agent.build.classpath"/>
+         <tag name="noinspection" enabled="false"/>
+         <doctitle><![CDATA[<h1>Cacheonix Annotations</h1>]]></doctitle>
+         <bottom>
+            <![CDATA[<a href="http://www.org.cacheonix.com/support.htm">Cacheonix Support</a> |
+            <a href="http://wiki.org.cacheonix.com/display/CCHNX/Cacheonix+Knowledge+Base">Cacheonix Knowledgebase</a> |
+            <i>Copyright &#169; 2006-2012 <a href="http://www.org.cacheonix.com">Cacheonix Systems</a>. All Rights Reserved.</i>]]></bottom>
+      </javadoc>
+   </target>
+
+
+   <!--
+   Builds all Javadoc
+   -->
+   <target name="javadoc" depends="javadoc.core, javadoc.annotations"/>
+
+
+   <!--
+   Generates core Jar
+   -->
+   <target name="jar.core" depends="javac">
+      <mkdir dir="${dist.lib.dir}"/>
+      <jar basedir="${classes.dir}" destfile="${dist.cacheonix.jar}">
+         <metainf dir="conf/jar/META-INF"/>
+         <manifest>
+            <attribute name="Main-Class" value="org.cacheonix.Version"/>
+         </manifest>
+         <zipfileset src="${array-utils.jar}"/>
+      </jar>
+   </target>
+
+
+   <!--
+   Generates agent Jar
+   -->
+   <target name="jar.agent" depends="javac">
+      <mkdir dir="${dist.lib.dir}"/>
+      <jar jarfile="${dist.cacheonix-agent.jar}" basedir="${annotations.classes.dir}"
+           includes="**/*.class">
+         <manifest>
+            <attribute name="Premain-Class" value="org.cacheonix.impl.transformer.CacheonixAgent"/>
+            <!--  	<attribute name="Class-Path" value="asm-3.1.jar asm-analysis-3.1.jar asm-commons-3.1.jar asm-tree-3.1.jar asm-util-3.1.jar asm-xml-3.1.jar"/> -->
+         </manifest>
+      </jar>
+   </target>
+
+
+   <!--
+   Zips Javadoc
+   -->
+   <target name="zip.javadoc" depends="javadoc.core">
+      <mkdir dir="${dist.lib.dir}"/>
+      <zip destfile="${dist.cacheonix-javadoc.zip}" basedir="${dist.javadoc.dir}"/>
+   </target>
+
+
+   <!--
+   Creates Cacheonix libraries
+   -->
+   <target name="lib" depends="jar.core, jar.agent, zip.javadoc"/>
+
+   <!--
+   Builds bin directory
+   -->
+   <target name="bin">
+      <mkdir dir="${dist.bin.dir}"/>
+      <copy todir="${dist.bin.dir}">
+         <fileset dir="bin"/>
+      </copy>
+   </target>
+
+
+   <!--
+   Copies Cacheonix license
+   -->
+   <target name="license">
+      <mkdir dir="${dist.bin.staging.dir}"/>
+      <copy file="LICENSE.txt" todir="${dist.bin.staging.dir}"/>
+   </target>
+
+
+   <!--
+   Builds source
+   -->
+   <target name="src">
+      <mkdir dir="${dist.src.staging.dir}"/>
+      <copy todir="${dist.src.staging.dir}">
+         <fileset dir=".">
+            <exclude name="temp/**"/>
+            <exclude name="internal/**"/>
+            <exclude name="internal.*"/>
+            <exclude name="deployment/**"/>
+            <exclude name="deployment.*"/>
+            <exclude name="quality/**"/>
+            <exclude name="quality.*"/>
+            <exclude name="examples/**"/>
+            <exclude name="examples.*"/>
+            <exclude name="**/*.iml"/>
+            <exclude name="**/*.ipr"/>
+            <exclude name="**/*.iws"/>
+         </fileset>
+      </copy>
+   </target>
+
+
+   <!--
+   Builds examples
+   -->
+   <target name="examples">
+      <mkdir dir="${dist.examples.dir}"/>
+      <copy todir="${dist.examples.dir}">
+         <fileset dir="examples"/>
+      </copy>
+   </target>
+
+
+   <!--
+   Creates Cacheonix
+   distribution -->
+   <target name="dist" depends="all">
+
+      <!-- Create binary -->
+      <mkdir dir="${dist.result.dir}"/>
+
+      <!-- Copy jar to dist result -->
+      <copy file="${dist.cacheonix.jar}" todir="${dist.result.dir}"/>
+
+      <!-- Copy Javadoc to dist result -->
+      <copy todir="${dist.result.dir}">
+         <fileset dir="${dist.doc.dir}"/>
+      </copy>
+
+      <!-- Zip binary distribution -->
+      <zip basedir="${dist.bin.staging.dir}" destfile="${dist.result.dir}/cacheonix-binary-${release.version}.zip"/>
+
+      <!-- Zip source distribution -->
+      <zip basedir="${dist.src.staging.dir}" destfile="${dist.result.dir}/cacheonix-source-${release.version}.zip"/>
+   </target>
+
+   <!--
+   Builds everything
+   -->
+   <target name="all" depends="javac, javadoc, license, lib, bin, src"/>
+
+
+   <!--
+   Builds everything cleanly
+   -->
+   <target name="all.clean" depends="clean, all"/>
+
+
+</project>

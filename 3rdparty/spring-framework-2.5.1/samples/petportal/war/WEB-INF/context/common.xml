@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+
+	<!-- The one and only PetService -->
+	<bean id="petService" class="org.springframework.samples.petportal.service.PetServiceImpl">
+		<property name="initPets" value="${pets.initPets}"/>
+	</bean>
+	
+	<!-- enable access to externalized properties via PropertyPlaceholderConfigurer -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="WEB-INF/pets.properties"/>
+	</bean>
+	
+	<!-- Message source for this context, loaded from localized "messages_xx" files -->
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>messages</value>
+			</list>
+		</property>										
+	</bean>
+
+	<!-- Default View Resolver -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+		<property name="prefix" value="/WEB-INF/jsp/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+
+	<!-- Default ExceptionHandler -->
+	<bean id="defaultExceptionHandler" class="org.springframework.web.portlet.handler.SimpleMappingExceptionResolver">
+    <property name="order" value="10"/>
+		<property name="defaultErrorView" value="error"/>
+		<property name="exceptionMappings">
+			<props>
+				<prop key="javax.portlet.PortletSecurityException">unauthorized</prop>
+				<prop key="javax.portlet.UnavailableException">unavailable</prop>
+			</props>
+		</property>  
+	</bean>
+
+</beans>

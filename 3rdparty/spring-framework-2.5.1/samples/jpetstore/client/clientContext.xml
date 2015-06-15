@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<!--
+  - Application context for the remote OrderService client.
+	- Defines various OrderService proxies to be called by OrderServiceClient.
+	-->
+<beans>
+
+	<!-- Resolves ${...} placeholders from client.properties -->
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location"><value>client.properties</value></property>
+	</bean>
+
+	<!-- Proxy for the Hessian-exported OrderService -->
+	<!-- Hessian is a slim binary HTTP remoting protocol -->
+	<bean id="hessianProxy" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="serviceUrl">
+			<value>http://${serverName}:${httpPort}${contextPath}/remoting/OrderService-hessian</value>
+		</property>
+		<property name="serviceInterface">
+			<value>org.springframework.samples.jpetstore.domain.logic.OrderService</value>
+		</property>
+	</bean>
+
+	<!-- Proxy for the Burlap-exported OrderService -->
+	<!-- Burlap is a slim XML-based HTTP remoting protocol -->
+	<bean id="burlapProxy" class="org.springframework.remoting.caucho.BurlapProxyFactoryBean">
+		<property name="serviceUrl">
+			<value>http://${serverName}:${httpPort}${contextPath}/remoting/OrderService-burlap</value>
+		</property>
+		<property name="serviceInterface">
+			<value>org.springframework.samples.jpetstore.domain.logic.OrderService</value>
+		</property>
+	</bean>
+
+	<!-- Proxy for the HTTP-invoker-exported OrderService -->
+	<!-- Spring's HTTP invoker uses Java serialization via HTTP  -->
+	<bean id="httpInvokerProxy" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl">
+			<value>http://${serverName}:${httpPort}${contextPath}/remoting/OrderService-httpinvoker</value>
+		</property>
+		<property name="serviceInterface">
+			<value>org.springframework.samples.jpetstore.domain.logic.OrderService</value>
+		</property>
+		<!--
+		Comment the following in to use Apache Commons HttpClient instead of the JDK's
+		standard HttpURLConnection (as used by the default SimpleHttpInvokerRequestExecutor).
+		-->
+		<!--
+		<property name="httpInvokerRequestExecutor">
+			<bean class="org.springframework.remoting.httpinvoker.CommonsHttpInvokerRequestExecutor"/>
+		</property>
+ 		-->
+	</bean>
+
+	<!-- Proxy for the JAX-RPC/Axis-exported OrderService -->
+	<bean id="jaxRpcProxy" class="org.springframework.remoting.jaxrpc.JaxRpcPortProxyFactoryBean">
+		<property name="serviceFactoryClass">
+			<value>org.apache.axis.client.ServiceFactory</value>
+		</property>
+		<property name="wsdlDocumentUrl">
+			<value>http://${serverName}:${httpPort}${contextPath}/axis/OrderService?wsdl</value>
+		</property>
+		<property name="namespaceUri">
+			<value>http://${serverName}:${httpPort}${contextPath}/axis/OrderService</value>
+		</property>
+		<property name="serviceName">
+			<value>JaxRpcOrderServiceService</value>
+		</property>
+		<property name="portName">
+			<value>OrderService</value>
+		</property>
+		<property name="serviceInterface">
+			<value>org.springframework.samples.jpetstore.domain.logic.OrderService</value>
+		</property>
+		<!--
+		If you want to work with a JAX-RPC port stub underneath, you need to specify
+		an RMI interface to use at the JAX-RPC port level. This might give advantages
+		on certain JAX-RPC implementations. If not specified, JAX-RPC dynamic calls
+		will be used, which has been tested to work nicely on Apache Axis.
+		-->
+		<!--
+		<property name="portInterface">
+			<value>org.springframework.samples.jpetstore.service.RemoteOrderService</value>
+		</property>
+		-->
+		<property name="servicePostProcessors">
+			<list>
+				<bean class="org.springframework.remoting.jaxrpc.support.AxisBeanMappingServicePostProcessor">
+					<property name="encodingStyleUri" value="http://schemas.xmlsoap.org/soap/encoding/"/>
+					<property name="typeNamespaceUri" value="urn:JPetStore"/>
+					<property name="beanClasses">
+						<list>
+							<value>org.springframework.samples.jpetstore.domain.Order</value>
+							<value>org.springframework.samples.jpetstore.domain.LineItem</value>
+							<value>org.springframework.samples.jpetstore.domain.Item</value>
+							<value>org.springframework.samples.jpetstore.domain.Product</value>
+						</list>
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Proxy for the RMI-exported OrderService -->
+	<!-- Commented out by default to avoid conflicts with EJB containers -->
+	<!--
+	<bean id="rmiProxy" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl">
+			<value>rmi://${serverName}:${rmiPort}/order</value>
+		</property>
+		<property name="serviceInterface">
+			<value>org.springframework.samples.jpetstore.domain.logic.OrderService</value>
+		</property>
+	</bean>
+	-->
+
+</beans>

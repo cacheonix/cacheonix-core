@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+				http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+
+
+	<!-- ========================= GENERAL DEFINITIONS ========================= -->
+
+	<!-- Configurer that replaces ${...} placeholders with values from properties files -->
+	<!-- (in this case, JDBC related properties) -->
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>WEB-INF/jdbc.properties</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<!-- ========================= BUSINESS OBJECT DEFINITIONS ========================= -->
+
+	<!-- Generic validator for Account objects, to be used for example by the Spring web tier -->
+	<bean id="accountValidator" class="org.springframework.samples.jpetstore.domain.logic.AccountValidator"/>
+
+	<!-- Generic validator for Order objects, to be used for example by the Spring web tier -->
+	<bean id="orderValidator" class="org.springframework.samples.jpetstore.domain.logic.OrderValidator"/>
+
+	<!--
+		This marker creates the full auto-proxy infrastructure
+		that is necessary for applying Spring's Transactional annotation
+		(as contained in the PetStoreAnnotationImpl class). By default,
+		it will refer to the transaction manager bean named "transactionManager".
+	-->
+	<tx:annotation-driven/>
+
+	<!--
+		JPetStore primary business object: default implementation,
+		Note that this is just a POJO definition in this file:
+		there's no need to use a TransactionFactoryProxyBean if the class has
+		source-level transaction annotations; the "tx:annotation-driven"
+		marker above will apply transaction advice automatically.
+	-->
+	<bean id="petStore" class="org.springframework.samples.jpetstore.domain.logic.PetStoreAnnotationImpl">
+		<property name="accountDao" ref="accountDao"/>
+		<property name="categoryDao" ref="categoryDao"/>
+		<property name="productDao" ref="productDao"/>
+		<property name="itemDao" ref="itemDao"/>
+		<property name="orderDao" ref="orderDao"/>
+	</bean>
+
+
+	<!-- ========================= REMOTE EXPORTER DEFINITIONS ========================= -->
+
+	<!-- RMI exporter for the JPetStore OrderService -->
+	<!-- Commented out by default to avoid conflicts with EJB containers -->
+	<!--
+	<bean id="order-rmi" class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="service" ref="petStore"/>
+		<property name="serviceInterface" value="org.springframework.samples.jpetstore.domain.logic.OrderService"/>
+		<property name="serviceName" value="order"/>
+		<property name="registryPort" value="1099"/>
+	</bean>
+	-->
+
+</beans>

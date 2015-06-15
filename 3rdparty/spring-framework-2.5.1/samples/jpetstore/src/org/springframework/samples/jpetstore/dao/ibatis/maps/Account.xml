@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Account">
+
+  <resultMap id="result" class="org.springframework.samples.jpetstore.domain.Account">
+    <result property="username" column="userid" columnIndex="1"/>
+    <result property="email" column="email" columnIndex="2"/>
+    <result property="firstName" column="firstname" columnIndex="3"/>
+    <result property="lastName" column="lastname" columnIndex="4"/>
+    <result property="status" column="status" columnIndex="5"/>
+    <result property="address1" column="addr1" columnIndex="6"/>
+    <result property="address2" column="addr2" columnIndex="7"/>
+    <result property="city" column="city" columnIndex="8"/>
+    <result property="state" column="state" columnIndex="9"/>
+    <result property="zip" column="zip" columnIndex="10"/>
+    <result property="country" column="country" columnIndex="11"/>
+    <result property="phone" column="phone" columnIndex="12"/>
+    <result property="languagePreference" column="langpref" columnIndex="13"/>
+    <result property="favouriteCategoryId" column="favcategory" columnIndex="14"/>
+    <result property="listOption" column="mylistopt" columnIndex="15"/>
+    <result property="bannerOption" column="banneropt" columnIndex="16"/>
+    <result property="bannerName" column="bannername" columnIndex="17"/>
+  </resultMap>
+
+  <select id="getAccountByUsername" resultMap="result">
+    select
+          signon.username as userid,
+          account.email,
+          account.firstname,
+          account.lastname,
+          account.status,
+          account.addr1,
+          account.addr2,
+          account.city,
+          account.state,
+          account.zip,
+          account.country,
+          account.phone,
+          profile.langpref,
+          profile.favcategory,
+          profile.mylistopt,
+          profile.banneropt,
+          bannerdata.bannername
+    from account, profile, signon, bannerdata
+    where account.userid = #value#
+      and signon.username = account.userid
+      and profile.userid = account.userid
+      and profile.favcategory = bannerdata.favcategory
+  </select>
+
+  <select id="getAccountByUsernameAndPassword" resultMap="result">
+    select
+      signon.username as userid,
+      account.email,
+      account.firstname,
+      account.lastname,
+      account.status,
+      account.addr1,
+      account.addr2,
+      account.city,
+      account.state,
+      account.zip,
+      account.country,
+      account.phone,
+      profile.langpref,
+      profile.favcategory,
+      profile.mylistopt,
+      profile.banneropt,
+      bannerdata.bannername
+    from account, profile, signon, bannerdata
+    where account.userid = #username#
+      and signon.password = #password#
+      and signon.username = account.userid
+      and profile.userid = account.userid
+      and profile.favcategory = bannerdata.favcategory
+  </select>
+
+  <select id="getUsernameList" resultClass="java.lang.String">
+    select username as value from signon
+  </select>
+
+  <update id="updateAccount">
+    update account set email = #email#, firstname = #firstName#, lastname = #lastName#, status = #status#, addr1 = #address1#, addr2 = #address2:varchar#, city = #city#, state = #state#, zip = #zip#, country = #country#, phone = #phone# where userid = #username#
+  </update>
+
+  <insert id="insertAccount">
+    insert into account (email, firstname, lastname, status, addr1, addr2, city, state, zip, country, phone, userid) values (#email#, #firstName#, #lastName#, #status#, #address1#, #address2:varchar#, #city#, #state#, #zip#, #country#, #phone#, #username#)
+  </insert>
+
+  <update id="updateProfile">
+    update profile set langpref = #languagePreference#, favcategory = #favouriteCategoryId#, mylistopt = #listOptionAsInt#, banneropt = #bannerOptionAsInt# where userid = #username#
+  </update>
+
+  <insert id="insertProfile">
+    insert into profile (langpref, favcategory, mylistopt, banneropt, userid) values (#languagePreference#, #favouriteCategoryId#, #listOptionAsInt#, #bannerOptionAsInt#, #username#)
+  </insert>
+
+  <update id="updateSignon">
+    update signon set password = #password# where username = #username#
+  </update>
+
+  <insert id="insertSignon">
+    insert into signon (password,username) values (#password#,#username#)
+  </insert>
+
+</sqlMap>

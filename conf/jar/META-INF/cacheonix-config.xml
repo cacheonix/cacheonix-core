@@ -1,0 +1,29 @@
+<?xml version ="1.0"?>
+<!--
+   Fall-back Cacheonix configuration. Defines a default template for a clustered partitioned cache.
+-->
+<cacheonix xmlns="http://www.cacheonix.com/schema/configuration"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.cacheonix.com/schema/configuration http://www.cacheonix.com/schema/cacheonix-config-2.0.xsd">
+
+   <tempDir path="${java.io.temp}"/>
+
+   <server>
+
+      <cluster homeAloneTimeout="10s"/>
+
+      <listener>
+         <tcp port="9879"/>
+      </listener>
+
+      <broadcast>
+         <multicast multicastAddress="225.0.1.2" multicastPort="9998" multicastTTL="0"/>
+      </broadcast>
+
+      <partitionedCache name="default">
+         <store>
+            <lru maxElements="1000" maxBytes="1m"/>
+         </store>
+      </partitionedCache>
+   </server>
+</cacheonix>

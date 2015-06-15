@@ -1,0 +1,283 @@
+<HTML>
+<HEAD>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+    <!-- Created by: Andy KASS, 22-Sept-1999 -->
+
+    <TITLE>JMX RI</TITLE>
+
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF"
+      LINK="#0000FF" VLINK="#000077" ALINK="#FF0000">
+
+<TABLE BORDER=0 WIDTH="100%">
+    <TR>
+        <TD><IMG SRC="images/smi.logo.gif" ALT="Sun Microsystems, Inc"
+                 HEIGHT=43 WIDTH=120>&nbsp;</TD>
+        <TD ALIGN=right>
+            <B><A HREF="../index.html">JMX Reference Implementation</A><BR>
+                Tutorial</B></TD>
+    </TR>
+</TABLE>
+<HR>
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+
+    <TR>
+        <TD WIDTH="33%" ALIGN="left" VALIGN="top"><A HREF="agentview.html">
+            <IMG SRC="images/leftarrow.gif" BORDER="0" ALT="[ Previous ]"><BR>
+            The Agent View</A></TD>
+
+        <TD WIDTH="34%" ALIGN="center" VALIGN="top"><A HREF="tutorial.html">
+            <IMG SRC="images/uparrow.gif" BORDER="0" ALT="[ Contents ]"><BR>
+            Contents</A></TD>
+
+        <TD WIDTH="33%" ALIGN="right" VALIGN="top">
+            <A HREF="administration.html">
+                <IMG SRC="images/rightarrow.gif" BORDER="0" ALT="[ Next ]"><BR>
+                Agent Administration</A></TD>
+
+    </TR>
+</TABLE>
+<HR>
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<CENTER>
+    <H1>
+        The MBean View
+    </H1>
+</CENTER>
+<BLOCKQUOTE>
+
+    <B><FONT SIZE=+1 COLOR=#ACA6CF>Action: &nbsp;</FONT></B>In the Agent
+    view, click on the name of the HTML adaptor MBean:
+    <CODE>name=html,port=8082</CODE> in the <CODE>Adaptor</CODE>
+    domain. This will bring up the MBean view of this object.<P>
+
+    An MBean (<I>managed bean</I>) is a Java object that follows the
+    design patterns set forth in the instrumentation level of the JMX<SUP><FONT
+        SIZE=-2>TM</FONT></SUP>
+    specification. An MBean can represent a device, an application, or any
+    resource that needs to be managed. MBeans expose a <I>management
+    interface</I>: a set of readable and/or writable attributes and a set
+    of invokable operations, along with a self-description. The management
+    interface does not change throughout the life of an MBean instance.
+
+    <P>
+
+        According to the JMX specification, MBeans can be either standard or
+        dynamic. A standard MBean is one that statically defines its
+        management interface through the names of the methods it contains. A
+        dynamic MBean implements a specific Java interface and reveals its
+        attributes and operations at runtime. Since the HTML adaptor just
+        displays their management interface, these two types are almost
+        indistiguishable in the MBean view (they are compared in <A
+            HREF="twombeans.html">Standard and Dynamic MBeans</A>).
+
+    <P>
+
+        The MBean view has two functions: it presents the management interface
+        of the MBean and it lets you interact with its instance. The
+        management interface of an MBean is given through the name of the
+        attributes, the operation signatures, and a self-description. You can
+        interact with the MBean by reloading its attribute values, setting new
+        values or invoking an operation.
+
+    <P>
+
+        The MBean view can be divided into three main parts:
+    <UL>
+
+        <LI>The header with a description</LI>
+        <LI>The table of attributes</LI>
+        <LI>The operations</LI>
+    </UL>
+
+    <A NAME="MBeanDescription"><H3>The Header and Description</H3></A>
+
+    The top part of the page contains the description of the MBean and
+    some controls for managing it:<P>
+
+</BLOCKQUOTE>
+<CENTER>
+    <IMG SRC="images/mbeanTop.gif" BORDER="2" HEIGHT=250 WIDTH=535>
+</CENTER>
+<BLOCKQUOTE><P>
+
+    The MBean name is the full object name of this MBean instance. The
+    first part up to the colon is the <I>domain</I>, the rest is made up
+    of <I>key</I><CODE>=</CODE><I>value</I> pairs. These pairs must be
+    unique within a given domain and should help identify the MBean to a
+    human reader. It is up to the person or application registering the
+    MBean to assign it a meaningful and correct object name. Object names
+    are further described in the <A
+        HREF="administration.html#ObjectNames">Agent Administration</A> topic.
+
+    <P>
+
+        The MBean Java class is the full class name for the Java object of which
+        this MBean is an instance.
+
+    <P>
+
+        The reload controls include a text field for entering a reload period
+        and a manual "Reload" button. Originally, the reload period is set to
+        zero indicating that the contents of the MBean view are not
+        refreshed. Clicking the reload button forces the page to reload,
+        thereby updating all of the attribute values displayed. If you have
+        entered a reload period, clicking the button begins automatic
+        reloading with the given period. The reload period must be greater
+        than five seconds.
+
+    <P>
+
+        <B><FONT SIZE=+1 COLOR=#ACA6CF>Action: &nbsp;</FONT></B>Enter a reload
+        period of five and click the "Reload" button. Every five seconds the
+        page will blink as it reloads. Now open another connection to the HTML
+        adaptor and observe the new values for the "ActiveClientCount" and
+        "LastConnectedClient" attributes. To do this, load the URL <A
+            HREF="http://localhost:8082/">http://localhost:8082/</A> and then use
+        the "Previous Page" function of your browser to get back to the
+        tutorial. Due to the way the adaptor works, you might have try several
+        connections before you see the attribute values change.
+
+    <P>
+
+        The reload period will be reset to zero the next time you go back to
+        the agent view and return to this MBean.
+
+    <P>
+
+        The "Unregister" button is a shortcut for removing this MBean from the
+        Agent. Unregistering is covered in the <A
+            HREF="administration.html">Agent Administration topic</A>.
+
+    <P>
+
+        The MBean description text provides some information about the
+        MBean. Because standard MBeans are statically defined, they cannot
+        describe themselves, and the MBean server provides a generic
+        text. Dynamic MBeans, however, can provide their own description
+        string at runtime and are even required to, according to the JMX
+        specification. Except for the class name, this is the only way to tell
+        standard and dynamic MBeans apart in the MBean view.
+
+        <A NAME="Attributes"><H3>The Table of Attributes</H3></A>
+
+        The second part of the MBean view is a table containing all attributes
+        exposed by the MBean. For each attribute, this table lists its name,
+        its Java type, its read/write access and a string representation of
+        its current value.
+    <P>
+
+</BLOCKQUOTE>
+<CENTER>
+    <IMG SRC="images/mbeanAtt.gif" BORDER="2" HEIGHT=471 WIDTH=675>
+</CENTER>
+<BLOCKQUOTE><P>
+
+    The name of each attribute is a link that opens a dialogue box
+    containing the description for this attribute. Like the MBean
+    description, attribute descriptions can only be provided by dynamic
+    MBeans. The MBean server inserts a generic message for standard
+    MBean attributes.
+
+    <P>
+
+        <B><FONT SIZE=+1 COLOR=#ACA6CF>Action: &nbsp;</FONT></B>Click on the
+        attribute names of the HTML adaptor to read their description. Since
+        the HTML adaptor is implemented as a dynamic MBean, its attribute
+        descriptions are meaningful.
+
+        Due to the use of JavaScript<SUP><FONT SIZE=-2>TM</FONT></SUP> commands, these pop-up windows might not
+        be available on browsers that are not JavaScript-enabled.
+
+    <P>
+
+        Writable attributes have a text field for entering new values. To set
+        the value of a writable attribute, enter or replace its current value
+        in the text field and click the "Apply" button at the bottom of the
+        attributes table. Despite appearances, you cannot modify the
+        attributes of the HTML adaptor, we will see why in the section on <A
+            HREF="managing.html">Instantiating and Managing MBeans</A>.
+
+    <P>
+
+        <A NAME="Operations"><H3>The Operations</H3></A>
+
+        The last part of the MBean view contains all of the operations exposed
+        by the MBean. Each operation in the list is presented like a method
+        signature: there is a return type, then a button with the operation
+        name, and if applicable, a list of parameters, each with their type as
+        well.
+    <P>
+
+    <CENTER>
+</BLOCKQUOTE>
+<IMG SRC="images/mbeanOps.gif" BORDER="2" HEIGHT=315 WIDTH=672>
+</CENTER>
+<BLOCKQUOTE><P>
+
+    Above each operation is a link to its description. Parameter
+    names are also clickable links which open a window with a
+    description text. Again, descriptions are only meaningful for dynamic
+    MBeans.
+
+    <P>
+
+        To invoke an operation, you would fill in any parameter values in the
+        corresponding text fields and then click the operation's button. The
+        HTML adaptor would then display a page with the result of the
+        operation: the return value if successful or the reason the operation
+        was unsuccessful.
+
+    <P>
+
+        We will not invoke any operations on the HTML parser until a brief
+        explanation in <A HREF="managing.html">Instantiating and Managing
+        MBeans</A>. If we stopped the HTML adaptor or blocked it with an
+        error, there would no longer be any way to connect with a browser: we
+        would have to stop the base agent and restart it.
+
+    <P>
+
+        <B><FONT SIZE=+1 COLOR=#ACA6CF>Action: &nbsp;</FONT></B>Go back to the
+        agent view by clicking the link near the top of the MBean view page.
+
+    <P>
+
+</BLOCKQUOTE>
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<HR>
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+
+    <TR>
+        <TD WIDTH="33%" ALIGN="left" VALIGN="top"><A HREF="agentview.html">
+            <IMG SRC="images/leftarrow.gif" BORDER="0" ALT="[ Previous ]"><BR>
+            The Agent View</A></TD>
+
+        <TD WIDTH="34%" ALIGN="center" VALIGN="top"><A HREF="tutorial.html">
+            <IMG SRC="images/uparrow.gif" BORDER="0" ALT="[ Contents ]"><BR>
+            Contents</A></TD>
+
+        <TD WIDTH="33%" ALIGN="right" VALIGN="top">
+            <A HREF="administration.html">
+                <IMG SRC="images/rightarrow.gif" BORDER="0" ALT="[ Next ]"><BR>
+                Agent Administration</A></TD>
+
+    </TR>
+</TABLE>
+<HR>
+
+<IMG SRC="images/java_red.gif" ALT="Java coffee cup logo"
+     HEIGHT=85 WIDTH=49 ALIGN=RIGHT>
+
+<P>
+    <FONT SIZE=-1><A HREF="copyright.html">Copyright</A> 2000-2003
+        Sun Microsystems, Inc.,
+        &nbsp;<BR>
+        All rights reserved.</FONT>
+
+<P>
+
+<P>
+    &nbsp;
+</BODY>
+</HTML>

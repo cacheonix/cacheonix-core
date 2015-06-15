@@ -1,0 +1,905 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Math - </title>
+    <style type="text/css" media="all">
+      @import url("./css/maven-base.css");
+      @import url("./css/maven-theme.css");
+      @import url("./css/site.css");
+    </style>
+    <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+  <body class="composite">
+    <div id="banner">
+                  <a href="../" id="bannerLeft">
+    
+                                            <img src="../images/logo.png" alt="" />
+    
+            </a>
+                        <a href="index.html" id="bannerRight">
+    
+                                            <img src="images/math.gif" alt="" />
+    
+            </a>
+            <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+            
+  
+    
+            <div class="xleft">
+        Last Published: 18 February 2008
+                  &nbsp;| Version: 1.2
+                      </div>
+            <div class="xright">            <a href="http://www.apachecon.com/" class="externalLink">ApacheCon</a>
+            |
+                <a href="http://www.apache.org" class="externalLink">Apache</a>
+            |
+                <a href="../">Commons</a>
+            
+  
+
+  
+    
+            
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+            
+  
+    
+                   <h5>Math</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="index.html">Overview</a>
+          </li>
+              
+    <li class="none">
+                    <a href="proposal.html">Proposal</a>
+          </li>
+              
+    <li class="none">
+                    <a href="developers.html">Developers Guide</a>
+          </li>
+              
+    <li class="none">
+                    <a href="apidocs/index.html">Javadoc (1.2 release)</a>
+          </li>
+              
+    <li class="none">
+                    <a href="api-1.1/index.html">Javadoc (1.1 release)</a>
+          </li>
+              
+    <li class="none">
+                    <a href="api-1.0/index.html">Javadoc (1.0 release)</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://svn.apache.org/viewvc/commons/proper/math/trunk" class="externalLink">Source Repository (current)</a>
+          </li>
+              
+    <li class="none">
+                    <a href="issue-tracking.html">Issue Tracking</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://wiki.apache.org/commons/Math" class="externalLink">Wiki</a>
+          </li>
+          </ul>
+              <h5>User Guide</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="userguide/index.html">Contents</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/overview.html">Overview</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/stat.html">Statistics</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/random.html">Data Generation</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/linear.html">Linear Algebra</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/analysis.html">Numerical Analysis</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/special.html">Special Functions</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/utilities.html">Utilities</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/complex.html">Complex Numbers</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/distribution.html">Distributions</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/fraction.html">Fractions</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/transform.html">Transform Methods</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/geometry.html">3D Geometry</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/estimation.html">Parametric Estimation</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/optimization.html">Optimization</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/ode.html">Ordinary Differential Equations</a>
+          </li>
+          </ul>
+              <h5>Project Documentation</h5>
+            <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-info.html">Project Information</a>
+                </li>
+              
+                
+              
+            
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+            <li class="expanded">
+                    <a href="project-reports.html">Project Reports</a>
+                  <ul>
+                  
+    <li class="none">
+              <strong>Changes Report</strong>
+        </li>
+                  
+    <li class="none">
+                    <a href="checkstyle.html">Checkstyle</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="clirr-report.html">Clirr</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="cpd.html">CPD Report</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="findbugs.html">FindBugs Report</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="apidocs/index.html">JavaDocs</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="jdepend-report.html">JDepend</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="surefire-report.html">Maven Surefire Report</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="pmd.html">PMD Report</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="rat-report.html">RAT Report</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="xref/index.html">Source Xref</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="testapidocs/index.html">Test JavaDocs</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="xref-test/index.html">Test Source Xref</a>
+          </li>
+              </ul>
+        </li>
+          </ul>
+              <h5>Commons</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="../">Home</a>
+          </li>
+              
+                
+              
+      
+              
+        <li class="collapsed">
+                    <a href="../components.html">Components</a>
+                </li>
+              
+                
+              
+      
+              
+        <li class="collapsed">
+                    <a href="../sandbox/index.html">Sandbox</a>
+                </li>
+              
+                
+              
+      
+              
+        <li class="collapsed">
+                    <a href="../dormant/index.html">Dormant</a>
+                </li>
+              
+    <li class="none">
+                    <a href="../volunteering.html">Volunteering</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../patches.html">Contributing Patches</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../building.html">Building Components</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../releases/index.html">Releasing Components</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://wiki.apache.org/commons/FrontPage" class="externalLink">Wiki</a>
+          </li>
+          </ul>
+              <h5>ASF</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://www.apache.org/foundation/sponsorship.html" class="externalLink">Sponsorship</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://www.apache.org/foundation/thanks.html" class="externalLink">Thanks</a>
+          </li>
+          </ul>
+                                           <a href="http://maven.apache.org/" title="Built by Maven" class="poweredBy">
+            <img alt="Built by Maven" src="./images/logos/maven-feather.png"></img>
+          </a>
+                       
+  
+
+  
+    
+            
+  
+    
+        </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <h2><a name="Changes_Report"></a>
+Changes Report</h2>
+<h3><a name="Release_History"></a>
+Release History</h3>
+<table class="bodyTable"><tr class="a"><th>Version</th>
+<th>Date</th>
+<th>Description</th>
+</tr>
+<tr class="b"><td><a href="#1.2">1.2</a>
+</td>
+<td>2008-02-23</td>
+<td>This release combines bug fixes and new features. Most notable     among the new features are the estimation, optimization, geometry and ode     packages added from the Mantissa library. Implementations of fast Fourier     transform, QR decomposition and several numerical integration algorithms     have also been added, along with enhancements and extensions to packages     included in Commons Math 1.1. This release is source and binary compatible     with earlier versions of Commons Math.</td>
+</tr>
+<tr class="a"><td><a href="#1.1">1.1</a>
+</td>
+<td>2005-12-17</td>
+<td>This is a maintenance release containing bug fixes and enhancements.        All API changes are binary compatible with version 1.0. The enhancements         include some new probability distributions, a Fraction class, new matrix        and numerical utilities, and a PRNG pluggability framework making it        possible to replace the JDK-supplied random number generator in        commons-math (and elsewhere) with alternative PRNG implementations.</td>
+</tr>
+<tr class="b"><td><a href="#1.0">1.0</a>
+</td>
+<td>2004-12-06</td>
+<td>Apache Commons Math 1.0 - Initial Release</td>
+</tr>
+</table>
+<br />
+<br />
+<h3><a name="a1.2"></a>
+Release 1.2 - 2008-02-23</h3>
+<table class="bodyTable"><tr class="a"><th>Type</th>
+<th>Changes</th>
+<th>By</th>
+</tr>
+<tr class="b"><td><img src="images/fix.gif" alt="fix" /></td>
+<td>Fixed numerous warnings in test code.</td>
+<td><a href="team-list.html#luc">luc</a>
+</td>
+</tr>
+<tr class="a"><td><img src="images/fix.gif" alt="fix" /></td>
+<td>Use the initial guess provided by the user in BrentSolver.solve(), thus
+improving speed. Fixes <a href="http://issues.apache.org/jira/browse/MATH-156" class="externalLink">MATH-156<img src="images/external.png" /></a>
+. Thanks to Tyler Ward.</td>
+<td><a href="team-list.html#luc">luc</a>
+</td>
+</tr>
+<tr class="b"><td><img src="images/add.gif" alt="add" /></td>
+<td>Added the estimation, optimization, geometry and ode packages from the
+Mantissa library.</td>
+<td><a href="team-list.html#luc">luc</a>
+</td>
+</tr>
+<tr class="a"><td><img src="images/fix.gif" alt="fix" /></td>
+<td>Made ComplexFormat format double values with a provided NumberFormat
+instance instead of using the real part format for all values. Fixes <a href="http://issues.apache.org/jira/browse/MATH-18" class="externalLink">MATH-18<img src="images/external.png" /></a>
+. Thanks to Phil Steitz.</td>
+<td><a href="team-list.html#brentworden">brentworden</a>
+</td>
+</tr>
+<tr class="b"><td><img src="images/add.gif" alt="add" /></td>
+<td>Added Pascal distribution implementation. Fixes <a href="http://issues.apache.org/jira/browse/MATH-120" class="externalLink">MATH-120<img src="images/external.png" /></a>
+. Thanks to Todd C. Parnell.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="a"><td><img src="images/add.gif" alt="add" /></td>
+<td>Added QR Decomposition. Fixes <a href="http://issues.apache.org/jira/browse/MATH-148" class="externalLink">MATH-148<img src="images/external.png" /></a>
+. Thanks to Joni Salonen.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="b"><td><img src="images/fix.gif" alt="fix" /></td>
+<td>Modified ProperFractionFormat to reject embedded minus signs. Fixes <a href="http://issues.apache.org/jira/browse/MATH-60" class="externalLink">MATH-60<img src="images/external.png" /></a>
+. Thanks to Nhung Nnguyen.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="a"><td><img src="images/fix.gif" alt="fix" /></td>
+<td>Added a nextAfter method in MathUtils to return the next
+machine-representable number in a specified direction from a given
+floating point number.  Used this to ensure that MathUtils.round does
+not return incorrect results for numbers with bad IEEE754
+representations. Fixes <a href="http://issues.apache.org/jira/browse/MATH-151" class="externalLink">MATH-151<img src="images/external.png" /></a>
+. Thanks to Luc Maisonobe.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="b"><td><img src="images/add.gif" alt="add" /></td>
+<td>Added Fast Fourier Transform implementation. Fixes <a href="http://issues.apache.org/jira/browse/MATH-140" class="externalLink">MATH-140<img src="images/external.png" /></a>
+. Thanks to Xiaogang Zhang.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="a"><td><img src="images/fix.gif" alt="fix" /></td>
+<td>Modified getSumSquaredErrors method in SimpleRegression to always
+return a non-negative result. Fixes <a href="http://issues.apache.org/jira/browse/MATH-85" class="externalLink">MATH-85<img src="images/external.png" /></a>
+. Thanks to Mark Osborn, Luc Maisonobe.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="b"><td><img src="images/fix.gif" alt="fix" /></td>
+<td>Corrected nextInt and nextLong to handle wide value ranges. Fixes <a href="http://issues.apache.org/jira/browse/MATH-153" class="externalLink">MATH-153<img src="images/external.png" /></a>
+. Thanks to Remi Arntzen.</td>
+<td><a href="team-list.html#brentworden">brentworden</a>
+</td>
+</tr>
+<tr class="a"><td><img src="images/fix.gif" alt="fix" /></td>
+<td>Increased default precision of Gamma and Beta functions. Fixes <a href="http://issues.apache.org/jira/browse/MATH-166" class="externalLink">MATH-166<img src="images/external.png" /></a>
+. Thanks to Lukas Theussl.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="b"><td><img src="images/update.gif" alt="update" /></td>
+<td>Added log function to MathUtils. Fixes <a href="http://issues.apache.org/jira/browse/MATH-158" class="externalLink">MATH-158<img src="images/external.png" /></a>
+. Thanks to Hasan Diwan.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="a"><td><img src="images/update.gif" alt="update" /></td>
+<td>Added two sample (binned comparison) ChiSquare test. Fixes <a href="http://issues.apache.org/jira/browse/MATH-160" class="externalLink">MATH-160<img src="images/external.png" /></a>
+. Thanks to Matthias Hummel.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="b"><td><img src="images/fix.gif" alt="fix" /></td>
+<td>Modified NormalDistributionImpl.cumulativeProbablity to catch
+MaxIterationsExceededException and return 0 or 1, resp. if the argument
+is more than 20 standard deviations from the mean. Fixes <a href="http://issues.apache.org/jira/browse/MATH-167" class="externalLink">MATH-167<img src="images/external.png" /></a>
+.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="a"><td><img src="images/update.gif" alt="update" /></td>
+<td>Added SynchronizedDescriptiveStatistics class. Fixes <a href="http://issues.apache.org/jira/browse/MATH-170" class="externalLink">MATH-170<img src="images/external.png" /></a>
+. Thanks to David J. M. Karlsen.</td>
+<td><a href="team-list.html#brentworden">brentworden</a>
+</td>
+</tr>
+<tr class="b"><td><img src="images/update.gif" alt="update" /></td>
+<td>Added addAndCheck, mulAndCheck, and subAndCheck MathUtils methods for
+long integer arguments. Fixes <a href="http://issues.apache.org/jira/browse/MATH-154" class="externalLink">MATH-154<img src="images/external.png" /></a>
+. Thanks to Remi Arntzen.</td>
+<td><a href="team-list.html#brentworden">brentworden</a>
+</td>
+</tr>
+<tr class="a"><td><img src="images/update.gif" alt="update" /></td>
+<td>Merged most functions from ComplexUtils into Complex class, added
+static factory method to Complex. Fixes <a href="http://issues.apache.org/jira/browse/MATH-171" class="externalLink">MATH-171<img src="images/external.png" /></a>
+. Thanks to Niall Pemberton.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="b"><td><img src="images/update.gif" alt="update" /></td>
+<td>Deprecated abstract factory methods and made DescriptiveStatistics and
+and SummaryStatistics concrete classes. Pushed implementations up
+from DescriptiveStatisticsImpl, SummaryStatisticsImpl. Made
+implementations of statistics configurable via setters.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="a"><td><img src="images/fix.gif" alt="fix" /></td>
+<td>Changed Mean.evaluate() to use a two-pass algorithm, improving accuracy
+by exploiting the the fact that this method has access to the full
+array of data values. Fixes <a href="http://issues.apache.org/jira/browse/MATH-174" class="externalLink">MATH-174<img src="images/external.png" /></a>
+.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="b"><td><img src="images/fix.gif" alt="fix" /></td>
+<td>Added check and rescaling of
+expected counts to sum to sum of expected
+counts if necessary in ChiSquare test. Fixes <a href="http://issues.apache.org/jira/browse/MATH-175" class="externalLink">MATH-175<img src="images/external.png" /></a>
+. Thanks to Carl Anderson.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="a"><td><img src="images/fix.gif" alt="fix" /></td>
+<td>Handle multiplication of Complex numbers with infinite parts specially. Fixes <a href="http://issues.apache.org/jira/browse/MATH-164" class="externalLink">MATH-164<img src="images/external.png" /></a>
+.</td>
+<td><a href="team-list.html#luc">luc</a>
+</td>
+</tr>
+<tr class="b"><td><img src="images/update.gif" alt="update" /></td>
+<td>Add errors guessing to least-squares estimators. Fixes <a href="http://issues.apache.org/jira/browse/MATH-176" class="externalLink">MATH-176<img src="images/external.png" /></a>
+. Thanks to Kazuhiro Koshino.</td>
+<td><a href="team-list.html#luc">luc</a>
+</td>
+</tr>
+<tr class="a"><td><img src="images/update.gif" alt="update" /></td>
+<td>Add tests for Fraction constructor using double parameter. Fixes <a href="http://issues.apache.org/jira/browse/MATH-179" class="externalLink">MATH-179<img src="images/external.png" /></a>
+. Thanks to Niall Pemberton.</td>
+<td><a href="team-list.html#luc">luc</a>
+</td>
+</tr>
+<tr class="b"><td><img src="images/add.gif" alt="add" /></td>
+<td>Added one-way ANOVA implementation. Fixes <a href="http://issues.apache.org/jira/browse/MATH-173" class="externalLink">MATH-173<img src="images/external.png" /></a>
+. Thanks to Bob MacCallum.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="a"><td><img src="images/update.gif" alt="update" /></td>
+<td>Add Fraction constructor using max denominator value. Fixes <a href="http://issues.apache.org/jira/browse/MATH-181" class="externalLink">MATH-181<img src="images/external.png" /></a>
+. Thanks to Niall Pemberton.</td>
+<td><a href="team-list.html#luc">luc</a>
+</td>
+</tr>
+<tr class="b"><td><img src="images/fix.gif" alt="fix" /></td>
+<td>Add integer overflow checks in Fraction constructor using double parameter. Fixes <a href="http://issues.apache.org/jira/browse/MATH-182" class="externalLink">MATH-182<img src="images/external.png" /></a>
+.</td>
+<td><a href="team-list.html#luc">luc</a>
+</td>
+</tr>
+<tr class="a"><td><img src="images/fix.gif" alt="fix" /></td>
+<td>Throw EOFException when using empty files with ValueServer in replay and
+digest modes. Fixes <a href="http://issues.apache.org/jira/browse/MATH-185" class="externalLink">MATH-185<img src="images/external.png" /></a>
+.</td>
+<td><a href="team-list.html#luc">luc</a>
+</td>
+</tr>
+<tr class="b"><td><img src="images/update.gif" alt="update" /></td>
+<td>Added a equals and hash methods in MathUtils to check for double arrays</td>
+<td><a href="team-list.html#luc">luc</a>
+</td>
+</tr>
+<tr class="a"><td><img src="images/add.gif" alt="add" /></td>
+<td>Added an angle normalization method in MathUtils to force angles in some
+user-defined interval</td>
+<td><a href="team-list.html#luc">luc</a>
+</td>
+</tr>
+<tr class="b"><td><img src="images/add.gif" alt="add" /></td>
+<td>Added vectorial covariance computation (either sample or population
+covariance)</td>
+<td><a href="team-list.html#luc">luc</a>
+</td>
+</tr>
+<tr class="a"><td><img src="images/add.gif" alt="add" /></td>
+<td>Added multivariate summary statistics.</td>
+<td><a href="team-list.html#luc">luc</a>
+</td>
+</tr>
+<tr class="b"><td><img src="images/update.gif" alt="update" /></td>
+<td>Added getSumOfLogs method to SummaryStatistics and made SumOfLogs
+instance used by GeometricMean configurable. Fixes <a href="http://issues.apache.org/jira/browse/MATH-191" class="externalLink">MATH-191<img src="images/external.png" /></a>
+.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="a"><td><img src="images/fix.gif" alt="fix" /></td>
+<td>Fixed AbstractIntegerDistribution cumulativeProbablility(-,-)
+to correctly handle double arguments. Fixes <a href="http://issues.apache.org/jira/browse/MATH-184" class="externalLink">MATH-184<img src="images/external.png" /></a>
+. Thanks to Yegor Bryukhov.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="b"><td><img src="images/update.gif" alt="update" /></td>
+<td>Made numerator and denominator final in Fraction and
+deprecated protected real and imaginary parts fields in Complex,
+making Fraction immutable and preparing Complex to become fully
+immutable in 2.0. Fixes <a href="http://issues.apache.org/jira/browse/MATH-188" class="externalLink">MATH-188<img src="images/external.png" /></a>
+. Thanks to Sebastian Bazley.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+</table>
+<h3><a name="a1.1"></a>
+Release 1.1 - 2005-12-17</h3>
+<table class="bodyTable"><tr class="a"><th>Type</th>
+<th>Changes</th>
+<th>By</th>
+</tr>
+<tr class="b"><td><img src="images/fix.gif" alt="fix" /></td>
+<td>Made NewtonSolver derivative field transient and implemented readObject to
+initialize. Fixes <a href="http://issues.apache.org/jira/browse/MATH-74" class="externalLink">MATH-74<img src="images/external.png" /></a>
+.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="a"><td><img src="images/fix.gif" alt="fix" /></td>
+<td>Made sampleStats field private and changed getUpperBounds to return a fresh
+copy in EmpiricalDistributionImpl. Fixes <a href="http://issues.apache.org/jira/browse/MATH-74" class="externalLink">MATH-74<img src="images/external.png" /></a>
+.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="b"><td><img src="images/update.gif" alt="update" /></td>
+<td>Added polar2Complex method to ComplexUtils to create Complex numbers
+from polar representations.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="a"><td><img src="images/fix.gif" alt="fix" /></td>
+<td>Made all serialVersionUIDs private. Fixes <a href="http://issues.apache.org/jira/browse/MATH-49" class="externalLink">MATH-49<img src="images/external.png" /></a>
+. Thanks to Elliotte Harold.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="b"><td><img src="images/fix.gif" alt="fix" /></td>
+<td>Improved documentation and test cases related to handling of infinite
+and NaN values in Complex, ComplexUtils classes. Fixes <a href="http://issues.apache.org/jira/browse/MATH-5" class="externalLink">MATH-5<img src="images/external.png" /></a>
+.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="a"><td><img src="images/fix.gif" alt="fix" /></td>
+<td>Fixed incorrect NaN handling in o.a.m.s.d.rank.Min, Max Fixes <a href="http://issues.apache.org/jira/browse/MATH-57" class="externalLink">MATH-57<img src="images/external.png" /></a>
+. Thanks to Mauro Talevi.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="b"><td><img src="images/fix.gif" alt="fix" /></td>
+<td>Changed RealMatrixImpl.equals to use Double.doubleToLongBits to compare
+corresponding matrix entries. Fixes <a href="http://issues.apache.org/jira/browse/MATH-74" class="externalLink">MATH-74<img src="images/external.png" /></a>
+.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="a"><td><img src="images/fix.gif" alt="fix" /></td>
+<td>Eliminated floating point equals comparison in Percentile.evaluate. Fixes <a href="http://issues.apache.org/jira/browse/MATH-74" class="externalLink">MATH-74<img src="images/external.png" /></a>
+.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="b"><td><img src="images/fix.gif" alt="fix" /></td>
+<td>Eliminated unnecessary assignment statements in Skewness.getResult
+method. Fixes <a href="http://issues.apache.org/jira/browse/MATH-74" class="externalLink">MATH-74<img src="images/external.png" /></a>
+.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="a"><td><img src="images/fix.gif" alt="fix" /></td>
+<td>Synchronized getters in ResizeableDoubleArray. Fixes <a href="http://issues.apache.org/jira/browse/MATH-74" class="externalLink">MATH-74<img src="images/external.png" /></a>
+.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="b"><td><img src="images/fix.gif" alt="fix" /></td>
+<td>Eliminated unnecessary assignment statement in BisectionSolver.solve
+method. Fixes <a href="http://issues.apache.org/jira/browse/MATH-74" class="externalLink">MATH-74<img src="images/external.png" /></a>
+.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="a"><td><img src="images/fix.gif" alt="fix" /></td>
+<td>Implemented hashCode in the Complex class and changed the semantics of
+equals to make all instances with real or imaginary part NaN equal. Fixes <a href="http://issues.apache.org/jira/browse/MATH-74" class="externalLink">MATH-74<img src="images/external.png" /></a>
+.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="b"><td><img src="images/fix.gif" alt="fix" /></td>
+<td>Fixed bin index overflow problem in EmpiricalDistributionImpl. Fixes <a href="http://issues.apache.org/jira/browse/MATH-12" class="externalLink">MATH-12<img src="images/external.png" /></a>
+. Thanks to Keith McDonald.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="a"><td><img src="images/fix.gif" alt="fix" /></td>
+<td>Added protection against numerical overflow and underflow in the
+isBracketing method. Fixes <a href="http://issues.apache.org/jira/browse/MATH-108" class="externalLink">MATH-108<img src="images/external.png" /></a>
+. Thanks to Xiaogang Zhang.</td>
+<td><a href="team-list.html#brentworden">brentworden</a>
+</td>
+</tr>
+<tr class="b"><td><img src="images/fix.gif" alt="fix" /></td>
+<td>Fixed division by zero error in rounding methods. Fixes <a href="http://issues.apache.org/jira/browse/MATH-47" class="externalLink">MATH-47<img src="images/external.png" /></a>
+. Thanks to Nikhil Gupte.</td>
+<td><a href="team-list.html#brentworden">brentworden</a>
+</td>
+</tr>
+<tr class="a"><td><img src="images/fix.gif" alt="fix" /></td>
+<td>Added upper tail cumulative probability method to HypergeometricDistributionImpl. Fixes <a href="http://issues.apache.org/jira/browse/MATH-100" class="externalLink">MATH-100<img src="images/external.png" /></a>
+. Thanks to Mike Hu.</td>
+<td><a href="team-list.html#brentworden">brentworden</a>
+</td>
+</tr>
+<tr class="b"><td><img src="images/fix.gif" alt="fix" /></td>
+<td>Added better handling of numerical overflow and division by zero in
+Complex calculations. Fixes <a href="http://issues.apache.org/jira/browse/MATH-22" class="externalLink">MATH-22<img src="images/external.png" /></a>
+. Thanks to Xiaogang Zhang.</td>
+<td><a href="team-list.html#brentworden">brentworden</a>
+</td>
+</tr>
+<tr class="a"><td><img src="images/fix.gif" alt="fix" /></td>
+<td>Changed ContinuedFraction to better handle infinite convergents that
+resulted
+in divergent continued fraction evaluations. Fixes <a href="http://issues.apache.org/jira/browse/MATH-92" class="externalLink">MATH-92<img src="images/external.png" /></a>
+. Thanks to Mikael Weigelt.</td>
+<td><a href="team-list.html#brentworden">brentworden</a>
+</td>
+</tr>
+<tr class="b"><td><img src="images/fix.gif" alt="fix" /></td>
+<td>Changed rounding methods to not rely on BigDecimal conversions which
+was causing numerical error. Fixes <a href="http://issues.apache.org/jira/browse/MATH-32" class="externalLink">MATH-32<img src="images/external.png" /></a>
+. Thanks to Srinivas Vemury.</td>
+<td><a href="team-list.html#brentworden">brentworden</a>
+</td>
+</tr>
+<tr class="a"><td><img src="images/fix.gif" alt="fix" /></td>
+<td>Changed Fraction(double) to correctly handle near-integral arguments. Fixes <a href="http://issues.apache.org/jira/browse/MATH-3" class="externalLink">MATH-3<img src="images/external.png" /></a>
+. Thanks to Jörg Weimar.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="b"><td><img src="images/fix.gif" alt="fix" /></td>
+<td>Changed lcm to throw ArithmeticException (instead of returning bogus
+value) if the result is too large to store as an integer. Fixes <a href="http://issues.apache.org/jira/browse/MATH-143" class="externalLink">MATH-143<img src="images/external.png" /></a>
+. Thanks to Jörg Weimar.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="a"><td><img src="images/fix.gif" alt="fix" /></td>
+<td>Added factories for TTest, ChiSquareTest and TestUtils class with
+static methods to create instances and execute tests. Fixes <a href="http://issues.apache.org/jira/browse/MATH-70" class="externalLink">MATH-70<img src="images/external.png" /></a>
+. Thanks to Mary Ellen Foster.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="b"><td><img src="images/update.gif" alt="update" /></td>
+<td>Eliminated repeated endpoint function evalutations in BrentSolver, SecantSolver. Fixes <a href="http://issues.apache.org/jira/browse/MATH-95" class="externalLink">MATH-95<img src="images/external.png" /></a>
+. Thanks to Paul Field.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="a"><td><img src="images/update.gif" alt="update" /></td>
+<td>Added setSubMatrix methods to RealMatrixImpl, BigMatrixImpl.  To
+Preserve backward compatibility with version 1.0, these methods were
+not added to the RealMatrix, BigMatrix interfaces. Fixes <a href="http://issues.apache.org/jira/browse/MATH-137" class="externalLink">MATH-137<img src="images/external.png" /></a>
+. Thanks to Rodrigo di Lorenzo Lopes.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="b"><td><img src="images/update.gif" alt="update" /></td>
+<td>Added createXIdentityMatrix methods to MatrixUtils and deprecated
+getIdentity methods in RealMatrixImpl, BigMatrixImpl.
+Modified RealMatrixImpl, BigMatrixImpl constructors to throw
+IllegalArgumentExceptions instead of ArrayIndexOutOfBounds when
+dimension arguments are not positive.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="a"><td><img src="images/update.gif" alt="update" /></td>
+<td>Made PRNG pluggable for classes in the random package.  Added
+RandomGenerator interface extracted from java.util.random and abstract
+implementation, AbstractRandomGenerator provi
+ding default
+implementations of methods based on nextDouble().  Added a constructor
+taking a RandomGenerator as an argument to RandomDataImpl.  Changed
+ValueServer to use a RandomData in its constructor.  Changes to
+1.0 classes should be backward compatible (including serialization).</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="b"><td><img src="images/update.gif" alt="update" /></td>
+<td>Added utility methods for overflow-checked integer arithmetic and
+improved gcd method in MathUtils. Thanks to C. Scott Ananian.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="a"><td><img src="images/fix.gif" alt="fix" /></td>
+<td>Fixed error in TTestImpl.homoscedasticTtest.  Implementation was
+incorrectly using heteroscedastic t statistic.  Also improved
+sensitivity of test cases. Fixes <a href="http://issues.apache.org/jira/browse/MATH-79" class="externalLink">MATH-79<img src="images/external.png" /></a>
+. Thanks to Gilles Gaillard.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="b"><td><img src="images/fix.gif" alt="fix" /></td>
+<td>Fixed javadoc errors. One-sided t-test significance adjustment was
+reversed in javadoc for boolean-valued test methods. Fixes <a href="http://issues.apache.org/jira/browse/MATH-44" class="externalLink">MATH-44<img src="images/external.png" /></a>
+. Thanks to Gilles Gaillard.</td>
+<td><a href="team-list.html#psteitz">psteitz</a>
+</td>
+</tr>
+<tr class="a"><td><img src="images/fix.gif" alt="fix" /></td>
+<td>Fixed bug in PolynomialSplineFunction to allow evaluation of the
+function at the last knot point. Thanks to Ben Litchfield.</td>
+<td><a href="team-list.html#brentworden">brentworden</a>
+</td>
+</tr>
+<tr class="b"><td><img src="images/add.gif" alt="add" /></td>
+<td>Added Weibull distribution implementation.</td>
+<td><a href="team-list.html#brentworden">brentworden</a>
+</td>
+</tr>
+<tr class="a"><td><img src="images/add.gif" alt="add" /></td>
+<td>Added Cauchy distribution implementation.</td>
+<td><a href="team-list.html#brentworden">brentworden</a>
+</td>
+</tr>
+<tr class="b"><td><img src="images/add.gif" alt="add" /></td>
+<td>Added convenience methods for rounding.</td>
+<td><a href="team-list.html#brentworden">brentworden</a>
+</td>
+</tr>
+<tr class="a"><td><img src="images/add.gif" alt="add" /></td>
+<td>Added Fraction class based on commons-lang implementation.  With the
+fraction class, FractionFormat and ProperFractionFormat classes were
+added to provide fraction formatting and parsing. Thanks to C. Scott Ananian.</td>
+<td><a href="team-list.html#brentworden">brentworden</a>
+</td>
+</tr>
+</table>
+<h3><a name="a1.0"></a>
+Release 1.0 - 2004-12-06</h3>
+<table class="bodyTable"><tr class="b"><th>Type</th>
+<th>Changes</th>
+<th>By</th>
+</tr>
+</table>
+
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2003-2008
+    
+          The Apache Software Foundation
+          
+  
+
+  
+    
+            
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>

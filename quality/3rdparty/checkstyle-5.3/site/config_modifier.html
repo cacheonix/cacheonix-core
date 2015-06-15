@@ -1,0 +1,449 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>checkstyle - Modifiers</title>
+    <style type="text/css" media="all">
+      @import url("./css/maven-base.css");
+      @import url("./css/maven-theme.css");
+      @import url("./css/site.css");
+    </style>
+    <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+          <meta name="author" content="Checkstyle Development Team" />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+  <body class="composite">
+    <div id="banner">
+                    <span id="bannerLeft">
+    
+            Checkstyle 5.3
+    
+            </span>
+                        <a href="" id="bannerRight">
+    
+                                            <img src="images/logo.png" alt="Checkstyle" />
+    
+            </a>
+            <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+  
+  
+    
+            <div class="xleft">
+        Last Published: 2010-10-19
+                      </div>
+            <div class="xright">      
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+  
+  
+    
+                   <h5>About</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="index.html">Checkstyle</a>
+          </li>
+              
+    <li class="none">
+                    <a href="releasenotes.html">Release Notes</a>
+          </li>
+          </ul>
+              <h5>Documentation</h5>
+            <ul>
+              
+          
+              
+      
+              
+        <li class="expanded">
+                    <a href="config.html">Configuration</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="property_types.html">Property Types</a>
+          </li>
+              </ul>
+        </li>
+              
+          
+              
+      
+            
+      
+              
+        <li class="expanded">
+                    <a href="running.html">Running</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="anttask.html">Ant Task</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="cmdline.html">Command Line</a>
+          </li>
+              </ul>
+        </li>
+              
+    <li class="none">
+                    <a href="availablechecks.html">Available Checks</a>
+          </li>
+              
+          
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+            
+            
+      
+            
+      
+            
+      
+            
+      
+              
+            <li class="expanded">
+                    <a href="checks.html">Standard Checks</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="config_annotation.html">Annotations</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_blocks.html">Block Checks</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_design.html">Class Design</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_coding.html">Coding</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_duplicates.html">Duplicate Code</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_header.html">Headers</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_imports.html">Imports</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_javadoc.html">Javadoc Comments</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_metrics.html">Metrics</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_misc.html">Miscellaneous</a>
+          </li>
+                  
+    <li class="none">
+              <strong>Modifiers</strong>
+        </li>
+                  
+    <li class="none">
+                    <a href="config_naming.html">Naming Conventions</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_regexp.html">Regexp</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_sizes.html">Size Violations</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_whitespace.html">Whitespace</a>
+          </li>
+              </ul>
+        </li>
+              
+          
+              
+      
+            
+      
+            
+      
+              
+        <li class="expanded">
+                    <a href="extending.html">Extending Checkstyle</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="writingchecks.html">Writing checks</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="writingfilters.html">Writing filters</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="writinglisteners.html">Writing listeners</a>
+          </li>
+              </ul>
+        </li>
+          </ul>
+              <h5>Developers</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="apidocs/index.html">Javadoc</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://sourceforge.net/projects/checkstyle" class="externalLink">Project Page</a>
+          </li>
+              
+    <li class="none">
+                    <a href="contributing.html">Contributing</a>
+          </li>
+          </ul>
+              <h5>Project Documentation</h5>
+            <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-info.html">Project Information</a>
+                </li>
+              
+                
+              
+      
+              
+        <li class="collapsed">
+                    <a href="project-reports.html">Project Reports</a>
+                </li>
+          </ul>
+                                                 
+                        
+                        
+            <a href="http://sourceforge.net/projects/checkstyle" title="SourceForge" class="poweredBy">
+                            <img alt="SourceForge" src="http://sflogo.sourceforge.net/sflogo.php?group_id=29721&type=11" />
+            </a>
+                               
+  
+
+  
+    
+  
+  
+    
+        </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <div class="section"><h2><a name="ModifierOrder"></a>ModifierOrder</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p>
+          Checks that the order of modifiers conforms to the suggestions in
+          the <a href="http://java.sun.com/docs/books/jls/second_edition/html/classes.doc.html" class="externalLink">Java
+          Language specification, sections 8.1.1, 8.3.1 and 8.4.3</a>. The
+          correct order is:
+        </p>
+<ol type="1"><li><code>public</code></li>
+<li><code>protected</code></li>
+<li><code>private</code></li>
+<li><code>abstract</code></li>
+<li><code>static</code></li>
+<li><code>final</code></li>
+<li><code>transient</code></li>
+<li><code>volatile</code></li>
+<li><code>synchronized</code></li>
+<li><code>native</code></li>
+<li><code>strictfp</code></li>
+</ol>
+</div>
+<div class="section"><h3><a name="Example"></a>Example</h3>
+<p> To configure the check: </p>
+<div class="source"><pre>
+&lt;module name=&quot;ModifierOrder&quot;/&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p> com.puppycrawl.tools.checkstyle.checks.modifier </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#TreeWalker">TreeWalker</a></p>
+</div>
+</div>
+<div class="section"><h2><a name="RedundantModifier"></a>RedundantModifier</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p>
+          Checks for redundant modifiers in interface and annotation
+          definitions.  Also checks for redundant final modifiers on
+          methods of final classes.
+        </p>
+<p>
+          Rationale: The Java Language Specification strongly
+          discourages the usage of &quot;public&quot; and &quot;abstract&quot; for method
+          declarations in interface definitions as a matter of style.
+        </p>
+<p>
+          Variables in interfaces and annotations are automatically
+          public, static and final, so these modifiers are redundant as
+          well.
+        </p>
+<p>
+          As annotations are a form of interface, their fields are also
+          automatically public, static and final just as their
+          annotation fields are automatically public and abstract.
+        </p>
+<p>
+          Final classes by definition can not be extended so the final
+          modifier on the method of a final class is redundant.
+        </p>
+</div>
+<div class="section"><h3><a name="Properties"></a>Properties</h3>
+<table class="bodyTable"><tr class="a"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="b"><td>tokens</td>
+<td>tokens to check</td>
+<td>
+              subset of tokens <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">ANNOTATION_FIELD_DEF</a></td>
+<td><a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">ANNOTATION_FIELD_DEF</a></td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="Example"></a>Example</h3>
+<p> To configure the check: </p>
+<div class="source"><pre>
+&lt;module name=&quot;RedundantModifier&quot;/&gt;
+        </pre>
+</div>
+<p>
+          To configure the check to check only methods and not variables:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;RedundantModifier&quot;&gt;
+  &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p> com.puppycrawl.tools.checkstyle.checks.modifier </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#TreeWalker">TreeWalker</a></p>
+</div>
+</div>
+
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2001-2010
+    
+          
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>

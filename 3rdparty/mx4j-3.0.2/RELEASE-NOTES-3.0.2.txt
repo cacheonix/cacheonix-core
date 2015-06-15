@@ -1,0 +1,133 @@
+MX4J 3.0.2 is a bug fix release over 3.0.1, and fixes few bugs related to
+JMX monitors, JMX remote connector over IIOP, and registration/deregistration
+of JMX listeners.
+
+Below you can find the release notes for MX4J 3.0.0, reported here since
+there have been important changes.
+
+NOTICE OF INCOMPATIBLE CHANGES
+------------------------------
+MX4J was chosen as the JMX implementation for Apache Geronimo, the open
+source J2EE application server of the Apache Software Foundation.
+As part of the J2EE certification effort for Apache Geronimo,
+MX4J was run through the Compatibility Test Suite (CTS) for JMX.
+During this process a number of tests cases failed; some of these were cases
+where MX4J deviated from the JMX specification, some were differences in
+interpretation between MX4J, the JMX RI (now included in J2SE 5), and the
+test suite.
+To reduce inconsistency between MX4J and the Java platform, several
+changes were made to MX4J that may cause backward compatibility issues
+with versions prior to 3.0.0.
+Below you can find a list of the major changes and an evaluation of the
+impacts these may have on existing MX4J applications.
+
++ Change in MBeanServer's default domain.
+  Prior to MX4J 3.0.0, if a null value was passed to
+  MBeanServerFactory.createMBeanServer(String) or to
+  MBeanServerFactory.newMBeanServer(String) then the default domain of the
+  newly created MBeanServer was the empty string "". The specification,
+  however, says that the default domain must be the string "DefaultDomain".
+  MX4J now uses the value from the specification.
+
+  This change should not impact applications that did not specify the string
+  "DefaultDomain" as domain when creating ObjectName instances.
+
+  MBeanServer server = MBeanServerFactory.newMBeanServer(null);
+  ObjectName name = ObjectName.getInstance("DefaultDomain:type=mymbean");
+  server.registerMBean(mbean, name);
+  // Returned false in MX4J 2.x, returns true in MX4J 3.x
+  server.isRegistered(ObjectName.getInstance(":type=mymbean"));
+
++ Change in default ObjectName for an MLet.
+  If no ObjectName is supplied when registering an MLet, then
+  MLet.preRegister() returns a default ObjectName ":type=MLet".
+  MX4J 2.x erroneously returned new ":service=:MLet".
+
+  This change will impact applications that registered MLet without
+  providing an ObjectName at the moment of registration:
+
+  MBeanServer server = MBeanServerFactory.newMBeanServer(null);
+  MLet mlet = new MLet();
+  server.registerMBean(mlet, null);
+
++ Parsing of MLet files.
+  The syntax rules used to parse MLet files have been relaxed to conform
+  with laxer rules in the specification.
+
+  This change should not impact applications that used MX4J to parse MLet
+  files.
+
++ Change in default MBeanPermission with 4-arg constructor.
+  MBeanPermission has a 4-arguments constructor that allows class, method,
+  and ObjectName patterns to be specified directly. If a null value is
+  supplied, then the specification defines the behaviour to be that of a
+  nilcard.
+  MX4J 2.x incorrectly treated this as a wildcard.
+
+  This change should have no impact as the 4-arg constructor is intended for
+  internal use by JMX implementations when performing security checks.
+
++ Stricter parameter checking for JMX APIs.
+  Many methods of the JMX API now have additional checks for illegal values.
+
+  This change should not impact working applications that passed in correct
+  values.
+
++ Changes in CounterMonitor behaviour.
+  Since the specification was vague in defining the exact behaviour in
+  certain cases, the MX4J team preferred to mimic the behaviour of the
+  Reference Implementation.
+  Specifically:
+  * Counter values can now be set to negative values, and a THRESHOLD_ERROR
+    event if no longer emitted in that case.
+  * A modulus value is now only applied when the counter value rolls over
+    (i.e. if V[t] < V[t-1]). If the counter value only increases and the
+    offset > 0 then the threshold will continually increase until the counter
+    is actually rolled over.
+  * Once a THRESHOLD_VALUE_EXCEEDED notification has been sent, no futher
+    THRESHOLD_VALUE_EXCEEDED notifications are sent until the counter value
+    falls beneath the threshold.
+    Previously the notification was resent if the counter value increased.
+  * Notification status is now reset if the Monitor is stopped; as a result,
+    notifications may be sent at the end of the first interval after a restart.
+    Previously the notification status was maintained across a restart.
+
++ Failures in preRegister() and preDeregister() methods.
+  To conform with the MBean lifecycle, if the invocation of preRegister() or
+  preDeregister() terminates abnormally, then the (de)registration immedaitely
+  fails and the appropriate postRegister() or postDeregister() method is not
+  invoked.
+  Previously the postRegister() method was erroneously invoked with a failure
+  status.
+
+
+USAGE OF MX4J UNDER J2SE 5
+--------------------------
+
++ Since J2SE 5 already includes an implementation of JSR 3 (JMX) and
+  JSR 160 (JMX Remote), you don't need mx4j.jar nor mx4j-remote.jar.
+  If you really want to use the MX4J implementation under J2SE 5, you must put
+  them in the boot classpath:
+  %JAVA_HOME/bin/java -Xbootclasspath/p:mx4j.jar;mx4j-remote.jar ...
+
++ Running the SOAP connector under J2SE 5 requires setting up the XML provider,
+  since the default XML provider bundled with J2SE 5 may throw a
+  NullPointerException.
+  You should include Xerces in the classpath (xml-apis.jar and xercesImpl.jar)
+  and set this system property:
+  -Djavax.xml.parsers.SAXParserFactory=org.apache.xerces.jaxp.SAXParserFactoryImpl
+
++ There is no need anymore to put in the environment Map the provider packages
+  to load MX4J connectors (by specifying the properties
+  JMXConnectorServerFactory.PROTOCOL_PROVIDER_PACKAGES or
+  JMXConnectorFactory.PROTOCOL_PROVIDER_PACKAGES).
+  MX4J 3.0.0 specifies the service providers under META-INF/services in
+  mx4j-tools.jar, so creating an MX4J connector requires nothing more than
+  putting mx4j-tools.jar in the classpath.
+
+
+LIST OF CLOSED BUGS
+-------------------
+The list of closed bugs is available here:
+http://sourceforge.net/tracker/?group_id=47745&atid=450647&_group=475150
+by choosing the "Closed" status.

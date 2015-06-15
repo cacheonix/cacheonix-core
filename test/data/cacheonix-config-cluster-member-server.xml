@@ -1,0 +1,28 @@
+<?xml version ="1.0"?>
+<!-- Cluster member with automatic partition creation -->
+<cacheonix xmlns="http://www.cacheonix.com/schema/configuration"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.cacheonix.com/schema/configuration http://www.cacheonix.com/schema/cacheonix-config-2.0.xsd">
+
+
+   <tempDir path="${java.io.temp}"/>
+
+   <server>
+
+      <cluster homeAloneTimeout="10s" clusterAnnouncementTimeout="100ms" clusterSurveyTimeout="500ms"/>
+
+      <listener>
+         <tcp port="8890" address="127.0.0.1" buffer="128k"/>
+      </listener>
+
+      <broadcast>
+         <multicast multicastAddress="225.0.1.2" multicastPort="9998" multicastTTL="0"/>
+      </broadcast>
+
+      <partitionedCache name="*">
+         <store>
+            <lru maxElements="100000" maxBytes="50m"/>
+         </store>
+      </partitionedCache>
+   </server>
+</cacheonix>

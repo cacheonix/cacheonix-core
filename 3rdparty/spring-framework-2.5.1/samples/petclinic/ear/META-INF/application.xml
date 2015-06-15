@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<application>
+  <description>Spring Petclinic</description>
+  <display-name>Petclinic</display-name>
+  <module>
+    	<web>
+		      <web-uri>petclinic.war</web-uri>
+		      <context-root>petclinic</context-root>
+		</web>
+  </module>
+</application>

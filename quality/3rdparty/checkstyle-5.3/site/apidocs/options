@@ -1,0 +1,24 @@
+-classpath
+'D:/oliver/play/checkstyle/target/classes;D:/oliver/.m2/repository/commons-cli/commons-cli/1.2/commons-cli-1.2.jar;D:/oliver/.m2/repository/commons-beanutils/commons-beanutils-core/1.8.3/commons-beanutils-core-1.8.3.jar;D:/oliver/.m2/repository/com/google/collections/google-collections/1.0/google-collections-1.0.jar;D:/oliver/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar;D:/oliver/.m2/repository/org/apache/ant/ant-launcher/1.7.0/ant-launcher-1.7.0.jar;D:/oliver/.m2/repository/antlr/antlr/2.7.7/antlr-2.7.7.jar;C:/apps/jdk1.6.0-latest/jre/../lib/tools.jar;D:/oliver/.m2/repository/org/apache/ant/ant/1.7.0/ant-1.7.0.jar'
+-encoding
+'iso-8859-1'
+-protected
+-source
+'1.5'
+-sourcepath
+'D:/oliver/play/checkstyle/src/checkstyle;D:/oliver/play/checkstyle/target/generated-sources/antlr'
+-author
+-bottom
+'Copyright &#169; 2001-2010. All Rights Reserved.'
+-charset
+'UTF-8'
+-d
+'D:/oliver/play/checkstyle/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'checkstyle 5.3 API'
+-use
+-version
+-windowtitle
+'checkstyle 5.3 API'

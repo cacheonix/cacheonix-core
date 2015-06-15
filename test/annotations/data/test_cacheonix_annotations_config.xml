@@ -1,0 +1,123 @@
+<cacheonix tempDir="${java.io.temp}">
+   <!--
+   Local caches
+   -->
+   <local>
+      <cache name="org.cacheonix.example.LRULocalExample1" maxSize="1000" policy="lru"
+             expirationTimeSecs="1000" overflowToDisk="yes" maxOverflowSizeMBytes="1"/>
+
+      <cache name="org.cacheonix.example.LRULocalExample2" maxSize="1000" policy="lru"
+             expirationTimeSecs="1000" overflowToDisk="yes" maxOverflowSizeMBytes="1"/>
+
+      <!--
+      Cache to support testing.
+      -->
+      <cache name="local.test.cache" maxSize="10" policy="lru" expirationTimeSecs="1000"
+             overflowToDisk="yes" maxOverflowSizeMBytes="1"/>
+
+      <!--
+      Cache to support testing of iBatis plugin.
+      -->
+      <cache name="test_ibatis_cache" maxSize="10" policy="lru" expirationTimeSecs="1000"
+             overflowToDisk="yes" maxOverflowSizeMBytes="1"/>
+
+      <!--
+      Cache to support testing of Hibernate plugin.
+      -->
+      <cache name="test_hibernate_cache" maxSize="10" policy="lru" expirationTimeSecs="1000"
+             overflowToDisk="yes" maxOverflowSizeMBytes="1"/>
+
+      <!-- 
+      Cache Annotation Test Config default 
+      -->
+      <cache name="CacheonixAnnotatedCache" maxSize="10" policy="lru" expirationTimeSecs="1000"
+             overflowToDisk="yes" maxOverflowSizeMBytes="1"/>
+
+      <cache name="org.cacheonix.annotations.tests.CacheAnnotatedTest" maxSize="1000" policy="lru"
+             expirationTimeSecs="1000"
+             overflowToDisk="yes" maxOverflowSizeMBytes="1"/>
+
+
+   </local>
+</cacheonix>
+
+<cacheonix xmlns="http://www.cacheonix.com/schema/configuration"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.cacheonix.com/schema/configuration http://www.cacheonix.com/schema/cacheonix-config-2.0.xsd">
+
+<tempDir path="${java.io.temp}"/>
+
+<local>
+
+   <!--
+   Local caches
+   -->
+   <localCache name="org.cacheonix.example.LRULocalExample1">
+      <store>
+         <lru maxElements="1000" maxBytes="10mb"/>
+         <overflowToDisk maxOverflowBytes="1mb"/>
+         <expiration timeToLive="1000s"/>
+      </store>
+   </localCache>
+
+   <localCache name="org.cacheonix.example.LRULocalExample2">
+      <store>
+         <lru maxElements="1000" maxBytes="10mb"/>
+         <overflowToDisk maxOverflowBytes="1mb"/>
+         <expiration timeToLive="1000s"/>
+      </store>
+   </localCache>
+
+   <!--
+   Cache to support testing.
+   -->
+   <localCache name="local.test.cache">
+      <store>
+         <lru maxElements="10" maxBytes="10mb"/>
+         <overflowToDisk maxOverflowBytes="1mb"/>
+         <expiration timeToLive="1000s"/>
+      </store>
+   </localCache>
+
+   <!--
+   Cache to support testing of iBatis plugin.
+   -->
+   <localCache name="test_ibatis_cache">
+      <store>
+         <lru maxElements="10" maxBytes="10mb"/>
+         <overflowToDisk maxOverflowBytes="1mb"/>
+         <expiration timeToLive="1000s"/>
+      </store>
+   </localCache>
+
+   <!--
+   Cache to support testing of Hibernate plugin.
+   -->
+   <localCache name="test_hibernate_cache">
+      <store>
+         <lru maxElements="10" maxBytes="10mb"/>
+         <overflowToDisk maxOverflowBytes="1mb"/>
+         <expiration timeToLive="1000s"/>
+      </store>
+   </localCache>
+
+   <!--
+   Cache Annotation Test Config default
+   -->
+   <localCache name="CacheonixAnnotatedCache">
+      <store>
+         <lru maxElements="10" maxBytes="10mb"/>
+         <overflowToDisk maxOverflowBytes="1mb"/>
+         <expiration timeToLive="1000s"/>
+      </store>
+   </localCache>
+
+   <localCache name="org.cacheonix.annotations.tests.CacheAnnotatedTest">
+      <store>
+         <lru maxElements="1000" maxBytes="10mb"/>
+         <overflowToDisk maxOverflowBytes="1mb"/>
+         <expiration timeToLive="1000s"/>
+      </store>
+   </localCache>
+</local>
+</cacheonix>

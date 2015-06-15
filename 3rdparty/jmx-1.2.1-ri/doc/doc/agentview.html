@@ -1,0 +1,150 @@
+<HTML>
+<HEAD>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+    <!-- Created by: Andy KASS, 22-Sept-1999 -->
+
+    <TITLE>JMX RI</TITLE>
+
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF"
+      LINK="#0000FF" VLINK="#000077" ALINK="#FF0000">
+
+<TABLE BORDER=0 WIDTH="100%">
+    <TR>
+        <TD><IMG SRC="images/smi.logo.gif" ALT="Sun Microsystems, Inc"
+                 HEIGHT=43 WIDTH=120>&nbsp;</TD>
+        <TD ALIGN=right>
+            <B><A HREF="../index.html">JMX Reference Implementation</A><BR>
+                Tutorial</B></TD>
+    </TR>
+</TABLE>
+<HR>
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+
+    <TR>
+        <TD WIDTH="33%" ALIGN="left" VALIGN="top"><A HREF="setup.html">
+            <IMG SRC="images/leftarrow.gif" BORDER="0" ALT="[ Previous ]"><BR>
+            Launching the Base Agent</A></TD>
+
+        <TD WIDTH="34%" ALIGN="center" VALIGN="top"><A HREF="tutorial.html">
+            <IMG SRC="images/uparrow.gif" BORDER="0" ALT="[ Contents ]"><BR>
+            Contents</A></TD>
+
+        <TD WIDTH="33%" ALIGN="right" VALIGN="top">
+            <A HREF="mbeanview.html">
+                <IMG SRC="images/rightarrow.gif" BORDER="0" ALT="[ Next ]"><BR>
+                The MBean View</A></TD>
+
+    </TR>
+</TABLE>
+<HR>
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<CENTER>
+    <H1>
+        The Agent View
+    </H1>
+</CENTER>
+<BLOCKQUOTE>
+
+    Your browser can now "manage" the base agent and its MBeans. The HTML
+    protocol adaptor outputs HTML pages that represent the agent and
+    its MBeans. The adaptor interacts with the <I>MBean server</I>, which is the
+    heart of the JMX agent, in order to get information about the MBeans
+    that it has registered. The adaptor also interprets the commands sent
+    back by the buttons and fields appearing in your browser.<P>
+
+    The first page displayed by the HTML adaptor is always the agent
+    view. It originally contains a list of all registered MBeans. In this
+    base agent, there are two MBeans, one of which is the HTML
+    adaptor. The MBean server delegate is not covered in this tutorial: see the JMX
+    specification document for more information.
+
+    <P>
+
+    <CENTER><IMG SRC="images/agent.gif" BORDER="2" HEIGHT=309 WIDTH=436>
+    </CENTER>
+    <P>
+
+        The text field for filtering lets you modify the list of displayed
+        MBeans. The filter string is initially <CODE>*:*</CODE>, which means
+        all registered MBeans. Futher use of the filter is covered in <A
+            HREF="filtering.html">Filtering the MBean List</A>. The agent's
+        registered domain tells you the name of the default domain in this
+        agent. In this case it is <I>DefaultDomain</I>: all MBeans created
+        without a domain will be given this domain name. The number of MBeans
+        on this page is just the number listed beneath the separator line.
+
+    <P>
+
+        The "Admin" button is a link to the agent administration page; see <A
+            HREF="administration.html">Agent Administration topic</A> for more
+        information.
+
+    <P>
+
+        The MBean list contains all MBeans whose object name matches the
+        filter string. Object names are unique for each MBean and consist of a
+        domain name and list of key-value pairs (these are further covered in
+        the <A HREF="administration.html#ObjectNames">Agent Administration
+        topic</A>). In this list, MBeans are sorted and grouped by their
+        domain name. Each MBean name listed is an active link to the MBean
+        view page for the corresponding object.
+
+    <P>
+
+        In the base agent you have just launched, the only MBeans are the
+        functional components of the agent. In a real management solution, you
+        would also have an MBean for each resource you want to manage through
+        the agent. In such a case, you would create and register all the
+        resource MBeans required during the initialization of your agent
+        application.
+
+    <P>
+
+        After its initialization, the contents of a JMX agent are dynamic: new
+        MBeans can be created and registered into new or existing domains and
+        old MBeans can be removed. These changes can also affect the
+        functionality of the agent: new agent services can be registered (or
+        removed) as well. We will demonstrate examples of such dynamic
+        management in this tutorial.
+
+    <P>
+
+</BLOCKQUOTE>
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<HR>
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+
+    <TR>
+        <TD WIDTH="33%" ALIGN="left" VALIGN="top"><A HREF="setup.html">
+            <IMG SRC="images/leftarrow.gif" BORDER="0" ALT="[ Previous ]"><BR>
+            Launching the Base Agent</A></TD>
+
+        <TD WIDTH="34%" ALIGN="center" VALIGN="top"><A HREF="tutorial.html">
+            <IMG SRC="images/uparrow.gif" BORDER="0" ALT="[ Contents ]"><BR>
+            Contents</A></TD>
+
+        <TD WIDTH="33%" ALIGN="right" VALIGN="top">
+            <A HREF="mbeanview.html">
+                <IMG SRC="images/rightarrow.gif" BORDER="0" ALT="[ Next ]"><BR>
+                The MBean View</A></TD>
+
+    </TR>
+</TABLE>
+<HR>
+
+<IMG SRC="images/java_red.gif" ALT="Java coffee cup logo"
+     HEIGHT=85 WIDTH=49 ALIGN=RIGHT>
+
+<P>
+    <FONT SIZE=-1><A HREF="copyright.html">Copyright</A> 2000-2003
+        Sun Microsystems, Inc.,
+        &nbsp;<BR>
+        All rights reserved.</FONT>
+
+<P>
+
+<P>
+    &nbsp;
+</BODY>
+</HTML>

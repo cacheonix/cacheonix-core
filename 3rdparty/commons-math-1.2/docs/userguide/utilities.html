@@ -1,0 +1,505 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Math - The Commons Math User Guide - Utilites</title>
+    <style type="text/css" media="all">
+      @import url("../css/maven-base.css");
+      @import url("../css/maven-theme.css");
+      @import url("../css/site.css");
+    </style>
+    <link rel="stylesheet" href="../css/print.css" type="text/css" media="print" />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+  <body class="composite">
+    <div id="banner">
+                  <a href="../" id="bannerLeft">
+    
+                                            <img src="../../images/logo.png" alt="" />
+    
+            </a>
+                        <a href="index.html" id="bannerRight">
+    
+                                            <img src="../images/math.gif" alt="" />
+    
+            </a>
+            <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+            
+  
+    
+            <div class="xleft">
+        Last Published: 18 February 2008
+                  &nbsp;| Version: 1.2
+                      </div>
+            <div class="xright">            <a href="http://www.apachecon.com/" class="externalLink">ApacheCon</a>
+            |
+                <a href="http://www.apache.org" class="externalLink">Apache</a>
+            |
+                <a href="../../">Commons</a>
+            
+  
+
+  
+    
+            
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+            
+  
+    
+                   <h5>Math</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="../index.html">Overview</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../proposal.html">Proposal</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../developers.html">Developers Guide</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../apidocs/index.html">Javadoc (1.2 release)</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../api-1.1/index.html">Javadoc (1.1 release)</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../api-1.0/index.html">Javadoc (1.0 release)</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://svn.apache.org/viewvc/commons/proper/math/trunk" class="externalLink">Source Repository (current)</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../issue-tracking.html">Issue Tracking</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://wiki.apache.org/commons/Math" class="externalLink">Wiki</a>
+          </li>
+          </ul>
+              <h5>User Guide</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="../userguide/index.html">Contents</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/overview.html">Overview</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/stat.html">Statistics</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/random.html">Data Generation</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/linear.html">Linear Algebra</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/analysis.html">Numerical Analysis</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/special.html">Special Functions</a>
+          </li>
+              
+    <li class="none">
+              <strong>Utilities</strong>
+        </li>
+              
+    <li class="none">
+                    <a href="../userguide/complex.html">Complex Numbers</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/distribution.html">Distributions</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/fraction.html">Fractions</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/transform.html">Transform Methods</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/geometry.html">3D Geometry</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/estimation.html">Parametric Estimation</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/optimization.html">Optimization</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/ode.html">Ordinary Differential Equations</a>
+          </li>
+          </ul>
+              <h5>Project Documentation</h5>
+            <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="../project-info.html">Project Information</a>
+                </li>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="../project-reports.html">Project Reports</a>
+                </li>
+          </ul>
+              <h5>Commons</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="../../">Home</a>
+          </li>
+              
+                
+              
+      
+              
+        <li class="collapsed">
+                    <a href="../../components.html">Components</a>
+                </li>
+              
+                
+              
+      
+              
+        <li class="collapsed">
+                    <a href="../../sandbox/index.html">Sandbox</a>
+                </li>
+              
+                
+              
+      
+              
+        <li class="collapsed">
+                    <a href="../../dormant/index.html">Dormant</a>
+                </li>
+              
+    <li class="none">
+                    <a href="../../volunteering.html">Volunteering</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../../patches.html">Contributing Patches</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../../building.html">Building Components</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../../releases/index.html">Releasing Components</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://wiki.apache.org/commons/FrontPage" class="externalLink">Wiki</a>
+          </li>
+          </ul>
+              <h5>ASF</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://www.apache.org/foundation/sponsorship.html" class="externalLink">Sponsorship</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://www.apache.org/foundation/thanks.html" class="externalLink">Thanks</a>
+          </li>
+          </ul>
+                                           <a href="http://maven.apache.org/" title="Built by Maven" class="poweredBy">
+            <img alt="Built by Maven" src="../images/logos/maven-feather.png"></img>
+          </a>
+                       
+  
+
+  
+    
+            
+  
+    
+        </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <div class="section"><h2><a name="a6_Utilities"></a>
+6 Utilities</h2>
+<div class="section"><h3><a name="a6.1_Overview"></a>
+6.1 Overview</h3>
+<p>
+    The <a href="../apidocs/org/apache/commons/math/util/package-summary.html">
+    org.apache.commons.math.util</a>
+ package collects a group of array utilities,
+    value transformers,  and numerical routines used by implementation classes in
+    commons-math.
+    </p>
+</div>
+<div class="section"><h3><a name="a6.2_Double_array_utilities"></a>
+6.2 Double array utilities</h3>
+<p>
+    To maintain statistics based on a &quot;rolling&quot; window of values, a resizable 
+    array implementation was developed and is provided for reuse in the 
+    <code>util</code> package.  The core functionality provided is described in
+    the documentation for the interface, 
+    <a href="../apidocs/org/apache/commons/math/util/DoubleArray.html">
+    org.apache.commons.math.util.DoubleArray.</a>
+  This interface adds one
+    method, <code>addElementRolling(double)</code> to basic list accessors. 
+    The <code>addElementRolling</code> method adds an element 
+    (the actual parameter) to the end of the list and removes the first element
+     in the list.
+    </p>
+<p>
+    The <a href="../apidocs/org/apache/commons/math/util/ResizableDoubleArray.html">
+    org.apache.commons.math.util.ResizableDoubleArray</a>
+ class provides a
+    configurable, array-backed implementation of the <code>DoubleArray</code> 
+    interface.  When <code>addElementRolling</code> is invoked, the underlying
+    array is expanded if necessary, the new element is added to the end of the
+    array and the &quot;usable window&quot; of the array is moved forward, so that
+    the first element is effectively discarded, what was the second becomes the
+    first, and so on.  To efficiently manage storage, two maintenance
+    operations need to be periodically performed -- orphaned elements at the
+    beginning of the array need to be reclaimed and space for new elements at
+    the end needs to be created.  Both of these operations are handled
+    automatically, with frequency / effect driven by the configuration
+    properties <code>expansionMode</code>, <code>expansionFactor</code> and
+    <code>contractionCriteria.</code>  See 
+    <a href="../apidocs/org/apache/commons/math/util/ResizableDoubleArray.html">
+    ResizableDoubleArray</a>
+
+    for details. 
+    </p>
+</div>
+<div class="section"><h3><a name="a6.3_Continued_Fractions"></a>
+6.3 Continued Fractions</h3>
+<p>
+    The <a href="../apidocs/org/apache/commons/math/util/ContinuedFraction.html">
+    org.apache.commons.math.util.ContinuedFraction</a>
+ class provides a generic
+    way to create and evaluate continued fractions.  The easiest way to create a
+    continued fraction is to subclass <code>ContinuedFraction</code> and
+    override the <code>getA</code> and <code>getB</code> methods which return
+    the continued fraction terms.  The precise definition of these terms is
+    explained in <a href="http://mathworld.wolfram.com/ContinuedFraction.html" class="externalLink">
+    Continued Fraction, equation (1)</a>
+ from MathWorld.
+  </p>
+<p>
+    As an example, the constant Pi could be computed using the continued fraction
+    defined at <a href="http://functions.wolfram.com/Constants/Pi/10/0002/" class="externalLink">
+    http://functions.wolfram.com/Constants/Pi/10/0002/</a>
+.  The following
+    anonymous class provides the implementation:
+    <div class="source"><pre>ContinuedFraction c = new ContinuedFraction() {
+    public double getA(int n, double x) {
+        switch(n) {
+            case 0: return 3.0;
+            default: return 6.0;
+        }
+    }
+    
+    public double getB(int n, double x) {
+        double y = (2.0 * n) - 1.0;
+        return y * y;
+    }
+}</pre>
+</div>
+</p>
+<p>
+    Then, to evalute Pi, simply call any of the <code>evalute</code> methods
+    (Note, the point of evalution in this example is meaningless since Pi is a
+    constant).
+  </p>
+<p>
+    For a more practical use of continued fractions, consider the exponential
+    function with the continued fraction definition of
+    <a href="http://functions.wolfram.com/ElementaryFunctions/Exp/10/" class="externalLink">
+    http://functions.wolfram.com/ElementaryFunctions/Exp/10/</a>
+.  The
+    following anonymous class provides its implementation:
+    <div class="source"><pre>ContinuedFraction c = new ContinuedFraction() {
+    public double getA(int n, double x) {
+        if (n % 2 == 0) {
+            switch(n) {
+                case 0: return 1.0;
+                default: return 2.0;
+            }
+        } else {
+            return n;
+        }
+    }
+    
+    public double getB(int n, double x) {
+        if (n % 2 == 0) {
+            return -x;
+        } else {
+            return x;
+        }
+    }
+}</pre>
+</div>
+</p>
+<p>
+    Then, to evalute <i>e</i>
+<sup>x</sup> for any value x, simply call any of the
+    <code>evalute</code> methods.
+  </p>
+</div>
+<div class="section"><h3><a name="a6.4_binomial_coefficients_factorials_and_other_common_math_functions"></a>
+6.4 binomial coefficients, factorials and other common math functions</h3>
+<p>
+    A collection of reusable math functions is provided in the
+    <a href="../apidocs/org/apache/commons/math/util/MathUtils.html">MathUtils</a>
+
+    utility class.  MathUtils currently includes methods to compute the following: <ul><li>
+    Binomial coeffiecients -- &quot;n choose k&quot; available as an (exact) long value,  
+    <code>binomialCoefficient(int, int)</code> for small n, k; as a double,
+    <code>binomialCoefficientDouble(int, int)</code> for larger values; and in
+    a &quot;super-sized&quot; version, <code>binomialCoefficientLog(int, int)</code> 
+    that returns the natural logarithm of the value.</li>
+<li>
+    Factorials -- like binomial coefficients, these are available as exact long
+    values, <code>factorial(int)</code>;  doubles, 
+    <code>factorialDouble(int)</code>; or logs, <code>factorialLog(int)</code>. </li>
+<li>
+    Hyperbolic sine and cosine functions -- 
+    <code>cosh(double), sinh(double)</code></li>
+<li>
+    sign (+1 if argument &gt; 0, 0 if x = 0, and -1 if x &lt; 0) and 
+    indicator (+1.0 if argument  &gt;= 0 and -1.0 if argument &lt; 0) functions
+    for variables of all primitive numeric types.</li>
+<li>
+    a hash function, <code>hash(double),</code> returning a long-valued
+    hash code for a double value.
+    </li>
+<li>
+    Convience methods to round floating-point number to arbitrary precision.
+    </li>
+<li>
+    Least common multiple and greatest common denominator functions.
+    </li>
+</ul>
+</p>
+</div>
+</div>
+
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2003-2008
+    
+          The Apache Software Foundation
+          
+  
+
+  
+    
+            
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>

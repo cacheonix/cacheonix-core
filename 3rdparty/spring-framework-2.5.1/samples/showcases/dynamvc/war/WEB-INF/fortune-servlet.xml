@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:lang="http://www.springframework.org/schema/lang"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+                           http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-2.0.xsd">
+
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!--
+            This XML tag loads the FortuneController Groovy script and makes
+            it available in the ApplicationContext as a regular Java bean.
+
+            Properties can be injected using the lang:property tag as shown
+            below.
+    -->
+    <lang:groovy id="fortune"
+				 refresh-check-delay="3000"
+				 script-source="/WEB-INF/groovy/FortuneController.groovy">
+        <lang:property name="fortuneService" ref="fortuneService"/>
+	</lang:groovy>
+
+    <bean id="home" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+        <description>
+            ParameterizableViewController delegates a request URI to a view name, in this
+            case to a JSP file. It can be used to hide the underlying view technology to
+            visitors in case you want to access views directly.
+        </description>
+        <property name="viewName" value="home"/>
+    </bean>
+
+    <bean id="about" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+        <property name="viewName" value="about"/>
+    </bean>
+
+    <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <value>
+                /fortune.htm=fortune
+                /home.htm=home
+                /about.htm=about
+            </value>
+        </property>
+    </bean>
+
+</beans>

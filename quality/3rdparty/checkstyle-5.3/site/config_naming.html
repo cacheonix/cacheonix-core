@@ -1,0 +1,592 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>checkstyle - Naming Conventions</title>
+    <style type="text/css" media="all">
+      @import url("./css/maven-base.css");
+      @import url("./css/maven-theme.css");
+      @import url("./css/site.css");
+    </style>
+    <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+          <meta name="author" content="Checkstyle Development Team" />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+  <body class="composite">
+    <div id="banner">
+                    <span id="bannerLeft">
+    
+            Checkstyle 5.3
+    
+            </span>
+                        <a href="" id="bannerRight">
+    
+                                            <img src="images/logo.png" alt="Checkstyle" />
+    
+            </a>
+            <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+  
+  
+    
+            <div class="xleft">
+        Last Published: 2010-10-19
+                      </div>
+            <div class="xright">      
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+  
+  
+    
+                   <h5>About</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="index.html">Checkstyle</a>
+          </li>
+              
+    <li class="none">
+                    <a href="releasenotes.html">Release Notes</a>
+          </li>
+          </ul>
+              <h5>Documentation</h5>
+            <ul>
+              
+          
+              
+      
+              
+        <li class="expanded">
+                    <a href="config.html">Configuration</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="property_types.html">Property Types</a>
+          </li>
+              </ul>
+        </li>
+              
+          
+              
+      
+            
+      
+              
+        <li class="expanded">
+                    <a href="running.html">Running</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="anttask.html">Ant Task</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="cmdline.html">Command Line</a>
+          </li>
+              </ul>
+        </li>
+              
+    <li class="none">
+                    <a href="availablechecks.html">Available Checks</a>
+          </li>
+              
+          
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+            
+            
+      
+            
+      
+            
+      
+              
+            <li class="expanded">
+                    <a href="checks.html">Standard Checks</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="config_annotation.html">Annotations</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_blocks.html">Block Checks</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_design.html">Class Design</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_coding.html">Coding</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_duplicates.html">Duplicate Code</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_header.html">Headers</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_imports.html">Imports</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_javadoc.html">Javadoc Comments</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_metrics.html">Metrics</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_misc.html">Miscellaneous</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_modifier.html">Modifiers</a>
+          </li>
+                  
+    <li class="none">
+              <strong>Naming Conventions</strong>
+        </li>
+                  
+    <li class="none">
+                    <a href="config_regexp.html">Regexp</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_sizes.html">Size Violations</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_whitespace.html">Whitespace</a>
+          </li>
+              </ul>
+        </li>
+              
+          
+              
+      
+            
+      
+            
+      
+              
+        <li class="expanded">
+                    <a href="extending.html">Extending Checkstyle</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="writingchecks.html">Writing checks</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="writingfilters.html">Writing filters</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="writinglisteners.html">Writing listeners</a>
+          </li>
+              </ul>
+        </li>
+          </ul>
+              <h5>Developers</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="apidocs/index.html">Javadoc</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://sourceforge.net/projects/checkstyle" class="externalLink">Project Page</a>
+          </li>
+              
+    <li class="none">
+                    <a href="contributing.html">Contributing</a>
+          </li>
+          </ul>
+              <h5>Project Documentation</h5>
+            <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-info.html">Project Information</a>
+                </li>
+              
+                
+              
+      
+              
+        <li class="collapsed">
+                    <a href="project-reports.html">Project Reports</a>
+                </li>
+          </ul>
+                                                 
+                        
+                        
+            <a href="http://sourceforge.net/projects/checkstyle" title="SourceForge" class="poweredBy">
+                            <img alt="SourceForge" src="http://sflogo.sourceforge.net/sflogo.php?group_id=29721&type=11" />
+            </a>
+                               
+  
+
+  
+    
+  
+  
+    
+        </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <div class="section"><h2><a name="Overview"></a>Overview</h2>
+<p>
+        Each of these naming modules validates identifiers for particular code
+        elements. Valid identifiers for a naming module are specified by its
+        <code> format</code> property. The value of <code>format</code> is a <a href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/Pattern.html" class="externalLink">
+        regular expression</a> for valid identifiers.  This is an example of a
+        configuration of the <code>MemberName</code> module to
+        ensure that member identifiers begin with
+        <code>'m'</code>, followed
+        by an upper case letter, and then letters and digits:
+      </p>
+<div class="source"><pre>
+&lt;module name=&quot;MemberName&quot;&gt;
+  &lt;property name=&quot;format&quot; value=&quot;^m[A-Z][a-zA-Z0-9]*$&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+</div>
+<p>
+        All naming modules belong to package <code>com.puppycrawl.tools.checkstyle.checks.naming</code> and
+        are submodules of <a href="config.html#TreeWalker"><code>TreeWalker</code></a>.
+      </p>
+</div>
+<div class="section"><h2><a name="Modules"></a>Modules</h2>
+<table class="bodyTable"><tr class="a"><th>module</th>
+<th>validates identifiers for</th>
+<th>default value of <code>format</code></th>
+</tr>
+<tr class="b"><td><code>AbstractClassName</code></td>
+<td><code>abstract</code> classes</td>
+<td><code>^Abstract.*$|^.*Factory$</code></td>
+</tr>
+<tr class="a"><td><code>ClassTypeParameterName</code></td>
+<td>class type parameters</td>
+<td><code>^[A-Z]$</code></td>
+</tr>
+<tr class="b"><td><code>ConstantName</code></td>
+<td>
+            constants (<code>static</code>, <code>
+            final</code> fields)
+          </td>
+<td><code>^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$</code></td>
+</tr>
+<tr class="a"><td><code>LocalFinalVariableName</code></td>
+<td>local, <code>final</code> variables, including
+              <code>catch</code> parameters</td>
+<td><code>^[a-z][a-zA-Z0-9]*$</code></td>
+</tr>
+<tr class="b"><td><code>LocalVariableName</code></td>
+<td>
+            local, non-<code>final</code> variables, including
+            <code>catch</code> parameters
+          </td>
+<td><code>^[a-z][a-zA-Z0-9]*$</code></td>
+</tr>
+<tr class="a"><td><code>MemberName</code></td>
+<td>non-<code>static</code> fields</td>
+<td><code>^[a-z][a-zA-Z0-9]*$</code></td>
+</tr>
+<tr class="b"><td><code>MethodName</code></td>
+<td>methods</td>
+<td><code>^[a-z][a-zA-Z0-9]*$</code></td>
+</tr>
+<tr class="a"><td><code>MethodTypeParameterName</code></td>
+<td>method type parameters</td>
+<td><code>^[A-Z]$</code></td>
+</tr>
+<tr class="b"><td><code>PackageName</code></td>
+<td>packages</td>
+<td><code>^[a-z]+(\.[a-zA-Z_][a-zA-Z0-9_]*)*$</code></td>
+</tr>
+<tr class="a"><td><code>ParameterName</code></td>
+<td>parameters</td>
+<td><code>^[a-z][a-zA-Z0-9]*$</code></td>
+</tr>
+<tr class="b"><td><code>StaticVariableName</code></td>
+<td><code>static</code>, non-<code>final</code> fields
+          </td>
+<td><code>^[a-z][a-zA-Z0-9]*$</code></td>
+</tr>
+<tr class="a"><td><code>TypeName</code></td>
+<td>classes and interfaces</td>
+<td><code>^[A-Z][a-zA-Z0-9]*$</code></td>
+</tr>
+</table>
+</div>
+<div class="section"><h2><a name="Enhancements"></a>Enhancements</h2>
+<div class="section"><h3><a name="LocalVariableName"></a>LocalVariableName</h3>
+<p>
+          Module <code>LocalVariableName</code> also has property
+          <code>tokens</code> which can be used to control whether the
+          check applies to variable declarations or <code>catch</code>
+          clause parameters through tokens <code>VARIABLE_DEF</code> and
+          <code>PARAMETER_DEF</code>.  For example, the following
+          configuration element ensures that <code>catch</code> clause
+          parameters begin with <code>&quot;e&quot;</code>, followed by letters
+          and digits:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;LocalVariableName&quot;&gt;
+    &lt;property name=&quot;format&quot; value=&quot;^e[a-zA-Z0-9]*$&quot;/&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;PARAMETER_DEF&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="TypeName"></a>TypeName</h3>
+<p>
+          Module <code>TypeName</code> also has property
+          <code>tokens</code> which can be used to control whether the
+          check applies to classes or interfaces through tokens
+          <code>CLASS_DEF</code> and <code>INTERFACE_DEF</code>.  For
+          example, the following configuration element ensures that
+          interface names begin with <code>&quot;I_&quot;</code>, followed by
+          letters and digits:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;TypeName&quot;&gt;
+    &lt;property name=&quot;format&quot;
+              value=&quot;^I_[a-zA-Z0-9]*$&quot;/&gt;
+    &lt;property name=&quot;tokens&quot;
+              value=&quot;INTERFACE_DEF&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="MethodName"></a>MethodName</h3>
+<p>
+          Module <code>MethodName</code> also has the following
+          properties:
+        </p>
+<table class="bodyTable"><tr class="b"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="a"><td>allowClassName</td>
+<td>
+              Controls whether to allow a method name to have the same
+              name as the residing class name.  This is not to be confused
+              with a constructor.  An easy mistake is to place a return
+              type on a constructor declaration which turns it into a
+              method. For example:
+              <pre>
+class MyClass {
+    public void MyClass() {} //this is a method
+    public MyClass() {} //this is a constructor
+}
+              </pre></td>
+<td><a href="property_types.html#boolean">Boolean</a></td>
+<td><code>false</code></td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="AbstractClassName"></a>AbstractClassName</h3>
+<p>
+          Module <code>AbstractClassName</code> also has the following
+          properties:
+        </p>
+<table class="bodyTable"><tr class="b"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="a"><td>ignoreModifier</td>
+<td>
+              Controls whether to ignore checking for the
+              <code>abstract</code> modifier on classes that match the
+              name.
+            </td>
+<td><a href="property_types.html#boolean">Boolean</a></td>
+<td><code>false</code></td>
+</tr>
+<tr class="b"><td>ignoreName</td>
+<td>
+              Controls whether to ignore checking the name. Realistically
+              only useful if using the check to identify that match name
+              and do not have the <code>abstract</code> modifier.  name.
+            </td>
+<td><a href="property_types.html#boolean">Boolean</a></td>
+<td><code>false</code></td>
+</tr>
+</table>
+<p>
+          The following example shows how to configure the
+          <code>AbstractClassName</code> to checks names, but ignore
+          missing <code>abstract</code> modifiers:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;AbstractClassName&quot;&gt;
+  &lt;property name=&quot;ignoreModifier&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="a..."></a>...</h3>
+<p>
+          The modules <code>ConstantName</code>,
+          <code>MemberName</code>, <code>StaticVariableName</code> and
+          <code>TypeName</code> also have the following properties:
+        </p>
+<table class="bodyTable"><tr class="a"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="b"><td>applyToPublic</td>
+<td>Controls whether to apply the check to public member.</td>
+<td><a href="property_types.html#boolean">Boolean</a></td>
+<td><code>true</code></td>
+</tr>
+<tr class="a"><td>applyToProtected</td>
+<td>Controls whether to apply the check to protected member.</td>
+<td><a href="property_types.html#boolean">Boolean</a></td>
+<td><code>true</code></td>
+</tr>
+<tr class="b"><td>applyToPackage</td>
+<td>
+              Controls whether to apply the check to package-private member.
+            </td>
+<td><a href="property_types.html#boolean">Boolean</a></td>
+<td><code>true</code></td>
+</tr>
+<tr class="a"><td>applyToPrivate</td>
+<td>Controls whether to apply the check to private member.</td>
+<td><a href="property_types.html#boolean">Boolean</a></td>
+<td><code>true</code></td>
+</tr>
+</table>
+</div>
+</div>
+<div class="section"><h2><a name="Notes"></a>Notes</h2>
+<p>
+        The default value of <code>format</code> for module <code>PackageName</code> has been chosen to match the
+        requirements in the <a href="http://java.sun.com/docs/books/jls/second_edition/html/packages.doc.html#40169" class="externalLink">Java
+        Language specification</a> and the Sun coding conventions. However
+        both underscores and uppercase letters are rather uncommon, so most
+        configurations should probably assign value <code>^[a-z]+(\.[a-z][a-z0-9]*)*$</code> to <code>format</code> for module <code>PackageName</code>, as in
+      </p>
+<div class="source"><pre>
+&lt;module name=&quot;PackageName&quot;&gt;
+    &lt;property name=&quot;format&quot;
+              value=&quot;^[a-z]+(\.[a-z][a-z0-9]*)*$&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+</div>
+</div>
+
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2001-2010
+    
+          
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,657 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>checkstyle - Writing Listeners</title>
+    <style type="text/css" media="all">
+      @import url("./css/maven-base.css");
+      @import url("./css/maven-theme.css");
+      @import url("./css/site.css");
+    </style>
+    <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+          <meta name="author" content="Lars Kühne" />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+  <body class="composite">
+    <div id="banner">
+                    <span id="bannerLeft">
+    
+            Checkstyle 5.3
+    
+            </span>
+                        <a href="" id="bannerRight">
+    
+                                            <img src="images/logo.png" alt="Checkstyle" />
+    
+            </a>
+            <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+  
+  
+    
+            <div class="xleft">
+        Last Published: 2010-10-19
+                      </div>
+            <div class="xright">      
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+  
+  
+    
+                   <h5>About</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="index.html">Checkstyle</a>
+          </li>
+              
+    <li class="none">
+                    <a href="releasenotes.html">Release Notes</a>
+          </li>
+          </ul>
+              <h5>Documentation</h5>
+            <ul>
+              
+          
+              
+      
+              
+        <li class="expanded">
+                    <a href="config.html">Configuration</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="property_types.html">Property Types</a>
+          </li>
+              </ul>
+        </li>
+              
+          
+              
+      
+            
+      
+              
+        <li class="expanded">
+                    <a href="running.html">Running</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="anttask.html">Ant Task</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="cmdline.html">Command Line</a>
+          </li>
+              </ul>
+        </li>
+              
+    <li class="none">
+                    <a href="availablechecks.html">Available Checks</a>
+          </li>
+              
+          
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="expanded">
+                    <a href="checks.html">Standard Checks</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="config_annotation.html">Annotations</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_blocks.html">Block Checks</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_design.html">Class Design</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_coding.html">Coding</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_duplicates.html">Duplicate Code</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_header.html">Headers</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_imports.html">Imports</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_javadoc.html">Javadoc Comments</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_metrics.html">Metrics</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_misc.html">Miscellaneous</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_modifier.html">Modifiers</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_naming.html">Naming Conventions</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_regexp.html">Regexp</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_sizes.html">Size Violations</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_whitespace.html">Whitespace</a>
+          </li>
+              </ul>
+        </li>
+              
+          
+              
+      
+            
+      
+            
+            
+              
+            <li class="expanded">
+                    <a href="extending.html">Extending Checkstyle</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="writingchecks.html">Writing checks</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="writingfilters.html">Writing filters</a>
+          </li>
+                  
+    <li class="none">
+              <strong>Writing listeners</strong>
+        </li>
+              </ul>
+        </li>
+          </ul>
+              <h5>Developers</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="apidocs/index.html">Javadoc</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://sourceforge.net/projects/checkstyle" class="externalLink">Project Page</a>
+          </li>
+              
+    <li class="none">
+                    <a href="contributing.html">Contributing</a>
+          </li>
+          </ul>
+              <h5>Project Documentation</h5>
+            <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-info.html">Project Information</a>
+                </li>
+              
+                
+              
+      
+              
+        <li class="collapsed">
+                    <a href="project-reports.html">Project Reports</a>
+                </li>
+          </ul>
+                                                 
+                        
+                        
+            <a href="http://sourceforge.net/projects/checkstyle" title="SourceForge" class="poweredBy">
+                            <img alt="SourceForge" src="http://sflogo.sourceforge.net/sflogo.php?group_id=29721&type=11" />
+            </a>
+                               
+  
+
+  
+    
+  
+  
+    
+        </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <div class="section"><h2><a name="Overview"></a>Overview</h2>
+<p>
+        A Checkstyle listener monitors the progress of a <code>Checker</code> during the audit of files. The <code>Checker</code> notifies its attached listeners of
+        significant events such as the start of the audit of a file and
+        the logging of a Check error, and the listeners respond
+        appropriately.  Any number of listeners can be attached to a
+        <code> Checker</code>. An audit always adds one of
+        the distribution listeners, <a href="apidocs/com/puppycrawl/tools/checkstyle/DefaultLogger.html">DefaultLogger</a>
+        or <a href="apidocs/com/puppycrawl/tools/checkstyle/XMLLogger.html">XMLLogger</a>,
+        to report events. A <code>DefaultLogger</code>
+        produces simple text output for the events it receives, and a
+        <code>XMLLogger</code> produces an XML document for
+        its events.
+      </p>
+<p>
+        Listeners <code>DefaultLogger</code> and <code> XMLLogger</code> are sufficient for most
+        Checkstyle users, but you may find a need for a custom
+        listener. For example, a user has requested verbose output of
+        progress information during a Checkstyle run. Another user would
+        like to filter error events. This document explains how to write
+        listeners for such tasks and how to integrate them in a Checker
+        module. It also describes two custom listeners that are inspired
+        by ANT listeners: a listener that is a wrapper for the Jakarta
+        Commons Logging API, and a listener that sends its results via
+        email.
+      </p>
+<p>
+        A listener is an implementation of the <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AuditListener.html">AuditListener</a>
+        interface. During an audit, a <code>Checker</code>
+        informs its attached <code>AuditListeners</code> of
+        six kinds of events: audit started/ended, file started/ended,
+        and logging of an error/exception.
+      </p>
+<p>
+        An audit passes an event to a listener as an <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AuditEvent.html">AuditEvent</a>.
+        A file-related <code>AuditEvent</code> contains the
+        name of that file. An <code>AuditEvent</code> for
+        error logging has a message, a severity level, a message source
+        such as the name of a <code>Check</code>, and file
+        line and column numbers that may be relevant to the error. The
+        notification of an exception to a <code>AuditListener</code> includes an error <code>AuditEvent</code> and the details of the
+        exception. Here is a UML diagram for classes <code>AuditListener</code> and <code>AuditEvent</code>.
+      </p>
+<img src="images/AuditListener.gif" alt="AuditListener UML diagram" /></div>
+<div class="section"><h2><a name="Writing_Listeners"></a>Writing Listeners</h2>
+<p>
+        A custom listener is an implementation of the <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AuditListener.html">AuditListener</a>
+        interface. If the listener has properties that can be set from a
+        configuration, the listener must extend <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AutomaticBean.html">AutomaticBean</a>.
+        An <code>AutomaticBean</code> uses JavaBean
+        introspection to set JavaBean properties.
+      </p>
+<p>
+        The custom listener that we demonstrate here is a verbose
+        listener that simply prints each event notification to an output
+        stream, and reports the number of errors per audited file and
+        the total number of errors. The default output stream is <code>System.out</code>. In order to enable the
+        specification of output to a file through property <code>file</code>, the class extends <code>AutomaticBean</code> and defines method <code>setFile(String)</code>.
+      </p>
+<div class="source"><pre>
+package com.mycompany.listeners;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+
+import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.AuditListener;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+
+public class VerboseListener
+    extends AutomaticBean
+    implements AuditListener
+{
+    private PrintWriter mWriter = new PrintWriter(System.out);
+    private boolean mCloseOut = false;
+    private int mTotalErrors;
+    private int mErrors;
+
+    public void setFile(String aFileName)
+        throws FileNotFoundException
+    {
+        final OutputStream out = new FileOutputStream(aFileName);
+        mWriter = new PrintWriter(out);
+        mCloseOut = true;
+    }
+
+    public void auditStarted(AuditEvent aEvt)
+    {
+        mTotalErrors = 0;
+        mWriter.println(&quot;Audit started.&quot;);
+    }
+
+    public void auditFinished(AuditEvent aEvt)
+    {
+        mWriter.println(&quot;Audit finished. Total errors: &quot; + mTotalErrors);
+        mWriter.flush();
+        if (mCloseOut) {
+            mWriter.close();
+        }
+    }
+
+    public void fileStarted(AuditEvent aEvt)
+    {
+        mErrors = 0;
+        mWriter.println(
+            &quot;Started checking file '&quot; + aEvt.getFileName() + &quot;'.&quot;);
+    }
+
+    public void fileFinished(AuditEvent aEvt)
+    {
+        mWriter.println(&quot;Finished checking file '&quot; + aEvt.getFileName()
+            + &quot;'. Errors: &quot; + mErrors);
+    }
+
+    public void addError(AuditEvent aEvt)
+    {
+        printEvent(aEvt);
+        if (SeverityLevel.ERROR.equals(aEvt.getSeverityLevel())) {
+            mErrors++;
+            mTotalErrors++;
+        }
+    }
+
+    public void addException(AuditEvent aEvt, Throwable aThrowable)
+    {
+        printEvent(aEvt);
+        aThrowable.printStackTrace(System.out);
+        mErrors++;
+        mTotalErrors++;
+    }
+
+    private void printEvent(AuditEvent aEvt)
+    {
+        mWriter.println(&quot;Logging error -&quot;
+            + &quot; file: '&quot; + aEvt.getFileName() + &quot;'&quot;
+            + &quot; line: &quot; + aEvt.getLine()
+            + &quot; column: &quot; + aEvt.getColumn()
+            + &quot; severity: &quot; + aEvt.getSeverityLevel()
+            + &quot; message: &quot; + aEvt.getMessage()
+            + &quot; source: &quot; + aEvt.getSourceName());
+    }
+}
+      </pre>
+</div>
+<p>
+        A listener that filters error events could perform the filtering
+        in methods <code> addError</code> and <code>addException</code>. As further examples of
+        listeners, <a href="#CommonsLoggingListener">CommonsLoggingListener</a>
+        reports its events through the Commons Logging API, and <a href="#MailLogger">MailLogger</a> e-mails the audit report of a
+        <code>DefaultLogger</code>.
+      </p>
+</div>
+<div class="section"><h2><a name="Using_Listeners"></a>Using Listeners</h2>
+<p>
+        To incorporate a custom listener in the set of listeners for a
+        <code>Checker</code>, include a module element for
+        the listener in the <a href="config.html#AuditListeners">configuration file</a>. For
+        example, to configure a <code>Checker</code> so
+        that it uses custom listener <code>VerboseListener</code> to print audit messages to a
+        file named &quot;audit.txt&quot;, include the following module
+        in the configuration file:
+      </p>
+<div class="source"><pre>
+&lt;module name=&quot;com.mycompany.listeners.VerboseListener&quot;&gt;
+    &lt;property name=&quot;file&quot; value=&quot;audit.txt&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+</div>
+<p>
+        Here is a truncated example of audit output from a <code> VerboseListener</code>:
+      </p>
+<div class="source"><pre>
+Audit started.
+Started checking file 'CommonsLoggingListener.java'.
+Finished checking file 'CommonsLoggingListener.java'. Errors: 0
+Started checking file 'MailLogger.java'.
+Finished checking file 'MailLogger.java'. Errors: 0
+Started checking file 'VerboseListener.java'.
+Logging error - file: 'VerboseListener.java' line: 23 ...
+Finished checking file 'VerboseListener.java'. Errors: 1
+Audit finished. Total errors: 1
+      </pre>
+</div>
+</div>
+<div class="section"><h2><a name="Examples"></a>Examples</h2>
+<p>
+        This section describes two examples based on <a href="http://ant.apache.org/" class="externalLink">ANT</a> listeners. The first
+        listener, <code> CommonsLoggingListener</code>,
+        hands off events to the <a href="http://commons.apache.org/logging/" class="externalLink">Jakarata
+        Commons Logging</a> facade and the second, <code>MailLogger</code>, sends a report of an audit via
+        e-mail. The discussion of these examples and how to use them is
+        derived from material in <a href="http://www.manning.com/hatcher/" class="externalLink">&quot;Java Development
+        with Ant&quot;</a> by Eric Hatcher and Steve Loughran, an
+        excellent ANT book.
+      </p>
+<a name="CommonsLoggingListener"></a><h4>CommonsLoggingListener</h4>
+<p><a href="http://commons.apache.org/logging/" class="externalLink">Jakarata
+        Commons Logging</a> provides a facade for logging tools
+        <a href="http://jakarta.apache.org/log4j/docs/index.html" class="externalLink">log4j</a>,
+        <a href="http://jakarta.apache.org/avalon/logkit/index.html" class="externalLink">Avalon
+        LogKit</a>, J2SE 1.4, and others. Checkstyle listener <code> CommonsLoggingListener</code> responds to an
+        AuditEvent by handing it off to the current Commons Logging Log.
+      </p>
+<p>
+        The source code for <code>CommonsLoggingListener</code> is in distribution
+        directory <code>contrib/examples/listeners</code>.  Notice that
+        each <code>AuditListener</code> method that
+        receives an <code> AuditEvent</code> calls a method
+        for the Commons Logging log level corresponding to the
+        Checkstyle <code>SeverityLevel</code> of the <code> AuditEvent</code>.
+      </p>
+<p>
+        The easiest way to use <code>CommonsLoggingListener</code> is to include <code>checkstyle-5.3-all.jar</code>
+        in the classpath because that jar file contains all the Commons
+        Logging classes.  The default Log under J2SE 1.4 is wrapper
+        class <a href="http://commons.apache.org/logging/apidocs/org/apache/commons/logging/impl/Jdk14Logger.html" class="externalLink">Jdk14Logger</a>.
+        Under earlier Java versions, the default Log is a simple wrapper
+        class, <a href="http://commons.apache.org/logging/apidocs/org/apache/commons/logging/impl/SimpleLog.html" class="externalLink">SimpleLog</a>.
+        Both default logging tools can be used directly from Commons
+        Logging; if you need to use other tools such as log4j, then you
+        must include the appropriate jar file(s) in the classpath.
+      </p>
+<p>
+        Logging configuration details for Jakarta Commons Logging are in
+        the <a href="http://commons.apache.org/logging/" class="externalLink">documentation</a>.
+        As a simple example, assume that <code>log4j.jar</code> is in the classpath and the
+        following <code>log4j.properties</code> file is
+        in the current directory:
+      </p>
+<div class="source"><pre>
+# Set root logger level to INFO and its only appender to A1.
+log4j.rootLogger=INFO, A1
+
+# A1 is set to be a ConsoleAppender.
+log4j.appender.A1=org.apache.log4j.ConsoleAppender
+
+# A1 uses PatternLayout.
+log4j.appender.A1.layout=org.apache.log4j.PatternLayout
+log4j.appender.A1.layout.ConversionPattern=%-5p %c %x- %m%n
+      </pre>
+</div>
+<p>
+        Running a Checkstyle audit with a <code>CommonsLoggingListener</code> yields this
+        (abbreviated) output:
+      </p>
+<div class="source"><pre>
+INFO  com.puppycrawl...Checker  - Audit started.
+INFO  com.puppycrawl...Checker  - File &quot;CommonsLoggingListener.java&quot; started.
+INFO  com.puppycrawl...Checker  - File &quot;CommonsLoggingListener.java&quot; finished.
+INFO  com.puppycrawl...Checker  - File &quot;MailLogger.java&quot; started.
+INFO  com.puppycrawl...Checker  - File &quot;MailLogger.java&quot; finished.
+INFO  com.puppycrawl...Checker  - File &quot;VerboseListener.java&quot; started.
+ERROR com.puppycrawl...ParenPadCheck  - Line: 23 Column: 28 ...
+INFO  com.puppycrawl...Checker  - File &quot;VerboseListener.java&quot; finished.
+INFO  com.puppycrawl...Checker  - Audit finished.
+      </pre>
+</div>
+<a name="MailLogger"></a><h4>MailLogger</h4>
+<p><code>MailLogger</code> sends an audit report in an
+        email message.  The listener uses a <code>DefaultLogger</code> to prepare the text of the
+        message. The listener obtains other message parameters such as
+        <code>to</code> and <code>subject</code> from environment properties that
+        can be read from a properties file.
+      </p>
+<p>
+        The source code for <code>CommonsLoggingListener</code> is in distribution
+        directory <code>contrib/examples/listeners</code>.  This
+        implementation uses the <a href="http://java.sun.com/products/javamail" class="externalLink">JavaMail API</a> as
+        the mail system, and you must include appropriate jar files in
+        the classpath.
+      </p>
+<p>
+        As an example of using <code>MailLogger</code>, set
+        system property <code>-DMailLogger.properties.file=MailLogger.properties</code>,
+        so that <code>MailLogger</code> reads message
+        parameters from file <code>MailLogger.properties</code> of the current
+        directory:
+      </p>
+<div class="source"><pre>
+MailLogger.from=user@example.org
+MailLogger.failure.to=user@example.org
+MailLogger.success.to=user@example.org
+MailLogger.mailhost=localhost
+      </pre>
+</div>
+</div>
+<div class="section"><h2><a name="Huh_I_cant_figure_it_out"></a>Huh? I can't figure it out!</h2>
+<p>
+        That's probably our fault, and it means that we have to
+        provide better documentation. Please do not hesitate to ask
+        questions on the user mailing list, this will help us to improve
+        this document.  Please ask your questions as precisely as
+        possible. We will not be able to answer questions like &quot;I
+        want to write a listener but I don't know how, can you help
+        me?&quot;. Tell us what you are trying to do (the purpose of the
+        listener), what you have understood so far, and what exactly you
+        are getting stuck on.
+      </p>
+</div>
+<div class="section"><h2><a name="Contributing"></a>Contributing</h2>
+<p>
+        We need <em>your</em> help to keep improving Checkstyle.
+        Whenever you write a listener that you think is generally
+        useful, please consider <a href="contributing.html">contributing</a> it to the Checkstyle
+        community and submit it for inclusion in the next release of
+        Checkstyle.
+      </p>
+</div>
+
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2001-2010
+    
+          
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>

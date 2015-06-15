@@ -1,0 +1,57 @@
+<section id="showcases-java5-dao">
+	<title>Implementing DAOs using <classname>SimpleJdbcTemplate</classname> and <interfacename>@Repository</interfacename>
+	</title>
+	<para>
+		This small project showcases using some of the Java5 features in Spring to implement DAOs with Hibernate and
+		JDBC. This project is <emphasis>very</emphasis> simplistic, because the intent is to convey the basics of
+		using the <classname>SimpleJdbcTemplate</classname> and the <interfacename>@Repository</interfacename>
+		annotation and several other DAO-related features, but nothing else.
+	</para>
+
+	<section id="showcases-java5-dao-the-domain">
+		<title>The domain</title>
+		<para>The domain in this sample application concerns itself with car parts.
+			There are two domain classes: <classname>Part</classname> and <classname>CarModel</classname>.
+			Using a <interfacename>CarPartsInventory</interfacename> car plants for example will
+			be able to query for parts, update the stock of certain parts and add new parts.
+		</para>
+	</section>
+
+	<section id="showcases-java5-dao-the-daos">
+		<title>The data access objects</title>
+		<para>
+			Based on a <interfacename>CarPartsInventory</interfacename> interface there are 3 DAO implementations, each using
+			a different style. Two are using Hibernate and the other is using JDBC.
+			The <classname>JdbcCarPartsInventoryImpl</classname> uses JDBC and the <classname>SimpleJdbcTemplate</classname>.
+			If you look closely at this DAO you will see that the Java5 features the
+			<classname>SimpleJdbcTemplate</classname> uses significantly clean up your data access code.
+		</para>
+
+		<para>
+			The <classname>TemplateHibernateCarPartsInventoryImpl</classname>
+			uses the <classname>HibernateTemplate</classname> to query for Parts and update part stock. This is
+			nothing out of the ordinary if you're used to programming using Spring and Hibernate.
+			The <literal>PlainHibernateCarPartsInventoryImpl</literal>
+			however does not use the <classname>HibernateTemplate</classname> anymore. It uses the plain Hibernate3 API to query the
+			session and the database for parts. Of course, the Hibernate3 API does not throw
+			Spring <exceptionname>DataAccessExceptions</exceptionname> while this was originally one of the reasons to
+			start using the <classname>HibernateTemplate</classname>. Spring 2.0 however adds an annotation
+			that still allows you to get the same behavior. The <interfacename>@Repository</interfacename> annotation (if you look
+			carefully at the <classname>PlainHibernateCarPartsInventoryImpl</classname>, you'll see it's marked as such)
+			in combination with the <classname>PersistenceExceptionTranslatorPostProcessor</classname> automatically take
+			care of translation Hibernate exception into Spring <classname>DataAccessExceptions</classname>.
+		</para>
+
+	</section>
+
+	<section id="showcases-java5-dao-build">
+		<title>Build</title>
+		<para>
+			The <emphasis>samples/showcases/java5-dao</emphasis> directory contains the project's source.
+			The project only contains unit tests that you can look at apart from the source code. To build and
+			run the unit tests, you need to build with Apache Ant (or run the sample in your favorite IDE).
+			Run <literal>ant tests</literal> using a Java5 VM (the project uses annotations and generics)
+		</para>
+	</section>
+
+</section>

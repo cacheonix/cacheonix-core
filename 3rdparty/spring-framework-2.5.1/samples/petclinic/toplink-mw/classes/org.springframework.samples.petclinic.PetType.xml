@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class>
+   <name>org.springframework.samples.petclinic.PetType</name>
+   <modifier>1</modifier>
+   <superclass-handle>
+      <type-name>org.springframework.samples.petclinic.NamedEntity</type-name>
+   </superclass-handle>
+   <last-refresh-timestamp>2006-07-23T20:57:41.768</last-refresh-timestamp>
+   <methods>
+      <method>
+         <name>PetType</name>
+         <constructor>true</constructor>
+         <modifier>1</modifier>
+      </method>
+   </methods>
+</class>

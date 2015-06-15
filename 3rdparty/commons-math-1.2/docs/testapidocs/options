@@ -1,0 +1,19 @@
+-classpath '/home/phil/math/tags/MATH_1_2_RC3/target/classes:/home/phil/math/tags/MATH_1_2_RC3/target/test-classes:/home/phil/.m2/repository/junit/junit/3.8.2/junit-3.8.2.jar:/home/phil/.m2/repository/commons-logging/commons-logging/1.0.4/commons-logging-1.0.4.jar:/home/phil/.m2/repository/commons-discovery/commons-discovery/0.2/commons-discovery-0.2.jar'
+ -protected
+-source
+'1.3'
+-sourcepath
+'/home/phil/math/tags/MATH_1_2_RC3/src/test'
+-author
+-bottom
+'Copyright © 2003-2008 <a href="http://www.apache.org/">The Apache Software Foundation</a>. All Rights Reserved.'
+-charset
+'ISO-8859-1'
+-d
+'/home/phil/math/tags/MATH_1_2_RC3/target/site/testapidocs'
+-doctitle
+'Commons Math 1.2 Test API'
+-use
+-version
+-windowtitle
+'Commons Math 1.2 Test API'

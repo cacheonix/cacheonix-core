@@ -1,0 +1,747 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>checkstyle - Property Types</title>
+    <style type="text/css" media="all">
+      @import url("./css/maven-base.css");
+      @import url("./css/maven-theme.css");
+      @import url("./css/site.css");
+    </style>
+    <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+          <meta name="author" content="Oliver Burn" />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+  <body class="composite">
+    <div id="banner">
+                    <span id="bannerLeft">
+    
+            Checkstyle 5.3
+    
+            </span>
+                        <a href="" id="bannerRight">
+    
+                                            <img src="images/logo.png" alt="Checkstyle" />
+    
+            </a>
+            <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+  
+  
+    
+            <div class="xleft">
+        Last Published: 2010-10-19
+                      </div>
+            <div class="xright">      
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+  
+  
+    
+                   <h5>About</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="index.html">Checkstyle</a>
+          </li>
+              
+    <li class="none">
+                    <a href="releasenotes.html">Release Notes</a>
+          </li>
+          </ul>
+              <h5>Documentation</h5>
+            <ul>
+              
+          
+              
+            
+              
+            <li class="expanded">
+                    <a href="config.html">Configuration</a>
+                  <ul>
+                  
+    <li class="none">
+              <strong>Property Types</strong>
+        </li>
+              </ul>
+        </li>
+              
+          
+              
+      
+            
+      
+              
+        <li class="expanded">
+                    <a href="running.html">Running</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="anttask.html">Ant Task</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="cmdline.html">Command Line</a>
+          </li>
+              </ul>
+        </li>
+              
+    <li class="none">
+                    <a href="availablechecks.html">Available Checks</a>
+          </li>
+              
+          
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="expanded">
+                    <a href="checks.html">Standard Checks</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="config_annotation.html">Annotations</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_blocks.html">Block Checks</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_design.html">Class Design</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_coding.html">Coding</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_duplicates.html">Duplicate Code</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_header.html">Headers</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_imports.html">Imports</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_javadoc.html">Javadoc Comments</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_metrics.html">Metrics</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_misc.html">Miscellaneous</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_modifier.html">Modifiers</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_naming.html">Naming Conventions</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_regexp.html">Regexp</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_sizes.html">Size Violations</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_whitespace.html">Whitespace</a>
+          </li>
+              </ul>
+        </li>
+              
+          
+              
+      
+            
+      
+            
+      
+              
+        <li class="expanded">
+                    <a href="extending.html">Extending Checkstyle</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="writingchecks.html">Writing checks</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="writingfilters.html">Writing filters</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="writinglisteners.html">Writing listeners</a>
+          </li>
+              </ul>
+        </li>
+          </ul>
+              <h5>Developers</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="apidocs/index.html">Javadoc</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://sourceforge.net/projects/checkstyle" class="externalLink">Project Page</a>
+          </li>
+              
+    <li class="none">
+                    <a href="contributing.html">Contributing</a>
+          </li>
+          </ul>
+              <h5>Project Documentation</h5>
+            <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-info.html">Project Information</a>
+                </li>
+              
+                
+              
+      
+              
+        <li class="collapsed">
+                    <a href="project-reports.html">Project Reports</a>
+                </li>
+          </ul>
+                                                 
+                        
+                        
+            <a href="http://sourceforge.net/projects/checkstyle" title="SourceForge" class="poweredBy">
+                            <img alt="SourceForge" src="http://sflogo.sourceforge.net/sflogo.php?group_id=29721&type=11" />
+            </a>
+                               
+  
+
+  
+    
+  
+  
+    
+        </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <div class="section"><h2><a name="Property_Types"></a>Property Types</h2>
+<p>
+      Checkstyle is configured using properties, which are string
+      representations. This document describes how these string
+      representations are mapped to typed properties.
+    </p>
+<div class="section"><h3><a name="integer"></a>integer</h3>
+<p>
+        This property represents an integer. The string representation is
+        parsed using the <code>java.lang.Integer</code> class.
+      </p>
+</div>
+<div class="section"><h3><a name="string"></a>string</h3>
+<p>
+        This property represents a string. The literal string representation
+        is used.
+      </p>
+</div>
+<div class="section"><h3><a name="boolean"></a>boolean</h3>
+<p>
+        This property represents a boolean. The default value is <code>false</code>. The following string representations will
+        map to <code>true</code>:
+      </p>
+<ul><li><code>yes</code></li>
+<li><code>true</code></li>
+<li><code>on</code></li>
+</ul>
+<p>Anything else will map to <code>false</code>.</p>
+</div>
+<div class="section"><h3><a name="stringSet"></a>stringSet</h3>
+<p>
+        This property represents a set of strings. The string representation
+        is parsed as a set of comma (',') separated strings.
+      </p>
+<p>
+        Alternatively, this property can be supplied multiple times which
+        is equivalent to a set of comma separated strings. For example, the
+        following:
+      </p>
+<div class="source"><pre>
+&lt;property name=&quot;tokens&quot; value=&quot;DIV_ASSIGN,PLUS_ASSIGN&quot;/&gt;
+      </pre>
+</div>
+<p>can instead be expressed as:</p>
+<div class="source"><pre>
+&lt;property name=&quot;tokens&quot; value=&quot;DIV_ASSIGN&quot;/&gt;
+&lt;property name=&quot;tokens&quot; value=&quot;PLUS_ASSIGN&quot;/&gt;
+      </pre>
+</div>
+</div>
+<div class="section"><h3><a name="intSet"></a>intSet</h3>
+<p>
+        This property represents a set of integers. The string representation
+        is parsed as a set of comma (',') separated integers that are parsed
+        using the <code>java.lang.Integer</code> class.
+      </p>
+<p>
+        Alternatively, this property can be supplied multiple times which
+        is equivalent to a set of comma separated integers. For example, the
+        following:
+      </p>
+<div class="source"><pre>
+&lt;property name=&quot;tokens&quot; value=&quot;42,666&quot;/&gt;
+      </pre>
+</div>
+<p>can instead be expressed as:</p>
+<div class="source"><pre>
+&lt;property name=&quot;tokens&quot; value=&quot;42&quot;/&gt;
+&lt;property name=&quot;tokens&quot; value=&quot;666&quot;/&gt;
+      </pre>
+</div>
+</div>
+<div class="section"><h3><a name="regexp"></a>regexp</h3>
+<p>
+        This property represents a regular expression. The string
+        representation is parsed using <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/regex/package-summary.html" class="externalLink">java.util.regex
+        package</a>.
+      </p>
+</div>
+<div class="section"><h3><a name="parenPad"></a>parenPad</h3>
+<p>
+        This property represents the policy for padding with white space. The
+        following table describes the valid options:
+      </p>
+<table class="bodyTable"><tr class="a"><td>Option</td>
+<td>Definition</td>
+</tr>
+<tr class="b"><td><code>nospace</code></td>
+<td>
+            Do not pad. For example, <code>method(a, b);</code></td>
+</tr>
+<tr class="a"><td><code>space</code></td>
+<td>
+            Ensure padding. For example,
+            <code>method( a, b );</code></td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="wrapOp"></a>wrapOp</h3>
+<p>
+        This property represents the policy for wrapping lines on
+        operators. The following table describes the valid options:
+      </p>
+<table class="bodyTable"><tr class="b"><td>Option</td>
+<td>Definition</td>
+</tr>
+<tr class="a"><td><code>nl</code></td>
+<td>
+            The operator must be on a new line. For example:
+            <pre>
+    someVariable = aBigVariableNameToMakeThings + &quot;this may work&quot;
+                   + lookVeryInteresting;
+            </pre></td>
+</tr>
+<tr class="b"><td><code>eol</code></td>
+<td>
+            The operator must be at the end of the line. For example:
+            <pre>
+    someVariable = aBigVariableNameToMakeThings + &quot;this may work&quot; +
+                   lookVeryInteresting;
+            </pre></td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="block"></a>block</h3>
+<p>
+        This property represents the policy for checking block statements. The
+        following table describes the valid options:
+      </p>
+<table class="bodyTable"><tr class="a"><td>Option</td>
+<td>Definition</td>
+</tr>
+<tr class="b"><td><code>text</code></td>
+<td>
+            Require that there is some text in the block. For example:
+            <pre>
+    catch (Exception ex) {
+        // This is a bad coding practice
+    }
+            </pre></td>
+</tr>
+<tr class="a"><td><code>stmt</code></td>
+<td>
+            Require that there is a statement in the block. For example:
+            <pre>
+    finally {
+        lock.release();
+    }
+            </pre></td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="lcurly"></a>lcurly</h3>
+<p>
+        This property represents the policy for checking the placement of a
+        left curly brace (<code>'{'</code>). The following table
+        describes the valid options:
+      </p>
+<table class="bodyTable"><tr class="b"><td>Option</td>
+<td>Definition</td>
+</tr>
+<tr class="a"><td><code>eol</code></td>
+<td>
+            The brace must always be on the end of the line. For example:
+            <pre>
+    if (condition) {
+        ...
+            </pre></td>
+</tr>
+<tr class="b"><td><code>nl</code></td>
+<td>
+            The brace must always be on a new line. For example:
+            <pre>
+    if (condition)
+    {
+        ...
+            </pre></td>
+</tr>
+<tr class="a"><td><code>nlow</code></td>
+<td>
+            If the brace will fit on the first line of the statement, taking
+            into account maximum line length, then apply <code>eol</code> rule. Otherwise apply the <code>nl</code> rule. <code>nlow</code> is a
+            mnemonic for &quot;new line on wrap&quot;. For the example above Checkstyle
+            will enforce:
+            <pre>
+    if (condition) {
+        ...
+            </pre>
+            But for a statement spanning multiple lines, Checkstyle will
+            enforce:
+            <pre>
+    if (condition1 &amp;&amp; condition2 &amp;&amp;
+        condition3 &amp;&amp; condition4)
+    {
+        ...
+            </pre></td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="rcurly"></a>rcurly</h3>
+<p>
+        This property represents the policy for checking the placement of a
+        right curly brace (<code>'}'</code>). The following table
+        describes the valid options:
+      </p>
+<table class="bodyTable"><tr class="b"><td>Option</td>
+<td>Definition</td>
+</tr>
+<tr class="a"><td><code>same</code></td>
+<td>
+            The brace must be on the same line as the next statement. For
+            example:
+            <pre>
+    try {
+        ...
+    } finally {
+            </pre></td>
+</tr>
+<tr class="b"><td><code>alone</code></td>
+<td>
+            The brace must be alone on the line. For example:
+            <pre>
+    try {
+        ...
+    }
+    finally {
+            </pre></td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="scope"></a>scope</h3>
+<p>This property represents a Java scope. The scope is treated
+      inclusevly (as javadoc does): 'package' means all 'package', 'protected'
+      and 'public' methods/fields/classes. The valid options are:</p>
+<ul><li><code>nothing</code></li>
+<li><code>public</code></li>
+<li><code>protected</code></li>
+<li><code>package</code></li>
+<li><code>private</code></li>
+<li><code>anoninner</code></li>
+</ul>
+</div>
+<div class="section"><h3><a name="severity"></a>severity</h3>
+<p>
+        This property represents the severity level of a check violation. The
+        valid options are:
+      </p>
+<ul><li><code>ignore</code></li>
+<li><code>info</code></li>
+<li><code>warning</code></li>
+<li><code>error</code></li>
+</ul>
+</div>
+<div class="section"><h3><a name="importOrder"></a>importOrder</h3>
+<p>
+        This property represents the policy for checking imports order.
+        The following table describes the valid options:
+      </p>
+<table class="bodyTable"><tr class="a"><td>Option</td>
+<td>Definition</td>
+</tr>
+<tr class="b"><td><code>top</code></td>
+<td>All static imports are at the top. For example:
+              <pre>
+    import static a.b.C.*;
+    import static x.y.Z.*;
+
+    import a.b.D;
+    import x.y.Z;</pre></td>
+</tr>
+<tr class="a"><td><code>above</code></td>
+<td>All static imports are above the local group. For example:
+            <pre>
+    import static a.b.C.*;
+    import a.b.D;
+
+    import static x.y.Z.*;
+    import x.y.Z;</pre></td>
+</tr>
+<tr class="b"><td><code>inflow</code></td>
+<td>All static imports are processed like non static
+              imports. For example:
+              <pre>
+    import static a.b.C.*;
+    import a.b.D;
+
+    import x.y.Z;
+    import static x.y.Z.*;</pre></td>
+</tr>
+<tr class="a"><td><code>under</code></td>
+<td>All static imports are under the local group. For example:
+              <pre>
+    import a.b.D;
+    import static a.b.C.*;
+
+    import x.y.Z;
+    import static x.y.Z.*;</pre></td>
+</tr>
+<tr class="b"><td><code>bottom</code></td>
+<td>All static imports are at the bottom. For example:
+              <pre>
+    import a.b.D;
+    import x.y.Z;
+
+    import static a.b.C.*;
+    import static x.y.Z.*;</pre></td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="elementStyle"></a>elementStyle</h3>
+<p>
+        This property represents the policy for the styles for defining
+        elements in an annotation. The following table
+        describes the valid options:
+      </p>
+<table class="bodyTable"><tr class="a"><td>Option</td>
+<td>Definition</td>
+</tr>
+<tr class="b"><td><code>expanded</code></td>
+<td>
+            The expanded version is sometimes referred to as &quot;named parameters&quot;
+            in other languages. Example:
+            <pre>@SuppressWarnings(value={&quot;unchecked&quot;,&quot;unused&quot;,})</pre></td>
+</tr>
+<tr class="a"><td><code>compact</code></td>
+<td>
+            This style can only be used when there is an element called 'value'
+            which is either the sole element or all other elements have default
+            values. Examples:
+            <pre>@SuppressWarnings({&quot;unchecked&quot;,&quot;unused&quot;,})</pre>
+            and:
+            <pre>@SuppressWarnings(&quot;unchecked&quot;)</pre></td>
+</tr>
+<tr class="b"><td><code>compact_no_array</code></td>
+<td>
+            It is similar to the <code>compact</code> style but
+            single value arrays are flagged. With annotations a single value
+            array does not need to be placed in an array initializer.
+            This style can only be used when there is an element called 'value'
+            which is either the sole element or all other elements have
+            default values.
+            Example: <pre>@SuppressWarnings(&quot;unchecked&quot;)</pre></td>
+</tr>
+<tr class="a"><td><code>ignore</code></td>
+<td>
+            Anything goes.
+          </td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="closingParens"></a>closingParens</h3>
+<p>
+        This property represents the policy for the styles for the ending
+        parenthesis. The following table describes the valid options:
+      </p>
+<table class="bodyTable"><tr class="b"><td>Option</td>
+<td>Definition</td>
+</tr>
+<tr class="a"><td><code>always</code></td>
+<td>
+            Example:
+            <pre>@Deprecated()</pre></td>
+</tr>
+<tr class="b"><td><code>never</code></td>
+<td>
+            Example:
+            <pre>@Deprecated</pre></td>
+</tr>
+<tr class="a"><td><code>ignore</code></td>
+<td>
+            Anything goes.
+          </td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="trailingArrayComma"></a>trailingArrayComma</h3>
+<p>
+        This property represents the policy for the styles for the trailing
+        array comma. The following table describes the valid options:
+      </p>
+<table class="bodyTable"><tr class="b"><td>Option</td>
+<td>Definition</td>
+</tr>
+<tr class="a"><td><code>always</code></td>
+<td>
+            Example:
+            <pre>@SuppressWarnings(value={&quot;unchecked&quot;,&quot;unused&quot;,})</pre></td>
+</tr>
+<tr class="b"><td><code>never</code></td>
+<td>
+            Example:
+            <pre>@SuppressWarnings(value={&quot;unchecked&quot;,&quot;unused&quot;})</pre></td>
+</tr>
+<tr class="a"><td><code>ignore</code></td>
+<td>
+            Anything goes.
+          </td>
+</tr>
+</table>
+</div>
+</div>
+
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2001-2010
+    
+          
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>

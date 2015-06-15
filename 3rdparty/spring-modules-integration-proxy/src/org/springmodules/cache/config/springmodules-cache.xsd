@@ -1,0 +1,87 @@
+<xsd:schema xmlns="http://www.springmodules.org/schema/cache"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:beans="http://www.springframework.org/schema/beans"
+  targetNamespace="http://www.springmodules.org/schema/cache"
+  elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+  <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+  <xsd:import namespace="http://www.springframework.org/schema/beans"
+    schemaLocation="http://www.springframework.org/schema/beans/spring-beans.xsd" />
+
+  <xsd:complexType name="config">
+    <xsd:attribute name="id" type="xsd:string" default="cacheProvider" />
+    <xsd:attribute name="failQuietly" default="false">
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="true" />
+          <xsd:enumeration value="false" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute name="serializableFactory" default="none">
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="none" />
+          <xsd:enumeration value="XSTREAM" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+  </xsd:complexType>
+
+  <xsd:complexType name="config-with-file-support">
+    <xsd:complexContent>
+      <xsd:extension base="config">
+        <xsd:attribute name="configLocation" type="xsd:string"
+          use="optional" />
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="base-config-strategy">
+    <xsd:attribute name="providerId" type="xsd:string"
+      default="cacheProvider" />
+  </xsd:complexType>
+
+  <xsd:complexType name="methodMapInterceptors">
+    <xsd:complexContent>
+      <xsd:extension base="base-config-strategy">
+        <xsd:attribute name="cachingInterceptorId" type="xsd:string"
+          default="cachingInterceptor" />
+        <xsd:attribute name="flushingInterceptorId" type="xsd:string"
+          default="flushingInterceptor" />
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="proxy">
+    <xsd:complexContent>
+      <xsd:extension base="base-config-strategy">
+        <xsd:attribute name="id" type="xsd:string" use="required" />
+        <xsd:attribute name="refId" type="xsd:string" use="optional" />
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="cachingListener">
+    <xsd:attribute name="refId" type="xsd:string" use="optional" />
+  </xsd:complexType>
+
+  <xsd:complexType name="flushingModel">
+    <xsd:attribute name="when" default="after">
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="before" />
+          <xsd:enumeration value="after" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+  </xsd:complexType>
+
+  <xsd:complexType name="cacheKeyGenerator">
+    <xsd:sequence>
+      <xsd:element ref="beans:bean" minOccurs="0" maxOccurs="1" />
+    </xsd:sequence>
+    <xsd:attribute name="refId" type="xsd:string" use="optional" />
+  </xsd:complexType>
+
+</xsd:schema>

@@ -1,0 +1,218 @@
+<HTML>
+<HEAD>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+    <!-- Created by: Andy KASS, 22-Sept-1999 -->
+
+    <TITLE>JMX RI</TITLE>
+
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF"
+      LINK="#0000FF" VLINK="#000077" ALINK="#FF0000">
+
+<TABLE BORDER=0 WIDTH="100%">
+    <TR>
+        <TD><IMG SRC="images/smi.logo.gif" ALT="Sun Microsystems, Inc"
+                 HEIGHT=43 WIDTH=120>&nbsp;</TD>
+        <TD ALIGN=right>
+            <B><A HREF="../index.html">JMX Reference Implementation</A><BR>
+                Tutorial</B></TD>
+    </TR>
+</TABLE>
+<HR>
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+
+    <TR>
+        <TD WIDTH="43%" ALIGN="left" VALIGN="top"><A HREF="managing.html">
+            <IMG SRC="images/leftarrow.gif" BORDER="0" ALT="[ Previous ]"><BR>
+            Instantiating and Managing MBeans</A></TD>
+
+        <TD WIDTH="14%" ALIGN="center" VALIGN="top"><A HREF="tutorial.html">
+            <IMG SRC="images/uparrow.gif" BORDER="0" ALT="[ Contents ]"><BR>
+            Contents</A></TD>
+
+        <TD WIDTH="43%" ALIGN="right" VALIGN="top"><A HREF="filtering.html">
+            <IMG SRC="images/rightarrow.gif" BORDER="0" ALT="[ Next ]"><BR>
+            Filtering the MBean List</A></TD>
+
+    </TR>
+</TABLE>
+<HR>
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<CENTER>
+    <H1>
+        Standard and Dynamic MBeans
+    </H1>
+</CENTER>
+<BLOCKQUOTE>
+
+    <B><FONT SIZE=+1 COLOR=#ACA6CF>Action: &nbsp;</FONT></B>With an agent
+    view open on another machine, go to the administration page on your
+    machine. Fill in the fields as follows and request the <I>constructors</I>:<P>
+
+    <BLOCKQUOTE>
+        <TABLE BORDER CELLPADDING=7 BGCOLOR="#D4CCFF" WIDTH=75%>
+            <TR>
+                <TD>
+<PRE>
+      Domain: <B>Standard_MBeans</B>
+
+      Keys  : <B>name=Simple,number=1</B>
+</PRE>
+                </TD>
+            </TR>
+            <TR>
+                <TD>
+<PRE>
+  Java Class: <B>Simple</B>
+</PRE>
+                </TD>
+            </TR>
+        </TABLE>
+    </BLOCKQUOTE>
+    <P>
+
+        The list of constructors for the <CODE>Simple</CODE> class is given at
+        the bottom of the page. The MBean name is also given: this is the
+        object name that will be assigned to the MBean when using one of the
+        listed constructors. As you can see, the <CODE>Simple</CODE> class
+        only has one constructor that takes no parameters.
+
+    <P>
+
+        <B><FONT SIZE=+1 COLOR=#ACA6CF>Action: &nbsp;</FONT></B>Click on its
+        "Create" button: the creation result will be appended to the bottom of
+        the page. Scroll down and go to the MBean view with the provided
+        link.
+
+    <P>
+
+        <CODE>Simple</CODE> is a standard MBean so all of its description
+        strings are generic: this shows the necessity of programming
+        meaningful attribute names.
+
+    <P>
+
+        <B><FONT SIZE=+1 COLOR=#ACA6CF>Action: &nbsp;</FONT></B>In the browser
+        on the other machine, click in the filter field and press Return to
+        refresh the agent view. Click on the new MBean's name and set its reload
+        period to 15. Back on your machine, type in a different string
+        for the "State" attribute and click "Apply".
+
+    <P>
+
+        On the other machine, you should see the MBean's attributes get updated
+        when the MBean view is periodically reloaded.
+
+    <P>
+
+        <B><FONT SIZE=+1 COLOR=#ACA6CF>Action: &nbsp;</FONT></B>Back on your
+        machine, click the "performReset" operation button at the bottom of
+        the MBean view page. This brings up the operation result page which
+        indicates the success of the operation. This page also gives the
+        return value of the operation when it is not void. If you go back to
+        the MBean view, you will see the result of the operation on the
+        attributes. You should also see it on the other machine after it
+        reloads.
+
+    <P>
+
+        <B>Note:</B> The browser on the other machine is no longer needed for
+        the rest of this tutorial.
+
+    <P>
+
+        <B><FONT SIZE=+1 COLOR=#ACA6CF>Action: &nbsp;</FONT></B>Go to the
+        administration page, create an MBean with the following values, and go
+        to its MBean view:
+
+    <P>
+
+    <BLOCKQUOTE>
+        <TABLE BORDER CELLPADDING=7 BGCOLOR="#D4CCFF" WIDTH=75%>
+            <TR>
+                <TD>
+<PRE>
+      Domain: <B>Dynamic_MBeans</B>
+
+      Keys  : <B>name=SimpleDynamic,number=1</B>
+</PRE>
+                </TD>
+            </TR>
+            <TR>
+                <TD>
+<PRE>
+  Java Class: <B>SimpleDynamic</B>
+</PRE>
+                </TD>
+            </TR>
+        </TABLE>
+    </BLOCKQUOTE>
+    <P>
+
+        The management interface of this dynamic MBean looks similar to that
+        of the <CODE>Simple</CODE> class which is a standard MBean. This is
+        because it is programmed to expose a similar interface at
+        runtime. Notice that it has the advantage of providing meaningful
+        description strings. Look at the following source files and compare
+        their features (use your browser's "Previous Page" function to return
+        to the tutorial):
+
+    <P>
+
+    <UL>
+        <LI><A HREF="../../examples/MonitorMBean/SimpleMBean.java"><B>SimpleMBean.java</B></A>
+            - The MBean interface which statically defines the management
+            interface for the <CODE>Simple</CODE> MBean.<BR>&nbsp;</LI>
+
+        <LI><A HREF="../../examples/MonitorMBean/Simple.java"><B>Simple.java</B></A>
+            - The code that implements the methods of the <CODE>SimpleMBean</CODE>
+            interface. For example, you can see exactly what the
+            <CODE>performReset</CODE> operation does in its corresponding
+            method. Also, compare this code with that of the dynamic MBean.<BR>&nbsp;</LI>
+
+        <LI><A HREF="../../examples/DynamicMBean/SimpleDynamic.java"><B>SimpleDynamic.java</B></A>
+            - The code that implements the <CODE>DynamicMBean</CODE> interface (see
+            the JMX specification chapter on instrumentation). Towards the end of
+            the file, you can see the method that dynamically constructs a data
+            structure representing the management interface. From the code we can
+            also see that the "reset" operation has a different implementation
+            from "performReset" in the standard MBean.<BR>&nbsp;</LI>
+    </UL>
+
+</BLOCKQUOTE>
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<HR>
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+
+    <TR>
+        <TD WIDTH="43%" ALIGN="left" VALIGN="top"><A HREF="managing.html">
+            <IMG SRC="images/leftarrow.gif" BORDER="0" ALT="[ Previous ]"><BR>
+            Instantiating and Managing MBeans</A></TD>
+
+        <TD WIDTH="14%" ALIGN="center" VALIGN="top"><A HREF="tutorial.html">
+            <IMG SRC="images/uparrow.gif" BORDER="0" ALT="[ Contents ]"><BR>
+            Contents</A></TD>
+
+        <TD WIDTH="43%" ALIGN="right" VALIGN="top"><A HREF="filtering.html">
+            <IMG SRC="images/rightarrow.gif" BORDER="0" ALT="[ Next ]"><BR>
+            Filtering the MBean List</A></TD>
+
+    </TR>
+</TABLE>
+<HR>
+
+<IMG SRC="images/java_red.gif" ALT="Java coffee cup logo"
+     HEIGHT=85 WIDTH=49 ALIGN=RIGHT>
+
+<P>
+    <FONT SIZE=-1><A HREF="copyright.html">Copyright</A> 2000-2003
+        Sun Microsystems, Inc.,
+        &nbsp;<BR>
+        All rights reserved.</FONT>
+
+<P>
+
+<P>
+    &nbsp;
+</BODY>
+</HTML>

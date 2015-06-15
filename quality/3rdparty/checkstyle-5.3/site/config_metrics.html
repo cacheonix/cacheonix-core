@@ -1,0 +1,733 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>checkstyle - Metrics</title>
+    <style type="text/css" media="all">
+      @import url("./css/maven-base.css");
+      @import url("./css/maven-theme.css");
+      @import url("./css/site.css");
+    </style>
+    <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+          <meta name="author" content="Checkstyle Development Team" />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+  <body class="composite">
+    <div id="banner">
+                    <span id="bannerLeft">
+    
+            Checkstyle 5.3
+    
+            </span>
+                        <a href="" id="bannerRight">
+    
+                                            <img src="images/logo.png" alt="Checkstyle" />
+    
+            </a>
+            <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+  
+  
+    
+            <div class="xleft">
+        Last Published: 2010-10-19
+                      </div>
+            <div class="xright">      
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+  
+  
+    
+                   <h5>About</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="index.html">Checkstyle</a>
+          </li>
+              
+    <li class="none">
+                    <a href="releasenotes.html">Release Notes</a>
+          </li>
+          </ul>
+              <h5>Documentation</h5>
+            <ul>
+              
+          
+              
+      
+              
+        <li class="expanded">
+                    <a href="config.html">Configuration</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="property_types.html">Property Types</a>
+          </li>
+              </ul>
+        </li>
+              
+          
+              
+      
+            
+      
+              
+        <li class="expanded">
+                    <a href="running.html">Running</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="anttask.html">Ant Task</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="cmdline.html">Command Line</a>
+          </li>
+              </ul>
+        </li>
+              
+    <li class="none">
+                    <a href="availablechecks.html">Available Checks</a>
+          </li>
+              
+          
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+            
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+            <li class="expanded">
+                    <a href="checks.html">Standard Checks</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="config_annotation.html">Annotations</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_blocks.html">Block Checks</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_design.html">Class Design</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_coding.html">Coding</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_duplicates.html">Duplicate Code</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_header.html">Headers</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_imports.html">Imports</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_javadoc.html">Javadoc Comments</a>
+          </li>
+                  
+    <li class="none">
+              <strong>Metrics</strong>
+        </li>
+                  
+    <li class="none">
+                    <a href="config_misc.html">Miscellaneous</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_modifier.html">Modifiers</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_naming.html">Naming Conventions</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_regexp.html">Regexp</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_sizes.html">Size Violations</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_whitespace.html">Whitespace</a>
+          </li>
+              </ul>
+        </li>
+              
+          
+              
+      
+            
+      
+            
+      
+              
+        <li class="expanded">
+                    <a href="extending.html">Extending Checkstyle</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="writingchecks.html">Writing checks</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="writingfilters.html">Writing filters</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="writinglisteners.html">Writing listeners</a>
+          </li>
+              </ul>
+        </li>
+          </ul>
+              <h5>Developers</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="apidocs/index.html">Javadoc</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://sourceforge.net/projects/checkstyle" class="externalLink">Project Page</a>
+          </li>
+              
+    <li class="none">
+                    <a href="contributing.html">Contributing</a>
+          </li>
+          </ul>
+              <h5>Project Documentation</h5>
+            <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-info.html">Project Information</a>
+                </li>
+              
+                
+              
+      
+              
+        <li class="collapsed">
+                    <a href="project-reports.html">Project Reports</a>
+                </li>
+          </ul>
+                                                 
+                        
+                        
+            <a href="http://sourceforge.net/projects/checkstyle" title="SourceForge" class="poweredBy">
+                            <img alt="SourceForge" src="http://sflogo.sourceforge.net/sflogo.php?group_id=29721&type=11" />
+            </a>
+                               
+  
+
+  
+    
+  
+  
+    
+        </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <div class="section"><h2><a name="BooleanExpressionComplexity"></a>BooleanExpressionComplexity</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p>
+          Restrict the number of number of <code>&amp;&amp;</code>, <code>||</code>,
+          <code>&amp;</code>, <code>|</code>
+          and <code>^</code> in an expression.
+        </p>
+<p>
+          Rationale: Too many conditions leads to code that is difficult
+          to read and hence debug and maintain.
+        </p>
+<p>
+          Note that the operators <code>&amp;</code> and
+          <code>|</code> are not only integer bitwise operators, they are also the
+          <a href="http://java.sun.com/docs/books/jls/third_edition/html/expressions.html#15.22.2" class="externalLink">
+          non-shortcut versions</a> of the boolean operators
+          <code>&amp;&amp;</code> and <code>||</code>.
+        </p>
+</div>
+<div class="section"><h3><a name="Properties"></a>Properties</h3>
+<table class="bodyTable"><tr class="a"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="b"><td>max</td>
+<td>
+              the maximum allowed number of boolean operations in one
+              expression.
+            </td>
+<td><a href="property_types.html#integer">integer</a></td>
+<td><code>3</code></td>
+</tr>
+<tr class="a"><td>tokens</td>
+<td>tokens to check</td>
+<td>
+              subset of tokens
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAND">LAND</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BAND">BAND</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LOR">LOR</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BOR">BOR</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BXOR">BXOR</a></td>
+<td><a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAND">LAND</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BAND">BAND</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LOR">LOR</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BOR">BOR</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BXOR">BXOR</a></td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="Examples"></a>Examples</h3>
+<p>
+          To configure the check:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;BooleanExpressionComplexity&quot;/&gt;
+        </pre>
+</div>
+<p>
+          To configure the check with 7 allowed operation in boolean
+          expression:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;BooleanExpressionComplexity&quot;&gt;
+    &lt;property name=&quot;max&quot; value=&quot;7&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+<p>
+          To configure the check to ignore <code>&amp;</code> and
+          <code>|</code>:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;BooleanExpressionComplexity&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;BXOR,LAND,LOR&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p>
+          com.puppycrawl.tools.checkstyle.checks.metrics
+        </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#TreeWalker">TreeWalker</a></p>
+</div>
+</div>
+<div class="section"><h2><a name="ClassDataAbstractionCoupling"></a>ClassDataAbstractionCoupling</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p>
+          This metric measures the number of instantiations of other
+          classes within the given class. This type of coupling is not
+          caused by inheritance or the object oriented
+          paradigm. Generally speaking, any abstract data type with
+          other abstract data types as members has data abstraction
+          coupling; therefore, if a class has a local variable that is
+          an instantiation (object) of another class, there is data
+          abstraction coupling. The higher the DAC, the more complex the
+          data structure (classes) of the system.
+        </p>
+</div>
+<div class="section"><h3><a name="Properties"></a>Properties</h3>
+<table class="bodyTable"><tr class="b"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="a"><td>max</td>
+<td>the maximum threshold allowed</td>
+<td><a href="property_types.html#integer">integer</a></td>
+<td><code>7</code></td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="Examples"></a>Examples</h3>
+<p>
+          To configure the check:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;ClassDataAbstractionCoupling&quot;/&gt;
+        </pre>
+</div>
+<p>
+          To configure the check with a threshold of 5:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
+    &lt;property name=&quot;max&quot; value=&quot;5&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p>
+          com.puppycrawl.tools.checkstyle.checks.metrics
+        </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#TreeWalker">TreeWalker</a></p>
+</div>
+</div>
+<div class="section"><h2><a name="ClassFanOutComplexity"></a>ClassFanOutComplexity</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p>
+          The number of other classes a given class relies on. Also the
+          square of this has been shown to indicate the amount of
+          maintenence required in functional programs (on a file basis)
+          at least.
+        </p>
+</div>
+<div class="section"><h3><a name="Properties"></a>Properties</h3>
+<table class="bodyTable"><tr class="b"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="a"><td>max</td>
+<td>the maximum threshold allowed</td>
+<td><a href="property_types.html#integer">integer</a></td>
+<td><code>20</code></td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="Examples"></a>Examples</h3>
+<p>
+          To configure the check:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;ClassFanOutComplexity&quot;/&gt;
+        </pre>
+</div>
+<p>
+          To configure the check with a threshold of 10:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;ClassFanOutComplexity&quot;&gt;
+    &lt;property name=&quot;max&quot; value=&quot;10&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p>
+          com.puppycrawl.tools.checkstyle.checks.metrics
+        </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#TreeWalker">TreeWalker</a></p>
+</div>
+</div>
+<div class="section"><h2><a name="CyclomaticComplexity"></a>CyclomaticComplexity</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p>
+          Checks cyclomatic complexity against a specified limit. The
+          complexity is measured by the number of <code>if</code>, <code>while</code>, <code>do</code>, <code>for</code>, <code>?:</code>, <code>catch</code>, <code>switch</code>, <code>case</code>
+          statements, and operators <code>&amp;&amp;</code> and <code>||</code> (plus one) in the body of a
+          constructor, method, static initializer, or instance
+          initializer.  It is a measure of the minimum number of
+          possible paths through the source and therefore the number of
+          required tests. Generally 1-4 is considered good, 5-7 ok, 8-10
+          consider re-factoring, and 11+ re-factor now!
+        </p>
+</div>
+<div class="section"><h3><a name="Properties"></a>Properties</h3>
+<table class="bodyTable"><tr class="b"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="a"><td>max</td>
+<td>the maximum threshold allowed</td>
+<td><a href="property_types.html#integer">integer</a></td>
+<td><code>10</code></td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="Examples"></a>Examples</h3>
+<p>
+          To configure the check:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;CyclomaticComplexity&quot;/&gt;
+        </pre>
+</div>
+<p>
+          To configure the check with a threshold of 7:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;CyclomaticComplexity&quot;&gt;
+    &lt;property name=&quot;max&quot; value=&quot;7&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p>
+          com.puppycrawl.tools.checkstyle.checks.metrics
+        </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#TreeWalker">TreeWalker</a></p>
+</div>
+</div>
+<div class="section"><h2><a name="NPathComplexity"></a>NPathComplexity</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p>
+          The NPATH metric computes the number of possible execution
+          paths through a function. It takes into account the nesting of
+          conditional statements and multi-part boolean expressions
+          (e.g., A &amp;&amp; B, C || D, etc.).
+        </p>
+<p>
+          Rationale: Nejmeh says that his group had an informal NPATH
+          limit of 200 on individual routines; functions that exceeded
+          this value were candidates for further decomposition - or at
+          least a closer look.
+        </p>
+</div>
+<div class="section"><h3><a name="Properties"></a>Properties</h3>
+<table class="bodyTable"><tr class="b"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="a"><td>max</td>
+<td>the maximum threshold allowed</td>
+<td><a href="property_types.html#integer">integer</a></td>
+<td><code>200</code></td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="Examples"></a>Examples</h3>
+<p>
+          To configure the check:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;NPathComplexity&quot;/&gt;
+        </pre>
+</div>
+<p>
+          To configure the check with a threshold of 20:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;NPathComplexity&quot;&gt;
+    &lt;property name=&quot;max&quot; value=&quot;20&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p>
+          com.puppycrawl.tools.checkstyle.checks.metrics
+        </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#TreeWalker">TreeWalker</a></p>
+</div>
+</div>
+<div class="section"><h2><a name="JavaNCSS"></a>JavaNCSS</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p>
+          Determines complexity of methods, classes and files by
+          counting the Non Commenting Source Statements (NCSS).  This
+          check adheres to the <a href="http://www.kclee.de/clemens/java/javancss/#specification" class="externalLink">
+          specification</a> for the
+          <a href="http://www.kclee.de/clemens/java/javancss/" class="externalLink">JavaNCSS-Tool</a>
+          written by <b>Chr. Clemens Lee</b>.<br />
+
+          Rougly said the NCSS metric is calculated by
+          counting the source lines which are not comments, (nearly)
+          equivalent to counting the semicolons and opening curly
+          braces.<br />
+ The NCSS for a class is summarized from the NCSS
+          of all its methods, the NCSS of its nested classes and the
+          number of member variable declarations.<br />
+ The NCSS for a
+          file is summarized from the ncss of all its top level classes,
+          the number of imports and the package declaration.
+        </p>
+<p>
+          Rationale: Too large methods and classes are hard to read and
+          costly to maintain. A large NCSS number often means that a
+          method or class has too many responsabilities and/or
+          functionalities which should be decomposed into smaller units.
+        </p>
+</div>
+<div class="section"><h3><a name="Properties"></a>Properties</h3>
+<table class="bodyTable"><tr class="b"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="a"><td>methodMaximum</td>
+<td>
+              the maximum allowed number of non commenting lines in a
+              method.
+            </td>
+<td><a href="property_types.html#integer">integer</a></td>
+<td><code>50</code></td>
+</tr>
+<tr class="b"><td>classMaximum</td>
+<td>
+              the maximum allowed number of non commenting lines in a
+              class.
+            </td>
+<td><a href="property_types.html#integer">integer</a></td>
+<td><code>1500</code></td>
+</tr>
+<tr class="a"><td>fileMaximum</td>
+<td>
+              the maximum allowed number of non commenting lines in a
+              file including all top level and nested classes.
+            </td>
+<td><a href="property_types.html#integer">integer</a></td>
+<td><code>2000</code></td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="Examples"></a>Examples</h3>
+<p>
+          To configure the check:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;JavaNCSS&quot;/&gt;
+        </pre>
+</div>
+<p>
+          To configure the check with 40 allowed non commenting lines
+          for a method:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;JavaNCSS&quot;&gt;
+    &lt;property name=&quot;methodMaximum&quot; value=&quot;40&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p>
+          com.puppycrawl.tools.checkstyle.checks.metrics
+        </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#TreeWalker">TreeWalker</a></p>
+</div>
+</div>
+
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2001-2010
+    
+          
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>

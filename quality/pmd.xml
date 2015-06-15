@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<ruleset name="parabuild">
+   <description>Parabuild PMD rule set</description>
+
+   <rule ref="rulesets/basic.xml">
+      <exclude name="UnnecessaryFinalModifier"/>
+      <exclude name="CollapsibleIfStatements"/>
+   </rule>
+
+   <rule ref="rulesets/braces.xml">
+      <exclude name="IfStmtsMustUseBraces"/>
+   </rule>
+
+   <rule ref="rulesets/clone.xml"/>
+
+   <rule ref="rulesets/controversial.xml">
+      <exclude name="NullAssignment"/>
+      <exclude name="OnlyOneReturn"/>
+      <exclude name="UnusedModifier"/>
+      <exclude name="AtLeastOneConstructor"/>
+      <exclude name="CallSuperInConstructor"/>
+      <exclude name="AssignmentInOperand"/>
+      <exclude name="DataflowAnomalyAnalysis"/>
+      <exclude name="SingularField"/>
+      <exclude name="DefaultPackage"/>
+   </rule>
+
+   <rule ref="rulesets/coupling.xml">
+      <exclude name="CouplingBetweenObjects"/>
+      <exclude name="ExcessiveImports"/>
+   </rule>
+
+   <rule ref="rulesets/design.xml">
+      <exclude name="UseSingleton"/>
+      <exclude name="AvoidDeeplyNestedIfStmts"/>
+      <exclude name="ImmutableField"/>
+      <exclude name="SimpleDateFormatNeedsLocale"/>
+      <exclude name="UseLocaleWithCaseConversions"/>
+      <exclude name="ConfusingTernary"/>
+      <exclude name="AvoidSynchronizedAtMethodLevel"/>
+      <exclude name="MissingBreakInSwitch"/>
+      <exclude name="MissingStaticMethodInNonInstantiatableClass"/>
+      <exclude name="CloseConnection"/>
+      <exclude name="UncommentedEmptyConstructor"/>
+      <exclude name="UncommentedEmptyMethod"/>
+      <exclude name="AvoidConstantsInterface"/>
+   </rule>
+
+   <rule ref="rulesets/finalizers.xml"/>
+
+   <rule ref="rulesets/imports.xml">
+      <exclude name="DuplicateImports"/>
+      <exclude name="UnusedImports"/>
+   </rule>
+
+   <rule ref="rulesets/javabeans.xml">
+      <exclude name="BeanMembersShouldSerialize"/>
+   </rule>
+
+   <rule ref="rulesets/logging-java.xml"/>
+
+   <rule ref="rulesets/logging-jakarta-commons.xml">
+      <exclude name="ProperLogger"/>
+   </rule>
+
+   <rule ref="rulesets/migrating.xml">
+      <exclude name="IntegerInstantiation"/>
+      <exclude name="JUnit4TestShouldUseTestAnnotation"/>
+      <exclude name="JUnit4TestShouldUseBeforeAnnotation"/>
+      <exclude name="JUnit4TestShouldUseAfterAnnotation"/>
+      <exclude name="JUnit4SuitesShouldUseSuiteAnnotation"/>
+      <exclude name="JUnitUseExpected"/>
+      <exclude name="LongInstantiation"/>
+   </rule>
+
+   <rule ref="rulesets/naming.xml">
+      <exclude name="LongVariable"/>
+      <exclude name="ShortVariable"/>
+      <exclude name="VariableNamingConventions"/>
+      <exclude name="AbstractNaming"/>
+      <exclude name="SuspiciousConstantFieldName"/>
+      <exclude name="MethodNamingConventions"/>
+      <exclude name="AvoidFieldNameMatchingTypeName"/>
+      <exclude name="AvoidFieldNameMatchingMethodName"/>
+   </rule>
+
+   <rule ref="rulesets/optimizations.xml">
+      <exclude name="AvoidInstantiatingObjectsInLoops"/>
+   </rule>
+
+   <rule ref="rulesets/scratchpad.xml">
+      <exclude name="DataflowAnomalyAnalysis"/>
+   </rule>
+
+   <rule ref="rulesets/strictexception.xml">
+      <exclude name="SignatureDeclareThrowsException"/>
+      <exclude name="ExceptionAsFlowControl"/>
+      <exclude name="AvoidThrowingCertainExceptionTypes"/>
+      <exclude name="AvoidThrowingRawExceptionTypes"/>
+      <exclude name="AvoidRethrowingException"/>
+      <exclude name="AvoidThrowingNullPointerException"/>
+   </rule>
+
+   <rule ref="rulesets/strings.xml">
+      <exclude name="AvoidDuplicateLiterals"/>
+      <exclude name="ConsecutiveLiteralAppends"/>
+   </rule>
+
+   <rule ref="rulesets/sunsecure.xml"/>
+
+   <rule ref="rulesets/unusedcode.xml">
+      <exclude name="UnusedPrivateMethod"/>
+      <exclude name="CyclomaticComplexity"/>
+   </rule>
+
+</ruleset>

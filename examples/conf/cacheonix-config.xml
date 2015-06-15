@@ -1,0 +1,74 @@
+<?xml version ="1.0"?>
+<cacheonix xmlns="http://www.cacheonix.com/schema/configuration"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.cacheonix.com/schema/configuration http://www.cacheonix.com/schema/cacheonix-config-2.0.xsd">
+
+   <tempDir path="${java.io.temp}"/>
+
+   <!-- Local cache configurations -->
+   <local>
+
+      <!-- Local cache -->
+      <localCache name="local.test.cache">
+         <store>
+            <lru maxElements="1000" maxBytes="10mb"/>
+         </store>
+      </localCache>
+
+
+      <!-- A cache to support demonstration of an application-level cache -->
+      <localCache name="application.leve.file.cache">
+         <store>
+            <lru maxElements="10" maxBytes="1mb"/>
+         </store>
+      </localCache>
+
+
+      <!-- A cache to support demonstration of a cache operating in the in-memory data grid mode -->
+      <localCache name="data.grid.file.cache">
+         <store>
+            <lru maxElements="10" maxBytes="1mb"/>
+            <dataSource className="org.cacheonix.impl.examples.cache.file.cache.data.grid.FileDataSource"/>
+         </store>
+      </localCache>
+
+
+      <!-- Default template. The default template has a name "default". It is used to create
+           a new cache without mentioning the name of the template -->
+      <localCache name="default">
+         <store>
+            <lru maxElements="1000" maxBytes="10mb"/>
+         </store>
+      </localCache>
+
+
+      <!-- Named template. The named template is defined by setting attribute name template to "yes".
+           It used to created caches that have different configurations -->
+      <localCache name="named.template" template="true">
+         <store>
+            <lru maxElements="1000" maxBytes="10mb"/>
+         </store>
+      </localCache>
+
+
+      <!-- Query cache for the  CacheDataSourceTest -->
+      <localCache name="org.cacheonix.impl.examples.cache.datasource.CacheDataSourceTest">
+         <store>
+            <lru maxElements="1000" maxBytes="10mb"/>
+         </store>
+      </localCache>
+
+
+      <localCache name="CacheInvalidatorTest">
+         <store>
+            <lru maxElements="1000" maxBytes="10mb"/>
+            <invalidator className="org.cacheonix.impl.examples.cache.invalidator.TimestampCacheInvalidator">
+               <param name="driver" value="org.hsqdb.jdbcDriver"/>
+               <param name="user" value="test"/>
+               <param name="password" value="test"/>
+            </invalidator>
+         </store>
+      </localCache>
+
+   </local>
+</cacheonix>

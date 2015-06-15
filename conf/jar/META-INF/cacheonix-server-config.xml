@@ -1,0 +1,31 @@
+<?xml version ="1.0"?>
+<!--
+   A default configuration used by Cacheonix running in the standalone mode. Defines a cluster
+   and a specialized template that provides an automatic partition creation. Maximum partition
+   size is 80% of heap.
+-->
+<cacheonix xmlns="http://www.cacheonix.com/schema/configuration"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.cacheonix.com/schema/configuration http://www.cacheonix.com/schema/cacheonix-config-2.0.xsd">
+
+   <tempDir path="${java.io.temp}"/>
+
+   <server>
+
+      <cluster homeAloneTimeout="30s"/>
+
+      <listener>
+         <tcp port="9879"/>
+      </listener>
+
+      <broadcast>
+         <multicast multicastAddress="225.0.1.2" multicastPort="9998" multicastTTL="1"/>
+      </broadcast>
+
+      <partitionedCache name="*">
+         <store>
+            <lru maxBytes="80%"/>
+         </store>
+      </partitionedCache>
+   </server>
+</cacheonix>

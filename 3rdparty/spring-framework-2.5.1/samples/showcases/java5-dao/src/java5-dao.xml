@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans  xmlns="http://www.springframework.org/schema/beans"
+	     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	     xmlns:tx="http://www.springframework.org/schema/tx"
+	     xmlns:aop="http://www.springframework.org/schema/aop"
+	     xmlns:lang="http://www.springframework.org/schema/lang"
+	     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+           http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-2.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+	
+	<bean id="plainHibernateCarPartsInventory" class="org.springframework.showcase.carplant.dao.PlainHibernateCarPartsInventoryImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<bean id="templateHibernateCarPartsInventory" class="org.springframework.showcase.carplant.dao.TemplateHibernateCarPartsInventoryImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	
+	<bean id="jdbcCarPartsInventory" class="org.springframework.showcase.carplant.dao.JdbcCarPartsInventoryImpl">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+
+	<!-- in-memory datasource, for demo purposes only of course -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="url" value="jdbc:hsqldb:mem:carplant"/>
+		<property name="username" value="sa"/>
+		<property name="password" value=""/>
+		<property name="driverClassName" value="org.hsqldb.jdbcDriver"/>
+	</bean>
+	
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="hibernateProperties">
+			<value>
+				hibernate.dialect=org.hibernate.dialect.HSQLDialect
+				hibernate.show.sql=true
+			</value>
+		</property>
+		<property name="mappingLocations">
+			<list>
+				<value>classpath:org/springframework/showcase/carplant/dao/Part.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+
+</beans>

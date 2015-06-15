@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+		"http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+
+	<bean name="/list.htm" class="org.springframework.showcase.formtags.web.ListController">
+		<property name="userManager" ref="userManager"/>
+	</bean>
+
+	<bean name="/form.htm" class="org.springframework.showcase.formtags.web.FormController">
+		<property name="formView" value="form"/>
+		<property name="successView" value="redirect:list.htm"/>
+		<property name="userManager" ref="userManager"/>
+		<property name="validators">
+			<bean id="userValidator" class="org.springframework.showcase.formtags.validation.UserValidator"/>
+		</property>
+	</bean>
+
+	<bean name="/about.htm" class="org.springframework.showcase.formtags.web.ListController">
+		<property name="userManager" ref="userManager"/>
+		<property name="viewName" value="about"/>
+	</bean>
+
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="i18n"/>
+	</bean>
+
+</beans>

@@ -1,0 +1,184 @@
+<HTML>
+<HEAD>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+    <!-- Created by: Andy KASS, 22-Sept-1999 -->
+
+    <TITLE>JMX RI</TITLE>
+
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF"
+      LINK="#0000FF" VLINK="#000077" ALINK="#FF0000">
+
+<TABLE BORDER=0 WIDTH="100%">
+    <TR>
+        <TD><IMG SRC="images/smi.logo.gif" ALT="Sun Microsystems, Inc"
+                 HEIGHT=43 WIDTH=120>&nbsp;</TD>
+        <TD ALIGN=right>
+            <B><A HREF="../index.html">JMX Reference Implementation</A><BR>
+                Tutorial</B></TD>
+    </TR>
+</TABLE>
+<HR>
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+
+    <TR>
+        <TD WIDTH="33%" ALIGN="left" VALIGN="top">&nbsp;</TD>
+
+        <TD WIDTH="34%" ALIGN="center" VALIGN="top"><A HREF="tutorial.html">
+            <IMG SRC="images/uparrow.gif" BORDER="0" ALT="[ Contents ]"><BR>
+            Contents</A></TD>
+
+        <TD WIDTH="33%" ALIGN="right" VALIGN="top">
+            <A HREF="agentview.html">
+                <IMG SRC="images/rightarrow.gif" BORDER="0" ALT="[ Next ]"><BR>
+                The Agent View</A></TD>
+
+    </TR>
+</TABLE>
+<HR>
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<CENTER>
+    <H1>
+        Launching the Base Agent
+    </H1>
+</CENTER>
+<BLOCKQUOTE>
+
+    Like the JMX<SUP><FONT SIZE=-2>TM</FONT></SUP> reference implementation (RI),
+    this tutorial is targeted at the Java&nbsp;2
+    platform. Be sure the Java&nbsp;2 SDK can be found in your path when
+    building or launching Java classes. Whenever compiling or running Java
+    classes in this tutorial, the jar files of the JMX RI
+    (<CODE>lib/jmxri.jar</CODE>) and JMX toolkit
+    (<CODE>lib/jmxtools.jar</CODE>) must also be found in the
+    classpath.<P>
+
+    This tutorial relies on the following classes; their source files can
+    all be found among the examples provided in this software bundle. In
+    order to proceed through the tutorial, all of these classes must be
+    found in the classpath when launching the base agent.
+
+    <P>
+
+    <UL TYPE="circle">
+        <LI>BaseAgent</LI>
+        <LI>Simple</LI>
+        <LI>SimpleMBean</LI>
+        <LI>SimpleDynamic</LI>
+    </UL>
+
+    The easiest way to ensure this is to create an empty directory to
+    which you can copy and compile these source files from the
+    examples. If you have already compiled the examples, you can just copy
+    their class files:<P>
+
+    <B><FONT SIZE=+1 COLOR=#ACA6CF>Action: &nbsp;</FONT></B>To set up a
+    directory for the tutorial, type these commands from the main
+    directory of the software bundle:
+
+    <P>
+
+    <TABLE BORDER CELLPADDING=7 BGCOLOR="#D4CCFF" WIDTH=88%>
+        <TR>
+            <TD>
+<PRE>
+prompt%<B> mkdir tutorial; cd tutorial</B>
+
+prompt%<B> cp ../examples/BaseAgent/BaseAgent.java .</B>
+prompt%<B> cp ../examples/MonitorMBean/Simple.java .</B>
+prompt%<B> cp ../examples/MonitorMBean/SimpleMBean.java .</B>
+prompt%<B> cp ../examples/DynamicMBean/SimpleDynamic.java .</B>
+
+prompt%<B> javac -classpath ../lib/jmxri.jar:../lib/jmxtools.jar \
+    *.java</B>
+</PRE>
+            </TD>
+        </TR>
+    </TABLE>
+    <P>
+
+        <B><FONT SIZE=+1 COLOR=#ACA6CF>Action: &nbsp;</FONT></B>Now launch the
+        <CODE>BaseAgent</CODE> class in this new directory with all the
+        example classes:
+
+    <P>
+
+    <TABLE BORDER CELLPADDING=7 BGCOLOR="#D4CCFF" WIDTH=88%>
+        <TR>
+            <TD>
+<PRE>
+prompt%<B> java -classpath .:../lib/jmxri.jar:../lib/jmxtools.jar \
+    BaseAgent</B>
+</PRE>
+            </TD>
+        </TR>
+    </TABLE>
+    <P>
+
+        <B><FONT SIZE=+1 COLOR=#ACA6CF>Action: &nbsp;</FONT></B>The JMX agent
+        is now running on your machine. To manage the agent through a Web
+        browser, load the following URL:<BR>
+
+    <CENTER><FONT SIZE=+1><A HREF="http://localhost:8082/" TARGET="_blank"
+                             onMouseOver="window.status='http://'+
+java.net.InetAddress.getLocalHost().getHostName() +':8082/'; return true;"
+                             onClick="AgentWindow=window.open(
+'http://'+java.net.InetAddress.getLocalHost().getHostName()+':8082/',
+'AgentWindow', 'toolbar=no,location=yes,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=600'
+); return false;">
+        <script type="text/javascript" ALT="http://localhost:8082/">document.write(
+                'http://' + java.net.InetAddress.getLocalHost().getHostName() + ':8082/');
+        </script>
+        <noscript>http://localhost:8082/</noscript>
+    </a></FONT>
+
+        <P>
+
+            <FONT SIZE=-1>[Internet Explorer users might have to click here:
+                <A HREF="http://localhost:8082/" TARGET="_blank">http://localhost:8082/</A>]
+            </FONT></CENTER>
+    <P>
+
+        You can also access this agent from any remote machine on the same
+        network by connecting to this URL: http://<I>agentHostName</I>:8082/
+        (where <I>agentHostName</I> is the name or IP address of the machine where
+        you launched the BaseAgent).
+
+    <P>
+
+</BLOCKQUOTE>
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<HR>
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+
+    <TR>
+        <TD WIDTH="33%" ALIGN="left" VALIGN="top">&nbsp;</TD>
+
+        <TD WIDTH="34%" ALIGN="center" VALIGN="top"><A HREF="tutorial.html">
+            <IMG SRC="images/uparrow.gif" BORDER="0" ALT="[ Contents ]"><BR>
+            Contents</A></TD>
+
+        <TD WIDTH="33%" ALIGN="right" VALIGN="top">
+            <A HREF="agentview.html">
+                <IMG SRC="images/rightarrow.gif" BORDER="0" ALT="[ Next ]"><BR>
+                The Agent View</A></TD>
+
+    </TR>
+</TABLE>
+<HR>
+
+<IMG SRC="images/java_red.gif" ALT="Java coffee cup logo"
+     HEIGHT=85 WIDTH=49 ALIGN=RIGHT>
+
+<P>
+    <FONT SIZE=-1><A HREF="copyright.html">Copyright</A> 2000-2003
+        Sun Microsystems, Inc.,
+        &nbsp;<BR>
+        All rights reserved.</FONT>
+
+<P>
+
+<P>
+    &nbsp;
+</BODY>
+</HTML>

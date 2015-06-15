@@ -1,0 +1,411 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Math - The Commons Math User Guide - Special Functions</title>
+    <style type="text/css" media="all">
+      @import url("../css/maven-base.css");
+      @import url("../css/maven-theme.css");
+      @import url("../css/site.css");
+    </style>
+    <link rel="stylesheet" href="../css/print.css" type="text/css" media="print" />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+  <body class="composite">
+    <div id="banner">
+                  <a href="../" id="bannerLeft">
+    
+                                            <img src="../../images/logo.png" alt="" />
+    
+            </a>
+                        <a href="index.html" id="bannerRight">
+    
+                                            <img src="../images/math.gif" alt="" />
+    
+            </a>
+            <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+            
+  
+    
+            <div class="xleft">
+        Last Published: 18 February 2008
+                  &nbsp;| Version: 1.2
+                      </div>
+            <div class="xright">            <a href="http://www.apachecon.com/" class="externalLink">ApacheCon</a>
+            |
+                <a href="http://www.apache.org" class="externalLink">Apache</a>
+            |
+                <a href="../../">Commons</a>
+            
+  
+
+  
+    
+            
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+            
+  
+    
+                   <h5>Math</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="../index.html">Overview</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../proposal.html">Proposal</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../developers.html">Developers Guide</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../apidocs/index.html">Javadoc (1.2 release)</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../api-1.1/index.html">Javadoc (1.1 release)</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../api-1.0/index.html">Javadoc (1.0 release)</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://svn.apache.org/viewvc/commons/proper/math/trunk" class="externalLink">Source Repository (current)</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../issue-tracking.html">Issue Tracking</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://wiki.apache.org/commons/Math" class="externalLink">Wiki</a>
+          </li>
+          </ul>
+              <h5>User Guide</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="../userguide/index.html">Contents</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/overview.html">Overview</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/stat.html">Statistics</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/random.html">Data Generation</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/linear.html">Linear Algebra</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/analysis.html">Numerical Analysis</a>
+          </li>
+              
+    <li class="none">
+              <strong>Special Functions</strong>
+        </li>
+              
+    <li class="none">
+                    <a href="../userguide/utilities.html">Utilities</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/complex.html">Complex Numbers</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/distribution.html">Distributions</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/fraction.html">Fractions</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/transform.html">Transform Methods</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/geometry.html">3D Geometry</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/estimation.html">Parametric Estimation</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/optimization.html">Optimization</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/ode.html">Ordinary Differential Equations</a>
+          </li>
+          </ul>
+              <h5>Project Documentation</h5>
+            <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="../project-info.html">Project Information</a>
+                </li>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="../project-reports.html">Project Reports</a>
+                </li>
+          </ul>
+              <h5>Commons</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="../../">Home</a>
+          </li>
+              
+                
+              
+      
+              
+        <li class="collapsed">
+                    <a href="../../components.html">Components</a>
+                </li>
+              
+                
+              
+      
+              
+        <li class="collapsed">
+                    <a href="../../sandbox/index.html">Sandbox</a>
+                </li>
+              
+                
+              
+      
+              
+        <li class="collapsed">
+                    <a href="../../dormant/index.html">Dormant</a>
+                </li>
+              
+    <li class="none">
+                    <a href="../../volunteering.html">Volunteering</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../../patches.html">Contributing Patches</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../../building.html">Building Components</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../../releases/index.html">Releasing Components</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://wiki.apache.org/commons/FrontPage" class="externalLink">Wiki</a>
+          </li>
+          </ul>
+              <h5>ASF</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://www.apache.org/foundation/sponsorship.html" class="externalLink">Sponsorship</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://www.apache.org/foundation/thanks.html" class="externalLink">Thanks</a>
+          </li>
+          </ul>
+                                           <a href="http://maven.apache.org/" title="Built by Maven" class="poweredBy">
+            <img alt="Built by Maven" src="../images/logos/maven-feather.png"></img>
+          </a>
+                       
+  
+
+  
+    
+            
+  
+    
+        </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <div class="section"><h2><a name="a5_Special_Functions"></a>
+5 Special Functions</h2>
+<div class="section"><h3><a name="a5.1_Overview"></a>
+5.1 Overview</h3>
+<p>
+          The special functions portion of Commons-Math contains several useful functions not
+          provided by <code>java.lang.Math</code>.  These functions mostly serve as building blocks
+          for other portions of Commons-Math but, as others may find them useful as stand-alone
+          methods, these special functions were included as part of the Commons-Math public API.
+        </p>
+</div>
+<div class="section"><h3><a name="a5.2_Erf_functions"></a>
+5.2 Erf functions</h3>
+<p><code>org.apache.commons.math.special.Erf</code> contains several useful functions involving the Error Function, Erf.
+          <table class="bodyTable"><tr class="a"><th>Function</th>
+<th>Method</th>
+<th>Reference</th>
+</tr>
+<tr class="b"><td>Error Function</td>
+<td>erf</td>
+<td>See <a href="http://mathworld.wolfram.com/Erf.html" class="externalLink">Erf</a>
+ from MathWorld</td>
+</tr>
+</table>
+</p>
+</div>
+<div class="section"><h3><a name="a5.3_Gamma_functions"></a>
+5.3 Gamma functions</h3>
+<p><code>org.apache.commons.math.special.Gamma</code> contains several useful functions involving the Gamma Function.
+          <table class="bodyTable"><tr class="a"><th>Function</th>
+<th>Method</th>
+<th>Reference</th>
+</tr>
+<tr class="b"><td>Log Gamma</td>
+<td>logGamma</td>
+<td>See <a href="http://mathworld.wolfram.com/GammaFunction.html" class="externalLink">Gamma Function</a>
+ from MathWorld</td>
+</tr>
+<tr class="a"><td>Regularized Gamma</td>
+<td>regularizedGammaP</td>
+<td>See <a href="http://mathworld.wolfram.com/RegularizedGammaFunction.html" class="externalLink">Regularized Gamma Function</a>
+ from MathWorld</td>
+</tr>
+</table>
+</p>
+</div>
+<div class="section"><h3><a name="a5.4_Beta_funtions"></a>
+5.4 Beta funtions</h3>
+<p><code>org.apache.commons.math.special.Beta</code> contains several useful functions involving the Beta Function.
+          <table class="bodyTable"><tr class="b"><th>Function</th>
+<th>Method</th>
+<th>Reference</th>
+</tr>
+<tr class="a"><td>Log Beta</td>
+<td>logBeta</td>
+<td>See <a href="http://mathworld.wolfram.com/BetaFunction.html" class="externalLink">Beta Function</a>
+ from MathWorld</td>
+</tr>
+<tr class="b"><td>Regularized Beta</td>
+<td>regularizedBeta</td>
+<td>See <a href="http://mathworld.wolfram.com/RegularizedBetaFunction.html" class="externalLink">Regularized Beta Function</a>
+ from MathWorld</td>
+</tr>
+</table>
+</p>
+</div>
+</div>
+
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2003-2008
+    
+          The Apache Software Foundation
+          
+  
+
+  
+    
+            
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>

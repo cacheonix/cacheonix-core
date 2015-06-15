@@ -1,0 +1,589 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>checkstyle - Annotations</title>
+    <style type="text/css" media="all">
+      @import url("./css/maven-base.css");
+      @import url("./css/maven-theme.css");
+      @import url("./css/site.css");
+    </style>
+    <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+          <meta name="author" content="Checkstyle Development Team" />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+  <body class="composite">
+    <div id="banner">
+                    <span id="bannerLeft">
+    
+            Checkstyle 5.3
+    
+            </span>
+                        <a href="" id="bannerRight">
+    
+                                            <img src="images/logo.png" alt="Checkstyle" />
+    
+            </a>
+            <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+  
+  
+    
+            <div class="xleft">
+        Last Published: 2010-10-19
+                      </div>
+            <div class="xright">      
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+  
+  
+    
+                   <h5>About</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="index.html">Checkstyle</a>
+          </li>
+              
+    <li class="none">
+                    <a href="releasenotes.html">Release Notes</a>
+          </li>
+          </ul>
+              <h5>Documentation</h5>
+            <ul>
+              
+          
+              
+      
+              
+        <li class="expanded">
+                    <a href="config.html">Configuration</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="property_types.html">Property Types</a>
+          </li>
+              </ul>
+        </li>
+              
+          
+              
+      
+            
+      
+              
+        <li class="expanded">
+                    <a href="running.html">Running</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="anttask.html">Ant Task</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="cmdline.html">Command Line</a>
+          </li>
+              </ul>
+        </li>
+              
+    <li class="none">
+                    <a href="availablechecks.html">Available Checks</a>
+          </li>
+              
+          
+              
+            
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+            <li class="expanded">
+                    <a href="checks.html">Standard Checks</a>
+                  <ul>
+                  
+    <li class="none">
+              <strong>Annotations</strong>
+        </li>
+                  
+    <li class="none">
+                    <a href="config_blocks.html">Block Checks</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_design.html">Class Design</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_coding.html">Coding</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_duplicates.html">Duplicate Code</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_header.html">Headers</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_imports.html">Imports</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_javadoc.html">Javadoc Comments</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_metrics.html">Metrics</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_misc.html">Miscellaneous</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_modifier.html">Modifiers</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_naming.html">Naming Conventions</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_regexp.html">Regexp</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_sizes.html">Size Violations</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_whitespace.html">Whitespace</a>
+          </li>
+              </ul>
+        </li>
+              
+          
+              
+      
+            
+      
+            
+      
+              
+        <li class="expanded">
+                    <a href="extending.html">Extending Checkstyle</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="writingchecks.html">Writing checks</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="writingfilters.html">Writing filters</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="writinglisteners.html">Writing listeners</a>
+          </li>
+              </ul>
+        </li>
+          </ul>
+              <h5>Developers</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="apidocs/index.html">Javadoc</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://sourceforge.net/projects/checkstyle" class="externalLink">Project Page</a>
+          </li>
+              
+    <li class="none">
+                    <a href="contributing.html">Contributing</a>
+          </li>
+          </ul>
+              <h5>Project Documentation</h5>
+            <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-info.html">Project Information</a>
+                </li>
+              
+                
+              
+      
+              
+        <li class="collapsed">
+                    <a href="project-reports.html">Project Reports</a>
+                </li>
+          </ul>
+                                                 
+                        
+                        
+            <a href="http://sourceforge.net/projects/checkstyle" title="SourceForge" class="poweredBy">
+                            <img alt="SourceForge" src="http://sflogo.sourceforge.net/sflogo.php?group_id=29721&type=11" />
+            </a>
+                               
+  
+
+  
+    
+  
+  
+    
+        </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <div class="section"><h2><a name="AnnotationUseStyle"></a>AnnotationUseStyle</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p> This check controls the style with the usage of annotations.
+        </p>
+</div>
+<div class="section"><h3><a name="Properties"></a>Properties</h3>
+<table class="bodyTable"><tr class="a"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="b"><td>elementStyle</td>
+<td><p>
+                Defines the annotation element styles.
+              </p>
+</td>
+<td><a href="property_types.html#elementStyle">element style</a></td>
+<td><code>compact_no_array</code></td>
+</tr>
+<tr class="a"><td>closingParens</td>
+<td>
+              Defines the policy for ending parenthesis.
+            </td>
+<td><a href="property_types.html#closingParens">closing parens</a></td>
+<td><code>never</code></td>
+</tr>
+<tr class="b"><td>trailingArrayComma</td>
+<td>
+              Defines the policy for trailing comma in arrays.
+            </td>
+<td><a href="property_types.html#trailingArrayComma">trailing comma</a></td>
+<td><code>never</code></td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="Examples"></a>Examples</h3>
+<p> To configure the check:</p>
+<div class="source"><pre> &lt;module name=&quot;AnnotationUseStyle&quot;/&gt;
+        </pre>
+</div>
+<p>
+          To configure the check to enforce an
+          <code>expanded</code> style, with a
+          trailing array comma set to <code>never</code>
+          and always including the closing
+          parenthesis.
+        </p>
+<div class="source"><pre>
+ &lt;module name=&quot;AnnotationUseStyle&quot;&gt;
+     &lt;property name=&quot;ElementStyle&quot;
+         value=&quot;expanded&quot;/&gt;
+      &lt;property name=&quot;TrailingArrayComma&quot;
+          value=&quot;never&quot;/&gt;
+     &lt;property name=&quot;ClosingParens&quot;
+         value=&quot;always&quot;/&gt;
+  &lt;/module&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#TreeWalker">TreeWalker</a></p>
+</div>
+</div>
+<div class="section"><h2><a name="MissingDeprecated"></a>MissingDeprecated</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p> Verifies that both the java.lang.Deprecated annotation is
+            present and the @deprecated Javadoc tag is present when
+            either is present.</p>
+</div>
+<div class="section"><h3><a name="Examples"></a>Examples</h3>
+<p> To configure the check:</p>
+<div class="source"><pre> &lt;module name=&quot;MissingDeprecated&quot;/&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#TreeWalker">TreeWalker</a></p>
+</div>
+</div>
+<div class="section"><h2><a name="MissingOverride"></a>MissingOverride</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p> Verifies that the java.lang.Override annotation is present
+          when the {@inheritDoc} javadoc tag is present.</p>
+</div>
+<div class="section"><h3><a name="Properties"></a>Properties</h3>
+<table class="bodyTable"><tr class="a"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="b"><td>javaFiveCompatibility</td>
+<td>
+              When this property is true this check will only check
+              classes, interfaces, etc. that do not contain the extends
+              or implements keyword or are not anonymous classes. This
+              means it only checks methods overridden from
+              <code>java.lang.Object</code><b>Java 5 Compatibility mode severely limits this
+                check. It is recommended to only use it on Java 5 source </b></td>
+<td><a href="property_types.html#boolean">boolean</a></td>
+<td><code>false</code></td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="Examples"></a>Examples</h3>
+<p> To configure the check:</p>
+<div class="source"><pre> &lt;module name=&quot;MissingOverride&quot;/&gt;
+        </pre>
+</div>
+<p>
+          To configure the check for the <code>javaFiveCompatibility</code>
+          mode:
+        </p>
+<div class="source"><pre>
+   &lt;module name=&quot;MissingOverride&quot;&gt;
+      &lt;property name=&quot;javaFiveCompatibility&quot;
+          value=&quot;true&quot;/&gt;
+   &lt;/module&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#TreeWalker">TreeWalker</a></p>
+</div>
+</div>
+<div class="section"><h2><a name="PackageAnnotation"></a>PackageAnnotation</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p>  This check makes sure that all package annotations are in the
+             package-info.java file.
+        </p>
+<p>
+             According to the Java JLS 3rd ed.
+        </p>
+<p>
+            The JLS does not enforce the placement of package annotations.
+            This placement may vary based on implementation.  The JLS
+            does highly recommend that all package annotations are
+            placed in the package-info.java file.
+
+            See <a href="http://java.sun.com/docs/books/jls/third_edition/html/j3TOC.html" class="externalLink">
+            Java Language specification, sections 7.4.1.1</a>.
+        </p>
+</div>
+<div class="section"><h3><a name="Examples"></a>Examples</h3>
+<p> To configure the check:</p>
+<div class="source"><pre> &lt;module name=&quot;PackageAnnotation&quot;/&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#TreeWalker">TreeWalker</a></p>
+</div>
+</div>
+<div class="section"><h2><a name="SuppressWarnings"></a>SuppressWarnings</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p> This check allows you to specify what warnings that
+        SuppressWarnings is not allowed to suppress.
+        You can also specify a list of TokenTypes that
+        the configured warning(s) cannot be suppressed on.</p>
+<p>
+        Limitations:  This check does not consider conditionals
+        inside the SuppressWarnings annotation. <br />
+
+        For example: @SupressWarnings((false) ? (true) ? &quot;unchecked&quot; : &quot;foo&quot; : &quot;unused&quot;)
+        According to the above example, the &quot;unused&quot; warning is being suppressed
+        not the &quot;unchecked&quot; or &quot;foo&quot; warnings.  All of these warnings will be
+        considered and matched against regardless of what the conditional
+        evaluates to.
+        </p>
+</div>
+<div class="section"><h3><a name="Properties"></a>Properties</h3>
+<table class="bodyTable"><tr class="a"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="b"><td>format</td>
+<td>
+               The warnings property is a regex pattern.  Any warning
+               being suppressed matching this pattern will be flagged.
+            </td>
+<td><a href="property_types.html#regexp">regexp</a></td>
+<td><code>^$|^\s+$</code></td>
+</tr>
+<tr class="a"><td>tokens</td>
+<td>tokens to check</td>
+<td>
+              subset of tokens
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">ENUM_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">ANNOTATION_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">ANNOTATION_FIELD_DEF</a><a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">ENUM_CONSTANT_DEF</a><a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a><a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a><a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a><a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a></td>
+<td><a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">ENUM_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">ANNOTATION_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">ANNOTATION_FIELD_DEF</a><a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">ENUM_CONSTANT_DEF</a><a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a><a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a><a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a><a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a></td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="Examples"></a>Examples</h3>
+<p> To configure the check:</p>
+<div class="source"><pre> &lt;module name=&quot;SuppressWarnings&quot;/&gt;
+        </pre>
+</div>
+<p>
+          To configure the check so that the &quot;unchecked&quot; and &quot;unused&quot;
+          warnings cannot be suppressed on anything
+          but variable and parameter declarations.
+        </p>
+<div class="source"><pre>
+   &lt;module name=&quot;SuppressWarnings&quot;&gt;
+      &lt;property name=&quot;format&quot;
+          value=&quot;^unchecked$|^unused$&quot;/&gt;
+      &lt;property name=&quot;tokens&quot;
+          value=&quot;
+          CLASS_DEF,INTERFACE_DEF,ENUM_DEF,
+          ANNOTATION_DEF,ANNOTATION_FIELD_DEF,
+          ENUM_CONSTANT_DEF,METHOD_DEF,CTOR_DEF
+          &quot;/&gt;
+   &lt;/module&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#TreeWalker">TreeWalker</a></p>
+</div>
+</div>
+
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2001-2010
+    
+          
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<configuration>
+   <startup>
+      <create classname="mx4j.tools.adaptor.http.HttpAdaptor" objectname="connectors:type=http" loadername="null">
+         <arg type="int">9090</arg>
+         <arg type="string">localhost</arg>
+      </create>
+      <create classname="mx4j.tools.adaptor.http.XSLTProcessor" objectname="connectors:type=http,processor=xslt" loadername="null"/>
+      <call objectname="connectors:type=http" attribute="ProcessorNameString">
+         <arg type="string">connectors:type=http,processor=xslt</arg>
+      </call>
+      <call objectname="connectors:type=http" operation="start"/>
+   </startup>
+
+   <shutdown>
+      <call objectname="connectors:type=http" operation="stop"/>
+   </shutdown>
+</configuration>

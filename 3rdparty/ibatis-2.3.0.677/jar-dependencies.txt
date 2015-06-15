@@ -1,0 +1,30 @@
+JAR File Dependencies
+---------------------
+
+iBATIS 2.0 requires JDK 1.4
+
+All other libraries and JAR files are completely optional. Here's
+a summary of those libraries and when you need to use them.  The versions
+listed here are simply the version tested.  Higher versions may or may not 
+work.
+
+  * If you want to use bytecode enhancement for advanced lazy loading:
+
+      CGLIB 2.0              (http://cglib.sf.net)
+
+  * If you want to use the Jakarta DBCP connection pool you'll need:
+
+      DBCP 1.1               (http://jakarta.apache.org/commons/dbcp/)
+
+  * If you want to use distributed caching you'll need:
+
+      OSCache 2.0.1          (http://www.opensymphony.com/oscache/)
+
+  * If you want to use advanced logging you'll need one or both of the following:
+
+      Commons Logging        (http://jakarta.apache.org/commons/)
+      Log4J 1.2.8            (http://logging.apache.org/log4j/docs/)
+
+That's it!
+
+--

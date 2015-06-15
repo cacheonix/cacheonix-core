@@ -1,0 +1,207 @@
+<!-- author: Alef Arendsen, Erwin Vervaet -->
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="../styles.css"/>
+	</head>
+	<body>
+		<h2><code>spring:message</code></h2>
+		<h3>org.springframework.web.servlet.tags.MessageTag</h3>
+		<hr>
+		<p>
+			<table class="tag" width="100%">
+				<tr>
+					<td class="tagname"><b><code>spring:message (since 1.0)</code></b></td>
+				</tr>
+				<tr>
+					<td class="tagsection"><b>General information</b></td>
+				<tr>
+				<tr>
+					<td colspan="2">
+						The <code>spring:message</code> tag provides you with internationalization
+						support using Spring's <code>MessageSource</code> concept. The MessageSource
+						is an interface providing functionality for retrieving messages. It closely
+						resembles JSTL's <code>fmt:message</code>-tag, however, the MessageSource
+						classes can be integrated with the Spring context. Also, the <code>spring:message</code>-
+						tag, works with the locale support that comes with Spring.
+						<p>Regards an HTML escaping setting, either on this tag instance,
+						the page level, or the web.xml level. Can also apply JavaScript escaping.
+						<p>If "code" isn't set or cannot be resolved, "text" will be used as default
+						message. Thus, this tag can also be used for HTML escaping of any texts.
+					</td>
+				</tr>
+				<tr>
+					<td class="tagsection"><b>Attributes</b></td>
+				<tr>
+				<tr>
+					<td class="tagheader"><b>code</b></td>
+				</tr>
+				<tr>
+					<td>
+						The code (key) to use when looking up the message. If code is not
+						provided, the text attribute will be used.
+					</td>
+				</tr>
+				<tr>
+					<td>required: no</td>
+				</tr>
+				<tr>
+					<td>el-support: yes</td>
+				</tr>
+				<tr>
+					<td class="tagheader"><b>arguments</b></td>
+				</tr>
+				<tr>
+					<td>
+						Set optional message arguments for this tag, as a comma-delimited
+						String (each String argument can contain JSP EL), an Object array
+						(used as argument array), or a single Object (used as single argument).
+					</td>
+				</tr>
+				<tr>
+					<td>required: no</td>
+				</tr>
+				<tr>
+					<td>el-support: yes</td>
+				</tr>
+				<tr class="tagheader">
+					<td class="tagheader"><b>text</b></td>
+				</tr>
+				<tr>
+					<td>
+						Default text to output when a message for the given code could
+						not be found. If both text and code are not set, the 
+						tag will output <code>null</code>
+					</tr>
+				</tr>					
+				<tr>
+					<td>required: no</td>
+				</tr>
+				<tr>
+					<td>el-support: yes</tD>
+				</tr>
+				
+				<tr>
+					<td class="tagheader"><b>var</b></td>
+				</tr>
+				<tr>
+					<td>
+						The string to use when binding the result to the page,
+						request, session or application scope. If not specified,
+						the result gets outputted to the writer (directly to the JSP i.e.).
+					</td>
+				</tr>
+				<tr>
+					<td>required: no</td>
+				</tr>
+				<tr>
+					<td>el-support: yes</tD>
+				</tr>
+				<tr>
+					<td class="tagheader"><b>scope</b></td>
+				</tr>
+				<tr>
+					<td>
+						The scope to use when exporting the result to a variable.
+						This attribute is only used when <code>var</code> is also set.
+						Possible values are <code>page</code>, <code>request</code>, 
+						<code>session</code> and <code>application</code>.
+					</td>
+				</tr>						
+				<tr>
+					<td>required: no</td>
+				</tr>
+				<tr>
+					<td>el-support: yes</tD>
+				</tr>
+				<tr>
+					<td class="tagheader"><b>htmlEscape</b></td>
+				</tr>
+				<tr>
+					<td>
+						Set HTML escaping for this tag, as boolean value.
+						Overrides the default HTML escaping setting for the current page.
+					</td>
+				</tr>
+				<tr>
+					<td>required: no</td>
+				</tr>
+				<tr>
+					<td>el-support: yes</td>
+				</tr>
+				<tr>
+					<td class="tagheader"><b>message</b></td>
+				</tr>
+				<tr>
+					<td>
+						A MessageSourceResolvable argument (direct or through JSP EL).
+						<p>
+						Fits nicely when used in conjunction with Spring's own validation error
+						classes which all implement the MessageSourceResolvable interface. For
+						example, this allows you to iterate over all of the errors in a form,
+						passing each error (using a runtime expression) as the value of this
+						'message' attribute, thus effecting the easy display of such error messages.
+						<p>
+						For example:
+						<pre>
+&lt;c:forEach items="${errors.allErrors}" var="err"&gt;
+	&lt;spring:message message="${err}"/&gt;
+&lt;/c:forEach&gt;
+
+</pre>
+					</td>
+				</tr>
+				<tr>
+					<td>required: no</td>
+				</tr>
+				<tr>
+					<td>el-support: yes</td>
+				</tr>
+				<tr>
+					<td class="tagheader"><b>javaScriptEscape</b></td>
+				</tr>
+				<tr>
+					<td>
+						Set JavaScript escaping for this tag, as boolean value. Default is false.
+					</td>
+				</tr>
+				<tr>
+					<td>required: no</td>
+				</tr>
+				<tr>
+					<td>el-support: yes</td>
+				</tr>
+				<tr>
+					<td class="tagsection"><b>Variables</b></td>
+				</tr>
+				<tr>
+					<td>
+						If the <tt>var</tt> argument is specified, the resolved message will be
+						exported to the scope specified by the <tt>scope</tt> argument.
+					</td>
+				</tr>
+				<tr>
+					<td class="tagsection"><b>Also have a look at</b></td>
+				<tr>
+				<tr>
+					<td>
+						the <a href="HtmlEscapeTag.html"><code>spring:htmlEscape</code></a> tag,
+						which allows you to set the default HTML escape value for the current page
+					</td>
+				<tr>
+				<tr>
+					<td>
+						the <a href="../../api/org/springframework/context/support/ResourceBundleMessageSource.html"><code>ResourceBundleMessageSource</code></a>
+						to see how resource bundles can be used in conjunction with the <code>spring:message</code>-tag
+					</td>
+				</tr>
+				<tr>
+					<td>
+						the <a href="../../api/org/springframework/context/MessageSource.html"><code>MessageSource</code></a>
+						to see how you can implement your own message sources
+					</td>
+				</tr>
+			</table>
+		</p>
+			
+	</body>
+</html>

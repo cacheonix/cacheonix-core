@@ -1,0 +1,556 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
+<title>SimpleRegression xref</title>
+<link type="text/css" rel="stylesheet" href="../../../../../../stylesheet.css" />
+</head>
+<body>
+<div id="overview"><a href="../../../../../../../apidocs/org/apache/commons/math/stat/regression/SimpleRegression.html">View Javadoc</a></div><pre>
+
+<a name="1" href="#1">1</a>   <em class="jxr_comment">/*</em>
+<a name="2" href="#2">2</a>   <em class="jxr_comment"> * Licensed to the Apache Software Foundation (ASF) under one or more</em>
+<a name="3" href="#3">3</a>   <em class="jxr_comment"> * contributor license agreements.  See the NOTICE file distributed with</em>
+<a name="4" href="#4">4</a>   <em class="jxr_comment"> * this work for additional information regarding copyright ownership.</em>
+<a name="5" href="#5">5</a>   <em class="jxr_comment"> * The ASF licenses this file to You under the Apache License, Version 2.0</em>
+<a name="6" href="#6">6</a>   <em class="jxr_comment"> * (the "License"); you may not use this file except in compliance with</em>
+<a name="7" href="#7">7</a>   <em class="jxr_comment"> * the License.  You may obtain a copy of the License at</em>
+<a name="8" href="#8">8</a>   <em class="jxr_comment"> *</em>
+<a name="9" href="#9">9</a>   <em class="jxr_comment"> *      <a href="http://www.apache.org/licenses/LICENSE-2.0" target="alexandria_uri">http://www.apache.org/licenses/LICENSE-2.0</a></em>
+<a name="10" href="#10">10</a>  <em class="jxr_comment"> *</em>
+<a name="11" href="#11">11</a>  <em class="jxr_comment"> * Unless required by applicable law or agreed to in writing, software</em>
+<a name="12" href="#12">12</a>  <em class="jxr_comment"> * distributed under the License is distributed on an "AS IS" BASIS,</em>
+<a name="13" href="#13">13</a>  <em class="jxr_comment"> * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</em>
+<a name="14" href="#14">14</a>  <em class="jxr_comment"> * See the License for the specific language governing permissions and</em>
+<a name="15" href="#15">15</a>  <em class="jxr_comment"> * limitations under the License.</em>
+<a name="16" href="#16">16</a>  <em class="jxr_comment"> */</em>
+<a name="17" href="#17">17</a>  
+<a name="18" href="#18">18</a>  <strong class="jxr_keyword">package</strong> org.apache.commons.math.stat.regression;
+<a name="19" href="#19">19</a>  <strong class="jxr_keyword">import</strong> java.io.Serializable;
+<a name="20" href="#20">20</a>  
+<a name="21" href="#21">21</a>  <strong class="jxr_keyword">import</strong> org.apache.commons.math.MathException;
+<a name="22" href="#22">22</a>  <strong class="jxr_keyword">import</strong> org.apache.commons.math.distribution.TDistribution;
+<a name="23" href="#23">23</a>  <strong class="jxr_keyword">import</strong> org.apache.commons.math.distribution.TDistributionImpl;
+<a name="24" href="#24">24</a>  
+<a name="25" href="#25">25</a>  <em class="jxr_javadoccomment">/**</em>
+<a name="26" href="#26">26</a>  <em class="jxr_javadoccomment"> * Estimates an ordinary least squares regression model</em>
+<a name="27" href="#27">27</a>  <em class="jxr_javadoccomment"> * with one independent variable.</em>
+<a name="28" href="#28">28</a>  <em class="jxr_javadoccomment"> * &lt;p&gt;</em>
+<a name="29" href="#29">29</a>  <em class="jxr_javadoccomment"> * &lt;code&gt; y = intercept + slope * x  &lt;/code&gt;&lt;/p&gt;</em>
+<a name="30" href="#30">30</a>  <em class="jxr_javadoccomment"> * &lt;p&gt;</em>
+<a name="31" href="#31">31</a>  <em class="jxr_javadoccomment"> * Standard errors for &lt;code&gt;intercept&lt;/code&gt; and &lt;code&gt;slope&lt;/code&gt; are </em>
+<a name="32" href="#32">32</a>  <em class="jxr_javadoccomment"> * available as well as ANOVA, r-square and Pearson's r statistics.&lt;/p&gt;</em>
+<a name="33" href="#33">33</a>  <em class="jxr_javadoccomment"> * &lt;p&gt;</em>
+<a name="34" href="#34">34</a>  <em class="jxr_javadoccomment"> * Observations (x,y pairs) can be added to the model one at a time or they </em>
+<a name="35" href="#35">35</a>  <em class="jxr_javadoccomment"> * can be provided in a 2-dimensional array.  The observations are not stored</em>
+<a name="36" href="#36">36</a>  <em class="jxr_javadoccomment"> * in memory, so there is no limit to the number of observations that can be</em>
+<a name="37" href="#37">37</a>  <em class="jxr_javadoccomment"> * added to the model.&lt;/p&gt; </em>
+<a name="38" href="#38">38</a>  <em class="jxr_javadoccomment"> * &lt;p&gt;</em>
+<a name="39" href="#39">39</a>  <em class="jxr_javadoccomment"> * &lt;strong&gt;Usage Notes&lt;/strong&gt;: &lt;ul&gt;</em>
+<a name="40" href="#40">40</a>  <em class="jxr_javadoccomment"> * &lt;li&gt; When there are fewer than two observations in the model, or when</em>
+<a name="41" href="#41">41</a>  <em class="jxr_javadoccomment"> * there is no variation in the x values (i.e. all x values are the same) </em>
+<a name="42" href="#42">42</a>  <em class="jxr_javadoccomment"> * all statistics return &lt;code&gt;NaN&lt;/code&gt;. At least two observations with</em>
+<a name="43" href="#43">43</a>  <em class="jxr_javadoccomment"> * different x coordinates are requred to estimate a bivariate regression </em>
+<a name="44" href="#44">44</a>  <em class="jxr_javadoccomment"> * model.</em>
+<a name="45" href="#45">45</a>  <em class="jxr_javadoccomment"> * &lt;/li&gt;</em>
+<a name="46" href="#46">46</a>  <em class="jxr_javadoccomment"> * &lt;li&gt; getters for the statistics always compute values based on the current</em>
+<a name="47" href="#47">47</a>  <em class="jxr_javadoccomment"> * set of observations -- i.e., you can get statistics, then add more data</em>
+<a name="48" href="#48">48</a>  <em class="jxr_javadoccomment"> * and get updated statistics without using a new instance.  There is no </em>
+<a name="49" href="#49">49</a>  <em class="jxr_javadoccomment"> * "compute" method that updates all statistics.  Each of the getters performs</em>
+<a name="50" href="#50">50</a>  <em class="jxr_javadoccomment"> * the necessary computations to return the requested statistic.&lt;/li&gt;</em>
+<a name="51" href="#51">51</a>  <em class="jxr_javadoccomment"> * &lt;/ul&gt;&lt;/p&gt;</em>
+<a name="52" href="#52">52</a>  <em class="jxr_javadoccomment"> *</em>
+<a name="53" href="#53">53</a>  <em class="jxr_javadoccomment"> * @version $Revision: 617953 $ $Date: 2008-02-02 22:54:00 -0700 (Sat, 02 Feb 2008) $</em>
+<a name="54" href="#54">54</a>  <em class="jxr_javadoccomment"> */</em>
+<a name="55" href="#55">55</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../../../org/apache/commons/math/stat/regression/SimpleRegression.html">SimpleRegression</a> implements Serializable {
+<a name="56" href="#56">56</a>  
+<a name="57" href="#57">57</a>      <em class="jxr_javadoccomment">/**</em><em class="jxr_javadoccomment"> Serializable version identifier */</em>
+<a name="58" href="#58">58</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">long</strong> serialVersionUID = -3004689053607543335L;
+<a name="59" href="#59">59</a>  
+<a name="60" href="#60">60</a>      <em class="jxr_javadoccomment">/**</em><em class="jxr_javadoccomment"> the distribution used to compute inference statistics. */</em>
+<a name="61" href="#61">61</a>      <strong class="jxr_keyword">private</strong> <a href="../../../../../../org/apache/commons/math/distribution/TDistribution.html">TDistribution</a> distribution;
+<a name="62" href="#62">62</a>      
+<a name="63" href="#63">63</a>      <em class="jxr_javadoccomment">/**</em><em class="jxr_javadoccomment"> sum of x values */</em>
+<a name="64" href="#64">64</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">double</strong> sumX = 0d;
+<a name="65" href="#65">65</a>  
+<a name="66" href="#66">66</a>      <em class="jxr_javadoccomment">/**</em><em class="jxr_javadoccomment"> total variation in x (sum of squared deviations from xbar) */</em>
+<a name="67" href="#67">67</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">double</strong> sumXX = 0d;
+<a name="68" href="#68">68</a>  
+<a name="69" href="#69">69</a>      <em class="jxr_javadoccomment">/**</em><em class="jxr_javadoccomment"> sum of y values */</em>
+<a name="70" href="#70">70</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">double</strong> sumY = 0d;
+<a name="71" href="#71">71</a>  
+<a name="72" href="#72">72</a>      <em class="jxr_javadoccomment">/**</em><em class="jxr_javadoccomment"> total variation in y (sum of squared deviations from ybar) */</em>
+<a name="73" href="#73">73</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">double</strong> sumYY = 0d;
+<a name="74" href="#74">74</a>  
+<a name="75" href="#75">75</a>      <em class="jxr_javadoccomment">/**</em><em class="jxr_javadoccomment"> sum of products */</em>
+<a name="76" href="#76">76</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">double</strong> sumXY = 0d;
+<a name="77" href="#77">77</a>  
+<a name="78" href="#78">78</a>      <em class="jxr_javadoccomment">/**</em><em class="jxr_javadoccomment"> number of observations */</em>
+<a name="79" href="#79">79</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">long</strong> n = 0;
+<a name="80" href="#80">80</a>  
+<a name="81" href="#81">81</a>      <em class="jxr_javadoccomment">/**</em><em class="jxr_javadoccomment"> mean of accumulated x values, used in updating formulas */</em>
+<a name="82" href="#82">82</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">double</strong> xbar = 0;
+<a name="83" href="#83">83</a>  
+<a name="84" href="#84">84</a>      <em class="jxr_javadoccomment">/**</em><em class="jxr_javadoccomment"> mean of accumulated y values, used in updating formulas */</em>
+<a name="85" href="#85">85</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">double</strong> ybar = 0;
+<a name="86" href="#86">86</a>  
+<a name="87" href="#87">87</a>      <em class="jxr_comment">// ---------------------Public methods--------------------------------------</em>
+<a name="88" href="#88">88</a>  
+<a name="89" href="#89">89</a>      <em class="jxr_javadoccomment">/**</em>
+<a name="90" href="#90">90</a>  <em class="jxr_javadoccomment">     * Create an empty SimpleRegression instance</em>
+<a name="91" href="#91">91</a>  <em class="jxr_javadoccomment">     */</em>
+<a name="92" href="#92">92</a>      <strong class="jxr_keyword">public</strong> <a href="../../../../../../org/apache/commons/math/stat/regression/SimpleRegression.html">SimpleRegression</a>() {
+<a name="93" href="#93">93</a>          <strong class="jxr_keyword">this</strong>(<strong class="jxr_keyword">new</strong> <a href="../../../../../../org/apache/commons/math/distribution/TDistributionImpl.html">TDistributionImpl</a>(1.0));
+<a name="94" href="#94">94</a>      }
+<a name="95" href="#95">95</a>      
+<a name="96" href="#96">96</a>      <em class="jxr_javadoccomment">/**</em>
+<a name="97" href="#97">97</a>  <em class="jxr_javadoccomment">     * Create an empty SimpleRegression using the given distribution object to</em>
+<a name="98" href="#98">98</a>  <em class="jxr_javadoccomment">     * compute inference statistics.</em>
+<a name="99" href="#99">99</a>  <em class="jxr_javadoccomment">     * @param t the distribution used to compute inference statistics.</em>
+<a name="100" href="#100">100</a> <em class="jxr_javadoccomment">     * @since 1.2</em>
+<a name="101" href="#101">101</a> <em class="jxr_javadoccomment">     */</em>
+<a name="102" href="#102">102</a>     <strong class="jxr_keyword">public</strong> <a href="../../../../../../org/apache/commons/math/stat/regression/SimpleRegression.html">SimpleRegression</a>(<a href="../../../../../../org/apache/commons/math/distribution/TDistribution.html">TDistribution</a> t) {
+<a name="103" href="#103">103</a>         <strong class="jxr_keyword">super</strong>();
+<a name="104" href="#104">104</a>         setDistribution(t);
+<a name="105" href="#105">105</a>     }
+<a name="106" href="#106">106</a>     
+<a name="107" href="#107">107</a>     <em class="jxr_javadoccomment">/**</em>
+<a name="108" href="#108">108</a> <em class="jxr_javadoccomment">     * Adds the observation (x,y) to the regression data set.</em>
+<a name="109" href="#109">109</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a name="110" href="#110">110</a> <em class="jxr_javadoccomment">     * Uses updating formulas for means and sums of squares defined in </em>
+<a name="111" href="#111">111</a> <em class="jxr_javadoccomment">     * "Algorithms for Computing the Sample Variance: Analysis and</em>
+<a name="112" href="#112">112</a> <em class="jxr_javadoccomment">     * Recommendations", Chan, T.F., Golub, G.H., and LeVeque, R.J. </em>
+<a name="113" href="#113">113</a> <em class="jxr_javadoccomment">     * 1983, American Statistician, vol. 37, pp. 242-247, referenced in</em>
+<a name="114" href="#114">114</a> <em class="jxr_javadoccomment">     * Weisberg, S. "Applied Linear Regression". 2nd Ed. 1985.&lt;/p&gt;</em>
+<a name="115" href="#115">115</a> <em class="jxr_javadoccomment">     *</em>
+<a name="116" href="#116">116</a> <em class="jxr_javadoccomment">     *</em>
+<a name="117" href="#117">117</a> <em class="jxr_javadoccomment">     * @param x independent variable value</em>
+<a name="118" href="#118">118</a> <em class="jxr_javadoccomment">     * @param y dependent variable value</em>
+<a name="119" href="#119">119</a> <em class="jxr_javadoccomment">     */</em>
+<a name="120" href="#120">120</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> addData(<strong class="jxr_keyword">double</strong> x, <strong class="jxr_keyword">double</strong> y) {
+<a name="121" href="#121">121</a>         <strong class="jxr_keyword">if</strong> (n == 0) {
+<a name="122" href="#122">122</a>             xbar = x;
+<a name="123" href="#123">123</a>             ybar = y;
+<a name="124" href="#124">124</a>         } <strong class="jxr_keyword">else</strong> {
+<a name="125" href="#125">125</a>             <strong class="jxr_keyword">double</strong> dx = x - xbar;
+<a name="126" href="#126">126</a>             <strong class="jxr_keyword">double</strong> dy = y - ybar;
+<a name="127" href="#127">127</a>             sumXX += dx * dx * (<strong class="jxr_keyword">double</strong>) n / (<strong class="jxr_keyword">double</strong>) (n + 1.0);
+<a name="128" href="#128">128</a>             sumYY += dy * dy * (<strong class="jxr_keyword">double</strong>) n / (<strong class="jxr_keyword">double</strong>) (n + 1.0);
+<a name="129" href="#129">129</a>             sumXY += dx * dy * (<strong class="jxr_keyword">double</strong>) n / (<strong class="jxr_keyword">double</strong>) (n + 1.0);
+<a name="130" href="#130">130</a>             xbar += dx / (<strong class="jxr_keyword">double</strong>) (n + 1.0);
+<a name="131" href="#131">131</a>             ybar += dy / (<strong class="jxr_keyword">double</strong>) (n + 1.0);
+<a name="132" href="#132">132</a>         }
+<a name="133" href="#133">133</a>         sumX += x;
+<a name="134" href="#134">134</a>         sumY += y;
+<a name="135" href="#135">135</a>         n++;
+<a name="136" href="#136">136</a>         
+<a name="137" href="#137">137</a>         <strong class="jxr_keyword">if</strong> (n &gt; 2) {
+<a name="138" href="#138">138</a>             distribution.setDegreesOfFreedom(n - 2);
+<a name="139" href="#139">139</a>         }
+<a name="140" href="#140">140</a>     }
+<a name="141" href="#141">141</a> 
+<a name="142" href="#142">142</a>     <em class="jxr_javadoccomment">/**</em>
+<a name="143" href="#143">143</a> <em class="jxr_javadoccomment">     * Adds the observations represented by the elements in </em>
+<a name="144" href="#144">144</a> <em class="jxr_javadoccomment">     * &lt;code&gt;data&lt;/code&gt;.</em>
+<a name="145" href="#145">145</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a name="146" href="#146">146</a> <em class="jxr_javadoccomment">     * &lt;code&gt;(data[0][0],data[0][1])&lt;/code&gt; will be the first observation, then</em>
+<a name="147" href="#147">147</a> <em class="jxr_javadoccomment">     * &lt;code&gt;(data[1][0],data[1][1])&lt;/code&gt;, etc.&lt;/p&gt;</em>
+<a name="148" href="#148">148</a> <em class="jxr_javadoccomment">     * &lt;p&gt; </em>
+<a name="149" href="#149">149</a> <em class="jxr_javadoccomment">     * This method does not replace data that has already been added.  The</em>
+<a name="150" href="#150">150</a> <em class="jxr_javadoccomment">     * observations represented by &lt;code&gt;data&lt;/code&gt; are added to the existing</em>
+<a name="151" href="#151">151</a> <em class="jxr_javadoccomment">     * dataset.&lt;/p&gt;</em>
+<a name="152" href="#152">152</a> <em class="jxr_javadoccomment">     * &lt;p&gt; </em>
+<a name="153" href="#153">153</a> <em class="jxr_javadoccomment">     * To replace all data, use &lt;code&gt;clear()&lt;/code&gt; before adding the new </em>
+<a name="154" href="#154">154</a> <em class="jxr_javadoccomment">     * data.&lt;/p&gt;</em>
+<a name="155" href="#155">155</a> <em class="jxr_javadoccomment">     * </em>
+<a name="156" href="#156">156</a> <em class="jxr_javadoccomment">     * @param data array of observations to be added</em>
+<a name="157" href="#157">157</a> <em class="jxr_javadoccomment">     */</em>
+<a name="158" href="#158">158</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> addData(<strong class="jxr_keyword">double</strong>[][] data) {
+<a name="159" href="#159">159</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> i = 0; i &lt; data.length; i++) {
+<a name="160" href="#160">160</a>             addData(data[i][0], data[i][1]);
+<a name="161" href="#161">161</a>         }
+<a name="162" href="#162">162</a>     }
+<a name="163" href="#163">163</a> 
+<a name="164" href="#164">164</a>     <em class="jxr_javadoccomment">/**</em>
+<a name="165" href="#165">165</a> <em class="jxr_javadoccomment">     * Clears all data from the model.</em>
+<a name="166" href="#166">166</a> <em class="jxr_javadoccomment">     */</em>
+<a name="167" href="#167">167</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> clear() {
+<a name="168" href="#168">168</a>         sumX = 0d;
+<a name="169" href="#169">169</a>         sumXX = 0d;
+<a name="170" href="#170">170</a>         sumY = 0d;
+<a name="171" href="#171">171</a>         sumYY = 0d;
+<a name="172" href="#172">172</a>         sumXY = 0d;
+<a name="173" href="#173">173</a>         n = 0;
+<a name="174" href="#174">174</a>     }
+<a name="175" href="#175">175</a> 
+<a name="176" href="#176">176</a>     <em class="jxr_javadoccomment">/**</em>
+<a name="177" href="#177">177</a> <em class="jxr_javadoccomment">     * Returns the number of observations that have been added to the model.</em>
+<a name="178" href="#178">178</a> <em class="jxr_javadoccomment">     *</em>
+<a name="179" href="#179">179</a> <em class="jxr_javadoccomment">     * @return n number of observations that have been added.</em>
+<a name="180" href="#180">180</a> <em class="jxr_javadoccomment">     */</em>
+<a name="181" href="#181">181</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">long</strong> getN() {
+<a name="182" href="#182">182</a>         <strong class="jxr_keyword">return</strong> n;
+<a name="183" href="#183">183</a>     }
+<a name="184" href="#184">184</a> 
+<a name="185" href="#185">185</a>     <em class="jxr_javadoccomment">/**</em>
+<a name="186" href="#186">186</a> <em class="jxr_javadoccomment">     * Returns the "predicted" &lt;code&gt;y&lt;/code&gt; value associated with the </em>
+<a name="187" href="#187">187</a> <em class="jxr_javadoccomment">     * supplied &lt;code&gt;x&lt;/code&gt; value,  based on the data that has been</em>
+<a name="188" href="#188">188</a> <em class="jxr_javadoccomment">     * added to the model when this method is activated.</em>
+<a name="189" href="#189">189</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a name="190" href="#190">190</a> <em class="jxr_javadoccomment">     * &lt;code&gt; predict(x) = intercept + slope * x &lt;/code&gt;&lt;/p&gt;</em>
+<a name="191" href="#191">191</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a name="192" href="#192">192</a> <em class="jxr_javadoccomment">     * &lt;strong&gt;Preconditions&lt;/strong&gt;: &lt;ul&gt;</em>
+<a name="193" href="#193">193</a> <em class="jxr_javadoccomment">     * &lt;li&gt;At least two observations (with at least two different x values)</em>
+<a name="194" href="#194">194</a> <em class="jxr_javadoccomment">     * must have been added before invoking this method. If this method is </em>
+<a name="195" href="#195">195</a> <em class="jxr_javadoccomment">     * invoked before a model can be estimated, &lt;code&gt;Double,NaN&lt;/code&gt; is</em>
+<a name="196" href="#196">196</a> <em class="jxr_javadoccomment">     * returned.</em>
+<a name="197" href="#197">197</a> <em class="jxr_javadoccomment">     * &lt;/li&gt;&lt;/ul&gt;&lt;/p&gt;</em>
+<a name="198" href="#198">198</a> <em class="jxr_javadoccomment">     *</em>
+<a name="199" href="#199">199</a> <em class="jxr_javadoccomment">     * @param x input &lt;code&gt;x&lt;/code&gt; value</em>
+<a name="200" href="#200">200</a> <em class="jxr_javadoccomment">     * @return predicted &lt;code&gt;y&lt;/code&gt; value</em>
+<a name="201" href="#201">201</a> <em class="jxr_javadoccomment">     */</em>
+<a name="202" href="#202">202</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">double</strong> predict(<strong class="jxr_keyword">double</strong> x) {
+<a name="203" href="#203">203</a>         <strong class="jxr_keyword">double</strong> b1 = getSlope();
+<a name="204" href="#204">204</a>         <strong class="jxr_keyword">return</strong> getIntercept(b1) + b1 * x;
+<a name="205" href="#205">205</a>     }
+<a name="206" href="#206">206</a> 
+<a name="207" href="#207">207</a>     <em class="jxr_javadoccomment">/**</em>
+<a name="208" href="#208">208</a> <em class="jxr_javadoccomment">     * Returns the intercept of the estimated regression line.</em>
+<a name="209" href="#209">209</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a name="210" href="#210">210</a> <em class="jxr_javadoccomment">     * The least squares estimate of the intercept is computed using the </em>
+<a name="211" href="#211">211</a> <em class="jxr_javadoccomment">     * &lt;a href="<a href="http://www.xycoon.com/estimation4.htm" target="alexandria_uri">http://www.xycoon.com/estimation4.htm</a>"&gt;normal equations&lt;/a&gt;.</em>
+<a name="212" href="#212">212</a> <em class="jxr_javadoccomment">     * The intercept is sometimes denoted b0.&lt;/p&gt;</em>
+<a name="213" href="#213">213</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a name="214" href="#214">214</a> <em class="jxr_javadoccomment">     * &lt;strong&gt;Preconditions&lt;/strong&gt;: &lt;ul&gt;</em>
+<a name="215" href="#215">215</a> <em class="jxr_javadoccomment">     * &lt;li&gt;At least two observations (with at least two different x values)</em>
+<a name="216" href="#216">216</a> <em class="jxr_javadoccomment">     * must have been added before invoking this method. If this method is </em>
+<a name="217" href="#217">217</a> <em class="jxr_javadoccomment">     * invoked before a model can be estimated, &lt;code&gt;Double,NaN&lt;/code&gt; is</em>
+<a name="218" href="#218">218</a> <em class="jxr_javadoccomment">     * returned.</em>
+<a name="219" href="#219">219</a> <em class="jxr_javadoccomment">     * &lt;/li&gt;&lt;/ul&gt;&lt;/p&gt;</em>
+<a name="220" href="#220">220</a> <em class="jxr_javadoccomment">     *</em>
+<a name="221" href="#221">221</a> <em class="jxr_javadoccomment">     * @return the intercept of the regression line</em>
+<a name="222" href="#222">222</a> <em class="jxr_javadoccomment">     */</em>
+<a name="223" href="#223">223</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">double</strong> getIntercept() {
+<a name="224" href="#224">224</a>         <strong class="jxr_keyword">return</strong> getIntercept(getSlope());
+<a name="225" href="#225">225</a>     }
+<a name="226" href="#226">226</a> 
+<a name="227" href="#227">227</a>     <em class="jxr_javadoccomment">/**</em>
+<a name="228" href="#228">228</a> <em class="jxr_javadoccomment">    * Returns the slope of the estimated regression line.  </em>
+<a name="229" href="#229">229</a> <em class="jxr_javadoccomment">    * &lt;p&gt;</em>
+<a name="230" href="#230">230</a> <em class="jxr_javadoccomment">    * The least squares estimate of the slope is computed using the </em>
+<a name="231" href="#231">231</a> <em class="jxr_javadoccomment">    * &lt;a href="<a href="http://www.xycoon.com/estimation4.htm" target="alexandria_uri">http://www.xycoon.com/estimation4.htm</a>"&gt;normal equations&lt;/a&gt;.</em>
+<a name="232" href="#232">232</a> <em class="jxr_javadoccomment">    * The slope is sometimes denoted b1.&lt;/p&gt;</em>
+<a name="233" href="#233">233</a> <em class="jxr_javadoccomment">    * &lt;p&gt;</em>
+<a name="234" href="#234">234</a> <em class="jxr_javadoccomment">    * &lt;strong&gt;Preconditions&lt;/strong&gt;: &lt;ul&gt;</em>
+<a name="235" href="#235">235</a> <em class="jxr_javadoccomment">    * &lt;li&gt;At least two observations (with at least two different x values)</em>
+<a name="236" href="#236">236</a> <em class="jxr_javadoccomment">    * must have been added before invoking this method. If this method is </em>
+<a name="237" href="#237">237</a> <em class="jxr_javadoccomment">    * invoked before a model can be estimated, &lt;code&gt;Double.NaN&lt;/code&gt; is</em>
+<a name="238" href="#238">238</a> <em class="jxr_javadoccomment">    * returned.</em>
+<a name="239" href="#239">239</a> <em class="jxr_javadoccomment">    * &lt;/li&gt;&lt;/ul&gt;&lt;/p&gt;</em>
+<a name="240" href="#240">240</a> <em class="jxr_javadoccomment">    *</em>
+<a name="241" href="#241">241</a> <em class="jxr_javadoccomment">    * @return the slope of the regression line</em>
+<a name="242" href="#242">242</a> <em class="jxr_javadoccomment">    */</em>
+<a name="243" href="#243">243</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">double</strong> getSlope() {
+<a name="244" href="#244">244</a>         <strong class="jxr_keyword">if</strong> (n &lt; 2) {
+<a name="245" href="#245">245</a>             <strong class="jxr_keyword">return</strong> Double.NaN; <em class="jxr_comment">//not enough data </em>
+<a name="246" href="#246">246</a>         }
+<a name="247" href="#247">247</a>         <strong class="jxr_keyword">if</strong> (Math.abs(sumXX) &lt; 10 * Double.MIN_VALUE) {
+<a name="248" href="#248">248</a>             <strong class="jxr_keyword">return</strong> Double.NaN; <em class="jxr_comment">//not enough variation in x</em>
+<a name="249" href="#249">249</a>         }
+<a name="250" href="#250">250</a>         <strong class="jxr_keyword">return</strong> sumXY / sumXX;
+<a name="251" href="#251">251</a>     }
+<a name="252" href="#252">252</a> 
+<a name="253" href="#253">253</a>     <em class="jxr_javadoccomment">/**</em>
+<a name="254" href="#254">254</a> <em class="jxr_javadoccomment">     * Returns the &lt;a href="<a href="http://www.xycoon.com/SumOfSquares.htm" target="alexandria_uri">http://www.xycoon.com/SumOfSquares.htm</a>"&gt;</em>
+<a name="255" href="#255">255</a> <em class="jxr_javadoccomment">     * sum of squared errors&lt;/a&gt; (SSE) associated with the regression </em>
+<a name="256" href="#256">256</a> <em class="jxr_javadoccomment">     * model.</em>
+<a name="257" href="#257">257</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a name="258" href="#258">258</a> <em class="jxr_javadoccomment">     * The sum is computed using the computational formula&lt;/p&gt;</em>
+<a name="259" href="#259">259</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a name="260" href="#260">260</a> <em class="jxr_javadoccomment">     * &lt;code&gt;SSE = SYY - (SXY * SXY / SXX)&lt;/code&gt;&lt;/p&gt;</em>
+<a name="261" href="#261">261</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a name="262" href="#262">262</a> <em class="jxr_javadoccomment">     * where &lt;code&gt;SYY&lt;/code&gt; is the sum of the squared deviations of the y</em>
+<a name="263" href="#263">263</a> <em class="jxr_javadoccomment">     * values about their mean, &lt;code&gt;SXX&lt;/code&gt; is similarly defined and</em>
+<a name="264" href="#264">264</a> <em class="jxr_javadoccomment">     * &lt;code&gt;SXY&lt;/code&gt; is the sum of the products of x and y mean deviations.</em>
+<a name="265" href="#265">265</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;&lt;p&gt;</em>
+<a name="266" href="#266">266</a> <em class="jxr_javadoccomment">     * The sums are accumulated using the updating algorithm referenced in </em>
+<a name="267" href="#267">267</a> <em class="jxr_javadoccomment">     * {@link #addData}.&lt;/p&gt;</em>
+<a name="268" href="#268">268</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a name="269" href="#269">269</a> <em class="jxr_javadoccomment">     * The return value is constrained to be non-negative - i.e., if due to </em>
+<a name="270" href="#270">270</a> <em class="jxr_javadoccomment">     * rounding errors the computational formula returns a negative result, </em>
+<a name="271" href="#271">271</a> <em class="jxr_javadoccomment">     * 0 is returned.&lt;/p&gt;</em>
+<a name="272" href="#272">272</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a name="273" href="#273">273</a> <em class="jxr_javadoccomment">     * &lt;strong&gt;Preconditions&lt;/strong&gt;: &lt;ul&gt;</em>
+<a name="274" href="#274">274</a> <em class="jxr_javadoccomment">     * &lt;li&gt;At least two observations (with at least two different x values)</em>
+<a name="275" href="#275">275</a> <em class="jxr_javadoccomment">     * must have been added before invoking this method. If this method is </em>
+<a name="276" href="#276">276</a> <em class="jxr_javadoccomment">     * invoked before a model can be estimated, &lt;code&gt;Double,NaN&lt;/code&gt; is</em>
+<a name="277" href="#277">277</a> <em class="jxr_javadoccomment">     * returned.</em>
+<a name="278" href="#278">278</a> <em class="jxr_javadoccomment">     * &lt;/li&gt;&lt;/ul&gt;&lt;/p&gt;</em>
+<a name="279" href="#279">279</a> <em class="jxr_javadoccomment">     *</em>
+<a name="280" href="#280">280</a> <em class="jxr_javadoccomment">     * @return sum of squared errors associated with the regression model</em>
+<a name="281" href="#281">281</a> <em class="jxr_javadoccomment">     */</em>
+<a name="282" href="#282">282</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">double</strong> getSumSquaredErrors() {
+<a name="283" href="#283">283</a>         <strong class="jxr_keyword">return</strong> Math.max(0d, sumYY - sumXY * sumXY / sumXX);
+<a name="284" href="#284">284</a>     }
+<a name="285" href="#285">285</a> 
+<a name="286" href="#286">286</a>     <em class="jxr_javadoccomment">/**</em>
+<a name="287" href="#287">287</a> <em class="jxr_javadoccomment">     * Returns the sum of squared deviations of the y values about their mean.</em>
+<a name="288" href="#288">288</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a name="289" href="#289">289</a> <em class="jxr_javadoccomment">     * This is defined as SSTO </em>
+<a name="290" href="#290">290</a> <em class="jxr_javadoccomment">     * &lt;a href="<a href="http://www.xycoon.com/SumOfSquares.htm" target="alexandria_uri">http://www.xycoon.com/SumOfSquares.htm</a>"&gt;here&lt;/a&gt;.&lt;/p&gt;</em>
+<a name="291" href="#291">291</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a name="292" href="#292">292</a> <em class="jxr_javadoccomment">     * If &lt;code&gt;n &lt; 2&lt;/code&gt;, this returns &lt;code&gt;Double.NaN&lt;/code&gt;.&lt;/p&gt;</em>
+<a name="293" href="#293">293</a> <em class="jxr_javadoccomment">     *</em>
+<a name="294" href="#294">294</a> <em class="jxr_javadoccomment">     * @return sum of squared deviations of y values</em>
+<a name="295" href="#295">295</a> <em class="jxr_javadoccomment">     */</em>
+<a name="296" href="#296">296</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">double</strong> getTotalSumSquares() {
+<a name="297" href="#297">297</a>         <strong class="jxr_keyword">if</strong> (n &lt; 2) {
+<a name="298" href="#298">298</a>             <strong class="jxr_keyword">return</strong> Double.NaN;
+<a name="299" href="#299">299</a>         }
+<a name="300" href="#300">300</a>         <strong class="jxr_keyword">return</strong> sumYY;
+<a name="301" href="#301">301</a>     }
+<a name="302" href="#302">302</a> 
+<a name="303" href="#303">303</a>     <em class="jxr_javadoccomment">/**</em>
+<a name="304" href="#304">304</a> <em class="jxr_javadoccomment">     * Returns the sum of squared deviations of the predicted y values about </em>
+<a name="305" href="#305">305</a> <em class="jxr_javadoccomment">     * their mean (which equals the mean of y).</em>
+<a name="306" href="#306">306</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a name="307" href="#307">307</a> <em class="jxr_javadoccomment">     * This is usually abbreviated SSR or SSM.  It is defined as SSM </em>
+<a name="308" href="#308">308</a> <em class="jxr_javadoccomment">     * &lt;a href="<a href="http://www.xycoon.com/SumOfSquares.htm" target="alexandria_uri">http://www.xycoon.com/SumOfSquares.htm</a>"&gt;here&lt;/a&gt;&lt;/p&gt;</em>
+<a name="309" href="#309">309</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a name="310" href="#310">310</a> <em class="jxr_javadoccomment">     * &lt;strong&gt;Preconditions&lt;/strong&gt;: &lt;ul&gt;</em>
+<a name="311" href="#311">311</a> <em class="jxr_javadoccomment">     * &lt;li&gt;At least two observations (with at least two different x values)</em>
+<a name="312" href="#312">312</a> <em class="jxr_javadoccomment">     * must have been added before invoking this method. If this method is </em>
+<a name="313" href="#313">313</a> <em class="jxr_javadoccomment">     * invoked before a model can be estimated, &lt;code&gt;Double.NaN&lt;/code&gt; is</em>
+<a name="314" href="#314">314</a> <em class="jxr_javadoccomment">     * returned.</em>
+<a name="315" href="#315">315</a> <em class="jxr_javadoccomment">     * &lt;/li&gt;&lt;/ul&gt;&lt;/p&gt;</em>
+<a name="316" href="#316">316</a> <em class="jxr_javadoccomment">     *</em>
+<a name="317" href="#317">317</a> <em class="jxr_javadoccomment">     * @return sum of squared deviations of predicted y values</em>
+<a name="318" href="#318">318</a> <em class="jxr_javadoccomment">     */</em>
+<a name="319" href="#319">319</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">double</strong> getRegressionSumSquares() {
+<a name="320" href="#320">320</a>         <strong class="jxr_keyword">return</strong> getRegressionSumSquares(getSlope());
+<a name="321" href="#321">321</a>     }
+<a name="322" href="#322">322</a> 
+<a name="323" href="#323">323</a>     <em class="jxr_javadoccomment">/**</em>
+<a name="324" href="#324">324</a> <em class="jxr_javadoccomment">     * Returns the sum of squared errors divided by the degrees of freedom,</em>
+<a name="325" href="#325">325</a> <em class="jxr_javadoccomment">     * usually abbreviated MSE. </em>
+<a name="326" href="#326">326</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a name="327" href="#327">327</a> <em class="jxr_javadoccomment">     * If there are fewer than &lt;strong&gt;three&lt;/strong&gt; data pairs in the model,</em>
+<a name="328" href="#328">328</a> <em class="jxr_javadoccomment">     * or if there is no variation in &lt;code&gt;x&lt;/code&gt;, this returns </em>
+<a name="329" href="#329">329</a> <em class="jxr_javadoccomment">     * &lt;code&gt;Double.NaN&lt;/code&gt;.&lt;/p&gt;</em>
+<a name="330" href="#330">330</a> <em class="jxr_javadoccomment">     *</em>
+<a name="331" href="#331">331</a> <em class="jxr_javadoccomment">     * @return sum of squared deviations of y values</em>
+<a name="332" href="#332">332</a> <em class="jxr_javadoccomment">     */</em>
+<a name="333" href="#333">333</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">double</strong> getMeanSquareError() {
+<a name="334" href="#334">334</a>         <strong class="jxr_keyword">if</strong> (n &lt; 3) {
+<a name="335" href="#335">335</a>             <strong class="jxr_keyword">return</strong> Double.NaN;
+<a name="336" href="#336">336</a>         }
+<a name="337" href="#337">337</a>         <strong class="jxr_keyword">return</strong> getSumSquaredErrors() / (<strong class="jxr_keyword">double</strong>) (n - 2);
+<a name="338" href="#338">338</a>     }
+<a name="339" href="#339">339</a> 
+<a name="340" href="#340">340</a>     <em class="jxr_javadoccomment">/**</em>
+<a name="341" href="#341">341</a> <em class="jxr_javadoccomment">     * Returns &lt;a href="<a href="http://mathworld.wolfram.com/CorrelationCoefficient.html" target="alexandria_uri">http://mathworld.wolfram.com/CorrelationCoefficient.html</a>"&gt;</em>
+<a name="342" href="#342">342</a> <em class="jxr_javadoccomment">     * Pearson's product moment correlation coefficient&lt;/a&gt;,</em>
+<a name="343" href="#343">343</a> <em class="jxr_javadoccomment">     * usually denoted r. </em>
+<a name="344" href="#344">344</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a name="345" href="#345">345</a> <em class="jxr_javadoccomment">     * &lt;strong&gt;Preconditions&lt;/strong&gt;: &lt;ul&gt;</em>
+<a name="346" href="#346">346</a> <em class="jxr_javadoccomment">     * &lt;li&gt;At least two observations (with at least two different x values)</em>
+<a name="347" href="#347">347</a> <em class="jxr_javadoccomment">     * must have been added before invoking this method. If this method is </em>
+<a name="348" href="#348">348</a> <em class="jxr_javadoccomment">     * invoked before a model can be estimated, &lt;code&gt;Double,NaN&lt;/code&gt; is</em>
+<a name="349" href="#349">349</a> <em class="jxr_javadoccomment">     * returned.</em>
+<a name="350" href="#350">350</a> <em class="jxr_javadoccomment">     * &lt;/li&gt;&lt;/ul&gt;&lt;/p&gt;</em>
+<a name="351" href="#351">351</a> <em class="jxr_javadoccomment">     *</em>
+<a name="352" href="#352">352</a> <em class="jxr_javadoccomment">     * @return Pearson's r</em>
+<a name="353" href="#353">353</a> <em class="jxr_javadoccomment">     */</em>
+<a name="354" href="#354">354</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">double</strong> getR() {
+<a name="355" href="#355">355</a>         <strong class="jxr_keyword">double</strong> b1 = getSlope();
+<a name="356" href="#356">356</a>         <strong class="jxr_keyword">double</strong> result = Math.sqrt(getRSquare());
+<a name="357" href="#357">357</a>         <strong class="jxr_keyword">if</strong> (b1 &lt; 0) {
+<a name="358" href="#358">358</a>             result = -result;
+<a name="359" href="#359">359</a>         }
+<a name="360" href="#360">360</a>         <strong class="jxr_keyword">return</strong> result;
+<a name="361" href="#361">361</a>     }
+<a name="362" href="#362">362</a> 
+<a name="363" href="#363">363</a>     <em class="jxr_javadoccomment">/**</em><em class="jxr_javadoccomment"> </em>
+<a name="364" href="#364">364</a> <em class="jxr_javadoccomment">     * Returns the &lt;a href="<a href="http://www.xycoon.com/coefficient1.htm" target="alexandria_uri">http://www.xycoon.com/coefficient1.htm</a>"&gt; </em>
+<a name="365" href="#365">365</a> <em class="jxr_javadoccomment">     * coefficient of determination&lt;/a&gt;,</em>
+<a name="366" href="#366">366</a> <em class="jxr_javadoccomment">     * usually denoted r-square. </em>
+<a name="367" href="#367">367</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a name="368" href="#368">368</a> <em class="jxr_javadoccomment">     * &lt;strong&gt;Preconditions&lt;/strong&gt;: &lt;ul&gt;</em>
+<a name="369" href="#369">369</a> <em class="jxr_javadoccomment">     * &lt;li&gt;At least two observations (with at least two different x values)</em>
+<a name="370" href="#370">370</a> <em class="jxr_javadoccomment">     * must have been added before invoking this method. If this method is </em>
+<a name="371" href="#371">371</a> <em class="jxr_javadoccomment">     * invoked before a model can be estimated, &lt;code&gt;Double,NaN&lt;/code&gt; is</em>
+<a name="372" href="#372">372</a> <em class="jxr_javadoccomment">     * returned.</em>
+<a name="373" href="#373">373</a> <em class="jxr_javadoccomment">     * &lt;/li&gt;&lt;/ul&gt;&lt;/p&gt;</em>
+<a name="374" href="#374">374</a> <em class="jxr_javadoccomment">     *</em>
+<a name="375" href="#375">375</a> <em class="jxr_javadoccomment">     * @return r-square</em>
+<a name="376" href="#376">376</a> <em class="jxr_javadoccomment">     */</em>
+<a name="377" href="#377">377</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">double</strong> getRSquare() {
+<a name="378" href="#378">378</a>         <strong class="jxr_keyword">double</strong> ssto = getTotalSumSquares();
+<a name="379" href="#379">379</a>         <strong class="jxr_keyword">return</strong> (ssto - getSumSquaredErrors()) / ssto;
+<a name="380" href="#380">380</a>     }
+<a name="381" href="#381">381</a> 
+<a name="382" href="#382">382</a>     <em class="jxr_javadoccomment">/**</em>
+<a name="383" href="#383">383</a> <em class="jxr_javadoccomment">     * Returns the &lt;a href="<a href="http://www.xycoon.com/standarderrorb0.htm" target="alexandria_uri">http://www.xycoon.com/standarderrorb0.htm</a>"&gt;</em>
+<a name="384" href="#384">384</a> <em class="jxr_javadoccomment">     * standard error of the intercept estimate&lt;/a&gt;, </em>
+<a name="385" href="#385">385</a> <em class="jxr_javadoccomment">     * usually denoted s(b0). </em>
+<a name="386" href="#386">386</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a name="387" href="#387">387</a> <em class="jxr_javadoccomment">     * If there are fewer that &lt;strong&gt;three&lt;/strong&gt; observations in the </em>
+<a name="388" href="#388">388</a> <em class="jxr_javadoccomment">     * model, or if there is no variation in x, this returns </em>
+<a name="389" href="#389">389</a> <em class="jxr_javadoccomment">     * &lt;code&gt;Double.NaN&lt;/code&gt;.&lt;/p&gt;</em>
+<a name="390" href="#390">390</a> <em class="jxr_javadoccomment">     *</em>
+<a name="391" href="#391">391</a> <em class="jxr_javadoccomment">     * @return standard error associated with intercept estimate</em>
+<a name="392" href="#392">392</a> <em class="jxr_javadoccomment">     */</em>
+<a name="393" href="#393">393</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">double</strong> getInterceptStdErr() {
+<a name="394" href="#394">394</a>         <strong class="jxr_keyword">return</strong> Math.sqrt(
+<a name="395" href="#395">395</a>             getMeanSquareError() * ((1d / (<strong class="jxr_keyword">double</strong>) n) + (xbar * xbar) / sumXX));
+<a name="396" href="#396">396</a>     }
+<a name="397" href="#397">397</a> 
+<a name="398" href="#398">398</a>     <em class="jxr_javadoccomment">/**</em>
+<a name="399" href="#399">399</a> <em class="jxr_javadoccomment">     * Returns the &lt;a href="<a href="http://www.xycoon.com/standerrorb(1).htm" target="alexandria_uri">http://www.xycoon.com/standerrorb(1).htm</a>"&gt;standard</em>
+<a name="400" href="#400">400</a> <em class="jxr_javadoccomment">     * error of the slope estimate&lt;/a&gt;,</em>
+<a name="401" href="#401">401</a> <em class="jxr_javadoccomment">     * usually denoted s(b1). </em>
+<a name="402" href="#402">402</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a name="403" href="#403">403</a> <em class="jxr_javadoccomment">     * If there are fewer that &lt;strong&gt;three&lt;/strong&gt; data pairs in the model,</em>
+<a name="404" href="#404">404</a> <em class="jxr_javadoccomment">     * or if there is no variation in x, this returns &lt;code&gt;Double.NaN&lt;/code&gt;.</em>
+<a name="405" href="#405">405</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;</em>
+<a name="406" href="#406">406</a> <em class="jxr_javadoccomment">     * </em>
+<a name="407" href="#407">407</a> <em class="jxr_javadoccomment">     * @return standard error associated with slope estimate</em>
+<a name="408" href="#408">408</a> <em class="jxr_javadoccomment">     */</em>
+<a name="409" href="#409">409</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">double</strong> getSlopeStdErr() {
+<a name="410" href="#410">410</a>         <strong class="jxr_keyword">return</strong> Math.sqrt(getMeanSquareError() / sumXX);
+<a name="411" href="#411">411</a>     }
+<a name="412" href="#412">412</a> 
+<a name="413" href="#413">413</a>     <em class="jxr_javadoccomment">/**</em>
+<a name="414" href="#414">414</a> <em class="jxr_javadoccomment">     * Returns the half-width of a 95% confidence interval for the slope</em>
+<a name="415" href="#415">415</a> <em class="jxr_javadoccomment">     * estimate.</em>
+<a name="416" href="#416">416</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a name="417" href="#417">417</a> <em class="jxr_javadoccomment">     * The 95% confidence interval is&lt;/p&gt;</em>
+<a name="418" href="#418">418</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a name="419" href="#419">419</a> <em class="jxr_javadoccomment">     * &lt;code&gt;(getSlope() - getSlopeConfidenceInterval(), </em>
+<a name="420" href="#420">420</a> <em class="jxr_javadoccomment">     * getSlope() + getSlopeConfidenceInterval())&lt;/code&gt;&lt;/p&gt;</em>
+<a name="421" href="#421">421</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a name="422" href="#422">422</a> <em class="jxr_javadoccomment">     * If there are fewer that &lt;strong&gt;three&lt;/strong&gt; observations in the </em>
+<a name="423" href="#423">423</a> <em class="jxr_javadoccomment">     * model, or if there is no variation in x, this returns </em>
+<a name="424" href="#424">424</a> <em class="jxr_javadoccomment">     * &lt;code&gt;Double.NaN&lt;/code&gt;.&lt;/p&gt;</em>
+<a name="425" href="#425">425</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a name="426" href="#426">426</a> <em class="jxr_javadoccomment">     * &lt;strong&gt;Usage Note&lt;/strong&gt;:&lt;br&gt;</em>
+<a name="427" href="#427">427</a> <em class="jxr_javadoccomment">     * The validity of this statistic depends on the assumption that the </em>
+<a name="428" href="#428">428</a> <em class="jxr_javadoccomment">     * observations included in the model are drawn from a</em>
+<a name="429" href="#429">429</a> <em class="jxr_javadoccomment">     * &lt;a href="<a href="http://mathworld.wolfram.com/BivariateNormalDistribution.html" target="alexandria_uri">http://mathworld.wolfram.com/BivariateNormalDistribution.html</a>"&gt;</em>
+<a name="430" href="#430">430</a> <em class="jxr_javadoccomment">     * Bivariate Normal Distribution&lt;/a&gt;.&lt;/p&gt;</em>
+<a name="431" href="#431">431</a> <em class="jxr_javadoccomment">     *</em>
+<a name="432" href="#432">432</a> <em class="jxr_javadoccomment">     * @return half-width of 95% confidence interval for the slope estimate</em>
+<a name="433" href="#433">433</a> <em class="jxr_javadoccomment">     * @throws MathException if the confidence interval can not be computed.</em>
+<a name="434" href="#434">434</a> <em class="jxr_javadoccomment">     */</em>
+<a name="435" href="#435">435</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">double</strong> getSlopeConfidenceInterval() <strong class="jxr_keyword">throws</strong> MathException {
+<a name="436" href="#436">436</a>         <strong class="jxr_keyword">return</strong> getSlopeConfidenceInterval(0.05d);
+<a name="437" href="#437">437</a>     }
+<a name="438" href="#438">438</a> 
+<a name="439" href="#439">439</a>     <em class="jxr_javadoccomment">/**</em>
+<a name="440" href="#440">440</a> <em class="jxr_javadoccomment">     * Returns the half-width of a (100-100*alpha)% confidence interval for </em>
+<a name="441" href="#441">441</a> <em class="jxr_javadoccomment">     * the slope estimate.</em>
+<a name="442" href="#442">442</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a name="443" href="#443">443</a> <em class="jxr_javadoccomment">     * The (100-100*alpha)% confidence interval is &lt;/p&gt;</em>
+<a name="444" href="#444">444</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a name="445" href="#445">445</a> <em class="jxr_javadoccomment">     * &lt;code&gt;(getSlope() - getSlopeConfidenceInterval(), </em>
+<a name="446" href="#446">446</a> <em class="jxr_javadoccomment">     * getSlope() + getSlopeConfidenceInterval())&lt;/code&gt;&lt;/p&gt;</em>
+<a name="447" href="#447">447</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a name="448" href="#448">448</a> <em class="jxr_javadoccomment">     * To request, for example, a 99% confidence interval, use </em>
+<a name="449" href="#449">449</a> <em class="jxr_javadoccomment">     * &lt;code&gt;alpha = .01&lt;/code&gt;&lt;/p&gt;</em>
+<a name="450" href="#450">450</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a name="451" href="#451">451</a> <em class="jxr_javadoccomment">     * &lt;strong&gt;Usage Note&lt;/strong&gt;:&lt;br&gt;</em>
+<a name="452" href="#452">452</a> <em class="jxr_javadoccomment">     * The validity of this statistic depends on the assumption that the </em>
+<a name="453" href="#453">453</a> <em class="jxr_javadoccomment">     * observations included in the model are drawn from a</em>
+<a name="454" href="#454">454</a> <em class="jxr_javadoccomment">     * &lt;a href="<a href="http://mathworld.wolfram.com/BivariateNormalDistribution.html" target="alexandria_uri">http://mathworld.wolfram.com/BivariateNormalDistribution.html</a>"&gt;</em>
+<a name="455" href="#455">455</a> <em class="jxr_javadoccomment">     * Bivariate Normal Distribution&lt;/a&gt;.&lt;/p&gt;</em>
+<a name="456" href="#456">456</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a name="457" href="#457">457</a> <em class="jxr_javadoccomment">     * &lt;strong&gt; Preconditions:&lt;/strong&gt;&lt;ul&gt;</em>
+<a name="458" href="#458">458</a> <em class="jxr_javadoccomment">     * &lt;li&gt;If there are fewer that &lt;strong&gt;three&lt;/strong&gt; observations in the </em>
+<a name="459" href="#459">459</a> <em class="jxr_javadoccomment">     * model, or if there is no variation in x, this returns </em>
+<a name="460" href="#460">460</a> <em class="jxr_javadoccomment">     * &lt;code&gt;Double.NaN&lt;/code&gt;.</em>
+<a name="461" href="#461">461</a> <em class="jxr_javadoccomment">     * &lt;/li&gt;</em>
+<a name="462" href="#462">462</a> <em class="jxr_javadoccomment">     * &lt;li&gt;&lt;code&gt;(0 &lt; alpha &lt; 1)&lt;/code&gt;; otherwise an </em>
+<a name="463" href="#463">463</a> <em class="jxr_javadoccomment">     * &lt;code&gt;IllegalArgumentException&lt;/code&gt; is thrown.</em>
+<a name="464" href="#464">464</a> <em class="jxr_javadoccomment">     * &lt;/li&gt;&lt;/ul&gt;&lt;/p&gt; </em>
+<a name="465" href="#465">465</a> <em class="jxr_javadoccomment">     *</em>
+<a name="466" href="#466">466</a> <em class="jxr_javadoccomment">     * @param alpha the desired significance level </em>
+<a name="467" href="#467">467</a> <em class="jxr_javadoccomment">     * @return half-width of 95% confidence interval for the slope estimate</em>
+<a name="468" href="#468">468</a> <em class="jxr_javadoccomment">     * @throws MathException if the confidence interval can not be computed.</em>
+<a name="469" href="#469">469</a> <em class="jxr_javadoccomment">     */</em>
+<a name="470" href="#470">470</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">double</strong> getSlopeConfidenceInterval(<strong class="jxr_keyword">double</strong> alpha)
+<a name="471" href="#471">471</a>         <strong class="jxr_keyword">throws</strong> <a href="../../../../../../org/apache/commons/math/MathException.html">MathException</a> {
+<a name="472" href="#472">472</a>         <strong class="jxr_keyword">if</strong> (alpha &gt;= 1 || alpha &lt;= 0) {
+<a name="473" href="#473">473</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> IllegalArgumentException();
+<a name="474" href="#474">474</a>         }
+<a name="475" href="#475">475</a>         <strong class="jxr_keyword">return</strong> getSlopeStdErr() *
+<a name="476" href="#476">476</a>             distribution.inverseCumulativeProbability(1d - alpha / 2d);
+<a name="477" href="#477">477</a>     }
+<a name="478" href="#478">478</a> 
+<a name="479" href="#479">479</a>     <em class="jxr_javadoccomment">/**</em>
+<a name="480" href="#480">480</a> <em class="jxr_javadoccomment">     * Returns the significance level of the slope (equiv) correlation. </em>
+<a name="481" href="#481">481</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a name="482" href="#482">482</a> <em class="jxr_javadoccomment">     * Specifically, the returned value is the smallest &lt;code&gt;alpha&lt;/code&gt;</em>
+<a name="483" href="#483">483</a> <em class="jxr_javadoccomment">     * such that the slope confidence interval with significance level</em>
+<a name="484" href="#484">484</a> <em class="jxr_javadoccomment">     * equal to &lt;code&gt;alpha&lt;/code&gt; does not include &lt;code&gt;0&lt;/code&gt;.</em>
+<a name="485" href="#485">485</a> <em class="jxr_javadoccomment">     * On regression output, this is often denoted &lt;code&gt;Prob(|t| &gt; 0)&lt;/code&gt;</em>
+<a name="486" href="#486">486</a> <em class="jxr_javadoccomment">     * &lt;/p&gt;&lt;p&gt;</em>
+<a name="487" href="#487">487</a> <em class="jxr_javadoccomment">     * &lt;strong&gt;Usage Note&lt;/strong&gt;:&lt;br&gt;</em>
+<a name="488" href="#488">488</a> <em class="jxr_javadoccomment">     * The validity of this statistic depends on the assumption that the </em>
+<a name="489" href="#489">489</a> <em class="jxr_javadoccomment">     * observations included in the model are drawn from a</em>
+<a name="490" href="#490">490</a> <em class="jxr_javadoccomment">     * &lt;a href="<a href="http://mathworld.wolfram.com/BivariateNormalDistribution.html" target="alexandria_uri">http://mathworld.wolfram.com/BivariateNormalDistribution.html</a>"&gt;</em>
+<a name="491" href="#491">491</a> <em class="jxr_javadoccomment">     * Bivariate Normal Distribution&lt;/a&gt;.&lt;/p&gt;</em>
+<a name="492" href="#492">492</a> <em class="jxr_javadoccomment">     * &lt;p&gt;</em>
+<a name="493" href="#493">493</a> <em class="jxr_javadoccomment">     * If there are fewer that &lt;strong&gt;three&lt;/strong&gt; observations in the </em>
+<a name="494" href="#494">494</a> <em class="jxr_javadoccomment">     * model, or if there is no variation in x, this returns </em>
+<a name="495" href="#495">495</a> <em class="jxr_javadoccomment">     * &lt;code&gt;Double.NaN&lt;/code&gt;.&lt;/p&gt;</em>
+<a name="496" href="#496">496</a> <em class="jxr_javadoccomment">     *</em>
+<a name="497" href="#497">497</a> <em class="jxr_javadoccomment">     * @return significance level for slope/correlation</em>
+<a name="498" href="#498">498</a> <em class="jxr_javadoccomment">     * @throws MathException if the significance level can not be computed.</em>
+<a name="499" href="#499">499</a> <em class="jxr_javadoccomment">     */</em>
+<a name="500" href="#500">500</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">double</strong> getSignificance() <strong class="jxr_keyword">throws</strong> MathException {
+<a name="501" href="#501">501</a>         <strong class="jxr_keyword">return</strong> 2d * (1.0 - distribution.cumulativeProbability(
+<a name="502" href="#502">502</a>                     Math.abs(getSlope()) / getSlopeStdErr()));
+<a name="503" href="#503">503</a>     }
+<a name="504" href="#504">504</a> 
+<a name="505" href="#505">505</a>     <em class="jxr_comment">// ---------------------Private methods-----------------------------------</em>
+<a name="506" href="#506">506</a> 
+<a name="507" href="#507">507</a>     <em class="jxr_javadoccomment">/**</em>
+<a name="508" href="#508">508</a> <em class="jxr_javadoccomment">    * Returns the intercept of the estimated regression line, given the slope.</em>
+<a name="509" href="#509">509</a> <em class="jxr_javadoccomment">    * &lt;p&gt;</em>
+<a name="510" href="#510">510</a> <em class="jxr_javadoccomment">    * Will return &lt;code&gt;NaN&lt;/code&gt; if slope is &lt;code&gt;NaN&lt;/code&gt;.&lt;/p&gt;</em>
+<a name="511" href="#511">511</a> <em class="jxr_javadoccomment">    *</em>
+<a name="512" href="#512">512</a> <em class="jxr_javadoccomment">    * @param slope current slope</em>
+<a name="513" href="#513">513</a> <em class="jxr_javadoccomment">    * @return the intercept of the regression line</em>
+<a name="514" href="#514">514</a> <em class="jxr_javadoccomment">    */</em>
+<a name="515" href="#515">515</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">double</strong> getIntercept(<strong class="jxr_keyword">double</strong> slope) {
+<a name="516" href="#516">516</a>         <strong class="jxr_keyword">return</strong> (sumY - slope * sumX) / ((<strong class="jxr_keyword">double</strong>) n);
+<a name="517" href="#517">517</a>     }
+<a name="518" href="#518">518</a> 
+<a name="519" href="#519">519</a>     <em class="jxr_javadoccomment">/**</em>
+<a name="520" href="#520">520</a> <em class="jxr_javadoccomment">     * Computes SSR from b1.</em>
+<a name="521" href="#521">521</a> <em class="jxr_javadoccomment">     * </em>
+<a name="522" href="#522">522</a> <em class="jxr_javadoccomment">     * @param slope regression slope estimate</em>
+<a name="523" href="#523">523</a> <em class="jxr_javadoccomment">     * @return sum of squared deviations of predicted y values</em>
+<a name="524" href="#524">524</a> <em class="jxr_javadoccomment">     */</em>
+<a name="525" href="#525">525</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">double</strong> getRegressionSumSquares(<strong class="jxr_keyword">double</strong> slope) {
+<a name="526" href="#526">526</a>         <strong class="jxr_keyword">return</strong> slope * slope * sumXX;
+<a name="527" href="#527">527</a>     }
+<a name="528" href="#528">528</a>     
+<a name="529" href="#529">529</a>     <em class="jxr_javadoccomment">/**</em>
+<a name="530" href="#530">530</a> <em class="jxr_javadoccomment">     * Modify the distribution used to compute inference statistics.</em>
+<a name="531" href="#531">531</a> <em class="jxr_javadoccomment">     * @param value the new distribution</em>
+<a name="532" href="#532">532</a> <em class="jxr_javadoccomment">     * @since 1.2</em>
+<a name="533" href="#533">533</a> <em class="jxr_javadoccomment">     */</em>
+<a name="534" href="#534">534</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setDistribution(<a href="../../../../../../org/apache/commons/math/distribution/TDistribution.html">TDistribution</a> value) {
+<a name="535" href="#535">535</a>         distribution = value;
+<a name="536" href="#536">536</a>         
+<a name="537" href="#537">537</a>         <em class="jxr_comment">// modify degrees of freedom</em>
+<a name="538" href="#538">538</a>         <strong class="jxr_keyword">if</strong> (n &gt; 2) {
+<a name="539" href="#539">539</a>             distribution.setDegreesOfFreedom(n - 2);
+<a name="540" href="#540">540</a>         }
+<a name="541" href="#541">541</a>     }
+<a name="542" href="#542">542</a> }
+</pre>
+<hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>
+</html>
+

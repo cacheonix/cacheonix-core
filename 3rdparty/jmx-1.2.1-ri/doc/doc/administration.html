@@ -1,0 +1,166 @@
+<HTML>
+<HEAD>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+    <!-- Created by: Andy KASS, 22-Sept-1999 -->
+
+    <TITLE>JMX RI</TITLE>
+
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF"
+      LINK="#0000FF" VLINK="#000077" ALINK="#FF0000">
+
+<TABLE BORDER=0 WIDTH="100%">
+    <TR>
+        <TD><IMG SRC="images/smi.logo.gif" ALT="Sun Microsystems, Inc"
+                 HEIGHT=43 WIDTH=120>&nbsp;</TD>
+        <TD ALIGN=right>
+            <B><A HREF="../index.html">JMX Reference Implementation</A><BR>
+                Tutorial</B></TD>
+    </TR>
+</TABLE>
+<HR>
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+
+    <TR>
+        <TD WIDTH="43%" ALIGN="left" VALIGN="top"><A HREF="mbeanview.html">
+            <IMG SRC="images/leftarrow.gif" BORDER="0" ALT="[ Previous ]"><BR>
+            The MBean View</A></TD>
+
+        <TD WIDTH="14%" ALIGN="center" VALIGN="top"><A HREF="tutorial.html">
+            <IMG SRC="images/uparrow.gif" BORDER="0" ALT="[ Contents ]"><BR>
+            Contents</A></TD>
+
+        <TD WIDTH="43%" ALIGN="right" VALIGN="top"><A HREF="managing.html">
+            <IMG SRC="images/rightarrow.gif" BORDER="0" ALT="[ Next ]"><BR>
+            Instantiating and Managing MBeans</A></TD>
+
+    </TR>
+</TABLE>
+<HR>
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<CENTER>
+    <H1>
+        Agent Administration
+    </H1>
+</CENTER>
+<BLOCKQUOTE>
+
+    <B><FONT SIZE=+1 COLOR=#ACA6CF>Action: &nbsp;</FONT></B>Click on the
+    "Admin" button in the agent view to bring up the agent
+    administration page in your browser window.<P>
+
+    <CENTER><IMG SRC="images/admin.gif" BORDER="2" HEIGHT=436 WIDTH=548>
+    </CENTER>
+    <P>
+
+        From this page, you can create or unregister any MBean. To
+        instantiate an MBean, its class must be available in the classpath of
+        the agent application. Optionally, you can specify a different class
+        loader in the appropriate field, but this is not covered in this
+        tutorial--please refer to the chapter in the JMX<SUP><FONT SIZE=-2>TM</FONT>
+    </SUP> specification on class loading.
+
+    <P>
+
+        The first two fields are mandatory for all administrative actions. The
+        "Domain" and "Keys" fields define the object name, whether for a new
+        MBean to be created or the name of an existing MBean to unregister.
+        Object names are described in the next paragraph. The "Java Class" is
+        the full class name of the object to be instantiated as a new
+        MBean. This field is ignored when unregistering an MBean.
+
+        <A NAME="ObjectNames"><H3>Object Names</H3></A>
+
+        As defined in the JMX specification, all registered MBeans must have a
+        unique object name given by:<BR>
+
+    <CENTER><I>DomainName</I><CODE>:</CODE><I>property</I><CODE>=</CODE><I>value</I>[<CODE>,</CODE><I>property2</I>=<I>value2</I>]<SUP>*</SUP>
+    </CENTER>
+    <BR>
+
+    The elements of the object name string can contain any characters
+    except <CODE>: , = * ?</CODE>. However, special characters can be used
+    between quotes. The <I>DomainName</I> is used to group
+    MBeans that might be related since the MBean server makes it simple to
+    query or filter MBeans using the domain. Property-value pairs in the
+    keys usually identify individual MBeans, for example with a serial
+    number or a name.<P>
+
+    In all cases, it is up to the developer to assign a semantic meaning
+    to the domain, property and value strings. The MBean server only
+    checks that a given name is unique inside an agent.
+
+    <P>
+
+        <A NAME="Actions"><H3>Adminstrative Actions</H3></A>
+
+        You can select one of three actions on this page:
+    <P>
+
+    <UL>
+        <LI><B>Create</B> - Instantiate the given Java class of an MBean
+            and register the new instance in the MBean server. If registration is
+            successful, the MBean will then appear in the agent view. The class must
+            have a constructor without parameters to be created in this
+            way.<BR>&nbsp;</LI>
+
+        <LI><B>Unregister</B> - Unregisters an MBean from the MBean server so
+            that it is no longer available in the agent. The class instance is not
+            explicitly deleted, though if no other references to it exist, it will
+            be garbage collected.<BR>&nbsp;</LI>
+
+        <LI><B>Constructors</B> - Produces the list of constructors at the
+            bottom of the administration page for the given Java class. This lets
+            you provide parameters to a specific constructor and create the MBean
+            in this manner. This is the only way to create MBeans which do not
+            have a no-parameter constructor.<P>
+
+                Note: the HTML adaptor does not currently handle constructors for
+                dynamic MBeans.</LI>
+    </UL>
+
+    You click the "Send Request" button once you have filled in the
+    required fields and selected the desired action. The HTML adaptor will
+    process the request and update the page with the action results
+    appended to the end. The text fields are not cleared after an action,
+    so you can modify them for another action, for example to perform multiple
+    creations. The "Reset" button will return the fields to their last
+    posted value after you have modified them.<P>
+
+</BLOCKQUOTE>
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<HR>
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+
+    <TR>
+        <TD WIDTH="43%" ALIGN="left" VALIGN="top"><A HREF="mbeanview.html">
+            <IMG SRC="images/leftarrow.gif" BORDER="0" ALT="[ Previous ]"><BR>
+            The MBean View</A></TD>
+
+        <TD WIDTH="14%" ALIGN="center" VALIGN="top"><A HREF="tutorial.html">
+            <IMG SRC="images/uparrow.gif" BORDER="0" ALT="[ Contents ]"><BR>
+            Contents</A></TD>
+
+        <TD WIDTH="43%" ALIGN="right" VALIGN="top"><A HREF="managing.html">
+            <IMG SRC="images/rightarrow.gif" BORDER="0" ALT="[ Next ]"><BR>
+            Instantiating and Managing MBeans</A></TD>
+
+    </TR>
+</TABLE>
+<HR>
+
+<IMG SRC="images/java_red.gif" ALT="Java coffee cup logo"
+     HEIGHT=85 WIDTH=49 ALIGN=RIGHT>
+
+<P>
+    <FONT SIZE=-1><A HREF="copyright.html">Copyright</A> 2000-2003
+        Sun Microsystems, Inc.,
+        &nbsp;<BR>
+        All rights reserved.</FONT>
+
+<P>
+
+<P>
+    &nbsp;
+</BODY>
+</HTML>

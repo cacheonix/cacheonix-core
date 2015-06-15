@@ -1,0 +1,165 @@
+<?xml version="1.0"?>
+
+<project name="petportal" basedir="." default="usage">
+
+	<property name="name" value="petportal"/>
+
+	<property name="war.dir" value="war"/>
+	<property name="src.dir" value="src"/>
+	<property name="build.dir" value=".classes"/>
+	<property name="docs.dir" value="${war.dir}/docs"/>
+	<property name="weblib.dir" value="${war.dir}/WEB-INF/lib"/>
+	<property name="dist.dir" value="dist"/>
+
+	<property name="spring.root" value="../.."/>
+
+
+	<path id="master-classpath">
+
+		<fileset dir="${spring.root}/lib/jakarta-commons">
+			<include name="commons-logging.jar"/>
+		</fileset>
+		<fileset dir="${spring.root}/dist">
+			<include name="spring.jar"/>
+		</fileset>
+		<fileset dir="${spring.root}/dist/modules">
+      <include name="spring-webmvc.jar"/>
+			<include name="spring-webmvc-portlet.jar"/>
+		</fileset>
+
+	</path>
+	
+	<path id="build-classpath">
+
+		<fileset dir="${spring.root}/lib/portlet">
+			<include name="portlet-api.jar"/>
+		</fileset>
+
+	</path>
+
+
+	<target name="usage">
+
+		<echo message=""/>
+		<echo message="PetPortal build file"/>
+		<echo message="------------------------------------------------------"/>
+		<echo message=""/>
+		<echo message="Available targets are:"/>
+		<echo message=""/>
+		<echo message="clean    --> Clean output dirs"/>
+		<echo message="build    --> Compile main Java sources and copy libraries"/>
+		<echo message="docs     --> Create complete Javadoc documentation"/>
+		<echo message="warfile  --> Build the web application archive"/>
+		<echo message="all      --> Clean, build, docs, warfile"/>
+		<echo message=""/>
+
+	</target>
+
+
+	<target name="clean" description="Clean output dirs (build, docs, weblib, dist)">
+
+		<delete dir="${build.dir}"/>
+		<delete dir="${docs.dir}"/>
+		<delete dir="${weblib.dir}"/>
+		<delete dir="${dist.dir}"/>
+
+	</target>
+
+
+	<target name="build" description="Compile main source tree java files into class files, generate jar files">
+
+		<mkdir dir="${build.dir}"/>
+
+		<javac destdir="${build.dir}" source="1.5" target="1.5" debug="true"
+				deprecation="false" optimize="false" failonerror="true">
+			<src path="${src.dir}"/>
+			<classpath refid="master-classpath"/>
+			<classpath refid="build-classpath"/>
+		</javac>
+
+		<mkdir dir="${weblib.dir}"/>
+
+		<jar jarfile="${weblib.dir}/${name}.jar" compress="true" basedir="${build.dir}"/>
+
+		<copy todir="${weblib.dir}" preservelastmodified="true">
+			<fileset dir="${spring.root}/lib/j2ee">
+				<include name="jstl.jar"/>
+			</fileset>
+			<fileset dir="${spring.root}/lib/jakarta-commons">
+				<include name="commons-fileupload.jar"/>
+				<include name="commons-io.jar"/>
+				<include name="commons-logging.jar"/>
+			</fileset>
+			<fileset dir="${spring.root}/lib/jakarta-taglibs">
+				<include name="standard.jar"/>
+			</fileset>
+			<fileset dir="${spring.root}/lib/log4j">
+				<include name="log4j-*.jar"/>
+			</fileset>
+			<fileset dir="${spring.root}/dist">
+				<include name="spring.jar"/>
+			</fileset>
+			<fileset dir="${spring.root}/dist/modules">
+        <include name="spring-webmvc.jar"/>
+				<include name="spring-webmvc-portlet.jar"/>
+			</fileset>
+		</copy>
+
+	</target>
+
+
+	<target name="docs" description="Create complete Javadoc documentation">
+
+		<delete dir="${docs.dir}"/>
+
+		<mkdir dir="${docs.dir}"/>
+
+		<javadoc sourcepath="${src.dir}" destdir="${docs.dir}" windowtitle="PetPortal"
+				source="1.5" author="true" version="true" use="true" packagenames="*">
+			<doctitle><![CDATA[<h1>PetPortal</h1>]]></doctitle>
+			<bottom><![CDATA[<i>John A. Lewis, Mark Fisher, Juergen Hoeller - 2007.</i>]]></bottom>
+			<classpath refid="master-classpath"/>
+			<classpath refid="build-classpath"/>
+		</javadoc>
+
+	</target>
+
+
+	<target name="dist" depends="warfile">
+		<!--
+			Delegate to warfile target by depending on it. dist is just to offer
+			a generic target name across all Spring sample apps that may be used
+			for autobuilds testing.
+		-->
+	</target>
+	
+	<target name="warfile" depends="build" description="Build the web application archive">
+		
+		<antcall target="create.warfile"/>
+	
+	</target>
+
+
+	<target name="create.warfile" depends="build,docs" description="Build the web application archive">
+
+		<mkdir dir="${dist.dir}"/>
+
+		<war warfile="${dist.dir}/${name}.war" basedir="${war.dir}" webxml="${war.dir}/WEB-INF/web.xml">
+			<include name="*"/>
+			<include name="docs/**"/>
+			<include name="images/**"/>
+			<include name="WEB-INF/*.*"/>
+			<exclude name="WEB-INF/web.xml"/>
+			<include name="WEB-INF/classes/*.*"/>
+			<include name="WEB-INF/lib/**"/>
+			<include name="WEB-INF/context/**"/>
+			<include name="WEB-INF/jsp/**"/>
+			<exclude name="**/.*"/>
+		</war>
+
+	</target>
+
+
+	<target name="all" depends="clean,build,docs,warfile" description="Clean,build,docs,warfile"/>
+
+</project>

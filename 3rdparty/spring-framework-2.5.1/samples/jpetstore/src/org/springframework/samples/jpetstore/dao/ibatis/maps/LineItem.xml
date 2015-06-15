@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="LineItem">
+
+  <resultMap id="result" class="org.springframework.samples.jpetstore.domain.LineItem">
+    <result property="orderId" column="orderid" columnIndex="1"/>
+    <result property="lineNumber" column="linenum" columnIndex="2"/>
+    <result property="itemId" column="itemid" columnIndex="3"/>
+    <result property="quantity" column="quantity" columnIndex="4"/>
+    <result property="unitPrice" column="unitprice" columnIndex="5"/>
+  </resultMap>
+
+  <select id="getLineItemsByOrderId" resultMap="result">
+    select orderid, linenum, itemid, quantity, unitprice from lineitem where orderid = #value#
+  </select>
+
+  <insert id="insertLineItem">
+    insert into lineitem (orderid, linenum, itemid, quantity, unitprice) values (#orderId#, #lineNumber#, #itemId#, #quantity#, #unitPrice#)
+  </insert>
+
+</sqlMap>

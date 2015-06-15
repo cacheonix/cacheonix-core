@@ -1,0 +1,84 @@
+<project name="cacheonix-examples" default="usage">
+
+   <!-- Project properties -->
+   <property name="classes.dir" value="temp/classes"/>
+   <property name="src.dir" value="src"/>
+   <property name="cacheonix.jar" value="lib/cacheonix.jar"/>
+   <property name="junit.jar" value="lib/junit.jar"/>
+   <property name="dbunit.jar" value="lib/dbunit-2.4.2.jar"/>
+   <property name="hsqldb.jar" value="lib/hsqldb-1.8.0.10.jar"/>
+   <property name="test.temp.dir" value="temp/test/temp"/>
+   <property name="test.log.dir" value="temp/test/logs"/>
+
+
+   <!-- Defines classpath to build examples -->
+   <path id="build.classpath">
+      <pathelement path="${cacheonix.jar}"/>
+      <pathelement path="${junit.jar}"/>
+      <pathelement path="${dbunit.jar}"/>
+   </path>
+
+
+   <!-- Defines classpath to run examples -->
+   <path id="test.classpath">
+      <path refid="build.classpath"/>
+      <pathelement path="${hsqldb.jar}"/>
+      <pathelement path="${classes.dir}"/>
+   </path>
+
+
+   <!-- Outputs usage information -->
+   <target name="usage">
+      <echo message="all              - builds and runs all example"/>
+      <echo message="all.clean        - builds builds and runs all examples cleanly"/>
+   </target>
+
+
+   <!-- Cleans up working directories -->
+   <target name="clean">
+      <delete dir="temp"/>
+   </target>
+
+
+   <!-- Prepares -->
+   <target name="init">
+      <mkdir dir="${classes.dir}"/>
+      <mkdir dir="${test.temp.dir}"/>
+      <mkdir dir="${test.log.dir}"/>
+   </target>
+
+
+   <!-- Builds examples -->
+   <target name="build" depends="init">
+      <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="build.classpath" fork="yes" debug="yes"/>
+   </target>
+
+
+   <!-- Runs tests -->
+   <target name="test" depends="build">
+      <junit fork="yes" printsummary="on" haltonfailure="no" haltonerror="no"
+             errorproperty="test.errors" failureproperty="test.failures" maxmemory="100000000">
+         <sysproperty key="log4j.configuration" value="conf/log4j.properties"/>
+         <classpath refid="test.classpath"/>
+         <jvmarg value="-Dcacheonix.examples.cacheonix.config.xml=${basedir}/conf"/>
+         <jvmarg value="-Djava.io.tmpdir=${test.temp.dir}"/>
+         <jvmarg value="-Dtest.temp.dir=${test.temp.dir}"/>
+         <jvmarg value="-Djava.awt.headless=true"/>
+         <batchtest todir="${test.log.dir}" unless="test.single">
+            <fileset dir="${classes.dir}">
+               <include name="**/*Test.class"/>
+               <exclude name="**/*$*.class"/>
+            </fileset>
+         </batchtest>
+         <formatter type="xml"/>
+         <formatter type="plain" usefile="false"/>
+      </junit>
+   </target>
+
+
+   <!-- Initializes, builds, runs tests -->
+   <target name="all" depends="init, build, test"/>
+
+   <!-- Cleans up, initializes, builds, runs tests -->
+   <target name="all.clean" depends="clean, all"/>
+</project>

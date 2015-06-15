@@ -1,0 +1,73 @@
+<cacheonix xmlns="http://www.cacheonix.com/schema/configuration"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.cacheonix.com/schema/configuration http://www.cacheonix.com/schema/cacheonix-config-2.0.xsd">
+
+   <tempDir path="${java.io.temp}"/>
+
+   <local>
+
+      <!--
+      Local caches
+      -->
+      <localCache name="org.cacheonix.example.LRULocalExample1">
+         <store>
+            <lru maxElements="1000" maxBytes="10mb"/>
+            <overflowToDisk maxOverflowBytes="1mb"/>
+            <expiration timeToLive="1000s"/>
+         </store>
+      </localCache>
+
+      <localCache name="org.cacheonix.example.LRULocalExample2">
+         <store>
+            <lru maxElements="1000" maxBytes="10mb"/>
+            <overflowToDisk maxOverflowBytes="1mb"/>
+            <expiration timeToLive="1000s"/>
+         </store>
+      </localCache>
+
+      <!--
+      Cache to support testing.
+      -->
+      <localCache name="local.test.cache">
+         <store>
+            <lru maxElements="10" maxBytes="10mb"/>
+            <overflowToDisk maxOverflowBytes="1mb"/>
+            <expiration timeToLive="1000s"/>
+         </store>
+      </localCache>
+
+      <!--
+      Cache to support testing of iBatis plugin.
+      -->
+      <localCache name="test_ibatis_cache">
+         <store>
+            <lru maxElements="10" maxBytes="10mb"/>
+            <overflowToDisk maxOverflowBytes="1mb"/>
+            <expiration timeToLive="1000s"/>
+         </store>
+      </localCache>
+
+      <!--
+      Cache to support testing of Hibernate plugin.
+      -->
+      <localCache name="test_hibernate_cache">
+         <store>
+            <lru maxElements="10" maxBytes="10mb"/>
+            <overflowToDisk maxOverflowBytes="1mb"/>
+            <expiration timeToLive="1000s"/>
+         </store>
+      </localCache>
+
+
+      <!--
+      Cache Annotation Test Config default
+      -->
+      <localCache name="CacheonixAnnotatedCache">
+         <store>
+            <lru maxElements="10" maxBytes="10mb"/>
+            <overflowToDisk maxOverflowBytes="1mb"/>
+            <expiration timeToLive="1000s"/>
+         </store>
+      </localCache>
+   </local>
+</cacheonix>

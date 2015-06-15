@@ -1,0 +1,423 @@
+Build Date: 2006/11/30 17:16
+Build Number: 677
+
+------------------------------
+ 2.3.0 -
+------------------------------
+ o DEPRECATED All PaginatedList related features due to misuse, minimal applicability and inflexibility
+ o DEPRECATED DAO Framework -- Removed from primary distribution, available as a separate download
+ o Removed DAO framework from Subversion source tree (tagged before removal)
+ o Changed deployment file naming convention, dropped "DBL" and lowercased all
+ o Merged common and sqlmap jar files (no more DAO means there's no point in keeping commons separate)
+ o Implemented transaction level PreparedStatement caching
+ o Fixed IBATIS-335 - Don't call setQueryTimeout if no value specified
+ o Fixed IBATIS-338 - NestedSqlException stack overflow
+ o Fixed IBATIS-340 - Provide ability to override the default encoding in the Resources class
+ o Fixed IBATIS-353 - Probe exception when using inheritance hierarchies
+ o Fixed IBATIS-366 - Use ResultObjectFactory to create nested classes
+ o Fixed IBATIS-367 - Inner class type handler is not handled correctly within maps
+ o Fixed IBATIS-373 - Allow iBATIS to build SqlMapClient from InputStream
+ o Fixed IBATIS-374 - Allow <resultMap> with no <result> - must extend another <resultMap>
+ 
+
+------------------------------
+ 2.2.0 - Aug 15, 2006
+------------------------------
+
+ o Removed iBATIS 1.x compatibility libraries, they are no longer supported.
+ o Removed deprectated JtaDaoTemplate
+ o Removed custom nested transactions (JDBC 1.4 now required)
+ o Added support for ResultSet OUT params from stored procs (e.g. Oracle Ref Cursor)
+ o Added support for Multiple ResultSets mapped to corresponding ResultMaps or ResultClasses.
+ o Added support for private properties.
+
+ o Fixed IBATIS-320 - openSession() returns same object
+ o Fixed IBATIS-325 - DateTypeHandler uses static SimpleDateFormat instance. Not thread-safe.
+ o Fixed IBATIS-224 - isNotNull node causes typehandler mappings in statement to fail
+ o Fixed IBATIS-249 - Race conditions in Throttle lead to thread blockage popping items from ThrottledPools under stress
+ o Fixed IBATIS-250 - CLONE -SELECT statement returns unexpected result when 'groupBy' and 'nullValue' are specified in resultMaps.
+ o Fixed IBATIS-258 - Invalid DOCTYPE instruction in example SQL Map file in documentation bundle.
+ o Fixed IBATIS-260 - Hash conflict with groupBy resultMaps
+ o Fixed IBATIS-261 - CLONE -The method executor.executeBatch() always returns 0.
+ o Fixed IBATIS-269 - SqlExecutor calls getMoreResults without checking supportsMultipleResultSets
+ o Fixed IBATIS-281 - Nested iterate tags does not work
+ o Fixed IBATIS-286 - close session upon null user connection
+ o Fixed IBATIS-293 - Fix use of list[]-notation in propertyattributes of dynamic tags
+ o Fixed IBATIS-322 - consistently use the Resources class methods rather than Class.forName() 
+ o Fixed IBATIS-323 - JDBC driver properties not added to driver/connection when using DBCP
+ o Fixed IBATIS-331 - nested result mappings not propagated to extended result maps
+ 
+ o Added IBATIS-22 - Specify Query Timeout
+ o Added IBATIS-50 - Ability to override the default bean creation mechanism
+ o Added IBATIS-109 - Make PaginatedList work with IBM's broken JDBC driver
+ o Added IBATIS-127 - PropertyAccessPlan should put more context information when throwing an exception
+ o Added IBATIS-128 - Detect illegal overloaded JavaBeans properties methods (e.g. setters)
+ o Added IBATIS-150 - Requirement and benefit of groupBy attribute is not clear in SQL Maps Dev Guide
+ o Added IBATIS-159 - A new executeBatchDetailed() method that returns all driver information from batch execution
+ o Added IBATIS-166 - Add overloads for common SqlMapClient methods without parameterObject parameter
+ o Added IBATIS-167 - Improvements in SimpleDataSource
+ o Added IBATIS-176 - Add support for DECIMAL/NUMERIC scale on Stored Procedure Output Parameters
+ o Added IBATIS-204 - Cache layer does no logging of puts, gets, flushes, or removals.
+ o Added IBATIS-205 - Change access modifiers from private to protected in many classes to allow developers to create extensions and subclasses to the iBatis classes
+ o Added IBATIS-209 - Inline TypeHandler Support
+ o Added IBATIS-225 - Reuse resultmap for single bean property
+ o Added IBATIS-230 - Warn when two ids of a <sql> tag are identical
+ o Added IBATIS-242 - Add property getters for ParameterSetter index and ResultGetter name and index
+ o Added IBATIS-263 - Ignore case on type aliases
+ o Added IBATIS-271 - Create no arg methods in the SqlMapDaoTemplate
+ o Added IBATIS-277 - selectKey execution order attribute
+ o Added IBATIS-210 - Enum within Collection is not mapped to custom TypeHandler
+ o Added IBATIS-217 - I would like to see korean document on iBATIS website's document page
+ o Fixed IBATIS-275 - Add comments only to indicate flushDataCache(string) always uses namespace.
+ o Added IBATIS-308 - fetchSize for procedures
+ o Added IBATIS-305 - corrected the documentation about logging, and added some methods to select specific log implementations
+ o Added IBATIS-311 - Allow removeFirstPrepend to fire repeatedly in an <iterate> tag
+ o Added IBATIS-321 - Add logging of prepare operations
+ 
+ 
+------------------------------
+ 2.1.7 - Jan 21, 2006
+------------------------------
+
+ o Fixed IBATIS-218 'i' character in property names, with Turkish locale
+ o Fixed IBATIS-219 NoClassDefFoundError: oracle/toplink/sessions/UnitOfWork
+ o Fixed IBATIS-228 Exception is thrown by TransactionManager when multiple commits are issued against a started transaction.
+ o Fixed IBATIS-229 Method getWriteablePropertyNames in com.ibatis.common.beans.ComplexBeanProbe gets the readable property names
+ o Fixed IBATIS-220 Null Pointer in SqlExecutor.handleResults where ResultSet is null.
+ o Fixed IBATIS-213 SELECT statement returns unexpected result when 'groupBy' and 'nullValue' are specified in resultMaps.
+ o Fixed IBATIS-221 Can't store a List in a Map 
+ o Fixed IBATIS-223 Thread deadlock due to CacheModel.flush() 
+
+------------------------------
+ 2.1.6 - Nov 5, 2005
+------------------------------
+
+ o Fixed IBATIS-198 Call "getDataSource()" of SqlMapClientImpl will cause application to hang
+ o Fixed IBATIS-179 Binaries on webpage use old Hibernate
+ o Fixed IBATIS-174 CacheModel does not support caching null results
+ o Fixed IBATIS-197 Call "getDataSource()" of SqlMapClientImpl will cause application to hang
+ o Fixed IBATIS-131 Fix use of list[]-notation in propertyattributes of dynamic tags
+ o Fixed IBATIS-173 Incorrect resultset retrieve when calling stored procedure
+ o Fixed IBATIS-194 No resultSet found when executing SQL Server stored procedure.
+ o Fixed IBATIS-196 can't use dynamic replace data-source-type over IBATIS ver 2.0.9 library
+ o Fixed IBATIS-191 operation(insert and update) Oracle's(OCI) CLOB and BLOB fail, CLOB will close tomcat, BLOB will miss any DATA
+ o Fixed IBATIS-193 Hidden jar dependicity for iBatis DBL 2.1.5
+ o Fixed IBATIS-175 ResultSetLogProxy doesn't log the result properly
+ o Fixed IBATIS-195 Sqlmap DTD: include tag not permitted in selectKey element
+ o Fixed IBATIS-172 implicit mapping fails on nested column aliases
+ o Fixed IBATIS-185 SqlMapClasspathEntityResolver - Offline public ID resolution value ignored 
+
+------------------------------
+ 2.1.5 - July 17, 2005
+------------------------------
+
+ o Fixed IBATIS-136 groupBy not carried forward to extended result maps
+ o Fixed IBATIS-139 discriminator being applied to too many result maps (thanks Sven)
+ o Fixed IBATIS-152, 149, 116 null result sets now handled properly by JDBC logging classes (thanks Sven)
+ o Fixed IBATIS-146 consumes additional result sets before retrieving output params (JTDS fix)
+ o Fixed IBATIS-130 parameter maps don't allow for complete TypeHandler implementations
+ o Fixed IBATIS-148 parameter maps don't allow for complete TypeHandler implementations
+ o Removed dependency on Commons Logging, will autodetect and use Commons Logging, Log4J, JDK 1.4 or no logging
+ o Improved entity resolvers to be smarter, checks both system and public IDs, and both ibatis.com and apache.org  
+
+------------------------------
+ 2.1.0 - May 16, 2005
+------------------------------
+
+ o Added <discriminator> and <subMap> tags for class inheritance support
+ o Added IBATIS-95 removeFirstPrepend attribute to all tags 
+ o Added IBATIS-95 open and close attributes to all dynamic tags to handle complex queries with bracketing 
+ o Added IBATIS-35 to allow duplicate type aliases
+ o Fixed IBATIS-45 Removed JavaBeanProbe/MapProbe in favor of ComplexBeanProbe 
+ o Fixed IBATIS-79 Problem with nested groupBy resultMaps
+ o Fixed IBATIS-78 JDBC driver properties does not work when using DBCP
+ o Fixed IBATIS-42 bug that prevented dynamic tags from being nested inside an iterate tag
+ o Fixed IBATIS-112 bug that will now allow for the $[]$ notation to be used.
+ o Fixed IBATIS-45 ProbeExceptions with complex beans
+ o Fixed IBATIS-79 Problem with nested groupBy resultMaps
+ o Fixed IBATIS-46 xml parsing issue using jdk 1.3
+ o Fixed IBATIS-102 duplicate code in the SqlMapConfigParser.java
+ o Fixed IBATIS-101 add remapResults attribute to procedure tag in sql-map-2.dtd
+ o Changed SQL executor to always call .execute instead of .executeQuery and .executeUpdate
+ 
+------------------------------
+ 2.0.9B - Feb 20, 2005
+------------------------------
+
+ o Rebuilt on Feb 20th to fix incomplete ZIP file
+ o Fixed IBATIS-24 Add use="true" to javadoc tasks
+ o Fixed IBATIS-25 Included com.ibatis.common not included in JavaDoc
+ o Fixed IBATIS-57 Deprecated ScriptRunner
+ o Fixed IBATIS-47 Add Table of Contents to SqlMaps developer guide
+ o Fixed IBATIS-68 Add PrameterSetter's interface ( getPreparedStatement() )
+ o Fixed IBATIS-55 Throws ArrayIndexOutOfBoundsException when call queryForObject
+ o Fixed IBATIS-41 Sql fragments don´t use namespaces
+ o Fixed IBATIS-51 isParameterAvailable for Maps always returns true
+ o Fixed IBATIS-66 com.ibatis.common.util.Throttle not decrementing Session counter causes application to hang
+ o Fixed IBATIS-61 Inconsistent type handler handling
+ o Fixed IBATIS-70 iBatis Caching Should Not Rely on hashCode Alone
+ o Fixed IBATIS-72 Placeholders in sqlmap are not resolved in config
+ o Fixed IBATIS-74 Problem using a "url" based properties file
+ o Fixed IBATIS-34 Exception while serializable NULL value (CacheModel)
+
+------------------------------
+ 2.0.9 - Dec 31, 2004
+------------------------------
+
+ o Added solution for N+1 selects for any number of 1:M and M:N relationships.
+ o Added groupBy="..." for Result Maps to deal with repeating groups.
+ o Added resultMap="..." to result mapping to deal with sub groups.
+ o Added remapResults="true|false" remapping of dynamic result set metadata.
+ o Added support for isolation levels specified in .startTransaction()
+ o Added support for SQL "includes" to reduce/eliminate repeated SQL
+ o Added default CLOB/BLOB support that should work for most databases (thanks to Alexander and Martin)
+ o Added TopLink DAO Transaction Manager and Template (thanks to Wayne Gentile!)
+ o Custom type handlers can now directly implement the TypeHandler interface
+ o Refactored Builder/Parser to be more maintainable (nodelets)
+ o Verified that duplicate statement names throw an exception. [982534]
+ o SqlExecutor now always exhausts result sets with ps.getMoreResults()
+ o Fixed new format inline parameter parsing error [ibatis-23]
+
+------------------------------
+ 2.0.8 - Nov 26, 2004
+------------------------------
+
+ o Probes now always return true for hasReadable/hasWriteable property checks.
+ o Fixed OUT/INOUT parameters to proc not retrieved properly (ibatis-12)
+ o Verified missing columns throw an exception (ibatis-16)
+ o Completely $supplied$ SQL statements are not supported (ibatis-17)
+ o Verified parameter type handlers are applied (ibatis-ll)
+ o Fixed cache model size of 1 disables caching (ibatis-7)
+ o Fixed LRU cache memory leak (ibatis-1)
+ o Added commitRequired attribute to transactionManager to force commit even on query (ibatis-10,3)
+
+------------------------------
+ 2.0.7 - Oct 03, 2004
+------------------------------
+
+ o Added new inline parameter map format (#columnName,javaType=string,jdbcType=VARCHAR# etc.)
+ o Added direct Set type property support
+ o Added "OBJECT" type handler mapping to help deal with  unsupported types
+ o Added better exception messages and improved OJB DAO transaction support
+ o Fixed complex properties being instantiated, even if ultimate value is null
+ o Fixed DAO builder so that parameter properties override file props
+ o Fixed CTH so nulls are now sent to custom setParameter
+ o Fixed DAO unclosed Connection in JTA transaction 
+ o Fixed DAO possible (unlikely) unclosed JDBC connection
+
+------------------------------
+ 2.0.6 - Sep 18, 2004
+------------------------------
+
+ o Changed complex props so select won't be executed if param null
+ o Fixed non-caching null cache result bug
+ o Fixed removeObject bug from fifo and lifo cache
+ o Fixed locale issue with JavaBean property matching
+ o Fixed unclosed statement if result set fails in MS SQL Server
+ o Fixed comments within dao.xml
+ o Fixed undetected duplicate statement names in a single sql map
+ o Fixed inconsistent type handler for Map params without paramclass
+ o Fixed SQLExceptin when populating complex properties
+ o Fixed setters being called for non-OUT parameter objects
+
+------------------------------
+ 2.0.5 - Aug 11, 2004
+------------------------------
+
+ o Added Custom Type Handlers!  (see TypeHandlerCallback)
+ o Added OJB DAO support (Thanks to Pedro Salgado)
+ o Added passthrough methods for Hibernate DAO template
+ o Added JdbcDaoTemplate support to most DAO TX managers
+ o Deprecated JtaDaoTemplate, use JdbcDaoTemplate instead
+ o Fixed reserved XML character encoding for XML types
+ o Fixed Autocommit (true) in JdbcDaoTransaction
+ o Fixed Expanded entity references in XML (for &gt; etc.)
+ o Fixed base probe indexed property accessor
+ o Fixed doubled-up property element for complex DOM props
+
+------------------------------
+ 2.0.4 - Jul 25, 2004
+------------------------------
+
+ o Deprecated getUserConnection() (use getCurrentConnection())
+ o Added getCurrentConnection()
+ o Added openSession(Connection) for easier user connections
+ o Improved user provided connection implementation
+ o Fixed logging bug that prevented SQL from being logged
+ o Fixed resultSetType prepareStatement overloaded method call  
+ o Fixed nullValue replacement when used with dynamic statements
+
+------------------------------
+ 2.0.3 - Jul 16, 2004
+------------------------------
+
+ o Added fetchSize and resultSetType attributes to statement and select
+ o Added parameter count to CacheKey equals for paranoid equality
+ o Removed redundant bit shift in CacheKey update
+ o Refactored cache locking pattern to improve concurrent access to cache models
+ o Improved caching to avoid redundant connection reservations
+ o New property to stop autocommit from being called in EXTERNAL TX Manager
+ o Fixed JDBC types being ignored for hashmap parameter classes
+ o Fixed some rare misleading error messages
+
+------------------------------
+ 2.0.2 - Jun 22, 2004
+------------------------------
+
+ o Fixed nested List in Map parameter (e.g. #list[].id#)
+
+------------------------------
+ 2.0.1 - Jun 21, 2004
+------------------------------
+
+ o Added DefaultAutoCommit property to EXTERNAL transaction manager
+ o Removed redundant throws from template methods
+
+------------------------------
+ 2.0.0 Final - Jun 18, 2004
+------------------------------
+
+ o Added SqlMapDaoTemplate wrapper methods (wraps SqlMapExecutor methods)
+ o Fixed "double.nested" complex properties (no WRITEABLE prop found)
+ o Fixed finalizer triggering lazy loader
+ o Fixed Paginated List caching
+ o Fixed NPE on complex prop without parameter class
+ o Fixed default serialize setting on cache model and improved error msg
+
+------------------------------
+ 2.0.0 RC5 - May 24, 2004
+------------------------------
+
+ o Fixed NPE when no DataSource configured (for Spring)
+ o Fixed uppercase bean property support
+ o Fixed result map getter based typing vs. setter
+ o Fixed javaType attribute support for JavaBeans
+ o Fixed caching of statements containing $simple$ dynamic sql
+ o Fixed List in Map iterate tag problem
+ o Fixed nullValue for primitive result classes of nested select statements
+
+------------------------------
+ 2.0.0 RC4 - May 11, 2004
+------------------------------
+
+ o IMPORTANT: Renamed queryForList(String, Object, RowHandler) BACK TO queryWithRowHandler
+ o Added serialize option to cache model to improve concurrent R/W cache performance
+ o Added DOM type support for results and parameters.
+ o Added DaoManager.getDao(class, contextId) to support for multiple DAO impls
+ o Added access to SqlMapTransactionManager from SQL Map DAOs
+ o Released all DTD constraints for pluggable components (cache, datasource, txmgr, daotx)
+ o Fixed threading issue with StandardDaoManager
+
+------------------------------
+ 2.0.0 RC3 - Apr 19, 2004
+------------------------------
+
+ o Updated DBCP support and centralized config
+ o Newlines (\r, \n) are now stripped from SQL
+ o Properties are passed from DAO builder to SQL Maps builder
+ o Improved OSCache key uniqueness
+
+------------------------------
+ 2.0.0 RC2 - Apr 11, 2004
+------------------------------
+
+ o Added SqlMapClient.flushDataCache()
+ o Added "context." prefix for JNDI InitialContext properties
+ o Added Resources.setDefaultClassLoader()
+ o Fixed specified JDBC type problem with DATE etc.
+ o Fixed DAO JDBC connection not being returned
+ o Fixed queries with no result map error message
+ o Fixed cache key parameter order problem
+ o Fixed multiple calls to ResultSet when logging (ODBC/MSAccess problem)
+ o Fixed unwrapping of proxy exceptions
+ o Fixed convert task temp file bug
+ o Fixed specific statement elements using cache model
+
+------------------------------
+ 2.0.0 RC1 - Mar 20, 2004
+------------------------------
+
+ o Commit/rollback is now only applied if an update occurs.
+ o Improved error messages (please comment if they still suck)
+ o Fixed dynamic SQL with multiple params via result mapped statement
+ o Fixed statement w/ cache models fail with class Cast Exception
+ o Fixed procedure parameterMap instead of resultMap JavaBeanDataExchange.setData()
+ o Fixed procedure calls with no params fails with NPE
+ o Fixed duplicate parameters (#value#...#value#) causes out of bounds exception
+
+------------------------------
+ 2.0.0 Beta 5 - Mar 8, 2004
+------------------------------
+
+ o Added DAO properties forwarding to transaction managers (e.g. SQL Map config)
+ o Added support for both file prop config and prog. properties (file overrides prog.)
+ o Fixed SQL Map statement conversion issue (empty SQL)
+ o Fixed DAO passthrough methods
+ o Fixed DAO commit/close connection
+ o Fixed Property name reuse in parameter maps (PropertyAccessPlan)
+
+------------------------------
+ 2.0.0 Beta 4 - Mar 2, 2004
+------------------------------
+
+ o Includes first "sneak peek" of DAO 2.0 Framework 
+ o Added DAO 1.x TX Pool classes for real SQL Maps 2.0 support
+ o Added SqlMapSession.close()
+ o Refactored SqlMapSession and SqlMapClient interfaces
+ o Renamed SqlMapClient.getSession() to .openSession()
+ o Renamed files to ibatis-sqlmap-2.jar, ibatis-common-2.jar and ibatis-dao-2.jar
+ o Moved compatibilitiy JARs and DAO 1.x to lib/optional/compatibility
+ o Fixed hasReadable/WriteableProperty check bug
+ o Fixed addBatch Bug
+ o Fixed Result Map nullValue type conversion
+
+------------------------------
+ 2.0.0 Beta 3 - Feb 18, 2004
+------------------------------
+
+ o Added new namespaces
+ o Renamed <procedure> output="true" to mode="IN|OUT|INOUT"
+ o Renamed queryWithRowHandler to queryForList(String, Object, RowHandler)
+ o Upgraded DAO JAR to version 1.3.1
+ o Fixed iterative $substitutions[]$
+ o Fixed multiple iterations in a mapped statement
+ o Fixed pure output parameters for stored procs
+ o Fixed stored proc trimming problem
+
+------------------------------
+ 2.0.0 Beta 2 - Jan 18, 2004
+------------------------------
+
+ o Changed (IMPORTANT) cacheModel attribute readWrite="true" to readOnly="false" (more accurate)
+ o Ant task to convert SQL Maps
+ o Updated example log4j.properties and included in /debug directory.
+ o Implemented session based caching
+ o Moved ErrorContext to request scope
+ o Implemented reset methods for scopes
+ o Skipped records use rs.absolute() if ResultSet type is not TYPE_FORWARD_ONLY
+ o Fixed connection proxy logging bug (no output).
+ o Fixed insert element without selectKey (NPE)
+ o Fixed LRU/FIFO aliases (swapped)
+ o Fixed legacy properties left in converted map files
+
+------------------------------
+ 2.0.0 Beta 1 - Jan 11, 2004
+------------------------------
+
+IMPORTANT: 2.0 initially focuses on compatibility, stability and quality.  Very
+           few new features have been added, but the new architecture should make
+           make possible the addition of many great new features.
+
+ o Complete, from the ground up rewrite.
+ o Completely new, but familiar API and XML document structure
+ o Compatibility API for 99% 1.x backward compatibility
+ o New and improved array[] support
+ o New and improved stored proc support (including output params)
+ o New support for auto-gen keys
+ o New URL resource loading of config files
+ o New type aliases for more concise mappings
+ o New XML data types for mappings (direct XML to DB)
+ o New and improved lazy loading of all complex types
+ o Improved overall performance
+ o Reduced library dependencies
+ o Much more...and more yet to come

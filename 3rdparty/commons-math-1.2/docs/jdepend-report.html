@@ -1,0 +1,1753 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Math - JDepend Report Metrics</title>
+    <style type="text/css" media="all">
+      @import url("./css/maven-base.css");
+      @import url("./css/maven-theme.css");
+      @import url("./css/site.css");
+    </style>
+    <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+  <body class="composite">
+    <div id="banner">
+                  <a href="../" id="bannerLeft">
+    
+                                            <img src="../images/logo.png" alt="" />
+    
+            </a>
+                        <a href="index.html" id="bannerRight">
+    
+                                            <img src="images/math.gif" alt="" />
+    
+            </a>
+            <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+            
+  
+    
+            <div class="xleft">
+        Last Published: 18 February 2008
+                  &nbsp;| Version: 1.2
+                      </div>
+            <div class="xright">            <a href="http://www.apachecon.com/" class="externalLink">ApacheCon</a>
+            |
+                <a href="http://www.apache.org" class="externalLink">Apache</a>
+            |
+                <a href="../">Commons</a>
+            
+  
+
+  
+    
+            
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+            
+  
+    
+                   <h5>Math</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="index.html">Overview</a>
+          </li>
+              
+    <li class="none">
+                    <a href="proposal.html">Proposal</a>
+          </li>
+              
+    <li class="none">
+                    <a href="developers.html">Developers Guide</a>
+          </li>
+              
+    <li class="none">
+                    <a href="apidocs/index.html">Javadoc (1.2 release)</a>
+          </li>
+              
+    <li class="none">
+                    <a href="api-1.1/index.html">Javadoc (1.1 release)</a>
+          </li>
+              
+    <li class="none">
+                    <a href="api-1.0/index.html">Javadoc (1.0 release)</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://svn.apache.org/viewvc/commons/proper/math/trunk" class="externalLink">Source Repository (current)</a>
+          </li>
+              
+    <li class="none">
+                    <a href="issue-tracking.html">Issue Tracking</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://wiki.apache.org/commons/Math" class="externalLink">Wiki</a>
+          </li>
+          </ul>
+              <h5>User Guide</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="userguide/index.html">Contents</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/overview.html">Overview</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/stat.html">Statistics</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/random.html">Data Generation</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/linear.html">Linear Algebra</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/analysis.html">Numerical Analysis</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/special.html">Special Functions</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/utilities.html">Utilities</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/complex.html">Complex Numbers</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/distribution.html">Distributions</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/fraction.html">Fractions</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/transform.html">Transform Methods</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/geometry.html">3D Geometry</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/estimation.html">Parametric Estimation</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/optimization.html">Optimization</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/ode.html">Ordinary Differential Equations</a>
+          </li>
+          </ul>
+              <h5>Project Documentation</h5>
+            <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-info.html">Project Information</a>
+                </li>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+            
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+            <li class="expanded">
+                    <a href="project-reports.html">Project Reports</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="changes-report.html">Changes Report</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="checkstyle.html">Checkstyle</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="clirr-report.html">Clirr</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="cpd.html">CPD Report</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="findbugs.html">FindBugs Report</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="apidocs/index.html">JavaDocs</a>
+          </li>
+                  
+    <li class="none">
+              <strong>JDepend</strong>
+        </li>
+                  
+    <li class="none">
+                    <a href="surefire-report.html">Maven Surefire Report</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="pmd.html">PMD Report</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="rat-report.html">RAT Report</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="xref/index.html">Source Xref</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="testapidocs/index.html">Test JavaDocs</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="xref-test/index.html">Test Source Xref</a>
+          </li>
+              </ul>
+        </li>
+          </ul>
+              <h5>Commons</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="../">Home</a>
+          </li>
+              
+                
+              
+      
+              
+        <li class="collapsed">
+                    <a href="../components.html">Components</a>
+                </li>
+              
+                
+              
+      
+              
+        <li class="collapsed">
+                    <a href="../sandbox/index.html">Sandbox</a>
+                </li>
+              
+                
+              
+      
+              
+        <li class="collapsed">
+                    <a href="../dormant/index.html">Dormant</a>
+                </li>
+              
+    <li class="none">
+                    <a href="../volunteering.html">Volunteering</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../patches.html">Contributing Patches</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../building.html">Building Components</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../releases/index.html">Releasing Components</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://wiki.apache.org/commons/FrontPage" class="externalLink">Wiki</a>
+          </li>
+          </ul>
+              <h5>ASF</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://www.apache.org/foundation/sponsorship.html" class="externalLink">Sponsorship</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://www.apache.org/foundation/thanks.html" class="externalLink">Thanks</a>
+          </li>
+          </ul>
+                                           <a href="http://maven.apache.org/" title="Built by Maven" class="poweredBy">
+            <img alt="Built by Maven" src="./images/logos/maven-feather.png"></img>
+          </a>
+                       
+  
+
+  
+    
+            
+  
+    
+        </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <div class="section"><h2>Metric Results</h2>
+[ <a href="#summary">summary</a>
+ ] [ <a href="#packages">packages</a>
+ ] [ <a href="#cycles">cycles</a>
+ ] [ <a href="#explanations">explanations</a>
+ ] <br />
+<br />
+The following document contains the results of a JDepend metric analysis. The various metrics are defined at the bottom of this document.<br />
+<br />
+<a name="summary"></a>
+<h2>Summary</h2>
+[ <a href="#summary">summary</a>
+ ] [ <a href="#packages">packages</a>
+ ] [ <a href="#cycles">cycles</a>
+ ] [ <a href="#explanations">explanations</a>
+ ] <br />
+<br />
+<table class="bodyTable"><tr class="a"><th>Package</th>
+<th>TC</th>
+<th>CC</th>
+<th>AC</th>
+<th>Ca</th>
+<th>Ce</th>
+<th>A</th>
+<th>I</th>
+<th>D</th>
+<th>V</th>
+</tr>
+<tr class="b"><td><a href="#org.apache.commons.math">org.apache.commons.math</a>
+</td>
+<td>9</td>
+<td>9</td>
+<td>0</td>
+<td>15</td>
+<td>4</td>
+<td>0.0%</td>
+<td>21.0%</td>
+<td>79.0%</td>
+<td>1</td>
+</tr>
+<tr class="a"><td><a href="#org.apache.commons.math.analysis">org.apache.commons.math.analysis</a>
+</td>
+<td>27</td>
+<td>19</td>
+<td>8</td>
+<td>3</td>
+<td>7</td>
+<td>30.000002%</td>
+<td>70.0%</td>
+<td>0.0%</td>
+<td>1</td>
+</tr>
+<tr class="b"><td><a href="#org.apache.commons.math.complex">org.apache.commons.math.complex</a>
+</td>
+<td>3</td>
+<td>3</td>
+<td>0</td>
+<td>2</td>
+<td>5</td>
+<td>0.0%</td>
+<td>71.0%</td>
+<td>29.0%</td>
+<td>1</td>
+</tr>
+<tr class="a"><td><a href="#org.apache.commons.math.distribution">org.apache.commons.math.distribution</a>
+</td>
+<td>34</td>
+<td>14</td>
+<td>20</td>
+<td>2</td>
+<td>6</td>
+<td>58.999996%</td>
+<td>75.0%</td>
+<td>34.0%</td>
+<td>1</td>
+</tr>
+<tr class="b"><td><a href="#org.apache.commons.math.estimation">org.apache.commons.math.estimation</a>
+</td>
+<td>9</td>
+<td>5</td>
+<td>4</td>
+<td>0</td>
+<td>5</td>
+<td>44.0%</td>
+<td>100.0%</td>
+<td>44.0%</td>
+<td>1</td>
+</tr>
+<tr class="a"><td><a href="#org.apache.commons.math.fraction">org.apache.commons.math.fraction</a>
+</td>
+<td>4</td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>7</td>
+<td>0.0%</td>
+<td>100.0%</td>
+<td>0.0%</td>
+<td>1</td>
+</tr>
+<tr class="b"><td><a href="#org.apache.commons.math.geometry">org.apache.commons.math.geometry</a>
+</td>
+<td>5</td>
+<td>5</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>0.0%</td>
+<td>100.0%</td>
+<td>0.0%</td>
+<td>1</td>
+</tr>
+<tr class="a"><td><a href="#org.apache.commons.math.linear">org.apache.commons.math.linear</a>
+</td>
+<td>9</td>
+<td>6</td>
+<td>3</td>
+<td>5</td>
+<td>4</td>
+<td>33.0%</td>
+<td>44.0%</td>
+<td>22.0%</td>
+<td>1</td>
+</tr>
+<tr class="b"><td><a href="#org.apache.commons.math.ode">org.apache.commons.math.ode</a>
+</td>
+<td>41</td>
+<td>28</td>
+<td>13</td>
+<td>0</td>
+<td>5</td>
+<td>32.0%</td>
+<td>100.0%</td>
+<td>32.0%</td>
+<td>1</td>
+</tr>
+<tr class="a"><td><a href="#org.apache.commons.math.optimization">org.apache.commons.math.optimization</a>
+</td>
+<td>8</td>
+<td>5</td>
+<td>3</td>
+<td>0</td>
+<td>6</td>
+<td>38.0%</td>
+<td>100.0%</td>
+<td>38.0%</td>
+<td>1</td>
+</tr>
+<tr class="b"><td><a href="#org.apache.commons.math.random">org.apache.commons.math.random</a>
+</td>
+<td>21</td>
+<td>14</td>
+<td>7</td>
+<td>1</td>
+<td>8</td>
+<td>33.0%</td>
+<td>89.0%</td>
+<td>22.0%</td>
+<td>1</td>
+</tr>
+<tr class="a"><td><a href="#org.apache.commons.math.special">org.apache.commons.math.special</a>
+</td>
+<td>5</td>
+<td>5</td>
+<td>0</td>
+<td>1</td>
+<td>4</td>
+<td>0.0%</td>
+<td>80.0%</td>
+<td>20.0%</td>
+<td>1</td>
+</tr>
+<tr class="b"><td><a href="#org.apache.commons.math.stat">org.apache.commons.math.stat</a>
+</td>
+<td>4</td>
+<td>4</td>
+<td>0</td>
+<td>1</td>
+<td>8</td>
+<td>0.0%</td>
+<td>89.0%</td>
+<td>11.0%</td>
+<td>1</td>
+</tr>
+<tr class="a"><td><a href="#org.apache.commons.math.stat.descriptive">org.apache.commons.math.stat.descriptive</a>
+</td>
+<td>15</td>
+<td>9</td>
+<td>6</td>
+<td>6</td>
+<td>11</td>
+<td>40.0%</td>
+<td>65.0%</td>
+<td>5.0%</td>
+<td>1</td>
+</tr>
+<tr class="b"><td><a href="#org.apache.commons.math.stat.descriptive.moment">org.apache.commons.math.stat.descriptive.moment</a>
+</td>
+<td>12</td>
+<td>12</td>
+<td>0</td>
+<td>3</td>
+<td>7</td>
+<td>0.0%</td>
+<td>70.0%</td>
+<td>30.000002%</td>
+<td>1</td>
+</tr>
+<tr class="a"><td><a href="#org.apache.commons.math.stat.descriptive.rank">org.apache.commons.math.stat.descriptive.rank</a>
+</td>
+<td>4</td>
+<td>4</td>
+<td>0</td>
+<td>2</td>
+<td>4</td>
+<td>0.0%</td>
+<td>67.0%</td>
+<td>33.0%</td>
+<td>1</td>
+</tr>
+<tr class="b"><td><a href="#org.apache.commons.math.stat.descriptive.summary">org.apache.commons.math.stat.descriptive.summary</a>
+</td>
+<td>4</td>
+<td>4</td>
+<td>0</td>
+<td>4</td>
+<td>3</td>
+<td>0.0%</td>
+<td>43.0%</td>
+<td>57.0%</td>
+<td>1</td>
+</tr>
+<tr class="a"><td><a href="#org.apache.commons.math.stat.inference">org.apache.commons.math.stat.inference</a>
+</td>
+<td>11</td>
+<td>6</td>
+<td>5</td>
+<td>0</td>
+<td>8</td>
+<td>45.0%</td>
+<td>100.0%</td>
+<td>45.0%</td>
+<td>1</td>
+</tr>
+<tr class="b"><td><a href="#org.apache.commons.math.stat.regression">org.apache.commons.math.stat.regression</a>
+</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>0.0%</td>
+<td>100.0%</td>
+<td>0.0%</td>
+<td>1</td>
+</tr>
+<tr class="a"><td><a href="#org.apache.commons.math.transform">org.apache.commons.math.transform</a>
+</td>
+<td>3</td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>5</td>
+<td>0.0%</td>
+<td>100.0%</td>
+<td>0.0%</td>
+<td>1</td>
+</tr>
+<tr class="b"><td><a href="#org.apache.commons.math.util">org.apache.commons.math.util</a>
+</td>
+<td>7</td>
+<td>4</td>
+<td>3</td>
+<td>7</td>
+<td>5</td>
+<td>43.0%</td>
+<td>42.0%</td>
+<td>15.000001%</td>
+<td>1</td>
+</tr>
+</table>
+<a name="packages"></a>
+<h2>Packages</h2>
+[ <a href="#summary">summary</a>
+ ] [ <a href="#packages">packages</a>
+ ] [ <a href="#cycles">cycles</a>
+ ] [ <a href="#explanations">explanations</a>
+ ] <br />
+<a name="org.apache.commons.math"></a>
+<h3>org.apache.commons.math</h3>
+<table class="bodyTable"><tr class="a"><th>Afferent Couplings</th>
+<th>Efferent Couplings</th>
+<th>Abstractness</th>
+<th>Instability</th>
+<th>Distance</th>
+</tr>
+<tr class="b"><td>15</td>
+<td>4</td>
+<td>0.0%</td>
+<td>21.0%</td>
+<td>79.0%</td>
+</tr>
+</table>
+<table class="bodyTable"><tr class="a"><th>Abstract Classes</th>
+<th>Concrete Classes</th>
+<th>Used by Packages</th>
+<th>Uses Packages</th>
+</tr>
+<tr class="b"><td><i>None</i>
+</td>
+<td>org.apache.commons.math.ArgumentOutsideDomainException<br />
+org.apache.commons.math.ConvergenceException<br />
+org.apache.commons.math.DimensionMismatchException<br />
+org.apache.commons.math.DuplicateSampleAbscissaException<br />
+org.apache.commons.math.FunctionEvaluationException<br />
+org.apache.commons.math.MathConfigurationException<br />
+org.apache.commons.math.MathException<br />
+org.apache.commons.math.MaxIterationsExceededException<br />
+org.apache.commons.math.MessagesResources_fr<br />
+</td>
+<td>org.apache.commons.math.analysis<br />
+org.apache.commons.math.distribution<br />
+org.apache.commons.math.estimation<br />
+org.apache.commons.math.fraction<br />
+org.apache.commons.math.geometry<br />
+org.apache.commons.math.ode<br />
+org.apache.commons.math.optimization<br />
+org.apache.commons.math.random<br />
+org.apache.commons.math.special<br />
+org.apache.commons.math.stat.descriptive<br />
+org.apache.commons.math.stat.descriptive.moment<br />
+org.apache.commons.math.stat.inference<br />
+org.apache.commons.math.stat.regression<br />
+org.apache.commons.math.transform<br />
+org.apache.commons.math.util<br />
+</td>
+<td>java.io<br />
+java.lang<br />
+java.text<br />
+java.util<br />
+</td>
+</tr>
+</table>
+<a name="org.apache.commons.math.analysis"></a>
+<h3>org.apache.commons.math.analysis</h3>
+<table class="bodyTable"><tr class="a"><th>Afferent Couplings</th>
+<th>Efferent Couplings</th>
+<th>Abstractness</th>
+<th>Instability</th>
+<th>Distance</th>
+</tr>
+<tr class="b"><td>3</td>
+<td>7</td>
+<td>30.000002%</td>
+<td>70.0%</td>
+<td>0.0%</td>
+</tr>
+</table>
+<table class="bodyTable"><tr class="a"><th>Abstract Classes</th>
+<th>Concrete Classes</th>
+<th>Used by Packages</th>
+<th>Uses Packages</th>
+</tr>
+<tr class="b"><td>org.apache.commons.math.analysis.DifferentiableUnivariateRealFunction<br />
+org.apache.commons.math.analysis.UnivariateRealFunction<br />
+org.apache.commons.math.analysis.UnivariateRealIntegrator<br />
+org.apache.commons.math.analysis.UnivariateRealIntegratorImpl<br />
+org.apache.commons.math.analysis.UnivariateRealInterpolator<br />
+org.apache.commons.math.analysis.UnivariateRealSolver<br />
+org.apache.commons.math.analysis.UnivariateRealSolverFactory<br />
+org.apache.commons.math.analysis.UnivariateRealSolverImpl<br />
+</td>
+<td>org.apache.commons.math.analysis.BisectionSolver<br />
+org.apache.commons.math.analysis.BrentSolver<br />
+org.apache.commons.math.analysis.DividedDifferenceInterpolator<br />
+org.apache.commons.math.analysis.LaguerreSolver<br />
+org.apache.commons.math.analysis.MullerSolver<br />
+org.apache.commons.math.analysis.NevilleInterpolator<br />
+org.apache.commons.math.analysis.NewtonSolver<br />
+org.apache.commons.math.analysis.PolynomialFunction<br />
+org.apache.commons.math.analysis.PolynomialFunctionLagrangeForm<br />
+org.apache.commons.math.analysis.PolynomialFunctionNewtonForm<br />
+org.apache.commons.math.analysis.PolynomialSplineFunction<br />
+org.apache.commons.math.analysis.RiddersSolver<br />
+org.apache.commons.math.analysis.RombergIntegrator<br />
+org.apache.commons.math.analysis.SecantSolver<br />
+org.apache.commons.math.analysis.SimpsonIntegrator<br />
+org.apache.commons.math.analysis.SplineInterpolator<br />
+org.apache.commons.math.analysis.TrapezoidIntegrator<br />
+org.apache.commons.math.analysis.UnivariateRealSolverFactoryImpl<br />
+org.apache.commons.math.analysis.UnivariateRealSolverUtils<br />
+</td>
+<td>org.apache.commons.math.distribution<br />
+org.apache.commons.math.ode<br />
+org.apache.commons.math.transform<br />
+</td>
+<td>java.io<br />
+java.lang<br />
+java.util<br />
+org.apache.commons.discovery.tools<br />
+org.apache.commons.math<br />
+org.apache.commons.math.complex<br />
+org.apache.commons.math.util<br />
+</td>
+</tr>
+</table>
+<a name="org.apache.commons.math.complex"></a>
+<h3>org.apache.commons.math.complex</h3>
+<table class="bodyTable"><tr class="a"><th>Afferent Couplings</th>
+<th>Efferent Couplings</th>
+<th>Abstractness</th>
+<th>Instability</th>
+<th>Distance</th>
+</tr>
+<tr class="b"><td>2</td>
+<td>5</td>
+<td>0.0%</td>
+<td>71.0%</td>
+<td>29.0%</td>
+</tr>
+</table>
+<table class="bodyTable"><tr class="a"><th>Abstract Classes</th>
+<th>Concrete Classes</th>
+<th>Used by Packages</th>
+<th>Uses Packages</th>
+</tr>
+<tr class="b"><td><i>None</i>
+</td>
+<td>org.apache.commons.math.complex.Complex<br />
+org.apache.commons.math.complex.ComplexFormat<br />
+org.apache.commons.math.complex.ComplexUtils<br />
+</td>
+<td>org.apache.commons.math.analysis<br />
+org.apache.commons.math.transform<br />
+</td>
+<td>java.io<br />
+java.lang<br />
+java.text<br />
+java.util<br />
+org.apache.commons.math.util<br />
+</td>
+</tr>
+</table>
+<a name="org.apache.commons.math.distribution"></a>
+<h3>org.apache.commons.math.distribution</h3>
+<table class="bodyTable"><tr class="a"><th>Afferent Couplings</th>
+<th>Efferent Couplings</th>
+<th>Abstractness</th>
+<th>Instability</th>
+<th>Distance</th>
+</tr>
+<tr class="b"><td>2</td>
+<td>6</td>
+<td>58.999996%</td>
+<td>75.0%</td>
+<td>34.0%</td>
+</tr>
+</table>
+<table class="bodyTable"><tr class="a"><th>Abstract Classes</th>
+<th>Concrete Classes</th>
+<th>Used by Packages</th>
+<th>Uses Packages</th>
+</tr>
+<tr class="b"><td>org.apache.commons.math.distribution.AbstractContinuousDistribution<br />
+org.apache.commons.math.distribution.AbstractDistribution<br />
+org.apache.commons.math.distribution.AbstractIntegerDistribution<br />
+org.apache.commons.math.distribution.BinomialDistribution<br />
+org.apache.commons.math.distribution.CauchyDistribution<br />
+org.apache.commons.math.distribution.ChiSquaredDistribution<br />
+org.apache.commons.math.distribution.ContinuousDistribution<br />
+org.apache.commons.math.distribution.DiscreteDistribution<br />
+org.apache.commons.math.distribution.Distribution<br />
+org.apache.commons.math.distribution.DistributionFactory<br />
+org.apache.commons.math.distribution.ExponentialDistribution<br />
+org.apache.commons.math.distribution.FDistribution<br />
+org.apache.commons.math.distribution.GammaDistribution<br />
+org.apache.commons.math.distribution.HypergeometricDistribution<br />
+org.apache.commons.math.distribution.IntegerDistribution<br />
+org.apache.commons.math.distribution.NormalDistribution<br />
+org.apache.commons.math.distribution.PascalDistribution<br />
+org.apache.commons.math.distribution.PoissonDistribution<br />
+org.apache.commons.math.distribution.TDistribution<br />
+org.apache.commons.math.distribution.WeibullDistribution<br />
+</td>
+<td>org.apache.commons.math.distribution.AbstractContinuousDistribution$1<br />
+org.apache.commons.math.distribution.BinomialDistributionImpl<br />
+org.apache.commons.math.distribution.CauchyDistributionImpl<br />
+org.apache.commons.math.distribution.ChiSquaredDistributionImpl<br />
+org.apache.commons.math.distribution.DistributionFactoryImpl<br />
+org.apache.commons.math.distribution.ExponentialDistributionImpl<br />
+org.apache.commons.math.distribution.FDistributionImpl<br />
+org.apache.commons.math.distribution.GammaDistributionImpl<br />
+org.apache.commons.math.distribution.HypergeometricDistributionImpl<br />
+org.apache.commons.math.distribution.NormalDistributionImpl<br />
+org.apache.commons.math.distribution.PascalDistributionImpl<br />
+org.apache.commons.math.distribution.PoissonDistributionImpl<br />
+org.apache.commons.math.distribution.TDistributionImpl<br />
+org.apache.commons.math.distribution.WeibullDistributionImpl<br />
+</td>
+<td>org.apache.commons.math.stat.inference<br />
+org.apache.commons.math.stat.regression<br />
+</td>
+<td>java.io<br />
+java.lang<br />
+org.apache.commons.math<br />
+org.apache.commons.math.analysis<br />
+org.apache.commons.math.special<br />
+org.apache.commons.math.util<br />
+</td>
+</tr>
+</table>
+<a name="org.apache.commons.math.estimation"></a>
+<h3>org.apache.commons.math.estimation</h3>
+<table class="bodyTable"><tr class="a"><th>Afferent Couplings</th>
+<th>Efferent Couplings</th>
+<th>Abstractness</th>
+<th>Instability</th>
+<th>Distance</th>
+</tr>
+<tr class="b"><td>0</td>
+<td>5</td>
+<td>44.0%</td>
+<td>100.0%</td>
+<td>44.0%</td>
+</tr>
+</table>
+<table class="bodyTable"><tr class="a"><th>Abstract Classes</th>
+<th>Concrete Classes</th>
+<th>Used by Packages</th>
+<th>Uses Packages</th>
+</tr>
+<tr class="b"><td>org.apache.commons.math.estimation.AbstractEstimator<br />
+org.apache.commons.math.estimation.EstimationProblem<br />
+org.apache.commons.math.estimation.Estimator<br />
+org.apache.commons.math.estimation.WeightedMeasurement<br />
+</td>
+<td>org.apache.commons.math.estimation.EstimatedParameter<br />
+org.apache.commons.math.estimation.EstimationException<br />
+org.apache.commons.math.estimation.GaussNewtonEstimator<br />
+org.apache.commons.math.estimation.LevenbergMarquardtEstimator<br />
+org.apache.commons.math.estimation.SimpleEstimationProblem<br />
+</td>
+<td><i>None</i>
+</td>
+<td>java.io<br />
+java.lang<br />
+java.util<br />
+org.apache.commons.math<br />
+org.apache.commons.math.linear<br />
+</td>
+</tr>
+</table>
+<a name="org.apache.commons.math.fraction"></a>
+<h3>org.apache.commons.math.fraction</h3>
+<table class="bodyTable"><tr class="a"><th>Afferent Couplings</th>
+<th>Efferent Couplings</th>
+<th>Abstractness</th>
+<th>Instability</th>
+<th>Distance</th>
+</tr>
+<tr class="b"><td>0</td>
+<td>7</td>
+<td>0.0%</td>
+<td>100.0%</td>
+<td>0.0%</td>
+</tr>
+</table>
+<table class="bodyTable"><tr class="a"><th>Abstract Classes</th>
+<th>Concrete Classes</th>
+<th>Used by Packages</th>
+<th>Uses Packages</th>
+</tr>
+<tr class="b"><td><i>None</i>
+</td>
+<td>org.apache.commons.math.fraction.Fraction<br />
+org.apache.commons.math.fraction.FractionConversionException<br />
+org.apache.commons.math.fraction.FractionFormat<br />
+org.apache.commons.math.fraction.ProperFractionFormat<br />
+</td>
+<td><i>None</i>
+</td>
+<td>java.io<br />
+java.lang<br />
+java.math<br />
+java.text<br />
+java.util<br />
+org.apache.commons.math<br />
+org.apache.commons.math.util<br />
+</td>
+</tr>
+</table>
+<a name="org.apache.commons.math.geometry"></a>
+<h3>org.apache.commons.math.geometry</h3>
+<table class="bodyTable"><tr class="a"><th>Afferent Couplings</th>
+<th>Efferent Couplings</th>
+<th>Abstractness</th>
+<th>Instability</th>
+<th>Distance</th>
+</tr>
+<tr class="b"><td>0</td>
+<td>3</td>
+<td>0.0%</td>
+<td>100.0%</td>
+<td>0.0%</td>
+</tr>
+</table>
+<table class="bodyTable"><tr class="a"><th>Abstract Classes</th>
+<th>Concrete Classes</th>
+<th>Used by Packages</th>
+<th>Uses Packages</th>
+</tr>
+<tr class="b"><td><i>None</i>
+</td>
+<td>org.apache.commons.math.geometry.CardanEulerSingularityException<br />
+org.apache.commons.math.geometry.NotARotationMatrixException<br />
+org.apache.commons.math.geometry.Rotation<br />
+org.apache.commons.math.geometry.RotationOrder<br />
+org.apache.commons.math.geometry.Vector3D<br />
+</td>
+<td><i>None</i>
+</td>
+<td>java.io<br />
+java.lang<br />
+org.apache.commons.math<br />
+</td>
+</tr>
+</table>
+<a name="org.apache.commons.math.linear"></a>
+<h3>org.apache.commons.math.linear</h3>
+<table class="bodyTable"><tr class="a"><th>Afferent Couplings</th>
+<th>Efferent Couplings</th>
+<th>Abstractness</th>
+<th>Instability</th>
+<th>Distance</th>
+</tr>
+<tr class="b"><td>5</td>
+<td>4</td>
+<td>33.0%</td>
+<td>44.0%</td>
+<td>22.0%</td>
+</tr>
+</table>
+<table class="bodyTable"><tr class="a"><th>Abstract Classes</th>
+<th>Concrete Classes</th>
+<th>Used by Packages</th>
+<th>Uses Packages</th>
+</tr>
+<tr class="b"><td>org.apache.commons.math.linear.BigMatrix<br />
+org.apache.commons.math.linear.QRDecomposition<br />
+org.apache.commons.math.linear.RealMatrix<br />
+</td>
+<td>org.apache.commons.math.linear.BigMatrixImpl<br />
+org.apache.commons.math.linear.InvalidMatrixException<br />
+org.apache.commons.math.linear.MatrixIndexException<br />
+org.apache.commons.math.linear.MatrixUtils<br />
+org.apache.commons.math.linear.QRDecompositionImpl<br />
+org.apache.commons.math.linear.RealMatrixImpl<br />
+</td>
+<td>org.apache.commons.math.estimation<br />
+org.apache.commons.math.optimization<br />
+org.apache.commons.math.random<br />
+org.apache.commons.math.stat.descriptive<br />
+org.apache.commons.math.stat.descriptive.moment<br />
+</td>
+<td>java.io<br />
+java.lang<br />
+java.math<br />
+org.apache.commons.math.util<br />
+</td>
+</tr>
+</table>
+<a name="org.apache.commons.math.ode"></a>
+<h3>org.apache.commons.math.ode</h3>
+<table class="bodyTable"><tr class="a"><th>Afferent Couplings</th>
+<th>Efferent Couplings</th>
+<th>Abstractness</th>
+<th>Instability</th>
+<th>Distance</th>
+</tr>
+<tr class="b"><td>0</td>
+<td>5</td>
+<td>32.0%</td>
+<td>100.0%</td>
+<td>32.0%</td>
+</tr>
+</table>
+<table class="bodyTable"><tr class="a"><th>Abstract Classes</th>
+<th>Concrete Classes</th>
+<th>Used by Packages</th>
+<th>Uses Packages</th>
+</tr>
+<tr class="b"><td>org.apache.commons.math.ode.AbstractStepInterpolator<br />
+org.apache.commons.math.ode.AdaptiveStepsizeIntegrator<br />
+org.apache.commons.math.ode.EmbeddedRungeKuttaIntegrator<br />
+org.apache.commons.math.ode.FirstOrderDifferentialEquations<br />
+org.apache.commons.math.ode.FirstOrderIntegrator<br />
+org.apache.commons.math.ode.FixedStepHandler<br />
+org.apache.commons.math.ode.RungeKuttaIntegrator<br />
+org.apache.commons.math.ode.RungeKuttaStepInterpolator<br />
+org.apache.commons.math.ode.SecondOrderDifferentialEquations<br />
+org.apache.commons.math.ode.SecondOrderIntegrator<br />
+org.apache.commons.math.ode.StepHandler<br />
+org.apache.commons.math.ode.StepInterpolator<br />
+org.apache.commons.math.ode.SwitchingFunction<br />
+</td>
+<td>org.apache.commons.math.ode.ClassicalRungeKuttaIntegrator<br />
+org.apache.commons.math.ode.ClassicalRungeKuttaStepInterpolator<br />
+org.apache.commons.math.ode.ContinuousOutputModel<br />
+org.apache.commons.math.ode.DerivativeException<br />
+org.apache.commons.math.ode.DormandPrince54Integrator<br />
+org.apache.commons.math.ode.DormandPrince54StepInterpolator<br />
+org.apache.commons.math.ode.DormandPrince853Integrator<br />
+org.apache.commons.math.ode.DormandPrince853StepInterpolator<br />
+org.apache.commons.math.ode.DummyStepHandler<br />
+org.apache.commons.math.ode.DummyStepInterpolator<br />
+org.apache.commons.math.ode.EulerIntegrator<br />
+org.apache.commons.math.ode.EulerStepInterpolator<br />
+org.apache.commons.math.ode.FirstOrderConverter<br />
+org.apache.commons.math.ode.GillIntegrator<br />
+org.apache.commons.math.ode.GillStepInterpolator<br />
+org.apache.commons.math.ode.GraggBulirschStoerIntegrator<br />
+org.apache.commons.math.ode.GraggBulirschStoerStepInterpolator<br />
+org.apache.commons.math.ode.HighamHall54Integrator<br />
+org.apache.commons.math.ode.HighamHall54StepInterpolator<br />
+org.apache.commons.math.ode.IntegratorException<br />
+org.apache.commons.math.ode.MidpointIntegrator<br />
+org.apache.commons.math.ode.MidpointStepInterpolator<br />
+org.apache.commons.math.ode.StepNormalizer<br />
+org.apache.commons.math.ode.SwitchState<br />
+org.apache.commons.math.ode.SwitchState$1<br />
+org.apache.commons.math.ode.SwitchingFunctionsHandler<br />
+org.apache.commons.math.ode.ThreeEighthesIntegrator<br />
+org.apache.commons.math.ode.ThreeEighthesStepInterpolator<br />
+</td>
+<td><i>None</i>
+</td>
+<td>java.io<br />
+java.lang<br />
+java.util<br />
+org.apache.commons.math<br />
+org.apache.commons.math.analysis<br />
+</td>
+</tr>
+</table>
+<a name="org.apache.commons.math.optimization"></a>
+<h3>org.apache.commons.math.optimization</h3>
+<table class="bodyTable"><tr class="a"><th>Afferent Couplings</th>
+<th>Efferent Couplings</th>
+<th>Abstractness</th>
+<th>Instability</th>
+<th>Distance</th>
+</tr>
+<tr class="b"><td>0</td>
+<td>6</td>
+<td>38.0%</td>
+<td>100.0%</td>
+<td>38.0%</td>
+</tr>
+</table>
+<table class="bodyTable"><tr class="a"><th>Abstract Classes</th>
+<th>Concrete Classes</th>
+<th>Used by Packages</th>
+<th>Uses Packages</th>
+</tr>
+<tr class="b"><td>org.apache.commons.math.optimization.ConvergenceChecker<br />
+org.apache.commons.math.optimization.CostFunction<br />
+org.apache.commons.math.optimization.DirectSearchOptimizer<br />
+</td>
+<td>org.apache.commons.math.optimization.CostException<br />
+org.apache.commons.math.optimization.DirectSearchOptimizer$1<br />
+org.apache.commons.math.optimization.MultiDirectional<br />
+org.apache.commons.math.optimization.NelderMead<br />
+org.apache.commons.math.optimization.PointCostPair<br />
+</td>
+<td><i>None</i>
+</td>
+<td>java.lang<br />
+java.util<br />
+org.apache.commons.math<br />
+org.apache.commons.math.linear<br />
+org.apache.commons.math.random<br />
+org.apache.commons.math.stat.descriptive.moment<br />
+</td>
+</tr>
+</table>
+<a name="org.apache.commons.math.random"></a>
+<h3>org.apache.commons.math.random</h3>
+<table class="bodyTable"><tr class="a"><th>Afferent Couplings</th>
+<th>Efferent Couplings</th>
+<th>Abstractness</th>
+<th>Instability</th>
+<th>Distance</th>
+</tr>
+<tr class="b"><td>1</td>
+<td>8</td>
+<td>33.0%</td>
+<td>89.0%</td>
+<td>22.0%</td>
+</tr>
+</table>
+<table class="bodyTable"><tr class="a"><th>Abstract Classes</th>
+<th>Concrete Classes</th>
+<th>Used by Packages</th>
+<th>Uses Packages</th>
+</tr>
+<tr class="b"><td>org.apache.commons.math.random.AbstractRandomGenerator<br />
+org.apache.commons.math.random.EmpiricalDistribution<br />
+org.apache.commons.math.random.EmpiricalDistributionImpl$DataAdapter<br />
+org.apache.commons.math.random.NormalizedRandomGenerator<br />
+org.apache.commons.math.random.RandomData<br />
+org.apache.commons.math.random.RandomGenerator<br />
+org.apache.commons.math.random.RandomVectorGenerator<br />
+</td>
+<td>org.apache.commons.math.random.CorrelatedRandomVectorGenerator<br />
+org.apache.commons.math.random.EmpiricalDistributionImpl<br />
+org.apache.commons.math.random.EmpiricalDistributionImpl$1<br />
+org.apache.commons.math.random.EmpiricalDistributionImpl$ArrayDataAdapter<br />
+org.apache.commons.math.random.EmpiricalDistributionImpl$DataAdapterFactory<br />
+org.apache.commons.math.random.EmpiricalDistributionImpl$StreamDataAdapter<br />
+org.apache.commons.math.random.GaussianRandomGenerator<br />
+org.apache.commons.math.random.JDKRandomGenerator<br />
+org.apache.commons.math.random.NotPositiveDefiniteMatrixException<br />
+org.apache.commons.math.random.RandomAdaptor<br />
+org.apache.commons.math.random.RandomDataImpl<br />
+org.apache.commons.math.random.UncorrelatedRandomVectorGenerator<br />
+org.apache.commons.math.random.UniformRandomGenerator<br />
+org.apache.commons.math.random.ValueServer<br />
+</td>
+<td>org.apache.commons.math.optimization<br />
+</td>
+<td>java.io<br />
+java.lang<br />
+java.net<br />
+java.security<br />
+java.util<br />
+org.apache.commons.math<br />
+org.apache.commons.math.linear<br />
+org.apache.commons.math.stat.descriptive<br />
+</td>
+</tr>
+</table>
+<a name="org.apache.commons.math.special"></a>
+<h3>org.apache.commons.math.special</h3>
+<table class="bodyTable"><tr class="a"><th>Afferent Couplings</th>
+<th>Efferent Couplings</th>
+<th>Abstractness</th>
+<th>Instability</th>
+<th>Distance</th>
+</tr>
+<tr class="b"><td>1</td>
+<td>4</td>
+<td>0.0%</td>
+<td>80.0%</td>
+<td>20.0%</td>
+</tr>
+</table>
+<table class="bodyTable"><tr class="a"><th>Abstract Classes</th>
+<th>Concrete Classes</th>
+<th>Used by Packages</th>
+<th>Uses Packages</th>
+</tr>
+<tr class="b"><td><i>None</i>
+</td>
+<td>org.apache.commons.math.special.Beta<br />
+org.apache.commons.math.special.Beta$1<br />
+org.apache.commons.math.special.Erf<br />
+org.apache.commons.math.special.Gamma<br />
+org.apache.commons.math.special.Gamma$1<br />
+</td>
+<td>org.apache.commons.math.distribution<br />
+</td>
+<td>java.io<br />
+java.lang<br />
+org.apache.commons.math<br />
+org.apache.commons.math.util<br />
+</td>
+</tr>
+</table>
+<a name="org.apache.commons.math.stat"></a>
+<h3>org.apache.commons.math.stat</h3>
+<table class="bodyTable"><tr class="a"><th>Afferent Couplings</th>
+<th>Efferent Couplings</th>
+<th>Abstractness</th>
+<th>Instability</th>
+<th>Distance</th>
+</tr>
+<tr class="b"><td>1</td>
+<td>8</td>
+<td>0.0%</td>
+<td>89.0%</td>
+<td>11.0%</td>
+</tr>
+</table>
+<table class="bodyTable"><tr class="a"><th>Abstract Classes</th>
+<th>Concrete Classes</th>
+<th>Used by Packages</th>
+<th>Uses Packages</th>
+</tr>
+<tr class="b"><td><i>None</i>
+</td>
+<td>org.apache.commons.math.stat.Frequency<br />
+org.apache.commons.math.stat.Frequency$1<br />
+org.apache.commons.math.stat.Frequency$NaturalComparator<br />
+org.apache.commons.math.stat.StatUtils<br />
+</td>
+<td>org.apache.commons.math.stat.inference<br />
+</td>
+<td>java.io<br />
+java.lang<br />
+java.text<br />
+java.util<br />
+org.apache.commons.math.stat.descriptive<br />
+org.apache.commons.math.stat.descriptive.moment<br />
+org.apache.commons.math.stat.descriptive.rank<br />
+org.apache.commons.math.stat.descriptive.summary<br />
+</td>
+</tr>
+</table>
+<a name="org.apache.commons.math.stat.descriptive"></a>
+<h3>org.apache.commons.math.stat.descriptive</h3>
+<table class="bodyTable"><tr class="a"><th>Afferent Couplings</th>
+<th>Efferent Couplings</th>
+<th>Abstractness</th>
+<th>Instability</th>
+<th>Distance</th>
+</tr>
+<tr class="b"><td>6</td>
+<td>11</td>
+<td>40.0%</td>
+<td>65.0%</td>
+<td>5.0%</td>
+</tr>
+</table>
+<table class="bodyTable"><tr class="a"><th>Abstract Classes</th>
+<th>Concrete Classes</th>
+<th>Used by Packages</th>
+<th>Uses Packages</th>
+</tr>
+<tr class="b"><td>org.apache.commons.math.stat.descriptive.AbstractStorelessUnivariateStatistic<br />
+org.apache.commons.math.stat.descriptive.AbstractUnivariateStatistic<br />
+org.apache.commons.math.stat.descriptive.StatisticalMultivariateSummary<br />
+org.apache.commons.math.stat.descriptive.StatisticalSummary<br />
+org.apache.commons.math.stat.descriptive.StorelessUnivariateStatistic<br />
+org.apache.commons.math.stat.descriptive.UnivariateStatistic<br />
+</td>
+<td>org.apache.commons.math.stat.descriptive.DescriptiveStatistics<br />
+org.apache.commons.math.stat.descriptive.DescriptiveStatisticsImpl<br />
+org.apache.commons.math.stat.descriptive.MultivariateSummaryStatistics<br />
+org.apache.commons.math.stat.descriptive.StatisticalSummaryValues<br />
+org.apache.commons.math.stat.descriptive.SummaryStatistics<br />
+org.apache.commons.math.stat.descriptive.SummaryStatisticsImpl<br />
+org.apache.commons.math.stat.descriptive.SynchronizedDescriptiveStatistics<br />
+org.apache.commons.math.stat.descriptive.SynchronizedMultivariateSummaryStatistics<br />
+org.apache.commons.math.stat.descriptive.SynchronizedSummaryStatistics<br />
+</td>
+<td>org.apache.commons.math.random<br />
+org.apache.commons.math.stat<br />
+org.apache.commons.math.stat.descriptive.moment<br />
+org.apache.commons.math.stat.descriptive.rank<br />
+org.apache.commons.math.stat.descriptive.summary<br />
+org.apache.commons.math.stat.inference<br />
+</td>
+<td>java.io<br />
+java.lang<br />
+java.lang.reflect<br />
+java.util<br />
+org.apache.commons.discovery.tools<br />
+org.apache.commons.math<br />
+org.apache.commons.math.linear<br />
+org.apache.commons.math.stat.descriptive.moment<br />
+org.apache.commons.math.stat.descriptive.rank<br />
+org.apache.commons.math.stat.descriptive.summary<br />
+org.apache.commons.math.util<br />
+</td>
+</tr>
+</table>
+<a name="org.apache.commons.math.stat.descriptive.moment"></a>
+<h3>org.apache.commons.math.stat.descriptive.moment</h3>
+<table class="bodyTable"><tr class="a"><th>Afferent Couplings</th>
+<th>Efferent Couplings</th>
+<th>Abstractness</th>
+<th>Instability</th>
+<th>Distance</th>
+</tr>
+<tr class="b"><td>3</td>
+<td>7</td>
+<td>0.0%</td>
+<td>70.0%</td>
+<td>30.000002%</td>
+</tr>
+</table>
+<table class="bodyTable"><tr class="a"><th>Abstract Classes</th>
+<th>Concrete Classes</th>
+<th>Used by Packages</th>
+<th>Uses Packages</th>
+</tr>
+<tr class="b"><td><i>None</i>
+</td>
+<td>org.apache.commons.math.stat.descriptive.moment.FirstMoment<br />
+org.apache.commons.math.stat.descriptive.moment.FourthMoment<br />
+org.apache.commons.math.stat.descriptive.moment.GeometricMean<br />
+org.apache.commons.math.stat.descriptive.moment.Kurtosis<br />
+org.apache.commons.math.stat.descriptive.moment.Mean<br />
+org.apache.commons.math.stat.descriptive.moment.SecondMoment<br />
+org.apache.commons.math.stat.descriptive.moment.Skewness<br />
+org.apache.commons.math.stat.descriptive.moment.StandardDeviation<br />
+org.apache.commons.math.stat.descriptive.moment.ThirdMoment<br />
+org.apache.commons.math.stat.descriptive.moment.Variance<br />
+org.apache.commons.math.stat.descriptive.moment.VectorialCovariance<br />
+org.apache.commons.math.stat.descriptive.moment.VectorialMean<br />
+</td>
+<td>org.apache.commons.math.optimization<br />
+org.apache.commons.math.stat<br />
+org.apache.commons.math.stat.descriptive<br />
+</td>
+<td>java.io<br />
+java.lang<br />
+java.util<br />
+org.apache.commons.math<br />
+org.apache.commons.math.linear<br />
+org.apache.commons.math.stat.descriptive<br />
+org.apache.commons.math.stat.descriptive.summary<br />
+</td>
+</tr>
+</table>
+<a name="org.apache.commons.math.stat.descriptive.rank"></a>
+<h3>org.apache.commons.math.stat.descriptive.rank</h3>
+<table class="bodyTable"><tr class="a"><th>Afferent Couplings</th>
+<th>Efferent Couplings</th>
+<th>Abstractness</th>
+<th>Instability</th>
+<th>Distance</th>
+</tr>
+<tr class="b"><td>2</td>
+<td>4</td>
+<td>0.0%</td>
+<td>67.0%</td>
+<td>33.0%</td>
+</tr>
+</table>
+<table class="bodyTable"><tr class="a"><th>Abstract Classes</th>
+<th>Concrete Classes</th>
+<th>Used by Packages</th>
+<th>Uses Packages</th>
+</tr>
+<tr class="b"><td><i>None</i>
+</td>
+<td>org.apache.commons.math.stat.descriptive.rank.Max<br />
+org.apache.commons.math.stat.descriptive.rank.Median<br />
+org.apache.commons.math.stat.descriptive.rank.Min<br />
+org.apache.commons.math.stat.descriptive.rank.Percentile<br />
+</td>
+<td>org.apache.commons.math.stat<br />
+org.apache.commons.math.stat.descriptive<br />
+</td>
+<td>java.io<br />
+java.lang<br />
+java.util<br />
+org.apache.commons.math.stat.descriptive<br />
+</td>
+</tr>
+</table>
+<a name="org.apache.commons.math.stat.descriptive.summary"></a>
+<h3>org.apache.commons.math.stat.descriptive.summary</h3>
+<table class="bodyTable"><tr class="a"><th>Afferent Couplings</th>
+<th>Efferent Couplings</th>
+<th>Abstractness</th>
+<th>Instability</th>
+<th>Distance</th>
+</tr>
+<tr class="b"><td>4</td>
+<td>3</td>
+<td>0.0%</td>
+<td>43.0%</td>
+<td>57.0%</td>
+</tr>
+</table>
+<table class="bodyTable"><tr class="a"><th>Abstract Classes</th>
+<th>Concrete Classes</th>
+<th>Used by Packages</th>
+<th>Uses Packages</th>
+</tr>
+<tr class="b"><td><i>None</i>
+</td>
+<td>org.apache.commons.math.stat.descriptive.summary.Product<br />
+org.apache.commons.math.stat.descriptive.summary.Sum<br />
+org.apache.commons.math.stat.descriptive.summary.SumOfLogs<br />
+org.apache.commons.math.stat.descriptive.summary.SumOfSquares<br />
+</td>
+<td>org.apache.commons.math.stat<br />
+org.apache.commons.math.stat.descriptive<br />
+org.apache.commons.math.stat.descriptive.moment<br />
+org.apache.commons.math.stat.inference<br />
+</td>
+<td>java.io<br />
+java.lang<br />
+org.apache.commons.math.stat.descriptive<br />
+</td>
+</tr>
+</table>
+<a name="org.apache.commons.math.stat.inference"></a>
+<h3>org.apache.commons.math.stat.inference</h3>
+<table class="bodyTable"><tr class="a"><th>Afferent Couplings</th>
+<th>Efferent Couplings</th>
+<th>Abstractness</th>
+<th>Instability</th>
+<th>Distance</th>
+</tr>
+<tr class="b"><td>0</td>
+<td>8</td>
+<td>45.0%</td>
+<td>100.0%</td>
+<td>45.0%</td>
+</tr>
+</table>
+<table class="bodyTable"><tr class="a"><th>Abstract Classes</th>
+<th>Concrete Classes</th>
+<th>Used by Packages</th>
+<th>Uses Packages</th>
+</tr>
+<tr class="b"><td>org.apache.commons.math.stat.inference.ChiSquareTest<br />
+org.apache.commons.math.stat.inference.OneWayAnova<br />
+org.apache.commons.math.stat.inference.TTest<br />
+org.apache.commons.math.stat.inference.TestFactory<br />
+org.apache.commons.math.stat.inference.UnknownDistributionChiSquareTest<br />
+</td>
+<td>org.apache.commons.math.stat.inference.ChiSquareTestImpl<br />
+org.apache.commons.math.stat.inference.OneWayAnovaImpl<br />
+org.apache.commons.math.stat.inference.OneWayAnovaImpl$AnovaStats<br />
+org.apache.commons.math.stat.inference.TTestImpl<br />
+org.apache.commons.math.stat.inference.TestFactoryImpl<br />
+org.apache.commons.math.stat.inference.TestUtils<br />
+</td>
+<td><i>None</i>
+</td>
+<td>java.lang<br />
+java.util<br />
+org.apache.commons.discovery.tools<br />
+org.apache.commons.math<br />
+org.apache.commons.math.distribution<br />
+org.apache.commons.math.stat<br />
+org.apache.commons.math.stat.descriptive<br />
+org.apache.commons.math.stat.descriptive.summary<br />
+</td>
+</tr>
+</table>
+<a name="org.apache.commons.math.stat.regression"></a>
+<h3>org.apache.commons.math.stat.regression</h3>
+<table class="bodyTable"><tr class="a"><th>Afferent Couplings</th>
+<th>Efferent Couplings</th>
+<th>Abstractness</th>
+<th>Instability</th>
+<th>Distance</th>
+</tr>
+<tr class="b"><td>0</td>
+<td>4</td>
+<td>0.0%</td>
+<td>100.0%</td>
+<td>0.0%</td>
+</tr>
+</table>
+<table class="bodyTable"><tr class="a"><th>Abstract Classes</th>
+<th>Concrete Classes</th>
+<th>Used by Packages</th>
+<th>Uses Packages</th>
+</tr>
+<tr class="b"><td><i>None</i>
+</td>
+<td>org.apache.commons.math.stat.regression.SimpleRegression<br />
+</td>
+<td><i>None</i>
+</td>
+<td>java.io<br />
+java.lang<br />
+org.apache.commons.math<br />
+org.apache.commons.math.distribution<br />
+</td>
+</tr>
+</table>
+<a name="org.apache.commons.math.transform"></a>
+<h3>org.apache.commons.math.transform</h3>
+<table class="bodyTable"><tr class="a"><th>Afferent Couplings</th>
+<th>Efferent Couplings</th>
+<th>Abstractness</th>
+<th>Instability</th>
+<th>Distance</th>
+</tr>
+<tr class="b"><td>0</td>
+<td>5</td>
+<td>0.0%</td>
+<td>100.0%</td>
+<td>0.0%</td>
+</tr>
+</table>
+<table class="bodyTable"><tr class="a"><th>Abstract Classes</th>
+<th>Concrete Classes</th>
+<th>Used by Packages</th>
+<th>Uses Packages</th>
+</tr>
+<tr class="b"><td><i>None</i>
+</td>
+<td>org.apache.commons.math.transform.FastCosineTransformer<br />
+org.apache.commons.math.transform.FastFourierTransformer<br />
+org.apache.commons.math.transform.FastSineTransformer<br />
+</td>
+<td><i>None</i>
+</td>
+<td>java.io<br />
+java.lang<br />
+org.apache.commons.math<br />
+org.apache.commons.math.analysis<br />
+org.apache.commons.math.complex<br />
+</td>
+</tr>
+</table>
+<a name="org.apache.commons.math.util"></a>
+<h3>org.apache.commons.math.util</h3>
+<table class="bodyTable"><tr class="a"><th>Afferent Couplings</th>
+<th>Efferent Couplings</th>
+<th>Abstractness</th>
+<th>Instability</th>
+<th>Distance</th>
+</tr>
+<tr class="b"><td>7</td>
+<td>5</td>
+<td>43.0%</td>
+<td>42.0%</td>
+<td>15.000001%</td>
+</tr>
+</table>
+<table class="bodyTable"><tr class="a"><th>Abstract Classes</th>
+<th>Concrete Classes</th>
+<th>Used by Packages</th>
+<th>Uses Packages</th>
+</tr>
+<tr class="b"><td>org.apache.commons.math.util.ContinuedFraction<br />
+org.apache.commons.math.util.DoubleArray<br />
+org.apache.commons.math.util.NumberTransformer<br />
+</td>
+<td>org.apache.commons.math.util.DefaultTransformer<br />
+org.apache.commons.math.util.MathUtils<br />
+org.apache.commons.math.util.ResizableDoubleArray<br />
+org.apache.commons.math.util.TransformerMap<br />
+</td>
+<td>org.apache.commons.math.analysis<br />
+org.apache.commons.math.complex<br />
+org.apache.commons.math.distribution<br />
+org.apache.commons.math.fraction<br />
+org.apache.commons.math.linear<br />
+org.apache.commons.math.special<br />
+org.apache.commons.math.stat.descriptive<br />
+</td>
+<td>java.io<br />
+java.lang<br />
+java.math<br />
+java.util<br />
+org.apache.commons.math<br />
+</td>
+</tr>
+</table>
+<a name="cycles"></a>
+<h2>Cycles</h2>
+[ <a href="#summary">summary</a>
+ ] [ <a href="#packages">packages</a>
+ ] [ <a href="#cycles">cycles</a>
+ ] [ <a href="#explanations">explanations</a>
+ ] <br />
+<br />
+<table class="bodyTable"><tr class="a"><th>Package</th>
+<th>Package Dependencies</th>
+</tr>
+<tr class="b"><td>org.apache.commons.math.optimization</td>
+<td>org.apache.commons.math.random<br />
+org.apache.commons.math.stat.descriptive<br />
+org.apache.commons.math.stat.descriptive.summary<br />
+org.apache.commons.math.stat.descriptive<br />
+</td>
+</tr>
+<tr class="a"><td>org.apache.commons.math.random</td>
+<td>org.apache.commons.math.stat.descriptive<br />
+org.apache.commons.math.stat.descriptive.summary<br />
+org.apache.commons.math.stat.descriptive<br />
+</td>
+</tr>
+<tr class="b"><td>org.apache.commons.math.stat</td>
+<td>org.apache.commons.math.stat.descriptive.summary<br />
+org.apache.commons.math.stat.descriptive<br />
+org.apache.commons.math.stat.descriptive.summary<br />
+</td>
+</tr>
+<tr class="a"><td>org.apache.commons.math.stat.descriptive</td>
+<td>org.apache.commons.math.stat.descriptive.summary<br />
+org.apache.commons.math.stat.descriptive<br />
+</td>
+</tr>
+<tr class="b"><td>org.apache.commons.math.stat.descriptive.moment</td>
+<td>org.apache.commons.math.stat.descriptive.summary<br />
+org.apache.commons.math.stat.descriptive<br />
+org.apache.commons.math.stat.descriptive.summary<br />
+</td>
+</tr>
+<tr class="a"><td>org.apache.commons.math.stat.descriptive.rank</td>
+<td>org.apache.commons.math.stat.descriptive<br />
+org.apache.commons.math.stat.descriptive.summary<br />
+org.apache.commons.math.stat.descriptive<br />
+</td>
+</tr>
+<tr class="b"><td>org.apache.commons.math.stat.descriptive.summary</td>
+<td>org.apache.commons.math.stat.descriptive<br />
+org.apache.commons.math.stat.descriptive.summary<br />
+</td>
+</tr>
+<tr class="a"><td>org.apache.commons.math.stat.inference</td>
+<td>org.apache.commons.math.stat.descriptive<br />
+org.apache.commons.math.stat.descriptive.summary<br />
+org.apache.commons.math.stat.descriptive<br />
+</td>
+</tr>
+</table>
+<a name="explanations"></a>
+<h2>Explanation</h2>
+[ <a href="#summary">summary</a>
+ ] [ <a href="#packages">packages</a>
+ ] [ <a href="#cycles">cycles</a>
+ ] [ <a href="#explanations">explanations</a>
+ ] <br />
+<br />
+The following explanations are for quick reference and are lifted directly from the original JDepend documentation.<br />
+<br />
+<table class="bodyTable"><tr class="b"><th>Term</th>
+<th>Description</th>
+</tr>
+<tr class="a"><td>Number of Classes</td>
+<td>The number of concrete and abstract classes (and interfaces) in the package is an indicator of the extensibility of the package.</td>
+</tr>
+<tr class="b"><td>Afferent Couplings</td>
+<td>The number of other packages that depend upon classes within the package is an indicator of the package's responsibility.</td>
+</tr>
+<tr class="a"><td>Efferent Couplings</td>
+<td>The number of other packages that the classes in the package depend upon is an indicator of the package's independence.</td>
+</tr>
+<tr class="b"><td>Abstractness</td>
+<td>The ratio of the number of abstract classes (and interfaces) in the analyzed package to the total number of classes in the analyzed package. The range for this metric is 0 to 1, with A=0 indicating a completely concrete package and A=1 indicating a completely abstract package.</td>
+</tr>
+<tr class="a"><td>Instability</td>
+<td>The ratio of efferent coupling (Ce) to total coupling (Ce / (Ce + Ca)). This metric is an indicator of the package's resilience to change. The range for this metric is 0 to 1, with I=0 indicating a completely stable package and I=1 indicating a completely instable package.</td>
+</tr>
+<tr class="b"><td>Distance</td>
+<td>The perpendicular distance of a package from the idealized line A + I = 1. This metric is an indicator of the package's balance between abstractness and stability. A package squarely on the main sequence is optimally balanced with respect to its abstractness and stability. Ideal packages are either completely abstract and stable (x=0, y=1) or completely concrete and instable (x=1, y=0). The range for this metric is 0 to 1, with D=0 indicating a package that is coincident with the main sequence and D=1 indicating a package that is as far from the main sequence as possible.</td>
+</tr>
+<tr class="a"><td>Cycles</td>
+<td>Packages participating in a package dependency cycle are  in a deadly embrace with respect to reusability and their  release cycle. Package dependency cycles can be easily identified by reviewing the textual reports of dependency cycles. Once these dependency cycles have been identified with JDepend, they can be broken by employing various object-oriented techniques.</td>
+</tr>
+</table>
+</div>
+
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2003-2008
+    
+          The Apache Software Foundation
+          
+  
+
+  
+    
+            
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>

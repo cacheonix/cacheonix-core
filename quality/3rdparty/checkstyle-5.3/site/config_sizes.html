@@ -1,0 +1,828 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>checkstyle - Size Violations</title>
+    <style type="text/css" media="all">
+      @import url("./css/maven-base.css");
+      @import url("./css/maven-theme.css");
+      @import url("./css/site.css");
+    </style>
+    <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+          <meta name="author" content="Checkstyle Development Team" />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+  <body class="composite">
+    <div id="banner">
+                    <span id="bannerLeft">
+    
+            Checkstyle 5.3
+    
+            </span>
+                        <a href="" id="bannerRight">
+    
+                                            <img src="images/logo.png" alt="Checkstyle" />
+    
+            </a>
+            <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+  
+  
+    
+            <div class="xleft">
+        Last Published: 2010-10-19
+                      </div>
+            <div class="xright">      
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+  
+  
+    
+                   <h5>About</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="index.html">Checkstyle</a>
+          </li>
+              
+    <li class="none">
+                    <a href="releasenotes.html">Release Notes</a>
+          </li>
+          </ul>
+              <h5>Documentation</h5>
+            <ul>
+              
+          
+              
+      
+              
+        <li class="expanded">
+                    <a href="config.html">Configuration</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="property_types.html">Property Types</a>
+          </li>
+              </ul>
+        </li>
+              
+          
+              
+      
+            
+      
+              
+        <li class="expanded">
+                    <a href="running.html">Running</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="anttask.html">Ant Task</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="cmdline.html">Command Line</a>
+          </li>
+              </ul>
+        </li>
+              
+    <li class="none">
+                    <a href="availablechecks.html">Available Checks</a>
+          </li>
+              
+          
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+            
+            
+      
+              
+            <li class="expanded">
+                    <a href="checks.html">Standard Checks</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="config_annotation.html">Annotations</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_blocks.html">Block Checks</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_design.html">Class Design</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_coding.html">Coding</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_duplicates.html">Duplicate Code</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_header.html">Headers</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_imports.html">Imports</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_javadoc.html">Javadoc Comments</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_metrics.html">Metrics</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_misc.html">Miscellaneous</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_modifier.html">Modifiers</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_naming.html">Naming Conventions</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_regexp.html">Regexp</a>
+          </li>
+                  
+    <li class="none">
+              <strong>Size Violations</strong>
+        </li>
+                  
+    <li class="none">
+                    <a href="config_whitespace.html">Whitespace</a>
+          </li>
+              </ul>
+        </li>
+              
+          
+              
+      
+            
+      
+            
+      
+              
+        <li class="expanded">
+                    <a href="extending.html">Extending Checkstyle</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="writingchecks.html">Writing checks</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="writingfilters.html">Writing filters</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="writinglisteners.html">Writing listeners</a>
+          </li>
+              </ul>
+        </li>
+          </ul>
+              <h5>Developers</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="apidocs/index.html">Javadoc</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://sourceforge.net/projects/checkstyle" class="externalLink">Project Page</a>
+          </li>
+              
+    <li class="none">
+                    <a href="contributing.html">Contributing</a>
+          </li>
+          </ul>
+              <h5>Project Documentation</h5>
+            <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-info.html">Project Information</a>
+                </li>
+              
+                
+              
+      
+              
+        <li class="collapsed">
+                    <a href="project-reports.html">Project Reports</a>
+                </li>
+          </ul>
+                                                 
+                        
+                        
+            <a href="http://sourceforge.net/projects/checkstyle" title="SourceForge" class="poweredBy">
+                            <img alt="SourceForge" src="http://sflogo.sourceforge.net/sflogo.php?group_id=29721&type=11" />
+            </a>
+                               
+  
+
+  
+    
+  
+  
+    
+        </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <div class="section"><h2><a name="ExecutableStatementCount"></a>ExecutableStatementCount</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p>
+          Restricts the number of executable statements to a specified limit.
+        </p>
+</div>
+<div class="section"><h3><a name="Properties"></a>Properties</h3>
+<table class="bodyTable"><tr class="a"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="b"><td>max</td>
+<td>the maximum threshold allowed</td>
+<td><a href="property_types.html#integer">integer</a></td>
+<td><code>30</code></td>
+</tr>
+<tr class="a"><td>tokens</td>
+<td>members to check</td>
+<td>
+              subset of tokens <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">INSTANCE_INIT</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">STATIC_INIT</a></td>
+<td>all tokens</td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="Examples"></a>Examples</h3>
+<p>
+          To configure the check:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;ExecutableStatementCount&quot;/&gt;
+        </pre>
+</div>
+<p>
+          To configure the check with a threshold of 20 for constructor and
+          method definitions:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;ExecutableStatementCount&quot;&gt;
+    &lt;property name=&quot;max&quot; value=&quot;20&quot;/&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;CTOR_DEF,METHOD_DEF&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p>
+          com.puppycrawl.tools.checkstyle.checks.sizes
+        </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#TreeWalker">TreeWalker</a></p>
+</div>
+</div>
+<div class="section"><h2><a name="FileLength"></a>FileLength</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p>
+          Checks for long source files.
+        </p>
+<p>
+          Rationale: If a source file becomes very long it is hard to
+          understand.  Therefore long classes should usually be refactored
+          into several individual classes that focus on a specific task.
+        </p>
+</div>
+<div class="section"><h3><a name="Properties"></a>Properties</h3>
+<table class="bodyTable"><tr class="b"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="a"><td>max</td>
+<td>maximum allowable number of lines</td>
+<td><a href="property_types.html#integer">integer</a></td>
+<td>2000</td>
+</tr>
+<tr class="b"><td>fileExtensions</td>
+<td>file type extension of files to process</td>
+<td><a href="property_types.html#stringSet">String Set</a></td>
+<td><code>{}</code></td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="Examples"></a>Examples</h3>
+<p>
+          To configure the check to accept files with up to 1500 lines:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;FileLength&quot;&gt;
+      &lt;property name=&quot;max&quot; value=&quot;1500&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p>
+          com.puppycrawl.tools.checkstyle.checks.sizes
+        </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#Checker">Checker</a></p>
+</div>
+</div>
+<div class="section"><h2><a name="LineLength"></a>LineLength</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p>
+          Checks for long lines.
+        </p>
+<p>
+          Rationale: Long lines are hard to read in printouts or if developers
+          have limited screen space for the source code, e.g. if the IDE
+          displays additional information like project tree, class hierarchy,
+          etc.
+        </p>
+</div>
+<div class="section"><h3><a name="Properties"></a>Properties</h3>
+<table class="bodyTable"><tr class="a"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="b"><td>ignorePattern</td>
+<td>pattern for lines to ignore</td>
+<td><a href="property_types.html#regexp">regular expression</a></td>
+<td>^$</td>
+</tr>
+<tr class="a"><td>max</td>
+<td>maximum allowable line length</td>
+<td><a href="property_types.html#integer">integer</a></td>
+<td>80</td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="Examples"></a>Examples</h3>
+<p>
+          To configure the check to accept lines up to 120 characters long:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;LineLength&quot;&gt;
+    &lt;property name=&quot;max&quot; value=&quot;120&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+<p>
+          To configure the check to ignore lines that begin with &quot; *
+          &quot;, followed by just one word, such as within a Javadoc comment:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;LineLength&quot;&gt;
+   &lt;property name=&quot;ignorePattern&quot; value=&quot;^ *\* *[^ ]+$&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Notes"></a>Notes</h3>
+<ul><li>
+            The calculation of the length of a line takes into account the
+            number of expanded spaces for a tab character (<code>'\t'</code>). The default number of spaces is <code>8</code>.  To specify a different number of spaces,
+            the user can set <a href="config.html#TreeWalker"><code>TreeWalker</code></a> property <code>tabWidth</code> which applies to all Checks,
+            including <code>LineLength</code>; or can set
+            property <code>tabWidth</code> for <code>LineLength</code> alone.
+          </li>
+<li>
+            Support for the special handling of imports in CheckStyle Version
+            2 has been dropped as it is a special case of regexp: The user can
+            set property <code>ignorePattern</code> to <code>^import</code> and achieve the same effect.
+          </li>
+</ul>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p>
+          com.puppycrawl.tools.checkstyle.checks.sizes
+        </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#TreeWalker">TreeWalker</a></p>
+</div>
+</div>
+<div class="section"><h2><a name="MethodLength"></a>MethodLength</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p>
+          Checks for long methods and constructors.
+        </p>
+<p>
+          Rationale: If a method becomes very long it is hard to
+          understand. Therefore long methods should usually be refactored into
+          several individual methods that focus on a specific task.
+        </p>
+</div>
+<div class="section"><h3><a name="Properties"></a>Properties</h3>
+<table class="bodyTable"><tr class="b"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="a"><td>max</td>
+<td>maximum allowable number of lines</td>
+<td><a href="property_types.html#integer">integer</a></td>
+<td>150</td>
+</tr>
+<tr class="b"><td>countEmpty</td>
+<td>
+              whether to count empty lines and single line comments of the
+              form <code>//</code></td>
+<td><a href="property_types.html#boolean">boolean</a></td>
+<td><code>true</code></td>
+</tr>
+<tr class="a"><td>tokens</td>
+<td>blocks to check</td>
+<td>
+              subset of tokens <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a></td>
+<td><a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a></td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="Examples"></a>Examples</h3>
+<p>
+          To configure the check:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;MethodLength&quot;/&gt;
+        </pre>
+</div>
+<p>
+          To configure the check so that it accepts methods with at most 60
+          lines:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;MethodLength&quot;&gt;
+   &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
+   &lt;property name=&quot;max&quot; value=&quot;60&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+<p>
+          To configure the check so that it accepts methods with at most 60
+          lines, not counting empty lines and single line comments:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;MethodLength&quot;&gt;
+   &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
+   &lt;property name=&quot;max&quot; value=&quot;60&quot;/&gt;
+   &lt;property name=&quot;countEmpty&quot; value=&quot;false&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p>
+          com.puppycrawl.tools.checkstyle.checks.sizes
+        </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#TreeWalker">TreeWalker</a></p>
+</div>
+</div>
+<div class="section"><h2><a name="AnonInnerLength"></a>AnonInnerLength</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p>
+          Checks for long anonymous inner classes.
+        </p>
+<p>
+          Rationale: If an anonymous inner class becomes very long it is hard
+          to understand and to see the flow of the method where the class is
+          defined. Therefore long anonymous inner classes should usually be
+          refactored into a named inner class.  See also Bloch, Effective
+          Java, p. 93.
+        </p>
+</div>
+<div class="section"><h3><a name="Properties"></a>Properties</h3>
+<table class="bodyTable"><tr class="b"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="a"><td>max</td>
+<td>maximum allowable number of lines</td>
+<td><a href="property_types.html#integer">integer</a></td>
+<td>20</td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="Examples"></a>Examples</h3>
+<p>
+          To configure the check to accept files with up to 60 lines:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;AnonInnerLength&quot;&gt;
+      &lt;property name=&quot;max&quot; value=&quot;60&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p>
+          com.puppycrawl.tools.checkstyle.checks.sizes
+        </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#TreeWalker">TreeWalker</a></p>
+</div>
+</div>
+<div class="section"><h2><a name="ParameterNumber"></a>ParameterNumber</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p>
+          Checks the number of parameters of a method or constructor.
+        </p>
+</div>
+<div class="section"><h3><a name="Properties"></a>Properties</h3>
+<table class="bodyTable"><tr class="b"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="a"><td>max</td>
+<td>maximum allowable number of parameters</td>
+<td><a href="property_types.html#integer">integer</a></td>
+<td>7</td>
+</tr>
+<tr class="b"><td>tokens</td>
+<td>declarations to check</td>
+<td>
+              subset of tokens <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a></td>
+<td><a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a></td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="Examples"></a>Examples</h3>
+<p>
+          To configure the check:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;ParameterNumber&quot;/&gt;
+        </pre>
+</div>
+<p>
+          To configure the check to allow 10 parameters for a method:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;ParameterNumber&quot;&gt;
+   &lt;property name=&quot;max&quot; value=&quot;10&quot;/&gt;
+   &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p>
+          com.puppycrawl.tools.checkstyle.checks.sizes
+        </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#TreeWalker">TreeWalker</a></p>
+</div>
+</div>
+<div class="section"><h2><a name="OuterTypeNumber"></a>OuterTypeNumber</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p>
+          Checks for the number of types declared at the <i>outer</i>
+          (or <i>root</i>) level in a file.
+        </p>
+<p>
+          Rationale: It is considered good practice to only define one outer
+          type per file.
+        </p>
+</div>
+<div class="section"><h3><a name="Properties"></a>Properties</h3>
+<table class="bodyTable"><tr class="a"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="b"><td>max</td>
+<td>maximum allowable number of outer types</td>
+<td><a href="property_types.html#integer">integer</a></td>
+<td>1</td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="Examples"></a>Examples</h3>
+<p>
+          To configure the check to accept 1 outer type per file:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;OuterTypeNumber&quot;/&gt;
+        </pre>
+</div>
+<p>
+          To configure the check to accept 2 outer types per file:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;OuterTypeNumber&quot;&gt;
+      &lt;property name=&quot;max&quot; value=&quot;2&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p>
+          com.puppycrawl.tools.checkstyle.checks.sizes
+        </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#TreeWalker">TreeWalker</a></p>
+</div>
+</div>
+<div class="section"><h2><a name="MethodCount"></a>MethodCount</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p>
+          Checks the number of methods declared in each type. This
+          includes the number of each scope (<code>private</code>,
+          <code>package</code>, <code>protected</code> and
+          <code>public</code>) as well as an overall total.
+        </p>
+</div>
+<div class="section"><h3><a name="Properties"></a>Properties</h3>
+<table class="bodyTable"><tr class="a"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="b"><td>maxTotal</td>
+<td>maximum allowable number of methods at all scope levels</td>
+<td><a href="property_types.html#integer">integer</a></td>
+<td>100</td>
+</tr>
+<tr class="a"><td>maxPrivate</td>
+<td>maximum allowable number of <code>private</code> methods</td>
+<td><a href="property_types.html#integer">integer</a></td>
+<td>100</td>
+</tr>
+<tr class="b"><td>maxPackage</td>
+<td>maximum allowable number of <code>package</code> methods</td>
+<td><a href="property_types.html#integer">integer</a></td>
+<td>100</td>
+</tr>
+<tr class="a"><td>maxProtected</td>
+<td>maximum allowable number of <code>protected</code> methods</td>
+<td><a href="property_types.html#integer">integer</a></td>
+<td>100</td>
+</tr>
+<tr class="b"><td>maxPublic</td>
+<td>maximum allowable number of <code>public</code> methods</td>
+<td><a href="property_types.html#integer">integer</a></td>
+<td>100</td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="Examples"></a>Examples</h3>
+<p>
+          To configure the check with defaults:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;MethodCount&quot;/&gt;
+        </pre>
+</div>
+<p>
+          To configure the check to allow at most 30 methods per type:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;MethodCount&quot;&gt;
+      &lt;property name=&quot;maxTotal&quot; value=&quot;30&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p>
+          com.puppycrawl.tools.checkstyle.checks.sizes
+        </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#TreeWalker">TreeWalker</a></p>
+</div>
+</div>
+
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2001-2010
+    
+          
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>

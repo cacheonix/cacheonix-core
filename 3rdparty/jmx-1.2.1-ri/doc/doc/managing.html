@@ -1,0 +1,190 @@
+<HTML>
+<HEAD>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+    <!-- Created by: Andy KASS, 22-Sept-1999 -->
+
+    <TITLE>JMX RI</TITLE>
+
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF"
+      LINK="#0000FF" VLINK="#000077" ALINK="#FF0000">
+
+<TABLE BORDER=0 WIDTH="100%">
+    <TR>
+        <TD><IMG SRC="images/smi.logo.gif" ALT="Sun Microsystems, Inc"
+                 HEIGHT=43 WIDTH=120>&nbsp;</TD>
+        <TD ALIGN=right>
+            <B><A HREF="../index.html">JMX Reference Implementation</A><BR>
+                Tutorial</B></TD>
+    </TR>
+</TABLE>
+<HR>
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+
+    <TR>
+        <TD WIDTH="33%" ALIGN="left" VALIGN="top"><A HREF="administration.html">
+            <IMG SRC="images/leftarrow.gif" BORDER="0" ALT="[ Previous ]"><BR>
+            Agent Administration</A></TD>
+
+        <TD WIDTH="34%" ALIGN="center" VALIGN="top"><A HREF="tutorial.html">
+            <IMG SRC="images/uparrow.gif" BORDER="0" ALT="[ Contents ]"><BR>
+            Contents</A></TD>
+
+        <TD WIDTH="33%" ALIGN="right" VALIGN="top"><A HREF="twombeans.html">
+            <IMG SRC="images/rightarrow.gif" BORDER="0" ALT="[ Next ]"><BR>
+            Standard and Dynamic MBeans</A></TD>
+
+    </TR>
+</TABLE>
+<HR>
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<CENTER>
+    <H1>
+        Instantiating and Managing MBeans
+    </H1>
+</CENTER>
+<BLOCKQUOTE>
+
+    Sometimes, launching an MBean requires several steps: this is
+    particularly the case for agent services which require some sort of
+    configuration. For example, you can instantiate another HTML adaptor
+    for connecting to a different port.<P>
+
+    <B><FONT SIZE=+1 COLOR=#ACA6CF>Action: &nbsp;</FONT></B>On the agent
+    administration page, fill in the fields as follows:
+
+    <P>
+
+    <BLOCKQUOTE>
+        <TABLE BORDER CELLPADDING=7 BGCOLOR="#D4CCFF" WIDTH=75%>
+            <TR>
+                <TD>
+<PRE>
+      Domain: <B>Adaptor</B>
+
+      Keys  : <B>name=html,port=8088</B>
+</PRE>
+                </TD>
+            </TR>
+            <TR>
+                <TD>
+<PRE>
+  Java Class: <B>com.sun.jdmk.comm.HtmlAdaptorServer</B>
+</PRE>
+                </TD>
+            </TR>
+        </TABLE>
+    </BLOCKQUOTE>
+    <P>
+
+        Ensure the selected action is "Create" and send the request. If you
+        scroll down the agent administration page, you should see if your request was
+        successful. You cannot connect to this HTML adaptor quite yet, we need
+        to configure it first.
+
+    <P>
+
+        <B><FONT SIZE=+1 COLOR=#ACA6CF>Action: &nbsp;</FONT></B>Go to the new
+        HTML adaptor's MBean view with the provided link.
+
+    <P>
+
+        We were not able to modify any of the attributes before because the
+        implementation is designed so that they cannot be modified while it is
+        running. Our new HTML adaptor is instantiated in the stopped state (the
+        "StateString" attribute indicates "OFFLINE"), so we can change its
+        attributes.
+
+    <P>
+
+        <B><FONT SIZE=+1 COLOR=#ACA6CF>Action: &nbsp;</FONT></B>Set the "Port"
+        attribute to "8088" and "MaxActiveClientCount" to "2", then click the
+        "Apply" button. If the page is reloaded and the new values are
+        displayed, the attribute write operation was successful. You can also
+        click the attribute names to get an explanation for them.
+
+    <P>
+
+        <B><FONT SIZE=+1 COLOR=#ACA6CF>Action: &nbsp;</FONT></B>Now scroll
+        down the MBean view to the "Start" operation and click its
+        button. This brings up a new page to tell us the operation was
+        successful. If you go back to the MBean view with the provided link,
+        you can see that the "StateString" is now indicating "ONLINE".
+
+    <P>
+
+        Now you should be able to access your base agent through a browser on
+        port 8088. Try going to a different machine on the same network and
+        connecting to the URL:
+
+    <P>
+
+    <CENTER>http://<I>agentHostName</I>:8088/</CENTER>
+    <P>
+
+        (where <I>agentHostName</I> is the name or IP address of the machine
+        where you launched the BaseAgent). If you reload the MBean view of the
+        new HTML adaptor, you should see the name of this other machine as the
+        value of the "LastConnectedClient" attribute.
+
+    <P>
+
+
+        Through this other connection, you could stop, modify or remove the
+        HTML adaptor MBean using port 8082. In that case, your original
+        browser will have to use <A HREF="http://localhost:8088/"
+                                    TARGET="_blank" ONCLICK="AgentWindow2=window.open(
+'http://'+java.net.InetAddress.getLocalHost().getHostName()+':8088/',
+'AgentWindow2', 'toolbar=no,location=yes,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=600'
+); return false;">
+        <script type="text/javascript"
+                ALT="http://localhost:8088/">document.write('http://' +
+                                                            java.net.InetAddress.getLocalHost().getHostName() + ':8088/');
+        </script>
+        <noscript>http://localhost:8088/</noscript>
+    </a> (or <A
+            HREF="http://localhost:8088/"
+            TARGET="_blank">http://localhost:8088/</A>) as well to connect.
+    <P>
+
+        Leave an agent view open on another machine for the next topic.
+
+    <P>
+
+</BLOCKQUOTE>
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<HR>
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+
+    <TR>
+        <TD WIDTH="33%" ALIGN="left" VALIGN="top"><A HREF="administration.html">
+            <IMG SRC="images/leftarrow.gif" BORDER="0" ALT="[ Previous ]"><BR>
+            Agent Administration</A></TD>
+
+        <TD WIDTH="34%" ALIGN="center" VALIGN="top"><A HREF="tutorial.html">
+            <IMG SRC="images/uparrow.gif" BORDER="0" ALT="[ Contents ]"><BR>
+            Contents</A></TD>
+
+        <TD WIDTH="33%" ALIGN="right" VALIGN="top"><A HREF="twombeans.html">
+            <IMG SRC="images/rightarrow.gif" BORDER="0" ALT="[ Next ]"><BR>
+            Standard and Dynamic MBeans</A></TD>
+
+    </TR>
+</TABLE>
+<HR>
+
+<IMG SRC="images/java_red.gif" ALT="Java coffee cup logo"
+     HEIGHT=85 WIDTH=49 ALIGN=RIGHT>
+
+<P>
+    <FONT SIZE=-1><A HREF="copyright.html">Copyright</A> 2000-2003
+        Sun Microsystems, Inc.,
+        &nbsp;<BR>
+        All rights reserved.</FONT>
+
+<P>
+
+<P>
+    &nbsp;
+</BODY>
+</HTML>

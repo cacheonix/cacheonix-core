@@ -1,0 +1,8 @@
+http\://www.springmodules.org/schema/cache/springmodules-cache.xsd=org/springmodules/cache/config/springmodules-cache.xsd
+http\://www.springmodules.org/schema/cache/springmodules-ehcache.xsd=org/springmodules/cache/config/ehcache/springmodules-ehcache.xsd
+http\://www.springmodules.org/schema/cache/springmodules-jboss.xsd=org/springmodules/cache/config/jboss/springmodules-jboss.xsd
+http\://www.springmodules.org/schema/cache/springmodules-jcs.xsd=org/springmodules/cache/config/jcs/springmodules-jcs.xsd
+http\://www.springmodules.org/schema/cache/springmodules-oscache.xsd=org/springmodules/cache/config/oscache/springmodules-oscache.xsd
+http\://www.springmodules.org/schema/cache/springmodules-tangosol.xsd=org/springmodules/cache/config/tangosol/springmodules-tangosol.xsd
+http\://www.springmodules.org/schema/cache/springmodules-gigaspaces.xsd=org/springmodules/cache/config/gigaspaces/springmodules-gigaspaces.xsd
+http\://www.springmodules.org/schema/cache/springmodules-cacheonix.xsd=org/springmodules/cache/config/cacheonix/springmodules-cacheonix.xsd

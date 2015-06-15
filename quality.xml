@@ -1,0 +1,80 @@
+<project name="quality" default="all">
+
+   <property file="core.properties"/>
+   <property name="pmd.home" value="quality/3rdparty/pmd-4.0"/>
+   <property name="findbugs.home" value="quality/3rdparty/findbugs-1.2.1"/>
+   <property name="checkstyle-all.jar" value="quality/3rdparty/checkstyle-5.3/checkstyle-5.3-all.jar"/>
+
+   <target name="all" depends="pmd, findbugs, checkstyle"/>
+
+   <!-- Prepares -->
+   <target name="init">
+      <mkdir dir="${test.log.dir}"/>
+   </target>
+
+
+   <!-- Runs pmd -->
+   <target name="pmd" depends="init">
+      <property name="pmd.html.report" value="${test.log.dir}/pmd_report.html"/>
+      <property name="pmd.xml.report" value="${test.log.dir}/pmd_report.xml"/>
+      <property name="cpd.text.report" value="${test.log.dir}/cpd_report.txt"/>
+      <echo message="PMD HTML Report: ${pmd.html.report}"/>
+      <echo message="PMD XML Report : ${pmd.xml.report}"/>
+      <echo message="CPD Text Report: ${cpd.text.report}"/>
+      <path id="pmd.classpath">
+         <fileset dir="${pmd.home}/java14/lib" includes="**/*.jar"/>
+         <path path="${pmd.home}/lib/jaxen-1.1.jar"/>
+      </path>
+      <taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask" classpathref="pmd.classpath"/>
+      <pmd rulesetfiles="quality/pmd.xml" failOnRuleViolation="true">
+         <fileset dir="${src.dir}" includes="**/*.java" excludes="
+                     org/cacheonix/impl//util/concurrent/**/*.java,
+                     org/cacheonix/impl//util/binding/**/*.java,
+                     org/cacheonix/impl//util/logging/**/*.java,
+                     org/cacheonix/impl//util/**/*.java,
+                     org/cacheonix/impl//net/remoting/**/*.java,
+                     org/cacheonix/impl//net/multicast/totem/**/*.java,
+                     "/>
+         <fileset dir="${test.src.dir}" includes="**/*.java"/>
+         <fileset dir="${annotations.src.dir}" includes="**/*.java"/>
+         <fileset dir="${annotations.tests.src.dir}" includes="**/*.java"/>
+         <formatter type="html" toFile="${pmd.html.report}"/>
+         <formatter type="xml" toFile="${pmd.xml.report}"/>
+         <formatter type="text" toConsole="true"/>
+      </pmd>
+      <taskdef name="cpd" classname="net.sourceforge.pmd.cpd.CPDTask" classpathref="pmd.classpath"/>
+      <cpd minimumTokenCount="50" outputFile="${cpd.text.report}">
+         <fileset dir="${src.dir}" includes="**/*.java"/>
+      </cpd>
+   </target>
+
+
+   <!-- Runs findbugs -->
+   <target name="findbugs" depends="init">
+      <taskdef name="findbugs" classname="edu.umd.cs.findbugs.anttask.FindBugsTask"
+               classpath="${findbugs.home}/lib/findbugs-ant.jar"/>
+      <findbugs home="${findbugs.home}" output="html" reportLevel="medium" quietErrors="false"
+                excludeFilter="quality/findbugs.xml" outputFile="${test.log.dir}/findbug-result.html"
+                effort="max" jvmargs="-Xmx200m">
+         <systemProperty name="org.xml.sax.driver" value="org.apache.crimson.parser.XMLReaderImpl"/>
+         <auxClasspath refid="test.classpath"/>
+         <class location="${classes.dir}"/>
+         <sourcePath path="${src.dir}"/>
+      </findbugs>
+   </target>
+
+
+   <!-- Runs checkstyle -->
+   <target name="checkstyle" depends="init">
+      <taskdef resource="checkstyletask.properties" classpath="${checkstyle-all.jar}"/>
+      <checkstyle config="quality/checkstyle.xml" failOnViolation="false">
+         <fileset dir="src" includes="**/*.java"/>
+         <formatter type="xml" toFile="${test.log.dir}/checkstyle_errors.xml"/>
+      </checkstyle>
+
+      <style in="${test.log.dir}/checkstyle_errors.xml" out="${test.log.dir}/checkstyle_report.html"
+             style="quality/3rdparty/checkstyle-5.3/contrib/checkstyle-noframes-severity-sorted.xsl"/>
+   </target>
+
+
+</project>

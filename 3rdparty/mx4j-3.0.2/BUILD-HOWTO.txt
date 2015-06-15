@@ -1,0 +1,122 @@
+Welcome to MX4J, an open source implementation of the
+Java(TM) Management Extensions (JMX) (JSR 3) and of the
+Java(TM) Management Extensions (JMX) remote API (JSR 160).
+
+For further information about JMX and JSR 3, see
+http://java.sun.com/jmx and
+http://jcp.org/en/jsr/detail?id=3
+
+For further information about JMX remote and JSR 160, see
+http://java.sun.com/jmx and
+http://jcp.org/en/jsr/detail?id=160
+
+Refer to the MX4J home page (http://mx4j.sourceforge.net) for
+new releases and further information about the MX4J project.
+
+For up-to-date documentation see http://mx4j.sourceforge.net/docs.
+
+
+Building MX4J from the sources
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To build an MX4J binary distribution from an MX4J source distribution,
+you must have a J2SE(TM) version 1.3 or later installed
+(see http://java.sun.com/j2se).
+Unpack the MX4J source distribution into a directory that will be
+referred to as $MX4J, and follow the instructions below.
+
+
+Building JSR 3 (Java Management Extensions) classes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Download and install Ant version 1.5 or later from
+  http://ant.apache.org
+  The directory where Ant is installed will be referred to as
+  $ANT_HOME
+
+* Download BCEL version 5.0 or later from
+  http://jakarta.apache.org/bcel
+  Put bcel.jar into $MX4J/lib
+
+* Download Commons-Logging version 1.0 or later from
+  http://jakarta.apache.org/commons
+  Put commons-logging.jar into $MX4J/lib
+
+* Download Log4J version 1.2 or later from
+  http://jakarta.apache.org/log4j
+  Put log4j-*.jar into $MX4J/lib
+
++ Issue the command
+  $ANT_HOME/bin/ant compile.jmx
+  from the $MX4J/build directory
+
+
+Building JSR 160 (Java Management Extensions Remote API) classes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Follow the instruction given for building the JSR 3 classes, and
+do the following:
+
+* [J2SE 1.3 only]
+  Download JAAS version 1.0 or later from
+  http://java.sun.com/products/jaas
+  Unpack jaas.jar into $MX4J/lib. This step is needed to workaround
+  a bug in the rmic compiler that is unable to load classes from
+  jars when compiling with the -iiop flag.
+  After this operation, there should be the directories
+  $MX4J/lib/javax/security/auth and subdirectories, and
+  $MX4J/lib/com/sun/security/auth and subdirectories,
+  containing the JAAS classes.
+
++ Issue the command
+  $ANT_HOME/bin/ant compile.rjmx
+  from the $MX4J/build directory
+
+
+Building MX4J Tools classes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Warning: some MX4J tools depend on JDK 1.4, since they depend on
+3rd party libraries that depend on JDK 1.4.
+Follow the instruction given for building the JSR 160 classes, and
+do the following:
+
+* Download Axis version 1.1 or later from
+  http://ws.apache.org/axis
+  Put axis.jar, commons-discovery.jar, jaxrpc.jar, saaj.jar and
+  wsdl4j.jar into $MX4J/lib
+
+* Download the servlet API classes version 2.3 or later from
+  http://java.sun.com/products/servlet/reference/api/index.html
+  Most likely, you have to rename the downloaded file from
+  servlet-2_3-fcs-classfiles.zip to servlet.jar and put it under
+  $MX4J/lib
+
+* Download Jetty version 4.2 or later from
+  http://jetty.mortbay.org
+  Put org.mortbay.jetty.jar into $MX4J/lib
+
+* [Optional]
+  Download JavaMail and the JavaBean Activation Framework from
+  http://java.sun.com/products/javamail
+  http://java.sun.com/beans/glasgow
+  Put mail.jar and activation.jar into $MX4J/lib
+
+* [Optional]
+  Download Jython from
+  http://www.jython.org
+  Put jython.jar into $MX4J/lib
+
+* [Requires J2SE 1.4]
+  Download Hessian from
+  http://www.caucho.com
+  Put hessian-*.jar into $MX4J/lib
+
+* [J2SE 1.3 only]
+  Download JSSE version 1.0 or later from
+  http://java.sun.com/products/jsse
+  Put jcert.jar, jnet.jar and jsse.jar into $MX4J/lib
+
++ Issue the command
+  $ANT_HOME/bin/ant compile.tools
+  from the $MX4J/build directory

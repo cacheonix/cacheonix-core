@@ -1,0 +1,439 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Math - The Commons Math User Guide - Linear Algebra</title>
+    <style type="text/css" media="all">
+      @import url("../css/maven-base.css");
+      @import url("../css/maven-theme.css");
+      @import url("../css/site.css");
+    </style>
+    <link rel="stylesheet" href="../css/print.css" type="text/css" media="print" />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+  <body class="composite">
+    <div id="banner">
+                  <a href="../" id="bannerLeft">
+    
+                                            <img src="../../images/logo.png" alt="" />
+    
+            </a>
+                        <a href="index.html" id="bannerRight">
+    
+                                            <img src="../images/math.gif" alt="" />
+    
+            </a>
+            <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+            
+  
+    
+            <div class="xleft">
+        Last Published: 18 February 2008
+                  &nbsp;| Version: 1.2
+                      </div>
+            <div class="xright">            <a href="http://www.apachecon.com/" class="externalLink">ApacheCon</a>
+            |
+                <a href="http://www.apache.org" class="externalLink">Apache</a>
+            |
+                <a href="../../">Commons</a>
+            
+  
+
+  
+    
+            
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+            
+  
+    
+                   <h5>Math</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="../index.html">Overview</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../proposal.html">Proposal</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../developers.html">Developers Guide</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../apidocs/index.html">Javadoc (1.2 release)</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../api-1.1/index.html">Javadoc (1.1 release)</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../api-1.0/index.html">Javadoc (1.0 release)</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://svn.apache.org/viewvc/commons/proper/math/trunk" class="externalLink">Source Repository (current)</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../issue-tracking.html">Issue Tracking</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://wiki.apache.org/commons/Math" class="externalLink">Wiki</a>
+          </li>
+          </ul>
+              <h5>User Guide</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="../userguide/index.html">Contents</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/overview.html">Overview</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/stat.html">Statistics</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/random.html">Data Generation</a>
+          </li>
+              
+    <li class="none">
+              <strong>Linear Algebra</strong>
+        </li>
+              
+    <li class="none">
+                    <a href="../userguide/analysis.html">Numerical Analysis</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/special.html">Special Functions</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/utilities.html">Utilities</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/complex.html">Complex Numbers</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/distribution.html">Distributions</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/fraction.html">Fractions</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/transform.html">Transform Methods</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/geometry.html">3D Geometry</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/estimation.html">Parametric Estimation</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/optimization.html">Optimization</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/ode.html">Ordinary Differential Equations</a>
+          </li>
+          </ul>
+              <h5>Project Documentation</h5>
+            <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="../project-info.html">Project Information</a>
+                </li>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="../project-reports.html">Project Reports</a>
+                </li>
+          </ul>
+              <h5>Commons</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="../../">Home</a>
+          </li>
+              
+                
+              
+      
+              
+        <li class="collapsed">
+                    <a href="../../components.html">Components</a>
+                </li>
+              
+                
+              
+      
+              
+        <li class="collapsed">
+                    <a href="../../sandbox/index.html">Sandbox</a>
+                </li>
+              
+                
+              
+      
+              
+        <li class="collapsed">
+                    <a href="../../dormant/index.html">Dormant</a>
+                </li>
+              
+    <li class="none">
+                    <a href="../../volunteering.html">Volunteering</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../../patches.html">Contributing Patches</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../../building.html">Building Components</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../../releases/index.html">Releasing Components</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://wiki.apache.org/commons/FrontPage" class="externalLink">Wiki</a>
+          </li>
+          </ul>
+              <h5>ASF</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://www.apache.org/foundation/sponsorship.html" class="externalLink">Sponsorship</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://www.apache.org/foundation/thanks.html" class="externalLink">Thanks</a>
+          </li>
+          </ul>
+                                           <a href="http://maven.apache.org/" title="Built by Maven" class="poweredBy">
+            <img alt="Built by Maven" src="../images/logos/maven-feather.png"></img>
+          </a>
+                       
+  
+
+  
+    
+            
+  
+    
+        </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <div class="section"><h2><a name="a3_Linear_Algebra"></a>
+3 Linear Algebra</h2>
+<div class="section"><h3><a name="a3.1_Overview"></a>
+3.1 Overview</h3>
+<p>
+           Currently, numerical linear algebra support in commons-math is 
+           limited to basic operations on real matrices and solving linear systems.
+        </p>
+</div>
+<div class="section"><h3><a name="a3.2_Real_matrices"></a>
+3.2 Real matrices</h3>
+<p>
+          The <a href="../apidocs/org/apache/commons/math/linear/RealMatrix.html">
+          RealMatrix</a>
+ interface represents a matrix with real numbers as 
+          entries.  The following basic matrix operations are supported:
+          <ul><li>Matrix addition, subtraction, mutiplication</li>
+<li>Scalar addition and multiplication</li>
+<li>Inverse and transpose</li>
+<li>Determinants and singularity testing</li>
+<li>LU decomposition</li>
+<li>Norm and Trace</li>
+<li>Operation on a vector</li>
+</ul>
+</p>
+<p>
+         Example:
+         <div class="source"><pre>
+// Create a real matrix with two rows and three columns
+double[][] matrixData = { {1d,2d,3d}, {2d,5d,3d}};
+RealMatrix m = new RealMatrixImpl(matrixData);
+
+// One more with three rows, two columns
+double[][] matrixData2 = { {1d,2d}, {2d,5d}, {1d, 7d}};
+RealMatrix n = new RealMatrixImpl(matrixData2);
+
+// Note: The constructor copies  the input double[][] array.
+
+// Now multiply m by n
+RealMatrix p = m.multiply(n);
+System.out.println(p.getRowDimension()); // 2
+System.out.println(p.getRowDimension()); // 2
+
+// Invert p
+RealMatrix pInverse = p.inverse();
+         </pre>
+</div>
+</p>
+</div>
+<div class="section"><h3><a name="a3.3_Solving_linear_systems"></a>
+3.3 Solving linear systems</h3>
+<p>
+          The <code>solve()</code> methods of the <code>RealMatrix</code> interface
+          support solving linear systems of equations.  In each case, the 
+          <code>RealMatrix</code> represents the coefficient matrix of the system.
+          For example, to solve the linear system
+          <pre>
+           2x + 3y - 2z = 1
+           -x + 7y + 6x = -2
+           4x - 3y - 5z = 1
+          </pre>
+          Start by creating a RealMatrix to store the coefficients
+          <div class="source"><pre>
+double[][] coefficientsData = {{2, 3, -2}, {-1, 7, 6}, {4, -3, -5}};
+RealMatrix coefficients = new RealMatrixImpl(coefficientsData);
+          </pre>
+</div>
+
+          Next create a <code>double[]</code> array to represent the constant
+          vector and use <code>solve(double[])</code> to solve the system
+          <div class="source"><pre>
+double[] constants = {1, -2, 1};
+double[] solution = coefficients.solve(constants);
+          </pre>
+</div>
+
+          The <code>solution</code> array will contain values for x 
+          (<code>solution[0]</code>), y (<code>solution[1]</code>), 
+          and z (<code>solution[2]</code>) that solve the system.
+        </p>
+<p>
+          If the coefficient matrix is not square or singular, an 
+          <a href="../apidocs/org/apache/commons/math/linear/InvalidMatrixException.html">
+          InvalidMatrixException</a>
+ is thrown.
+        </p>
+<p>
+          It is possible to solve multiple systems with the same coefficient matrix 
+          in one method call.  To do this, create a matrix whose column vectors correspond 
+          to the constant vectors for the systems to be solved and use 
+          <code>solve(RealMatrix),</code> which returns a matrix with column
+          vectors representing the solutions.
+        </p>
+</div>
+</div>
+
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2003-2008
+    
+          The Apache Software Foundation
+          
+  
+
+  
+    
+            
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>

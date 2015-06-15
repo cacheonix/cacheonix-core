@@ -1,0 +1,112 @@
+/*
+ * @(#)file      README
+ * @(#)author    Sun Microsystems, Inc.
+ * @(#)version   1.10
+ * @(#)date      03/07/15
+ *
+ * Copyright 2000-2003 Sun Microsystems, Inc.  All rights reserved.
+ * This software is the proprietary information of Sun Microsystems, Inc.
+ * Use is subject to license terms.
+ * 
+ * Copyright 2000-2003 Sun Microsystems, Inc.  Tous droits réservés.
+ * Ce logiciel est proprieté de Sun Microsystems, Inc.
+ * Distribué par des licences qui en restreignent l'utilisation. 
+ *
+ */
+
+
+                         Relation Service Example
+                         ========================
+
+
+-----------------------------------------------------------------------
+1. Overview
+-----------------------------------------------------------------------
+
+This example shows how to use the Relation Service:
+
+ - to handle relation types, i.e. metadata describing the roles that a       
+   relation of that type has to support:
+    . Creation, either of simple relation types through the Relation         
+      Service, or of relation types created by the user and added into the 	
+      Relation Service 
+    . Access
+    . Deletion
+
+ - to handle relations, i.e. links between MBeans
+    . Creation, either of relations not handled as MBeans and kept           
+      internally in the Relation Service, or relation MBeans,
+    . Access, through the Relation Service for any relation, or direct       
+      access for relation MBean
+    . Removal
+
+ - to perform queries to retrieve relations referencing a given MBean, or
+   MBeans associated to a given MBean.
+
+It also demonstrates the way the Relation Service maintains the consistency 
+when MBeans referenced in relations are unregistered from the MBean server.
+
+
+-----------------------------------------------------------------------
+2. File List
+-----------------------------------------------------------------------
+
+This example uses the following source files:
+
+ * RelationAgent.java:
+    - Creates an MBean server
+    - Registers a Relation Service MBean in the MBean server
+    - Registers some standard MBeans in the MBean server
+    - Creates, access and removes relation types
+    - Creates, access and removes relations
+    - Performs queries on relations
+
+ * SimpleRelation.java:
+    - A simple relation MBean class, to be used to create relation MBeans,
+      first registered into the MBean server as MBeans, then added into the
+      Relation Service as relations
+
+ * SimpleRelationMBean.java:
+    - The management interface of the SimpleRelationMBean class
+
+ * SimpleRelationType.java:
+    - A simple relation type class, to be used to create a relation type to  
+      be added in the Relation Service. This is an alternative for having to
+      create a relation type describing it each time, here an instance does  
+      it.
+
+ * SimpleStandard.java:
+    - A standard MBean, to be used in relations
+
+ * SimpleStandardMBean.java:
+    - The management interface of the SimpleStandard class
+
+
+-----------------------------------------------------------------------
+3. Building and Running the Example
+-----------------------------------------------------------------------
+
+To build and run this example, make sure that your PATH and CLASSPATH
+environment variables are correctly set to use the Java 2 platform. In
+addition, your CLASSPATH must also contain the JMX Reference implementation
+(jmxri.jar) jar files, as well as the current directory (.).
+
+These instructions assume the classpath is set in an environment
+variable, though it may also be given on the command line with the
+-classpath option.
+
+Copy the example source files to your 
+working directory and type the following commands:
+
+   cd examples/Relation
+   javac *.java
+
+To run the example using the classes you have just built, type the
+following command:
+
+   java RelationAgent
+
+You then interact with the agent through the standard input and output
+in the window where it was launched. The RelationAgent class displays
+information about each management step and waits for user input before
+continuing.

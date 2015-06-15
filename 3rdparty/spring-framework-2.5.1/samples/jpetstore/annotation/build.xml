@@ -1,0 +1,185 @@
+<?xml version="1.0"?>
+
+<!--
+	Similar to main build file, but using JDK 1.5+ annotations to deliver
+	auto-proxying: no need to use TransactionProxyFactoryBean.
+-->
+<project name="jpetstore-annotation" basedir=".." default="usage">
+
+	<property name="name" value="jpetstore"/>
+
+	<property name="war.dir" value="war"/>
+	<property name="src.dir" value="src"/>
+	<property name="client.dir" value="client"/>
+	<property name="build.dir" value=".classes"/>
+	<property name="weblib.dir" value="${war.dir}/WEB-INF/lib"/>
+	<property name="dist.dir" value="dist"/>
+
+	<property name="spring.root" value="../.."/>
+
+
+	<path id="master-classpath">
+
+		<fileset dir="${spring.root}/lib/axis">
+			<include name="axis.jar"/>
+		</fileset>
+		<fileset dir="${spring.root}/lib/ibatis">
+			<include name="ibatis-*.jar"/>
+		</fileset>
+		<fileset dir="${spring.root}/lib/j2ee">
+			<include name="jaxrpc.jar"/>
+			<include name="servlet-api.jar"/>
+		</fileset>
+		<fileset dir="${spring.root}/lib/jakarta-commons">
+			<include name="commons-logging.jar"/>
+		</fileset>
+		<fileset dir="${spring.root}/lib/struts">
+			<include name="struts.jar"/>
+		</fileset>
+		<fileset dir="${spring.root}/dist">
+			<include name="spring.jar"/>
+		</fileset>
+    <fileset dir="${spring.root}/dist/modules">
+      <include name="spring-webmvc.jar"/>
+    </fileset>
+
+	</path>
+
+
+	<target name="usage">
+
+		<echo message=""/>
+		<echo message="Spring JPetStore build file"/>
+		<echo message="------------------------------------------------------"/>
+		<echo message=""/>
+		<echo message="Available targets are:"/>
+		<echo message=""/>
+		<echo message="clean    --> Clean output dirs"/>
+		<echo message="build    --> Compile main Java sources and copy libraries"/>
+		<echo message="warfile  --> Build the web application archive"/>
+		<echo message="all      --> Clean, build, warfile"/>
+		<echo message=""/>
+
+	</target>
+
+
+	<target name="clean" description="Clean output dirs (build, weblib, dist)">
+
+		<delete dir="${build.dir}"/>
+		<delete dir="${weblib.dir}"/>
+		<delete dir="${dist.dir}"/>
+		<delete file="client/${name}.jar"/>
+
+	</target>
+
+
+	<target name="build" description="Compile main source tree java files into class files, generate jar files">
+
+		<mkdir dir="${build.dir}"/>
+
+		<javac destdir="${build.dir}" source="1.5" target="1.5" debug="true"
+				deprecation="false" optimize="false" failonerror="true">
+			<src path="${src.dir}"/>
+			<src path="annotation/src"/>
+			<classpath refid="master-classpath"/>
+		</javac>
+
+		<copy todir="${build.dir}" preservelastmodified="true">
+			<fileset dir="${src.dir}">
+				<include name="**/*.xml"/>
+			</fileset>
+		</copy>
+
+		<mkdir dir="${weblib.dir}"/>
+
+		<jar jarfile="${weblib.dir}/${name}.jar" compress="true" basedir="${build.dir}"/>
+
+		<copy todir="${weblib.dir}" preservelastmodified="true">
+			<fileset dir="${spring.root}/lib/aspectj">
+				<include name="aspectjweaver.jar"/>
+			</fileset>
+			<fileset dir="${spring.root}/lib/axis">
+				<include name="axis.jar"/>
+				<include name="wsdl4j.jar"/>
+			</fileset>
+			<fileset dir="${spring.root}/lib/caucho">
+				<include name="hessian*.jar"/>
+			</fileset>
+			<fileset dir="${spring.root}/lib/hsqldb">
+				<include name="hsqldb.jar"/>
+			</fileset>
+			<fileset dir="${spring.root}/lib/ibatis">
+				<include name="ibatis-*.jar"/>
+			</fileset>
+			<fileset dir="${spring.root}/lib/j2ee">
+				<include name="jaxrpc.jar"/>
+				<include name="jstl.jar"/>
+			</fileset>
+			<fileset dir="${spring.root}/lib/jakarta-commons">
+				<include name="commons-beanutils.jar"/>
+				<include name="commons-collections.jar"/>
+				<include name="commons-dbcp.jar"/>
+				<include name="commons-digester.jar"/>
+				<include name="commons-discovery.jar"/>
+				<include name="commons-logging.jar"/>
+				<include name="commons-pool.jar"/>
+				<include name="commons-validator.jar"/>
+			</fileset>
+			<fileset dir="${spring.root}/lib/jakarta-taglibs">
+				<include name="standard.jar"/>
+			</fileset>
+      <fileset dir="${spring.root}/lib/jaxws">
+        <include name="saaj-api.jar"/>
+      </fileset>
+			<fileset dir="${spring.root}/lib/struts">
+				<include name="struts.jar"/>
+			</fileset>
+			<fileset dir="${spring.root}/dist">
+				<include name="spring.jar"/>
+			</fileset>
+      <fileset dir="${spring.root}/dist/modules">
+        <include name="spring-webmvc.jar"/>
+      </fileset>
+		</copy>
+
+		<copy file="${weblib.dir}/${name}.jar" tofile="${client.dir}/${name}.jar"/>
+
+	</target>
+
+
+	<target name="warfile" depends="build" description="Build the web application archive">
+
+		<mkdir dir="${dist.dir}"/>
+
+		<war warfile="${dist.dir}/${name}.war" basedir="${war.dir}" webxml="annotation/WEB-INF/web.xml">
+			<include name="*"/>
+			<include name="images/**"/>
+			<include name="WEB-INF/*.*"/>
+			<include name="WEB-INF/lib/**"/>
+			<include name="WEB-INF/jsp/**"/>
+			<include name="WEB-INF/classes/**"/>
+			<exclude name="WEB-INF/web.xml"/>
+			<exclude name="WEB-INF/applicationContext.xml"/>
+			<exclude name="**/.*"/>
+			<!-- Take overriding application context files from "annotation" -->
+			<fileset dir="annotation">
+				<include name="WEB-INF/applicationContext.xml"/>
+				<include name="WEB-INF/declarativeServices.xml"/>
+			</fileset>
+		</war>
+
+	</target>
+
+
+	<target name="dist" depends="warfile">
+		<!--
+			Delegate to "warfile" target by depending on it. "dist" is just to offer
+			a generic target name across all Spring sample apps that may be used
+			for autobuilds testing
+		-->
+	</target>
+
+
+	<target name="all" depends="clean,build,warfile" description="Clean,build,warfile"/>
+
+</project>

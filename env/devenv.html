@@ -1,0 +1,575 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>
+          Viewtier Devenv &gt;&gt;
+          Documentation</title>
+</head>
+<body>
+<div align="center">
+<table height="600" width="700">
+<tr>
+<td valign="center" height="50" bgcolor="navy">
+<div style="font-weight:bold; font-family:Arial; font-size:12pt; color:white;">Viewtier Devenv - Common development environment setter</div>
+</td>
+</tr>
+<tr>
+<td valign="center" bgcolor="navy" height="25">
+<div style="color:white; font-weight:bold; font-family:Arial; font-size:12px; ">
+<a href="./devenv.html" style="font-weight:bold; font-family:Arial; font-size:12px; color:white;">Documentation</a> |
+                  <a href="./devenv_license.html" style="font-weight:bold; font-family:Arial; font-size:12px; color:white;">License</a> |
+                </div>
+<div align="right" style="color:white; font-weight:bold; font-family:Arial; font-size:12px; ">
+                  Online:
+                  <a href="http://www.viewtier.com/devenv/index.html" style="font-weight:bold; font-family:Arial; font-size:12px; color:white;">Home</a>
+                  |
+                  <a href="http://www.viewtier.com/devenv/download.html" style="font-weight:bold; font-family:Arial; font-size:12px; color:white;">Download</a>
+                  |
+                  <a href="http://www.viewtier.com/devenv/register.html" style="font-weight:bold; font-family:Arial; font-size:12px; color:white;">Register</a>
+                  |
+                  <a href="http://www.viewtier.com/devenv/support.html" style="font-weight:bold; font-family:Arial; font-size:12px; color:white;">Support</a>
+</div>
+</td>
+</tr>
+<tr>
+<td height="20"></td>
+</tr>
+<tr>
+<td valign="top">
+
+
+  
+<h3>Contents</h3>
+  
+<b><a href="#s1">Setting common development environment</a></b>
+<br>
+  
+<b><a href="#s2">devenv.xml</a></b>
+<br>
+  
+<b><a href="#s3">Validating existence of a directory</a></b>
+<br>
+  
+<b><a href="#s4">Validating existence of a file</a></b>
+<br>
+  
+<b><a href="#s5">Using <code>property</code> parameter</a></b>
+<br>
+  
+<b><a href="#s5">Setting <code>build.properties</code></a></b>
+<br>
+  
+<b><a href="#s7">Adding file to CLASSPATH</a></b>
+<br>
+  
+<b><a href="#s8">Adding directory to PATH</a></b>
+<br>
+  
+<b><a href="#s9">Setting shell variables</a></b>
+<br>
+  
+<b><a href="#s10">Appendix. Installation</a></b>
+<br>
+  
+<b><a href="#s11">Appendix. Altering <code>setenv</code> script</a></b>
+<br>
+  
+<b><a href="#s12">Appendix. Registration and updating license</a></b>
+<br>
+  
+<b><a href="#s13">Appendix. System requirements</a></b>
+<br>
+
+  
+  
+  
+  
+<h3>
+<a name="#s1">Setting common development environment</a>
+</h3>
+
+  Common development environment is a set of directories, files, and shell
+  variables that must exists and must be valid for every member of
+  engineering team developing a software product. Having common development
+  environment set allows reproducible builds, which is a key to successful
+  software project development done in a team environment.
+
+  
+  
+  
+  <h3>
+<a name="#s2">devenv.xml</a>
+</h3>
+
+  Devenv uses single entry point for development environment definition.
+  This is a <code>devenv.xml</code> file. If you followed instructions for default
+  installation, this file is located in "env" subdirectory of your project home.
+  Use your editor of choice to modify <code>devenv.xml</code>
+
+
+
+  
+  
+  
+  
+<h3>
+<a name="#s3">Validating existence of a directory</a>
+</h3>
+
+  Use <code>dir</code> element to validate existence of a directory.
+
+  <p>For example, if valid project tree after check out from version
+    control system must have "bin", "lib" and "src" directories in the
+    project home, <code>devenv.xml</code> will look like the following:
+  </p>
+
+  
+<pre style="background-color: #EDEDED">
+    &lt;?xml version="1.0"?&gt;
+    &lt;environment&gt;
+      &lt;validate&gt;
+        &lt;<b>dir location="bin" required="yes"</b>/&gt;
+        &lt;dir location="lib" required="yes"/&gt;
+        &lt;dir location="src" required="yes"/&gt;
+      &lt;/validate&gt;
+    &lt;environment&gt;
+  </pre>
+
+  Parameter <code>required="yes"</code> tells Devenv that a directory is mandatory.
+  If directory is missing, Devenv will report an explicit error.
+
+
+  
+  
+  
+  <h3>
+<a name="#s4">Validating existence of a file</a>
+</h3>
+
+  
+<code>file</code> element allows to validate existence of a file.
+
+  <p>For example,
+    if valid project tree after check out from version control system must have
+    the a lib directory, Ant builder version 1.4.1 lib directory and an ant.jar file in this
+    directory, the devenv.xml file will look like this:</p>
+
+
+    
+<pre style="background-color: #EDEDED">
+      &lt;?xml version="1.0"?&gt;
+      &lt;environment&gt;
+        &lt;validate&gt;
+        &lt;dir property="lib" location="lib" required="yes"/&gt;
+        &lt;dir property="ant.lib" location="${lib}/ant141/lib" required="yes"/&gt;
+        &lt;<b>file property="ant.jar" location="${ant.lib}/ant.jar" required="yes"</b>/&gt;
+        &lt;/validate&gt;
+      &lt;/environment&gt;
+    </pre>
+
+    Parameter <code>required="yes"</code> tells Devenv that a file is mandatory.
+    If the file is missing, Devenv will report an explicit error.
+
+
+  <h3>
+<a name="#s5">Using <code>property</code> parameter</a>
+</h3>
+  In the previous example, you see how we make use of parameter
+  <code>property</code>.
+  This parameter associates a name with a directory or a file. This name allows
+  to re-use values supplied by a
+  <code>location</code> parameter making definition
+  of the environment easier to read and modify. For instance, long definition as
+  in
+
+
+  <pre style="background-color: #EDEDED">
+      &lt;validate&gt;
+        &lt;file location="lib/3rdparty/xml/jdom.jar" required="yes"/&gt;
+        &lt;file location="lib/3rdparty/xml/xalan.jar" required="yes"/&gt;
+        &lt;file location="lib/3rdparty/xml/xerses.jar" required="yes"/&gt;
+        &lt;file location="lib/3rdparty/xml/saxon.jar" required="yes"/&gt;
+        &lt;file location="lib/3rdparty/xml/xsql.jar" required="yes"/&gt;
+        &lt;file location="lib/3rdparty/xml/schema.jar" required="yes"/&gt;
+    &lt;/validate&gt;
+  </pre>
+
+
+  can be simplified by introducing directory <code>lib/3rdparty/xml</code> and giving it name "xml.lib":
+
+  <pre style="background-color: #EDEDED">
+      &lt;validate&gt;
+        &lt;dir <b>property="xml.lib"</b> location="lib/3rdparty/xml" required="yes"/&gt;
+        &lt;file location="<b>${xml.lib}</b>/jdom.jar" required="yes"/&gt;
+        &lt;file location="${xml.lib}/xalan.jar" required="yes"/&gt;
+        &lt;file location="${xml.lib}/xerses.jar" required="yes"/&gt;
+        &lt;file location="${xml.lib}/saxon.jar" required="yes"/&gt;
+        &lt;file location="${xml.lib}/xsql.jar" required="yes"/&gt;
+        &lt;file location="${xml.lib}/schema.jar" required="yes"/&gt;
+    &lt;/validate&gt;
+  </pre>
+
+
+  
+  
+  
+  
+<h3>
+<a name="#s6">Setting build.properties</a>
+</h3>
+
+  Devenv allows easy and automatic creation of <code>build.properties</code>
+  file that contains names and path to directories and file you want
+  to be available for you build scripts. For example, this file can be used by
+  an Ant build script to access common development environment parameters.
+
+  <p>If you want your directory or file be in the <code>build.properties</code>
+    file, simply add a <code>property</code> parameter and <code>build="yes"</code>
+    or <code>build="true"</code> to a definition of a directory or a file in
+    <code>devenv.xml</code>. Please note that in this case the <code>property</code>
+    parameter is mandatory.</p>
+
+  
+<p>For instance, you are going to use xalan.jar library in a compilation
+    classpath in an Ant script, but you don't want your Ant script to be tied
+    to the particular location of xalan.jar. With Devenv, it is no longer a
+    hassle:</p>
+
+  
+<pre style="background-color: #EDEDED">
+    &lt;?xml version="1.0"?&gt;
+    &lt;environment&gt;
+      &lt;validate&gt;
+        &lt;dir property="xml.lib" location="lib/3rdparty/xml" required="yes"/&gt;
+        &lt;file <b>property="xalan.jar"</b> location="${xml.lib}/xalan.jar" required="yes"
+           <b>build="yes"</b>/&gt;
+      &lt;/validate&gt;
+    &lt;/environment&gt;
+  </pre>
+
+  This will generate a <code>build.properties</code> file that may look like the
+  following (supposed your project home is <code>C:\my\project</code>):
+
+  <pre>
+    # Created at 11:24 on 25/02/2001
+    xalan.jar=C:\\my\\project\\lib\\3rdparty\\xml\\xalan.jar
+  </pre>
+
+  build.properties is later used by your Ant build script like in the fragment below:
+
+  <pre>
+    &lt;project name="myproject" default="usage" basedir="."&gt;
+      &lt;!-- load properties from a file generated by Devenv --&gt;
+      &lt;property file="build.properties"/&gt;
+      &lt;!-- Use ${xalan.jar} defined by Devenv environment
+         definition to compose a compile classpath --&gt;
+      &lt;path id="compile.classpath"&gt;
+        &lt;pathelement path="${xalan.jar}"/&gt;
+      &lt;/path&gt;
+    &lt;/project&gt;
+  </pre>
+
+
+
+  
+  
+  
+  
+<h3>
+<a name="#s7">Adding file to CLASSPATH</a>
+</h3>
+  If your project uses Java, it's likely you will want to add
+  some of the project libraries or directories to the shell
+  <code>CLASSPATH</code> variable. It can easely be done by supplying
+  <code>classpath="yes"</code> parameter to the definition of the location.
+  For example, this fragment of enironment definition:
+
+  <pre style="background-color: #EDEDED">
+    &lt;?xml version="1.0"?&gt;
+      &lt;environment&gt;
+        &lt;validate&gt;
+          &lt;file property="junit.jar" location="lib/3rdparty/junit37/junit.jar"
+            required="yes"
+            <b>classpath="yes"</b>/&gt;
+        &lt;/validate&gt;
+      &lt;/environment&gt;
+  </pre>
+
+  will add full path to <code>junit.jar</code> to the <code>CLASSPATH</code>
+  shell variable. If your project home is <code>C:\my\project</code>,
+  value of <code>CLASSPATH</code> variable will
+  be <code>C:\my\project\lib\3rdparty\junit37\junit.jar</code>. Adding
+  <code>classpath="yes"</code> to a directory definition will
+  have the same effect.
+
+
+
+  
+  
+  
+  <h3>
+<a name="#s8">Adding directory to PATH</a>
+</h3>
+
+  Devenv allows to add directories to the PATH shell variable
+  that defines a directory order shell uses to search for executable
+  files. Add <code>path="yes"</code> parameter to the definition of the
+  directory and it will be added to the front of PATH. This example will
+  add path to Ant builder and path to Jikes compiler to PATH:
+
+  <pre style="background-color: #EDEDED">
+    &lt;?xml version="1.0"?&gt;
+    &lt;environment&gt;
+      &lt;validate&gt;
+        &lt;dir location="3rdparty/ant141/bin" required="yes"
+          <b>path="yes"</b>/&gt;
+        &lt;dir location="3rdparty/jikes115/bin" required="yes"
+          <b>path="yes"</b>/&gt;
+      &lt;/validate&gt;
+    &lt;/environment&gt;
+  </pre>
+
+  If your project home is <code>C:\my\project</code>, and the value
+  of <code>PATH</code> variable was <code>C:\WINNT;C:\WINNT\System32;</code>,
+  after setting developemnt environment it will be<br>
+  
+<code>C:\my\project\3rdparty\ant141\bin;C:\my\project\3rdparty\jikes115\bin;C:\WINNT;C:\WINNT\System32;</code>.
+
+  
+  
+  
+  <h3>
+<a name="#s9">Setting shell variables</a>
+</h3>
+
+  Using Devenv you can set shell variables. Element <code>output</code> allows it:
+
+  <pre style="background-color: #EDEDED">
+    &lt;validate&gt;
+      &lt;dir property="gcc.home" location="/opt/gcc3.0" required="yes"/&gt;
+      &lt;dir property="ant.home" location="/opt/ant151" required="yes"/&gt;
+    &lt;/validate&gt;
+    &lt;output&gt;
+      &lt;shell variable="GCC_HOME" path="${gcc.home}"/&gt;
+      &lt;shell variable="ANT_HOME" path="${ant.home}"/&gt;
+      &lt;shell variable="ANT_OPTIONS" value="-debug"/&gt;
+    &lt;/output&gt;
+  </pre>
+
+  
+  
+  
+  
+<h3>
+<a name="#s10">Appendix. Installation</a>
+</h3>
+  Devenv is distributed as a single zip file. When installing, simply unzip
+  distribution file to a temporary directory. After that you may copy the
+  result to your project source tree and put Devenv under the control of
+  source control system.
+
+  <p>When unzipped, directory structure of Devenv is the following,
+    supposed you unzipped it into the /temp directory:</p>
+
+  
+<pre style="background-color: #EDEDED">
+    ./env
+    ./env/devenv.jar
+    ./env/devenv.html
+    ./env/devenv.xml
+    ./setenv.bat
+    ./setenv.sh
+  </pre>
+
+  
+<p>env directory contains Devenv jar file and Devenv documentation in
+    HTML format. File devenv.xml out of the box contains development environment
+    definition that validates presence of Devenv itself. Root directory contains
+    two shell scripts (or command files in Windows terms) - setenv.sh and setenv.bat</p>
+
+
+  
+<p>It is recommended that this directory structure preserved when Devenv is
+    copied to your project source tree. In this case, the environment setter
+    will be ready for use, and you will not need to make any additional changes. For
+    instance, if the root of your project tree looks like the following:</p>
+
+  
+<pre style="background-color: #EDEDED">
+    ./bin
+    ./lib
+    ./doc
+    ./src
+    ./test
+    ./build.xml
+    ./build-prod.xml
+    ./build-test.xml
+  </pre>
+
+  
+<br>Than after you copy Devenv, it would be as follows (Devenv
+  files marked bold):
+
+  <pre style="background-color: #EDEDED">
+    ./bin
+    <b>./env</b>
+    ./doc
+    ./lib
+    ./src
+    ./test
+    ./build.xml
+    ./build-prod.xml
+    ./build-test.xml
+    <b>./setenv.bat</b>
+    <b>./setenv.sh</b>
+  
+</pre>
+
+
+  
+<p>At this point Devenv is ready for use and you may begin modifying
+    development environment definition to your own needs. </p>
+
+  
+<p>If you don't' like name "env" as a name of the directory containing
+    Devenv, you will need to take additional simple step to alter
+    the name of the directory. It is described in the appendix "Altering
+    devenv script".</p>
+
+  
+<p>
+    
+<i>Please note that setenv.sh and/or setenv.bat shell scripts
+      should always be located in the root of the project tree</i>.
+    <br>Major reason for this requirement
+    is that all relative paths used when setting and validating development environment
+    are relative project tree root, or, simply project home. As a result, you get
+    a valuable ability to be independent from physical location of the project home.
+    You will always be able to validate and set your development environment
+    it whether it's located on local drive, like <code>D:\my\project</code> or on
+    Unix partition like <code>/home/parabuild/my/project</code>.
+  </p>
+
+
+  
+  
+  
+  
+<h3>
+<a name="#s11">Appendix. Altering <code>setenv</code> script</a>
+</h3>
+
+  You may want to alter Devenv wrapping shell script to better serve your
+  needs. Wrapper shell script (or command file in Windows) provides minimal
+  validation of the environment and make sure that Devenv can run. There
+  are two scripts in the Devenv installation - setenv.sh and setenv.bat,
+  for Unix, Cygwin and Windows, accordingly.
+
+  <p>If you want to change default location of Devenev home, which is "env"
+    directory in the root of your project source tree, change DEVENV_SETTER_HOME
+    script variable to reflect this location. It should always point to a
+    directory relative to the project root. For example, if you decide to put
+    Devenv in bin/devenv directory, this variable will look like:
+  </p>
+
+  
+<pre style="background-color: #EDEDED">
+    Unix:
+
+    DEVENV_SETTER_HOME=bin/devenv
+
+    Windows:
+
+    DEVENV_SETTER_HOME=bin\devenv
+  </pre>
+
+  In this case the related part of the project
+  source tree should look like the following:
+
+  <pre style="background-color: #EDEDED">
+    
+<b>./bin/devenv/devenv.jar</b>
+    <b>./bin/devenv/devenv.html</b>
+    <b>./bin/devenv/devenv.xml</b>
+    ./setenv.bat
+    ./setenv.sh
+  </pre>
+
+
+  
+<p>Please note that the path to Devenv home must be
+    relative. Devenv will not start if this path is
+    absolute.
+  </p>
+
+  
+<p>If path to Devenv changed to custom location, variable
+    DEVENV_DEFINITION_HOME should be changed accordingly.
+    It is defined in the script right after DEVENV_SETTER_HOME.
+  </p>
+
+
+  
+<p>For your convenience, the wrapper script contains extensive
+    comments that will help you doing required modifications.
+  </p>
+
+
+
+  
+  
+  
+  
+<h3>
+<a name="#s12">Appendix. Registration and updating license</a>
+</h3>
+
+  After Devenv registration you will receive a license file <code>devenv.lic</code>.
+  This file should replace evaluation license file contained in the <code>devenv.jar</code>
+  jar archive. Update process is simple - copy <code>devenv.lic</code> to the same
+  directory that contains <code>devenv.jar</code> and run <code>updatelicense.sh</code>
+  or <code>updatelicense.bat</code>, depending on OS you use. Possible sequience of
+  commands for *nix is the following:
+
+  <pre style="background-color: #EDEDED">
+    mv devenv.lic ./env/
+    cd ./env
+    . updatelicense.sh
+  </pre>
+
+  When license is updated, <code>devenv.jar</code> needs to be checked in so that
+  it is available for other members of your team.
+
+  
+  
+  
+  <h3>
+<a name="#s13">Appendix. System requirements</a>
+</h3>
+  
+<ul>
+    
+<li>
+      Devenv requires Java Runtime Environment
+      version 1.3.1 and higher.
+    </li>
+    
+<li>
+      Devenv is a pure Java program and will run
+      on any operating system with JRE 1.3.1 installed.
+    </li>
+    
+<li>
+      Devenv supports Windows command shell, Unix
+      and Cygwin bash.
+    </li>
+  
+</ul>
+
+
+</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

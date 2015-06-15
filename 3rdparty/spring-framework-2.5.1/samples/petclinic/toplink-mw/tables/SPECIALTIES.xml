@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table>
+   <short-name>SPECIALTIES</short-name>
+   <last-refresh-timestamp>2006-07-23T20:56:16.109</last-refresh-timestamp>
+   <columns>
+      <column>
+         <name>ID</name>
+         <type>INTEGER</type>
+         <unique>true</unique>
+         <primary-key>true</primary-key>
+      </column>
+      <column>
+         <name>NAME</name>
+         <type>VARCHAR</type>
+         <size>80</size>
+         <allows-null>true</allows-null>
+      </column>
+   </columns>
+</table>

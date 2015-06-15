@@ -1,0 +1,22 @@
+<?xml version ="1.0"?>
+<cacheonix xmlns="http://www.cacheonix.com/schema/configuration"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.cacheonix.com/schema/configuration http://www.cacheonix.com/schema/cacheonix-config-2.0.xsd">
+
+
+   <tempDir path="${java.io.temp}"/>
+
+   <local>
+
+      <localCache name="cache.with.prefetch">
+         <store>
+            <lru maxElements="10" maxBytes="10mb"/>
+            <overflowToDisk maxOverflowBytes="1mb"/>
+            <expiration timeToLive="100ms"/>
+            <dataSource className="org.cacheonix.impl.cache.local.LocalCachePrefetchTestDataSource">
+               <prefetch enabled="true"/>
+            </dataSource>
+         </store>
+      </localCache>
+   </local>
+</cacheonix>

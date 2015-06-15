@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+
+  <bean class="org.springframework.samples.petportal.portlet.PetDescriptionUploadController">
+    <property name="petService" ref="petService"/>
+  </bean>
+
+  <bean class="org.springframework.web.portlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+    <property name="interceptors">
+      <!-- This interceptor forwards the mapping request parameter from an ActionRequest to be used as a render parameter. -->
+      <bean class="org.springframework.web.portlet.handler.ParameterMappingInterceptor"/>
+    </property>
+  </bean>
+
+  <bean id="portletMultipartResolver" class="org.springframework.web.portlet.multipart.CommonsPortletMultipartResolver">
+    <property name="maxUploadSize">
+      <value>2048</value>
+    </property>
+  </bean>
+
+	<bean id="customExceptionHandler" class="org.springframework.web.portlet.handler.SimpleMappingExceptionResolver">
+		<property name="order" value="1"/>
+		<property name="exceptionMappings">
+			<props>
+				<prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">maxUploadExceeded</prop>
+				<prop key="org.springframework.samples.petportal.domain.InvalidFileTypeException">invalidFileType</prop>
+			</props>
+		</property> 
+	</bean>
+
+</beans>

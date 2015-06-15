@@ -1,0 +1,1571 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Math - RAT (Release Audit Tool) results</title>
+    <style type="text/css" media="all">
+      @import url("./css/maven-base.css");
+      @import url("./css/maven-theme.css");
+      @import url("./css/site.css");
+    </style>
+    <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+  <body class="composite">
+    <div id="banner">
+                  <a href="../" id="bannerLeft">
+    
+                                            <img src="../images/logo.png" alt="" />
+    
+            </a>
+                        <a href="index.html" id="bannerRight">
+    
+                                            <img src="images/math.gif" alt="" />
+    
+            </a>
+            <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+            
+  
+    
+            <div class="xleft">
+        Last Published: 18 February 2008
+                  &nbsp;| Version: 1.2
+                      </div>
+            <div class="xright">            <a href="http://www.apachecon.com/" class="externalLink">ApacheCon</a>
+            |
+                <a href="http://www.apache.org" class="externalLink">Apache</a>
+            |
+                <a href="../">Commons</a>
+            
+  
+
+  
+    
+            
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+            
+  
+    
+                   <h5>Math</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="index.html">Overview</a>
+          </li>
+              
+    <li class="none">
+                    <a href="proposal.html">Proposal</a>
+          </li>
+              
+    <li class="none">
+                    <a href="developers.html">Developers Guide</a>
+          </li>
+              
+    <li class="none">
+                    <a href="apidocs/index.html">Javadoc (1.2 release)</a>
+          </li>
+              
+    <li class="none">
+                    <a href="api-1.1/index.html">Javadoc (1.1 release)</a>
+          </li>
+              
+    <li class="none">
+                    <a href="api-1.0/index.html">Javadoc (1.0 release)</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://svn.apache.org/viewvc/commons/proper/math/trunk" class="externalLink">Source Repository (current)</a>
+          </li>
+              
+    <li class="none">
+                    <a href="issue-tracking.html">Issue Tracking</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://wiki.apache.org/commons/Math" class="externalLink">Wiki</a>
+          </li>
+          </ul>
+              <h5>User Guide</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="userguide/index.html">Contents</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/overview.html">Overview</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/stat.html">Statistics</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/random.html">Data Generation</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/linear.html">Linear Algebra</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/analysis.html">Numerical Analysis</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/special.html">Special Functions</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/utilities.html">Utilities</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/complex.html">Complex Numbers</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/distribution.html">Distributions</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/fraction.html">Fractions</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/transform.html">Transform Methods</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/geometry.html">3D Geometry</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/estimation.html">Parametric Estimation</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/optimization.html">Optimization</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/ode.html">Ordinary Differential Equations</a>
+          </li>
+          </ul>
+              <h5>Project Documentation</h5>
+            <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-info.html">Project Information</a>
+                </li>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+            
+            
+      
+            
+      
+            
+      
+              
+            <li class="expanded">
+                    <a href="project-reports.html">Project Reports</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="changes-report.html">Changes Report</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="checkstyle.html">Checkstyle</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="clirr-report.html">Clirr</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="cpd.html">CPD Report</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="findbugs.html">FindBugs Report</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="apidocs/index.html">JavaDocs</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="jdepend-report.html">JDepend</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="surefire-report.html">Maven Surefire Report</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="pmd.html">PMD Report</a>
+          </li>
+                  
+    <li class="none">
+              <strong>RAT Report</strong>
+        </li>
+                  
+    <li class="none">
+                    <a href="xref/index.html">Source Xref</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="testapidocs/index.html">Test JavaDocs</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="xref-test/index.html">Test Source Xref</a>
+          </li>
+              </ul>
+        </li>
+          </ul>
+              <h5>Commons</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="../">Home</a>
+          </li>
+              
+                
+              
+      
+              
+        <li class="collapsed">
+                    <a href="../components.html">Components</a>
+                </li>
+              
+                
+              
+      
+              
+        <li class="collapsed">
+                    <a href="../sandbox/index.html">Sandbox</a>
+                </li>
+              
+                
+              
+      
+              
+        <li class="collapsed">
+                    <a href="../dormant/index.html">Dormant</a>
+                </li>
+              
+    <li class="none">
+                    <a href="../volunteering.html">Volunteering</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../patches.html">Contributing Patches</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../building.html">Building Components</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../releases/index.html">Releasing Components</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://wiki.apache.org/commons/FrontPage" class="externalLink">Wiki</a>
+          </li>
+          </ul>
+              <h5>ASF</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://www.apache.org/foundation/sponsorship.html" class="externalLink">Sponsorship</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://www.apache.org/foundation/thanks.html" class="externalLink">Thanks</a>
+          </li>
+          </ul>
+                                           <a href="http://maven.apache.org/" title="Built by Maven" class="poweredBy">
+            <img alt="Built by Maven" src="./images/logos/maven-feather.png"></img>
+          </a>
+                       
+  
+
+  
+    
+            
+  
+    
+        </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <div class="section"><h2>RAT (Release Audit Tool) results</h2>
+<p>The following document contains the results of <a href="http://code.google.com/p/arat/" class="externalLink">RAT (Release Audit Tool)</a>
+.</p>
+<p><div class="source"><pre>
+*****************************************************
+Summary
+-------
+Notes: 4
+Binaries: 3
+Archives: 0
+Standards: 486
+
+Apache Licensed: 470
+Generated Documents: 1
+
+JavaDocs are generated and so license header is optional
+Generated files do not required license headers
+
+15 Unknown Licenses
+
+*******************************
+
+Archives (+ indicates readable, $ unreadable): 
+
+ 
+*****************************************************
+  Files with AL headers will be marked L
+  Binary files (which do not require AL headers) will be marked B
+  Compressed archives will be marked A
+  Notices, licenses etc will be marked N
+  AL    checkstyle.xml
+  AL    project.properties
+  AL    findbugs-exclude-filter.xml
+  N     LICENSE.txt
+  AL    build.properties.sample
+  AL    release-notes.jsl
+  AL    pom.xml
+  AL    src/assembly/bin.xml
+  AL    src/assembly/src.xml
+  AL    src/java/org/apache/commons/math/stat/Frequency.java
+  AL    src/java/org/apache/commons/math/stat/regression/package.html
+  AL    src/java/org/apache/commons/math/stat/regression/SimpleRegression.java
+  AL    src/java/org/apache/commons/math/stat/inference/OneWayAnovaImpl.java
+  AL    src/java/org/apache/commons/math/stat/inference/TestUtils.java
+  AL    src/java/org/apache/commons/math/stat/inference/TTest.java
+  AL    src/java/org/apache/commons/math/stat/inference/TestFactoryImpl.java
+  AL    src/java/org/apache/commons/math/stat/inference/UnknownDistributionChiSquareTest.java
+  AL    src/java/org/apache/commons/math/stat/inference/OneWayAnova.java
+  AL    src/java/org/apache/commons/math/stat/inference/ChiSquareTest.java
+  AL    src/java/org/apache/commons/math/stat/inference/package.html
+  AL    src/java/org/apache/commons/math/stat/inference/ChiSquareTestImpl.java
+  AL    src/java/org/apache/commons/math/stat/inference/TTestImpl.java
+  AL    src/java/org/apache/commons/math/stat/inference/TestFactory.java
+  AL    src/java/org/apache/commons/math/stat/StatUtils.java
+  AL    src/java/org/apache/commons/math/stat/descriptive/summary/SumOfLogs.java
+  AL    src/java/org/apache/commons/math/stat/descriptive/summary/Product.java
+  AL    src/java/org/apache/commons/math/stat/descriptive/summary/package.html
+  AL    src/java/org/apache/commons/math/stat/descriptive/summary/SumOfSquares.java
+  AL    src/java/org/apache/commons/math/stat/descriptive/summary/Sum.java
+  AL    src/java/org/apache/commons/math/stat/descriptive/StatisticalMultivariateSummary.java
+  AL    src/java/org/apache/commons/math/stat/descriptive/SummaryStatisticsImpl.java
+  AL    src/java/org/apache/commons/math/stat/descriptive/moment/GeometricMean.java
+  AL    src/java/org/apache/commons/math/stat/descriptive/moment/Variance.java
+  AL    src/java/org/apache/commons/math/stat/descriptive/moment/StandardDeviation.java
+  AL    src/java/org/apache/commons/math/stat/descriptive/moment/SecondMoment.java
+  AL    src/java/org/apache/commons/math/stat/descriptive/moment/Kurtosis.java
+  AL    src/java/org/apache/commons/math/stat/descriptive/moment/ThirdMoment.java
+  AL    src/java/org/apache/commons/math/stat/descriptive/moment/Skewness.java
+  AL    src/java/org/apache/commons/math/stat/descriptive/moment/VectorialMean.java
+  AL    src/java/org/apache/commons/math/stat/descriptive/moment/package.html
+  AL    src/java/org/apache/commons/math/stat/descriptive/moment/FirstMoment.java
+  AL    src/java/org/apache/commons/math/stat/descriptive/moment/VectorialCovariance.java
+  AL    src/java/org/apache/commons/math/stat/descriptive/moment/Mean.java
+  AL    src/java/org/apache/commons/math/stat/descriptive/moment/FourthMoment.java
+  AL    src/java/org/apache/commons/math/stat/descriptive/UnivariateStatistic.java
+  AL    src/java/org/apache/commons/math/stat/descriptive/SynchronizedDescriptiveStatistics.java
+  AL    src/java/org/apache/commons/math/stat/descriptive/rank/Percentile.java
+  AL    src/java/org/apache/commons/math/stat/descriptive/rank/Min.java
+  AL    src/java/org/apache/commons/math/stat/descriptive/rank/package.html
+  AL    src/java/org/apache/commons/math/stat/descriptive/rank/Max.java
+  AL    src/java/org/apache/commons/math/stat/descriptive/rank/Median.java
+  AL    src/java/org/apache/commons/math/stat/descriptive/AbstractStorelessUnivariateStatistic.java
+  AL    src/java/org/apache/commons/math/stat/descriptive/AbstractUnivariateStatistic.java
+  AL    src/java/org/apache/commons/math/stat/descriptive/StatisticalSummary.java
+  AL    src/java/org/apache/commons/math/stat/descriptive/DescriptiveStatistics.java
+  AL    src/java/org/apache/commons/math/stat/descriptive/MultivariateSummaryStatistics.java
+  AL    src/java/org/apache/commons/math/stat/descriptive/SummaryStatistics.java
+  AL    src/java/org/apache/commons/math/stat/descriptive/package.html
+  AL    src/java/org/apache/commons/math/stat/descriptive/SynchronizedSummaryStatistics.java
+  AL    src/java/org/apache/commons/math/stat/descriptive/StatisticalSummaryValues.java
+  AL    src/java/org/apache/commons/math/stat/descriptive/DescriptiveStatisticsImpl.java
+  AL    src/java/org/apache/commons/math/stat/descriptive/SynchronizedMultivariateSummaryStatistics.java
+  AL    src/java/org/apache/commons/math/stat/descriptive/StorelessUnivariateStatistic.java
+  AL    src/java/org/apache/commons/math/stat/package.html
+  AL    src/java/org/apache/commons/math/distribution/NormalDistribution.java
+  AL    src/java/org/apache/commons/math/distribution/PoissonDistribution.java
+  AL    src/java/org/apache/commons/math/distribution/WeibullDistributionImpl.java
+  AL    src/java/org/apache/commons/math/distribution/PascalDistributionImpl.java
+  AL    src/java/org/apache/commons/math/distribution/AbstractContinuousDistribution.java
+  AL    src/java/org/apache/commons/math/distribution/NormalDistributionImpl.java
+  AL    src/java/org/apache/commons/math/distribution/CauchyDistributionImpl.java
+  AL    src/java/org/apache/commons/math/distribution/WeibullDistribution.java
+  AL    src/java/org/apache/commons/math/distribution/ExponentialDistribution.java
+  AL    src/java/org/apache/commons/math/distribution/ExponentialDistributionImpl.java
+  AL    src/java/org/apache/commons/math/distribution/Distribution.java
+  AL    src/java/org/apache/commons/math/distribution/PascalDistribution.java
+  AL    src/java/org/apache/commons/math/distribution/ChiSquaredDistributionImpl.java
+  AL    src/java/org/apache/commons/math/distribution/CauchyDistribution.java
+  AL    src/java/org/apache/commons/math/distribution/GammaDistribution.java
+  AL    src/java/org/apache/commons/math/distribution/FDistribution.java
+  AL    src/java/org/apache/commons/math/distribution/TDistribution.java
+  AL    src/java/org/apache/commons/math/distribution/TDistributionImpl.java
+  AL    src/java/org/apache/commons/math/distribution/AbstractIntegerDistribution.java
+  AL    src/java/org/apache/commons/math/distribution/BinomialDistributionImpl.java
+  AL    src/java/org/apache/commons/math/distribution/HypergeometricDistribution.java
+  AL    src/java/org/apache/commons/math/distribution/DiscreteDistribution.java
+  AL    src/java/org/apache/commons/math/distribution/ChiSquaredDistribution.java
+  AL    src/java/org/apache/commons/math/distribution/DistributionFactoryImpl.java
+  AL    src/java/org/apache/commons/math/distribution/HypergeometricDistributionImpl.java
+  AL    src/java/org/apache/commons/math/distribution/FDistributionImpl.java
+  AL    src/java/org/apache/commons/math/distribution/package.html
+  AL    src/java/org/apache/commons/math/distribution/GammaDistributionImpl.java
+  AL    src/java/org/apache/commons/math/distribution/ContinuousDistribution.java
+  AL    src/java/org/apache/commons/math/distribution/DistributionFactory.java
+  AL    src/java/org/apache/commons/math/distribution/PoissonDistributionImpl.java
+  AL    src/java/org/apache/commons/math/distribution/BinomialDistribution.java
+  AL    src/java/org/apache/commons/math/distribution/AbstractDistribution.java
+  AL    src/java/org/apache/commons/math/distribution/IntegerDistribution.java
+  AL    src/java/org/apache/commons/math/estimation/EstimationProblem.java
+  AL    src/java/org/apache/commons/math/estimation/EstimationException.java
+  AL    src/java/org/apache/commons/math/estimation/LevenbergMarquardtEstimator.java
+  AL    src/java/org/apache/commons/math/estimation/WeightedMeasurement.java
+  AL    src/java/org/apache/commons/math/estimation/AbstractEstimator.java
+  AL    src/java/org/apache/commons/math/estimation/GaussNewtonEstimator.java
+  AL    src/java/org/apache/commons/math/estimation/package.html
+  AL    src/java/org/apache/commons/math/estimation/SimpleEstimationProblem.java
+  AL    src/java/org/apache/commons/math/estimation/EstimatedParameter.java
+  AL    src/java/org/apache/commons/math/estimation/Estimator.java
+  AL    src/java/org/apache/commons/math/ode/GillIntegrator.java
+  AL    src/java/org/apache/commons/math/ode/IntegratorException.java
+  AL    src/java/org/apache/commons/math/ode/DummyStepInterpolator.java
+  AL    src/java/org/apache/commons/math/ode/FixedStepHandler.java
+  AL    src/java/org/apache/commons/math/ode/MidpointIntegrator.java
+  AL    src/java/org/apache/commons/math/ode/RungeKuttaStepInterpolator.java
+  AL    src/java/org/apache/commons/math/ode/FirstOrderConverter.java
+  AL    src/java/org/apache/commons/math/ode/ClassicalRungeKuttaIntegrator.java
+  AL    src/java/org/apache/commons/math/ode/SwitchingFunctionsHandler.java
+  AL    src/java/org/apache/commons/math/ode/DormandPrince54StepInterpolator.java
+  AL    src/java/org/apache/commons/math/ode/GraggBulirschStoerIntegrator.java
+  AL    src/java/org/apache/commons/math/ode/DormandPrince54Integrator.java
+  AL    src/java/org/apache/commons/math/ode/ClassicalRungeKuttaStepInterpolator.java
+  AL    src/java/org/apache/commons/math/ode/EulerStepInterpolator.java
+  AL    src/java/org/apache/commons/math/ode/ThreeEighthesStepInterpolator.java
+  AL    src/java/org/apache/commons/math/ode/GillStepInterpolator.java
+  AL    src/java/org/apache/commons/math/ode/SecondOrderIntegrator.java
+  AL    src/java/org/apache/commons/math/ode/ContinuousOutputModel.java
+  AL    src/java/org/apache/commons/math/ode/SwitchingFunction.java
+  AL    src/java/org/apache/commons/math/ode/SwitchState.java
+  AL    src/java/org/apache/commons/math/ode/HighamHall54Integrator.java
+  AL    src/java/org/apache/commons/math/ode/AdaptiveStepsizeIntegrator.java
+  AL    src/java/org/apache/commons/math/ode/DummyStepHandler.java
+  AL    src/java/org/apache/commons/math/ode/DormandPrince853StepInterpolator.java
+  AL    src/java/org/apache/commons/math/ode/EmbeddedRungeKuttaIntegrator.java
+  AL    src/java/org/apache/commons/math/ode/GraggBulirschStoerStepInterpolator.java
+  AL    src/java/org/apache/commons/math/ode/SecondOrderDifferentialEquations.java
+  AL    src/java/org/apache/commons/math/ode/FirstOrderDifferentialEquations.java
+  AL    src/java/org/apache/commons/math/ode/AbstractStepInterpolator.java
+  AL    src/java/org/apache/commons/math/ode/FirstOrderIntegrator.java
+  AL    src/java/org/apache/commons/math/ode/EulerIntegrator.java
+  AL    src/java/org/apache/commons/math/ode/StepHandler.java
+  AL    src/java/org/apache/commons/math/ode/package.html
+  AL    src/java/org/apache/commons/math/ode/ThreeEighthesIntegrator.java
+  AL    src/java/org/apache/commons/math/ode/DormandPrince853Integrator.java
+  AL    src/java/org/apache/commons/math/ode/DerivativeException.java
+  AL    src/java/org/apache/commons/math/ode/StepInterpolator.java
+  AL    src/java/org/apache/commons/math/ode/HighamHall54StepInterpolator.java
+  AL    src/java/org/apache/commons/math/ode/StepNormalizer.java
+  AL    src/java/org/apache/commons/math/ode/RungeKuttaIntegrator.java
+  AL    src/java/org/apache/commons/math/ode/MidpointStepInterpolator.java
+  AL    src/java/org/apache/commons/math/FunctionEvaluationException.java
+  AL    src/java/org/apache/commons/math/complex/ComplexFormat.java
+  AL    src/java/org/apache/commons/math/complex/ComplexUtils.java
+  AL    src/java/org/apache/commons/math/complex/Complex.java
+  AL    src/java/org/apache/commons/math/complex/package.html
+  AL    src/java/org/apache/commons/math/ConvergenceException.java
+  AL    src/java/org/apache/commons/math/ArgumentOutsideDomainException.java
+  AL    src/java/org/apache/commons/math/special/Gamma.java
+  AL    src/java/org/apache/commons/math/special/Erf.java
+  AL    src/java/org/apache/commons/math/special/package.html
+  AL    src/java/org/apache/commons/math/special/Beta.java
+  AL    src/java/org/apache/commons/math/transform/FastSineTransformer.java
+  AL    src/java/org/apache/commons/math/transform/FastCosineTransformer.java
+  AL    src/java/org/apache/commons/math/transform/package.html
+  AL    src/java/org/apache/commons/math/transform/FastFourierTransformer.java
+  AL    src/java/org/apache/commons/math/random/RandomVectorGenerator.java
+  AL    src/java/org/apache/commons/math/random/JDKRandomGenerator.java
+  AL    src/java/org/apache/commons/math/random/CorrelatedRandomVectorGenerator.java
+  AL    src/java/org/apache/commons/math/random/RandomData.java
+  AL    src/java/org/apache/commons/math/random/AbstractRandomGenerator.java
+  AL    src/java/org/apache/commons/math/random/UniformRandomGenerator.java
+  AL    src/java/org/apache/commons/math/random/UncorrelatedRandomVectorGenerator.java
+  AL    src/java/org/apache/commons/math/random/GaussianRandomGenerator.java
+  AL    src/java/org/apache/commons/math/random/NormalizedRandomGenerator.java
+  AL    src/java/org/apache/commons/math/random/RandomGenerator.java
+  AL    src/java/org/apache/commons/math/random/RandomAdaptor.java
+  AL    src/java/org/apache/commons/math/random/RandomDataImpl.java
+  AL    src/java/org/apache/commons/math/random/ValueServer.java
+  AL    src/java/org/apache/commons/math/random/package.html
+  AL    src/java/org/apache/commons/math/random/EmpiricalDistribution.java
+  AL    src/java/org/apache/commons/math/random/NotPositiveDefiniteMatrixException.java
+  AL    src/java/org/apache/commons/math/random/EmpiricalDistributionImpl.java
+  AL    src/java/org/apache/commons/math/MessagesResources_fr.java
+  AL    src/java/org/apache/commons/math/linear/BigMatrix.java
+  AL    src/java/org/apache/commons/math/linear/InvalidMatrixException.java
+  AL    src/java/org/apache/commons/math/linear/RealMatrix.java
+  AL    src/java/org/apache/commons/math/linear/RealMatrixImpl.java
+  AL    src/java/org/apache/commons/math/linear/BigMatrixImpl.java
+  AL    src/java/org/apache/commons/math/linear/QRDecomposition.java
+  AL    src/java/org/apache/commons/math/linear/QRDecompositionImpl.java
+  AL    src/java/org/apache/commons/math/linear/package.html
+  AL    src/java/org/apache/commons/math/linear/MatrixIndexException.java
+  AL    src/java/org/apache/commons/math/linear/MatrixUtils.java
+  AL    src/java/org/apache/commons/math/DimensionMismatchException.java
+  AL    src/java/org/apache/commons/math/MathConfigurationException.java
+  AL    src/java/org/apache/commons/math/fraction/Fraction.java
+  AL    src/java/org/apache/commons/math/fraction/ProperFractionFormat.java
+  AL    src/java/org/apache/commons/math/fraction/FractionConversionException.java
+  AL    src/java/org/apache/commons/math/fraction/package.html
+  AL    src/java/org/apache/commons/math/fraction/FractionFormat.java
+  AL    src/java/org/apache/commons/math/DuplicateSampleAbscissaException.java
+  AL    src/java/org/apache/commons/math/MaxIterationsExceededException.java
+  AL    src/java/org/apache/commons/math/optimization/CostFunction.java
+  AL    src/java/org/apache/commons/math/optimization/NelderMead.java
+  AL    src/java/org/apache/commons/math/optimization/MultiDirectional.java
+  AL    src/java/org/apache/commons/math/optimization/DirectSearchOptimizer.java
+  AL    src/java/org/apache/commons/math/optimization/CostException.java
+  AL    src/java/org/apache/commons/math/optimization/ConvergenceChecker.java
+  AL    src/java/org/apache/commons/math/optimization/package.html
+  AL    src/java/org/apache/commons/math/optimization/PointCostPair.java
+  AL    src/java/org/apache/commons/math/package.html
+  AL    src/java/org/apache/commons/math/geometry/Vector3D.java
+  AL    src/java/org/apache/commons/math/geometry/CardanEulerSingularityException.java
+  AL    src/java/org/apache/commons/math/geometry/RotationOrder.java
+  AL    src/java/org/apache/commons/math/geometry/package.html
+  AL    src/java/org/apache/commons/math/geometry/Rotation.java
+  AL    src/java/org/apache/commons/math/geometry/NotARotationMatrixException.java
+  AL    src/java/org/apache/commons/math/MathException.java
+  AL    src/java/org/apache/commons/math/util/TransformerMap.java
+  AL    src/java/org/apache/commons/math/util/DoubleArray.java
+  AL    src/java/org/apache/commons/math/util/MathUtils.java
+  AL    src/java/org/apache/commons/math/util/ContinuedFraction.java
+  AL    src/java/org/apache/commons/math/util/ResizableDoubleArray.java
+  AL    src/java/org/apache/commons/math/util/NumberTransformer.java
+  AL    src/java/org/apache/commons/math/util/package.html
+  AL    src/java/org/apache/commons/math/util/DefaultTransformer.java
+  AL    src/java/org/apache/commons/math/analysis/RombergIntegrator.java
+  AL    src/java/org/apache/commons/math/analysis/UnivariateRealSolver.java
+  AL    src/java/org/apache/commons/math/analysis/UnivariateRealSolverFactory.java
+  AL    src/java/org/apache/commons/math/analysis/PolynomialFunctionNewtonForm.java
+  AL    src/java/org/apache/commons/math/analysis/PolynomialSplineFunction.java
+  AL    src/java/org/apache/commons/math/analysis/UnivariateRealSolverUtils.java
+  AL    src/java/org/apache/commons/math/analysis/DividedDifferenceInterpolator.java
+  AL    src/java/org/apache/commons/math/analysis/DifferentiableUnivariateRealFunction.java
+  AL    src/java/org/apache/commons/math/analysis/UnivariateRealSolverImpl.java
+  AL    src/java/org/apache/commons/math/analysis/MullerSolver.java
+  AL    src/java/org/apache/commons/math/analysis/SecantSolver.java
+  AL    src/java/org/apache/commons/math/analysis/UnivariateRealIntegratorImpl.java
+  AL    src/java/org/apache/commons/math/analysis/NewtonSolver.java
+  AL    src/java/org/apache/commons/math/analysis/UnivariateRealSolverFactoryImpl.java
+  AL    src/java/org/apache/commons/math/analysis/RiddersSolver.java
+  AL    src/java/org/apache/commons/math/analysis/BisectionSolver.java
+  AL    src/java/org/apache/commons/math/analysis/PolynomialFunctionLagrangeForm.java
+  AL    src/java/org/apache/commons/math/analysis/TrapezoidIntegrator.java
+  AL    src/java/org/apache/commons/math/analysis/NevilleInterpolator.java
+  AL    src/java/org/apache/commons/math/analysis/UnivariateRealFunction.java
+  AL    src/java/org/apache/commons/math/analysis/SplineInterpolator.java
+  AL    src/java/org/apache/commons/math/analysis/PolynomialFunction.java
+  AL    src/java/org/apache/commons/math/analysis/package.html
+  AL    src/java/org/apache/commons/math/analysis/UnivariateRealInterpolator.java
+  AL    src/java/org/apache/commons/math/analysis/BrentSolver.java
+  AL    src/java/org/apache/commons/math/analysis/SimpsonIntegrator.java
+  AL    src/java/org/apache/commons/math/analysis/UnivariateRealIntegrator.java
+  AL    src/java/org/apache/commons/math/analysis/LaguerreSolver.java
+  AL    src/test/org/apache/commons/math/stat/CertifiedDataTest.java
+  AL    src/test/org/apache/commons/math/stat/StatUtilsTest.java
+  AL    src/test/org/apache/commons/math/stat/regression/SimpleRegressionTest.java
+  AL    src/test/org/apache/commons/math/stat/FrequencyTest.java
+  AL    src/test/org/apache/commons/math/stat/inference/TTestTest.java
+  AL    src/test/org/apache/commons/math/stat/inference/TTestFactoryTest.java
+  AL    src/test/org/apache/commons/math/stat/inference/TestUtilsTest.java
+  AL    src/test/org/apache/commons/math/stat/inference/ChiSquareTestTest.java
+  AL    src/test/org/apache/commons/math/stat/inference/OneWayAnovaTest.java
+  AL    src/test/org/apache/commons/math/stat/inference/ChiSquareFactoryTest.java
+  AL    src/test/org/apache/commons/math/stat/descriptive/summary/SumSqTest.java
+  AL    src/test/org/apache/commons/math/stat/descriptive/summary/SumLogTest.java
+  AL    src/test/org/apache/commons/math/stat/descriptive/summary/SumTest.java
+  AL    src/test/org/apache/commons/math/stat/descriptive/summary/ProductTest.java
+  AL    src/test/org/apache/commons/math/stat/descriptive/UnivariateStatisticAbstractTest.java
+  AL    src/test/org/apache/commons/math/stat/descriptive/moment/KurtosisTest.java
+  AL    src/test/org/apache/commons/math/stat/descriptive/moment/FourthMomentTest.java
+  AL    src/test/org/apache/commons/math/stat/descriptive/moment/ThirdMomentTest.java
+  AL    src/test/org/apache/commons/math/stat/descriptive/moment/VectorialMeanTest.java
+  AL    src/test/org/apache/commons/math/stat/descriptive/moment/VarianceTest.java
+  AL    src/test/org/apache/commons/math/stat/descriptive/moment/VectorialCovarianceTest.java
+  AL    src/test/org/apache/commons/math/stat/descriptive/moment/SecondMomentTest.java
+  AL    src/test/org/apache/commons/math/stat/descriptive/moment/FirstMomentTest.java
+  AL    src/test/org/apache/commons/math/stat/descriptive/moment/GeometricMeanTest.java
+  AL    src/test/org/apache/commons/math/stat/descriptive/moment/SkewnessTest.java
+  AL    src/test/org/apache/commons/math/stat/descriptive/moment/MeanTest.java
+  AL    src/test/org/apache/commons/math/stat/descriptive/moment/StandardDeviationTest.java
+  AL    src/test/org/apache/commons/math/stat/descriptive/InteractionTest.java
+  AL    src/test/org/apache/commons/math/stat/descriptive/ListUnivariateImplTest.java
+  AL    src/test/org/apache/commons/math/stat/descriptive/DescriptiveStatisticsImplTest.java
+  AL    src/test/org/apache/commons/math/stat/descriptive/rank/MinTest.java
+  AL    src/test/org/apache/commons/math/stat/descriptive/rank/PercentileTest.java
+  AL    src/test/org/apache/commons/math/stat/descriptive/rank/MedianTest.java
+  AL    src/test/org/apache/commons/math/stat/descriptive/rank/MaxTest.java
+  AL    src/test/org/apache/commons/math/stat/descriptive/SynchronizedSummaryStatisticsTest.java
+  AL    src/test/org/apache/commons/math/stat/descriptive/MultivariateSummaryStatisticsTest.java
+  AL    src/test/org/apache/commons/math/stat/descriptive/StatisticalSummaryValuesTest.java
+  AL    src/test/org/apache/commons/math/stat/descriptive/DescriptiveStatisticsAbstractTest.java
+  AL    src/test/org/apache/commons/math/stat/descriptive/ListUnivariateImpl.java
+  AL    src/test/org/apache/commons/math/stat/descriptive/SummaryStatisticsTest.java
+  AL    src/test/org/apache/commons/math/stat/descriptive/SummaryStatisticsAbstractTest.java
+  AL    src/test/org/apache/commons/math/stat/descriptive/SynchronizedDescriptiveStatisticsTest.java
+  AL    src/test/org/apache/commons/math/stat/descriptive/AbstractUnivariateStatisticTest.java
+  AL    src/test/org/apache/commons/math/stat/descriptive/MixedListUnivariateImplTest.java
+  AL    src/test/org/apache/commons/math/stat/descriptive/StorelessUnivariateStatisticAbstractTest.java
+  AL    src/test/org/apache/commons/math/stat/descriptive/DescriptiveStatisticsTest.java
+  AL    src/test/org/apache/commons/math/stat/descriptive/SummaryStatisticsImplTest.java
+ !????? src/test/org/apache/commons/math/stat/data/NumAcc1.txt
+ !????? src/test/org/apache/commons/math/stat/data/Lew.txt
+ !????? src/test/org/apache/commons/math/stat/data/NumAcc3.txt
+  AL    src/test/org/apache/commons/math/stat/data/LewTest.java
+ !????? src/test/org/apache/commons/math/stat/data/NumAcc2.txt
+ !????? src/test/org/apache/commons/math/stat/data/Lottery.txt
+ !????? src/test/org/apache/commons/math/stat/data/Michelso.txt
+ !????? src/test/org/apache/commons/math/stat/data/Mavro.txt
+ !????? src/test/org/apache/commons/math/stat/data/NumAcc4.txt
+  AL    src/test/org/apache/commons/math/stat/data/LotteryTest.java
+ !????? src/test/org/apache/commons/math/stat/data/PiDigits.txt
+  AL    src/test/org/apache/commons/math/stat/data/CertifiedDataAbstractTest.java
+  AL    src/test/org/apache/commons/math/distribution/TDistributionTest.java
+  AL    src/test/org/apache/commons/math/distribution/WeibullDistributionTest.java
+  AL    src/test/org/apache/commons/math/distribution/IntegerDistributionAbstractTest.java
+  AL    src/test/org/apache/commons/math/distribution/HypergeometricDistributionTest.java
+  AL    src/test/org/apache/commons/math/distribution/PascalDistributionTest.java
+  AL    src/test/org/apache/commons/math/distribution/ContinuousDistributionAbstractTest.java
+  AL    src/test/org/apache/commons/math/distribution/NormalDistributionTest.java
+  AL    src/test/org/apache/commons/math/distribution/FDistributionTest.java
+  AL    src/test/org/apache/commons/math/distribution/ExponentialDistributionTest.java
+  AL    src/test/org/apache/commons/math/distribution/ChiSquareDistributionTest.java
+  AL    src/test/org/apache/commons/math/distribution/CauchyDistributionTest.java
+  AL    src/test/org/apache/commons/math/distribution/PoissonDistributionTest.java
+  AL    src/test/org/apache/commons/math/distribution/BinomialDistributionTest.java
+  AL    src/test/org/apache/commons/math/distribution/GammaDistributionTest.java
+  AL    src/test/org/apache/commons/math/FunctionEvaluationExceptionTest.java
+  AL    src/test/org/apache/commons/math/estimation/GaussNewtonEstimatorTest.java
+  AL    src/test/org/apache/commons/math/estimation/LevenbergMarquardtEstimatorTest.java
+  AL    src/test/org/apache/commons/math/estimation/WeightedMeasurementTest.java
+  AL    src/test/org/apache/commons/math/estimation/EstimatedParameterTest.java
+  AL    src/test/org/apache/commons/math/estimation/MinpackTest.java
+  AL    src/test/org/apache/commons/math/ode/FirstOrderConverterTest.java
+  AL    src/test/org/apache/commons/math/ode/GillStepInterpolatorTest.java
+  AL    src/test/org/apache/commons/math/ode/DormandPrince54StepInterpolatorTest.java
+  AL    src/test/org/apache/commons/math/ode/DormandPrince54IntegratorTest.java
+  AL    src/test/org/apache/commons/math/ode/HighamHall54IntegratorTest.java
+  AL    src/test/org/apache/commons/math/ode/TestProblem4.java
+  AL    src/test/org/apache/commons/math/ode/ContinuousOutputModelTest.java
+  AL    src/test/org/apache/commons/math/ode/TestProblemFactory.java
+  AL    src/test/org/apache/commons/math/ode/TestProblem3.java
+  AL    src/test/org/apache/commons/math/ode/DormandPrince853StepInterpolatorTest.java
+  AL    src/test/org/apache/commons/math/ode/ClassicalRungeKuttaIntegratorTest.java
+  AL    src/test/org/apache/commons/math/ode/ThreeEighthesIntegratorTest.java
+  AL    src/test/org/apache/commons/math/ode/EulerIntegratorTest.java
+  AL    src/test/org/apache/commons/math/ode/ClassicalRungeKuttaStepInterpolatorTest.java
+  AL    src/test/org/apache/commons/math/ode/GillIntegratorTest.java
+  AL    src/test/org/apache/commons/math/ode/GraggBulirschStoerStepInterpolatorTest.java
+  AL    src/test/org/apache/commons/math/ode/MidpointStepInterpolatorTest.java
+  AL    src/test/org/apache/commons/math/ode/MidpointIntegratorTest.java
+  AL    src/test/org/apache/commons/math/ode/GraggBulirschStoerIntegratorTest.java
+  AL    src/test/org/apache/commons/math/ode/DormandPrince853IntegratorTest.java
+  AL    src/test/org/apache/commons/math/ode/ThreeEighthesStepInterpolatorTest.java
+  AL    src/test/org/apache/commons/math/ode/StepProblem.java
+  AL    src/test/org/apache/commons/math/ode/TestProblem1.java
+  AL    src/test/org/apache/commons/math/ode/DummyStepInterpolatorTest.java
+  AL    src/test/org/apache/commons/math/ode/StepNormalizerTest.java
+  AL    src/test/org/apache/commons/math/ode/TestProblemHandler.java
+  AL    src/test/org/apache/commons/math/ode/HighamHall54StepInterpolatorTest.java
+  AL    src/test/org/apache/commons/math/ode/TestProblem2.java
+  AL    src/test/org/apache/commons/math/ode/TestProblem5.java
+  AL    src/test/org/apache/commons/math/ode/EulerStepInterpolatorTest.java
+  AL    src/test/org/apache/commons/math/ode/TestProblemAbstract.java
+  AL    src/test/org/apache/commons/math/complex/ComplexUtilsTest.java
+  AL    src/test/org/apache/commons/math/complex/ComplexFormatTest.java
+  AL    src/test/org/apache/commons/math/complex/ComplexFormatAbstractTest.java
+  AL    src/test/org/apache/commons/math/complex/ComplexTest.java
+  AL    src/test/org/apache/commons/math/complex/FrenchComplexFormatTest.java
+  AL    src/test/org/apache/commons/math/special/ErfTest.java
+  AL    src/test/org/apache/commons/math/special/BetaTest.java
+  AL    src/test/org/apache/commons/math/special/GammaTest.java
+  AL    src/test/org/apache/commons/math/transform/FastCosineTransformerTest.java
+  AL    src/test/org/apache/commons/math/transform/FastFourierTransformerTest.java
+  AL    src/test/org/apache/commons/math/transform/FastSineTransformerTest.java
+ !????? src/test/org/apache/commons/math/random/emptyFile.txt
+ !????? src/test/org/apache/commons/math/random/testData.txt
+  AL    src/test/org/apache/commons/math/random/UncorrelatedRandomVectorGeneratorTest.java
+  AL    src/test/org/apache/commons/math/random/CorrelatedRandomVectorGeneratorTest.java
+  AL    src/test/org/apache/commons/math/random/RandomDataTest.java
+  AL    src/test/org/apache/commons/math/random/UniformRandomGeneratorTest.java
+  AL    src/test/org/apache/commons/math/random/TestRandomGenerator.java
+  AL    src/test/org/apache/commons/math/random/ValueServerTest.java
+  AL    src/test/org/apache/commons/math/random/GaussianRandomGeneratorTest.java
+  AL    src/test/org/apache/commons/math/random/EmpiricalDistributionTest.java
+  AL    src/test/org/apache/commons/math/random/RandomAdaptorTest.java
+  AL    src/test/org/apache/commons/math/random/AbstractRandomGeneratorTest.java
+  AL    src/test/org/apache/commons/math/linear/RealMatrixImplTest.java
+  AL    src/test/org/apache/commons/math/linear/QRDecompositionImplTest.java
+  AL    src/test/org/apache/commons/math/linear/MatrixIndexExceptionTest.java
+  AL    src/test/org/apache/commons/math/linear/BigMatrixImplTest.java
+  AL    src/test/org/apache/commons/math/linear/MatrixUtilsTest.java
+  AL    src/test/org/apache/commons/math/linear/InvalidMatrixExceptionTest.java
+  AL    src/test/org/apache/commons/math/TestUtils.java
+  AL    src/test/org/apache/commons/math/DuplicateSampleAbscissaExceptionTest.java
+  AL    src/test/org/apache/commons/math/MathConfigurationExceptionTest.java
+  AL    src/test/org/apache/commons/math/MaxIterationsExceededExceptionTest.java
+  AL    src/test/org/apache/commons/math/RetryTestCase.java
+  AL    src/test/org/apache/commons/math/fraction/FractionFormatTest.java
+  AL    src/test/org/apache/commons/math/fraction/FractionTest.java
+  AL    src/test/org/apache/commons/math/MathExceptionTest.java
+  AL    src/test/org/apache/commons/math/optimization/MultiDirectionalTest.java
+  AL    src/test/org/apache/commons/math/optimization/NelderMeadTest.java
+  AL    src/test/org/apache/commons/math/ConvergenceExceptionTest.java
+  AL    src/test/org/apache/commons/math/geometry/Vector3DTest.java
+  AL    src/test/org/apache/commons/math/geometry/RotationOrderTest.java
+  AL    src/test/org/apache/commons/math/geometry/RotationTest.java
+  AL    src/test/org/apache/commons/math/util/TestBean.java
+  AL    src/test/org/apache/commons/math/util/TransformerMapTest.java
+  AL    src/test/org/apache/commons/math/util/DefaultTransformerTest.java
+  AL    src/test/org/apache/commons/math/util/ResizableDoubleArrayTest.java
+  AL    src/test/org/apache/commons/math/util/MathUtilsTest.java
+  AL    src/test/org/apache/commons/math/util/DoubleArrayAbstractTest.java
+  AL    src/test/org/apache/commons/math/util/ContinuedFractionTest.java
+  AL    src/test/org/apache/commons/math/analysis/TrapezoidIntegratorTest.java
+  AL    src/test/org/apache/commons/math/analysis/NevilleInterpolatorTest.java
+  AL    src/test/org/apache/commons/math/analysis/MonitoredFunction.java
+  AL    src/test/org/apache/commons/math/analysis/BisectionSolverTest.java
+  AL    src/test/org/apache/commons/math/analysis/Expm1Function.java
+  AL    src/test/org/apache/commons/math/analysis/RombergIntegratorTest.java
+  AL    src/test/org/apache/commons/math/analysis/QuinticFunction.java
+  AL    src/test/org/apache/commons/math/analysis/UnivariateRealSolverUtilsTest.java
+  AL    src/test/org/apache/commons/math/analysis/PolynomialSplineFunctionTest.java
+  AL    src/test/org/apache/commons/math/analysis/PolynomialFunctionNewtonFormTest.java
+  AL    src/test/org/apache/commons/math/analysis/SplineInterpolatorTest.java
+  AL    src/test/org/apache/commons/math/analysis/NewtonSolverTest.java
+  AL    src/test/org/apache/commons/math/analysis/SimpsonIntegratorTest.java
+  AL    src/test/org/apache/commons/math/analysis/DividedDifferenceInterpolatorTest.java
+  AL    src/test/org/apache/commons/math/analysis/PolynomialFunctionTest.java
+  AL    src/test/org/apache/commons/math/analysis/MullerSolverTest.java
+  AL    src/test/org/apache/commons/math/analysis/LaguerreSolverTest.java
+  AL    src/test/org/apache/commons/math/analysis/BrentSolverTest.java
+  AL    src/test/org/apache/commons/math/analysis/UnivariateRealSolverFactoryImplTest.java
+  AL    src/test/org/apache/commons/math/analysis/PolynomialFunctionLagrangeFormTest.java
+  AL    src/test/org/apache/commons/math/analysis/RiddersSolverTest.java
+  AL    src/test/org/apache/commons/math/analysis/SinFunction.java
+  AL    src/test/org/apache/commons/math/ArgumentOutsideDomainExceptionTest.java
+  AL    src/test/R/regressionTestCases
+  AL    src/test/R/testAll
+  AL    src/test/R/poissonTestCases
+  AL    src/test/R/binomialTestCases
+  AL    src/test/R/chiSquareTestCases
+  AL    src/test/R/exponentialTestCases
+  AL    src/test/R/descriptiveTestCases
+  AL    src/test/R/testFunctions
+  AL    src/test/R/normalTestCases
+  AL    src/test/R/pascalTestCases
+  AL    src/test/R/TTestCases
+  AL    src/test/R/anovaTestCases
+  AL    src/test/R/hypergeometricTestCases
+  N     src/test/R/README.txt
+ !????? src/conf/manifestMods.txt
+  AL    src/site/resources/userguide/TrajectoryDeterminationProblem.java
+  B     src/site/resources/userguide/estimation-class-diagram.png
+  B     src/site/resources/userguide/estimation-sequence-diagram.png
+ !????? src/site/resources/style/project.css
+  B     src/site/resources/images/math.gif
+  AL    src/site/site.xml
+  AL    src/site/xdoc/developers.xml
+  AL    src/site/xdoc/proposal.xml
+  AL    src/site/xdoc/xdoc.xsl
+  AL    src/site/xdoc/userguide/linear.xml
+  AL    src/site/xdoc/userguide/estimation.xml
+  AL    src/site/xdoc/userguide/analysis.xml
+  AL    src/site/xdoc/userguide/special.xml
+  AL    src/site/xdoc/userguide/transform.xml
+  AL    src/site/xdoc/userguide/optimization.xml
+  AL    src/site/xdoc/userguide/distribution.xml
+ !????? src/site/xdoc/userguide/xdoc.xsl
+  AL    src/site/xdoc/userguide/overview.xml
+  AL    src/site/xdoc/userguide/index.xml
+  AL    src/site/xdoc/userguide/utilities.xml
+  AL    src/site/xdoc/userguide/fraction.xml
+  AL    src/site/xdoc/userguide/geometry.xml
+  AL    src/site/xdoc/userguide/random.xml
+  AL    src/site/xdoc/userguide/ode.xml
+  AL    src/site/xdoc/userguide/complex.xml
+  AL    src/site/xdoc/userguide/stat.xml
+  AL    src/site/xdoc/issue-tracking.xml
+  AL    src/site/xdoc/index.xml
+  AL    src/site/xdoc/tasks.xml
+  AL    src/site/xdoc/navigation.xml
+  AL    src/site/xdoc/releases.xml
+  AL    src/site/xdoc/changes.xml
+  AL    maven.xml
+  N     RELEASE-NOTES.txt
+  AL    project.xml
+  AL    PROPOSAL.html
+  AL    testOnly.sh
+  N     NOTICE.txt
+  GEN   build.xml
+  AL    license-header.txt
+  AL    test-jar.xml
+ !????? doap_math.rdf
+ 
+ *****************************************************
+ Printing headers for files without AL header...
+ 
+ 
+ =======================================================================
+ ==src/test/org/apache/commons/math/stat/data/NumAcc1.txt
+ =======================================================================
+ File Name:     NumAcc1.dat
+
+File Format:   ASCII
+               Header          : lines  1 to 60       (= 60)
+               Certified Values: lines 41 to 43       (=  3)
+               Data            : lines 61 to 63       (=  3)
+
+Dataset Name:  NumAcc1
+
+Description:   This is a constructed/fabricated data set
+               to test accuracy in summary statistic calculations.
+               The numbers are large (8-digit integers) and
+               differ only in the last decimal place.
+               Note--by construction, this data set has
+                     sample mean                  = 10000002 (exact)
+                     sample standard deviation    =        1 (exact)
+                     sample autocorrelation coef. =     -0.5 (exact)
+
+Stat Category: Univariate: Summary Statistics
+
+Reference:     Simon, Stephen D. and Lesage, James P. (1989).
+               Assessing the Accuracy of ANOVA Caluclations
+               in Statistical Software&quot;, Computational
+               Statistics &amp; data Analysis, 8, pp. 325-332.
+
+Data:          Constructed
+               1    Response           : y
+               0    Predictors
+               3    Observations
+
+Model:         Lower Level of Difficulty
+               2    Parameters         : mu, sigma
+               1    Response Variable  : y
+               0    Predictor Variables
+
+               y    = mu + e
+
+
+
+                                                  Certified Values
+Sample Mean                                ybar:  10000002 
+Sample Standard Deviation (denom. = n-1)      s:         1 
+Sample Autocorrelation Coefficient (lag 1) r(1):      -0.5 
+
+Number of Observations:                                       3
+
+
+
+
+
+
+ =======================================================================
+ ==src/test/org/apache/commons/math/stat/data/Lew.txt
+ =======================================================================
+ #####################################################################
+# Dataset Name:  Lew (Beam Deflection Data)
+#
+# Description:   This is an observed/&quot;real world&quot; data set
+#               consisting of 200 deflections of a steel-concrete
+#               beam while subjected to periodic pressure.
+#               The experimenter was H. S. Lew of the
+#               Center for Building Technology at NIST.
+#               We here use this data to test accuracy
+#               in summary statistics calculations.
+#
+# Stat Category: Univariate: Summary Statistics
+#
+# Reference:     http://www.itl.nist.gov/div898/strd/univ/lew.html
+#
+# Data:         &quot;Real World&quot;
+#               1    Response          : y = beam deflection
+#               0    Predictors
+#               200  Observations
+#
+# Model:        Lower Level of Difficulty
+#               2    Parameters        : mu, sigma
+#               1    Response Variable : y
+#               0    Predictor Variables
+#               y    = mu + e
+#####################################################################
+
+#####################################################################
+#
+# Certified Values
+#
+#####################################################################
+n                          =  200
+mean                       = -177.435000000000
+standardDeviation          =  277.332168044316
+autocorrelationCoefficient = -0.307304800605679
+
+#####################################################################
+#
+# R Generated Values
+#
+#####################################################################
+variance =  76913.13143
+max      =  300
+min      = -579
+sum      = -35487
+
+#####################################################################
+#
+# Data
+
+ =======================================================================
+ ==src/test/org/apache/commons/math/stat/data/NumAcc3.txt
+ =======================================================================
+ File Name:     NumAcc3.dat
+
+File Format:   ASCII
+               Header          : lines  1 to   60     (=   60)
+               Certified Values: lines 41 to   43     (=    3)
+               Data            : lines 61 to 1061     (= 1001)
+
+Dataset Name:  NumAcc3
+
+Description:   This is a constructed/fabricated data set
+               to test accuracy in summary statistic calculations.
+               The numbers are 8-digit floating point values and
+               differ only in the last decimal place.
+               Note--by construction, this data set has
+                     sample mean            =  1000000.2   (exact)
+                     sample standard dev.   =        0.1   (exact)
+                     sample autocorr. coef. =     -0.999   (exact)
+
+Stat Category: Univariate: Summary Statistics
+
+Reference:     Simon, Stephen D. and Lesage, James P. (1989).
+               Assessing the Accuracy of ANOVA Caluclations
+               in Statistical Software&quot;, Computational
+               Statistics &amp; data Analysis, 8, pp. 325-332.
+
+
+Data:          Constructed
+               1    Response           : y
+               0    Predictors
+               1001 Observations
+
+Model:         Average Level of Difficulty
+               2    Parameters         : mu, sigma
+               1    Response Variable  : y
+               0    Predictor Variables
+
+               y    = mu + e
+
+
+                                                  Certified Values
+Sample Mean                                ybar:  1000000.2 
+Sample Standard Deviation (denom. = n-1)      s:  0.1       
+Sample Autocorrelation Coefficient (lag 1) r(1): -0.999     
+
+Number of Observations:                             1001
+
+
+
+
+
+
+ =======================================================================
+ ==src/test/org/apache/commons/math/stat/data/NumAcc2.txt
+ =======================================================================
+ File Name:     NumAcc2.dat
+
+File Format:   ASCII
+               Header          : lines  1 to   60     (=   60)
+               Certified Values: lines 41 to   43     (=    3)
+               Data            : lines 61 to 1061     (= 1001)
+
+Dataset Name:  NumAcc2
+
+Description:   This is a constructed/fabricated data set
+               to test accuracy in summary statistic calculations.
+               The numbers are 2-digit floating point values and
+               differ only in the last decimal place.
+               Note--by construction, this data set has
+                     sample mean                  =  1.2   (exact)
+                     sample standard deviation    =  0.1   (exact)
+                     sample autocorrelation coef. = -0.999 (exact)
+
+Stat Category: Univariate
+
+Reference:     Simon, Stephen D. and Lesage, James P. (1989).
+               Assessing the Accuracy of ANOVA Caluclations
+               in Statistical Software&quot;, Computational
+               Statistics &amp; data Analysis, 8, pp. 325-332.
+
+
+Data:          Constructed
+               1    Response           : y
+               0    Predictors
+               1001 Observations
+
+Model:         Average Level of Difficulty
+               2    Parameters         : mu, sigma
+               1    Response Variable  : y
+               0    Predictor Variables
+
+               y    = mu + e
+
+
+                                                  Certified Values
+Sample Mean                                ybar:  1.2   
+Sample Standard Deviation (denom. = n-1)      s:  0.1    
+Sample Autocorrelation Coefficient (lag 1) r(1):  -0.999 
+
+Number of Observations:                             1001
+
+
+
+
+
+
+ =======================================================================
+ ==src/test/org/apache/commons/math/stat/data/Lottery.txt
+ =======================================================================
+ #####################################################################
+# Dataset Name:  Lottery
+#
+#Description:   This is an observed/&quot;real world&quot; data set
+#               consisting of 218 lottery values
+#               from September 3, 1989 to April 14, 1990 (32 weeks).
+#               One 3-digit random number (from 000 to 999)
+#               is drawn per day, 7 days per week for most
+#               weeks, but fewer days per week for some weeks.
+#               We here use this data to test accuracy
+#               in summary statistics calculations.
+#
+# Stat Category: Univariate: Summary Statistics
+#
+# Reference:     http://www.itl.nist.gov/div898/strd/univ/lottery.html
+#
+# Data:          &quot;Real World&quot;
+#               1    Response          : y = 3-digit random number
+#               0    Predictors
+#               218  Observations
+#
+# Model:         Lower Level of Difficulty
+#               2    Parameters        : mu, sigma
+#               1    Response Variable : y
+#               0    Predictor Variables#
+#               y    = mu + e
+#####################################################################
+
+#####################################################################
+#
+# Certified Values
+#
+#####################################################################
+mean                       = 518.958715596330
+standardDeviation          = 291.699727470969
+autocorrelationCoefficient =  -0.120948622967393
+n                          = 218
+
+#####################################################################
+#
+# Data
+#
+#####################################################################
+     162
+     671
+     933
+     414
+     788
+     730
+     817
+
+ =======================================================================
+ ==src/test/org/apache/commons/math/stat/data/Michelso.txt
+ =======================================================================
+ File Name:     Michelso.dat
+
+File Format:   ASCII
+               Header          : lines  1 to  60     (=  60)
+               Certified Values: lines 41 to  43     (=   3)
+               Data            : lines 61 to 160     (= 100)
+
+Dataset Name:  Michelso (Speed of Light Data, in millions of meters per second)
+
+Description:   This is an observed/&quot;real world&quot; data set
+               consisting of 100 measurements of the
+               speed of light in air.  This classic experiment
+               was carried out by Michelson is 1879.
+               We here use this data to test accuracy
+               in summary statistics calculations.
+
+Stat Category: Univariate: Summary Statistics
+
+Reference:     Dorsey, Ernest N. (1944). The Velocity of Light.
+               Transactions of the American Philiosophical
+               Society, Volume 34, Part 1, Pages 1-110, Table 22.
+
+               y    = mu + e
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                  Certified Values
+Sample Mean                                ybar:  299.852400000000
+Sample Standard Deviation (denom. = n-1)      s:  0.0790105478190518
+Sample Autocorrelation Coefficient (lag 1) r(1):  0.535199668621283
+
+Number of Observations:                             100
+
+
+
+
+
+
+ =======================================================================
+ ==src/test/org/apache/commons/math/stat/data/Mavro.txt
+ =======================================================================
+ File Name:     Mavro.dat
+
+File Format:   ASCII
+               Header          : lines  1 to  60     (= 60)
+               Certified Values: lines 41 to  43     (=  3)
+               Data            : lines 61 to 110     (= 50)
+
+Dataset Name:  Mavro (Filter Transmittance Data)
+
+Description:   This is an observed/&quot;real world&quot; data set
+               consisting of 50 transmittance measurements
+               (at a sampling rate of 10 observations per second)
+               from a filter with a nominal value of 2.
+               The experimenter was Radu Mavrodineaunu,
+               a member of the chemistry staff at NIST.
+               We here use this data to test accuracy
+               in summary statistics calculations.
+
+Stat Category: Univariate: Summary Statistics
+
+Reference:     None
+
+Data:          &quot;Real World&quot;
+               1    Response          : y = transmittance
+               0    Predictors
+               50   Observations
+
+Model:         Lower Level of Difficulty
+               2    Parameters        : mu, sigma
+               1    Response Variable : y
+               0    Predictor Variables
+
+               y    = mu + e
+
+
+
+
+
+
+                                                  Certified Values
+Sample Mean                                ybar:  2.00185600000000
+Sample Standard Deviation (denom. = n-1)      s:  0.000429123454003053
+Sample Autocorrelation Coefficient (lag 1) r(1):  0.937989183438248
+
+Number of Observations:                              50
+
+
+
+
+
+
+ =======================================================================
+ ==src/test/org/apache/commons/math/stat/data/NumAcc4.txt
+ =======================================================================
+ File Name:     NumAcc4.dat
+
+File Format:   ASCII
+               Header          : lines  1 to   60     (=   60)
+               Certified Values: lines 41 to   43     (=    3)
+               Data            : lines 61 to 1061     (= 1001)
+
+Dataset Name:  NumAcc4
+
+Description:   This is a constructed/fabricated data set
+               to test accuracy in summary statistic calculations.
+               The numbers are 9-digit floating point values and
+               differ only in the last decimal place.
+                     sample mean            =  10000000.2   (exact)
+                     sample standard dev.   =         0.1   (exact)
+                     sample autocorr. coef. =      -0.999   (exact)
+
+Stat Category: Univariate
+
+Reference:     Simon, Stephen D. and Lesage, James P. (1989).
+               Assessing the Accuracy of ANOVA Caluclations
+               in Statistical Software&quot;, Computational
+               Statistics &amp; data Analysis, 8, pp. 325-332.
+
+Data:          Constructed
+               1    Response           : y
+               0    Predictors
+               1001 Observations
+
+Model:         Higher Level of Difficulty
+               2    Parameters         : mu, sigma
+               1    Response Variable  : y
+               0    Predictor Variables
+
+               y    = mu + e
+
+
+
+
+                                                  Certified Values
+Sample Mean                                ybar:   10000000.2 
+Sample Standard Deviation (denom. = n-1)      s:   0.1        
+Sample Autocorrelation Coefficient (lag 1) r(1):   -0.999     
+
+Number of Observations:                             1001
+
+
+
+
+
+
+ =======================================================================
+ ==src/test/org/apache/commons/math/stat/data/PiDigits.txt
+ =======================================================================
+ File Name:     PiDigits.dat
+
+File Format:   ASCII
+               Header          : lines  1 to   60     (=   60)
+               Certified Values: lines 41 to   43     (=    3)
+               Data            : lines 61 to 5060     (= 5000)
+
+Dataset Name:  PiDigits
+
+Description:   This is a constructed/fabricated data set
+               to test accuracy in summary statistic calculations.
+               The numbers are the first 5000 digits of the
+               mathematical constant pi (= 3.1415926535897932384...).
+
+Stat Category: Univariate
+
+Reference:     Mathematics of Computation.
+               January 1962, page 76.
+
+Data:          Constructed Variable
+               --&gt;    1 Response           : y = pi digits
+               --&gt;    0 Predictors
+               --&gt; 5000 Observations
+
+Model:         Lower Level of Difficulty
+               --&gt;    2 Parameters         : mu, sigma
+               --&gt;    1 Response  Variable : y
+               --&gt;    0 Predictor Variables
+
+               y    = mu + e
+
+
+
+
+
+
+
+
+
+                                                  Certified Values
+Sample Mean                                ybar:  4.53480000000000
+Sample Standard Deviation (denom. = n-1)      s:  2.86733906028871
+Sample Autocorrelation Coefficient (lag 1) r(1): -0.00355099287237972
+
+Number of Observations:                           5000
+
+
+
+
+
+
+ =======================================================================
+ ==src/test/org/apache/commons/math/random/emptyFile.txt
+ =======================================================================
+ 
+ =======================================================================
+ ==src/test/org/apache/commons/math/random/testData.txt
+ =======================================================================
+ 4.038625496201205
+3.6485326248346936
+3.6651209675932845
+5.814896279561131
+5.384126469824717
+5.251190723365563
+4.465213440111648
+4.736608014129308
+5.566383814840726
+3.8872277480629114
+5.246598498086048
+3.7511487364188176
+6.733371385175343
+5.388632419618035
+6.036263402962769
+3.8105605069222905
+5.738599503606028
+4.994552792425298
+2.945504336988336
+4.095314381239862
+5.760924710543879
+3.889753944419315
+3.808861160991701
+5.084302950012555
+6.370292933705698
+5.9615431859588455
+4.8790354385481445
+4.068164663649243
+4.26491661935213
+5.911067976258105
+4.1316140545022115
+4.0479985648577115
+5.560425919351912
+5.7777862258090265
+4.6491664757229145
+5.322284766164775
+3.9643060017297818
+3.3374606422520423
+4.070818520139152
+5.162814971692577
+4.68959876937858
+5.729533112912969
+7.160010937980058
+5.154920628387343
+5.992604820701763
+5.317279162752973
+6.3388993007264
+4.38451874656454
+5.024014917973479
+3.7534872319471946
+
+ =======================================================================
+ ==src/conf/manifestMods.txt
+ =======================================================================
+ Build-Jdk: 1.3.1_16
+Specification-Version: 1.1
+Implementation-Vendor-Id: org.apache
+
+ =======================================================================
+ ==src/site/resources/style/project.css
+ =======================================================================
+ @import url(&quot;http://commons.apache.org/style/commons-maven.css&quot;);
+
+ =======================================================================
+ ==src/site/xdoc/userguide/xdoc.xsl
+ =======================================================================
+ &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;xsl:stylesheet version=&quot;1.0&quot; xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot;&gt;
+    &lt;xsl:template match=&quot;/&quot;&gt;
+        &lt;html xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
+            &lt;head&gt;
+                &lt;xsl:apply-templates select=&quot;/document/properties/title&quot;/&gt;
+                &lt;xsl:apply-templates select=&quot;/document/meta&quot;/&gt;
+                &lt;style type=&quot;text/css&quot;&gt;
+                    @import url(&quot;../style/tigris.css&quot;);
+                    @import url(&quot;../style/maven.css&quot;);
+                    @import url(&quot;../style/project.css&quot;);
+                &lt;/style&gt;
+                &lt;link rel=&quot;stylesheet&quot; href=&quot;../style/print.css&quot; type=&quot;text/css&quot; media=&quot;print&quot;&gt;&lt;/link&gt;
+            &lt;/head&gt;
+            &lt;xsl:apply-templates select=&quot;/document/body&quot;/&gt;
+        &lt;/html&gt;
+    &lt;/xsl:template&gt;
+    &lt;xsl:template match=&quot;body&quot;&gt;
+        &lt;body&gt;
+            &lt;div class=&quot;app&quot;&gt;
+                &lt;xsl:apply-templates/&gt;
+            &lt;/div&gt;
+        &lt;/body&gt; 
+    &lt;/xsl:template&gt;
+    &lt;xsl:template match=&quot;section&quot;&gt;
+        &lt;div&gt;
+            &lt;h3&gt;&lt;xsl:value-of select=&quot;@name&quot;/&gt;&lt;/h3&gt;
+            &lt;xsl:apply-templates/&gt;
+        &lt;/div&gt;
+    &lt;/xsl:template&gt;
+    &lt;xsl:template match=&quot;subsection&quot;&gt;
+        &lt;div&gt;
+            &lt;h4&gt;&lt;xsl:value-of select=&quot;@name&quot;/&gt;&lt;/h4&gt;
+            &lt;xsl:apply-templates/&gt;
+        &lt;/div&gt;
+    &lt;/xsl:template&gt;
+    &lt;xsl:template match=&quot;source&quot;&gt;
+        &lt;div id=&quot;source&quot;&gt;
+            &lt;pre&gt;
+                &lt;xsl:apply-templates/&gt;
+            &lt;/pre&gt;
+        &lt;/div&gt;
+    &lt;/xsl:template&gt; 
+    &lt;xsl:template match=&quot;node()|@*&quot;&gt;
+        &lt;xsl:copy&gt;
+            &lt;xsl:apply-templates select=&quot;@*&quot;/&gt;
+            &lt;xsl:apply-templates/&gt;
+        &lt;/xsl:copy&gt;
+    &lt;/xsl:template&gt;
+&lt;/xsl:stylesheet&gt;
+
+ =======================================================================
+ ==doap_math.rdf
+ =======================================================================
+ &lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;rdf:RDF xmlns=&quot;http://usefulinc.com/ns/doap#&quot; xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot; xmlns:asfext=&quot;http://projects.apache.org/ns/asfext#&quot; xmlns:rdfs=&quot;http://www.w3.org/2000/01/rdf-schema#&quot; xmlns:doap=&quot;http://usefulinc.com/ns/doap#&quot; xml:lang=&quot;en&quot;&gt;
+  &lt;Project rdf:about=&quot;http://commons.apache.org/math/&quot;&gt;
+    &lt;name&gt;Apache Commons Math&lt;/name&gt;
+    &lt;homepage rdf:resource=&quot;http://commons.apache.org/math/&quot;/&gt;
+    &lt;programming-language&gt;Java&lt;/programming-language&gt;
+    &lt;category rdf:resource=&quot;http://projects.apache.org/category/library&quot;/&gt;
+    &lt;license rdf:resource=&quot;http://usefulinc.com/doap/licenses/asl20&quot;/&gt;
+    &lt;bug-database rdf:resource=&quot;http://issues.apache.org/jira/browse/MATH&quot;/&gt;
+    &lt;download-page rdf:resource=&quot;http://commons.apache.org/downloads/download_math.cgi&quot;/&gt;
+    &lt;asfext:pmc rdf:resource=&quot;http://commons.apache.org/&quot;/&gt;
+    &lt;shortdesc xml:lang=&quot;en&quot;&gt;Apache Commons Math&lt;/shortdesc&gt;
+    &lt;description xml:lang=&quot;en&quot;&gt;The Math project is a library of lightweight, self-contained mathematics and statistics components addressing the most common practical problems not immediately available in the Java programming language or commons-lang.&lt;/description&gt;
+    &lt;repository&gt;
+      &lt;SVNRepository&gt;
+        &lt;browse rdf:resource=&quot;http://svn.apache.org/viewvc/commons/proper/math/trunk/&quot;/&gt;
+        &lt;location rdf:resource=&quot;http://svn.apache.org/repos/asf/commons/proper/math&quot;/&gt;
+      &lt;/SVNRepository&gt;
+    &lt;/repository&gt;
+    &lt;release&gt;
+      &lt;revision&gt;
+        &lt;name&gt;commons-math&lt;/name&gt;
+        &lt;created&gt;2005-12-19&lt;/created&gt;
+        &lt;version&gt;1.1&lt;/version&gt;
+      &lt;/revision&gt;
+    &lt;/release&gt;
+    &lt;mailing-list rdf:resource=&quot;http://commons.apache.org/mail-lists.html&quot;/&gt;
+  &lt;/Project&gt;
+&lt;/rdf:RDF&gt;
+</pre>
+</div>
+</p>
+
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2003-2008
+    
+          The Apache Software Foundation
+          
+  
+
+  
+    
+            
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>

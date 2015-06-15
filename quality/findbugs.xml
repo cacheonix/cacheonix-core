@@ -1,0 +1,14 @@
+<FindBugsFilter>
+
+   <Match classregex=".*">
+      <BugCode name="EI,EI2"/>
+   </Match>
+
+   <Match>
+      <Class name="~org.cacheonix.impl.util.logging.*$"/>
+   </Match>
+
+   <Match>
+      <Class name="~org.cacheonix.util.binding.*$"/>
+   </Match>
+</FindBugsFilter>

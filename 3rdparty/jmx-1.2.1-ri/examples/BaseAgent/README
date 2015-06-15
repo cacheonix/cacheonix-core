@@ -1,0 +1,73 @@
+/*
+ * @(#)file      README
+ * @(#)author    Sun Microsystems, Inc.
+ * @(#)version   1.8
+ * @(#)date      03/07/15
+ *
+ * Copyright 2000-2003 Sun Microsystems, Inc.  All rights reserved.
+ * This software is the proprietary information of Sun Microsystems, Inc.
+ * Use is subject to license terms.
+ * 
+ * Copyright 2000-2003 Sun Microsystems, Inc.  Tous droits réservés.
+ * Ce logiciel est proprieté de Sun Microsystems, Inc.
+ * Distribué par des licences qui en restreignent l'utilisation. 
+ */
+
+                         Base Agent Example
+                         ==================
+
+
+-----------------------------------------------------------------------
+1. Overview
+-----------------------------------------------------------------------
+
+This example shows how to implement a minimal agent application that
+can be accessed through a Web browser.
+
+
+-----------------------------------------------------------------------
+2. File List
+-----------------------------------------------------------------------
+
+This example is based on the following source file:
+
+ * BaseAgent.java:
+    - Creates an MBean server
+    - Creates and registers an HTML adaptor server in the MBean server
+
+
+-----------------------------------------------------------------------
+3. Building and Running the Example
+-----------------------------------------------------------------------
+
+To build and run this example, make sure that your PATH and CLASSPATH
+environment variables are correctly set to use the Java 2 platform. In
+addition, your CLASSPATH must also contain the JMX reference implemen-
+tation (jmxri.jar) and toolkit (jmxtools.jar) jar files, as well as
+the current directory (.).
+
+These instructions assume the classpath is set in an environment
+variable, though it may also be given on the command line with the
+-classpath option.
+
+To compile the example, type the following commands:
+
+   cd examples/BaseAgent/
+   javac *.java
+
+To run the example using the classes you have just built, type the
+following command:
+
+   java BaseAgent &
+
+This JMX agent is now running on your machine. To manage the agent
+through a Web browser, load the following URL: http://localhost:8082/
+
+You may also access this agent from any remote machine on the same
+network by connecting to this URL: http://<agentHostName>:8082/
+(where <agentHostName> is the name or IP address of the machine where
+you launched the BaseAgent).
+
+Please refer to the tutorial provided in this software bundle for
+further instructions about interacting with the JMX agent through the
+HTML protocol adaptor.

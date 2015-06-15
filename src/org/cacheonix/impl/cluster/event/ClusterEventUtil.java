@@ -1,0 +1,94 @@
+/*
+ * Cacheonix systems licenses this file to You under the LGPL 2.1
+ * (the "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *      http://www.cacheonix.com/products/cacheonix/license-lgpl-2.1.htm
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.cacheonix.impl.cluster.event;
+
+import java.net.InetAddress;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import org.cacheonix.cluster.ClusterMember;
+import org.cacheonix.cluster.ClusterMemberAddress;
+import org.cacheonix.cluster.ClusterState;
+import org.cacheonix.impl.net.ClusterNodeAddress;
+import org.cacheonix.impl.net.cluster.ClusterProcessorState;
+import org.cacheonix.impl.net.cluster.ClusterView;
+
+/**
+ * Utility class.
+ */
+public class ClusterEventUtil {
+
+   private ClusterEventUtil() {
+
+   }
+
+
+   public static ClusterConfigurationImpl getUserClusterConfiguration(final String clusterName,
+                                                                      final int state, final ClusterView clusterView) {
+
+      // Create cluster member list
+      final List<ClusterNodeAddress> clusterNodeList = clusterView == null ? Collections.<ClusterNodeAddress>emptyList() : clusterView.getClusterNodeList();
+      final ArrayList<ClusterMember> clusterMembers = new ArrayList<ClusterMember>(clusterNodeList.size());
+      for (final ClusterNodeAddress clusterNodeAddress : clusterNodeList) {
+
+         clusterMembers.add(createClusterMember(clusterName, clusterNodeAddress));
+      }
+
+
+      // Get user cluster state
+      final ClusterState clusterState = convertStateMachineToUserClusterState(state);
+
+      // Create cluster configuration
+      return new ClusterConfigurationImpl(clusterState, clusterMembers);
+   }
+
+
+   public static ClusterMember createClusterMember(final String clusterName,
+                                                   final ClusterNodeAddress clusterNodeAddress) {
+
+      final InetAddress[] inetAddresses = clusterNodeAddress.getAddresses();
+      final List<ClusterMemberAddress> clusterMemberAddresses = new ArrayList<ClusterMemberAddress>(inetAddresses.length);
+      for (final InetAddress inetAddress : inetAddresses) {
+
+         clusterMemberAddresses.add(new ClusterMemberAddressImpl(inetAddress));
+      }
+
+      return new ClusterMemberImpl(clusterName, clusterMemberAddresses, clusterNodeAddress.getTcpPort());
+   }
+
+
+   /**
+    * Converts internal state machine to
+    *
+    * @param state internal state machine to convert.
+    * @return user cluster state.
+    * @throws IllegalArgumentException if the state machine cannot be converted to the user cluster state.
+    */
+   private static ClusterState convertStateMachineToUserClusterState(final int state) throws IllegalArgumentException {
+
+      switch (state) {
+         case ClusterProcessorState.STATE_BLOCKED:
+            return ClusterState.BLOCKED;
+         case ClusterProcessorState.STATE_CLEANUP:
+            return ClusterState.RECONFIGURING;
+         case ClusterProcessorState.STATE_NORMAL:
+            return ClusterState.OPERATIONAL;
+         case ClusterProcessorState.STATE_RECOVERY:
+            return ClusterState.RECONFIGURING;
+         default:
+            throw new IllegalArgumentException("Unknown state: " + state);
+      }
+   }
+}

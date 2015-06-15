@@ -1,0 +1,167 @@
+<xsd:schema
+  targetNamespace="http://www.springmodules.org/schema/coherence"
+  elementFormDefault="qualified" attributeFormDefault="unqualified"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:beans="http://www.springframework.org/schema/beans"
+  xmlns:cache="http://www.springmodules.org/schema/cache"
+  xmlns="http://www.springmodules.org/schema/coherence">
+
+  <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+  <xsd:import namespace="http://www.springframework.org/schema/beans"
+    schemaLocation="http://www.springframework.org/schema/beans/spring-beans.xsd" />
+  <xsd:import namespace="http://www.springmodules.org/schema/cache"
+    schemaLocation="http://www.springmodules.org/schema/cache/springmodules-cache.xsd" />
+
+  <xsd:element name="config" type="cache:config" />
+
+  <xsd:complexType name="metadata">
+    <xsd:complexContent>
+      <xsd:extension base="cache:base-config-strategy">
+        <xsd:sequence>
+          <xsd:element ref="cacheKeyGenerator" minOccurs="0"
+            maxOccurs="1" />
+          <xsd:element ref="cachingListeners" minOccurs="0"
+            maxOccurs="1" />
+          <xsd:element name="caching" minOccurs="1"
+            maxOccurs="unbounded">
+            <xsd:complexType>
+              <xsd:complexContent>
+                <xsd:extension base="cachingModel">
+                  <xsd:attribute name="id" type="xsd:string"
+                    use="required" />
+                </xsd:extension>
+              </xsd:complexContent>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="flushing" minOccurs="0"
+            maxOccurs="unbounded">
+            <xsd:complexType>
+              <xsd:complexContent>
+                <xsd:extension base="flushingModel">
+                  <xsd:attribute name="id" type="xsd:string"
+                    use="required" />
+                </xsd:extension>
+              </xsd:complexContent>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:element name="annotations" type="metadata" />
+
+  <xsd:element name="commons-attributes" type="metadata" />
+
+  <xsd:element name="methodMapInterceptors">
+    <xsd:complexType>
+      <xsd:complexContent>
+        <xsd:extension base="cache:methodMapInterceptors">
+          <xsd:sequence>
+            <xsd:element ref="cacheKeyGenerator" minOccurs="0"
+              maxOccurs="1" />
+            <xsd:element ref="cachingListeners" minOccurs="0"
+              maxOccurs="1" />
+            <xsd:element name="caching" minOccurs="1"
+              maxOccurs="unbounded">
+              <xsd:complexType>
+                <xsd:complexContent>
+                  <xsd:extension base="cachingModel">
+                    <xsd:attribute name="methodFQN" type="xsd:string"
+                      use="required" />
+                  </xsd:extension>
+                </xsd:complexContent>
+              </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="flushing" minOccurs="0"
+              maxOccurs="unbounded">
+              <xsd:complexType>
+                <xsd:complexContent>
+                  <xsd:extension base="flushingModel">
+                    <xsd:attribute name="methodFQN" type="xsd:string"
+                      use="required" />
+                  </xsd:extension>
+                </xsd:complexContent>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:extension>
+      </xsd:complexContent>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="proxy">
+    <xsd:complexType>
+      <xsd:complexContent>
+        <xsd:extension base="cache:proxy">
+          <xsd:sequence>
+            <xsd:element ref="cacheKeyGenerator" minOccurs="0"
+              maxOccurs="1" />
+            <xsd:element ref="cachingListeners" minOccurs="0"
+              maxOccurs="1" />
+            <xsd:element ref="beans:bean" minOccurs="0" maxOccurs="1" />
+            <xsd:element name="caching" minOccurs="1"
+              maxOccurs="unbounded">
+              <xsd:complexType>
+                <xsd:complexContent>
+                  <xsd:extension base="cachingModel">
+                    <xsd:attribute name="methodName" type="xsd:string"
+                      use="required" />
+                  </xsd:extension>
+                </xsd:complexContent>
+              </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="flushing" minOccurs="0"
+              maxOccurs="unbounded">
+              <xsd:complexType>
+                <xsd:complexContent>
+                  <xsd:extension base="flushingModel">
+                    <xsd:attribute name="methodName" type="xsd:string"
+                      use="required" />
+                  </xsd:extension>
+                </xsd:complexContent>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:extension>
+      </xsd:complexContent>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="cachingListeners">
+    <xsd:complexType>
+      <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+        <xsd:element ref="cachingListener" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="cachingListener">
+    <xsd:complexType>
+      <xsd:complexContent>
+        <xsd:extension base="cache:cachingListener">
+          <xsd:sequence>
+            <xsd:element ref="beans:bean" minOccurs="0" maxOccurs="1" />
+          </xsd:sequence>
+        </xsd:extension>
+      </xsd:complexContent>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:complexType name="cachingModel">
+    <xsd:attribute name="cacheName" type="xsd:string" use="required" />
+    <xsd:attribute name="timeToLive" type="xsd:long" use="optional" />
+  </xsd:complexType>
+
+  <xsd:complexType name="flushingModel">
+    <xsd:complexContent>
+      <xsd:extension base="cache:flushingModel">
+        <xsd:attribute name="cacheNames" type="xsd:string"
+          use="required" />
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:element name="cacheKeyGenerator" type="cache:cacheKeyGenerator" />
+
+</xsd:schema>

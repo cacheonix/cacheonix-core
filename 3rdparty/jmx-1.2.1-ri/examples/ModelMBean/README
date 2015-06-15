@@ -1,0 +1,97 @@
+/*
+ * @(#)file      README
+ * @(#)author    Sun Microsystems, Inc.
+ * @(#)version   1.3
+ * @(#)date      03/07/15
+ *
+ * Copyright 2000-2003 Sun Microsystems, Inc.  All rights reserved.
+ * This software is the proprietary information of Sun Microsystems, Inc.
+ * Use is subject to license terms.
+ * 
+ * Copyright 2000-2003 Sun Microsystems, Inc.  Tous droits réservés.
+ * Ce logiciel est proprieté de Sun Microsystems, Inc.
+ * Distribué par des licences qui en restreignent l'utilisation. 
+ */
+
+
+                         Model MBean Example
+                         ===================
+
+
+-----------------------------------------------------------------------
+1. Overview
+-----------------------------------------------------------------------
+
+This example shows how to implement a simple agent application that uses 
+the Model MBean defined in the JMX specification.
+
+The agent in this example shows the use of a Model MBean to manage an 
+application bean, named "TestBean". It also demonstrates how to have 
+attributes in the same ModelMBean supported by methods on different 
+objects.
+
+
+-----------------------------------------------------------------------
+2. File List
+-----------------------------------------------------------------------
+
+This example is based on the following source files:
+
+ * ModelAgent.java:
+    - Creates an MBean server.
+    - Registers a Model MBean in the MBean server.
+    - Configures the Model MBean in order to manage two simple application  
+      beans called "TestBean" and "TestBeanFriend".
+    - It registers an object of class "TestBeanAttributeChangeListener" as  
+      listener to all notifications emitted when the attribute "State" of   
+      the "TestBean" changes.
+    - It performs management operations on application beans using the 	    
+      Model MBean.
+
+ * TestBeanAttributeChangeListener.java:
+    - Implements the javax.management.NotificationListener interface.       
+      It receives the attribute change notifications emitted by the Model   
+      MBean when the attribute "State" of the "TestBean" changes.
+
+ * TestBean.java:
+    - Simple definition of a Bean which is managed by a ModelMBean.
+
+ * TestBeanFriend.java:
+    - Simple definition of a Bean which is managed by a ModelMBean.
+      It implements the same methods as "TestBean".  It is used by the      
+      ModelAgent test program to illustrate and demonstrate how to have     
+      attributes in the same ModelMBean supported by methods on different   
+      objects.
+
+
+
+-----------------------------------------------------------------------
+3. Building and Running the Example
+-----------------------------------------------------------------------
+
+To build and run this example, make sure that your PATH and CLASSPATH
+environment variables are correctly set to use the Java 2 SDK. In
+addition, your CLASSPATH must also contain the JMX reference implemen-
+tation jar file (jmxri.jar), as well as the current directory (.).
+
+These instructions assume the classpath is set in an environment
+variable, though it may also be given on the command line with the
+-classpath option.
+
+Copy the example source files to your 
+working directory and type the following commands:
+
+   cd <WORKING_DIR>
+
+   javac *.java
+
+
+To run the example using the classes you have just built, type the
+following command:
+
+   java ModelAgent
+
+You then interact with the agent through the standard input and output
+in the window where it was launched. The ModelAgent class displays
+information about each management step and waits for user input before
+continuing.

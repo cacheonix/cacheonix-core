@@ -1,0 +1,81 @@
+<!-- author: Erwin Vervaet -->
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="../styles.css"/>
+	</head>
+	<body>
+		<h2><code>spring:escapeBody</code></h2>
+		<h3>org.springframework.web.servlet.tags.EscapeBodyTag</h3>
+		<hr>
+		<p>
+			<table class="tag" width="100%">
+				<tr>
+					<td class="tagname"><b><code>spring:escapeBody (since 1.1.1)</code></b></td>
+				</tr>
+				<tr>
+					<td class="tagsection"><b>General information</b></td>
+				<tr>
+				<tr>
+					<td colspan="2">
+						Custom JSP tag to escape its enclosed body content,
+						applying HTML escaping and/or JavaScript escaping.
+						<p>Provides a "htmlEscape" property for explicitly specifying whether to
+						apply HTML escaping. If not set, a page-level default (e.g. from the
+						HtmlEscapeTag) or an application-wide default (the "defaultHtmlEscape"
+						context-param in web.xml) is used.
+						<p>Provides a "javaScriptEscape" property for specifying whether to apply
+						JavaScript escaping. Can be combined with HTML escaping or used standalone.
+					</td>
+				</tr>
+				<tr>
+					<td class="tagsection"><b>Attributes</b></td>
+				<tr>
+				<tr>
+					<td class="tagheader"><b>htmlEscape</b></td>
+				</tr>
+				<tr>
+					<td>
+						Set HTML escaping for this tag, as boolean value.
+						Overrides the default HTML escaping setting for the current page.
+					</td>
+				</tr>
+				<tr>
+					<td>required: no</td>
+				</tr>
+				<tr>
+					<td>el-support: yes</td>
+				</tr>
+				<tr>
+					<td class="tagheader"><b>javaScriptEscape</b></td>
+				</tr>
+				<tr>
+					<td>
+						Set JavaScript escaping for this tag, as boolean value. Default is false.
+					</td>
+				</tr>
+				<tr>
+					<td>required: no</td>
+				</tr>
+				<tr>
+					<td>el-support: yes</td>
+				</tr>
+				<tr>
+					<td class="tagsection"><b>Variables</b></td>
+				</tr>
+				<tr>
+					<td>none</td>
+				</tr>
+				<tr>
+					<td class="tagsection"><b>Also have a look at</b></td>
+				<tr>
+				<tr>
+					<td>
+						the <a href="HtmlEscapeTag.html"><code>spring:htmlEscape</code></a> tag,
+						which allows you to set the default HTML escape value for the current page
+					</td>
+				<tr>
+			</table>
+		</p>
+			
+	</body>
+</html>

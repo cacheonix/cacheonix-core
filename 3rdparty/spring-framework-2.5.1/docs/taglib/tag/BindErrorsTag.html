@@ -1,0 +1,116 @@
+<!-- author: Alef Arendsen, Erwin Vervaet -->
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="../styles.css"/>
+	</head>
+	<body>
+		<h2><code>spring:hasBindErrors</code></h2>
+		<h3>org.springframework.web.servlet.tags.BindErrorsTag</h3>
+		<hr>
+		<p>
+			<table class="tag" width="100%">
+				<tr>
+					<td class="tagname"><b><code>spring:hasBindErrors (since 1.0)</code></b></td>
+				</tr>
+				<tr>
+					<td class="tagsection"><b>General information</b></td>
+				<tr>
+				<tr>
+					<td colspan="2">
+						The <code>spring:hasBindErrors</code> tag provides you with support for binding
+						the errors for an object. If they are available, an <code>Errors</codE> object
+						gets bound in the page scope, which you can inspect. Basically it's a bit like
+						the <code>spring:bind</code>-tag, but this tag does not feature the status object,
+						it just binds all the errors for the object and its properties.
+					</td>
+				</tr>
+				<tr>
+					<td class="tagsection"><b>Attributes</b></td>
+				<tr>
+				<tr>
+					<td class="tagheader"><b>name</b></td>
+				</tr>
+				<tr>
+					<td>The name of the bean in the request, that needs to be inspected for
+						errors. If errors are available for this bean, they will be bound under
+						the <code>errors</code> key.
+					</td>
+				</tr>
+				<tr>
+					<td>required: yes</td>
+				</tr>
+				<tr>
+					<td>el-support: yes</tD>
+				</tr>
+				<tr>
+					<td class="tagheader"><b>htmlEscape</b></td>
+				</tr>
+				<tr>
+					<td>
+						Set HTML escaping for this tag, as boolean value.
+						Overrides the default HTML escaping setting for the current page.
+					</td>
+				</tr>
+				<tr>
+					<td>required: no</td>
+				</tr>
+				<tr>
+					<td>el-support: yes</td>
+				</tr>
+				<tr>
+					<td class="tagsection"><b>Variables</b></td>
+				</tr>
+				<tr>
+					<td class="tagheader"><b>errors</b></td>
+				</tr>
+				<tr>
+					<td>
+						The errors object informs you of errors that have occurred during validation
+						or somehwere else in the submission process.
+					</td>
+				</tr>
+				<tr>
+					<td>type: <a href="../../api/org/springframework/validation/Errors.html">org.springframework.validation.Errors</a></td>
+				</tr>
+				<tr>
+					<td><code>errors.errorCount</code>: the number of errors</td>
+				</tr>
+				<tr>
+					<td><code>errors.allErrors</code>: all errors in a java.util.List</td>
+				</tr>
+				<tr>
+					<td><code>errors.globalErrorCount</code>: the amount of errors registered for the object (so not for properties)</td>
+				</tr>
+				<tr>
+					<td><code>errors.globalErrors</code>: the errors registerd for the object, in a java.util.List</td>
+				</tr>
+				<tr>
+					<td><code>errors.globalError</code>: the first, non-field-specific error</td>
+				</tr>
+				<tr>
+					<td class="tagsection"><b>Also have a look at</b></td>
+				<tr>
+				<tr>
+					<td>
+						the <a href="BindTag.html"><code>spring:bind</code></a> tag,
+						which does not only give you error support, but also property transformation
+						and expression support
+					</td>
+				<tr>
+				<tr>
+					<td>
+						the <a href="MessageTag.html"><code>spring:message</code></a> tag,
+						to see how you can internationalize your error messages
+					</td>
+				<tr>
+				<tr>
+					<td>
+						the <a href="../../api/org/springframework/validation/Errors.html"><code>Errors</code></a>
+						interface
+					</td>
+				</tr>
+			</table>
+		</p>
+			
+	</body>
+</html>

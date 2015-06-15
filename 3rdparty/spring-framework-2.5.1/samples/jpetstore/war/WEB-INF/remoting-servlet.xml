@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<!--
+  - Dispatcher servlet for HTTP remoting via Hessian, Burlap, and Spring's
+  - HTTP invoker (see remoting-servlet.xml for the controllers).
+  -->
+<beans>
+
+	<!-- Hessian exporter for the JPetStore OrderService -->
+	<!-- Hessian is a slim binary HTTP remoting protocol -->
+	<bean name="/OrderService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="petStore"/>
+		<property name="serviceInterface" value="org.springframework.samples.jpetstore.domain.logic.OrderService"/>
+	</bean>
+
+	<!-- Burlap exporter for the JPetStore OrderService -->
+	<!-- Burlap is a slim XML-based HTTP remoting protocol -->
+	<bean name="/OrderService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="petStore"/>
+		<property name="serviceInterface" value="org.springframework.samples.jpetstore.domain.logic.OrderService"/>
+	</bean>
+
+	<!-- HTTP invoker exporter for the JPetStore OrderService -->
+	<!-- Spring's HTTP invoker uses Java serialization via HTTP  -->
+	<bean name="/OrderService-httpinvoker" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="petStore"/>
+		<property name="serviceInterface" value="org.springframework.samples.jpetstore.domain.logic.OrderService"/>
+	</bean>
+
+</beans>

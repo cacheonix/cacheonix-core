@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page> 
+ 
+  <title>Spring Pet Portal</title>
+ 
+  <defaults skin="orange" layout-decorator="tigris" portlet-decorator="tigris"/>
+  
+  <fragment id="petportal-main" type="layout" name="jetspeed-layouts::VelocityTwoColumns">
+    <fragment id="petportal-welcome" type="portlet" name="petportal::welcome">
+      <property name="row" value="0"/>
+      <property name="column" value="0"/>
+    </fragment>
+    <fragment id="petportal-pets" type="portlet" name="petportal::pets">
+      <property name="row" value="1"/>
+      <property name="column" value="0"/>
+    </fragment>
+    <fragment id="petportal-upload" type="portlet" name="petportal::upload">
+      <property name="row" value="2"/>
+      <property name="column" value="0"/>
+    </fragment>
+    <fragment id="petportal-mode" type="portlet" name="petportal::mode">
+      <property name="row" value="0"/>
+      <property name="column" value="1"/>
+    </fragment>
+    <fragment id="petportal-petsites" type="portlet" name="petportal::petsites">
+      <property name="row" value="1"/>
+      <property name="column" value="1"/>
+    </fragment>
+  </fragment>
+  
+  <security-constraints>
+    <security-constraints-ref>public-view</security-constraints-ref>
+  </security-constraints>
+  
+</page>

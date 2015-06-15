@@ -1,0 +1,27 @@
+body, table{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 0.9em;
+}
+
+.tag {
+	border: 1px solid black;
+}
+
+.tagheader, .tagbody {
+	border-bottom: 1px solid black;
+}
+
+.tagname {
+	background-color: #cccccc;	
+	font-size: 1.5em;
+}
+
+.attributeheader {
+	border: 1px solid black;
+}
+
+.tagsection {
+	background-color: #dddddd;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+}

@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+
+<project name="carplant-dao" basedir="." default="usage">
+
+    <property name="name" value="${ant.project.name}"/>
+
+    <property name="src.dir" value="src"/>
+    <property name="tests.dir" value="test"/>
+    <property name="build.dir" value=".classes"/>
+    <property name="build.tests.dir" value=".testclasses"/>
+    <property name="dist.dir" value="dist"/>
+
+    <property name="spring.root" value="../../.."/>
+
+    <path id="master-classpath">
+
+        <fileset dir="${spring.root}/lib/jakarta-commons">
+            <include name="commons-logging.jar"/>
+        	<include name="commons-dbcp.jar"/>
+    		<include name="commons-pool.jar"/>
+        	<include name="commons-collections.jar"/>
+        </fileset>
+    	
+    	<fileset dir="${spring.root}/lib/hibernate">
+    		<include name="hibernate3.jar"/>
+    	</fileset>
+    	
+    	<fileset dir="${spring.root}/lib/j2ee">
+    		<include name="jta.jar"/>
+    	</fileset>
+    	
+    	<fileset dir="${spring.root}/lib/dom4j">
+    		<include name="dom4j-*.jar"/>
+    	</fileset>
+    	
+    	<fileset dir="${spring.root}/lib/cglib">
+    		<include name="cglib-*.jar"/>
+    	</fileset>
+    	
+    	<fileset dir="${spring.root}/lib/hsqldb">
+    		<include name="hsqldb.jar"/>
+    	</fileset>
+
+    	<fileset dir="${spring.root}/lib/antlr">
+    		<include name="antlr-*.jar"/>
+    	</fileset>
+    	
+        <fileset dir="${spring.root}/dist">
+            <include name="spring.jar"/>
+        	<include name="spring-mock.jar"/>
+        </fileset>
+
+    </path>
+
+
+    <target name="usage">
+
+        <echo message=""/>
+        <echo message="Spring DAO Java5 feature build"/>
+        <echo message="------------------------------------------------------"/>
+        <echo message=""/>
+        <echo message="Available targets are:"/>
+        <echo message=""/>
+        <echo message="clean    --> Clean output dirs"/>
+        <echo message="build    --> Compile main Java sources and copy libraries"/>
+        <echo message="tests    --> Runs the unit tests of this sample"/>
+        <echo message="all      --> Clean, build, tests"/>
+        <echo message=""/>
+
+    </target>
+
+
+    <target name="clean" description="Clean output dirs (.classes and .testclasses)">
+
+        <delete dir="${build.dir}"/>
+        <delete dir="${build.tests.dir}"/>
+
+    </target>
+
+
+    <target name="build" description="Compile main source tree java files into class files, generate jar files">
+
+        <mkdir dir="${build.dir}"/>
+
+        <javac destdir="${build.dir}" source="1.5" target="1.5" debug="true"
+               deprecation="false" optimize="false" failonerror="true">
+            <src path="${src.dir}"/>
+            <classpath refid="master-classpath"/>
+        </javac>
+    	
+		<mkdir dir="${build.tests.dir}"/>
+		
+		<javac destdir="${build.tests.dir}" source="1.5" target="1.5" debug="true"
+               deprecation="false" optimize="false" failonerror="true">
+            <src path="${tests.dir}"/>
+            <classpath refid="master-classpath"/>
+			<classpath location="${build.dir}"/>
+        </javac>    
+    	
+    	<copy todir="${build.dir}">
+    		<fileset dir="${src.dir}">
+    			<include name="**/*.xml"/>
+    		</fileset>
+    	</copy>
+
+    </target>
+	
+	<target name="tests" depends="build">
+
+		<junit dir="${basedir}" forkmode="perBatch" printsummary="yes" haltonfailure="yes" haltonerror="yes">
+
+			<classpath location="${build.tests.dir}"/>
+			<classpath location="${build.dir}"/>
+			<classpath refid="master-classpath"/>
+			
+			<formatter type="plain" usefile="false"/>
+
+			<batchtest fork="yes">
+				<fileset dir="${build.tests.dir}" includes="**/*" excludes="**/Abstract*"/>
+			</batchtest>
+
+		</junit>
+		
+	</target>
+
+
+    <target name="all" depends="clean,build,tests" description="Clean,build,warfile"/>
+
+</project>

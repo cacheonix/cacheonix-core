@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+
+	<description>
+		Generic auto-proxy definitions enabling declarative transaction management,
+		based on Commons Attributes attributes. The application context must define
+		a PlatformTransactionManager bean with name "transactionManager" (the bean
+		name can be adapted in the corresponding bean reference below).
+		
+		This file is generic, and not specific to JPetStore. You can use it unchanged
+		as an application context definition file for your own applications to get
+		attribute-driven declarative transaction management.
+		
+		The power of this approach is more apparent when you have many transactional
+		business objects, not just one as in this simple application.
+		
+		Add more Advisor definitions if you want, for additional declarative services.
+		Advisors are detected by type: therefore, no explicit references are necessary.
+	</description>
+
+	<!--
+		This bean is a post-processor that will automatically apply relevant advisors
+		to any bean in child factories.
+	-->
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>
+
+	<!--
+		AOP advisor that will provide declarative transaction management based on
+		attributes. It's possible to add arbitrary custom Advisor implementations
+		as well, and they will also be evaluated and applied automatically.
+	-->
+	<bean class="org.springframework.transaction.interceptor.TransactionAttributeSourceAdvisor">
+		<property name="transactionInterceptor" ref="transactionInterceptor"/>
+	</bean>
+
+	<!--
+		Transaction interceptor to use for auto-proxy creation.
+		Transaction attributes will be read in from class-level metadata.
+	-->
+	<bean id="transactionInterceptor" class="org.springframework.transaction.interceptor.TransactionInterceptor">
+		<property name="transactionManager" ref="transactionManager"/>
+		<property name="transactionAttributeSource">
+			<bean class="org.springframework.transaction.interceptor.AttributesTransactionAttributeSource">
+				<property name="attributes" ref="attributes"/>
+			</bean>
+		</property>
+	</bean>
+
+	<!--
+		Commons Attributes Attributes implementation. Replace with another
+		implementation of org.springframework.metadata.Attributes to source
+		attributes from a different source.
+	-->
+	<bean id="attributes" class="org.springframework.metadata.commons.CommonsAttributes"/>
+	
+</beans>

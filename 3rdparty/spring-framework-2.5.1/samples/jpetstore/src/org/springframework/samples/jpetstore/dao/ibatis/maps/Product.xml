@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Product">
+
+  <cacheModel id="oneDayProduct" type="MEMORY">
+    <flushInterval hours="24"/>
+    <property name="reference-type" value="WEAK"/>
+  </cacheModel>
+
+  <resultMap id="result" class="org.springframework.samples.jpetstore.domain.Product">
+    <result property="productId" column="productid" columnIndex="1"/>
+    <result property="name" column="name" columnIndex="2"/>
+    <result property="description" column="descn" columnIndex="3"/>
+    <result property="categoryId" column="category" columnIndex="4"/>
+  </resultMap>
+
+  <select id="getProduct" resultMap="result">
+    select productid, name, descn, category from product where productid = #value#
+  </select>
+
+  <select id="getProductListByCategory" resultMap="result">
+    select productid, name, descn, category from product where category = #value#
+  </select>
+
+  <select id="searchProductList" resultMap="result">
+    select productid, name, descn, category from product
+    <dynamic prepend="where">
+      <iterate property="keywordList" open="(" close=")" conjunction="OR">
+        lower(name) like #keywordList[]# OR lower(category) like #keywordList[]# OR lower(descn) like #keywordList[]#
+      </iterate>
+    </dynamic>
+  </select>
+
+</sqlMap>

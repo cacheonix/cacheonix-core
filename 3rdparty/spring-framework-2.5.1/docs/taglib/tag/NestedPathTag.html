@@ -1,0 +1,64 @@
+<!-- author: Erwin Vervaet -->
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="../styles.css"/>
+	</head>
+	<body>
+		<h2><code>spring:nestedPath</code></h2>
+		<h3>org.springframework.web.servlet.tags.NestedPathTag</h3>
+		<hr>
+		<p>
+			<table class="tag" width="100%">
+				<tr>
+					<td class="tagname"><b><code>spring:nestedPath (since 1.1)</code></b></td>
+				</tr>
+				<tr>
+					<td class="tagsection"><b>General information</b></td>
+				<tr>
+				<tr>
+					<td colspan="2">
+						Nested path tag, to support and assist with nested beans or bean properties.
+						Exports a "nestedPath" variable of type String.
+						<p>The BindTag will auto-detect the nested path and automatically prepend it
+						to its own path to form a complete path to the bean or bean property.
+						<p>This tag will also prepend any existing nested path that is currently set.
+						Thus, you can nest multiple nested path tags.
+					</td>
+				</tr>
+				<tr>
+					<td class="tagsection"><b>Attributes</b></td>
+				<tr>
+				<tr>
+					<td class="tagheader"><b>path</b></td>
+				</tr>
+				<tr>
+					<td>
+						Set the path that this tag should apply. E.g. "customer" to allow bind paths
+						like "address.street" rather than "customer.address.street".
+					</td>
+				</tr>
+				<tr>
+					<td>required: yes</td>
+				</tr>
+				<tr>
+					<td>el-support: yes</td>
+				</tr>
+				<tr>
+					<td class="tagsection"><b>Variables</b></td>
+				</tr>
+				<tr>
+					<td class="tagheader"><b>nestedPath</b></td>
+				</tr>
+				<tr>
+					<td>
+						The nested path set by the tag.
+					</td>
+				</tr>
+				<tr>
+					<td>type: java.lang.String</td>
+				</tr>
+			</table>
+		</p>
+			
+	</body>
+</html>

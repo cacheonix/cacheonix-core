@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<project name="imagedb-standalone" basedir="../war" default="run">
+
+	<target name="run">
+		<java classname="org.springframework.samples.imagedb.standalone.StandaloneImageTool">
+			<classpath>
+				<fileset dir="WEB-INF/lib">
+					<include name="*.jar"/>
+				</fileset>
+			</classpath>
+			<arg value="../war/WEB-INF/applicationContext.xml"/>
+			<arg value="${nrOfCalls}"/>
+		</java>
+	</target>
+
+</project>

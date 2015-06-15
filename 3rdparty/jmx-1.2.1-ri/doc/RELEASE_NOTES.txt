@@ -1,0 +1,540 @@
+#
+# @(#)file       RELEASE_NOTES.txt
+# @(#)author     Sun Microsystems, Inc.
+# @(#)version    1.17
+# @(#)lastedit   03/08/22
+#
+# Copyright 2003 Sun Microsystems, Inc.  All rights reserved.  
+# Use is subject to license terms.
+#
+
+---------------------------------------------------------------------------
+       Java(TM) Management Extensions (JMX(TM)) 1.2.1 Release Notes
+---------------------------------------------------------------------------
+
+These Release Notes contain important product notes and list known 
+restrictions in Java Management Extensions (JMX) 1.2.1. Details of 
+workarounds to known bugs are given where possible. In cases where there 
+are differences between these Release Notes and the JMX documentation, 
+the information in these Release Notes supersedes that in the 
+documentation.
+
+
+     Contents
+     ~~~~~~~~
+
+1)    JMX 1.2.1 Release Information
+       I.    Description
+       II.   Operating Environment
+       III.  Product Restrictions
+
+2)    JMX 1.2 Release Information
+       I.    JMX Tracing
+       II.   Product Notes
+       III.  Product Restrictions
+
+
+
+1)   JMX 1.2.1 Release Information
+==================================
+    
+
+  I.  Description
+  ~~~~~~~~~~~~~~~
+
+     Version 1.2.1 of the JMX Reference Implementation is an update of
+     version 1.2, which provides some important bug fixes.  It
+     also implements the Errata for the 1.2 Maintenance Release of the
+     Specification, which were published in July 2003.
+
+     The changes between versions 1.2 and 1.2.1 of the JMX Reference
+     Implementation, as defined by the Errata, are as follows:
+
+     - Class loader repository can now contain additional class loaders 
+     - Illegal identifiers no longer produce exceptions 
+     - Notification source rewriting has been clarified 
+     - Inconsistency between the specification document, the API 
+       documentation, and the RI regarding currencyTimeLimit has been limited
+     - Severity values for ModelMBeanNotificationInfo have been clarified 
+     - Optional Model MBean fields have been clarified 
+     - API documentation for getDomains() method of MBeanServer interface 
+       corrected
+     - Excessive type constraints have been removed from the relation service
+       documentation
+
+     For more information about these changes, see the document
+     "Errata for JMX Specification, version 1.2" (2003/07/02), which
+     is downloadable from
+     http://jcp.org/aboutJava/communityprocess/final/jsr003/index3.html
+
+     Note that the JMX API Javadoc bundled with this Reference
+     Implementation reflects the Errata, and hence differs slightly
+     from the Javadoc in the JMX 1.2 Specification.
+
+
+
+  II.  Operating Environment
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    The binary package was built using J2SE 1.4.2 (build 1.4.2-b28).
+
+    Testing was performed on the following platforms:
+
+    - Solaris 9 operating environment, SPARC processor, with J2SE 1.3.1 and J2SE 1.4.2.
+    - Redhat Linux 9, with J2SE 1.4.2.
+    - Windows 2000 Professional Edition, with J2SE 1.4.2.
+
+
+
+  III. Product Restrictions
+  ~~~~~~~~~~~~~~~~~~~~~~~~~  
+
+    The following is a list of known restrictions in this release. 
+    
+    1)  BugID 4909536
+
+	The MBean server's introspection code, which analyses Standard
+	MBean interfaces to convert them into attributes and
+	operations, will keep a reference to the last class
+	introspected even after the introspection is completed.
+	Therefore, the class and its class loader cannot be garbage
+	collected.
+
+
+
+2)   JMX 1.2 Release Information
+================================
+
+     The following information is directly extracted from the release
+     notes that accompanied version 1.2 of the JMX Reference
+     Implementation.
+
+
+  I. JMX Tracing
+  ~~~~~~~~~~~~~~
+
+     Traces in the JMX implementation are based on the J2SE logging
+     capability (provided by classes in the java.util.logging package).
+     The JMX implementation uses a set of Loggers for sending traces.  All
+     Loggers are contained in the javax.management namespace, which
+     corresponds to the name of the root package hosting all public JMX
+     interfaces.
+     
+     The list below shows the Logger objects used in this implementation
+     and their corresponding category of activity.
+
+     Logger Name 			Information Logged
+     -----------			------------------
+     javax.management.mbeanserver       Information about the MBean Server
+     javax.management.mlet		Information from an MLet service
+     javax.management.monitor		Information from a monitor
+     javax.management.timer		Information from a timer
+     javax.management.notification	Information from the notification 	
+					mechanism
+     javax.management.relation		Information from the Relation 		
+					Service
+     javax.management.modelmbean	Information from the Model MBean 	
+					components
+     javax.management.misc		Information sent from any other 	
+					class
+
+
+     The following log levels are used in JMX:
+
+     JMX log level			Description     
+     -------------			-----------
+
+     Level.FINEST			Used to print debugging traces
+                                        (useful for diagnosing the JMX
+                                        implementation)                                        
+     Level.FINER                        Used to print information traces
+     Level.SEVERE                       Used to notify of error conditions
+     
+     
+     NOTE:  The JMX 1.2 tracing facility is based on java.util.logging,
+     which is only available in J2SE 1.4.  The JMX 1.2 tracing facility can
+     still be run with earlier versions of the JDK (1.3), but in this case
+     the JMX traces will run in a deprecated mode, and will not be available
+     by default.
+
+
+     Using JMX Trace with JDK 1.3
+     ----------------------------
+
+     When running the JMX technology on JDK 1.3, you can still get the
+     traces by using a Sun proprietary API:
+
+     com.sun.jmx.trace.TraceTags defines 3 level of traces:
+
+	com.sun.jmx.trace.TraceTags.LEVEL_ERROR
+	com.sun.jmx.trace.TraceTags.LEVEL_TRACE
+	com.sun.jmx.trace.TraceTags.LEVEL_DEBUG
+
+     com.sun.jmx.trace.TraceImplementation defines a destination for JMX
+     traces that can be controlled by two system properties:
+
+     com.sun.jmx.trace.level=ERROR|TRACE|DEBUG (default is ERROR) lets you
+     define the trace level.
+
+     com.sun.jmx.trace.file=<filename> lets you define a file in which the
+     traces should be written.  If this property is not defined, the traces,
+     when switched on, will be printed on System.err.
+
+     To switch on the traces, you need to:  
+
+	* Set the com.sun.jmx.trace.level and/or com.sun.jmx.trace.file
+	properties if you want to override the default settings.  You can
+	set these properties either by using the System.setProperty(),
+	method or by specifying their value at the Java command line.
+
+	* call one of the two following static methods:
+
+	- com.sun.jmx.trace.TraceImplementation.init(); activates the traces
+	using the com.sun.jmx.trace.level and com.sun.jmx.trace.file
+	properties.
+
+	- com.sun.jmx.trace.TraceImplementation.init(int level); Switch on
+	the traces using the com.sun.jmx.trace.file property, with the given
+	'level'.  Level must be one of:
+
+	    com.sun.jmx.trace.TraceTags.LEVEL_ERROR
+	    com.sun.jmx.trace.TraceTags.LEVEL_TRACE
+	    com.sun.jmx.trace.TraceTags.LEVEL_DEBUG
+
+
+
+  II. Product Notes
+  ~~~~~~~~~~~~~~~~~
+
+     The following are the major issues addressed in the JMX Specification
+     maintenance release, v1.2:
+
+
+    1)  New MBeanServer Superinterface
+            
+	The MBeanServer interface in JMX 1.1 was not suitable for exposure
+	to remote clients because it contained methods only appropriate
+	for the exporter of the instrumentation and because it did not
+	declare an appropriate exception for communication failures.  
+	
+	A new parent interface, javax.management.MBeanServerConnection, has
+	been added.
+
+
+    2)  New removeNotificationListener Methods        
+	
+	MBeanServer.removeNotificationListener has been updated to provide
+	the same four-parameter methods as are available to
+	addNotificationListener.  This allows the removal of individual
+	triples (listener, filter, handback).
+
+	In addition, a new interface,
+	javax.management.NotificationEmitter, extends
+	NotificationBroadcaster, adding a method to allow
+	NotificationBroadcaster to remove specific triples.
+
+
+    3)  Changes to the ObjectName class
+    	
+	The following enhancements have been made to the ObjectName class:
+
+	- Quoting mechanism for values
+	  A value in a key property list can be surrounded by quotes to
+	  avoid problems with special characters.  See the API documentation
+	  generated by the Javadoc(TM) tool for the ObjectName class.
+
+	- Newline characters
+	  Newline characters ('\n') are not permitted in any part of an
+	  ObjectName, unless they are represented in a quoted value with
+	  the sequence \n.
+
+	- Factory methods for creating object names
+	  Previously, object names could only be obtained by invoking one
+	  of the constructors.  In JMX 1.2, four new getInstance() factory
+	  methods are provided to obtain object names. This allows an
+	  implementation to return the same ObjectName instance for the
+	  same arguments, and to return a private optimized subclass of
+	  ObjectName.
+	  
+	- ObjectName.equals
+	  The semantics of the ObjectName.equals() methods have been
+	  clarified when there is a property pattern present, as follows:
+	  * getKeyPropertyListString does not include any indication of
+	    whether the ObjectName is a property pattern
+	  * getCanonicalName includes a trailing ",*" if the ObjectName
+	    is a property pattern (or just "*" if there are no other
+	    properties)
+	  * equals compares the getCanonicalName values
+
+	- ObjectName implements QueryExp
+	  By implementing the QueryExp interface, queries can match
+	  ObjectNames to given ObjectName patterns by using the
+	  QueryExp.apply() method. This allows ObjectNames to be
+	  included in complex queries.
+
+	- ObjectName.isDomainPattern()	
+	  A new method, isDomainPattern() is provided to determine whether
+	  the ObjectName is a pattern on the domain part.
+	  
+	- Clarified rules regarding characters	
+	  The rules regarding which characters can be used in which
+	  circumstances have been clarified, as follows:
+	  * A domain can contain any character except colon (:)
+	  * A key can contain any character except colon (:), asterisk
+	    (*), comma (,), equals (=), or query (?)
+	  * An unquoted value can contain any character except colon (:),
+	    asterisk (*), comma (,), equals (=), or query (?)
+	  * A quoted value can contain any character provided the quoting
+	    conventions are followed
+
+
+    5)  Class Loading and Naming
+    
+	The following enhancements have been made to class loading and
+	naming:
+    	- MBeanInfo.getClassName clarified    	
+    	- MBeanServer.isInstanceOf clarified    	
+	- RoleInfo no longer performs checks on the MBean class names it is
+	  given.  This check is now done on creation of a relation          
+          instance, using the MBeanServer.isInstanceOf method 
+	- Class Loader Repository (CLR) enhanced:
+	  * New marker interface,
+	    javax.management.loading.PrivateClassLoader
+	  * Risk of deadlock removed from MLet delegation
+	  * Class loaders in the CLR are now consulted in a specific order
+	- Every MBeanServer has its own CLR
+	- New MBeanServer methods to replace the deserialize() methods, 	
+	  that are now deprecated:
+	  * getClassLoaderFor()
+	  * getClassLoader()
+	  * getClassLoaderRepository()
+	  
+
+    6)  MBean Access Control
+    	
+	The JMX 1.2 specification allows administrators to control access
+	to the MBeanServer and to individual MBean APIs.  This new security
+	is provided by mechanisms present in the Java 2 platform security
+	architecture and the Java Authentication and Authorization Service
+	(JAAS).
+
+	MBeanServer access control is provided by the class
+	MBeanServerPermission, an extension of
+	java.security.BasicPermission, that was introduced in JMX 1.1.
+
+	Access to MBeans is controlled by the new MBeanPermission class,
+	which also extends java.security.Permission.
+
+	Another new class, MBeanTrustPermission, extending
+	java.security.BasicPermission, verifies that only MBeans from
+	trusted codebases register with an MBeanServer.
+
+
+    7)  User-Supplied Factory for MBeanServer Instances
+    	
+	A new mechanism has been introduced to specify how MBeanServer
+	objects are instantiated by the MBeanServerFactory.
+
+
+    8)  MBeanInfo Enhancements
+    	
+	The following enhancements have been made to the MBean*Info
+	classes:	
+
+	- MBean*Info classes implement equals(object).
+	  Each of the MBean*Info classes overrides the
+	  Object.equals(object) method to compare for equality rather than
+	  identity.  This is useful because JMX allows an MBean to change
+	  its MBeanInfo at any time.  A remote client can test whether
+	  this has happened by comparing the result of
+	  MBeanServer.getMBeanInfo against a previous value.
+
+	- MBeanConstructorInfo does not have to be exhaustive.	
+	  If you use createMBean to construct an MBean with a given
+	  constructor, it is not an error for that constructor not to be
+	  in the new MBean's MBeanConstructorInfo array returned by
+	  getMBeanInfo().
+
+	- MBean*Info constructors check for valid Java identifiers:	
+	  * In MBeanAttributeInfo, MBeanOperationInfo, and
+	    MBeanParameterInfo "name" must be a syntactically valid Java
+	    identifier and "type" must be a syntactically valid Java class
+	    name
+	  * In MBeanInfo, "className" must be a syntactically valid Java
+	    class name
+	  * In MBeanConstructorInfo and MBeanNotificationInfo, "name" must
+	    be a syntactically valid Java class name
+
+	  If these conditions are not met, the constructors throw
+	  IllegalArgumentException.
+
+
+    9)  Notification Enhancements
+
+	The  class   NotificationBroadcasterSupport  has  a  new  protected
+	method,  handleNotification(),  which is called  for each  listener
+	registered with the  NotificationBroadcaster.  It can be overridden
+	in a subclass to customize notification delivery.
+
+
+    10) Timer Service Enhancements
+    	
+    	The following enhancements have been made to the Timer services:
+    	
+	- Modified  behavior of the Timer.addNotification method
+	  When the specified time for a  notification  has already  passed,
+	  addNotification  behaves as if the time  specified is the current
+	  time, rather than throwing an exception.  This reduces risks when
+	  scheduling notifications for the very near future.
+
+	- TimerNotification Class
+	  The constructor of the TimerNotification class is now public,
+	  allowing user code to construct notifications.
+
+	- Periodic Notification
+	  The default periodic notification behavior in JMX 1.2 is
+	  fixed-delay execution, but fixed-rate execution can now be        
+          specified explicitly.
+
+
+    11) Monitor Service
+    	
+	The Monitor class has been extended to allow the monitoring of the
+	same attribute in several MBeans.  The Monitor class and the
+	MonitorMBean interface have the following new methods:  
+	- getObservedObjects() 
+	- addObservedObject(ObjectName) 
+	- removeObservedObject(ObjectName)
+	- containsObservedObject(ObjectName)
+
+	The CounterMonitor class and the CounterMonitorMBean interface have
+	the following new methods:  
+	- setInitThreshold(Number) 
+	- getInitThreshold()  
+	- getThreshold(ObjectName) 
+	- getDerivedGauge(ObjectName) 
+	- getDerivedGaugeTimeStamp(ObjectName)
+	
+	NOTE:  The ObjectName parameter is now required in the
+	getThreshhold(), getDerivedGauge(), and getDerivedGaugeTimeStamp()
+	methods as these methods without parameters are now deprecated.
+	
+	The GaugeMonitor and StringMonitor classes also have new methods:
+	- getDerivedGauge(ObjectName)
+	- getDerivedGaugeTimeStamp(ObjectName)
+
+
+    12) Relation Service
+    	
+	The RoleInfo constructor of the javax.managent.relation.RoleInfo
+	class no longer performs any checks on the class name it is given.
+	This makes sense given that a DynamicMBean can return any string as
+	the class name in its MBeanInfo, not necessarily an existent Java
+	class.
+
+	On creation of a relation instance, the relation service checks
+	that each MBean linked is an instance of the class name in the
+	corresponding RoleInfo, as determined by
+	MBeanServer.isInstanceOf.
+
+
+    13) Open MBeans
+    	
+    	Open MBeans become mandatory in JMX 1.2.
+    	
+    		    
+    14) MLets
+    	
+    	The following enhancements have been made to MLets:
+	
+	- The behavior of MLet  delegation to the Class Loader  Repository
+	  is  now   specified   explicitly.  It  differs  from  the  former
+	  behavior in that only loaders  preceding the MLet in the CLR are
+	  delegated  to.  This  change was  introduced  to avoid a deadlock
+	  possibility.
+
+	- The MLet class now implements the Externalizable  interface.  The
+	  methods   readExternal  and  writeExternal   already  existed  in
+	  previous  releases, so this is logical.  Implementations  are not
+	  required   to   support   these   methods,   and  the   reference
+	  implementation does not support them.
+
+	- The method  MLet.check is exposed to allow  subclasses of MLet to
+	  implement caching and versioning.
+
+
+    15) Serial Compatibility with JMX 1.0
+    	
+	JMX 1.1 changed the serial form of several  classes in JMX 1.0. It
+	introduced a property jmx.serial.form to allow code to continue to
+	use the old form. Independent implementations, however, are not
+	required to support this feature.
+
+
+    16) Calling getters and setters Using invoke 
+    	
+	In JMX 1.2, it is forbidden to call getters and setters via invoke.
+	Previously, an implementation  was free to choose whether or not to
+	allow this.
+	
+	However, if the property jmx.invoke.getters does not have an empty
+	value, the code forbidding calling getters and setters through
+	invoke is disabled.
+
+
+    17) Retrieving domains in MBeanServer
+    	
+    	A new MBeanServer method, getDomains(), has been introduced.
+    	
+	    
+    18) Standard MBeans
+    
+    	The following enhancements have been made to standard MBeans:
+    	
+    	- Clarified rules for deriving NameMBean from Name.
+	  In JMX 1.2, if the  implementation  class of a standard  MBean is
+	  some.package.Name   then  the   management   interface   must  be
+	  some.package.NameMBean.	  
+	- Hybrid of Standard and Dynamic MBeans.
+	  A new class, javax.management.StandardMBean, has been added
+	  to remove the need for a fixed relationship between the
+	  implementation class of the standard MBean and its
+	  management interface.  The StandardMBean class implements
+	  the DynamicMBean interface.
+
+
+    19) InvocationHandler for MBean Proxies
+    	
+	An   implementation   of  the   java.lang.reflect.InvocationHandler
+	interface    has    been    added    in    JMX    1.2.   The    new
+	javax.managment.MBeanServerInvocationHandler  class  can be used to
+	construct a proxy for an MBean, given its management interface, for
+	convenience  and   type-safeness   on  invoke,   getAttribute   and
+	setAttribute methods.
+
+    20) Model MBeans
+    
+    	The following enhancements have been made to model MBeans:
+	- Descriptor interface now extends Cloneable
+	- RequiredModelMBean implements MBeanRegistration
+	- ModelMBean.load called from preRegister not constructor
+	- Inconsistencies  between  the  specification  document  and  the
+	  API documentation generated by the Javadoc tool have been          
+          corrected
+	  
+	  
+
+  III. Product Restrictions
+  ~~~~~~~~~~~~~~~~~~~~~~~~~  
+    
+    The following is a list of known restrictions in this release. 
+    
+    1)  BugID 4752340
+
+	The Model MBean documentation reveals that when the descriptor for
+	an attribute specifies a getMethod X, the method to be invoked is
+	not necessarily called X.  Instead, it is the method whose
+	ModelMBeanOperationInfo specifies a name of X in its descriptor.
+
+	To avoid confusion, make sure you use the same name for the method
+	and for the descriptor.

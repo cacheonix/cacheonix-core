@@ -1,0 +1,3132 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>Developing a Spring Framework MVC application step-by-step</title><link rel="stylesheet" href="html.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.70.1"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="book" lang="en"><div class="titlepage"><div><div><h1 class="title"><a name="d0e1"></a>Developing a Spring Framework MVC application step-by-step</h1></div><div><div xmlns="http://www.w3.org/TR/xhtml1/transitional" class="authorgroup"><h2>Authors</h2><p></p><span class="author"><span xmlns="" class="firstname">Thomas</span> <span xmlns="" class="surname">Risberg</span></span>, <span class="author"><span xmlns="" class="firstname">Rick</span> <span xmlns="" class="surname">Evans</span></span>, <span class="author"><span xmlns="" class="firstname">Portia</span> <span xmlns="" class="surname">Tung</span></span></div></div><div><p class="releaseinfo">2.5</p></div><div><div class="legalnotice"><a name="d0e23"></a>
+			Copies of this document may be made for your own use and for
+			distribution to others, provided that you do not charge any
+			fee for such copies and further provided that each copy
+			contains this Copyright Notice, whether distributed in print
+			or electronically.
+		</div></div></div><hr></div><div class="toc"><dl><dt><span class="preface"><a href="#overview">Overview</a></span></dt><dd><dl><dt><span class="section"><a href="#overview-whats-covered">1. What's covered</a></span></dt><dt><span class="section"><a href="#overview-prerequisite-software">2. Prerequisite software</a></span></dt><dt><span class="section"><a href="#overview-application-overview">3. The application we are building</a></span></dt></dl></dd><dt><span class="chapter"><a href="#part1">1. Basic Application and Environment Setup</a></span></dt><dd><dl><dt><span class="section"><a href="#step1.1">1.1. Create the project directory structure</a></span></dt><dt><span class="section"><a href="#step1.2">1.2. Create <code class="filename">'index.jsp'</code></a></span></dt><dt><span class="section"><a href="#step1.3">1.3. Deploy the application to Tomcat</a></span></dt><dt><span class="section"><a href="#step1.4">1.4. Check the application works</a></span></dt><dt><span class="section"><a href="#step1.5">1.5. Download the Spring Framework</a></span></dt><dt><span class="section"><a href="#step1.6">1.6. Modify <code class="filename">'web.xml'</code> in the <code class="filename">'WEB-INF'</code> directory</a></span></dt><dt><span class="section"><a href="#step1.7">1.7. Copy libraries to <code class="filename">'WEB-INF/lib'</code></a></span></dt><dt><span class="section"><a href="#step1.8">1.8. Create the <code class="interfacename">Controller</code></a></span></dt><dt><span class="section"><a href="#step1.9">1.9. Write a test for the
+    <code class="interfacename">Controller</code></a></span></dt><dt><span class="section"><a href="#step1.10">1.10. Create the <code class="interfacename">View</code></a></span></dt><dt><span class="section"><a href="#step1.11">1.11. Compile and deploy the application</a></span></dt><dt><span class="section"><a href="#step1.12">1.12. Try out the application</a></span></dt><dt><span class="section"><a href="#d0e720">1.13. Summary</a></span></dt></dl></dd><dt><span class="chapter"><a href="#part2">2. Developing and Configuring the Views and the Controller</a></span></dt><dd><dl><dt><span class="section"><a href="#step2.1">2.1. Configure JSTL and add JSP header file</a></span></dt><dt><span class="section"><a href="#step2.3">2.2. Improve the controller</a></span></dt><dt><span class="section"><a href="#step2.4">2.3. Decouple the view from the controller</a></span></dt><dt><span class="section"><a href="#d0e1077">2.4. Summary</a></span></dt></dl></dd><dt><span class="chapter"><a href="#part3">3. Developing the Business Logic</a></span></dt><dd><dl><dt><span class="section"><a href="#step3.1">3.1. Review the business case of the Inventory Management System</a></span></dt><dt><span class="section"><a href="#step3.2">3.2. Add some classes for business logic</a></span></dt><dt><span class="section"><a href="#d0e1414">3.3. Summary</a></span></dt></dl></dd><dt><span class="chapter"><a href="#part4">4. Developing the Web Interface</a></span></dt><dd><dl><dt><span class="section"><a href="#step4.1">4.1. Add reference to business logic in the controller</a></span></dt><dt><span class="section"><a href="#step4.2">4.2. Modify the view to display business data and add support for
+    message bundle</a></span></dt><dt><span class="section"><a href="#step4.3">4.3. Add some test data to automatically populate some business
+    objects</a></span></dt><dt><span class="section"><a href="#step4.4">4.4. Add the message bundle and a <code class="literal">'clean'</code> target to
+    <code class="filename">'build.xml'</code></a></span></dt><dt><span class="section"><a href="#step4.5">4.5. Adding a form</a></span></dt><dt><span class="section"><a href="#step4.6">4.6. Adding a form controller</a></span></dt><dt><span class="section"><a href="#step4.summary">4.7. Summary</a></span></dt></dl></dd><dt><span class="chapter"><a href="#part5">5. Implementing Database Persistence</a></span></dt><dd><dl><dt><span class="section"><a href="#step5.1">5.1. Create database startup script</a></span></dt><dt><span class="section"><a href="#step5.2">5.2. Create table and test data scripts</a></span></dt><dt><span class="section"><a href="#step5.3">5.3. Add Ant tasks to run scripts and load test data</a></span></dt><dt><span class="section"><a href="#step5.4">5.4. Create a Data Access Object (DAO) implementation for JDBC</a></span></dt><dt><span class="section"><a href="#step5.5">5.5. Implement tests for JDBC DAO implementation</a></span></dt><dt><span class="section"><a href="#d0e2229">5.6. Summary</a></span></dt></dl></dd><dt><span class="chapter"><a href="#part6">6. Integrating the Web Application with the Persistence Layer</a></span></dt><dd><dl><dt><span class="section"><a href="#step6.1">6.1. Modify service layer</a></span></dt><dt><span class="section"><a href="#step6.2">6.2. Fix the failing tests</a></span></dt><dt><span class="section"><a href="#step6.3">6.3. Create new application context for service layer
+    configuration</a></span></dt><dt><span class="section"><a href="#step6.4">6.4. Add transaction and connection pool configuration to application
+    context</a></span></dt><dt><span class="section"><a href="#step6.5">6.5. Final test of the complete application</a></span></dt><dt><span class="section"><a href="#step6.summary">6.6. Summary</a></span></dt></dl></dd><dt><span class="appendix"><a href="#build-scripts">A. Build Scripts</a></span></dt></dl></div><div class="preface" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="overview"></a>Overview</h2></div></div></div><p>This document is a step-by-step guide on how to develop a web
+  application from scratch using the Spring Framework.</p><p>Only a cursory knowledge of Spring itself is assumed, and as such this
+  tutorial is ideal if you are learning or investigating Spring. Hopefully by
+  the time you have worked your way through the tutorial material you will see
+  how the constituent parts of the Spring Framework, namely Inversion of
+  Control (IoC), Aspect-Oriented Programming (AOP), and the various Spring
+  service libraries (such as the JDBC library) all fit together in the context
+  of a Spring MVC web application.</p><p>Spring provides several options for configuring your application.  The most
+  popular one is using XML files.  This is also the traditional way that has
+  been supported from the first release of Spring.  With the introduction of Annotations
+  in Java 5, we now have an alternate way of configuring our Spring applications.  The new
+  Spring 2.5 release introduces extensive support for using Annotations to configure a web 
+  application.</p><p>This document uses the traditional XML style for configuration.  We are working on
+  an <span class="emphasis"><em>"Annotation Edition"</em></span> of this document and hope to publish it in the 
+  near future.</p><p>Please note that we are not going to cover any background information
+  or theory in this tutorial; there are plenty of books available that cover
+  the areas in depth; whenever a new class or feature is used in the tutorial,
+  forward pointers to the relevant section(s) of the Spring reference
+  documentation are provided where the class or feature is covered in
+  depth.</p><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="overview-whats-covered"></a>1.&nbsp;What's covered</h2></div></div></div><p>The following list details all of the various parts of the Spring
+    Framework that are covered over the course of the tutorial.</p><div class="itemizedlist"><ul type="disc"><li><p>Inversion of Control (IoC)</p></li><li><p>The Spring Web MVC framework</p></li><li><p>Data access with JDBC</p></li><li><p>Unit and integration testing</p></li><li><p>Transaction management</p></li></ul></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="overview-prerequisite-software"></a>2.&nbsp;Prerequisite software</h2></div></div></div><p>The following prerequisite software and environment setup is
+    assumed. You should also be reasonably comfortable using the following
+    technologies.</p><div class="itemizedlist"><ul type="disc"><li><p>Java SDK 1.5</p></li><li><p>Ant 1.7</p></li><li><p>Apache Tomcat 6.0.14</p></li><li><p>Eclipse 3.3 (Recommended, but not necessary)</p></li></ul></div><p>
+      <span class="emphasis"><em>Eclipse 3.3 Europa (http://www.eclipse.org/europa) with the 
+      Web Tools Platform (WTP) Project (http://www.eclipse.org/webtools) 
+      and the Spring IDE Project (http://www.springide.org) provides an excellent
+      envirnment for web development.</em></span>
+    </p><p>
+      <span class="emphasis"><em>You may of course use pretty much any variation or version of
+      the above software. If you want to use NetBeans or IntelliJ instead of
+      Eclipse or Jetty instead of Tomcat, then many of the tutorial steps will
+      not translate directly to your environment but you should be able to
+      follow along anyway.</em></span>
+    </p></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="overview-application-overview"></a>3.&nbsp;The application we are building</h2></div></div></div><p>The application we will be building from scratch over the course of
+    this tutorial is a <span class="emphasis"><em>very basic</em></span> inventory management
+    system. This inventory management system is severely constrained in terms
+    of scope; find below a use case diagram illustrating the simple use cases
+    that we will be implementing. The reason why the application is so
+    constrained is so that you can concentrate on the specifics of Spring Web
+    MVC and Spring, and not the finer details of inventory management.</p><p></p><div class="mediaobject" align="center"><img src="images/usecase.png" align="middle"><div class="caption"><p>Use case diagram of the inventory management system</p></div></div><p>We will <a href="#part1" title="Chapter&nbsp;1.&nbsp;Basic Application and Environment Setup">start</a> by setting up the basic
+    project directory structure for our application, downloading the required
+    libraries, setting up our Ant build scripts, etc. The first step gives us
+    a solid foundation on which to develop the application proper in parts
+    <a href="#part2" title="Chapter&nbsp;2.&nbsp;Developing and Configuring the Views and the Controller">2</a>, <a href="#part3" title="Chapter&nbsp;3.&nbsp;Developing the Business Logic">3</a>, and <a href="#part4" title="Chapter&nbsp;4.&nbsp;Developing the Web Interface">4</a>.</p><p>Once the basic setup is out of the way, Spring itself will be
+    introduced, starting with the Spring Web MVC framework. We will use Spring
+    Web MVC to display the inventoried stock, which will involve writing some
+    simple Java classes and some JSPs. We will then move onto introducing
+    persistent data access into our application, using Spring's Simple JDBC
+    support.</p><p>By the time we have finished all of the steps in the tutorial, we
+    will have an application that does basic inventory management, including
+    listing stock and permitting the price increase of such stock.</p></div></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="part1"></a>Chapter&nbsp;1.&nbsp;Basic Application and Environment Setup</h2></div></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="step1.1"></a>1.1.&nbsp;Create the project directory structure</h2></div></div></div><p>We are going to need a place to keep all the source and other files
+    we will be creating, so let's create a directory named <code class="filename">'springapp'</code>. The decision as to where you
+    create this directory is totally up to you; we created ours in a <code class="filename">'Projects'</code> directory that we already had in
+    our <code class="filename">'home'</code> directory so the
+    complete path to our project directory is now <code class="filename">'$HOME/Projects/springapp'</code>. Inside this
+    directory we create a sub-directory named <code class="filename">'src'</code> to hold all the Java source files that
+    we are going to create. Then we create another sub-directory that we name
+    <code class="filename">'war'</code>. This directory will hold
+    everything that should go into the WAR file that we will use to package
+    and deploy our application. All source files other than Java source, like
+    JSPs and configuration files, belong in the <code class="filename">'war'</code> directory.</p><p>Find below a screen shot of what your project directory structure
+    must look like after following the above instructions. <span class="emphasis"><em>(The
+    screen shot shows the project directory structure inside the Eclipse IDE:
+    you do not need to use the Eclipse IDE to complete this tutorial
+    successfully, but using Eclipse will make it much easier to follow
+    along.)</em></span></p><div class="screenshot"><div class="mediaobject" align="center"><img src="images/basic-dir-structure.png" align="middle"><div class="caption"><p>The project directory structure</p></div></div></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="step1.2"></a>1.2.&nbsp;Create <code class="filename">'index.jsp'</code></h2></div></div></div><p>Since we are creating a web application, let's start by creating a
+    very simple JSP page named <code class="filename">'index.jsp'</code> in the
+    <code class="filename">'war'</code> directory. The
+    <code class="filename">'index.jsp'</code> is the entry point for our
+    application.</p><p><code class="filename">'springapp/war/index.jsp'</code>:</p><pre class="programlisting">&lt;html&gt;
+  &lt;head&gt;&lt;title&gt;Example :: Spring Application&lt;/title&gt;&lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Example - Spring Application&lt;/h1&gt;
+    &lt;p&gt;This is my test.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre><p>Just to have a complete web application, let's create a <code class="filename">'WEB-INF'</code> directory inside the <code class="filename">'war'</code> directory and place a
+    <code class="filename">'web.xml'</code> file in this new directory.</p><p><code class="filename">'springapp/war/WEB-INF/web.xml'</code>:</p><pre class="programlisting">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;web-app version="2.4"
+         xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+         http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" &gt;
+
+  &lt;welcome-file-list&gt;
+    &lt;welcome-file&gt;
+      <span class="bold"><strong>index.jsp</strong></span>
+    &lt;/welcome-file&gt;
+  &lt;/welcome-file-list&gt;
+
+&lt;/web-app&gt;</pre></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="step1.3"></a>1.3.&nbsp;Deploy the application to Tomcat</h2></div></div></div><p>Let's now write the Ant build script that we are going to use
+    throughout the tutorial. This Ant build script will contain targets for
+    compiling, building and deploying the application. A separate build script
+    will be used for application server specific targets, such as targets for
+    controlling the application under Tomcat.</p><p><code class="filename">'springapp/build.xml'</code>:</p><pre class="programlisting">&lt;?xml version="1.0"?&gt;
+
+&lt;project name="springapp" basedir="." default="usage"&gt;
+    &lt;property file="build.properties"/&gt;
+
+    &lt;property name="src.dir" value="src"/&gt;
+    &lt;property name="web.dir" value="war"/&gt;
+    &lt;property name="build.dir" value="${web.dir}/WEB-INF/classes"/&gt;
+    &lt;property name="name" value="springapp"/&gt;
+
+    &lt;path id="master-classpath"&gt;
+        &lt;fileset dir="${web.dir}/WEB-INF/lib"&gt;
+            &lt;include name="*.jar"/&gt;
+        &lt;/fileset&gt;
+        &lt;!-- We need the servlet API classes: --&gt;
+        &lt;!--  * for Tomcat 5/6 use servlet-api.jar --&gt;
+        &lt;!--  * for other app servers - check the docs --&gt;
+        &lt;fileset dir="${appserver.lib}"&gt;
+            &lt;include name="servlet*.jar"/&gt;
+        &lt;/fileset&gt;
+        &lt;pathelement path="${build.dir}"/&gt;
+    &lt;/path&gt;
+
+    &lt;target name="usage"&gt;
+        &lt;echo message=""/&gt;
+        &lt;echo message="${name} build file"/&gt;
+        &lt;echo message="-----------------------------------"/&gt;
+        &lt;echo message=""/&gt;
+        &lt;echo message="Available targets are:"/&gt;
+        &lt;echo message=""/&gt;
+        &lt;echo message="build     --&gt; Build the application"/&gt;
+        &lt;echo message="deploy    --&gt; Deploy application as directory"/&gt;
+        &lt;echo message="deploywar --&gt; Deploy application as a WAR file"/&gt;
+        &lt;echo message="install   --&gt; Install application in Tomcat"/&gt;
+        &lt;echo message="reload    --&gt; Reload application in Tomcat"/&gt;
+        &lt;echo message="start     --&gt; Start Tomcat application"/&gt;
+        &lt;echo message="stop      --&gt; Stop Tomcat application"/&gt;
+        &lt;echo message="list      --&gt; List Tomcat applications"/&gt;
+        &lt;echo message=""/&gt;
+    &lt;/target&gt;
+
+    &lt;target name="build" description="Compile main source tree java files"&gt;
+        &lt;mkdir dir="${build.dir}"/&gt;
+        &lt;javac destdir="${build.dir}" source="1.5" target="1.5" debug="true"
+               deprecation="false" optimize="false" failonerror="true"&gt;
+            &lt;src path="${src.dir}"/&gt;
+            &lt;classpath refid="master-classpath"/&gt;
+        &lt;/javac&gt;
+    &lt;/target&gt;
+
+    &lt;target name="deploy" depends="build" description="Deploy application"&gt;
+        &lt;copy todir="${deploy.path}/${name}" preservelastmodified="true"&gt;
+            &lt;fileset dir="${web.dir}"&gt;
+                &lt;include name="**/*.*"/&gt;
+            &lt;/fileset&gt;
+        &lt;/copy&gt;
+    &lt;/target&gt;
+
+    &lt;target name="deploywar" depends="build" description="Deploy application as a WAR file"&gt;
+        &lt;war destfile="${name}.war"
+             webxml="${web.dir}/WEB-INF/web.xml"&gt;
+            &lt;fileset dir="${web.dir}"&gt;
+                &lt;include name="**/*.*"/&gt;
+            &lt;/fileset&gt;
+        &lt;/war&gt;
+        &lt;copy todir="${deploy.path}" preservelastmodified="true"&gt;
+            &lt;fileset dir="."&gt;
+                &lt;include name="*.war"/&gt;
+            &lt;/fileset&gt;
+        &lt;/copy&gt;
+    &lt;/target&gt;
+    
+<em class="lineannotation"><span class="lineannotation">&lt;!-- ============================================================== --&gt;</span></em>
+<em class="lineannotation"><span class="lineannotation">&lt;!-- Tomcat tasks - remove these if you don't have Tomcat installed --&gt;</span></em>
+<em class="lineannotation"><span class="lineannotation">&lt;!-- ============================================================== --&gt;</span></em>
+
+    &lt;path id="catalina-ant-classpath"&gt;
+        &lt;!-- We need the Catalina jars for Tomcat --&gt;
+        &lt;!--  * for other app servers - check the docs --&gt;
+        &lt;fileset dir="${appserver.lib}"&gt;
+            &lt;include name="catalina-ant.jar"/&gt;
+        &lt;/fileset&gt;
+    &lt;/path&gt;
+
+    &lt;taskdef name="install" classname="org.apache.catalina.ant.InstallTask"&gt;
+        &lt;classpath refid="catalina-ant-classpath"/&gt;
+    &lt;/taskdef&gt;
+    &lt;taskdef name="reload" classname="org.apache.catalina.ant.ReloadTask"&gt;
+        &lt;classpath refid="catalina-ant-classpath"/&gt;
+    &lt;/taskdef&gt;
+    &lt;taskdef name="list" classname="org.apache.catalina.ant.ListTask"&gt;
+        &lt;classpath refid="catalina-ant-classpath"/&gt;
+    &lt;/taskdef&gt;
+    &lt;taskdef name="start" classname="org.apache.catalina.ant.StartTask"&gt;
+        &lt;classpath refid="catalina-ant-classpath"/&gt;
+    &lt;/taskdef&gt;
+    &lt;taskdef name="stop" classname="org.apache.catalina.ant.StopTask"&gt;
+        &lt;classpath refid="catalina-ant-classpath"/&gt;
+    &lt;/taskdef&gt;
+
+    &lt;target name="install" description="Install application in Tomcat"&gt;
+        &lt;install url="${tomcat.manager.url}"
+                 username="${tomcat.manager.username}"
+                 password="${tomcat.manager.password}"
+                 path="/${name}"
+                 war="${name}"/&gt;
+    &lt;/target&gt;
+
+    &lt;target name="reload" description="Reload application in Tomcat"&gt;
+        &lt;reload url="${tomcat.manager.url}"
+                 username="${tomcat.manager.username}"
+                 password="${tomcat.manager.password}"
+                 path="/${name}"/&gt;
+    &lt;/target&gt;
+
+    &lt;target name="start" description="Start Tomcat application"&gt;
+        &lt;start url="${tomcat.manager.url}"
+                 username="${tomcat.manager.username}"
+                 password="${tomcat.manager.password}"
+                 path="/${name}"/&gt;
+    &lt;/target&gt;
+
+    &lt;target name="stop" description="Stop Tomcat application"&gt;
+        &lt;stop url="${tomcat.manager.url}"
+                 username="${tomcat.manager.username}"
+                 password="${tomcat.manager.password}"
+                 path="/${name}"/&gt;
+    &lt;/target&gt;
+
+    &lt;target name="list" description="List Tomcat applications"&gt;
+        &lt;list url="${tomcat.manager.url}"
+                 username="${tomcat.manager.username}"
+                 password="${tomcat.manager.password}"/&gt;
+    &lt;/target&gt;
+
+<em class="lineannotation"><span class="lineannotation">&lt;!-- End Tomcat tasks --&gt;</span></em>
+
+&lt;/project&gt;</pre><p><em><span class="remark">If you are using a different web application server, then
+    you can remove the Tomcat specific tasks at the end of the build script.
+    You will have to rely on your server's hot deploy feature, or you will
+    have to stop and start your application manually.</span></em></p><p><em><span class="remark">If you are using an IDE, you may find a number of errors
+    reported by the IDE in the <code class="filename">'build.xml'</code> such as the 
+    Tomcat targets. You can ignore these. The file listing above is 
+    correct.</span></em></p><p>The above Ant build script now contains all the targets that we are
+    going to need to make our development efforts easier. We are not going to
+    cover this script in detail, since most if not all of it is pretty much
+    standard Ant and Tomcat stuff. You can just copy the above build file text
+    and paste it into a new file called <code class="filename">'build.xml'</code> in
+    the root of your development directory tree. We also need a
+    <code class="filename">'build.properties'</code> file that you should customize to
+    match your server installation. This file belongs in the same directory as
+    the <code class="filename">'build.xml'</code> file.</p><p><code class="filename">'springapp/build.properties'</code>:</p><pre class="programlisting"># Ant properties for building the springapp
+
+appserver.home=${user.home}/apache-tomcat-6.0.14
+# for Tomcat 5 use $appserver.home}/server/lib
+# for Tomcat 6 use $appserver.home}/lib
+appserver.lib=${appserver.home}/lib
+
+deploy.path=${appserver.home}/webapps
+
+tomcat.manager.url=http://localhost:8080/manager
+tomcat.manager.username=tomcat
+tomcat.manager.password=s3cret</pre><p><em><span class="remark">If you are on a system where you are not the owner of the
+    Tomcat installation, then the Tomcat owner must either grant you full
+    access to the <code class="filename">'webapps'</code> directory
+    or the owner must create a new directory named <code class="filename">'springapp'</code> in the <code class="filename">'webapps'</code> directory of the Tomcat
+    installation directory, and also give you full rights to deploy to this
+    newly created directory. On Linux, run the command <span><strong class="command">'chmod a+rwx
+    springapp'</strong></span> to give everybody full rights to this
+    directory.</span></em></p><p><em><span class="remark">To create Tomcat user named 'tomcat' with 's3cret' as their
+    password, go to the Tomcat users file <code class="filename">
+    'appserver.home/conf/tomcat-users.xml'</code> and add the user entry.
+    </span></em></p><pre class="programlisting">&lt;?xml version='1.0' encoding='utf-8'?&gt;
+&lt;tomcat-users&gt;
+  &lt;role rolename="manager"/&gt;
+  &lt;user username="tomcat" password="s3cret" roles="manager"/&gt;
+&lt;/tomcat-users&gt;</pre><p>Now we run Ant to make sure that everything is working okay. You
+    must have your current directory set to the <code class="filename">'springapp'</code> directory.</p><p>Open up a command shell (or prompt) and execute
+    <span><strong class="command">'ant'</strong></span> .</p><pre class="screen">$ ant
+Buildfile: build.xml
+
+usage:
+     [echo] 
+     [echo] springapp build file
+     [echo] -----------------------------------
+     [echo] 
+     [echo] Available targets are:
+     [echo] 
+     [echo] build     --&gt; Build the application
+     [echo] deploy    --&gt; Deploy application as directory
+     [echo] deploywar --&gt; Deploy application as a WAR file
+     [echo] install   --&gt; Install application in Tomcat
+     [echo] reload    --&gt; Reload application in Tomcat
+     [echo] start     --&gt; Start Tomcat application
+     [echo] stop      --&gt; Stop Tomcat application
+     [echo] list      --&gt; List Tomcat applications
+     [echo] 
+
+BUILD SUCCESSFUL
+Total time: 2 seconds</pre><p>The last thing we need to do here is to build and deploy the
+    application. Just run Ant and specify <code class="literal">'deploy'</code> or
+    <code class="literal">'deploywar'</code> as the target.</p><pre class="screen">$ ant deploy
+Buildfile: build.xml
+
+build:
+    [mkdir] Created dir: /Users/trisberg/Projects/springapp/war/WEB-INF/classes
+
+deploy:
+     [copy] Copying 2 files to /Users/trisberg/apache-tomcat-5.5.17/webapps/springapp
+
+BUILD SUCCESSFUL
+Total time: 4 seconds</pre></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="step1.4"></a>1.4.&nbsp;Check the application works</h2></div></div></div><p>Let's just quickly start Tomcat by running
+    <code class="filename">'${appserver.home}/bin/startup.bat'</code>. To make sure
+    that we can access the application, run the <code class="literal">'list'</code> task
+    from our build file to see if Tomcat has picked up the new
+    application.</p><pre class="screen">$ ant list
+Buildfile: build.xml
+
+list:
+     [list] OK - Listed applications for virtual host localhost
+     [list] /springapp:running:0:springapp
+     [list] /manager:running:0:manager
+     [list] /:running:0:ROOT
+     [list] /docs:running:0:docs
+     [list] /examples:running:0:examples
+     [list] /host-manager:running:0:host-manager
+
+BUILD SUCCESSFUL
+Total time: 3 seconds</pre><p>You can now open up a browser and navigate to the starting page of
+    our application at the following URL: <a href="http://localhost:8080/springapp/index.jsp" target="_top">http://localhost:8080/springapp/index.jsp</a>.</p><div class="screenshot"><div class="mediaobject" align="center"><img src="images/screen1.png" align="middle"><div class="caption"><p>The application's starting page</p></div></div></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="step1.5"></a>1.5.&nbsp;Download the Spring Framework</h2></div></div></div><p>If you have not already downloaded the Spring Framework, now is the
+    time to do so. We are currently using the 'Spring Framework 2.5' release
+    that can be downloaded from <a href="http://www.springframework.org/download" target="_top">http://www.springframework.org/download</a>.
+    Unzip this file somewhere as we are going to use several files from this
+    download later on.</p><p>This completes the setup of the environment that is necessary, and
+    now we can start actually developing our Spring Framework MVC
+    application.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="step1.6"></a>1.6.&nbsp;Modify <code class="filename">'web.xml'</code> in the <code class="filename">'WEB-INF'</code> directory</h2></div></div></div><p>Go to the <code class="filename">'springapp/war/WEB-INF'</code> directory. Modify the
+    minimal <code class="filename">'web.xml'</code> file that we created earlier. We
+    will define a <code class="classname">DispatcherServlet</code> (also known as a
+    <code class="literal">'Front Controller'</code> (Crupi et al)). It is going to
+    control where all our requests are routed based on information we will
+    enter at a later point. This servlet definition also has an attendant
+    <code class="literal">&lt;servlet-mapping/&gt;</code> entry that maps to the URL
+    patterns that we will be using. We have decided to let any URL with an
+    <code class="literal">'.htm'</code> extension be routed to the
+    <code class="literal">'springapp'</code> servlet (the
+    <code class="classname">DispatcherServlet</code>).</p><p><code class="filename">'springapp/war/WEB-INF/web.xml'</code>:</p><pre class="programlisting">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;web-app version="2.4"
+         xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+         http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" &gt;
+<span class="bold"><strong>
+  &lt;servlet&gt;
+    &lt;servlet-name&gt;springapp&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;
+    &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
+  &lt;/servlet&gt;
+
+  &lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;springapp&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;*.htm&lt;/url-pattern&gt;
+  &lt;/servlet-mapping&gt;
+</strong></span>
+  &lt;welcome-file-list&gt;
+    &lt;welcome-file&gt;
+      index.jsp
+    &lt;/welcome-file&gt;
+  &lt;/welcome-file-list&gt;
+
+&lt;/web-app&gt;</pre><p>Next, create a file called
+    <code class="filename">'springapp-servlet.xml'</code> in the <code class="filename">'springapp/war/WEB-INF'</code> directory. This file
+    contains the bean definitions (plain old Java objects) used by the
+    <code class="classname">DispatcherServlet</code>. It is the
+    <code class="classname">WebApplicationContext</code> where all web-related
+    components go. The name of this file is determined by the value of the
+    <code class="literal">&lt;servlet-name/&gt;</code> element from the
+    <code class="filename">'web.xml'</code>, with <code class="literal">'-servlet'</code>
+    appended to it (hence <code class="filename">'springapp-servlet.xml'</code>). This
+    is the standard naming convention used with Spring's Web MVC framework.
+    Now, add a bean entry named <code class="literal">'/hello.htm'</code> and specify
+    the class as <code class="classname">springapp.web.HelloController</code>. This
+    defines the controller that our application will be using to service a
+    request with the corresponding URL mapping of
+    <code class="literal">'/hello.htm'</code>. The Spring Web MVC framework uses an
+    implementation class of the interface called
+    <code class="interfacename">HandlerMapping</code> to define the mapping
+    between a request URL and the object that is going to handle that request
+    (the handler). Unlike the <code class="classname">DispatcherServlet</code>, the
+    <code class="classname">HelloController</code> is responsible for handling a
+    request for a particular page of the website and is also known as a
+    <code class="literal">'Page Controller'</code> (Fowler). The default
+    <code class="interfacename">HandlerMapping</code> that the
+    <code class="classname">DispatcherServlet</code> uses is the
+    <code class="classname">BeanNameUrlHandlerMapping</code>; this class will use the
+    bean name to map to the URL in the request so that the
+    <code class="classname">DispatcherServlet</code> knows which controller must be
+    invoked for handling different URLs.</p><p><code class="filename">'springapp/war/WEB-INF/springapp-servlet.xml'</code>:</p><pre class="programlisting">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"&gt;
+
+  <em class="lineannotation"><span class="lineannotation">&lt;!-- the application context definition for the <code class="literal">springapp</code> <code class="classname">DispatcherServlet</code> --&gt;</span></em>
+
+  &lt;bean name="/hello.htm" class="springapp.web.HelloController"/&gt;
+
+&lt;/beans&gt;</pre></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="step1.7"></a>1.7.&nbsp;Copy libraries to <code class="filename">'WEB-INF/lib'</code></h2></div></div></div><p>First create a <code class="filename">'lib'</code>
+    directory in the <code class="filename">'war/WEB-INF'</code>
+    directory. Then, from the Spring distribution, copy <code class="filename">spring.jar</code> (from <code class="filename">spring-framework-2.5/dist</code>) and <code class="filename">spring-webmvc.jar</code> (from <code class="filename">spring-framework-2.5/dist/modules</code>)
+    to the new <code class="filename">'war/WEB-INF/lib'</code> directory. Also, copy
+    <code class="filename">commons-logging.jar</code> (from
+    <code class="filename">spring-framework-2.5/lib/jakarta-commons</code>)
+    to the <code class="filename">'war/WEB-INF/lib'</code> directory.
+    These jars will be deployed to the server and they are also used during
+    the build process.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="step1.8"></a>1.8.&nbsp;Create the <code class="interfacename">Controller</code></h2></div></div></div><p>Create your <code class="interfacename">Controller</code> class &#8211; we are
+    naming it <code class="classname">HelloController</code>, and it is defined in the
+    <code class="literal">'springapp.web'</code> package. First we create the package
+    directories and then we create the
+    <code class="filename">'HelloController.java'</code> file and place it in the
+    <code class="filename">'src/springapp/web'</code>
+    directory.</p><p><code class="filename">'springapp/src/springapp/web/HelloController.java'</code>:</p><pre class="programlisting">package springapp.web;
+
+import org.springframework.web.servlet.mvc.Controller;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import java.io.IOException;
+
+public class HelloController implements Controller {
+
+    protected final Log logger = LogFactory.getLog(getClass());
+
+    public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        logger.info("Returning hello view");
+
+        return new ModelAndView("hello.jsp");
+    }
+
+}</pre><p>This is a very basic <code class="interfacename">Controller</code>
+    implementation. We will be expanding this later on as well as extending
+    some of the base controller implementations provided by Spring. In Spring
+    Web MVC, the <code class="interfacename">Controller</code>
+    <span class="emphasis"><em>handles</em></span> the request and returns a
+    <code class="classname">ModelAndView</code> - in this case, one named
+    <code class="filename">'hello.jsp'</code> which is also the name of the JSP file we
+    will create next. The model that this class returns is actually resolved
+    via a <code class="interfacename">ViewResolver</code>. Since we have not
+    explicitly defined a <code class="interfacename">ViewResolver</code>, we are
+    going to be given a default one by Spring that simply forwards to a URL
+    matching the name of the view specified. We will modify this later on. We
+    have also specified a logger so we can verify that we actually got into
+    the handler. Using Tomcat, these log messages should show up in the
+    <code class="filename">'catalina.out'</code> log file which can be found in the
+    <code class="filename">'${appserver.home}/log'</code> directory
+    of your Tomcat installation.</p><p><em><span class="remark">If you are using an IDE, you will want to configure your
+    project's build path by adding the jars from the <code class="filename">'lib'</code> directory. You will also want to add
+    <code class="filename">servlet-api.jar</code> from your
+    servlet container's <code class="filename">'lib'</code> directory
+    (<code class="literal">'${appserver.lib}'</code>). Adding these to your build path should
+    successfully resolve all the import statements in the 
+    <code class="filename">'HelloController.java'</code> file.</span></em></p></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="step1.9"></a>1.9.&nbsp;Write a test for the
+    <code class="interfacename">Controller</code></h2></div></div></div><p>Testing is a vital part of software development. It is also a core
+    practice in Agile development. We have found that the best time to write
+    tests is during development, not after, so even though our controller
+    doesn't contain complex logic, we're going to write a test. This will
+    allow us to make changes to it in the future with confidence. Let's create
+    a new directory under <code class="filename">'springapp'</code>
+    called <code class="filename">'test'</code>. This is where all
+    our tests will go in a package structure that will mirror the source tree
+    in <code class="filename">'springapp/src'</code>.</p><p>Create a test class called <code class="filename">'HelloControllerTests'</code> and make it extend
+    JUnit's test class <code class="classname">TestCase</code>. It is a unit test that
+    verifies the view name returned by <code class="classname">handleRequest()</code>
+    matches the name of the view we expect:
+    <code class="filename">'hello.jsp'</code>.</p><p><code class="filename">'springapp/test/springapp/web/HelloControllerTests.java'</code>:</p><pre class="programlisting">package springapp.web;
+
+import org.springframework.web.servlet.ModelAndView;
+
+import springapp.web.HelloController;
+
+import junit.framework.TestCase;
+
+public class HelloControllerTests extends TestCase {
+
+    public void testHandleRequestView() throws Exception{		
+        HelloController controller = new HelloController();
+        ModelAndView modelAndView = controller.handleRequest(null, null);		
+        assertEquals("hello.jsp", modelAndView.getViewName());
+    }
+}</pre><p>To run the test (and all the tests we're going to write), we need to
+    add an Ant test task to our build script <code class="filename">'build.xml'</code>. First, we copy the <code class="filename">junit-3.8.2.jar</code> from <code class="filename"> 'spring-framework-2.5/lib/junit'</code> to
+    <code class="filename">'war/WEB-INF/lib'</code>. Instead of
+    creating a single task for compiling the tests and then running them,
+    let's break them down into two distinct tasks:
+    <code class="literal">'buildtests'</code> and <code class="literal">'tests'</code> which
+    depends on <code class="literal">'buildtests'</code>.</p><p class="remark"><i><span class="remark">If you are using an IDE, you may want to run your tests within
+    your IDE. Configure your project's build path by adding the <code class="filename"> junit-3.8.2.jar</code> to it.</span></i></p><p><code class="filename">'springapp/build.xml'</code>:</p><pre class="programlisting">    &lt;property name="test.dir" value="test"/&gt;
+        
+    &lt;target name="buildtests" description="Compile test tree java files"&gt;
+        &lt;mkdir dir="${build.dir}"/&gt;
+        &lt;javac destdir="${build.dir}" source="1.5" target="1.5" debug="true"
+            deprecation="false" optimize="false" failonerror="true"&gt;
+            &lt;src path="${test.dir}"/&gt;
+            &lt;classpath refid="master-classpath"/&gt;
+        &lt;/javac&gt;
+    &lt;/target&gt;
+    
+    &lt;target name="tests" depends="build, buildtests" description="Run tests"&gt;
+        &lt;junit printsummary="on"
+            fork="false"
+            haltonfailure="false"
+            failureproperty="tests.failed"
+            showoutput="true"&gt;
+            &lt;classpath refid="master-classpath"/&gt;
+            &lt;formatter type="brief" usefile="false"/&gt;
+            
+            &lt;batchtest&gt;
+                &lt;fileset dir="${build.dir}"&gt;
+                    &lt;include name="**/*Tests.*"/&gt;
+                &lt;/fileset&gt;
+            &lt;/batchtest&gt;
+            
+        &lt;/junit&gt;
+        
+        &lt;fail if="tests.failed"&gt;
+            tests.failed=${tests.failed}
+            ***********************************************************
+            ***********************************************************
+            ****  One or more tests failed!  Check the output ...  ****
+            ***********************************************************
+            ***********************************************************
+        &lt;/fail&gt;
+    &lt;/target&gt;</pre><p>Now run the Ant <code class="literal">'tests'</code> task and the test should
+    pass.</p><pre class="programlisting">$ ant tests
+Buildfile: build.xml
+
+build:
+
+buildtests:
+    [javac] Compiling 1 source file to /Users/Shared/Projects/springapp/war/WEB-INF/classes
+
+tests:
+    [junit] Running springapp.web.HelloWorldControllerTests
+    [junit] Oct 30, 2007 11:31:43 PM springapp.web.HelloController handleRequest
+    [junit] INFO: Returning hello view
+    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.03 sec
+    [junit] Testsuite: springapp.web.HelloWorldControllerTests
+    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.03 sec
+
+    [junit] ------------- Standard Error -----------------
+    [junit] Oct 30, 2007 11:31:43 PM springapp.web.HelloController handleRequest
+    [junit] INFO: Returning hello view
+    [junit] ------------- ---------------- ---------------
+
+BUILD SUCCESSFUL
+Total time: 2 seconds
+    </pre><p>Another of the best practices of Agile development is
+    <span class="emphasis"><em>Continuous Integration</em></span>. It's a good idea to ensure
+    your tests are run with every build (ideally as automated project builds)
+    so that you know your application logic is behaving as expected as the
+    code evolves.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="step1.10"></a>1.10.&nbsp;Create the <code class="interfacename">View</code></h2></div></div></div><p>Now it is time to create our first view. As we mentioned earlier, we
+    are forwarding to a JSP page named <code class="filename">'hello.jsp'</code>. To
+    begin with, we'll put it in the <code class="filename">'war'</code> directory.</p><p><code class="filename">'springapp/war/hello.jsp'</code>:</p><pre class="programlisting">&lt;html&gt;
+  &lt;head&gt;&lt;title&gt;Hello :: Spring Application&lt;/title&gt;&lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Hello - Spring Application&lt;/h1&gt;
+    &lt;p&gt;Greetings.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="step1.11"></a>1.11.&nbsp;Compile and deploy the application</h2></div></div></div><p>Run the <code class="literal">'deploy'</code> Ant target (which invokes the
+    <code class="literal">'build'</code> target), and then run the
+    <code class="literal">'reload'</code> task of the <code class="filename">'build.xml'</code>
+    file. This will force a build and reload of the application in Tomcat. We
+    have to check the Ant output and the Tomcat logs for any possible
+    deployment errors &#8211; such as typos in the above files or missing classes or
+    jar files.</p><p>Here is a sample output from the Ant build:</p><pre class="screen">$ ant deploy reload
+Buildfile: build.xml
+
+build:
+    [mkdir] Created dir: /Users/trisberg/Projects/springapp/war/WEB-INF/classes
+    [javac] Compiling 1 source file to /Users/trisberg/Projects/springapp/war/WEB-INF/classes
+
+deploy:
+     [copy] Copying 7 files to /Users/trisberg/apache-tomcat-5.5.17/webapps/springapp
+
+BUILD SUCCESSFUL
+Total time: 3 seconds
+$ ant reload
+Buildfile: build.xml
+
+reload:
+   [reload] OK - Reloaded application at context path /springapp
+
+BUILD SUCCESSFUL
+Total time: 2 seconds</pre><p>And here is an excerpt from the Tomcat
+    <code class="filename">'catalina.out'</code> log file.</p><pre class="screen">Oct 30, 2007 11:43:09 PM org.springframework.web.servlet.FrameworkServlet initServletBean
+INFO: FrameworkServlet 'springapp': initialization started
+Oct 30, 2007 11:43:09 PM org.springframework.context.support.AbstractApplicationContext prepareRefresh
+INFO: Refreshing org.springframework.web.context.support.XmlWebApplicationContext@6576d5: display name 
+[WebApplicationContext for namespace 'springapp-servlet']; startup date [Tue Oct 30 23:43:09 GMT 2007]; 
+...
+...
+Oct 30, 2007 11:43:09 PM org.springframework.web.servlet.FrameworkServlet initServletBean
+INFO: FrameworkServlet 'springapp': initialization completed in 150 ms</pre></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="step1.12"></a>1.12.&nbsp;Try out the application</h2></div></div></div><p>Let's try this new version of the application.</p><p>Open a browser and browse to <a href="http://localhost:8080/springapp/hello.jsp" target="_top">http://localhost:8080/springapp/hello.htm</a>.</p><div class="screenshot"><div class="mediaobject" align="center"><img src="images/screen2.png" align="middle"><div class="caption"><p>The updated application</p></div></div></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d0e720"></a>1.13.&nbsp;Summary</h2></div></div></div><p>Let's take quick look at the parts of our application that we have
+    created so far.</p><div class="orderedlist"><ol type="1"><li><p>An introduction page, <code class="filename">'index.jsp'</code>, the
+        welcome page of the application. It was used to test our setup was
+        correct. We will later change this to actually provide a link into our
+        application.</p></li><li><p>A <code class="classname">DispatcherServlet</code> (front controller)
+        with a corresponding <code class="filename">'springapp-servlet.xml'</code>
+        configuration file.</p></li><li><p>A page controller, <code class="classname">HelloController</code>, with
+        limited functionality &#8211; it just returns a
+        <code class="classname">ModelAndView</code>. We currently have an empty model
+        and will be providing a full model later on.</p></li><li><p>A unit test class for the page controller,
+        <code class="classname">HelloControllerTests</code>, to verify the name of the
+        view is the one we expect.</p></li><li><p>A view, <code class="filename">'hello.jsp'</code>, that again is
+        extremely basic. The good news is the whole setup works and we are now
+        ready to add more functionality.</p></li></ol></div><p>Find below a screen shot of what your project directory structure
+    must look like after following the above instructions.</p><div class="screenshot"><div class="mediaobject" align="center"><img src="images/dir-structure-endp1.png" align="middle"><div class="caption"><p>The project directory structure at the end of part
+        1</p></div></div></div></div></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="part2"></a>Chapter&nbsp;2.&nbsp;Developing and Configuring the Views and the Controller</h2></div></div></div><p>This is Part 2 of a step-by-step tutorial on how to develop a web
+  application from scratch using the Spring Framework. In <a href="#part1" title="Chapter&nbsp;1.&nbsp;Basic Application and Environment Setup">Part 1</a> we configured the environment and set up a
+  basic application that we will now flesh out.</p><p>This is what we have implemented so far:</p><div class="itemizedlist"><ul type="disc"><li><p>An introduction page, <code class="filename">'index.jsp'</code>, the
+      welcome page of the application. It was used to test our setup was
+      correct. We will later change this to actually provide a link into our
+      application.</p></li><li><p>A <code class="classname">DispatcherServlet</code> (front controller) with
+      a corresponding <code class="filename">'springapp-servlet.xml'</code>
+      configuration file.</p></li><li><p>A page controller, <code class="classname">HelloController</code>, with
+      limited functionality &#8211; it just returns a
+      <code class="classname">ModelAndView</code>. We currently have an empty model
+      and will be providing a full model later on.</p></li><li><p>A unit test class for the page controller,
+      <code class="classname">HelloControllerTests</code>, to verify the name of the
+      view is the one we expect.</p></li><li><p>A view, <code class="filename">'hello.jsp'</code>, that again is extremely
+      basic. The good news is the whole setup works and we are now ready to
+      add more functionality.</p></li></ul></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="step2.1"></a>2.1.&nbsp;Configure JSTL and add JSP header file</h2></div></div></div><p>We will be using the JSP Standard Tag Library (JSTL), so let's start
+    by copying the JSTL files we need to our <code class="filename">'WEB-INF/lib'</code> directory. Copy <code class="filename">jstl.jar</code> from the <code class="filename">'spring-framework-2.5/lib/j2ee'</code> directory and
+    <code class="filename">standard.jar</code> from the <code class="filename">'spring-framework-2.5/lib/jakarta-taglibs'</code>
+    directory to the <code class="filename">'springapp/war/WEB-INF/lib'</code> directory.</p><p>We will be creating a 'header' file that will be included in every
+    JSP page that we're going to write. We ensure the same definitions are
+    included in all our JSPs simply by including the header file. We're also
+    going to put all JSPs in a directory named <code class="filename">'jsp'</code> under the <code class="filename">'WEB-INF'</code> directory. This will ensure that
+    views can only be accessed via the controller since it will not be not
+    possible to access these pages directly via a URL. This strategy might not
+    work in some application servers and if this is the case with the one you
+    are using, move the <code class="filename">'jsp'</code> directory
+    up a level. You would then use <code class="filename">'springapp/war/jsp'</code> as the directory instead
+    of <code class="filename">'springapp/war/WEB-INF/jsp'</code> in
+    all the code examples that will follow.</p><p>First we create the header file for inclusion in all the JSPs we
+    create.</p><p><code class="filename">'springapp/war/WEB-INF/jsp/include.jsp'</code>:</p><pre class="programlisting">&lt;%@ page session="false"%&gt;
+&lt;%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %&gt;
+&lt;%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %&gt;</pre><p>Now we can update <code class="filename">'index.jsp'</code> to use this
+    include file and since we are using JSTL, we can use the
+    <code class="literal">&lt;c:redirect/&gt;</code> tag for redirecting to our front
+    <code class="interfacename">Controller</code>. This means all requests for
+    <code class="filename">'index.jsp'</code> will go through our application
+    framework. Just delete the current contents of 'index.jsp' and replace it
+    with the following:</p><p><code class="filename">'springapp/war/index.jsp'</code>:</p><pre class="programlisting">&lt;%@ include file="/WEB-INF/jsp/include.jsp" %&gt;
+
+<em class="lineannotation"><span class="lineannotation">&lt;%-- Redirected because we can't set the welcome page to a virtual URL. --%&gt;</span></em>
+&lt;c:redirect url="/hello.htm"/&gt;</pre><p>Move <code class="filename">'hello.jsp'</code> to the <code class="filename">'WEB-INF/jsp'</code> directory. Add the same include
+    directive we added to <code class="filename">'index.jsp'</code> to
+    <code class="filename">'hello.jsp'</code>. We also add the current date and time as
+    output to be retrieved from the model passed to the view which will be
+    rendered using the JSTL &lt;c:out/&gt; tag.</p><p><code class="filename">'springapp/war/WEB-INF/jsp/hello.jsp'</code>:</p><pre class="programlisting"><span class="bold"><strong>&lt;%@ include file="/WEB-INF/jsp/include.jsp" %&gt;
+</strong></span>
+&lt;html&gt;
+  &lt;head&gt;&lt;title&gt;Hello :: Spring Application&lt;/title&gt;&lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Hello - Spring Application&lt;/h1&gt;
+<span class="bold"><strong>    &lt;p&gt;Greetings, it is now &lt;c:out value="${now}"/&gt;&lt;/p&gt;
+</strong></span>  &lt;/body&gt;
+&lt;/html&gt;</pre></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="step2.3"></a>2.2.&nbsp;Improve the controller</h2></div></div></div><p>Before we update the location of the JSP in our controller, let's
+    update our unit test class first. We know we need to update the view's
+    resource reference with its new location
+    <code class="filename">'WEB-INF/jsp/hello.jsp'</code>. We also know there should be
+    an object in the model mapped to the key <code class="literal">"now"</code>.</p><p><code class="filename">'springapp/tests/HelloControllerTests.java'</code>:</p><pre class="programlisting">package springapp.web;
+
+import org.springframework.web.servlet.ModelAndView;
+
+import springapp.web.HelloController;
+
+import junit.framework.TestCase;
+
+public class HelloControllerTests extends TestCase {
+
+    public void testHandleRequestView() throws Exception{
+        HelloController controller = new HelloController();
+        ModelAndView modelAndView = controller.handleRequest(null, null);
+<span class="bold"><strong>        assertEquals("WEB-INF/jsp/hello.jsp", modelAndView.getViewName());
+</strong></span><span class="bold"><strong>        assertNotNull(modelAndView.getModel());
+        String nowValue = (String) modelAndView.getModel().get("now");
+        assertNotNull(nowValue);
+</strong></span>    }
+}</pre><p>Next, we run the Ant <code class="literal">'tests'</code> target and our test
+    should fail.</p><pre class="programlisting">$ ant tests
+Buildfile: build.xml
+
+build:
+
+buildtests:
+    [javac] Compiling 1 source file to /home/trisberg/workspace/springapp/war/WEB-INF/classes
+
+tests:
+    [junit] Running springapp.web.HelloControllerTests
+    [junit] Testsuite: springapp.web.HelloControllerTests
+    [junit] Oct 31, 2007 1:27:10 PM springapp.web.HelloController handleRequest
+    [junit] INFO: Returning hello view
+    [junit] Tests run: 1, Failures: 1, Errors: 0, Time elapsed: 0.046 sec
+    [junit] Tests run: 1, Failures: 1, Errors: 0, Time elapsed: 0.046 sec
+    [junit] 
+    [junit] ------------- Standard Error -----------------
+    [junit] Oct 31, 2007 1:27:10 PM springapp.web.HelloController handleRequest
+    [junit] INFO: Returning hello view
+    [junit] ------------- ---------------- ---------------
+    [junit] Testcase: testHandleRequestView(springapp.web.HelloControllerTests):        FAILED
+    [junit] expected:&lt;[WEB-INF/jsp/]hello.jsp&gt; but was:&lt;[]hello.jsp&gt;
+    [junit] junit.framework.ComparisonFailure: expected:&lt;[WEB-INF/jsp/]hello.jsp&gt; but was:&lt;[]hello.jsp&gt;
+    [junit]     at springapp.web.HelloControllerTests.testHandleRequestView(HelloControllerTests.java:14)
+    [junit] 
+    [junit] 
+    [junit] Test springapp.web.HelloControllerTests FAILED
+
+BUILD FAILED
+/home/trisberg/workspace/springapp/build.xml:101: tests.failed=true
+            ***********************************************************
+            ***********************************************************
+            ****  One or more tests failed!  Check the output ...  ****
+            ***********************************************************
+            ***********************************************************
+
+Total time: 2 seconds</pre><p>Now we update <code class="classname">HelloController</code> by setting the
+    view's resource reference to its new location
+    <code class="filename">'WEB-INF/jsp/hello.jsp'</code> as well as set the key/value
+    pair for the current date and time value in the model with the key
+    identifier: <code class="literal">"now"</code> and the string value:
+    <code class="literal">'now'</code>.</p><p><code class="filename">'springapp/src/springapp/web/HelloController.java'</code>:</p><pre class="programlisting">package springapp.web;
+
+import org.springframework.web.servlet.mvc.Controller;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import java.io.IOException;
+<span class="bold"><strong>import java.util.Date;
+</strong></span>
+public class HelloController implements Controller {
+
+    protected final Log logger = LogFactory.getLog(getClass());
+
+    public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+<span class="bold"><strong>        String now = (new Date()).toString();
+        logger.info("Returning hello view with " + now);
+
+        return new ModelAndView("WEB-INF/jsp/hello.jsp", "now", now);
+</strong></span>    }
+
+}</pre><p>We rerun our <code class="literal">'tests'</code> target and the test
+    passes.</p><p>Remember that the <code class="interfacename">Controller</code> has
+    already been configured in <code class="filename">'springapp-servlet.xml'</code>
+    file, so we are ready to try out our enhancements after we build and
+    deploy this new code. When we enter <a href="http://localhost:8080/springapp/" target="_top">http://localhost:8080/springapp/</a>
+    in a browser, it should pull up the welcome file
+    <code class="filename">'index.jsp'</code>, which should redirect to
+    <code class="filename">'hello.htm'</code> and is handled by the
+    <code class="literal">DispatcherServlet</code>, which in turn delegates our request
+    to the page controller that puts the date and time in the model and then
+    makes the model available to the view
+    <code class="filename">'hello.jsp'</code>.</p><div class="screenshot"><div class="mediaobject" align="center"><img src="images/screen3.png" align="middle"><div class="caption"><p>The updated application</p></div></div></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="step2.4"></a>2.3.&nbsp;Decouple the view from the controller</h2></div></div></div><p>Right now the controller specifies the full path of the view, which
+    creates an unnecessary dependency between the controller and the view.
+    Ideally we would like to map to the view using a logical name, allowing us
+    to switch the view without having to change the controller. You can set
+    this mapping in a properties file if you like using a
+    <code class="classname">ResourceBundleViewResolver</code> and a
+    <code class="classname">SimpleUrlHandlerMapping</code> class. For the basic
+    mapping of a view to a location, simply set a prefix and a suffix on the
+    <code class="classname">InternalResourceViewResolver</code>. This second approach
+    is the one that we will implement now, so we modify the
+    <code class="filename">'springapp-servlet.xml'</code> and declare a
+    <code class="literal">'viewResolver'</code> entry. By choosing the
+    <code class="classname">JstlView</code>, it will enable us to use JSTL in
+    combination with message resource bundles as well as provide us with the
+    support for internationalization.</p><p><code class="filename">'springapp/war/WEB-INF/springapp-servlet.xml'</code>:</p><pre class="programlisting">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-2.0.xsd"&gt;
+    
+    <em class="lineannotation"><span class="lineannotation">&lt;!-- the application context definition for the springapp DispatcherServlet --&gt;</span></em>
+    
+    &lt;bean name="/hello.htm" class="springapp.web.HelloController"/&gt;
+    
+<span class="bold"><strong>    &lt;bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"&gt;
+        &lt;property name="viewClass" value="org.springframework.web.servlet.view.JstlView"&gt;&lt;/property&gt;
+        &lt;property name="prefix" value="/WEB-INF/jsp/"&gt;&lt;/property&gt;
+        &lt;property name="suffix" value=".jsp"&gt;&lt;/property&gt;        
+    &lt;/bean&gt;</strong></span>
+            
+&lt;/beans&gt;</pre><p>We update the view name in the controller test class <code class="classname">HelloControllerTests</code> to
+    <code class="literal">'hello'</code> and rerun the test to check it fails.</p><p><code class="filename">'springapp/test/springapp/web/HelloControllerTests.java'</code>:</p><pre class="programlisting">package springapp.web;
+
+import org.springframework.web.servlet.ModelAndView;
+
+import springapp.web.HelloController;
+
+import junit.framework.TestCase;
+
+public class HelloControllerTests extends TestCase {
+
+    public void testHandleRequestView() throws Exception{
+        HelloController controller = new HelloController();
+        ModelAndView modelAndView = controller.handleRequest(null, null);
+<span class="bold"><strong>        assertEquals("hello", modelAndView.getViewName());
+</strong></span>        assertNotNull(modelAndView.getModel());
+        String nowValue = (String) modelAndView.getModel().get("now");
+        assertNotNull(nowValue);
+    }
+}</pre><p>We then remove the prefix and suffix from the view name in the
+    controller, leaving the controller to reference the view by its logical
+    name <code class="literal">"hello".</code></p><p><code class="filename">'springapp/src/springapp/web/HelloController.java'</code>:</p><pre class="programlisting">package springapp.web;
+
+import org.springframework.web.servlet.mvc.Controller;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import java.io.IOException;
+import java.util.Date;
+
+public class HelloController implements Controller {
+
+    protected final Log logger = LogFactory.getLog(getClass());
+
+    public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String now = (new Date()).toString();
+        logger.info("Returning hello view with " + now);
+
+        <span class="bold"><strong>return new ModelAndView("hello", "now", now);</strong></span>
+    }
+
+}</pre><p>Rerun the test and it should now pass.</p><p>Let's compile and deploy the application and verify the application
+    still works.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d0e1077"></a>2.4.&nbsp;Summary</h2></div></div></div><p>Let's take quick look at what we have created in Part 2.</p><div class="orderedlist"><ol type="1"><li><p>A header file <code class="filename">'include.jsp'</code>, the JSP that
+        contains the taglib directives for the tag libraries we'll be using in
+        our JSPs.</p></li></ol></div><p>These are the existing artifacts we have changed in Part 2.</p><div class="orderedlist"><ol type="1"><li><p>The <code class="classname">HelloControllerTests</code> has been updated
+        repeatedly as we make the controller reference the logical name of a
+        view instead of its hard coded name and location.</p></li><li><p>The page controller, <code class="classname">HelloController</code>, now
+        references the view by its logical view name through the use of the
+        <code class="classname">'InternalResourceViewResolver'</code> defined in
+        <code class="filename">'springapp-servlet.xml'</code>.</p></li></ol></div><p>Find below a screen shot of what your project directory structure
+    must look like after following the above instructions.</p><div class="screenshot"><div class="mediaobject" align="center"><img src="images/dir-structure-endp2.png" align="middle"><div class="caption"><p>The project directory structure at the end of part
+        2</p></div></div></div></div></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="part3"></a>Chapter&nbsp;3.&nbsp;Developing the Business Logic</h2></div></div></div><p>This is Part 3 of a step-by-step tutorial on how to develop a Spring
+  application. In this section, we will adopt a pragmatic Test-Driven
+  Development (TDD) approach for creating the domain objects and implementing
+  the business logic for our <a href="#overview-application-overview" title="3.&nbsp;The application we are building">inventory management system</a>.
+  This means we'll "code a little, test a little, code some more then test
+  some more". In <a href="#part1" title="Chapter&nbsp;1.&nbsp;Basic Application and Environment Setup">Part 1</a> we configured the
+  environment and set up a basic application. In <a href="#part2" title="Chapter&nbsp;2.&nbsp;Developing and Configuring the Views and the Controller">Part
+  2</a> we refined the application by decoupling the view from the
+  controller.</p><p>Spring is about making simple things easy and the hard things
+  possible. The fundamental construct that makes this possible is Spring's use
+  of <code class="literal">Plain Old Java Objects (POJOs). </code> POJOs are essentially
+  plain old Java classes free from any contract usually enforced by a
+  framework or component architecture through subclassing or the
+  implementation of interfaces. POJOs are plain old objects that are free from
+  such constraints, making object-oriented programming possible once again.
+  When you are working with Spring, the domain objects and services you
+  implement will be POJOs. In fact, almost everything you implement should be
+  a POJO. If it's not, you should be sure to ask yourself why that is. In this
+  section, we will begin to see the simplicity and power of Spring.</p><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="step3.1"></a>3.1.&nbsp;Review the business case of the Inventory Management System</h2></div></div></div><p>In our inventory management system, we have the concept of a product
+    and a service for handling them. In particular, the business has requested
+    the ability to increase prices across all products. Any decrease will be
+    done on an individual product basis, but this feature is outside the scope
+    of our application. The validation rules for price increase are:</p><div class="itemizedlist"><ul type="disc"><li><p>The maximum increase is limited to 50%.</p></li><li><p>The minimum increase must be greater than 0%.</p></li></ul></div><p>Find below a class diagram of our inventory management
+    system.</p><div class="screenshot"><div class="mediaobject" align="center"><img src="images/inventory-system-classdiagram.png" align="middle"><div class="caption"><p>The class diagram for the inventory management
+        system</p></div></div></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="step3.2"></a>3.2.&nbsp;Add some classes for business logic</h2></div></div></div><p>Let's now add some business logic in the form of a
+    <code class="classname">Product</code> class and a service called
+    <code class="interfacename">ProductManager</code> service that will manage all
+    the products. In order to separate the web dependent logic from the
+    business logic, we will place classes related to the web tier in the
+    <code class="literal">'web'</code> package and create two new packages: one for
+    service objects called <code class="literal">'service'</code> and another for domain
+    objects called <code class="literal">'domain'</code>.</p><p>First we implement the <code class="classname">Product</code> class as a
+    POJO with a default constructor (automatically provided if we don't
+    specify any constructors) and getters and setters for its properties
+    <code class="literal">'description'</code> and <code class="literal">'price'</code>. Let's
+    also make it <code class="interfacename">Serializable</code>, not necessary
+    for our application, but could come in handy later on when we persist and
+    store its state. The class is a domain object, so it belongs in the
+    <code class="literal">'domain'</code> package.</p><p><code class="filename">'springapp/src/springapp/domain/Product.java'</code>:</p><pre class="programlisting">package springapp.domain;
+
+import java.io.Serializable;
+
+public class Product implements Serializable {
+
+    private String description;
+    private Double price;
+    
+    public String getDescription() {
+        return description;
+    }
+    
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
+    public Double getPrice() {
+        return price;
+    }
+    
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+    
+    public String toString() {
+        StringBuffer buffer = new StringBuffer();
+        buffer.append("Description: " + description + ";");
+        buffer.append("Price: " + price);
+        return buffer.toString();
+    }
+}</pre><p>Now we write the unit tests for our <code class="classname">Product</code>
+    class. Some developers don't bother writing tests for getters and setters
+    or so-called 'auto-generated' code. It usually takes much longer to engage
+    in the debate (as this paragraph demonstrates) on whether or not getters
+    and setters need to be unit tested as they're so 'trivial'. We write them
+    because: a) they are trivial to write; b) having the tests pays dividends
+    in terms of the time saved for the one time out of a hundred you may be
+    caught out by a dodgy getter or setter; and c) they improve test coverage.
+    We create a <code class="classname">Product</code> stub and test each getter and
+    setter as a pair in a single test. Usually, you will write one or more
+    test methods per class method, with each test method testing a particular
+    condition in a class method such as checking for a
+    <code class="methodname">null</code> value of an argument passed into the
+    method.</p><p><code class="filename">'springapp/test/springapp/domain/ProductTests.java'</code>:</p><pre class="programlisting">package springapp.domain;
+
+import junit.framework.TestCase;
+
+public class ProductTests extends TestCase {
+
+    private Product product;
+
+    protected void setUp() throws Exception {
+        product = new Product();
+    }
+
+    public void testSetAndGetDescription() {
+        String testDescription = "aDescription";
+        assertNull(product.getDescription());
+        product.setDescription(testDescription);
+        assertEquals(testDescription, product.getDescription());
+    }
+
+    public void testSetAndGetPrice() {
+        double testPrice = 100.00;
+        assertEquals(0, 0, 0);    
+        product.setPrice(testPrice);
+        assertEquals(testPrice, product.getPrice(), 0);
+    }
+  
+}</pre><p>Next we create the <code class="interfacename">ProductManager</code>.
+    This is the service responsible for handling products. It contains two
+    methods: a business method <code class="methodname"> increasePrice()</code> that
+    increases prices for all products and a getter method
+    <code class="methodname">getProducts()</code> for retrieving all products. We
+    have chosen to make it an interface instead of a concrete class for an
+    number of reasons. First of all, it makes writing unit tests for
+    <code class="literal">Controllers</code> easier (as we'll see in the next chapter).
+    Secondly, the use of interfaces means JDK proxying (a Java language
+    feature) can be used to make the service transactional instead of CGLIB (a
+    code generation library).</p><p><code class="filename">'springapp/src/springapp/service/ProductManager.java'</code>:</p><pre class="programlisting">package springapp.service;
+
+import java.io.Serializable;
+import java.util.List;
+
+import springapp.domain.Product;
+
+public interface ProductManager extends Serializable{
+
+    public void increasePrice(int percentage);
+    
+    public List&lt;Product&gt; getProducts();
+    
+}</pre><p>Let's create the <code class="classname">SimpleProductManager</code> class
+    that implements the <code class="classname">ProductManager</code>
+    interface.</p><p><code class="filename">'springapp/src/springapp/service/SimpleProductManager.java'</code>:</p><pre class="programlisting">package springapp.service;
+
+import java.util.List;
+
+import springapp.domain.Product;
+
+public class SimpleProductManager implements ProductManager {
+
+    public List&lt;Product&gt; getProducts() {
+        throw new UnsupportedOperationException();
+    }
+
+    public void increasePrice(int percentage) {
+        throw new UnsupportedOperationException();        
+    }
+
+    public void setProducts(List&lt;Product&gt; products) {
+        throw new UnsupportedOperationException();        
+    }
+
+}</pre><p>Before we implement the methods in
+    <code class="classname">SimpleProductManager</code>, we're going to define some
+    tests first. The strictest definition of <code class="literal">Test Driven Development
+    </code> (TDD) is to always write the tests first, then the code. A
+    looser interpretation of it is more akin to <code class="literal">Test Oriented
+    Development</code> (TOD), where we alternate between writing code and
+    tests as part of the development process. The most important thing is for
+    a codebase to have as complete a set of unit tests as possible, so how you
+    achieve it becomes somewhat academic. Most TDD developers, however, do
+    agree that the quality of tests is always higher when they are written at
+    around the same time as the code that is being developed, so that's the
+    approach we're going to take.</p><p>To write effective tests, you have to consider all the possible pre-
+    and post-conditions of a method being tested as well as what happens
+    within the method. Let's start by testing a call to
+    <code class="methodname">getProducts()</code> returns
+    <code class="literal">null</code>.</p><p><code class="filename">'springapp/test/springapp/service/SimpleProductManagerTests.java'</code>:</p><pre class="programlisting">package springapp.service;
+
+import junit.framework.TestCase;
+
+public class SimpleProductManagerTests extends TestCase {
+
+    private SimpleProductManager productManager;
+        
+    protected void setUp() throws Exception {
+        productManager = new SimpleProductManager();
+    }
+
+    public void testGetProductsWithNoProducts() {
+        productManager = new SimpleProductManager();
+        assertNull(productManager.getProducts());
+    }
+
+}</pre><p>Rerun all the Ant <code class="literal">tests</code> target and the test
+    should fail as <code class="methodname">getProducts()</code> has yet to be
+    implemented. It's usually a good idea to mark unimplemented methods by
+    getting them to throw an
+    <code class="classname">UnsupportedOperationException</code>.</p><p>Next we implement a test for retrieving a list of stub products
+    populated with test data. We know that we'll need to populate the products
+    list in the majority of our test methods in
+    <code class="classname">SimpleProductManagerTests</code>, so we define the stub
+    list in JUnit's <code class="methodname">setUp()</code>, a method that is invoked
+    before each test method is called.</p><p><code class="filename">'springapp/test/springapp/service/SimpleProductManagerTests.java'</code>:</p><pre class="programlisting">package springapp.service;
+
+<span class="bold"><strong>import java.util.ArrayList;
+</strong></span><span class="bold"><strong>import java.util.List;
+
+import springapp.domain.Product;
+</strong></span>
+import junit.framework.TestCase;
+
+public class SimpleProductManagerTests extends TestCase {
+
+    private SimpleProductManager productManager;
+<span class="bold"><strong>    private List&lt;Product&gt; products;
+    
+    private static int PRODUCT_COUNT = 2;
+    
+    private static Double CHAIR_PRICE = new Double(20.50);
+    private static String CHAIR_DESCRIPTION = "Chair";
+    
+    private static String TABLE_DESCRIPTION = "Table";
+    private static Double TABLE_PRICE = new Double(150.10);         
+</strong></span>        
+    protected void setUp() throws Exception {
+        productManager = new SimpleProductManager();
+<span class="bold"><strong>        products = new ArrayList&lt;Product&gt;();
+        
+        // stub up a list of products
+        Product product = new Product();
+        product.setDescription("Chair");
+        product.setPrice(CHAIR_PRICE);
+        products.add(product);
+        
+        product = new Product();
+        product.setDescription("Table");
+        product.setPrice(TABLE_PRICE);
+        products.add(product);
+        
+        productManager.setProducts(products);
+</strong></span>    }
+
+    public void testGetProductsWithNoProducts() {
+        productManager = new SimpleProductManager();
+        assertNull(productManager.getProducts());
+    }
+    
+<span class="bold"><strong>    public void testGetProducts() {
+        List&lt;Product&gt; products = productManager.getProducts();
+        assertNotNull(products);        
+        assertEquals(PRODUCT_COUNT, productManager.getProducts().size());
+    
+        Product product = products.get(0);
+        assertEquals(CHAIR_DESCRIPTION, product.getDescription());
+        assertEquals(CHAIR_PRICE, product.getPrice());
+        
+        product = products.get(1);
+        assertEquals(TABLE_DESCRIPTION, product.getDescription());
+        assertEquals(TABLE_PRICE, product.getPrice());      
+    }   
+</strong></span>}</pre><p>Rerun all the Ant <code class="literal">tests</code> target and our two tests
+    should fail.</p><p>We go back to the <code class="classname">SimpleProductManager</code> and
+    implement the getter and setter methods for the
+    <code class="literal">products</code> property.</p><p><code class="filename">'springapp/src/springapp/service/SimpleProductManager.java'</code>:</p><pre class="programlisting">package springapp.service;
+
+<span class="bold"><strong>import java.util.ArrayList;
+</strong></span>import java.util.List;
+
+import springapp.domain.Product;
+
+public class SimpleProductManager implements ProductManager {
+
+<span class="bold"><strong>    private List&lt;Product&gt; products;
+</strong></span>    
+    public List&lt;Product&gt; getProducts() {
+<span class="bold"><strong>        return products;
+</strong></span>    }
+
+    public void increasePrice(int percentage) {
+        // TODO Auto-generated method stub      
+    }
+
+    public void setProducts(List&lt;Product&gt; products) {
+<span class="bold"><strong>        this.products = products;
+</strong></span>    }
+    
+}</pre><p>Rerun the Ant <code class="literal">tests</code> target and all our tests
+    should pass.</p><p>We proceed by implementing the following tests for the
+    <code class="methodname">increasePrice()</code> method:</p><div class="itemizedlist"><ul type="disc"><li><p>The list of products is null and the method executes
+        gracefully.</p></li><li><p>The list of products is empty and the method executes
+        gracefully.</p></li><li><p>Set a price increase of 10% and check the increase is reflected
+        in the prices of all the products in the list.</p></li></ul></div><p><code class="filename">'springapp/test/springapp/service/SimpleProductManagerTests.java'</code>:</p><pre class="programlisting">package springapp.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import springapp.domain.Product;
+
+import junit.framework.TestCase;
+
+public class SimpleProductManagerTests extends TestCase {
+
+    private SimpleProductManager productManager;
+
+    private List&lt;Product&gt; products;
+    
+    private static int PRODUCT_COUNT = 2;
+    
+    private static Double CHAIR_PRICE = new Double(20.50);
+    private static String CHAIR_DESCRIPTION = "Chair";
+    
+    private static String TABLE_DESCRIPTION = "Table";
+    private static Double TABLE_PRICE = new Double(150.10);         
+    
+<span class="bold"><strong>    private static int POSITIVE_PRICE_INCREASE = 10;
+</strong></span>    
+    protected void setUp() throws Exception {
+        productManager = new SimpleProductManager();
+        products = new ArrayList&lt;Product&gt;();
+        
+        // stub up a list of products
+        Product product = new Product();
+        product.setDescription("Chair");
+        product.setPrice(CHAIR_PRICE);
+        products.add(product);
+        
+        product = new Product();
+        product.setDescription("Table");
+        product.setPrice(TABLE_PRICE);
+        products.add(product);
+        
+        productManager.setProducts(products);
+    }
+
+    public void testGetProductsWithNoProducts() {
+        productManager = new SimpleProductManager();
+        assertNull(productManager.getProducts());
+    }
+    
+    public void testGetProducts() {
+        List&lt;Product&gt; products = productManager.getProducts();
+        assertNotNull(products);        
+        assertEquals(PRODUCT_COUNT, productManager.getProducts().size());
+    
+        Product product = products.get(0);
+        assertEquals(CHAIR_DESCRIPTION, product.getDescription());
+        assertEquals(CHAIR_PRICE, product.getPrice());
+        
+        product = products.get(1);
+        assertEquals(TABLE_DESCRIPTION, product.getDescription());
+        assertEquals(TABLE_PRICE, product.getPrice());      
+    }   
+    
+<span class="bold"><strong>    public void testIncreasePriceWithNullListOfProducts() {
+        try {
+            productManager = new SimpleProductManager();
+            productManager.increasePrice(POSITIVE_PRICE_INCREASE);
+        }
+        catch(NullPointerException ex) {
+            fail("Products list is null.");
+        }
+    }
+    
+    public void testIncreasePriceWithEmptyListOfProducts() {
+        try {
+            productManager = new SimpleProductManager();
+            productManager.setProducts(new ArrayList&lt;Product&gt;());
+            productManager.increasePrice(POSITIVE_PRICE_INCREASE);
+        }
+        catch(Exception ex) {
+            fail("Products list is empty.");
+        }           
+    }
+    
+    public void testIncreasePriceWithPositivePercentage() {
+        productManager.increasePrice(POSITIVE_PRICE_INCREASE);
+        double expectedChairPriceWithIncrease = 22.55;
+        double expectedTablePriceWithIncrease = 165.11;
+        
+        List&lt;Product&gt; products = productManager.getProducts();      
+        Product product = products.get(0);
+        assertEquals(expectedChairPriceWithIncrease, product.getPrice());
+        
+        product = products.get(1);      
+        assertEquals(expectedTablePriceWithIncrease, product.getPrice());       
+    }
+    </strong></span>    
+}</pre><p>We return to <code class="classname">SimpleProductManager</code> to
+    implement <code class="methodname">increasePrice()</code>.</p><p><code class="filename">'springapp/src/springapp/service/SimpleProductManager.java'</code>:</p><pre class="programlisting">package springapp.service;
+
+import java.util.List;
+
+import springapp.domain.Product;
+
+public class SimpleProductManager implements ProductManager {
+
+    private List&lt;Product&gt; products;
+    
+    public List&lt;Product&gt; getProducts() {
+        return products;
+    }
+
+    public void increasePrice(int percentage) {
+<span class="bold"><strong>        if (products != null) {
+            for (Product product : products) {
+                double newPrice = product.getPrice().doubleValue() * 
+                                    (100 + percentage)/100;
+                product.setPrice(newPrice);
+            }
+        }
+</strong></span>    }
+    
+    public void setProducts(List&lt;Product&gt; products) {
+        this.products = products;
+    }
+    
+}</pre><p>Rerun the Ant <code class="literal">tests</code> target and all our tests
+    should pass. *HURRAH* JUnit has a saying: &#8220;<span class="quote">keep the bar green to
+    keep the code clean.</span>&#8221; For those of you running the tests in an IDE
+    and are new to unit testing, we hope you're feeling imbued with a sense of
+    greater sense of confidence and certainty that the code is truly working
+    as specified in the business rules specification and as you intend. We
+    certainly do.</p><p>We're now ready to move back into the web layer to put a list of
+    products into our <code class="classname">Controller</code> model.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d0e1414"></a>3.3.&nbsp;Summary</h2></div></div></div><p>Let's take quick look at what we did in Part 3.</p><div class="orderedlist"><ol type="1"><li><p>We implemented a domain object <code class="classname">Product</code>
+        and a service interface <code class="interfacename">ProductManager</code>
+        and concrete class <code class="classname">SimpleProductManager </code> all as
+        POJOs.</p></li><li><p>We wrote unit tests for all the classes we implemented.</p></li><li><p>We didn't write a line of code to do with Spring. This is an
+        example of how non-invasive the Spring Framework really is. One of its
+        core aims is to enable developers to focus on tackling the most
+        important task of all: to deliver value by modelling and implementing
+        business requirements. Another of its aims is to make following best
+        practices easy, such as implementing services using interfaces and
+        unit testing as much as is pragmatic given project constraints. Over
+        the course of this tutorial, you'll see the benefits of designing to
+        interfaces come to life.</p></li></ol></div><p>Find below a screen shot of what your project directory structure
+    must look like after following the above instructions.</p><div class="screenshot"><div class="mediaobject" align="center"><img src="images/dir-structure-endp3.png" align="middle"><div class="caption"><p>The project directory structure at the end of part
+        3</p></div></div></div></div></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="part4"></a>Chapter&nbsp;4.&nbsp;Developing the Web Interface</h2></div></div></div><p>This is Part 4 of a step-by-step account of how to develop a web
+  application from scratch using the Spring Framework. In <a href="#part1" title="Chapter&nbsp;1.&nbsp;Basic Application and Environment Setup">Part 1</a> we configured the environment and set up a
+  basic application. In <a href="#part2" title="Chapter&nbsp;2.&nbsp;Developing and Configuring the Views and the Controller">Part 2</a> we refined the
+  application that we will build upon. <a href="#part3" title="Chapter&nbsp;3.&nbsp;Developing the Business Logic">Part 3</a>
+  added all the business logic and unit tests. It's now time to build the
+  actual web interface for the application.</p><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="step4.1"></a>4.1.&nbsp;Add reference to business logic in the controller</h2></div></div></div><p>First of all, let's rename our
+    <code class="classname">HelloController</code> to something more meaningful. How
+    about <code class="classname">InventoryController</code> since we are building an
+    inventory system. This is where an IDE with refactoring support is
+    invaluable. We rename <code class="classname">HelloController</code> to
+    <code class="classname">InventoryController</code> and the
+    <code class="classname">HelloControllerTests</code> to
+    <code class="classname">InventoryControllerTests</code>. Next, We modify the
+    <code class="classname">InventoryController</code> to hold a reference to the
+    <code class="classname">ProductManager</code> class. We also add code to have the
+    controller pass some product information to the view. The
+    <code class="methodname">getModelAndView()</code> method now returns a
+    <code class="interfacename">Map</code> with both the date and time and the
+    products list obtained from the manager reference.</p><p><code class="filename">'springapp/src/springapp/web/InventoryController.java'</code>:</p><pre class="programlisting">package springapp.web;
+
+import org.springframework.web.servlet.mvc.Controller;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
+<span class="bold"><strong>import java.util.Map;
+import java.util.HashMap;
+</strong></span>
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+<span class="bold"><strong>import springapp.service.ProductManager;
+</strong></span>
+public class <span class="bold"><strong>InventoryController</strong></span> implements Controller {
+
+    protected final Log logger = LogFactory.getLog(getClass());
+
+<span class="bold"><strong>    private ProductManager productManager;
+</strong></span>
+    public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String now = (new java.util.Date()).toString();
+        logger.info("returning hello view with " + now);
+
+<span class="bold"><strong>        Map&lt;String, Object&gt; myModel = new HashMap&lt;String, Object&gt;();
+        myModel.put("now", now);
+        myModel.put("products", this.productManager.getProducts());
+</strong></span>
+<span class="bold"><strong>        return new ModelAndView("hello", "model", myModel);
+</strong></span>    }
+
+
+<span class="bold"><strong>    public void setProductManager(ProductManager productManager) {
+        this.productManager = productManager;
+    }
+</strong></span>
+}</pre><p>We will also need to modify the InventoryControllerTests to supply a
+    ProductManager and extract the value for <code class="literal">'now'</code> from the
+    model Map before the tests will pass again.</p><p><code class="filename">'springapp/test/springapp/web/InventoryControllerTests.java'</code>:</p><pre class="programlisting">package springapp.web;
+
+<span class="bold"><strong>import java.util.Map;
+</strong></span>
+import org.springframework.web.servlet.ModelAndView;
+
+<span class="bold"><strong>import springapp.service.SimpleProductManager;
+</strong></span>import springapp.web.InventoryController;
+
+import junit.framework.TestCase;
+
+public class <span class="bold"><strong>InventoryControllerTests</strong></span> extends TestCase {
+
+    public void testHandleRequestView() throws Exception{
+        InventoryController controller = new InventoryController();
+<span class="bold"><strong>        controller.setProductManager(new SimpleProductManager());
+</strong></span>        ModelAndView modelAndView = controller.handleRequest(null, null);
+        assertEquals("hello", modelAndView.getViewName());
+        assertNotNull(modelAndView.getModel());
+<span class="bold"><strong>        Map modelMap = (Map) modelAndView.getModel().get("model");
+        String nowValue = (String) modelMap.get("now");
+</strong></span>        assertNotNull(nowValue);
+    }
+}</pre></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="step4.2"></a>4.2.&nbsp;Modify the view to display business data and add support for
+    message bundle</h2></div></div></div><p>Using the JSTL <code class="literal">&lt;c:forEach/&gt;</code> tag, we add a
+    section that displays product information. We have also replaced the
+    title, heading and greeting text with a JSTL
+    <code class="literal">&lt;fmt:message/&gt;</code> tag that pulls the text to display
+    from a provided <code class="literal">'message'</code> source &#8211; we will show this
+    source in a later step.</p><p><code class="filename">'springapp/war/WEB-INF/jsp/hello.jsp'</code>:</p><pre class="programlisting">&lt;%@ include file="/WEB-INF/jsp/include.jsp" %&gt;
+
+&lt;html&gt;
+<span class="bold"><strong>  &lt;head&gt;&lt;title&gt;&lt;fmt:message key="title"/&gt;&lt;/title&gt;&lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;&lt;fmt:message key="heading"/&gt;&lt;/h1&gt;
+    &lt;p&gt;&lt;fmt:message key="greeting"/&gt; &lt;c:out value="${model.now}"/&gt;&lt;/p&gt;
+    &lt;h3&gt;Products&lt;/h3&gt;
+    &lt;c:forEach items="${model.products}" var="prod"&gt;
+      &lt;c:out value="${prod.description}"/&gt; &lt;i&gt;$&lt;c:out value="${prod.price}"/&gt;&lt;/i&gt;&lt;br&gt;&lt;br&gt;
+    &lt;/c:forEach&gt;
+</strong></span>  &lt;/body&gt;
+&lt;/html&gt;</pre></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="step4.3"></a>4.3.&nbsp;Add some test data to automatically populate some business
+    objects</h2></div></div></div><p>It's time to add a <code class="classname">SimpleProductManager</code> to
+    our configuration file and to pass that into the setter of the
+    <code class="classname">InventoryController</code>. We are not going to add any
+    code to load the business objects from a database just yet. Instead, we
+    can stub a couple of <code class="classname">Product</code> instances using
+    Spring's bean and application context support. We will simply put the data
+    we need as a couple of bean entries in
+    <code class="filename">'springapp-servlet.xml'</code>. We will also add the
+    <code class="literal">'messageSource'</code> bean entry that will pull in the
+    messages resource bundle (<code class="filename">'messages.properties'</code>) that
+    we will create in the next step. Also remember to rename the reference to
+    <code class="classname">HelloController</code> to
+    <code class="classname">InventoryController</code> since we renamed it.</p><p><code class="filename">'springapp/war/WEB-INF/springapp-servlet.xml'</code>:</p><pre class="programlisting">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"&gt;
+<em class="lineannotation"><span class="lineannotation">
+    &lt;!-- the application context definition for the springapp <code class="classname">DispatcherServlet</code> --&gt;</span></em>
+<span class="bold"><strong>
+    &lt;bean id="productManager" class="springapp.service.SimpleProductManager"&gt;
+        &lt;property name="products"&gt;
+            &lt;list&gt;
+                &lt;ref bean="product1"/&gt;
+                &lt;ref bean="product2"/&gt;
+                &lt;ref bean="product3"/&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+    &lt;/bean&gt;
+
+    &lt;bean id="product1" class="springapp.domain.Product"&gt;
+        &lt;property name="description" value="Lamp"/&gt;
+        &lt;property name="price" value="5.75"/&gt;
+    &lt;/bean&gt;
+        
+    &lt;bean id="product2" class="springapp.domain.Product"&gt;
+        &lt;property name="description" value="Table"/&gt;
+        &lt;property name="price" value="75.25"/&gt;
+    &lt;/bean&gt;
+
+    &lt;bean id="product3" class="springapp.domain.Product"&gt;
+        &lt;property name="description" value="Chair"/&gt;
+        &lt;property name="price" value="22.79"/&gt;
+    &lt;/bean&gt;
+
+    &lt;bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"&gt;
+        &lt;property name="basename" value="messages"/&gt;
+    &lt;/bean&gt;
+
+</strong></span>    &lt;bean name="/hello.htm" class="springapp.web.<span class="bold"><strong>InventoryController</strong></span>"&gt;
+<span class="bold"><strong><span class="bold"><strong>        &lt;property name="productManager" ref="productManager"/&gt;
+</strong></span>    &lt;/bean&gt;</strong></span>
+
+    &lt;bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"&gt;
+        &lt;property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/&gt;
+        &lt;property name="prefix" value="/WEB-INF/jsp/"/&gt;
+        &lt;property name="suffix" value=".jsp"/&gt;
+    &lt;/bean&gt;
+
+&lt;/beans&gt;</pre></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="step4.4"></a>4.4.&nbsp;Add the message bundle and a <code class="literal">'clean'</code> target to
+    <code class="filename">'build.xml'</code></h2></div></div></div><p>We create a <code class="filename">'messages.properties'</code> file in the
+    <code class="filename">'war/WEB-INF/classes'</code> directory.
+    This properties bundle so far has three entries matching the keys
+    specified in the <code class="literal">&lt;fmt:message/&gt;</code> tags that we
+    added to <code class="filename">'hello.jsp'</code>.</p><p><code class="filename">'springapp/war/WEB-INF/classes/messages.properties'</code>:</p><pre class="programlisting">title=SpringApp
+heading=Hello :: SpringApp
+greeting=Greetings, it is now</pre><p>Since we moved some source files around, it makes sense to add a
+    <code class="literal">'clean'</code> and an <code class="literal">'undeploy'</code> target to
+    the build script. We add the following entries to the
+    <code class="filename">'build.xml'</code> file.</p><p><code class="filename">'build.xml'</code>:</p><pre class="programlisting">    &lt;target name="clean" description="Clean output directories"&gt;
+        &lt;delete&gt;
+            &lt;fileset dir="${build.dir}"&gt;
+                &lt;include name="**/*.class"/&gt;
+            &lt;/fileset&gt;
+        &lt;/delete&gt;
+    &lt;/target&gt;
+
+    &lt;target name="undeploy" description="Un-Deploy application"&gt;
+        &lt;delete&gt;
+            &lt;fileset dir="${deploy.path}/${name}"&gt;
+                &lt;include name="**/*.*"/&gt;
+            &lt;/fileset&gt;
+        &lt;/delete&gt;
+    &lt;/target&gt;</pre><p>Now stop the Tomcat server, run the <code class="literal">'clean'</code>,
+    <code class="literal">'undeploy'</code> and <code class="literal">'deploy'</code> targets.
+    This will remove all old class files, re-build the application and deploy
+    it. Start up Tomcat again and you should see the following:</p><div class="screenshot"><div class="mediaobject" align="center"><img src="images/screen4.png" align="middle"><div class="caption"><p>The updated application</p></div></div></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="step4.5"></a>4.5.&nbsp;Adding a form</h2></div></div></div><p>To provide an interface in the web application to expose the price
+    increase functionality, we add a form that will allow the user to enter a
+    percentage value. This form uses a tag library named
+    <code class="literal">'spring-form.tld'</code> that is provided with the Spring
+    Framework. We have to copy this file from the Spring distribution
+    (<code class="filename">'spring-framework-2.5/dist/resources/spring-form.tld'</code>)
+    to the <code class="filename">'springapp/war/WEB-INF/tld'</code>
+    directory that we also need to create. Next we must also add a
+    <code class="literal">&lt;taglib/&gt;</code> entry to the
+    <code class="filename">'web.xml'</code> file.</p><p><code class="filename">'springapp/war/WEB-INF/web.xml'</code>:</p><pre class="programlisting">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;web-app version="2.4"
+         xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+         http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" &gt;
+
+  &lt;servlet&gt;
+    &lt;servlet-name&gt;springapp&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;
+    &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
+  &lt;/servlet&gt;
+
+  &lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;springapp&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;*.htm&lt;/url-pattern&gt;
+  &lt;/servlet-mapping&gt;
+
+  &lt;welcome-file-list&gt;
+    &lt;welcome-file&gt;
+      index.jsp
+    &lt;/welcome-file&gt;
+  &lt;/welcome-file-list&gt;
+
+<span class="bold"><strong>  &lt;jsp-config&gt;
+    &lt;taglib&gt;
+      &lt;taglib-uri&gt;/spring&lt;/taglib-uri&gt;
+      &lt;taglib-location&gt;/WEB-INF/tld/spring-form.tld&lt;/taglib-location&gt;
+    &lt;/taglib&gt;
+  &lt;/jsp-config&gt;
+</strong></span>
+&lt;/web-app&gt;</pre><p>We also have to declare this taglib in a page directive in the jsp
+    file, and then start using the tags we have thus imported. Add the JSP
+    page <code class="filename">'priceincrease.jsp'</code> to the
+    <code class="filename">'war/WEB-INF/jsp'</code> directory.</p><p><code class="filename">'springapp/war/WEB-INF/jsp/priceincrease.jsp'</code>:</p><pre class="programlisting">&lt;%@ include file="/WEB-INF/jsp/include.jsp" %&gt;
+&lt;%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %&gt;
+
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;&lt;fmt:message key="title"/&gt;&lt;/title&gt;
+  &lt;style&gt;
+    .error { color: red; }
+  &lt;/style&gt;  
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;&lt;fmt:message key="priceincrease.heading"/&gt;&lt;/h1&gt;
+&lt;form:form method="post" commandName="priceIncrease"&gt;
+  &lt;table width="95%" bgcolor="f8f8ff" border="0" cellspacing="0" cellpadding="5"&gt;
+    &lt;tr&gt;
+      &lt;td align="right" width="20%"&gt;Increase (%):&lt;/td&gt;
+        &lt;td width="20%"&gt;
+          &lt;form:input path="percentage"/&gt;
+        &lt;/td&gt;
+        &lt;td width="60%"&gt;
+          &lt;form:errors path="percentage" cssClass="error"/&gt;
+        &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/table&gt;
+  &lt;br&gt;
+  &lt;input type="submit" align="center" value="Execute"&gt;
+&lt;/form:form&gt;
+&lt;a href="&lt;c:url value="hello.htm"/&gt;"&gt;Home&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre><p>This next class is a very simple JavaBean class, and in our case
+    there is a single property with a getter and setter. This is the object
+    that the form will populate and that our business logic will extract the
+    price increase percentage from.</p><p><code class="filename">'springapp/src/springapp/service/PriceIncrease.java'</code>:</p><pre class="programlisting">package springapp.service;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+public class PriceIncrease {
+
+    /** Logger for this class and subclasses */
+    protected final Log logger = LogFactory.getLog(getClass());
+
+    private int percentage;
+
+    public void setPercentage(int i) {
+        percentage = i;
+        logger.info("Percentage set to " + i);
+    }
+
+    public int getPercentage() {
+        return percentage;
+    }
+
+}</pre><p>The following validator class gets control after the user presses
+    submit. The values entered in the form will be set on the command object
+    by the framework. The <code class="methodname">validate(..)</code> method is
+    called and the command object (<code class="classname">PriceIncrease</code>) and a
+    contextual object to hold any errors are passed in.</p><p><code class="filename">'springapp/src/springapp/service/PriceIncreaseValidator.java'</code>:</p><pre class="programlisting">package springapp.service;
+
+import org.springframework.validation.Validator;
+import org.springframework.validation.Errors;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+public class PriceIncreaseValidator implements Validator {
+    private int DEFAULT_MIN_PERCENTAGE = 0;
+    private int DEFAULT_MAX_PERCENTAGE = 50;
+    private int minPercentage = DEFAULT_MIN_PERCENTAGE;
+    private int maxPercentage = DEFAULT_MAX_PERCENTAGE;
+
+    /** Logger for this class and subclasses */
+    protected final Log logger = LogFactory.getLog(getClass());
+
+    public boolean supports(Class clazz) {
+        return PriceIncrease.class.equals(clazz);
+    }
+
+    public void validate(Object obj, Errors errors) {
+        PriceIncrease pi = (PriceIncrease) obj;
+        if (pi == null) {
+            errors.rejectValue("percentage", "error.not-specified", null, "Value required.");
+        }
+        else {
+            logger.info("Validating with " + pi + ": " + pi.getPercentage());
+            if (pi.getPercentage() &gt; maxPercentage) {
+                errors.rejectValue("percentage", "error.too-high",
+                    new Object[] {new Integer(maxPercentage)}, "Value too high.");
+            }
+            if (pi.getPercentage() &lt;= minPercentage) {
+                errors.rejectValue("percentage", "error.too-low",
+                    new Object[] {new Integer(minPercentage)}, "Value too low.");
+            }
+        }
+    }
+
+    public void setMinPercentage(int i) {
+        minPercentage = i;
+    }
+
+    public int getMinPercentage() {
+        return minPercentage;
+    }
+
+    public void setMaxPercentage(int i) {
+        maxPercentage = i;
+    }
+
+    public int getMaxPercentage() {
+        return maxPercentage;
+    }
+
+}</pre></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="step4.6"></a>4.6.&nbsp;Adding a form controller</h2></div></div></div><p>Now we need to add an entry in the
+    <code class="filename">'springapp-servlet.xml'</code> file to define the new form
+    and controller. We define objects to inject into properties for
+    <code class="literal">commandClass</code> and <code class="literal">validator</code>. We also
+    specify two views, a <code class="literal">formView</code> that is used for the form
+    and a <code class="literal">successView</code> that we will go to after successful
+    form processing. The latter can be of two types. It can be a regular view
+    reference that is forwarded to one of our JSP pages. One disadvantage with
+    this approach is, that if the user refreshes the page, the form data is
+    submitted again, and you would end up with a double price increase. An
+    alternative way is to use a redirect, where a response is sent back to the
+    users browser instructing it to redirect to a new URL. The URL we use in
+    this case can't be one of our JSP pages, since they are hidden from direct
+    access. It has to be a URL that is externally reachable. We have chosen to
+    use <code class="filename">'hello.htm'</code> as my redirect URL. This URL maps to
+    the <code class="filename">'hello.jsp'</code> page, so this should work
+    nicely.</p><p><code class="filename">'springapp/war/WEB-INF/springapp-servlet.xml'</code>:</p><pre class="programlisting">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"&gt;
+
+<em class="lineannotation"><span class="lineannotation">&lt;!-- the application context definition for the springapp <code class="classname">DispatcherServlet</code> --&gt;</span></em>
+
+&lt;beans&gt;
+
+    &lt;bean id="productManager" class="springapp.service.SimpleProductManager"&gt;
+        &lt;property name="products"&gt;
+            &lt;list&gt;
+                &lt;ref bean="product1"/&gt;
+                &lt;ref bean="product2"/&gt;
+                &lt;ref bean="product3"/&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+    &lt;/bean&gt;
+
+    &lt;bean id="product1" class="springapp.domain.Product"&gt;
+        &lt;property name="description" value="Lamp"/&gt;
+        &lt;property name="price" value="5.75"/&gt;
+    &lt;/bean&gt;
+        
+    &lt;bean id="product2" class="springapp.domain.Product"&gt;
+        &lt;property name="description" value="Table"/&gt;
+        &lt;property name="price" value="75.25"/&gt;
+    &lt;/bean&gt;
+
+    &lt;bean id="product3" class="springapp.domain.Product"&gt;
+        &lt;property name="description" value="Chair"/&gt;
+        &lt;property name="price" value="22.79"/&gt;
+    &lt;/bean&gt;
+
+    &lt;bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"&gt;
+        &lt;property name="basename" value="messages"/&gt;
+    &lt;/bean&gt;
+
+    &lt;bean name="/hello.htm" class="springapp.web.InventoryController"&gt;
+        &lt;property name="productManager" ref="productManager"/&gt;
+    &lt;/bean&gt;
+
+<span class="bold"><strong>    &lt;bean name="/priceincrease.htm" class="springapp.web.PriceIncreaseFormController"&gt;
+        &lt;property name="sessionForm" value="true"/&gt;
+        &lt;property name="commandName" value="priceIncrease"/&gt;
+        &lt;property name="commandClass" value="springapp.service.PriceIncrease"/&gt;
+        &lt;property name="validator"&gt;
+            &lt;bean class="springapp.service.PriceIncreaseValidator"/&gt;
+        &lt;/property&gt;
+        &lt;property name="formView" value="priceincrease"/&gt;
+        &lt;property name="successView" value="hello.htm"/&gt;
+        &lt;property name="productManager" ref="productManager"/&gt;
+    &lt;/bean&gt;
+
+</strong></span>    &lt;bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"&gt;
+        &lt;property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/&gt;
+        &lt;property name="prefix" value="/WEB-INF/jsp/"/&gt;
+        &lt;property name="suffix" value=".jsp"/&gt;
+    &lt;/bean&gt;
+
+&lt;/beans&gt;</pre><p>Next, let's take a look at the controller for this form. The
+    <code class="methodname">onSubmit(..)</code> method gets control and does some
+    logging before it calls the <code class="methodname">increasePrice(..)</code>
+    method on the <code class="classname">ProductManager</code> object. It then
+    returns a <code class="classname">ModelAndView</code> passing in a new instance of
+    a <code class="classname">RedirectView</code> created using the URL for the
+    success view.</p><p><code class="filename">'springapp/src/web/PriceIncreaseFormController.java'</code>:</p><pre class="programlisting">package springapp.web;
+
+import org.springframework.web.servlet.mvc.SimpleFormController;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import springapp.service.ProductManager;
+import springapp.service.PriceIncrease;
+
+public class PriceIncreaseFormController extends SimpleFormController {
+
+    /** Logger for this class and subclasses */
+    protected final Log logger = LogFactory.getLog(getClass());
+
+    private ProductManager productManager;
+
+    public ModelAndView onSubmit(Object command)
+            throws ServletException {
+
+        int increase = ((PriceIncrease) command).getPercentage();
+        logger.info("Increasing prices by " + increase + "%.");
+
+        productManager.increasePrice(increase);
+
+        logger.info("returning from PriceIncreaseForm view to " + getSuccessView());
+
+        return new ModelAndView(new RedirectView(getSuccessView()));
+    }
+
+    protected Object formBackingObject(HttpServletRequest request) throws ServletException {
+        PriceIncrease priceIncrease = new PriceIncrease();
+        priceIncrease.setPercentage(20);
+        return priceIncrease;
+    }
+
+    public void setProductManager(ProductManager productManager) {
+        this.productManager = productManager;
+    }
+
+    public ProductManager getProductManager() {
+        return productManager;
+    }
+
+}</pre><p>We are also adding some messages to the
+    <code class="filename">'messages.properties'</code> resource file.</p><p><code class="filename">'springapp/war/WEB-INF/classes/messages.properties'</code>:</p><pre class="programlisting">title=SpringApp
+heading=Hello :: SpringApp
+greeting=Greetings, it is now
+<span class="bold"><strong>priceincrease.heading=Price Increase :: SpringApp
+error.not-specified=Percentage not specified!!!
+error.too-low=You have to specify a percentage higher than {0}!
+error.too-high=Don''t be greedy - you can''t raise prices by more than {0}%!
+required=Entry required.
+typeMismatch=Invalid data.
+typeMismatch.percentage=That is not a number!!!</strong></span></pre><p>Compile and deploy all this and after reloading the application we
+    can test it. This is what the form looks like with errors
+    displayed.</p><p>Finally, we will add a link to the price increase page from the
+    <code class="filename">'hello.jsp'</code>.</p><pre class="programlisting">&lt;%@ include file="/WEB-INF/jsp/include.jsp" %&gt;
+
+&lt;html&gt;
+  &lt;head&gt;&lt;title&gt;&lt;fmt:message key="title"/&gt;&lt;/title&gt;&lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;&lt;fmt:message key="heading"/&gt;&lt;/h1&gt;
+    &lt;p&gt;&lt;fmt:message key="greeting"/&gt; &lt;c:out value="${model.now}"/&gt;&lt;/p&gt;
+    &lt;h3&gt;Products&lt;/h3&gt;
+    &lt;c:forEach items="${model.products}" var="prod"&gt;
+      &lt;c:out value="${prod.description}"/&gt; &lt;i&gt;$&lt;c:out value="${prod.price}"/&gt;&lt;/i&gt;&lt;br&gt;&lt;br&gt;
+    &lt;/c:forEach&gt;
+<span class="bold"><strong>    &lt;br&gt;
+    &lt;a href="&lt;c:url value="priceincrease.htm"/&gt;"&gt;Increase Prices&lt;/a&gt;
+    &lt;br&gt;
+</strong></span>  &lt;/body&gt;
+&lt;/html&gt;</pre><p>Now, run the 'deploy' and 'reload' targets and try the new price
+    increase feature.</p><div class="screenshot"><div class="mediaobject" align="center"><img src="images/screen5.png" align="middle"><div class="caption"><p>The updated application</p></div></div></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="step4.summary"></a>4.7.&nbsp;Summary</h2></div></div></div><p>Let's look at what we did in Part 4.</p><div class="orderedlist"><ol type="1"><li><p>We renamed our controller to
+        <code class="classname">InventoryController</code> and gave it a reference to
+        a <code class="classname">ProductManager</code> so we could retrieve a list of
+        products to display.</p></li><li><p>Next we modified the JSP page to use a message bundle for static
+        text and also added a forEach loop to show the dynamic list of
+        products.</p></li><li><p>Then we defined some test data to populate business objects we
+        modified the JSP page to use a message bundle for static text and also
+        added a forEach loop to show the dynamic list of products.</p></li><li><p>Next we modified the JSP page to use a message bundle for static
+        text and also added a forEach loop to show the dynamic list of
+        products.</p></li><li><p>After this worked we created a form to provide the ability to
+        increase the prices. Next we modified the JSP page to use a message
+        bundle for static text and also added a forEach loop to show the
+        dynamic list of products.</p></li><li><p>Finally we created the form controller and a validator and
+        deployed and tested the new features.</p></li></ol></div><p>Find below a screen shot of what your project directory structure
+    must look like after following the above instructions.</p><div class="screenshot"><div class="mediaobject" align="center"><img src="images/dir-structure-endp4.png" align="middle"></div></div><p></p><p></p></div></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="part5"></a>Chapter&nbsp;5.&nbsp;Implementing Database Persistence</h2></div></div></div><p>This is Part 5 of a step-by-step account of how to develop a web
+  application from scratch using the Spring Framework. In <a href="#part1" title="Chapter&nbsp;1.&nbsp;Basic Application and Environment Setup">Part 1</a> we configured the environment and set up a
+  basic application. In <a href="#part2" title="Chapter&nbsp;2.&nbsp;Developing and Configuring the Views and the Controller">Part 2</a> we refined the
+  application that we will build upon. <a href="#part3" title="Chapter&nbsp;3.&nbsp;Developing the Business Logic">Part 3</a>
+  added all the business logic and unit tests and <a href="#part4" title="Chapter&nbsp;4.&nbsp;Developing the Web Interface">Part
+  4</a> developed the web interface. It is now time to introduce database
+  persistence. We saw in the earlier parts how we loaded some business objects
+  using bean definitions in a configuration file. It is obvious that this
+  would never work in real life &#8211; whenever we re-start the server we are back
+  to the original prices. We need to add code to actually persist these
+  changes to a database.</p><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="step5.1"></a>5.1.&nbsp;Create database startup script</h2></div></div></div><p>Before we can start developing the persistence code, we need a
+    database. We are planning on using HSQL, which is a good open source
+    database written in Java. This database is distributed with Spring, so we
+    can just copy the jar file to the web application's lib directory. Copy
+    <code class="filename">hsqldb.jar</code> from the <code class="filename">'spring-framework-2.5/lib/hsqldb'</code> directory
+    to the <code class="filename">'springapp/war/WEB-INF/lib'</code>
+    directory. We will use HSQL in standalone server mode. That means we will
+    have to start up a separate database server instead of relying on an
+    embedded database, but it gives us easier access to see changes made to
+    the database when running the web application.</p><p>We need a script or batch file to start the database. Create a
+    <code class="filename">'db'</code> directory under the main
+    <code class="filename">'springapp'</code> directory. This new
+    directory will contain the database files. Now, let's and add a startup
+    script:</p><p>For Linux/Mac OS X add:</p><p><code class="filename">'springapp/db/server.sh'</code>:</p><pre class="programlisting">java -classpath ../war/WEB-INF/lib/hsqldb.jar org.hsqldb.Server -database test</pre><p>Don't forget to change the execute permission by running
+    <span><strong class="command">'chmod +x server.sh'</strong></span>.</p><p>For Windows add:</p><p><code class="filename">'springapp/db/server.bat'</code>:</p><pre class="programlisting">java -classpath ..\war\WEB-INF\lib\hsqldb.jar org.hsqldb.Server -database test</pre><p>Now you can open a command window, change to the
+    <code class="filename">'springapp/db'</code> directory and start the database by
+    running one of these startup scripts.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="step5.2"></a>5.2.&nbsp;Create table and test data scripts</h2></div></div></div><p>First, lets review the SQL statement needed to create the table. We
+    create the file 'create_products.sql' in the db directory.</p><p><code class="filename">'springapp/db/create_products.sql'</code>:</p><pre class="programlisting">CREATE TABLE products (
+  id INTEGER NOT NULL PRIMARY KEY,
+  description varchar(255),
+  price decimal(15,2)
+);
+CREATE INDEX products_description ON products(description);</pre><p>Now we need to add our test data. Create the file 'load_data.sql' in
+    the db directory.</p><p><code class="filename">'springapp/db/load_data.sql'</code>:</p><pre class="programlisting">INSERT INTO products (id, description, price) values(1, 'Lamp', 5.78);
+INSERT INTO products (id, description, price) values(2, 'Table', 75.29);
+INSERT INTO products (id, description, price) values(3, 'Chair', 22.81);</pre><p>In the following section we will add some Ant targets to the build
+    script so that we can run these SQL scripts.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="step5.3"></a>5.3.&nbsp;Add Ant tasks to run scripts and load test data</h2></div></div></div><p>We will create tables and populate them with test data using Ant's
+    built-in "sql" task. To use this we need to add some database connection
+    properties to the build properties file.</p><p><code class="filename">'springapp/build.properties'</code>:</p><pre class="programlisting"># Ant properties for building the springapp
+
+appserver.home=${user.home}/apache-tomcat-6.0.14
+# for Tomcat 5 use $appserver.home}/server/lib
+# for Tomcat 6 use $appserver.home}/lib
+appserver.lib=${appserver.home}/lib
+
+deploy.path=${appserver.home}/webapps
+
+tomcat.manager.url=http://localhost:8080/manager
+tomcat.manager.username=tomcat
+tomcat.manager.password=s3cret
+
+<span class="bold"><strong>db.driver=org.hsqldb.jdbcDriver
+db.url=jdbc:hsqldb:hsql://localhost
+db.user=sa
+db.pw=</strong></span></pre><p>Next we add the targets we need to the build script. There are
+    targets to create and delete tables and to load and delete test
+    data.</p><p>Add the following targets to
+    <code class="filename">'springapp/build.xml'</code>:</p><pre class="programlisting"><span class="bold"><strong>
+    &lt;target name="createTables"&gt;
+        &lt;echo message="CREATE TABLES USING: ${db.driver} ${db.url}"/&gt;
+        &lt;sql driver="${db.driver}"
+             url="${db.url}"
+             userid="${db.user}"
+             password="${db.pw}"
+             onerror="continue"
+             src="db/create_products.sql"&gt;  
+            &lt;classpath refid="master-classpath"/&gt;
+        &lt;/sql&gt; 
+    &lt;/target&gt;
+
+    &lt;target name="dropTables"&gt;
+        &lt;echo message="DROP TABLES USING: ${db.driver} ${db.url}"/&gt;
+        &lt;sql driver="${db.driver}"
+             url="${db.url}"
+             userid="${db.user}"
+             password="${db.pw}"
+             onerror="continue"&gt;  
+            &lt;classpath refid="master-classpath"/&gt;
+
+        DROP TABLE products;
+
+        &lt;/sql&gt; 
+    &lt;/target&gt;
+
+    &lt;target name="loadData"&gt;
+        &lt;echo message="LOAD DATA USING: ${db.driver} ${db.url}"/&gt;
+        &lt;sql driver="${db.driver}"
+             url="${db.url}"
+             userid="${db.user}"
+             password="${db.pw}"
+             onerror="continue"
+             src="db/load_data.sql"&gt;  
+            &lt;classpath refid="master-classpath"/&gt;
+        &lt;/sql&gt; 
+    &lt;/target&gt;
+
+    &lt;target name="printData"&gt;
+        &lt;echo message="PRINT DATA USING: ${db.driver} ${db.url}"/&gt;
+        &lt;sql driver="${db.driver}"
+             url="${db.url}"
+             userid="${db.user}"
+             password="${db.pw}"
+             onerror="continue"
+             print="true"&gt;  
+            &lt;classpath refid="master-classpath"/&gt;
+
+        SELECT * FROM products;
+
+        &lt;/sql&gt; 
+    &lt;/target&gt;
+
+    &lt;target name="clearData"&gt;
+        &lt;echo message="CLEAR DATA USING: ${db.driver} ${db.url}"/&gt;
+        &lt;sql driver="${db.driver}"
+             url="${db.url}"
+             userid="${db.user}"
+             password="${db.pw}"
+             onerror="continue"&gt;  
+            &lt;classpath refid="master-classpath"/&gt;
+
+        DELETE FROM products;
+
+        &lt;/sql&gt; 
+    &lt;/target&gt;
+
+    &lt;target name="shutdownDb"&gt;
+        &lt;echo message="SHUT DOWN DATABASE USING: ${db.driver} ${db.url}"/&gt;
+        &lt;sql driver="${db.driver}"
+             url="${db.url}"
+             userid="${db.user}"
+             password="${db.pw}"
+             onerror="continue"&gt;  
+            &lt;classpath refid="master-classpath"/&gt;
+
+        SHUTDOWN;
+
+        &lt;/sql&gt; 
+    &lt;/target&gt;
+
+</strong></span></pre><p>Now you can execute <span><strong class="command">'ant createTables loadData
+    printData'</strong></span> to prepare the test data we will use later.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="step5.4"></a>5.4.&nbsp;Create a Data Access Object (DAO) implementation for JDBC</h2></div></div></div><p>Begin with creating a new
+    <code class="filename">'springapp/src/repository'</code> directory to contain any
+    classes that are used for database access. In this directory we create a
+    new interface called <code class="classname">ProductDao</code>. This will
+    be the interface that defines the functionality that the DAO
+    implementation classes will provide &#8211; we could choose to have more than
+    one implementation some day.</p><p><code class="filename">'springapp/src/springapp/repository/ProductDao.java'</code>:</p><pre class="programlisting">package springapp.repository;
+
+import java.util.List;
+
+import springapp.domain.Product;
+
+public interface ProductDao {
+
+    public List&lt;Product&gt; getProductList();
+
+    public void saveProduct(Product prod);
+
+}</pre><p>We'll follow this with a class called
+    <code class="classname">JdbcProductDao</code> that will be the JDBC
+    implementation of this interface. Spring provides a JDBC abstraction
+    framework that we will make use of. The biggest difference between using
+    straight JDBC and Spring's JDBC framework is that you don't have to worry
+    about opening and closing the connection or any statements. It is all
+    handled for you. Another advantage is that you won't have to catch any
+    exceptions, unless you want to. Spring wraps all SQLExceptions in it's own
+    unchecked exception hierarchy inheriting from DataAccessException. If you
+    want to, you can catch this exception, but since most database exceptions
+    are impossible to recover from anyway, you might as well just let the
+    exception propagate up to a higher level. The class
+    <code class="classname">SimpleJdbcDaoSupport</code> provides convenient access to
+    an already configured <code class="classname">SimpleJdbcTemplate</code>, so we
+    extend this class. All we will have to provide in the application context
+    is a configured <code class="classname">DataSource</code>.</p><p><code class="filename">'springapp/src/springapp/repository/JdbcProductDao.java'</code>:</p><pre class="programlisting">package springapp.repository;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
+import org.springframework.jdbc.core.simple.SimpleJdbcDaoSupport;
+
+import springapp.domain.Product;
+
+public class JdbcProductDao extends SimpleJdbcDaoSupport implements ProductDao {
+
+    /** Logger for this class and subclasses */
+    protected final Log logger = LogFactory.getLog(getClass());
+
+
+    public List&lt;Product&gt; getProductList() {
+        logger.info("Getting products!");
+        List&lt;Product&gt; products = getSimpleJdbcTemplate().query(
+                "select id, description, price from products", 
+                new ProductMapper());
+        return products;
+    }
+
+    public void saveProduct(Product prod) {
+        logger.info("Saving product: " + prod.getDescription());
+        int count = getSimpleJdbcTemplate().update(
+            "update products set description = :description, price = :price where id = :id",
+            new MapSqlParameterSource().addValue("description", prod.getDescription())
+                .addValue("price", prod.getPrice())
+                .addValue("id", prod.getId()));
+        logger.info("Rows affected: " + count);
+    }
+    
+    private static class ProductMapper implements ParameterizedRowMapper&lt;Product&gt; {
+
+        public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
+            Product prod = new Product();
+            prod.setId(rs.getInt("id"));
+            prod.setDescription(rs.getString("description"));
+            prod.setPrice(new Double(rs.getDouble("price")));
+            return prod;
+        }
+
+    }
+
+}</pre><p>Let's go over the two DAO methods in this class. Since we are
+    extending <code class="classname">SimpleJdbcSupport</code> we get a
+    <code class="classname">SimpleJdbcTemplate</code> prepared and ready to use. This
+    is accessed by calling the <code class="classname">getSimpleJdbcTemplate()</code>
+    method.</p><p>The first method, <code class="classname">getProductList()</code> executes a
+    query using the <code class="classname">SimpleJdbcTemplate</code>. We simply
+    provide the SQL statement and a class that can handle the mapping between
+    the <code class="classname">ResultSet</code> and the
+    <code class="classname">Product</code> class. In our case the row mapper is a
+    class named <code class="classname">ProductMapper</code> that we define as an
+    inner class of the DAO. This class will so far not be used outside of the
+    DAO so making it an inner class works well.</p><p>The ProductMapper implements the
+    <code class="classname">ParameterizedRowMapper</code> interface that defines a
+    single method named <code class="classname">mapRow</code> that must be
+    implemented. This method will map the data from each row into a class that
+    represents the entity you are retrieving in your query. Since the
+    <code class="classname">RowMapper</code> is parameterized, the
+    <code class="classname">mapRow</code> method returns the actual type that is
+    created.</p><p>The second method saveProduct is also using the
+    <code class="classname">SimplJdbcTemplate</code>. This time we are calling the
+    <code class="classname">update</code> method passing in an SQL statement together
+    with the parameter values in the form of a
+    <code class="classname">MapSqlParameterSource</code>. Using a
+    <code class="classname">MapSqlParameterSource</code> allows us to use named
+    parameters instead of the typical "?" place holders that you are used to
+    from writing plain JDBC. The named parameters makes your code more
+    explicit and you avoid problems caused by parameters being set out of
+    order etc. The update method returns the count of rows affected.</p><p>We need to store the value of the primary key for each product in
+    the Product class. This key will be used when we persist any changes to
+    the object back to the database. To hold this key we add a private field
+    named 'id' complete with setters and getters to Product.java.</p><p><code class="filename">'springapp/src/springapp/domain/Product.java'</code>:</p><pre class="programlisting">package springapp.domain;
+
+import java.io.Serializable;
+
+public class Product implements Serializable {
+
+<span class="bold"><strong>    private int id;
+</strong></span>    private String description;
+    private Double price;
+    
+<span class="bold"><strong>    public void setId(int i) {
+        id = i;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+</strong></span>    public String getDescription() {
+        return description;
+    }
+    
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
+    public Double getPrice() {
+        return price;
+    }
+    
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+    
+    public String toString() {
+        StringBuffer buffer = new StringBuffer();
+        buffer.append("Description: " + description + ";");
+        buffer.append("Price: " + price);
+        return buffer.toString();
+    }
+}</pre><p>This completes the Simple JDBC implementation of our
+    persistence layer.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="step5.5"></a>5.5.&nbsp;Implement tests for JDBC DAO implementation</h2></div></div></div><p>Time to add tests for the JDBC DAO implementation. Spring provides
+    an extensive testing framework that supports JUnit 3.8 and 4 as well as
+    TestNG. We can't cover all of that in this guide but we will show a simple
+    implementation of the JUnit 3.8 specific support. We need to add the jar
+    file containing the Spring test framework to our project. Copy <code class="filename">spring-test.jar</code> from the <code class="filename">'spring-framework-2.5/dist/modules'</code> directory
+    to the <code class="filename">'springapp/war/WEB-INF/lib'</code>
+    directory.</p><p>Now we can create our test class. By extending
+    <code class="classname">AbstractTransactionalDataSourceSpringContextTests</code>
+    we get a lot of nice features for free. We get dependency injection of any
+    public setter from an application context. This application context is
+    loaded by the test framework. All we need to do is specify the name for it
+    in the <code class="classname">getConfigLocations</code> method. We also get an
+    opportunity to prepare our database with the appropriate test data in the
+    <code class="classname">onSetUpInTransaction</code> method. This is important,
+    since we don't know the state of the database when we run our tests. As
+    long as the table exists we will clear it and load what we need for our
+    tests. Since we are extending a "Transactional" test, any changes we make
+    will be automatically rolled back once the test finishes. The
+    <code class="classname">deleteFromTables</code> and
+    <code class="classname">executeSqlScript</code> methods are defined in the super
+    class, so we don't have to implement them for each test. Just pass in the
+    table names to be cleared and the name of the script that contains the
+    test data.</p><p><code class="filename">'springapp/test/springapp/domain/JdbcProductDaoTests.java'</code>:</p><pre class="programlisting">package springapp.repository;
+
+import java.util.List;
+
+public class JdbcProductDaoTests extends AbstractTransactionalDataSourceSpringContextTests {
+
+    private ProductDao productDao;
+
+    
+    public void setProductDao(ProductDao productDao) {
+        this.productDao = productDao;
+    }
+
+    @Override
+    protected String[] getConfigLocations() {
+        return new String[] {"classpath:test-context.xml"};
+    }
+
+    @Override
+    protected void onSetUpInTransaction() throws Exception {
+        super.deleteFromTables(new String[] {"products"});
+        super.executeSqlScript("file:db/load_data.sql", true);
+    }
+
+    public void testGetProductList() {
+        
+        List&lt;Product&gt; products = productDao.getProductList();
+        
+        assertEquals("wrong number of products?", 3, products.size());
+        
+    }
+    
+    public void testSaveProduct() {
+        
+        List&lt;Product&gt; products = productDao.getProductList();
+        
+        for (Product p : products) {
+            p.setPrice(200.12);
+            productDao.saveProduct(p);
+        }
+        
+        List&lt;Product&gt; updatedProducts = productDao.getProductList();
+        for (Product p : updatedProducts) {
+            assertEquals("wrong price of product?", 200.12, p.getPrice());
+        }
+
+    }
+
+}</pre><p>We don't have the application context file that is loaded for this
+    test yet, so let's create this file in the
+    <code class="filename">'springapp/test'</code> directory:</p><p><code class="filename">'springapp/test/test-context.xml'</code>:</p><pre class="programlisting">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;beans xmlns="http://www.springframework.org/schema/beans" 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:schemaLocation="http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"&gt; 
+
+    &lt;!-- the test application context definition for the jdbc based tests --&gt; 
+
+    &lt;bean id="productDao" class="springapp.repository.JdbcProductDao"&gt;
+        &lt;property name="dataSource" ref="dataSource" /&gt;
+    &lt;/bean&gt;
+
+    &lt;bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"&gt;
+      &lt;property name="driverClassName" value="${jdbc.driverClassName}"/&gt;
+      &lt;property name="url" value="${jdbc.url}"/&gt;
+      &lt;property name="username"  value="${jdbc.username}"/&gt;
+      &lt;property name="password" value="${jdbc.password}"/&gt;
+    &lt;/bean&gt;
+    &lt;bean id="propertyConfigurer" 
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"&gt;
+        &lt;property name="locations"&gt;
+            &lt;list&gt;
+                &lt;value&gt;classpath:jdbc.properties&lt;/value&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+    &lt;/bean&gt;
+    
+    &lt;bean id="transactionManager" 
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager"&gt;
+        &lt;property name="dataSource" ref="dataSource" /&gt;
+    &lt;/bean&gt;
+
+&lt;/beans&gt;</pre><p>We have defined a <code class="classname">productDao</code> which is the
+    class we are testing. We have also defined a
+    <code class="classname">DataSource</code> with place holders for the configuration
+    values. These values are provided via a separate property file and at
+    runtime, the <code class="classname">PropertyPlaceholderConfigurer</code> that we
+    have defined will read this property file and substitute the place holders
+    with the actual values. This is convenient since this isolates the
+    connection values into their own file. These values often need to be
+    changed during application deployment. We put this new file in the
+    <code class="filename">'war/WEB-INF/classes'</code> directory so it will be
+    available when we run the application and also later when we deploy the
+    web application. The content of this property file is:</p><p><code class="filename">'springapp/war/WEB-INF/classes/jdbc.properties'</code>:</p><pre class="programlisting">jdbc.driverClassName=org.hsqldb.jdbcDriver
+jdbc.url=jdbc:hsqldb:hsql://localhost
+jdbc.username=sa
+jdbc.password=
+</pre><p>Since we added a configuration file to the
+    <code class="filename">'test'</code>" directory and a jdbc.properties file to the
+    <code class="filename">'WEB-INF/classes'</code> directory, let's add a new
+    classpath entry for our tests. It shoud go after the definition of the
+    <code class="literal">'test.dir'</code> property:</p><p><code class="filename">'springapp/build.xml'</code>:</p><pre class="programlisting">...
+    &lt;property name="test.dir" value="test"/&gt;
+
+
+<span class="bold"><strong>    &lt;path id="test-classpath"&gt;
+        &lt;fileset dir="${web.dir}/WEB-INF/lib"&gt;
+            &lt;include name="*.jar"/&gt;
+        &lt;/fileset&gt;
+        &lt;pathelement path="${build.dir}"/&gt;
+        &lt;pathelement path="${test.dir}"/&gt;
+        &lt;pathelement path="${web.dir}/WEB-INF/classes"/&gt;
+    &lt;/path&gt;
+</strong></span>
+...
+</pre><p>We should now have enough for our tests to run and pass but we want
+    to make one additional change to the build script. It's a good practice to
+    separate any integration tests that depend on a live database from the
+    rest of the tests. So we add a separate "dbTests" target to our build
+    script and exclude the database tests from the "tests" target.</p><p><code class="filename">'springapp/build.xml'</code>:</p><pre class="programlisting">...
+
+    &lt;target name="tests" depends="build, buildtests" description="Run tests"&gt;
+        &lt;junit printsummary="on"
+            fork="false"
+            haltonfailure="false"
+            failureproperty="tests.failed"
+            showoutput="true"&gt;
+<span class="bold"><strong>            &lt;classpath refid="test-classpath"/&gt;
+</strong></span>            &lt;formatter type="brief" usefile="false"/&gt;
+            
+            &lt;batchtest&gt;
+                &lt;fileset dir="${build.dir}"&gt;
+                    &lt;include name="**/*Tests.*"/&gt;
+<span class="bold"><strong>                    &lt;exclude name="**/Jdbc*Tests.*"/&gt;
+</strong></span>                &lt;/fileset&gt;
+            &lt;/batchtest&gt;
+            
+        &lt;/junit&gt;
+        
+        &lt;fail if="tests.failed"&gt;
+            tests.failed=${tests.failed}
+            ***********************************************************
+            ***********************************************************
+            ****  One or more tests failed!  Check the output ...  ****
+            ***********************************************************
+            ***********************************************************
+        &lt;/fail&gt;
+    &lt;/target&gt;
+
+<span class="bold"><strong>    &lt;target name="dbTests" depends="build, buildtests,dropTables,createTables,loadData" 
+            description="Run db tests"&gt;
+        &lt;junit printsummary="on"
+            fork="false"
+            haltonfailure="false"
+            failureproperty="tests.failed"
+            showoutput="true"&gt;
+            &lt;classpath refid="test-classpath"/&gt;
+            &lt;formatter type="brief" usefile="false"/&gt;
+            
+            &lt;batchtest&gt;
+                &lt;fileset dir="${build.dir}"&gt;
+                    &lt;include name="**/Jdbc*Tests.*"/&gt;
+                &lt;/fileset&gt;
+            &lt;/batchtest&gt;
+            
+        &lt;/junit&gt;
+        
+        &lt;fail if="tests.failed"&gt;
+            tests.failed=${tests.failed}
+            ***********************************************************
+            ***********************************************************
+            ****  One or more tests failed!  Check the output ...  ****
+            ***********************************************************
+            ***********************************************************
+        &lt;/fail&gt;
+    &lt;/target&gt;
+</strong></span>
+...
+</pre><p>Time to run this test, execute <span><strong class="command">'ant dbTests'</strong></span>
+    to see if the tests pass.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d0e2229"></a>5.6.&nbsp;Summary</h2></div></div></div><p>We have now completed the persistence layer and in the next part we
+    will integrate it with our web application. But first, lets quickly
+    summarize hat we accomplished in this part.</p><div class="orderedlist"><ol type="1"><li><p>First we configured our database and created start-up
+        scripts.</p></li><li><p>We created scripts to use when creating the table and also to
+        load some test data.</p></li><li><p>Next we added some tasks to our build script to run when we
+        needed to create or delete the table and also when we needed to add
+        test data or delete the data.</p></li><li><p>We created the actual DAO class that will handle the persistence
+        work using Spring's <code class="classname">SimpeJdbcTemplate</code>.</p></li><li><p>Finally we created unit or more accurately integration tests and
+        corresponding ant targets to run these tests.</p></li></ol></div><p>Below is a screen shot of what your project directory structure
+    should look like after following the above instructions.</p><div class="screenshot"><div class="mediaobject" align="center"><img src="images/dir-structure-endp5.png" align="middle"></div></div><p></p></div></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="part6"></a>Chapter&nbsp;6.&nbsp;Integrating the Web Application with the Persistence Layer</h2></div></div></div><p>This is Part 6 of a step-by-step account of how to develop a web
+  application from scratch using the Spring Framework. In <a href="#part1" title="Chapter&nbsp;1.&nbsp;Basic Application and Environment Setup">Part 1</a> we configured the environment and set up a
+  basic application. In <a href="#part2" title="Chapter&nbsp;2.&nbsp;Developing and Configuring the Views and the Controller">Part 2</a> we refined the
+  application that we will build upon. <a href="#part3" title="Chapter&nbsp;3.&nbsp;Developing the Business Logic">Part 3</a>
+  added all the business logic and unit tests and <a href="#part4" title="Chapter&nbsp;4.&nbsp;Developing the Web Interface">Part
+  4</a> developed the web interface. In <a href="#part5" title="Chapter&nbsp;5.&nbsp;Implementing Database Persistence">Part 5</a>
+  we developed the persistence layer. It is now time to integrate all this
+  into a complete web application.</p><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="step6.1"></a>6.1.&nbsp;Modify service layer</h2></div></div></div><p>If we structured our application properly, we should only have to
+    change the service layer classes to take advantage of the database
+    persistence. The view and controller classes should not have to be
+    modified, since they should be unaware of any implementation details of
+    the service layer. So let's add the persistence to the ProductManager
+    implementation. We modify the <code class="classname">SimpleProductManager</code>
+    and add a reference to a <code class="classname">ProductDao</code> interface plus
+    a setter method for this reference. Which implementation we actually use
+    here should be irrelevant to the ProductManager class, and we will set
+    this through a configuration option. We also change the
+    <code class="classname">setProducts</code> method to a
+    <code class="classname">setProductDao</code> method so we can inject an instance
+    of the DAO class. The <code class="classname">getProducts</code> method will now
+    use the DAO to retrieve a list of products. Finally, the
+    <code class="classname">increasePrices</code> method will now get the list of
+    products and then after the price have been increased the product will be
+    stored in the database using the <code class="classname">saveProduct</code> method
+    on the DAO.</p><p><code class="filename">'springapp/src/springapp/service/SimpleProductManager.java'</code>:</p><pre class="programlisting">package springapp.service;
+
+import java.util.List;
+
+import springapp.domain.Product;
+
+public class SimpleProductManager implements ProductManager {
+
+    privapackage springapp.service;
+
+import java.util.List;
+
+import springapp.domain.Product;
+import springapp.repository.ProductDao;
+
+public class SimpleProductManager implements ProductManager {
+
+<span class="bold"><strong>    // private List&lt;Product&gt; products;
+    private ProductDao productDao;
+</strong></span>
+    public List&lt;Product&gt; getProducts() {
+<span class="bold"><strong>        // return products;
+        return productDao.getProductList();
+</strong></span>    }
+
+    public void increasePrice(int percentage) {
+<span class="bold"><strong>        List&lt;Product&gt; products = productDao.getProductList();
+</strong></span>        if (products != null) {
+            for (Product product : products) {
+                double newPrice = product.getPrice().doubleValue() * 
+                                    (100 + percentage)/100;
+                product.setPrice(newPrice);
+<span class="bold"><strong>                productDao.saveProduct(product);
+</strong></span>            }
+        }
+    }
+
+<span class="bold"><strong>    public void setProductDao(ProductDao productDao) {
+        this.productDao = productDao;
+    }
+
+</strong></span><span class="strikeout">//    public void setProducts(List&lt;Product&gt; products) {
+//        this.products = products;
+//    }
+</span>
+}</pre></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="step6.2"></a>6.2.&nbsp;Fix the failing tests</h2></div></div></div><p>We rewrote the <code class="classname">SimpleProductManager</code> and now
+    the tests will of course fail. We need to provide the
+    <code class="classname">ProductManager</code> with an in-memory implementation of
+    the <code class="classname">ProductDao</code>. We don't really want to use the
+    real DAO here since we'd like to avoid having to access a database for our
+    unit tests. We will add an internal class called
+    <code class="classname">InMemoryProductDao</code> that will hold on to a list pf
+    products provided in the constructor. This in-memory class has to be
+    passed in when we create a new
+    <code class="classname">SimpleProductManager</code>.</p><p><code class="filename">'springapp/test/springapp/repository/InMemoryProductDao.java'</code>:</p><pre class="programlisting">package springapp.repository;
+
+import java.util.List;
+
+import springapp.domain.Product;
+
+public class InMemoryProductDao implements ProductDao {
+
+    private List&lt;Product&gt; productList;
+
+    public InMemoryProductDao(List&lt;Product&gt; productList) {
+        this.productList = productList;
+    }
+
+    public List&lt;Product&gt; getProductList() {
+        return productList;
+    }
+
+    public void saveProduct(Product prod) {
+    }
+
+}</pre><p>And here is the modified
+    <code class="classname">SimpleProductManagerTests</code>:</p><p><code class="filename">'springapp/test/springapp/service/SimpleProductManagerTests.java'</code>:</p><pre class="programlisting">package springapp.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import springapp.domain.Product;
+<span class="bold"><strong><span class="bold"><strong>import springapp.repository.InMemoryProductDao;
+</strong></span>import springapp.repository.ProductDao;
+</strong></span>
+import junit.framework.TestCase;
+
+public class SimpleProductManagerTests extends TestCase {
+
+    private SimpleProductManager productManager;
+
+    private List&lt;Product&gt; products;
+    
+    private static int PRODUCT_COUNT = 2;
+    
+    private static Double CHAIR_PRICE = new Double(20.50);
+    private static String CHAIR_DESCRIPTION = "Chair";
+    
+    private static String TABLE_DESCRIPTION = "Table";
+    private static Double TABLE_PRICE = new Double(150.10);         
+    
+    private static int POSITIVE_PRICE_INCREASE = 10;
+    
+    protected void setUp() throws Exception {
+        productManager = new SimpleProductManager();
+        products = new ArrayList&lt;Product&gt;();
+        
+        // stub up a list of products
+        Product product = new Product();
+        product.setDescription("Chair");
+        product.setPrice(CHAIR_PRICE);
+        products.add(product);
+        
+        product = new Product();
+        product.setDescription("Table");
+        product.setPrice(TABLE_PRICE);
+        products.add(product);
+        
+<span class="bold"><strong>        ProductDao productDao = new InMemoryProductDao(products);
+        productManager.setProductDao(productDao);
+</strong></span><span class="bold"><strong>        //productManager.setProducts(products);
+</strong></span>    }
+
+    public void testGetProductsWithNoProducts() {
+        productManager = new SimpleProductManager();
+<span class="bold"><strong>        productManager.setProductDao(new InMemoryProductDao(null));
+</strong></span>        assertNull(productManager.getProducts());
+    }
+    
+    public void testGetProducts() {
+        List&lt;Product&gt; products = productManager.getProducts();
+        assertNotNull(products);        
+        assertEquals(PRODUCT_COUNT, productManager.getProducts().size());
+    
+        Product product = products.get(0);
+        assertEquals(CHAIR_DESCRIPTION, product.getDescription());
+        assertEquals(CHAIR_PRICE, product.getPrice());
+        
+        product = products.get(1);
+        assertEquals(TABLE_DESCRIPTION, product.getDescription());
+        assertEquals(TABLE_PRICE, product.getPrice());      
+    }   
+    
+    public void testIncreasePriceWithNullListOfProducts() {
+        try {
+            productManager = new SimpleProductManager();
+<span class="bold"><strong>            productManager.setProductDao(new InMemoryProductDao(null));
+</strong></span>            productManager.increasePrice(POSITIVE_PRICE_INCREASE);
+        }
+        catch(NullPointerException ex) {
+            fail("Products list is null.");
+        }
+    }
+    
+    public void testIncreasePriceWithEmptyListOfProducts() {
+        try {
+            productManager = new SimpleProductManager();
+<span class="bold"><strong>            productManager.setProductDao(new InMemoryProductDao(new ArrayList&lt;Product&gt;()));
+            //productManager.setProducts(new ArrayList&lt;Product&gt;());
+</strong></span>            productManager.increasePrice(POSITIVE_PRICE_INCREASE);
+        }
+        catch(Exception ex) {
+            fail("Products list is empty.");
+        }           
+    }
+    
+    public void testIncreasePriceWithPositivePercentage() {
+        productManager.increasePrice(POSITIVE_PRICE_INCREASE);
+        double expectedChairPriceWithIncrease = 22.55;
+        double expectedTablePriceWithIncrease = 165.11;
+        
+        List&lt;Product&gt; products = productManager.getProducts();      
+        Product product = products.get(0);
+        assertEquals(expectedChairPriceWithIncrease, product.getPrice());
+        
+        product = products.get(1);      
+        assertEquals(expectedTablePriceWithIncrease, product.getPrice());       
+    }
+        
+}</pre><p>We also need to modify the
+    <code class="classname">InventoryControllerTests</code> since that class also uses
+    the <code class="classname">SimpleProductManager</code>. Here is the modified
+    <code class="classname">InventoryControllerTests</code>:</p><p><code class="filename">'springapp/test/springapp/service/InventoryControllerTests.java'</code>:</p><pre class="programlisting">package springapp.web;
+
+import java.util.Map;
+
+import org.springframework.web.servlet.ModelAndView;
+
+<span class="bold"><strong>import springapp.domain.Product;
+import springapp.repository.InMemoryProductDao;
+</strong></span>import springapp.service.SimpleProductManager;
+import springapp.web.InventoryController;
+
+import junit.framework.TestCase;
+
+public class InventoryControllerTests extends TestCase {
+
+    public void testHandleRequestView() throws Exception{
+        InventoryController controller = new InventoryController();
+<span class="bold"><strong>        SimpleProductManager spm = new SimpleProductManager();
+        spm.setProductDao(new InMemoryProductDao(new ArrayList&lt;Product&gt;()));
+        controller.setProductManager(spm);
+        //controller.setProductManager(new SimpleProductManager());
+</strong></span>        ModelAndView modelAndView = controller.handleRequest(null, null);
+        assertEquals("hello", modelAndView.getViewName());
+        assertNotNull(modelAndView.getModel());
+        Map modelMap = (Map) modelAndView.getModel().get("model");
+        String nowValue = (String) modelMap.get("now");
+        assertNotNull(nowValue);
+    }
+}</pre></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="step6.3"></a>6.3.&nbsp;Create new application context for service layer
+    configuration</h2></div></div></div><p>We saw earlier that it was fairly easy to modify the service layer
+    to use the database persistence. This was because it is decoupled from the
+    web layer. It's now time to decouple or configuration of the service layer
+    from the web layer as well. We will remove the productManager
+    configuration and the list of products from the springapp-servlet.xml
+    configuration file. This is what this file looks like now:</p><p><code class="filename">'springapp/war/WEB-INF/springapp-servlet.xml'</code>:</p><pre class="programlisting">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"&gt;
+
+    &lt;!-- the application context definition for the springapp DispatcherServlet --&gt;
+
+    &lt;bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"&gt;
+        &lt;property name="basename" value="messages"/&gt;
+    &lt;/bean&gt;
+    
+    &lt;bean name="/hello.htm" class="springapp.web.InventoryController"&gt;
+        &lt;property name="productManager" ref="productManager"/&gt;
+    &lt;/bean&gt;
+
+    &lt;bean name="/priceincrease.htm" class="springapp.web.PriceIncreaseFormController"&gt;
+        &lt;property name="sessionForm" value="true"/&gt;
+        &lt;property name="commandName" value="priceIncrease"/&gt;
+        &lt;property name="commandClass" value="springapp.service.PriceIncrease"/&gt;
+        &lt;property name="validator"&gt;
+            &lt;bean class="springapp.service.PriceIncreaseValidator"/&gt;
+        &lt;/property&gt;
+        &lt;property name="formView" value="priceincrease"/&gt;
+        &lt;property name="successView" value="hello.htm"/&gt;
+        &lt;property name="productManager" ref="productManager"/&gt;
+    &lt;/bean&gt;
+
+    &lt;bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"&gt;
+        &lt;property name="viewClass" value="org.springframework.web.servlet.view.JstlView"&gt;&lt;/property&gt;
+        &lt;property name="prefix" value="/WEB-INF/jsp/"&gt;&lt;/property&gt;
+        &lt;property name="suffix" value=".jsp"&gt;&lt;/property&gt;        
+    &lt;/bean&gt;
+
+&lt;/beans&gt;</pre><p>We still need to configure the service layer and we will do that in
+    its own application context file. This file is called
+    <code class="filename">'applicationContext.xml'</code> and it will be loaded via a
+    servlet listener that we will define in <code class="filename">'web.xml'</code>.
+    All bean configured in this new application context will be available to
+    reference from any servlet context.</p><p><code class="filename">'springapp/war/WEB-INF/web.xml'</code>:</p><pre class="programlisting">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;web-app version="2.4"
+         xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+         http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" &gt;
+
+<span class="bold"><strong>  &lt;listener&gt;
+    &lt;listener-class&gt;org.springframework.web.context.ContextLoaderListener&lt;/listener-class&gt;
+  &lt;/listener&gt;
+</strong></span>
+  &lt;servlet&gt;
+    &lt;servlet-name&gt;springapp&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;
+    &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
+  &lt;/servlet&gt;
+
+  &lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;springapp&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;*.htm&lt;/url-pattern&gt;
+  &lt;/servlet-mapping&gt;
+
+  &lt;welcome-file-list&gt;
+    &lt;welcome-file&gt;
+      index.jsp
+    &lt;/welcome-file&gt;
+  &lt;/welcome-file-list&gt;
+
+  &lt;jsp-config&gt;
+    &lt;taglib&gt;
+      &lt;taglib-uri&gt;/spring&lt;/taglib-uri&gt;
+      &lt;taglib-location&gt;/WEB-INF/tld/spring-form.tld&lt;/taglib-location&gt;
+    &lt;/taglib&gt;
+  &lt;/jsp-config&gt;
+
+&lt;/web-app&gt;</pre><p>Now we create a new <code class="filename">'applicationContext.xml'</code>
+    file in the <code class="filename">'war/WEB-INF'</code>" directory.</p><p><code class="filename">'springapp/war/WEB-INF/applicationContext.xml'</code>:</p><pre class="programlisting">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:aop="http://www.springframework.org/schema/aop"
+         xmlns:tx="http://www.springframework.org/schema/tx"
+         xsi:schemaLocation="http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/aop 
+           http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+           http://www.springframework.org/schema/tx 
+           http://www.springframework.org/schema/tx/spring-tx-2.0.xsd"&gt;
+
+    &lt;!-- the parent application context definition for the springapp application --&gt;
+
+    &lt;bean id="productManager" class="springapp.service.SimpleProductManager"&gt;
+        &lt;property name="productDao" ref="productDao"/&gt;
+    &lt;/bean&gt;
+
+    &lt;bean id="productDao" class="springapp.repository.JdbcProductDao"&gt;
+        &lt;property name="dataSource" ref="dataSource"/&gt;
+    &lt;/bean&gt;
+
+&lt;/beans&gt;</pre></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="step6.4"></a>6.4.&nbsp;Add transaction and connection pool configuration to application
+    context</h2></div></div></div><p>Any time you persist data in a database its best to use transactions
+    to ensure that all your updates are perform or none are completed. You
+    want to avoid having half your updates persisted while the other half
+    failed. Spring provides an extensive range of options for how to provide
+    transaction management. The reference manual covers this in depth. Here we
+    will make use of one way of providing this using AOP (Aspect Oriented
+    Programming) in the form of a transaction advice and an ApectJ pointcut to
+    define where the transactions should be applied. If you are interested in
+    how this works in more depth, take a look at the reference manual. We are
+    using the new namespace support introduced in Spring 2.0. The "aop" and
+    "tx" namespaces make the configuration entries much more concise compared
+    to the traditional way using regular "&lt;bean&gt;" entries.</p><pre class="programlisting">    &lt;bean id="transactionManager" 
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager"&gt;
+        &lt;property name="dataSource" ref="dataSource"/&gt;
+    &lt;/bean&gt;
+
+    &lt;aop:config&gt;
+        &lt;aop:advisor pointcut="execution(* *..ProductManager.*(..))" advice-ref="txAdvice"/&gt;
+    &lt;/aop:config&gt;
+
+    &lt;tx:advice id="txAdvice"&gt;
+        &lt;tx:attributes&gt;
+            &lt;tx:method name="save*"/&gt;
+            &lt;tx:method name="*" read-only="true"/&gt;
+        &lt;/tx:attributes&gt;
+    &lt;/tx:advice&gt;</pre><p>The pointcut applies to any method called on the ProductManager
+    interface. The advice is a transaction advice that applies to methods with
+    a name starting with 'save'. The default transaction attributes of
+    REQUIRED applies since no other attribute was specified. The advice also
+    applies "read-only" transactions on any other methods that are adviced via
+    the pointcut.</p><p>We also need to define a connection pool. We are using the DBCP
+    connection pool from the Apache Jakarta project. We are reusing the
+    <code class="filename">'jdbc.properties'</code> file we created in Part 5.</p><pre class="programlisting">    &lt;bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"&gt;
+        &lt;property name="driverClassName" value="${jdbc.driverClassName}"/&gt;
+        &lt;property name="url" value="${jdbc.url}"/&gt;
+        &lt;property name="username" value="${jdbc.username}"/&gt;
+        &lt;property name="password" value="${jdbc.password}"/&gt;
+    &lt;/bean&gt;
+
+    &lt;bean id="propertyConfigurer" 
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"&gt;
+        &lt;property name="locations"&gt;
+            &lt;list&gt;
+                &lt;value&gt;classpath:jdbc.properties&lt;/value&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+    &lt;/bean&gt;</pre><p>For all this to work we need some additional jar files copied to the
+    <code class="filename">'WEB-INF/lib'</code> directory. Copy
+    <code class="filename">aspectjweaver.jar</code> from the
+    <code class="filename">'spring-framework-2.5/lib/aspectj'</code>
+    directory and <code class="filename">commons-dbcp.jar</code>
+    and <code class="filename">commons-pool.jar</code> from the
+    <code class="filename">'spring-framework-2.5/lib/jakarta-commons'</code>
+    directory to the <code class="filename">'springapp/war/WEB-INF/lib'</code> directory.</p><p>Here is the final version of our
+    <code class="filename">'applicationContext.xml'</code> file:</p><p><code class="filename">'springapp/war/WEB-INF/applicationContext.xml'</code>:</p><pre class="programlisting">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:aop="http://www.springframework.org/schema/aop"
+         xmlns:tx="http://www.springframework.org/schema/tx"
+         xsi:schemaLocation="http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/aop 
+           http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+           http://www.springframework.org/schema/tx 
+           http://www.springframework.org/schema/tx/spring-tx-2.0.xsd"&gt;
+
+    &lt;!-- the parent application context definition for the springapp application --&gt;
+
+    &lt;bean id="productManager" class="springapp.service.SimpleProductManager"&gt;
+        &lt;property name="productDao" ref="productDao"/&gt;
+    &lt;/bean&gt;
+
+    &lt;bean id="productDao" class="springapp.repository.JdbcProductDao"&gt;
+        &lt;property name="dataSource" ref="dataSource"/&gt;
+    &lt;/bean&gt;
+
+    &lt;bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"&gt;
+        &lt;property name="driverClassName" value="${jdbc.driverClassName}"/&gt;
+        &lt;property name="url" value="${jdbc.url}"/&gt;
+        &lt;property name="username" value="${jdbc.username}"/&gt;
+        &lt;property name="password" value="${jdbc.password}"/&gt;
+    &lt;/bean&gt;
+
+    &lt;bean id="propertyConfigurer" 
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"&gt;
+        &lt;property name="locations"&gt;
+            &lt;list&gt;
+                &lt;value&gt;classpath:jdbc.properties&lt;/value&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+    &lt;/bean&gt;
+
+    &lt;bean id="transactionManager" 
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager"&gt;
+        &lt;property name="dataSource" ref="dataSource"/&gt;
+    &lt;/bean&gt;
+
+    &lt;aop:config&gt;
+        &lt;aop:advisor pointcut="execution(* *..ProductManager.*(..))" advice-ref="txAdvice"/&gt;
+    &lt;/aop:config&gt;
+
+    &lt;tx:advice id="txAdvice"&gt;
+        &lt;tx:attributes&gt;
+            &lt;tx:method name="save*"/&gt;
+            &lt;tx:method name="*" read-only="true"/&gt;
+        &lt;/tx:attributes&gt;
+    &lt;/tx:advice&gt;
+
+&lt;/beans&gt;</pre></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="step6.5"></a>6.5.&nbsp;Final test of the complete application</h2></div></div></div><p>Now it's finally time to see if all of these pieces will work
+    together. Build and deploy your finished application and remember to have
+    the database up and running. This is what you should see when pointing the
+    web browser at the application after it has reloaded:</p><div class="screenshot"><div class="mediaobject" align="center"><img src="images/screen6.png" align="middle"><div class="caption"><p>The completed application</p></div></div></div><p>Looks just the same as it did before. We did add persistence though,
+    so if you shut down the application your price increases will not be lost.
+    They are still there when you start the application back up.</p><p>A lot of work for a very simple application, but it was never our
+    goal to just write this application. The goal was to show how to go about
+    creating a Spring MVC application from scratch and we know that the
+    applications you will create are much more complex. The same steps apply
+    though and we hope you have gained enough knowledge to make it easier
+    getting started to use Spring.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="step6.summary"></a>6.6.&nbsp;Summary</h2></div></div></div><p>We have completed all three layers of the application -- the web
+    layer, the service layer and the persistence layer. In this last part we
+    reconfigured the application.</p><div class="orderedlist"><ol type="1"><li><p>First we modified the service layer to use the
+        ProductDao.</p></li><li><p>We then had to fix some failing service and web layer
+        tests.</p></li><li><p>Next we introduced a new applicationContext to separate the
+        service and persistence layer configuration from the web layer
+        configuration.</p></li><li><p>We also defined some transaction management for the service
+        layer and configured a connection pool for the database
+        connections.</p></li><li><p>Finally we built the reconfigured application and tested that it
+        still worked.</p></li></ol></div><p>Below is a screen shot of what your project directory structure
+    should look like after following the above instructions.</p><div class="screenshot"><div class="mediaobject" align="center"><img src="images/dir-structure-endp6.png" align="middle"></div></div></div></div><div class="appendix" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="build-scripts"></a>Appendix&nbsp;A.&nbsp;Build Scripts</h2></div></div></div><p>Complete <code class="filename">build.xml</code> listing:</p><pre class="programlisting">&lt;?xml version="1.0"?&gt;
+
+&lt;project name="springapp" basedir="." default="usage"&gt;
+    &lt;property file="build.properties"/&gt;
+
+    &lt;property name="src.dir" value="src"/&gt;
+    &lt;property name="web.dir" value="war"/&gt;
+    &lt;property name="build.dir" value="${web.dir}/WEB-INF/classes"/&gt;
+    &lt;property name="name" value="springapp"/&gt;
+
+    &lt;path id="master-classpath"&gt;
+        &lt;fileset dir="${web.dir}/WEB-INF/lib"&gt;
+            &lt;include name="*.jar"/&gt;
+        &lt;/fileset&gt;
+        &lt;!-- We need the servlet API classes: --&gt;
+        &lt;!--  * for Tomcat 5/6 use servlet-api.jar --&gt;
+        &lt;!--  * for other app servers - check the docs --&gt;
+        &lt;fileset dir="${appserver.lib}"&gt;
+            &lt;include name="servlet*.jar"/&gt;
+        &lt;/fileset&gt;
+        &lt;pathelement path="${build.dir}"/&gt;
+        &lt;pathelement path="${test.dir}"/&gt;
+    &lt;/path&gt;
+
+    &lt;target name="usage"&gt;
+        &lt;echo message=""/&gt;
+        &lt;echo message="${name} build file"/&gt;
+        &lt;echo message="-----------------------------------"/&gt;
+        &lt;echo message=""/&gt;
+        &lt;echo message="Available targets are:"/&gt;
+        &lt;echo message=""/&gt;
+        &lt;echo message="build     --&gt; Build the application"/&gt;
+        &lt;echo message="deploy    --&gt; Deploy application as directory"/&gt;
+        &lt;echo message="deploywar --&gt; Deploy application as a WAR file"/&gt;
+        &lt;echo message="install   --&gt; Install application in Tomcat"/&gt;
+        &lt;echo message="reload    --&gt; Reload application in Tomcat"/&gt;
+        &lt;echo message="start     --&gt; Start Tomcat application"/&gt;
+        &lt;echo message="stop      --&gt; Stop Tomcat application"/&gt;
+        &lt;echo message="list      --&gt; List Tomcat applications"/&gt;
+        &lt;echo message=""/&gt;
+    &lt;/target&gt;
+
+    &lt;target name="build" description="Compile main source tree java files"&gt;
+        &lt;mkdir dir="${build.dir}"/&gt;
+        &lt;javac destdir="${build.dir}" source="1.5" target="1.5" debug="true"
+               deprecation="false" optimize="false" failonerror="true"&gt;
+            &lt;src path="${src.dir}"/&gt;
+            &lt;classpath refid="master-classpath"/&gt;
+        &lt;/javac&gt;
+    &lt;/target&gt;
+
+    &lt;target name="deploy" depends="build" description="Deploy application"&gt;
+        &lt;copy todir="${deploy.path}/${name}" preservelastmodified="true"&gt;
+            &lt;fileset dir="${web.dir}"&gt;
+                &lt;include name="**/*.*"/&gt;
+            &lt;/fileset&gt;
+        &lt;/copy&gt;
+    &lt;/target&gt;
+
+    &lt;target name="deploywar" depends="build" description="Deploy application as a WAR file"&gt;
+        &lt;war destfile="${name}.war"
+             webxml="${web.dir}/WEB-INF/web.xml"&gt;
+            &lt;fileset dir="${web.dir}"&gt;
+                &lt;include name="**/*.*"/&gt;
+            &lt;/fileset&gt;
+        &lt;/war&gt;
+        &lt;copy todir="${deploy.path}" preservelastmodified="true"&gt;
+            &lt;fileset dir="."&gt;
+                &lt;include name="*.war"/&gt;
+            &lt;/fileset&gt;
+        &lt;/copy&gt;
+    &lt;/target&gt;
+
+    &lt;target name="clean" description="Clean output directories"&gt;
+        &lt;delete&gt;
+            &lt;fileset dir="${build.dir}"&gt;
+                &lt;include name="**/*.class"/&gt;
+            &lt;/fileset&gt;
+        &lt;/delete&gt;
+    &lt;/target&gt;
+
+    &lt;target name="undeploy" description="Un-Deploy application"&gt;
+        &lt;delete&gt;
+            &lt;fileset dir="${deploy.path}/${name}"&gt;
+                &lt;include name="**/*.*"/&gt;
+            &lt;/fileset&gt;
+        &lt;/delete&gt;
+    &lt;/target&gt;
+    
+    &lt;property name="test.dir" value="test"/&gt;
+        
+    &lt;target name="buildtests" description="Compile test tree java files"&gt;
+        &lt;mkdir dir="${build.dir}"/&gt;
+        &lt;javac destdir="${build.dir}" source="1.5" target="1.5" debug="true"
+            deprecation="false" optimize="false" failonerror="true"&gt;
+            &lt;src path="${test.dir}"/&gt;
+            &lt;classpath refid="master-classpath"/&gt;
+        &lt;/javac&gt;
+    &lt;/target&gt;
+
+    &lt;path id="test-classpath"&gt;
+        &lt;fileset dir="${web.dir}/WEB-INF/lib"&gt;
+            &lt;include name="*.jar"/&gt;
+        &lt;/fileset&gt;
+        &lt;pathelement path="${build.dir}"/&gt;
+        &lt;pathelement path="${test.dir}"/&gt;
+        &lt;pathelement path="${web.dir}/WEB-INF/classes"/&gt;
+    &lt;/path&gt;
+
+    &lt;target name="tests" depends="build, buildtests" description="Run tests"&gt;
+        &lt;junit printsummary="on"
+            fork="false"
+            haltonfailure="false"
+            failureproperty="tests.failed"
+            showoutput="true"&gt;
+            &lt;classpath refid="test-classpath"/&gt;
+            &lt;formatter type="brief" usefile="false"/&gt;
+            
+            &lt;batchtest&gt;
+                &lt;fileset dir="${build.dir}"&gt;
+                    &lt;include name="**/*Tests.*"/&gt;
+                    &lt;exclude name="**/Jdbc*Tests.*"/&gt;
+                &lt;/fileset&gt;
+            &lt;/batchtest&gt;
+            
+        &lt;/junit&gt;
+        
+        &lt;fail if="tests.failed"&gt;
+            tests.failed=${tests.failed}
+            ***********************************************************
+            ***********************************************************
+            ****  One or more tests failed!  Check the output ...  ****
+            ***********************************************************
+            ***********************************************************
+        &lt;/fail&gt;
+    &lt;/target&gt;
+    
+    &lt;target name="dbTests" depends="build, buildtests,dropTables,createTables,loadData" 
+            description="Run db tests"&gt;
+        &lt;junit printsummary="on"
+            fork="false"
+            haltonfailure="false"
+            failureproperty="tests.failed"
+            showoutput="true"&gt;
+            &lt;classpath refid="test-classpath"/&gt;
+            &lt;formatter type="brief" usefile="false"/&gt;
+            
+            &lt;batchtest&gt;
+                &lt;fileset dir="${build.dir}"&gt;
+                    &lt;include name="**/Jdbc*Tests.*"/&gt;
+                &lt;/fileset&gt;
+            &lt;/batchtest&gt;
+            
+        &lt;/junit&gt;
+        
+        &lt;fail if="tests.failed"&gt;
+            tests.failed=${tests.failed}
+            ***********************************************************
+            ***********************************************************
+            ****  One or more tests failed!  Check the output ...  ****
+            ***********************************************************
+            ***********************************************************
+        &lt;/fail&gt;
+    &lt;/target&gt;
+    
+    &lt;target name="createTables"&gt;
+        &lt;echo message="CREATE TABLES USING: ${db.driver} ${db.url}"/&gt;
+        &lt;sql driver="${db.driver}"
+             url="${db.url}"
+             userid="${db.user}"
+             password="${db.pw}"
+             onerror="continue"
+             src="db/create_products.sql"&gt;  
+            &lt;classpath refid="master-classpath"/&gt;
+        &lt;/sql&gt; 
+    &lt;/target&gt;
+
+    &lt;target name="dropTables"&gt;
+        &lt;echo message="DROP TABLES USING: ${db.driver} ${db.url}"/&gt;
+        &lt;sql driver="${db.driver}"
+             url="${db.url}"
+             userid="${db.user}"
+             password="${db.pw}"
+             onerror="continue"&gt;  
+            &lt;classpath refid="master-classpath"/&gt;
+
+        DROP TABLE products;
+
+        &lt;/sql&gt; 
+    &lt;/target&gt;
+
+    &lt;target name="loadData"&gt;
+        &lt;echo message="LOAD DATA USING: ${db.driver} ${db.url}"/&gt;
+        &lt;sql driver="${db.driver}"
+             url="${db.url}"
+             userid="${db.user}"
+             password="${db.pw}"
+             onerror="continue"
+             src="db/load_data.sql"&gt;  
+            &lt;classpath refid="master-classpath"/&gt;
+        &lt;/sql&gt; 
+    &lt;/target&gt;
+
+    &lt;target name="printData"&gt;
+        &lt;echo message="PRINT DATA USING: ${db.driver} ${db.url}"/&gt;
+        &lt;sql driver="${db.driver}"
+             url="${db.url}"
+             userid="${db.user}"
+             password="${db.pw}"
+             onerror="continue"
+             print="true"&gt;  
+            &lt;classpath refid="master-classpath"/&gt;
+
+        SELECT * FROM products;
+
+        &lt;/sql&gt; 
+    &lt;/target&gt;
+
+    &lt;target name="clearData"&gt;
+        &lt;echo message="CLEAR DATA USING: ${db.driver} ${db.url}"/&gt;
+        &lt;sql driver="${db.driver}"
+             url="${db.url}"
+             userid="${db.user}"
+             password="${db.pw}"
+             onerror="continue"&gt;  
+            &lt;classpath refid="master-classpath"/&gt;
+
+        DELETE FROM products;
+
+        &lt;/sql&gt; 
+    &lt;/target&gt;
+
+    &lt;target name="shutdownDb"&gt;
+        &lt;echo message="SHUT DOWN DATABASE USING: ${db.driver} ${db.url}"/&gt;
+        &lt;sql driver="${db.driver}"
+             url="${db.url}"
+             userid="${db.user}"
+             password="${db.pw}"
+             onerror="continue"&gt;  
+            &lt;classpath refid="master-classpath"/&gt;
+
+        SHUTDOWN;
+
+        &lt;/sql&gt; 
+    &lt;/target&gt;
+
+&lt;!-- ============================================================== --&gt;
+&lt;!-- Tomcat tasks - remove these if you don't have Tomcat installed --&gt;
+&lt;!-- ============================================================== --&gt;
+
+    &lt;path id="catalina-ant-classpath"&gt;
+        &lt;!-- We need the Catalina jars for Tomcat --&gt;
+        &lt;!--  * for other app servers - check the docs --&gt;
+        &lt;fileset dir="${appserver.lib}"&gt;
+            &lt;include name="catalina-ant.jar"/&gt;
+        &lt;/fileset&gt;
+    &lt;/path&gt;
+
+    &lt;taskdef name="install" classname="org.apache.catalina.ant.InstallTask"&gt;
+        &lt;classpath refid="catalina-ant-classpath"/&gt;
+    &lt;/taskdef&gt;
+    &lt;taskdef name="reload" classname="org.apache.catalina.ant.ReloadTask"&gt;
+        &lt;classpath refid="catalina-ant-classpath"/&gt;
+    &lt;/taskdef&gt;
+    &lt;taskdef name="list" classname="org.apache.catalina.ant.ListTask"&gt;
+        &lt;classpath refid="catalina-ant-classpath"/&gt;
+    &lt;/taskdef&gt;
+    &lt;taskdef name="start" classname="org.apache.catalina.ant.StartTask"&gt;
+        &lt;classpath refid="catalina-ant-classpath"/&gt;
+    &lt;/taskdef&gt;
+    &lt;taskdef name="stop" classname="org.apache.catalina.ant.StopTask"&gt;
+        &lt;classpath refid="catalina-ant-classpath"/&gt;
+    &lt;/taskdef&gt;
+
+    &lt;target name="install" description="Install application in Tomcat"&gt;
+        &lt;install url="${tomcat.manager.url}"
+                 username="${tomcat.manager.username}"
+                 password="${tomcat.manager.password}"
+                 path="/${name}"
+                 war="${name}"/&gt;
+    &lt;/target&gt;
+
+    &lt;target name="reload" description="Reload application in Tomcat"&gt;
+        &lt;reload url="${tomcat.manager.url}"
+                 username="${tomcat.manager.username}"
+                 password="${tomcat.manager.password}"
+                 path="/${name}"/&gt;
+    &lt;/target&gt;
+
+    &lt;target name="start" description="Start Tomcat application"&gt;
+        &lt;start url="${tomcat.manager.url}"
+                 username="${tomcat.manager.username}"
+                 password="${tomcat.manager.password}"
+                 path="/${name}"/&gt;
+    &lt;/target&gt;
+
+    &lt;target name="stop" description="Stop Tomcat application"&gt;
+        &lt;stop url="${tomcat.manager.url}"
+                 username="${tomcat.manager.username}"
+                 password="${tomcat.manager.password}"
+                 path="/${name}"/&gt;
+    &lt;/target&gt;
+
+    &lt;target name="list" description="List Tomcat applications"&gt;
+        &lt;list url="${tomcat.manager.url}"
+                 username="${tomcat.manager.username}"
+                 password="${tomcat.manager.password}"/&gt;
+    &lt;/target&gt;
+
+&lt;!-- End Tomcat tasks --&gt;
+
+&lt;/project&gt;</pre><p>Complete <code class="filename">build.properties</code> listing:</p><pre class="programlisting"># Ant properties for building the springapp
+
+appserver.home=${user.home}/apache-tomcat-6.0.14
+# for Tomcat 5 use $appserver.home}/server/lib
+# for Tomcat 6 use $appserver.home}/lib
+appserver.lib=${appserver.home}/lib
+
+deploy.path=${appserver.home}/webapps
+
+tomcat.manager.url=http://localhost:8080/manager
+tomcat.manager.username=tomcat
+tomcat.manager.password=s3cret
+
+db.driver=org.hsqldb.jdbcDriver
+db.url=jdbc:hsqldb:hsql://localhost
+db.user=sa
+db.pw=</pre></div></div></body></html>

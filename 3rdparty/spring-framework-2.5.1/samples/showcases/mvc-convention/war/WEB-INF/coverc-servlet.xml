@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+        "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+
+    <!-- maps request URLs to Controller names -->
+    <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>
+
+    <bean id="baseRecipeController" abstract="true">
+        <property name="recipeManager" ref="recipeManager"/>
+    </bean>
+
+    <!-- Controller names are not important when using the above HandlerMapping implementation -->
+    <bean class="org.springframework.showcase.coverc.web.SwitchBoardController"
+          parent="baseRecipeController"/>
+
+    <bean class="org.springframework.showcase.coverc.web.EditRecipeController"
+          parent="baseRecipeController">
+        <property name="commandName" value="recipe"/>
+        <property name="commandClass" value="org.springframework.showcase.coverc.domain.Recipe"/>
+        <property name="formView" value="editRecipe"/>
+        <property name="successView" value="redirect:switchboard/listRecipes.htm"/>
+    </bean>
+
+    <!-- this bean with the well known name generates view names for us -->
+    <!-- not strictly required since we just want to accept the defaults-->
+    <bean id="viewNameTranslator" class="org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator"/>
+
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+</beans>

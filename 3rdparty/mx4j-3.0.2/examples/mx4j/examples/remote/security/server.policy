@@ -1,0 +1,63 @@
+/*
+ * Copyright (C) The MX4J Contributors.
+ * All rights reserved.
+ *
+ * This software is distributed under the terms of the MX4J License version 1.0.
+ * See the terms of the MX4J License in the documentation provided with this software.
+ */
+
+/*
+ * This is an example policy file for a JMXConnectorServer that uses RMI/JRMP,
+ * working with JDK 1.4+.
+ * Refer to the bundled example class mx4j.examples.remote.security.Server and to the
+ * MX4J documentation for more details.
+ */
+
+grant codebase "file:${user.dir}/dist/lib/mx4j-remote.jar"
+{
+   permission java.security.AllPermission;
+};
+grant codebase "file:${user.dir}/dist/lib/mx4j.jar"
+{
+   permission java.security.AllPermission;
+};
+grant codebase "file:${user.dir}/dist/lib/mx4j-impl.jar"
+{
+   permission java.security.AllPermission;
+};
+grant codebase "file:${user.dir}/dist/lib/mx4j-jmx.jar"
+{
+   permission java.security.AllPermission;
+};
+grant codebase "file:${user.dir}/dist/lib/mx4j-tools.jar"
+{
+   permission java.security.AllPermission;
+};
+
+grant codebase "file:${user.dir}/dist/examples/mx4j-examples.jar"
+{
+   permission java.security.AllPermission;
+};
+grant codebase "file:${user.dir}/lib/bcel.jar"
+{
+   permission java.security.AllPermission;
+};
+
+grant
+{
+   permission javax.security.auth.AuthPermission "doAsPrivileged";
+
+   permission java.net.SocketPermission "localhost:1024-", "listen,resolve";
+   permission java.net.SocketPermission "*", "accept,resolve";
+};
+
+grant principal javax.management.remote.JMXPrincipal "admin"
+{
+   permission java.security.AllPermission;
+};
+
+grant principal javax.management.remote.JMXPrincipal "guest"
+{
+   permission javax.management.MBeanPermission "*", "queryNames";
+   permission javax.management.remote.SubjectDelegationPermission "javax.management.remote.JMXPrincipal.*";
+};

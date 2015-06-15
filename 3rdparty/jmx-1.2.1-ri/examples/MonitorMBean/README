@@ -1,0 +1,102 @@
+/*
+ * @(#)file      README
+ * @(#)author    Sun Microsystems, Inc.
+ * @(#)version   4.10
+ * @(#)date      03/07/15
+ *
+ * Copyright 2000-2003 Sun Microsystems, Inc.  All rights reserved.
+ * This software is the proprietary information of Sun Microsystems, Inc.
+ * Use is subject to license terms.
+ * 
+ * Copyright 2000-2003 Sun Microsystems, Inc.  Tous droits réservés.
+ * Ce logiciel est proprieté de Sun Microsystems, Inc.
+ * Distribué par des licences qui en restreignent l'utilisation. 
+ */
+
+
+                         Monitor MBean Example
+                         =====================
+
+
+-----------------------------------------------------------------------
+1. Overview
+-----------------------------------------------------------------------
+
+This example shows how to implement a simple agent application that uses the 
+monitoring service defined in the JMX specification.
+
+The agent in this example registers a monitor MBean which observes the
+number of MBeans registered in the MBean server.
+
+In order to receive information from the monitor, the example also
+shows how to implement a notification listener with the JMX
+notification model.
+
+
+-----------------------------------------------------------------------
+2. File List
+-----------------------------------------------------------------------
+
+This example is based on the following source files:
+
+ * MonitorAgent.java:
+    - Creates an MBean server
+    - Registers a monitor MBean in the MBean server which sends out a
+      notification when the number of registered MBeans exceeds a pre-
+      defined threshold
+    - Registers many MBeans of class Simple
+    - Registers a standard MBean (StandardObservedObject) and then a 
+      dynamic MBean (DynamicObservedObject) each having an attribute
+      representing the number of MBeans registered in the MBean server
+    - Declares a listener for the notifications emitted by the monitor
+      MBean
+    - Unregisters all of the MBeans	
+
+ * AgentListener.java:
+    - Receives the notifications emitted by the monitor MBean
+
+ * Simple.java:
+    - A standard MBean
+
+ * SimpleMBean.java:
+    - The management interface of the MBean Simple
+
+ * StandardObservedObject.java:
+    - A standard MBean having an attribute representing the number of
+      MBeans registered in the MBean server
+
+ * StandardObservedObjectMBean.java:
+    - The management interface of the MBean StandardObservedObject
+
+ * DynamicObservedObject.java:
+    - A dynamic MBean having an attribute representing the number of
+      MBeans registered in the MBeanServer
+
+
+-----------------------------------------------------------------------
+3. Building and Running the Example
+-----------------------------------------------------------------------
+
+To build and run this example, make sure that your PATH and CLASSPATH
+environment variables are correctly set to use the Java 2 platform. In
+addition, your CLASSPATH must also contain the JMX reference implemen-
+tation jar file (jmxri.jar), as well as the current directory (.).
+
+These instructions assume the classpath is set in an environment
+variable, though it may also be given on the command line with the
+-classpath option.
+
+To compile the example, type the following commands:
+
+   cd examples/MonitorMBean/
+   javac *.java
+
+To run the example using the classes you have just built, type the
+following command:
+
+   java MonitorAgent
+
+You then interact with the agent through the standard input and output
+in the window where it was launched. The MonitorAgent class displays
+information about each management step and waits for user input before
+continuing.

@@ -1,0 +1,27 @@
+<?xml version="1.0"?><!DOCTYPE environment PUBLIC '-//Viewtier Systems, Inc.//DTD Devenv 2.0//EN'
+        'http://www.viewtier.com/devenv/dtd/devenv20.dtd'>
+<environment>
+   <validate>
+      <!-- JDK -->
+      <dir property="java.home" required="yes">
+         <location path="C:\devenv\java\jdk1.5.0_13"/>
+         <location path="/opt/jdk1.5.0_17"/>
+         <location path="/System/Library/Frameworks/JavaVM.framework/Versions/1.5.0/Home"/>
+      </dir>
+      <dir location="${java.home}/bin" required="yes" path="yes"/>
+
+      <!-- Directories -->
+      <dir property="internal.bin" location="${project.home}/internal/bin" required="yes" path="yes"/>
+      <dir property="dir.env" required="yes" location="env"/>
+      <dir property="3rdparty" required="yes" location="3rdparty"/>
+      <dir property="ant.home" required="yes" location="${3rdparty}/apache-ant-1.7.0"/>
+      <dir required="yes" location="${ant.home}/bin" path="yes"/>
+      <dir property="src" location="src" required="yes"/>
+   </validate>
+
+   <output>
+      <shell variable="JAVA_HOME" path="${java.home}"/>
+      <shell variable="ANT_HOME" path="${ant.home}"/>
+      <shell variable="ANT_OPTS" value="-Xmx200m"/>
+   </output>
+</environment>

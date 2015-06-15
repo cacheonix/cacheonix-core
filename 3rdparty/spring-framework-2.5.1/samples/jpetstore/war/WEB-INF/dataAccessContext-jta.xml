@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  - Application context definition for JPetStore's data access layer.
+  - Accessed by business layer objects defined in "applicationContext.xml"
+  - (see web.xml's "contextConfigLocation").
+  -
+  - This version of the data access layer works on two databases (main/order),
+  - using JNDI DataSources with JtaTransactionManager. It obviously depends on
+  - JTA support in the container, and on pre-configured container DataSources.
+  -
+  - This version also uses the "jndi:" namespace introduced in Spring 2.0
+  - to configured JNDI referenced objects.
+  -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	     xmlns:jee="http://www.springframework.org/schema/jee"
+	     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.0.xsd">
+
+	<!-- ========================= RESOURCE DEFINITIONS ========================= -->
+
+	<!-- Main JNDI DataSource for J2EE environments -->
+	<!-- Refers to the main database, containing product and account data -->
+	<!-- (see dataAccessContext-local.xml for an alternative) -->
+    <jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/jpetstore"/>
+
+	<!-- Additional JNDI DataSource for J2EE environments -->
+	<!-- Refers to the order database, containing order data -->
+	<!-- (see dataAccessContext-local.xml for an alternative) -->
+    <jee:jndi-lookup id="orderDataSource" jndi-name="java:comp/env/jdbc/jpetstore-order"/>
+
+	<!-- Transaction manager that delegates to JTA (for a transactional JNDI DataSource) -->
+	<!-- Necessary here due to the need for distributed transactions across two databases -->
+	<!-- (see dataAccessContext-local.xml for an alternative) -->
+	<bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager"/>
+
+	<!-- SqlMap setup for iBATIS Database Layer -->
+	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation" value="WEB-INF/sql-map-config.xml"/>
+	</bean>
+
+
+	<!-- ========================= DAO DEFINITIONS: IBATIS IMPLEMENTATIONS ========================= -->
+
+	<bean id="accountDao" class="org.springframework.samples.jpetstore.dao.ibatis.SqlMapAccountDao">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="sqlMapClient" ref="sqlMapClient"/>
+	</bean>
+
+	<bean id="categoryDao" class="org.springframework.samples.jpetstore.dao.ibatis.SqlMapCategoryDao">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="sqlMapClient" ref="sqlMapClient"/>
+	</bean>
+
+	<bean id="productDao" class="org.springframework.samples.jpetstore.dao.ibatis.SqlMapProductDao">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="sqlMapClient" ref="sqlMapClient"/>
+	</bean>
+
+	<bean id="itemDao" class="org.springframework.samples.jpetstore.dao.ibatis.SqlMapItemDao">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="sqlMapClient" ref="sqlMapClient"/>
+	</bean>
+
+	<!-- Refers to the order database here -->
+	<!-- (see dataAccessContext-local.xml for an alternative) -->
+	<bean id="orderDao" class="org.springframework.samples.jpetstore.dao.ibatis.SqlMapOrderDao">
+		<property name="dataSource" ref="orderDataSource"/>
+		<property name="sqlMapClient" ref="sqlMapClient"/>
+		<property name="sequenceDao" ref="sequenceDao"/>
+	</bean>
+
+	<!-- OrderDao definition for MS SQL Server -->
+	<!-- (to be used instead of the default orderDao) -->
+	<!--
+	<bean id="orderDao" class="org.springframework.samples.jpetstore.dao.ibatis.MsSqlOrderDao">
+		<property name="dataSource" ref="orderDataSource"/>
+		<property name="sqlMapClient" ref="sqlMapClient"/>
+		<property name="sequenceDao" ref="sequenceDao"/>
+	</bean>
+	-->
+
+	<!-- Refers to the order database here -->
+	<!-- (see dataAccessContext-local.xml for an alternative) -->
+	<bean id="sequenceDao" class="org.springframework.samples.jpetstore.dao.ibatis.SqlMapSequenceDao">
+		<property name="dataSource" ref="orderDataSource"/>
+		<property name="sqlMapClient" ref="sqlMapClient"/>
+	</bean>
+
+	<!-- SequenceDao definition for Oracle databases -->
+	<!-- (to be used instead of the default sequenceDao) -->
+	<!--
+	<bean id="sequenceDao" class="org.springframework.samples.jpetstore.dao.ibatis.OracleSequenceDao">
+		<property name="dataSource" ref="orderDataSource"/>
+		<property name="sqlMapClient" ref="sqlMapClient"/>
+	</bean>
+	-->
+
+</beans>

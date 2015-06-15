@@ -1,0 +1,269 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Clover 1.3.12 Release Notes</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<link href="resources/style.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+<div class="header">
+  <span class="sectionLinks">
+   <a href="http://www.cenqua.com/">Cenqua</a>
+    | <a href="http://www.cenqua.com/clover/index.html">Clover</a>
+    | <a href="http://www.cenqua.com/forums/category.jspa?categoryID=2">Forums</a>
+  </span>
+  <h1><a href="index.html"><img src="resources/cenqua_logo.gif"  alt="Cenqua" width="143" height="40" border="0"/></a></h1>
+</div>
+
+<div class="container">
+
+<div class="main" style="width:660px; margin:0; background-image:none;">
+<img src="resources/clover_logo.gif"  alt="Clover" width="143" height="40" border="0"/>
+    <h2>1.3.12 Release Notes</h2>
+    <p><strong>Release date:</strong> February 08 2006</p>
+    <p>
+      This is a bugfix release. It addresses a problem that prevented Clover-instrumented classes from loading correctly
+       in JBoss 3.x under some conditions. It also includes various minor improvements and bugfixes.
+    </p>
+
+    <h3>Documentation</h3>
+    <p>For information about installing, configuring and using Clover, please consult the
+        <strong><a href="clover-manual.pdf">Clover User Manual</a></strong>.</p>
+    <p>For the most current documentation, please visit
+        <strong><a href="http://www.cenqua.com/clover">http://www.cenqua.com/clover</a></strong>.</p>
+    <h3>License</h3>
+    <p><strong>You will need a valid Clover license file to run Clover.</strong> You can obtain a free 30 day evaluation license or
+    purchase a commercial license at <a href="http://www.cenqua.com">http://www.cenqua.com</a></p>
+    <p>To install your Clover license file, you need to do one of the following:
+                <ul>
+                    <li>Place the license file next to the Clover jar file (or next to the Clover plugin jar file, if you
+                        are running a Clover IDE plugin).</li>
+                    <li>Place the license file on the Java Classpath that will be used to run Clover.</li>
+                    <li>Place the license file on the file system somewhere, and then set the Java System Property
+                        <code>clover.license.path</code> to the absolute path of the license file.</li>
+                </ul>
+            </p>
+<h3>Feedback</h3>
+Our <strong><a href="http://www.cenqua.com/forums">Online Forums</a></strong> are a great place to get help with Clover or suggest
+a new feature.
+
+Its easier for us to help you if you include the following information in your
+post:
+<ul>
+   <li>Java Runtime version</li>
+   <li>Clover version</li>
+   <li>Ant version</li>
+   <li>Operating system</li>
+   <li>IDE version</li>
+   <li>Hosting app server if any</li>   
+</ul>
+<p>Alternatively, you can get support by mailing the Clover Team directly at <a href="mailto:clover-support@cenqua.com">clover-support@cenqua.com</a></p>
+
+
+<h3>Sales</h3>
+<p>For Clover sales or licensing questions, please email us at <a href="mailto:clover-sales@cenqua.com">clover-sales@cenqua.com</a></p>
+<h3>Change Log</h3>
+ <h4>Changes in 1.3.12</h4>
+   <ul>
+       <li>CCD-225 - if instrumentation fails, Clover leaves temp files</li>
+       <li>CCD-226 - Clover builder assumes that user.dir is writeable</li>
+       <li>CCD-227 - &lt;clover-clean&gt; fails silently for relative initstring on OSX</li>
+       <li>CCD-229 - CloverMerge breaks if user defined contexts replace reserved id's after a merge</li>
+       <li>CCD-230 - Clover instrumentation causes IllegalAccessError in JBoss 3</li>
+       <li>CCD-222 - add debug to show searching of source path</li>
+       <li>CCD-224 - provide a way to set the source level in &lt;clover-setup&gt;</li>
+   </ul>
+    <h4>Changes in 1.3.11</h4>
+      <ul>
+        <li>CCD-183: when no destdir specified on &lt;javac&gt;, Clover breaks</li>
+        <li>CCD-210: need better warning message when runtime Clover mismatch occurs</li>
+        <li>CCD-215: html reports don't render correctly on windows</li>
+        <li>CCD-217,CCD-218: use checksum instead of file timestamp when comparing source files</li>
+        <li>CCD-219: should be able to set license path with ant property</li>
+        <li>CCD-220: directed flushing can miss some coverage data</li>
+        <li>CCD-221: OutOfMemoryError generating historical report</li>
+      </ul>
+    <h4>Changes in 1.3.10</h4>
+    <ul>
+          <li>CCD-68: clover-merge doesn't merge user contexts from different dbs.</li>
+          <li>CCD-207: specifying -jdk15 should imply -jdk14</li>
+          <li>CCD-213: ///CLOVER:FLUSH broken</li>
+          <li>CCD-209: should be able to specify individual method,stmt,branch targets on &lt;clover-check&gt;</li>
+          <li>CCD-211: CloverMerge shouldn't rely on timestamp comparison</li>
+          <li>CCD-212: Clover should report language level at instrumentation time</li>
+        </ul>
+    <h4>Changes in 1.3.9</h4>
+     <ul>
+       <li>CCD-205: Clover doesn't support empty enum decls</li>
+       <li>CCD-206: Constant expressions allowed in Annotation defs</li>
+       <li>CCD-203: need a 'package' level on &lt;clover-log&gt; report</li>
+     </ul>
+    <h4>Changes in 1.3.8</h4>
+     <ul>
+       <li>CCD-202: workaround for bug #34722 in Ant 1.6.3
+       <li>CCD-188: set Ant property clover.jarpath to the path of the clover jar
+     </ul>
+    <h4>Changes in 1.3.7</h4>
+    <p>
+      <strong><u>Important Note:</u><br/><br/>
+      Clover 1.3.7 introduces changes to the format and naming of coverage recording files.</strong> Recordings made with previous
+      versions of Clover are not compatible with Clover 1.3.7. This won't affect you unless you are using spans when
+      generating reports or historypoints, and you keep old coverage recording files. <strong>You should ensure that all old
+      coverage recording files have been deleted before using Clover 1.3.7.</strong>
+    </p>
+    <p><strong>Clover recording files can now have names of the form:</strong><br/><br/>
+         <code>clover.dbHHHHHHH_TTTTTTTTTT</code> or<br/>
+         <code>clover.dbHHHHHHH_TTTTTTTTTT.1</code> <i>(new)</i><br/><br/>
+       <strong>Users that copy recording files from remote testing environments will need to ensure that they copy both forms of
+       recording.</strong>
+    </p>
+     <ul>
+       <li>CCD-196: clover-report uses wrong logger instance in multiple ant task invocations</li>
+       <li>CCD-198: source in HTML reports doesn't render whitespace correctly in IE5.5</li>
+       <li>CCD-199: UncoveredElements comparator not working</li>
+       <li>CCD-200: Summary reports broken in ConsoleReporter CLI</li>
+       <li>CCD-201: Clover 1.3.6 and filters: no longer compatible with jdk1.3.1</li>
+       <li>CCD-166: interval flushing causes problems for reporters</li>
+       <li>CCD-197: clover.jar should have version number in manifest</li>
+     </ul>
+    <h4>Changes in 1.3.6</h4>
+     <ul>
+      <li>CCD-181: clover.initstring.basedir not working as documented</li>
+<li>CCD-190: default contexts not available to CompilerAdapter if no custom contexts defined in &lt;clover-setup&gt;</li>
+<li>CCD-191: reporters should warn if unknown context name</li>
+<li>CCD-193: &lt;clover-log&gt; doesn't report total percentage coverage</li>
+<li>CCD-128: clover db corrupted if no space left on device</li>
+<li>CCD-143: detect double-instrumentation and throw an exception</li>
+     </ul>
+    <h4>Changes in 1.3.5</h4>
+     <ul>
+     <li>CCD-178,186: esoteric instrumentation bugs</li>
+     <li>CCD-179: \u0000 not handled in comments</li>
+     <li>CCD-185: should resolve sourcepath before filename filtering, not after.</li>
+     <li>CCD-177: CLI tools should return status int from main()</li>
+     </ul>
+    <h4>Changes in 1.3.4</h4>
+     <ul>
+      <li>CCD-170: setEncoding on internal javac instance breaks jikes compilation</li>
+      <li>CCD-125: allow historical reports to be generated with &lt; 2 historypoints</li>
+      <li>CCD-173: clover-historypoint should support the "alwaysreport" attribute</li>
+      <li>CCD-175: CloverInstr should support --encoding</li>
+      <li>CCD-174: java1.5 inner annotations not supported</li>
+      <li>CCD-172: NPE in cloverdbset if no span set</li>
+      <li>CCD-171: XML reporter could be more memory-efficient</li>
+      <li>CCD-102: Legend Munged in Historical Report Graph on OSX</li>
+     </ul>
+    <h4>Changes in 1.3.3_01</h4>
+    <ul>
+      <li>CCD-66: &lt;clover-clean&gt; doesn't preserve the db context file</li>
+      <li>CCD-75: Problem instrumenting non-standard chars</li>
+      <li>CCD-163: Clover should attempt to read only files in the historydir, not directories.</li>
+      <li>CCD-165: threaded flushpolicy can hang VM</li>
+      <li>CCD-168: inner class in enum breaks instrumentation</li>
+      <li>CCD-127: add spawn="true|false" to &lt;clover-view&gt; task</li>
+      <li>CCD-148: support fileset-like db specifications in &lt;clover-merge&gt;</li>
+      <li>CCD-151: liberate the db registry from absolute paths</li>
+      <li>CCD-155: should support source with \u encoded unicode </li>
+      <li>CCD-157: error message for instr/runtime clover mismatch should be more informative.</li>
+      <li>CCD-160: console reporter should show conditional coverage</li>
+      <li>CCD-164: add outputproperty to clover-log task</li>
+      <li>CCD-169: unicode decoding should degrade gracefully</li>
+    </ul>
+    <h4>Changes in 1.3.2</h4>
+    <ul>
+     <li>CCD-144: movers data missing from historical report</li>
+     <li>CCD-145,CCD-150: problems using &lt;clover-merge&gt; with disjoint databases</li>
+     <li>CCD-146: filtering broken when generating report from Swing Viewer</li>
+     <li>CCD-141: CLI for Clover Merge functionality.</li>
+     <li>CCD-79: CoverageTreeModel should order packages before classes.</li>
+     <li>CCD-101: allow long package names to be truncated in HTML reports</li>
+     <li>CCD-142: Set clovercompiler automatically</li>
+     <li>CCD-152: new "total elements uncovered" comparator for reports</li>
+    </ul>
+    <h4>Changes in 1.3.1_01</h4>
+    <ul>
+  	   <li>CCD-124: document alwaysReport on &lt;clover-report&gt;&lt;current&gt;</li>
+  	   <li>CCD-140: PDF report generation fails: Helvetica-Bold not found as resource.</li>
+   	</ul>
+    <h4>Changes in 1.3.1</h4>
+    <ul>
+  	   <li>CCD-133: explicitly set bgcolor of html reports to white</li>
+   	   <li>CCD-134: Ant causes problems with attributes named "id" on task subelements</li>
+       <li>CCD-129: NPE when using &lt;clover-merge&gt;</li>
+   	</ul>
+   	<h4>Changes in 1.3.1RC1</h4>
+    <ul>
+   	  <li>CCD-56: Command Line Interface for PDF reports</li>
+   	  <li>CCD-97: allow context filtering in &lt;clover-historypoint&gt;</li>
+      <li>CCD-118: NPE running Clover for Ant via Netbeans.</li>
+   	  <li>CCD-116: Dangling else incorrectly instrumented in some cases</li>
+      <li>CCD-123: Reading registry header fails on BEA 8 sp2</li>
+   	  <li>CCD-121: some statement types not matched by stmt contexts</li>
+   	  <li>CCD-122: ///CLOVER:FLUSH not working</li>
+   	  <li>CCD-120: Historical report generation gives OOME</li>
+   	</ul>
+    <h4>Changes in 1.3_02</h4>
+    <ul>
+      <li>CEC-71, CCD-115: fix license verification that was failing on some jdk versions</li>
+      <li>CCD-111: NPE if format not specified for historical report</li>
+      <li>CCD-113: add doco for flushpolicy changes to CloverInstr</li>
+    </ul>
+    <h4>Changes in 1.3 Final</h4>
+    <ul>
+      <li>CCD-100 PDF reports are broken in RC4</li>
+   	  <li>CCD-108 Clover should detect when clovercompiler is Clover</li>
+   	  <li>CCD-99  linecounts in fragmented package tree view are wrong</li>
+   	  <li>CCD-107 CloverInstr maintains state between calls</li>
+   	  <li>CCD-104 add failonError attribute to &lt;clover-report&gt;</li>
+   	  <li>CCD-103 &lt;clover-merge&gt; doesn't merge records properly</li>
+   	</ul>
+    <h4>Changes in 1.3RC4</h4>
+    <ul>
+      <li>CCD-94 template decoding broken on HP-UX</li>
+      <li>CCD-93 encoding not preserved during instrumentation</li>
+    </ul>
+    <h4>Changes in 1.3RC3</h4>
+    <ul>
+    <li>CCD-91 Upgrade to Velocity 1.4</li>
+    <li>CCD-87 Context storage breaks with relative initstring</li>
+    <li>CCD-92 Repackaged Clover - new company name</li>
+    </ul>
+    <h4>Changes in 1.3RC2</h4>
+    <ul>
+    <li>CCD-60 expose CLI API</li>
+    <li>CCD-80 leading '0' is legal for java floats.</li>
+    <li>CCD-82 can't have implied reference to java.lang.System</li>
+    <li>CCD-86 can't specify jdk1.5 using CloverInstr</li>
+    <li>CCD-81 shouldn't be instrumenting constant bool expr in for loop</li>
+    </ul>
+    <h4>Changes in 1.3RC1</h4>
+
+    <ul>
+    <li>CCD-28 JDK1.5 language features supported</li>
+    <li>CCD-9  regexp-based method &amp; statement level filtering of coverage results</li>
+    <li>CCD-14 new &lt;clover-merge&gt; Ant task allows merging of multiple coverage databases at report time</li>
+    <li>CCD-34 new &lt;clover-clean&gt; Ant task allows configurable management of coverage database</li>
+    <li>CCD-61 &lt;clover-check&gt; Ant task now allows more fine grained checking </li>
+    <li>CCD-16 &lt;history-point&gt; Ant task now accepts &lt;fileset&gt; subelement </li>
+    <li>CCD-39 improved graceful degradation of instrumented code</li>
+    <li>CCD-11 can now exclude coverage results of @deprecated methods from reports</li>
+    <li>CCD-59 CLI reporters now support spans</li>
+    <li>CCD-44 tabwidth now configurable in viewer, reports </li>
+    <li>CCD-19 new "threaded" flushpolicy</li>
+    <li>CCD-45 all html report pages now rendered in UTF-8</li>
+    <li>CCD-52,CCD-53,CCD-63,CCD-78 various instrumentation bugs</li>
+    <li>CCD-69 html reports now rendering properly in FireFox 0.8</li>
+    <li>CCD-37 exclude patterns no loner incorrectly split on space</li>
+    <li>CCD-51 Clover no longer assumes it is installed in ANT_HOME/lib</li>
+    </ul>
+</div>
+<div style="clear:both;">&nbsp;</div>
+</div><!--container-->
+
+<div class="footer">&copy; 1999-2006 Cenqua Pty Ltd. All Rights Reserved. </div>
+</body>
+</html>

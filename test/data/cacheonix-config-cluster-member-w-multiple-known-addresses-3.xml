@@ -1,0 +1,34 @@
+<?xml version ="1.0"?>
+<!-- Cluster member #3 -->
+<cacheonix xmlns="http://www.cacheonix.com/schema/configuration"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.cacheonix.com/schema/configuration http://www.cacheonix.com/schema/cacheonix-config-2.0.xsd">
+
+
+   <tempDir path="${java.io.temp}"/>
+
+   <server>
+
+      <cluster homeAloneTimeout="10s" clusterAnnouncementTimeout="100ms" clusterSurveyTimeout="500ms"
+               worstCaseLatency="10s"/>
+
+      <listener>
+         <tcp port="8879" address="127.0.0.1" buffer="128k"/>
+      </listener>
+
+      <broadcast>
+         <knownAddress>
+            <tcp address="127.0.0.1" port="8877"/>
+         </knownAddress>
+         <knownAddress>
+            <tcp address="127.0.0.1" port="8878"/>
+         </knownAddress>
+      </broadcast>
+
+      <partitionedCache name="partitioned.distributed.cache">
+         <store>
+            <lru maxElements="100000" maxBytes="50m"/>
+         </store>
+      </partitionedCache>
+   </server>
+</cacheonix>

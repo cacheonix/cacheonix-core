@@ -1,0 +1,428 @@
+<?xml version="1.0"  encoding="UTF-8"?><pmd-cpd>
+<duplication lines="47" tokens="198">
+<file line="156" path="/home/phil/math/tags/MATH_1_2_RC3/src/java/org/apache/commons/math/ode/EmbeddedRungeKuttaIntegrator.java"/>
+<file line="138" path="/home/phil/math/tags/MATH_1_2_RC3/src/java/org/apache/commons/math/ode/RungeKuttaIntegrator.java"/>
+<codefragment>
+<![CDATA[
+  }
+
+  /** Integrate the differential equations up to the given time.
+   * <p>This method solves an Initial Value Problem (IVP).</p>
+   * <p>Since this method stores some internal state variables made
+   * available in its public interface during integration ({@link
+   * #getCurrentSignedStepsize()}), it is <em>not</em> thread-safe.</p>
+   * @param equations differential equations to integrate
+   * @param t0 initial time
+   * @param y0 initial value of the state vector at t0
+   * @param t target time for the integration
+   * (can be set to a value smaller than <code>t0</code> for backward integration)
+   * @param y placeholder where to put the state vector at each successful
+   *  step (and hence at the end of integration), can be the same object as y0
+   * @throws IntegratorException if the integrator cannot perform integration
+   * @throws DerivativeException this exception is propagated to the caller if
+   * the underlying user function triggers one
+   */
+  public void integrate(FirstOrderDifferentialEquations equations,
+                        double t0, double[] y0,
+                        double t, double[] y)
+  throws DerivativeException, IntegratorException {
+
+    sanityChecks(equations, t0, y0, t, y);
+    boolean forward = (t > t0);
+
+    // create some internal working arrays
+    int stages = c.length + 1;
+    if (y != y0) {
+      System.arraycopy(y0, 0, y, 0, y0.length);
+    }
+    double[][] yDotK = new double[stages][];
+    for (int i = 0; i < stages; ++i) {
+      yDotK [i] = new double[y0.length];
+    }
+    double[] yTmp = new double[y0.length];
+
+    // set up an interpolator sharing the integrator arrays
+    AbstractStepInterpolator interpolator;
+    if (handler.requiresDenseOutput() || (! switchesHandler.isEmpty())) {
+      RungeKuttaStepInterpolator rki = (RungeKuttaStepInterpolator) prototype.copy();
+      rki.reinitialize(equations, yTmp, yDotK, forward);
+      interpolator = rki;
+    } else {
+      interpolator = new DummyStepInterpolator(yTmp, forward);
+    }
+    interpolator.storeTime(t0);
+]]>
+</codefragment>
+</duplication>
+<duplication lines="22" tokens="190">
+<file line="245" path="/home/phil/math/tags/MATH_1_2_RC3/src/java/org/apache/commons/math/ode/EmbeddedRungeKuttaIntegrator.java"/>
+<file line="203" path="/home/phil/math/tags/MATH_1_2_RC3/src/java/org/apache/commons/math/ode/RungeKuttaIntegrator.java"/>
+<codefragment>
+<![CDATA[
+        for (int k = 1; k < stages; ++k) {
+
+          for (int j = 0; j < y0.length; ++j) {
+            double sum = a[k-1][0] * yDotK[0][j];
+            for (int l = 1; l < k; ++l) {
+              sum += a[k-1][l] * yDotK[l][j];
+            }
+            yTmp[j] = y[j] + stepSize * sum;
+          }
+
+          equations.computeDerivatives(stepStart + c[k-1] * stepSize, yTmp, yDotK[k]);
+
+        }
+
+        // estimate the state at the end of the step
+        for (int j = 0; j < y0.length; ++j) {
+          double sum    = b[0] * yDotK[0][j];
+          for (int l = 1; l < stages; ++l) {
+            sum    += b[l] * yDotK[l][j];
+          }
+          yTmp[j] = y[j] + stepSize * sum;
+        }
+]]>
+</codefragment>
+</duplication>
+<duplication lines="26" tokens="143">
+<file line="519" path="/home/phil/math/tags/MATH_1_2_RC3/src/java/org/apache/commons/math/linear/BigMatrixImpl.java"/>
+<file line="388" path="/home/phil/math/tags/MATH_1_2_RC3/src/java/org/apache/commons/math/linear/RealMatrixImpl.java"/>
+<codefragment>
+<![CDATA[
+    public void setSubMatrix(double[][] subMatrix, int row, int column) 
+        throws MatrixIndexException {
+        if ((row < 0) || (column < 0)){
+            throw new MatrixIndexException
+                ("invalid row or column index selection");          
+        }
+        int nRows = subMatrix.length;
+        if (nRows == 0) {
+            throw new IllegalArgumentException(
+            "Matrix must have at least one row."); 
+        }
+        int nCols = subMatrix[0].length;
+        if (nCols == 0) {
+            throw new IllegalArgumentException(
+            "Matrix must have at least one column."); 
+        }
+        for (int r = 1; r < nRows; r++) {
+            if (subMatrix[r].length != nCols) {
+                throw new IllegalArgumentException(
+                "All input rows must have the same length.");
+            }
+        }       
+        if (data == null) {
+            if ((row > 0)||(column > 0)) throw new MatrixIndexException
+                ("matrix must be initialized to perfom this method");
+            data = new double[nRows][nCols];
+]]>
+</codefragment>
+</duplication>
+<duplication lines="55" tokens="140">
+<file line="46" path="/home/phil/math/tags/MATH_1_2_RC3/src/java/org/apache/commons/math/analysis/MullerSolver.java"/>
+<file line="45" path="/home/phil/math/tags/MATH_1_2_RC3/src/java/org/apache/commons/math/analysis/RiddersSolver.java"/>
+<codefragment>
+<![CDATA[
+    public RiddersSolver(UnivariateRealFunction f) {
+        super(f, 100, 1E-6);
+    }
+
+    /**
+     * Find a root in the given interval with initial value.
+     * <p>
+     * Requires bracketing condition.</p>
+     * 
+     * @param min the lower bound for the interval
+     * @param max the upper bound for the interval
+     * @param initial the start value to use
+     * @return the point at which the function value is zero
+     * @throws MaxIterationsExceededException if the maximum iteration count is exceeded
+     * @throws FunctionEvaluationException if an error occurs evaluating the
+     * function
+     * @throws IllegalArgumentException if any parameters are invalid
+     */
+    public double solve(double min, double max, double initial) throws
+        MaxIterationsExceededException, FunctionEvaluationException {
+
+        // check for zeros before verifying bracketing
+        if (f.value(min) == 0.0) { return min; }
+        if (f.value(max) == 0.0) { return max; }
+        if (f.value(initial) == 0.0) { return initial; }
+
+        verifyBracketing(min, max, f);
+        verifySequence(min, initial, max);
+        if (isBracketing(min, initial, f)) {
+            return solve(min, initial);
+        } else {
+            return solve(initial, max);
+        }
+    }
+
+    /**
+     * Find a root in the given interval.
+     * <p>
+     * Requires bracketing condition.</p>
+     * 
+     * @param min the lower bound for the interval
+     * @param max the upper bound for the interval
+     * @return the point at which the function value is zero
+     * @throws MaxIterationsExceededException if the maximum iteration count is exceeded
+     * @throws FunctionEvaluationException if an error occurs evaluating the
+     * function 
+     * @throws IllegalArgumentException if any parameters are invalid
+     */
+    public double solve(double min, double max) throws MaxIterationsExceededException, 
+        FunctionEvaluationException {
+
+        // [x1, x2] is the bracketing interval in each iteration
+        // x3 is the midpoint of [x1, x2]
+        // x is the new root approximation and an endpoint of the new interval
+        double x1, x2, x3, x, oldx, y1, y2, y3, y, delta, correction, tolerance;
+]]>
+</codefragment>
+</duplication>
+<duplication lines="32" tokens="127">
+<file line="1104" path="/home/phil/math/tags/MATH_1_2_RC3/src/java/org/apache/commons/math/linear/BigMatrixImpl.java"/>
+<file line="855" path="/home/phil/math/tags/MATH_1_2_RC3/src/java/org/apache/commons/math/linear/RealMatrixImpl.java"/>
+<codefragment>
+<![CDATA[
+        res.append("RealMatrixImpl{");
+        if (data != null) {
+            for (int i = 0; i < data.length; i++) {
+                if (i > 0)
+                    res.append(",");
+                res.append("{");
+                for (int j = 0; j < data[0].length; j++) {
+                    if (j > 0)
+                        res.append(",");
+                    res.append(data[i][j]);
+                } 
+                res.append("}");
+            } 
+        }
+        res.append("}");
+        return res.toString();
+    } 
+    
+    /**
+     * Returns true iff <code>object</code> is a 
+     * <code>RealMatrixImpl</code> instance with the same dimensions as this
+     * and all corresponding matrix entries are equal.  Corresponding entries
+     * are compared using {@link java.lang.Double#doubleToLongBits(double)}
+     * 
+     * @param object the object to test equality against.
+     * @return true if object equals this
+     */
+    public boolean equals(Object object) {
+        if (object == this ) {
+            return true;
+        }
+        if (object instanceof RealMatrixImpl == false) {
+]]>
+</codefragment>
+</duplication>
+<duplication lines="20" tokens="119">
+<file line="173" path="/home/phil/math/tags/MATH_1_2_RC3/src/java/org/apache/commons/math/ode/AdaptiveStepsizeIntegrator.java"/>
+<file line="115" path="/home/phil/math/tags/MATH_1_2_RC3/src/java/org/apache/commons/math/ode/RungeKuttaIntegrator.java"/>
+<codefragment>
+<![CDATA[
+  private void sanityChecks(FirstOrderDifferentialEquations equations,
+                            double t0, double[] y0, double t, double[] y)
+    throws IntegratorException {
+    if (equations.getDimension() != y0.length) {
+      throw new IntegratorException("dimensions mismatch: ODE problem has dimension {0}," +
+                                    " initial state vector has dimension {1}",
+                                    new Object[] {
+                                      new Integer(equations.getDimension()),
+                                      new Integer(y0.length)
+                                    });
+    }
+    if (equations.getDimension() != y.length) {
+        throw new IntegratorException("dimensions mismatch: ODE problem has dimension {0}," +
+                                      " final state vector has dimension {1}",
+                                      new Object[] {
+                                        new Integer(equations.getDimension()),
+                                        new Integer(y.length)
+                                      });
+      }
+    if (Math.abs(t - t0) <= 1.0e-12 * Math.max(Math.abs(t0), Math.abs(t))) {
+]]>
+</codefragment>
+</duplication>
+<duplication lines="17" tokens="118">
+<file line="378" path="/home/phil/math/tags/MATH_1_2_RC3/src/java/org/apache/commons/math/stat/descriptive/MultivariateSummaryStatistics.java"/>
+<file line="377" path="/home/phil/math/tags/MATH_1_2_RC3/src/java/org/apache/commons/math/stat/descriptive/SummaryStatistics.java"/>
+<codefragment>
+<![CDATA[
+                MathUtils.equals(stat.getVariance(),this.getVariance()));
+    }
+    
+    /**
+     * Returns hash code based on values of statistics
+     * 
+     * @return hash code
+     */
+    public int hashCode() {
+        int result = 31 + MathUtils.hash(getGeometricMean());
+        result = result * 31 + MathUtils.hash(getGeometricMean());
+        result = result * 31 + MathUtils.hash(getMax());
+        result = result * 31 + MathUtils.hash(getMean());
+        result = result * 31 + MathUtils.hash(getMin());
+        result = result * 31 + MathUtils.hash(getN());
+        result = result * 31 + MathUtils.hash(getSum());
+        result = result * 31 + MathUtils.hash(getSumsq());
+]]>
+</codefragment>
+</duplication>
+<duplication lines="11" tokens="114">
+<file line="217" path="/home/phil/math/tags/MATH_1_2_RC3/src/java/org/apache/commons/math/linear/BigMatrixImpl.java"/>
+<file line="240" path="/home/phil/math/tags/MATH_1_2_RC3/src/java/org/apache/commons/math/linear/BigMatrixImpl.java"/>
+<codefragment>
+<![CDATA[
+    public BigMatrix subtract(BigMatrix m) throws IllegalArgumentException {
+        if (this.getColumnDimension() != m.getColumnDimension() ||
+                this.getRowDimension() != m.getRowDimension()) {
+            throw new IllegalArgumentException("matrix dimension mismatch");
+        }
+        int rowCount = this.getRowDimension();
+        int columnCount = this.getColumnDimension();
+        BigDecimal[][] outData = new BigDecimal[rowCount][columnCount];
+        for (int row = 0; row < rowCount; row++) {
+            for (int col = 0; col < columnCount; col++) {
+                outData[row][col] = data[row][col].subtract(m.getEntry(row, col));
+]]>
+</codefragment>
+</duplication>
+<duplication lines="11" tokens="113">
+<file line="146" path="/home/phil/math/tags/MATH_1_2_RC3/src/java/org/apache/commons/math/linear/RealMatrixImpl.java"/>
+<file line="169" path="/home/phil/math/tags/MATH_1_2_RC3/src/java/org/apache/commons/math/linear/RealMatrixImpl.java"/>
+<codefragment>
+<![CDATA[
+    public RealMatrix subtract(RealMatrix m) throws IllegalArgumentException {
+        if (this.getColumnDimension() != m.getColumnDimension() ||
+                this.getRowDimension() != m.getRowDimension()) {
+            throw new IllegalArgumentException("matrix dimension mismatch");
+        }
+        int rowCount = this.getRowDimension();
+        int columnCount = this.getColumnDimension();
+        double[][] outData = new double[rowCount][columnCount];
+        for (int row = 0; row < rowCount; row++) {
+            for (int col = 0; col < columnCount; col++) {
+                outData[row][col] = data[row][col] - m.getEntry(row, col);
+]]>
+</codefragment>
+</duplication>
+<duplication lines="9" tokens="112">
+<file line="368" path="/home/phil/math/tags/MATH_1_2_RC3/src/java/org/apache/commons/math/stat/descriptive/MultivariateSummaryStatistics.java"/>
+<file line="368" path="/home/phil/math/tags/MATH_1_2_RC3/src/java/org/apache/commons/math/stat/descriptive/SummaryStatistics.java"/>
+<codefragment>
+<![CDATA[
+        SummaryStatistics stat = (SummaryStatistics) object;
+        return (MathUtils.equals(stat.getGeometricMean(), 
+                this.getGeometricMean()) &&
+                MathUtils.equals(stat.getMax(), this.getMax()) && 
+                MathUtils.equals(stat.getMean(),this.getMean()) &&
+                MathUtils.equals(stat.getMin(),this.getMin()) &&
+                MathUtils.equals(stat.getN(), this.getN()) &&
+                MathUtils.equals(stat.getSum(), this.getSum()) &&
+                MathUtils.equals(stat.getSumsq(),this.getSumsq()) &&
+]]>
+</codefragment>
+</duplication>
+<duplication lines="22" tokens="106">
+<file line="1146" path="/home/phil/math/tags/MATH_1_2_RC3/src/java/org/apache/commons/math/linear/BigMatrixImpl.java"/>
+<file line="898" path="/home/phil/math/tags/MATH_1_2_RC3/src/java/org/apache/commons/math/linear/RealMatrixImpl.java"/>
+<codefragment>
+<![CDATA[
+                    Double.doubleToLongBits(m.getEntry(row, col))) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    
+    /**
+     * Computes a hashcode for the matrix.
+     * 
+     * @return hashcode for matrix
+     */
+    public int hashCode() {
+        int ret = 7;
+        int nRows = getRowDimension();
+        int nCols = getColumnDimension();
+        ret = ret * 31 + nRows;
+        ret = ret * 31 + nCols;
+        for (int row = 0; row < nRows; row++) {
+           for (int col = 0; col < nCols; col++) {
+               ret = ret * 31 + (11 * (row+1) + 17 * (col+1)) * 
+]]>
+</codefragment>
+</duplication>
+<duplication lines="38" tokens="104">
+<file line="268" path="/home/phil/math/tags/MATH_1_2_RC3/src/java/org/apache/commons/math/fraction/FractionFormat.java"/>
+<file line="166" path="/home/phil/math/tags/MATH_1_2_RC3/src/java/org/apache/commons/math/fraction/ProperFractionFormat.java"/>
+<codefragment>
+<![CDATA[
+        if (num.intValue() < 0) {
+            // minus signs should be leading, invalid expression
+            pos.setIndex(initialIndex);
+            return null;
+        }
+
+        // parse '/'
+        int startIndex = pos.getIndex();
+        char c = parseNextCharacter(source, pos);
+        switch (c) {
+        case 0 :
+            // no '/'
+            // return num as a fraction
+            return new Fraction(num.intValue(), 1);
+        case '/' :
+            // found '/', continue parsing denominator
+            break;
+        default :
+            // invalid '/'
+            // set index back to initial, error index should be the last
+            // character examined.
+            pos.setIndex(initialIndex);
+            pos.setErrorIndex(startIndex);
+            return null;
+        }
+
+        // parse whitespace
+        parseAndIgnoreWhitespace(source, pos);
+
+        // parse denominator
+        Number den = getDenominatorFormat().parse(source, pos);
+        if (den == null) {
+            // invalid integer number
+            // set index back to initial, error index should already be set
+            // character examined.
+            pos.setIndex(initialIndex);
+            return null;
+        }
+]]>
+</codefragment>
+</duplication>
+<duplication lines="12" tokens="101">
+<file line="972" path="/home/phil/math/tags/MATH_1_2_RC3/src/java/org/apache/commons/math/linear/BigMatrixImpl.java"/>
+<file line="725" path="/home/phil/math/tags/MATH_1_2_RC3/src/java/org/apache/commons/math/linear/RealMatrixImpl.java"/>
+<codefragment>
+<![CDATA[
+        double[][] bp = new double[nRowB][nColB];
+        for (int row = 0; row < nRowB; row++) {
+            for (int col = 0; col < nColB; col++) {
+                bp[row][col] = b.getEntry(permutation[row], col);
+            }
+        }
+
+        // Solve LY = b
+        for (int col = 0; col < nCol; col++) {
+            for (int i = col + 1; i < nCol; i++) {
+                for (int j = 0; j < nColB; j++) {
+                    bp[i][j] -= bp[col][j] * lu[i][col];
+]]>
+</codefragment>
+</duplication>
+</pmd-cpd>

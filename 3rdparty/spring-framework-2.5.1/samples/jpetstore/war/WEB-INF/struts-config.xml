@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+
+<struts-config>
+
+	<form-beans>
+		<form-bean name="accountForm" type="org.springframework.samples.jpetstore.web.struts.AccountActionForm"/>
+		<form-bean name="cartForm" type="org.springframework.samples.jpetstore.web.struts.CartActionForm"/>
+		<form-bean name="emptyForm" type="org.springframework.samples.jpetstore.web.struts.BaseActionForm"/>
+		<form-bean name="workingAccountForm" type="org.springframework.samples.jpetstore.web.struts.AccountActionForm"/>
+		<form-bean name="workingOrderForm" type="org.springframework.samples.jpetstore.web.struts.OrderActionForm"/>
+	</form-beans>
+
+	<global-forwards>
+		<forward name="failure" path="/WEB-INF/jsp/struts/Error.jsp" redirect="false"/>
+		<forward name="unknown-error" path="/WEB-INF/jsp/struts/Error.jsp"/>
+		<forward name="global-signon" path="/WEB-INF/jsp/struts/SignonForm.jsp"/>
+	</global-forwards>
+
+	<action-mappings>
+		<action path="/shop/addItemToCart" type="org.springframework.samples.jpetstore.web.struts.AddItemToCartAction"
+				name="cartForm" scope="session" validate="false">
+			<forward name="success" path="/WEB-INF/jsp/struts/Cart.jsp"/>
+		</action>
+		<action path="/shop/checkout" type="org.springframework.samples.jpetstore.web.struts.ViewCartAction"
+				name="cartForm" scope="session" validate="false">
+			<forward name="success" path="/WEB-INF/jsp/struts/Checkout.jsp"/>
+		</action>
+		<action path="/shop/editAccount" type="org.springframework.samples.jpetstore.web.struts.EditAccountAction"
+				name="workingAccountForm" scope="session" validate="true" input="/WEB-INF/jsp/struts/EditAccountForm.jsp">
+			<forward name="success" path="/shop/index.do"/>
+		</action>
+		<action path="/shop/editAccountForm" type="org.springframework.samples.jpetstore.web.struts.EditAccountFormAction"
+				name="workingAccountForm" scope="session"	validate="false">
+			<forward name="success" path="/WEB-INF/jsp/struts/EditAccountForm.jsp"/>
+		</action>
+		<action path="/shop/index" type="org.springframework.samples.jpetstore.web.struts.DoNothingAction"
+				validate="false">
+			<forward name="success" path="/WEB-INF/jsp/struts/index.jsp"/>
+		</action>
+		<action path="/shop/listOrders" type="org.springframework.samples.jpetstore.web.struts.ListOrdersAction"
+				name="accountForm" scope="session" validate="false">
+			<forward name="success" path="/WEB-INF/jsp/struts/ListOrders.jsp"/>
+		</action>
+		<action path="/shop/newAccount" type="org.springframework.samples.jpetstore.web.struts.NewAccountAction"
+				name="workingAccountForm" scope="session" validate="true" input="/WEB-INF/jsp/struts/NewAccountForm.jsp">
+			<forward name="success" path="/shop/index.do"/>
+		</action>
+		<action path="/shop/newAccountForm" type="org.springframework.samples.jpetstore.web.struts.NewAccountFormAction"
+				name="workingAccountForm" scope="session" validate="false">
+			<forward name="success" path="/WEB-INF/jsp/struts/NewAccountForm.jsp"/>
+		</action>
+		<action path="/shop/newOrder" type="org.springframework.samples.jpetstore.web.struts.NewOrderAction"
+				name="workingOrderForm" scope="session" validate="true" input="/WEB-INF/jsp/struts/NewOrderForm.jsp">
+			<forward name="confirm" path="/WEB-INF/jsp/struts/ConfirmOrder.jsp"/>
+			<forward name="shipping" path="/WEB-INF/jsp/struts/ShippingForm.jsp"/>
+			<forward name="success" path="/WEB-INF/jsp/struts/ViewOrder.jsp"/>
+		</action>
+		<action path="/shop/newOrderForm" type="org.springframework.samples.jpetstore.web.struts.NewOrderFormAction"
+				name="workingOrderForm" scope="session" validate="false">
+			<forward name="success" path="/WEB-INF/jsp/struts/NewOrderForm.jsp"/>
+		</action>
+		<action path="/shop/removeItemFromCart" type="org.springframework.samples.jpetstore.web.struts.RemoveItemFromCartAction"
+				name="cartForm" scope="session" validate="false">
+			<forward name="success" path="/WEB-INF/jsp/struts/Cart.jsp"/>
+		</action>
+		<action path="/shop/searchProducts" type="org.springframework.samples.jpetstore.web.struts.SearchProductsAction"
+				name="emptyForm" scope="session" validate="false">
+			<forward name="success" path="/WEB-INF/jsp/struts/SearchProducts.jsp"/>
+		</action>
+		<action path="/shop/signon" type="org.springframework.samples.jpetstore.web.struts.SignonAction"
+				name="accountForm" scope="session" validate="false">
+			<forward name="success" path="/shop/index.do"/>
+		</action>
+		<action path="/shop/signonForm" type="org.springframework.samples.jpetstore.web.struts.DoNothingAction"
+				validate="false">
+			<forward name="success" path="/WEB-INF/jsp/struts/SignonForm.jsp"/>
+		</action>
+		<action path="/shop/updateCartQuantities" type="org.springframework.samples.jpetstore.web.struts.UpdateCartQuantitiesAction"
+				name="cartForm" scope="session" validate="false">
+			<forward name="success" path="/WEB-INF/jsp/struts/Cart.jsp"/>
+		</action>
+		<action path="/shop/viewCart" type="org.springframework.samples.jpetstore.web.struts.ViewCartAction"
+				name="cartForm" scope="session" validate="false">
+			<forward name="success" path="/WEB-INF/jsp/struts/Cart.jsp"/>
+		</action>
+		<action path="/shop/viewCategory" type="org.springframework.samples.jpetstore.web.struts.ViewCategoryAction"
+				name="emptyForm" scope="session" validate="true" input="/WEB-INF/jsp/struts/index.jsp">
+			<forward name="success" path="/WEB-INF/jsp/struts/Category.jsp"/>
+		</action>
+		<action path="/shop/viewItem" type="org.springframework.samples.jpetstore.web.struts.ViewItemAction"
+				name="emptyForm" scope="session" validate="true" input="/WEB-INF/jsp/struts/Product.jsp">
+			<forward name="success" path="/WEB-INF/jsp/struts/Item.jsp"/>
+		</action>
+		<action path="/shop/viewOrder" type="org.springframework.samples.jpetstore.web.struts.ViewOrderAction"
+				name="accountForm" scope="session" validate="false">
+			<forward name="success" path="/WEB-INF/jsp/struts/ViewOrder.jsp"/>
+		</action>
+		<action path="/shop/viewProduct" type="org.springframework.samples.jpetstore.web.struts.ViewProductAction"
+				name="emptyForm" scope="session" validate="true" input="/WEB-INF/jsp/struts/index.jsp">
+			<forward name="success" path="/WEB-INF/jsp/struts/Product.jsp"/>
+		</action>
+	</action-mappings>
+
+</struts-config>

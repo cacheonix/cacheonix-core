@@ -1,0 +1,100 @@
+<?xml version ="1.0"?>
+<cacheonix xmlns="http://www.cacheonix.com/schema/configuration"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.cacheonix.com/schema/configuration http://www.cacheonix.com/schema/cacheonix-config-2.0.xsd">
+
+
+   <logging level="ERROR"/>
+
+   <!--
+      Configuration for a directory where Cacheonix stores temporary files
+   -->
+   <tempDir path="${java.io.temp}"/>
+
+   <!--
+      Distributed Cacheonix configuration
+   -->
+   <server machineName="mozart" rackName="rack-1" territoryName="IL-Chicago" countryName="US"
+           continentName="Northern-America" defaultUnlockTimeout="1seconds" defaultLeaseTime="10ms">
+
+
+      <!--
+         Cluster Configuration
+      -->
+      <cluster name="trading-cluster" minimumNodeCount="3" homeAloneTimeout="60s" worstCaseLatency="40s" clusterAnnouncementTimeout="100ms" clusterSurveyTimeout="500ms"/>
+
+      <!--
+         Configuration for point-to-point communications
+      -->
+      <listener>
+
+         <tcp port="8879" address="127.0.0.1" buffer="128k"/>
+      </listener>
+
+      <!--
+         Configuration for broadcast communications
+      -->
+      <broadcast>
+         <knownAddress>
+
+            <tcp port="8879" address="192.168.0.1"/>
+         </knownAddress>
+      </broadcast>
+
+      <!--
+         Configuration for a coherent, partitioned, replicated cache
+      -->
+      <partitionedCache name="partitioned.cache.with.lru.eviction">
+
+         <store>
+
+            <lru maxBytes="1mb" maxElements="1000"/>
+            <overflowToDisk maxOverflowBytes="1gb"/>
+
+            <expiration timeToLive="60seconds" idleTime="60seconds"/>
+
+            <replication replicaCount="2"/>
+         </store>
+
+      </partitionedCache>
+
+      <!--
+         Configuration for a coherent, partitioned, replicated cache
+      -->
+      <partitionedCache name="partitioned.cache.with.no.eviction">
+
+         <!--
+            Describes partition contributor's  data store.
+         -->
+         <store>
+
+            <fixed maxBytes="1mb"/>
+            <replication replicaCount="2"/>
+         </store>
+
+      </partitionedCache>
+
+      <!--
+         Configuration for a coherent, partitioned, replicated cache
+      -->
+      <partitionedCache name="partitioned.cache.with.lease.coherence">
+
+         <!--
+            Describes partition contributor's  data store.
+         -->
+         <store>
+
+
+            <fixed maxBytes="1mb"/>
+
+            <replication replicaCount="2"/>
+
+            <coherence>
+               <lease leaseTime="5ms"/>
+            </coherence>
+
+         </store>
+      </partitionedCache>
+
+   </server>
+</cacheonix>

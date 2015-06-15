@@ -1,0 +1,408 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Math - The Commons Math User Guide - Optimization</title>
+    <style type="text/css" media="all">
+      @import url("../css/maven-base.css");
+      @import url("../css/maven-theme.css");
+      @import url("../css/site.css");
+    </style>
+    <link rel="stylesheet" href="../css/print.css" type="text/css" media="print" />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+  <body class="composite">
+    <div id="banner">
+                  <a href="../" id="bannerLeft">
+    
+                                            <img src="../../images/logo.png" alt="" />
+    
+            </a>
+                        <a href="index.html" id="bannerRight">
+    
+                                            <img src="../images/math.gif" alt="" />
+    
+            </a>
+            <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+            
+  
+    
+            <div class="xleft">
+        Last Published: 18 February 2008
+                  &nbsp;| Version: 1.2
+                      </div>
+            <div class="xright">            <a href="http://www.apachecon.com/" class="externalLink">ApacheCon</a>
+            |
+                <a href="http://www.apache.org" class="externalLink">Apache</a>
+            |
+                <a href="../../">Commons</a>
+            
+  
+
+  
+    
+            
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+            
+  
+    
+                   <h5>Math</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="../index.html">Overview</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../proposal.html">Proposal</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../developers.html">Developers Guide</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../apidocs/index.html">Javadoc (1.2 release)</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../api-1.1/index.html">Javadoc (1.1 release)</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../api-1.0/index.html">Javadoc (1.0 release)</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://svn.apache.org/viewvc/commons/proper/math/trunk" class="externalLink">Source Repository (current)</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../issue-tracking.html">Issue Tracking</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://wiki.apache.org/commons/Math" class="externalLink">Wiki</a>
+          </li>
+          </ul>
+              <h5>User Guide</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="../userguide/index.html">Contents</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/overview.html">Overview</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/stat.html">Statistics</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/random.html">Data Generation</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/linear.html">Linear Algebra</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/analysis.html">Numerical Analysis</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/special.html">Special Functions</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/utilities.html">Utilities</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/complex.html">Complex Numbers</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/distribution.html">Distributions</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/fraction.html">Fractions</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/transform.html">Transform Methods</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/geometry.html">3D Geometry</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../userguide/estimation.html">Parametric Estimation</a>
+          </li>
+              
+    <li class="none">
+              <strong>Optimization</strong>
+        </li>
+              
+    <li class="none">
+                    <a href="../userguide/ode.html">Ordinary Differential Equations</a>
+          </li>
+          </ul>
+              <h5>Project Documentation</h5>
+            <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="../project-info.html">Project Information</a>
+                </li>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="../project-reports.html">Project Reports</a>
+                </li>
+          </ul>
+              <h5>Commons</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="../../">Home</a>
+          </li>
+              
+                
+              
+      
+              
+        <li class="collapsed">
+                    <a href="../../components.html">Components</a>
+                </li>
+              
+                
+              
+      
+              
+        <li class="collapsed">
+                    <a href="../../sandbox/index.html">Sandbox</a>
+                </li>
+              
+                
+              
+      
+              
+        <li class="collapsed">
+                    <a href="../../dormant/index.html">Dormant</a>
+                </li>
+              
+    <li class="none">
+                    <a href="../../volunteering.html">Volunteering</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../../patches.html">Contributing Patches</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../../building.html">Building Components</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../../releases/index.html">Releasing Components</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://wiki.apache.org/commons/FrontPage" class="externalLink">Wiki</a>
+          </li>
+          </ul>
+              <h5>ASF</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://www.apache.org/foundation/sponsorship.html" class="externalLink">Sponsorship</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://www.apache.org/foundation/thanks.html" class="externalLink">Thanks</a>
+          </li>
+          </ul>
+                                           <a href="http://maven.apache.org/" title="Built by Maven" class="poweredBy">
+            <img alt="Built by Maven" src="../images/logos/maven-feather.png"></img>
+          </a>
+                       
+  
+
+  
+    
+            
+  
+    
+        </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <div class="section"><h2><a name="a13_Optimization"></a>
+13 Optimization</h2>
+<div class="section"><h3><a name="a13.1_Overview"></a>
+13.1 Overview</h3>
+<p>
+          The optimization package provides simplex-based direct search optimization algorithms.
+        </p>
+<p>
+          The aim of this package is similar to the aim of the estimation package, but the
+          algorithms are entirely differents as:
+          <ul><li>
+              they do not need the partial derivatives of the measurements
+              with respect to the free parameters
+            </li>
+<li>
+              they do not rely on residuals-based quadratic cost functions but
+              handle any cost functions, including non-continuous ones! 
+            </li>
+</ul>
+</p>
+</div>
+<div class="section"><h3><a name="a13.2_Direct_Methods"></a>
+13.2 Direct Methods</h3>
+<p>
+          Direct search methods only use cost function values, they don't
+          need derivatives and don't either try to compute approximation of
+          the derivatives. According to a 1996 paper by Margaret H. Wright
+          (<a href="http://cm.bell-labs.com/cm/cs/doc/96/4-02.ps.gz" class="externalLink">Direct
+          Search Methods: Once Scorned, Now Respectable</a>
+), they are used
+          when either the computation of the derivative is impossible (noisy
+          functions, unpredictable discontinuities) or difficult (complexity,
+          computation cost). In the first cases, rather than an optimum, a
+          <em>not too bad</em> point is desired. In the latter cases, an
+          optimum is desired but cannot be reasonably found. In all cases
+          direct search methods can be useful.
+        </p>
+<p>
+          Simplex-based direct search methods are based on comparison of
+          the cost function values at the vertices of a simplex (which is a
+          set of n+1 points in dimension n) that is updated by the algorithms
+          steps.
+        </p>
+<p>
+          The instances can be built either in single-start or in
+          multi-start mode. Multi-start is a traditional way to try to avoid
+          being trapped in a local minimum and miss the global minimum of a
+          function. It can also be used to verify the convergence of an
+          algorithm. In multi-start mode, the <code>minimizes</code>method
+          returns the best minimum found after all starts, and the <code>etMinima</code>
+          method can be used to retrieve all minima from all starts (including the one
+          already provided by the <code>minimizes</code> method).
+        </p>
+<p>
+          The package provides two solvers. The first one is the classical
+          <a href="../apidocs/org/apache/commons/math/optimization/NelderMead.html">
+          Nelder-Mead</a>
+ method. The second one is Virginia Torczon's
+          <a href="../apidocs/org/apache/commons/math/optimization/MultiDirectional.html">
+          multi-directional</a>
+ method.
+        </p>
+</div>
+</div>
+
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2003-2008
+    
+          The Apache Software Foundation
+          
+  
+
+  
+    
+            
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>

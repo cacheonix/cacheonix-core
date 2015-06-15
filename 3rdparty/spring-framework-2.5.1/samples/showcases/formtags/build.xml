@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+
+<project name="formtags" basedir="." default="usage">
+
+	<property name="name" value="formtags"/>
+
+	<property name="war.dir" value="war"/>
+	<property name="src.dir" value="src"/>
+	<property name="build.dir" value=".classes"/>
+	<property name="webclasses.dir" value="${war.dir}/WEB-INF/classes"/>
+	<property name="weblib.dir" value="${war.dir}/WEB-INF/lib"/>
+	<property name="dist.dir" value="dist"/>
+
+	<property name="spring.root" value="../../.."/>
+
+	<property file="build.properties"/>
+
+
+	<path id="master-classpath">
+
+		<fileset dir="${spring.root}/lib/jakarta-commons">
+			<include name="commons-logging.jar"/>
+		</fileset>
+
+		<fileset dir="${spring.root}/lib/jakarta-taglibs">
+			<include name="standard.jar"/>
+		</fileset>
+		<fileset dir="${spring.root}/lib/j2ee">
+			<include name="servlet-api.jar"/>
+			<include name="jstl.jar"/>
+		</fileset>
+		<fileset dir="${spring.root}/dist">
+			<include name="spring.jar"/>
+		</fileset>
+
+	</path>
+
+
+	<target name="usage">
+
+		<echo message=""/>
+		<echo message="Spring MVC Form tags build file"/>
+		<echo message="------------------------------------------------------"/>
+		<echo message=""/>
+		<echo message="Available targets are:"/>
+		<echo message=""/>
+		<echo message="clean    --> Clean output dirs"/>
+		<echo message="build    --> Compile main Java sources and copy libraries"/>
+		<echo message="warfile  --> Build the web application archive"/>
+		<echo message="all      --> Clean, build, warfile"/>
+		<echo message=""/>
+
+	</target>
+
+
+	<target name="clean" description="Clean output dirs (build, weblib, dist)">
+
+		<delete dir="${build.dir}"/>
+		<delete dir="${weblib.dir}"/>
+		<delete dir="${dist.dir}"/>
+
+	</target>
+
+
+	<target name="build" description="Compile main source tree java files into class files, generate jar files">
+
+		<mkdir dir="${build.dir}"/>
+
+		<javac destdir="${build.dir}" source="1.3" target="1.3" debug="true"
+				deprecation="false" optimize="false" failonerror="true">
+			<src path="${src.dir}"/>
+			<classpath refid="master-classpath"/>
+		</javac>
+
+		<mkdir dir="${weblib.dir}"/>
+
+		<jar jarfile="${weblib.dir}/${name}.jar" compress="true">
+			<fileset dir="${build.dir}">
+				<include name="**"/>
+			</fileset>
+		</jar>
+
+		<copy todir="${weblib.dir}" preservelastmodified="true">
+			<fileset dir="${spring.root}/lib/j2ee">
+				<include name="jstl.jar"/>
+			</fileset>
+			<fileset dir="${spring.root}/lib/jakarta-commons">
+				<include name="commons-logging.jar"/>
+			</fileset>
+			<fileset dir="${spring.root}/lib/jakarta-taglibs">
+				<include name="standard.jar"/>
+			</fileset>
+			<fileset dir="${spring.root}/dist">
+				<include name="spring.jar"/>
+			</fileset>
+		</copy>
+
+	</target>
+
+
+	<target name="dist" depends="warfile">
+		<!--
+			Delegate to warfile target by depending on it. dist is just to offer
+			a generic target name across all Spring sample apps that may be used
+			for autobuilds testing.
+		-->
+	</target>
+
+	<target name="warfile" depends="build" description="Build the web application archive">
+
+		<mkdir dir="${dist.dir}"/>
+
+		<war warfile="${dist.dir}/${name}.war" basedir="${war.dir}" webxml="${war.dir}/WEB-INF/web.xml">
+			<include name="*"/>
+			<include name="docs/**"/>
+			<include name="html/**"/>
+            <include name="css/*.css"/>
+			<include name="WEB-INF/*.*"/>
+			<include name="WEB-INF/tld/*.tld"/>
+			<exclude name="WEB-INF/web.xml"/>
+			<include name="WEB-INF/classes/*.*"/>
+			<include name="WEB-INF/lib/**"/>
+			<include name="WEB-INF/jsp/**"/>
+			<exclude name="**/.*"/>
+		</war>
+
+	</target>
+
+
+	<target name="all" depends="clean,build,warfile" description="Clean,build,warfile"/>
+	
+	<!-- helper target to ease deployment to Tomcat -->
+	<target name="deploy.tomcat" depends="all" description="Deploys the WAR to Tomcat">
+		<fail unless="tomcat.dir" message="The 'tomcat.dir' property needs to be set: it obviously isn't."/>
+		<delete file="${tomcat.dir}/webapps/${name}.war" failonerror="false"/>
+		<delete dir="${tomcat.dir}/webapps/${name}" failonerror="false"/>
+		<copy file="${dist.dir}/${name}.war" todir="${tomcat.dir}/webapps"/>
+	</target>
+
+</project>

@@ -1,0 +1,160 @@
+<!-- author: Alef Arendsen, Erwin Vervaet -->
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="../styles.css"/>
+	</head>
+	<body>
+		<h2><code>spring:transform</code></h2>
+		<h3>org.springframework.web.servlet.tags.TransformTag</h3>
+		<hr>
+		<p>
+			<table class="tag" width="100%">
+				<tr>
+					<td class="tagname"><b><code>spring:transform (since 1.0)</code></b></td>
+				</tr>
+				<tr>
+					<td class="tagsection"><b>General information</b></td>
+				<tr>
+				<tr>
+					<td colspan="2">
+						The <code>spring:transform</code> tag provides you with support for
+						transforming properties not contained by a <i>command</i> using
+						PropertyEditors associated with the <i>command</i>. Suppose you
+						have 10 dates you want to let the user choose from, you need to
+						transform the date in the same way you would do, when using
+						the <code>spring:bind</code> tag. The <code>spring:transform</code>
+						tag provides this support.<br>
+						<b>Note:</b> this tag can only be used <i>inside</i> a <code>spring:bind</code>
+						tag!
+					</td>
+				</tr>
+				<tr>
+					<td class="tagsection"><b>Attributes</b></td>
+				<tr>
+				<tr>
+					<td class="tagheader" valign="top"><b>value</b></td>
+				</tr>
+				<tr>
+					<td>The value to transform. This is the actual object you want to have
+						transformed (for instance a Date). Using the PropertyEditor
+						that is currently in use by the <code>spring:bind</code> tag.
+					</td>
+				</tr>
+				<tr>
+					<td>required: yes</td>
+				</tr>
+				<tr>
+					<td>el-support: yes</tD>
+				</tr>
+				<tr>
+					<td class="tagheader" valign="top"><b>var</b></td>
+				</tr>
+				<tr>
+					<td>
+						The string to use when binding the result to the page,
+						request, session or application scope. If not specified,
+						the result gets outputted to the writer (directly to the JSP i.e.).
+					</td>
+				</tr>
+				<tr>
+					<td>required: no</td>
+				</tr>
+				<tr>
+					<td>el-support: yes</tD>
+				</tr>
+				<tr>
+					<td class="tagheader" valign="top"><b>scope</b></td>
+				</tr>
+				<tr>
+					<td>
+						The scope to use when exported the result to a variable.
+						This attribute is only used when <code>var</code> is also set.
+						Possible values are <code>page</code>, <code>request</code>, 
+						<code>session</code> and <code>application</code>.
+					</td>
+				</tr>
+				<tr>
+					<td>required: no</td>
+				</tr>
+				<tr>
+					<td>el-support: yes</tD>
+				</tr>
+				<tr>
+					<td class="tagheader"><b>htmlEscape</b></td>
+				</tr>
+				<tr>
+					<td>
+						Set HTML escaping for this tag, as boolean value.
+						Overrides the default HTML escaping setting for the current page.
+					</td>
+				</tr>
+				<tr>
+					<td>required: no</td>
+				</tr>
+				<tr>
+					<td>el-support: yes</td>
+				</tr>
+				<tr>
+					<td class="tagsection"><b>Variables</b></td>
+				</tr>
+				<tr>
+					<td valign="top">
+						If the <tt>var</tt> argument is specified, the resolved message will be
+						exported to the scope specified by the <tt>scope</tt> argument.
+					</td>
+				</tr>
+				<tr>
+					<td class="tagsection" colspan="2"><b>Also have a look at</b></td>
+				<tr>
+				<tr>
+					<td>the <a href="BindTag.html"><code>spring:bind</code></a> tag,
+					to see in which tag you need to nest this tag</td>
+				<tr>
+				<tr>
+					<td class="tagsection"><b>A possible usecase</b></td>
+				</tr>
+				<tr>
+				<td>
+					Consider the following:
+					<ul>
+						<li>SimpleFormController that controls <code>Contract</code> object</li>
+						<li>Amongst others, the Person object has a <code>contractType</code> property</li>				
+						<li>Available contract types are <code>silver</code>, <code>gold</code> and
+							<code>premium</code> and they are instance of the enumeration called
+							<code>ContractType</code></li>
+						<li>You want to be able to let the user select the appropriate type of contract</li>
+						<li>In your controller (e.g. SimpleFormController), you have implemented the
+						<code>referenceData()</code> method that returns a List of the available contract types
+						under the key <code>contractTypes</code></li>
+					</ul>
+					To display the select widget from which the user can select a contract type:
+
+<pre>
+&lt;form method="post"&gt;
+    ## bind on the contractType property
+    &lt;spring:bind path="contract.contractType"&gt;
+        ## render the select box
+        &lt;select name="&lt;c:out value="${status.expression}"/&gt;"&gt;
+            ## iterate over all the contract types available
+            &lt;c:forEach items="${contractTypes}" var="type"&gt;
+                ## transform the contract type using the property editor 
+                ## used to create the BindStatus object
+                &lt;spring:transform value="${type}" var="typeString"/&gt;
+                &lt;option 
+                    ## output the value (databinding will be able to use this!)
+                    value="&lt;c:out value="${typeString}"/&gt;
+                    ## see if it is selected
+                    &lt;c:if test="${status.value == typeString}"/&gt; selected&lt;/c:if&gt;&gt;
+                    ## you could also use the typeString var for i18n (spring:message)
+                    &lt;c:out value="${typeString}"/&gt;
+                &lt;/option&gt;
+            &lt;/c:forEach&gt;
+        &lt;/select&gt;
+    &lt;/spring:bind&gt;
+&lt;/form&gt;	
+</pre>
+				</tr>
+			</tr>
+		</table>
+	</body>
+</html>

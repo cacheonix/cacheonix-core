@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Order">
+
+  <resultMap id="result" class="org.springframework.samples.jpetstore.domain.Order">
+    <result property="billAddress1" column="billaddr1" columnIndex="1"/>
+    <result property="billAddress2" column="billaddr2" columnIndex="2"/>
+    <result property="billCity" column="billcity" columnIndex="3"/>
+    <result property="billCountry" column="billcountry" columnIndex="4"/>
+    <result property="billState" column="billstate" columnIndex="5"/>
+    <result property="billToFirstName" column="billtofirstname" columnIndex="6"/>
+    <result property="billToLastName" column="billtolastname" columnIndex="7"/>
+    <result property="billZip" column="billzip" columnIndex="8"/>
+    <result property="shipAddress1" column="shipaddr1" columnIndex="9"/>
+    <result property="shipAddress2" column="shipaddr2" columnIndex="10"/>
+    <result property="shipCity" column="shipcity" columnIndex="11"/>
+    <result property="shipCountry" column="shipcountry" columnIndex="12"/>
+    <result property="shipState" column="shipstate" columnIndex="13"/>
+    <result property="shipToFirstName" column="shiptofirstname" columnIndex="14"/>
+    <result property="shipToLastName" column="shiptolastname" columnIndex="15"/>
+    <result property="shipZip" column="shipzip" columnIndex="16"/>
+    <result property="cardType" column="cardtype" columnIndex="17"/>
+    <result property="courier" column="courier" columnIndex="18"/>
+    <result property="creditCard" column="creditcard" columnIndex="19"/>
+    <result property="expiryDate" column="exprdate" columnIndex="20"/>
+    <result property="locale" column="locale" columnIndex="21"/>
+    <result property="orderDate" column="orderdate" columnIndex="22"/>
+    <result property="orderId" column="orderid" columnIndex="23"/>
+    <result property="totalPrice" column="totalprice" columnIndex="24"/>
+    <result property="username" column="userid" columnIndex="25"/>
+    <result property="status" column="status" columnIndex="26"/>
+  </resultMap>
+
+  <select id="getOrder" resultMap="result">
+    select
+        billaddr1, billaddr2, billcity, billcountry, billstate,
+        billtofirstname, billtolastname, billzip, shipaddr1,
+        shipaddr2, shipcity, shipcountry, shipstate, shiptofirstname,
+        shiptolastname, shipzip, cardtype, courier, creditcard,
+        exprdate, locale, orderdate, orders.orderid, totalprice,
+        userid, status
+    from orders, orderstatus where orders.orderid = #value# and orders.orderid = orderstatus.orderid
+  </select>
+
+  <select id="getOrdersByUsername" resultMap="result">
+    select
+        billaddr1, billaddr2, billcity, billcountry, billstate,
+        billtofirstname, billtolastname, billzip, shipaddr1,
+        shipaddr2, shipcity, shipcountry, shipstate, shiptofirstname,
+        shiptolastname, shipzip, cardtype, courier, creditcard,
+        exprdate, locale, orderdate, orders.orderid, totalprice,
+        userid, status
+    from orders, orderstatus where orders.userid = #value# and orders.orderid = orderstatus.orderid
+  </select>
+
+  <insert id="insertOrder">
+    insert into orders (orderid, userid, orderdate, shipaddr1, shipaddr2, shipcity, shipstate, shipzip, shipcountry, billaddr1, billaddr2, billcity, billstate, billzip, billcountry, courier, totalprice, billtofirstname, billtolastname, shiptofirstname, shiptolastname, creditcard, exprdate, cardtype, locale)
+      values (#orderId#, #username#, #orderDate#, #shipAddress1#, #shipAddress2:varchar#, #shipCity#, #shipState#, #shipZip#, #shipCountry#, #billAddress1#, #billAddress2:VARCHAR#, #billCity#, #billState#, #billZip#, #billCountry#, #courier#, #totalPrice#, #billToFirstName#, #billToLastName#, #shipToFirstName#, #shipToLastName#, #creditCard#, #expiryDate#, #cardType#, #locale#)
+  </insert>
+
+  <!-- Special MS SQL Server version to allow the Item ID to be retrieved from an identity column.
+       This is called with queryForObject despite it's being an update! -->
+  <statement id="msSqlServerInsertOrder" resultClass="java.lang.Integer">
+    insert into orders (userid, orderdate, shipaddr1, shipaddr2, shipcity, shipstate, shipzip, shipcountry, billaddr1, billaddr2, billcity, billstate, billzip, billcountry, courier, totalprice, billtofirstname, billtolastname, shiptofirstname, shiptolastname, creditcard, exprdate, cardtype, locale)
+      values (#username#, #orderDate#, #shipAddress1#, #shipAddress2:VARCHAR#, #shipCity#, #shipState#, #shipZip#, #shipCountry#, #billAddress1#, #billAddress2:VARCHAR#, #billCity#, #billState#, #billZip#, #billCountry#, #courier#, #totalPrice#, #billToFirstName#, #billToLastName#, #shipToFirstName#, #shipToLastName#, #creditCard#, #expiryDate#, #cardType#, #locale#);
+    select @@identity as value
+  </statement>
+
+  <!-- As per Microsoft's PetShop demo... -->
+  <insert id="insertOrderStatus">
+    insert into orderstatus (orderid, linenum, timestamp, status) values (#orderId#, #orderId#, #orderDate#, #status#)
+  </insert>
+
+</sqlMap>

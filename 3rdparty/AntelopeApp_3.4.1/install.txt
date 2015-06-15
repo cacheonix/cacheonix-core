@@ -1,0 +1,16 @@
+Antelope Installation:
+
+Make sure Ant is installed correctly and that the Ant startup script is in your path.
+
+Unzip the distribution file. It will create a directory named AntelopeApp_3.4.1.
+
+Change to the AntelopeApp_3.4.1 directory. 
+
+From a command prompt, run:
+
+java -jar AntelopeApp_3.4.1.jar
+
+If your platform supports it, you can also double click on the jar file from
+a file browser.
+
+

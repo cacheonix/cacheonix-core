@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<!--
+  - DispatcherServlet application context for the Spring web MVC
+  - implementation of JPetStore's web tier.
+  -->
+<beans>
+
+	<!-- ========================= VIEW DEFINITIONS ========================= -->
+
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+		<property name="prefix" value="/WEB-INF/jsp/spring/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+
+
+	<!-- ========================= DEFINITIONS OF PUBLIC CONTROLLERS ========================= -->
+
+	<bean id="defaultHandlerMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
+
+	<bean name="/shop/addItemToCart.do" class="org.springframework.samples.jpetstore.web.spring.AddItemToCartController">
+		<property name="petStore" ref="petStore"/>
+	</bean>
+
+	<bean name="/shop/checkout.do" class="org.springframework.samples.jpetstore.web.spring.ViewCartController">
+		<property name="successView" value="Checkout"/>
+	</bean>
+
+	<bean name="/shop/index.do" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="index"/>
+	</bean>
+
+	<bean name="/shop/newAccount.do" class="org.springframework.samples.jpetstore.web.spring.AccountFormController">
+		<property name="petStore" ref="petStore"/>
+		<property name="validator" ref="accountValidator"/>
+		<property name="successView" value="index"/>
+	</bean>
+
+	<bean name="/shop/removeItemFromCart.do" class="org.springframework.samples.jpetstore.web.spring.RemoveItemFromCartController"/>
+
+	<bean name="/shop/signoff.do" class="org.springframework.samples.jpetstore.web.spring.SignoffController"/>
+
+	<bean name="/shop/searchProducts.do" class="org.springframework.samples.jpetstore.web.spring.SearchProductsController">
+		<property name="petStore" ref="petStore"/>
+	</bean>
+
+	<bean name="/shop/signon.do" class="org.springframework.samples.jpetstore.web.spring.SignonController">
+		<property name="petStore" ref="petStore"/>
+	</bean>
+
+	<bean name="/shop/signonForm.do" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="SignonForm"/>
+	</bean>
+
+	<bean name="/shop/updateCartQuantities.do" class="org.springframework.samples.jpetstore.web.spring.UpdateCartQuantitiesController"/>
+
+	<bean name="/shop/viewCart.do" class="org.springframework.samples.jpetstore.web.spring.ViewCartController">
+		<property name="successView" value="Cart"/>
+	</bean>
+
+	<bean name="/shop/viewCategory.do" class="org.springframework.samples.jpetstore.web.spring.ViewCategoryController">
+		<property name="petStore" ref="petStore"/>
+	</bean>
+
+	<bean name="/shop/viewItem.do" class="org.springframework.samples.jpetstore.web.spring.ViewItemController">
+		<property name="petStore" ref="petStore"/>
+	</bean>
+
+	<bean name="/shop/viewProduct.do" class="org.springframework.samples.jpetstore.web.spring.ViewProductController">
+		<property name="petStore" ref="petStore"/>
+	</bean>
+
+
+	<!-- ========================= DEFINITIONS OF PROTECTED CONTROLLERS ========================= -->
+
+	<bean id="secureHandlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="interceptors">
+			<list>
+				<ref bean="signonInterceptor"/>
+			</list>
+		</property>
+		<property name="urlMap">
+			<map>
+				<entry key="/shop/editAccount.do" value-ref="secure_editAccount"/>
+				<entry key="/shop/listOrders.do" value-ref="secure_listOrders"/>
+				<entry key="/shop/newOrder.do" value-ref="secure_newOrder"/>
+				<entry key="/shop/viewOrder.do" value-ref="secure_viewOrder"/>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="signonInterceptor" class="org.springframework.samples.jpetstore.web.spring.SignonInterceptor"/>
+
+	<bean id="secure_editAccount" class="org.springframework.samples.jpetstore.web.spring.AccountFormController">
+		<property name="petStore" ref="petStore"/>
+		<property name="validator" ref="accountValidator"/>
+		<property name="successView" value="index"/>
+	</bean>
+
+	<bean id="secure_listOrders" class="org.springframework.samples.jpetstore.web.spring.ListOrdersController">
+		<property name="petStore" ref="petStore"/>
+	</bean>
+
+	<bean id="secure_newOrder" class="org.springframework.samples.jpetstore.web.spring.OrderFormController">
+		<property name="petStore" ref="petStore"/>
+		<property name="validator" ref="orderValidator"/>
+	</bean>
+
+	<bean id="secure_viewOrder" class="org.springframework.samples.jpetstore.web.spring.ViewOrderController">
+		<property name="petStore" ref="petStore"/>
+	</bean>
+
+</beans>

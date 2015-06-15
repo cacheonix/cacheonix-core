@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:lang="http://www.springframework.org/schema/lang"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+                           http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-2.0.xsd">
+
+    <bean id="fortuneService" class="org.springframework.showcase.fortune.service.SimpleFortuneService">
+        <description>
+            Simple implementation that uses fortunes supplied to it as a straight Set.
+        
+            A more realistic implementation would of course load the fortunes from a
+            file, a database, query a fortune web service, etc.
+        </description>
+        <property name="fortunes">
+            <set>
+                <bean class="org.springframework.showcase.fortune.domain.Fortune">
+                    <property name="fortune" value="Some people dream of success; others stay awake to achieve it."/>
+                    <property name="source" value="Benjamin Franklin"/>
+                </bean>
+                <bean class="org.springframework.showcase.fortune.domain.Fortune">
+                    <property name="fortune" value="Rob Harrop is always right. Remember that and you will go far."/>
+                    <property name="source" value="Rob Harrop"/>
+                </bean>
+                <bean class="org.springframework.showcase.fortune.domain.Fortune">
+                    <property name="fortune" value="When a Banker jumps out of a window, jump after him--that's where the money is."/>
+                    <property name="source" value="Robespierre"/>
+                </bean>
+                <bean class="org.springframework.showcase.fortune.domain.Fortune">
+                    <property name="fortune" value="In general, if you think something isn't in Perl, try it out, because it usually is."/>
+                    <property name="source" value="Larry Wall"/>
+                </bean>
+                <bean class="org.springframework.showcase.fortune.domain.Fortune">
+                    <property name="fortune" value="After all, it is only the mediocre who are always at their best."/>
+                    <property name="source" value="Jean Giraudoux"/>
+                </bean>
+                <bean class="org.springframework.showcase.fortune.domain.Fortune">
+                    <property name="fortune" value="Women treat us just as humanity treats its gods. They worship us and are always bothering us to do something for them."/>
+                    <property name="source" value="Oscar Wilde"/>
+                </bean>
+                <bean class="org.springframework.showcase.fortune.domain.Fortune">
+                    <property name="fortune" value="Now, where did I put that fire extinguisher?"/>
+                    <property name="source" value="Unidentified"/>
+                </bean>
+
+
+            </set>
+        </property>
+    </bean>
+
+</beans>

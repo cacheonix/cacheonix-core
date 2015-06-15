@@ -1,0 +1,1069 @@
+<?xml version ="1.0"?>
+
+<xsd:schema xmlns="http://www.cacheonix.com/schema/configuration" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://www.cacheonix.com/schema/configuration"
+            elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+   <xsd:annotation>
+
+      <xsd:documentation>
+         XML Schema for configuring Cacheonix 2.0.
+      </xsd:documentation>
+   </xsd:annotation>
+
+   <xsd:element name="cacheonix" type="CacheonixConfigurationType">
+
+      <xsd:annotation>
+         <xsd:documentation>
+            The root element. Allows the definition of either a distributed or a local Cacheonix configurations.
+         </xsd:documentation>
+      </xsd:annotation>
+
+   </xsd:element>
+
+
+   <!--
+      CacheonixConfigurationType
+   -->
+   <xsd:complexType name="CacheonixConfigurationType">
+
+      <xsd:annotation>
+         <xsd:documentation>
+            CacheonixConfiguration defines the root element of the Cacheonix configuration file.
+         </xsd:documentation>
+      </xsd:annotation>
+
+      <xsd:sequence>
+
+         <xsd:element name="logging" type="LoggingType" minOccurs="0" maxOccurs="1">
+            <xsd:annotation>
+               <xsd:documentation>
+                  Logging configuration for Cacheonix. If logging is not configured, the logging level is set to WARN.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+
+         <xsd:element name="tempDir" type="TemporaryDirectoryType" minOccurs="0" maxOccurs="1"/>
+
+         <xsd:choice>
+            <xsd:element name="server" type="ServerType"/>
+            <xsd:element name="local" type="LocalType"/>
+         </xsd:choice>
+      </xsd:sequence>
+
+   </xsd:complexType>
+
+
+   <!--
+      TemporaryDirectory
+   -->
+   <xsd:complexType name="TemporaryDirectoryType">
+
+      <xsd:annotation>
+         <xsd:documentation>
+            Defines a directory used by Cacheonix store various temporary files.
+         </xsd:documentation>
+      </xsd:annotation>
+
+      <xsd:attribute name="path" type="xsd:string" use="required"/>
+   </xsd:complexType>
+
+
+   <!--
+      Server
+   -->
+   <xsd:complexType name="ServerType">
+
+      <xsd:annotation>
+         <xsd:documentation>
+            Type for representing a Cacheonix cluster node.
+         </xsd:documentation>
+      </xsd:annotation>
+
+      <xsd:sequence>
+         <xsd:element name="property" type="PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="cluster" type="ClusterType" minOccurs="0" maxOccurs="1"/>
+         <xsd:element name="listener" type="ListenerType"/>
+         <xsd:element name="broadcast" type="BroadcastType"/>
+         <xsd:element name="partitionedCache" type="PartitionedCacheType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="webSessionReplica" type="WebSessionReplicaType" minOccurs="0" maxOccurs="1"/>
+      </xsd:sequence>
+
+      <xsd:attribute name="machineName" type="xsd:NCName" default="unassigned"/>
+      <xsd:attribute name="rackName" type="xsd:NCName" default="unassigned"/>
+      <xsd:attribute name="territoryName" type="xsd:NCName" default="unassigned"/>
+      <xsd:attribute name="countryName" type="xsd:NCName" default="unassigned"/>
+      <xsd:attribute name="continentName" type="xsd:NCName" default="unassigned"/>
+
+
+      <xsd:attribute name="defaultLockTimeout" type="TimeIntervalType" default="30seconds">
+         <xsd:annotation>
+            <xsd:documentation>
+               Default lock timeout in milliseconds. Cacheonix uses the default lock timeout for locks that were
+               acquired without setting the timeout explicitly. This value can be overridden from the command line by
+               setting the system property 'cacheonix.default.lock.timeout'.
+            </xsd:documentation>
+         </xsd:annotation>
+      </xsd:attribute>
+
+      <xsd:attribute name="defaultUnlockTimeout" type="TimeIntervalType" default="30seconds">
+         <xsd:annotation>
+            <xsd:documentation>
+               Default unlock timeout in milliseconds.
+            </xsd:documentation>
+         </xsd:annotation>
+      </xsd:attribute>
+
+      <xsd:attribute name="gracefulShutdownTimeout" type="TimeIntervalType" default="30seconds">
+         <xsd:annotation>
+            <xsd:documentation>
+               The time between issuing a request to shutdown the server gracefully and time a forced shutdown is
+               performed. Partition contributors use this timeout to move their to other nodes to try to avoid loss
+               of data or recovery overhead that may result from the forced shutdown.
+            </xsd:documentation>
+         </xsd:annotation>
+      </xsd:attribute>
+
+      <xsd:attribute name="defaultLeaseTime" type="TimeIntervalType" default="5ms">
+         <xsd:annotation>
+            <xsd:documentation>
+               Default lease time. Cacheonix uses the default lease time for lease configurations that don't define
+               lease time. This value can be overridden from the command line by setting the system property
+               'cacheonix.default.lease.time'.
+            </xsd:documentation>
+         </xsd:annotation>
+      </xsd:attribute>
+
+      <xsd:attribute name="selectorTimeout" type="TimeIntervalType" default="1000ms">
+         <xsd:annotation>
+            <xsd:documentation>
+               Time the selector should block for while waiting for a channel to become ready, must be greater than
+               zero. Majority of Cacheonix configuration should leave 'selectorTimeout' default.
+            </xsd:documentation>
+         </xsd:annotation>
+      </xsd:attribute>
+
+      <xsd:attribute name="socketTimeout" type="TimeIntervalType" default="5000ms">
+         <xsd:annotation>
+            <xsd:documentation>
+               SO_TIMEOUT
+            </xsd:documentation>
+         </xsd:annotation>
+      </xsd:attribute>
+
+   </xsd:complexType>
+
+
+   <!--
+      Cluster
+   -->
+   <xsd:complexType name="ClusterType">
+
+      <xsd:sequence>
+         <xsd:element name="property" type="PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+
+
+      <xsd:attribute name="name" type="xsd:NCName" default="Cacheonix">
+
+         <xsd:annotation>
+            <xsd:documentation>
+               The cluster name. The cluster name limits cluster membership and communication to the cluster having
+               this name. The default is "Cacheonix".
+            </xsd:documentation>
+         </xsd:annotation>
+      </xsd:attribute>
+
+      <xsd:attribute name="homeAloneTimeout" type="TimeIntervalType" default="1s">
+
+         <xsd:annotation>
+            <xsd:documentation>
+               Timeout after that a Cacheonix node considers that there is no communication path to other nodes and
+               proceeds to form a single-node cluster. homeAloneTimeout should be set to a value that is at least three
+               times higher than the clusterSurveyTimeout. The default value is 1 second. Use system property
+               'cacheonix.home.alone.timeout' to override the attribute 'homeAloneTimeout' from the command line.
+            </xsd:documentation>
+         </xsd:annotation>
+      </xsd:attribute>
+
+      <xsd:attribute name="clusterAnnouncementTimeout" type="TimeIntervalType" default="100ms">
+
+         <xsd:annotation>
+            <xsd:documentation>Time interval that defines how often Cacheonix cluster announces itself using multicast.
+               Use system property 'cacheonix.cluster.announcement.timeout' to override clusterAnnouncementTimeout
+               from the command line. The default value for clusterAnnouncementTimeout is 100 milliseconds (0.1 seconds).
+            </xsd:documentation>
+         </xsd:annotation>
+      </xsd:attribute>
+
+
+      <xsd:attribute name="clusterSurveyTimeout" type="TimeIntervalType" default="500ms">
+
+         <xsd:annotation>
+            <xsd:documentation>
+               Time that a new Cacheonix node waits to identify all available Cacheonix clusters before starting a join
+               procedure. The cluster survey timeout should be set to a value that is at least four times higher than
+               the clusterAnnouncementTimeout. Use system property 'cacheonix.cluster.survey.timeout' to override
+               the clusterSurveyTimeout from the command line. The default value for clusterSurveyTimeout
+               is 0.5 seconds.
+            </xsd:documentation>
+         </xsd:annotation>
+      </xsd:attribute>
+
+
+      <xsd:attribute name="worstCaseLatency" type="TimeIntervalType" default="10s">
+
+         <xsd:annotation>
+            <xsd:documentation>
+               Worst-case communication latency. Cacheonix considers a host failed if it has not responded to
+               a connection request or to an I/O request within this time. Worst case network latency should take
+               in account time for that the host may be completely unresponsive due to garbage collection (GC).
+               Default is 10 seconds.
+            </xsd:documentation>
+         </xsd:annotation>
+      </xsd:attribute>
+
+      <xsd:attribute name="minimumNodeCount" type="xsd:positiveInteger" default="1"/>
+   </xsd:complexType>
+
+
+   <!--
+      Local
+   -->
+   <xsd:complexType name="LocalType">
+
+
+      <xsd:annotation>
+         <xsd:documentation>
+            A local cache definition. Unlike a distributed cache, a local cache is limited to a single JVM.
+         </xsd:documentation>
+      </xsd:annotation>
+
+      <xsd:sequence>
+
+         <xsd:element name="localCache" type="LocalCacheType" minOccurs="0" maxOccurs="unbounded">
+
+            <xsd:annotation>
+               <xsd:documentation>
+                  A local cache. Unlike a distributed cache, a local cache is limited to a single JVM.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+
+      </xsd:sequence>
+   </xsd:complexType>
+
+
+   <!--
+      Listener
+   -->
+   <xsd:complexType name="ListenerType">
+
+      <xsd:sequence>
+         <xsd:element name="tcp" type="TCPListenerType"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+
+   <!--
+      Broadcast
+   -->
+   <xsd:complexType name="BroadcastType">
+
+      <xsd:annotation>
+         <xsd:documentation>
+            Type representing a communication facility used to broadcast messages to members of a Cacheonix cluster.
+         </xsd:documentation>
+      </xsd:annotation>
+
+      <xsd:sequence>
+
+         <xsd:choice>
+
+            <xsd:element name="multicast" type="MulticastBroadcastType" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="knownAddress" type="KnownAddressBroadcastType" minOccurs="1" maxOccurs="unbounded"/>
+         </xsd:choice>
+      </xsd:sequence>
+   </xsd:complexType>
+
+
+   <!--
+      PartitionedCache
+   -->
+   <xsd:complexType name="PartitionedCacheType">
+      <xsd:annotation>
+         <xsd:documentation>
+            Type representing a node of a distributed partitioned cache.
+         </xsd:documentation>
+      </xsd:annotation>
+
+      <xsd:sequence>
+
+         <xsd:element name="property" type="PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+
+         <xsd:element name="store" type="PartitionedCacheStore" minOccurs="0" maxOccurs="1">
+            <xsd:annotation>
+               <xsd:documentation>
+                  A cache store that holds elements of the partitioned cache. Defining the cache store configures the
+                  partitioned cache to operate as a partition contributor. The partitioned cache is not a partition
+                  contributor if the store configuration is not provided. In this case the cache member remains a member
+                  of the cluster but operates in a client-only mode. The total size of the partitioned cache is
+                  determined as a multiple of the partition size and the number of cluster members that are partition
+                  contributors.
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+
+         <xsd:element name="frontCache" type="FrontCache" minOccurs="0" maxOccurs="1"/>
+      </xsd:sequence>
+
+      <xsd:attribute name="name" type="xsd:token" use="required">
+         <xsd:annotation>
+            <xsd:documentation>
+               A unique cache name.
+            </xsd:documentation>
+         </xsd:annotation>
+      </xsd:attribute>
+
+      <xsd:attribute name="template" type="xsd:boolean" default="false">
+         <xsd:annotation>
+            <xsd:documentation>
+               A flag indicating if this cache configuration is a template configuration. The template cache
+               configuration is used to create a cache using method
+               <code>Cacheonix.createCache(templateName, cacheName)</code>.
+               <p/>
+               To mark a cache configuration as a template set this attribute to "true".
+               <p/>
+               Note: The template cache configuration cannot be started.
+               <p/>
+               Cacheonix reserves cache name "default" for a template cache configuration that is used to create
+               a new cache if automatic cache creation is enabled.
+            </xsd:documentation>
+         </xsd:annotation>
+      </xsd:attribute>
+
+   </xsd:complexType>
+
+
+   <!--
+      LocalCache
+   -->
+   <xsd:complexType name="LocalCacheType">
+
+      <xsd:sequence>
+         <xsd:element name="property" type="PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="store" type="LocalCacheStoreType" minOccurs="1" maxOccurs="1"/>
+      </xsd:sequence>
+
+      <xsd:attribute name="name" type="xsd:NCName" use="required">
+         <xsd:annotation>
+            <xsd:documentation>
+               A cache name. The cache name should be unique throughout the Cacheonix configuration.
+            </xsd:documentation>
+         </xsd:annotation>
+      </xsd:attribute>
+
+
+      <xsd:attribute name="template" type="xsd:boolean" default="false">
+         <xsd:annotation>
+            <xsd:documentation>
+               A flag indicating if this cache configuration is a template configuration. The template cache
+               configuration is used to create a cache using method
+               <code>Cacheonix.createCache(templateName, cacheName)</code>.
+               <p/>
+               To mark a cache configuration as a template set this attribute to "true".
+               <p/>
+               Note: The template cache configuration cannot be started.
+               <p/>
+               Cacheonix reserves cache name 'default' for a template cache configuration that is used to create
+               a new cache, if automatic cache creation is enabled. The default template configuration ignores
+               the 'template' attribute. It is always a template.
+            </xsd:documentation>
+         </xsd:annotation>
+      </xsd:attribute>
+   </xsd:complexType>
+
+
+   <!--
+      IPAddress
+   -->
+   <xsd:simpleType name="IPAddressType">
+
+      <xsd:annotation>
+         <xsd:documentation>
+            Type for representing IP addresses. This type restricts each field of the IP address to have a value between
+            zero and 255, i.e., [0-255].[0-255].[0-255].[0-255]. Examples: 192.168.123.1, 225.0.1.2.
+         </xsd:documentation>
+      </xsd:annotation>
+
+      <xsd:restriction base="xsd:string">
+         <xsd:pattern value="((1?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\.){3}(1?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+
+   <!--
+      TCPListener
+   -->
+   <xsd:complexType name="TCPListenerType">
+
+      <xsd:attribute name="port" type="xsd:positiveInteger" default="8777">
+         <xsd:annotation>
+            <xsd:documentation>
+               Mandatory TCP port. Cacheonix uses the TCP port to listen on for network requests. Default is 8777.
+            </xsd:documentation>
+         </xsd:annotation>
+      </xsd:attribute>
+
+      <xsd:attribute name="address" type="IPAddressType">
+         <xsd:annotation>
+            <xsd:documentation>
+               Optional IP address used to limit the address Cacheonix node is listening. The address must be set to one
+               of the local interface addresses. If the address is not specified, the node will accept connections on
+               any of the node's IP addresses. This attribute may be useful for cluster nodes with multiple interfaces
+               where the node should accept connections only on a single interface. Do not set this attribute unless
+               there is a reason for limiting addresses that Cacheonix should listen on.
+            </xsd:documentation>
+         </xsd:annotation>
+      </xsd:attribute>
+
+      <xsd:attribute name="buffer" type="BytesType" default="128k"/>
+   </xsd:complexType>
+
+
+   <!--
+      MulticastBroadcast
+   -->
+   <xsd:complexType name="MulticastBroadcastType">
+
+      <xsd:attribute name="multicastAddress" type="IPAddressType" default="225.0.1.2">
+         <xsd:annotation>
+            <xsd:documentation>
+               Mandatory address of the multicast group used for broadcast-style communication in the cluster. Cacheonix
+               uses multicast address send and receive messages to maintains cluster membership and inter-cache
+               communications. All Cacheonix instances that belong to the same cluster should use the same multicast
+               address. IP v.4 defines multicast addresses as addresses from 224.0.0.0 to 239.255.255.255. Addresses in
+               the range 224.0.0.0 to 224.0.0.255 are reserved for low-level multicast support operations. We recommend
+               using the range 239.000.000.000-239.255.255.255 for setting multicastAddress. Example:
+               multicastAddress="239.0.10.1".
+            </xsd:documentation>
+         </xsd:annotation>
+      </xsd:attribute>
+
+      <xsd:attribute name="multicastPort" type="xsd:positiveInteger" default="9999">
+         <xsd:annotation>
+            <xsd:documentation>
+               A multicast port. A mandatory attribute multicastPort defines a UDP port that Cacheonix should use to
+               receive and to send multicast messages. All Cacheonix instances that belong to the same cluster should
+               use the same multicast port. We recommend setting multicast port to 9999. Example: multicastPort="9999".
+            </xsd:documentation>
+         </xsd:annotation>
+      </xsd:attribute>
+
+      <xsd:attribute name="multicastTTL" type="xsd:nonNegativeInteger" default="1">
+         <xsd:annotation>
+            <xsd:documentation>
+               Multicast TTL defines multicast TTL that is used to control how far the multicast messages
+               can propagate.
+
+               A value of zero indicates that a message should not be forwarded out of the current host. This value should be
+               used in development mode to avoid unintentional communications with cluster nodes running on other developer's
+               machines.
+
+               A value of one means that the message is not forwarded out of the current subnet. This value is suitable for QA
+               and for most production environments.
+
+               Values of two or greater mean larger, scopes as shown in the table below:
+
+               <table>
+                  <tr>
+                     <td>Multicast TTL</td>
+                     <td>Scope</td>
+                  </tr>
+                  <tr>
+                     <td>0</td>
+                     <td>Node-local</td>
+                  </tr>
+                  <tr>
+                     <td>1</td>
+                     <td>Link-local</td>
+                  </tr>
+                  <tr>
+                     <td>Lesser than 32</td>
+                     <td>Site-local</td>
+                  </tr>
+                  <tr>
+                     <td>Lesser than 64</td>
+                     <td>Region-local</td>
+                  </tr>
+                  <tr>
+                     <td>Lesser than 128</td>
+                     <td>Continent-local</td>
+                  </tr>
+                  <tr>
+                     <td>Lesser than 255</td>
+                     <td>Global</td>
+                  </tr>
+               </table>
+            </xsd:documentation>
+         </xsd:annotation>
+      </xsd:attribute>
+   </xsd:complexType>
+
+
+   <!--
+      CacheStore
+   -->
+   <xsd:complexType name="CacheStoreType">
+
+      <xsd:annotation>
+         <xsd:documentation>
+            Type for representing a data store that holds elements of a cache.
+         </xsd:documentation>
+      </xsd:annotation>
+
+      <xsd:sequence>
+         <xsd:choice>
+            <xsd:element name="lru" type="LRUType"/>
+            <xsd:element name="fixed" type="FixedSizeType"/>
+         </xsd:choice>
+         <xsd:element name="overflowToDisk" type="OverflowToDiskType" minOccurs="0" maxOccurs="1"/>
+         <xsd:element name="expiration" type="ExpirationType" minOccurs="0" maxOccurs="1"/>
+         <xsd:element name="dataSource" type="DataSourceType" minOccurs="0" maxOccurs="1"/>
+         <xsd:element name="dataStore" type="DataStoreType" minOccurs="0" maxOccurs="1"/>
+         <xsd:element name="invalidator" type="InvalidatorType" minOccurs="0" maxOccurs="1"/>
+         <xsd:element name="loader" type="LoaderType" minOccurs="0" maxOccurs="1"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+
+   <!--
+      LocalCacheStore
+   -->
+   <xsd:complexType name="LocalCacheStoreType">
+
+      <xsd:annotation>
+         <xsd:documentation>
+            Type for representing a data store that holds elements of a local cache.
+         </xsd:documentation>
+      </xsd:annotation>
+
+      <xsd:complexContent>
+         <xsd:extension base="CacheStoreType">
+            <xsd:sequence>
+               <xsd:element name="elementEvents" type="ElementEventsType" minOccurs="0" maxOccurs="1"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+
+
+   <!--
+      PartitionedCacheStore
+   -->
+   <xsd:complexType name="PartitionedCacheStore">
+
+      <xsd:annotation>
+         <xsd:documentation>
+            Type for representing a data store that holds elements of a distributed partitioned cache.
+         </xsd:documentation>
+      </xsd:annotation>
+
+      <xsd:complexContent>
+         <xsd:extension base="CacheStoreType">
+            <xsd:sequence>
+               <xsd:element name="replication" type="ReplicationType" minOccurs="0" maxOccurs="1"/>
+               <xsd:element name="coherence" type="CoherenceType" minOccurs="0" maxOccurs="1"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+
+   </xsd:complexType>
+
+
+   <!--
+      FrontCache
+   -->
+   <xsd:complexType name="FrontCache">
+
+      <xsd:sequence>
+         <xsd:element name="store" type="CacheStoreType"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+
+   <!--
+      Time
+   -->
+   <xsd:simpleType name="TimeIntervalType">
+
+      <xsd:annotation>
+         <xsd:documentation>
+            Type for representing time intervals. This type restricts each field of the TimeInterval type to have a
+            value consisting of numerical value and a unit measure. Examples: '5millis', '10s'.
+         </xsd:documentation>
+      </xsd:annotation>
+
+      <xsd:restriction base="xsd:token">
+         <xsd:pattern value="([0-9]+)(milliseconds|millis|ms|seconds|secs|s|minutes|min)"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+
+
+   <!--
+      Expiration
+   -->
+   <xsd:complexType name="ExpirationType">
+
+      <xsd:annotation>
+         <xsd:documentation>
+            Type for representing cache expiration time.
+         </xsd:documentation>
+      </xsd:annotation>
+
+      <xsd:attribute name="timeToLive" type="TimeIntervalType" default="0s">
+         <xsd:annotation>
+            <xsd:documentation>
+               The time since the element was put into the cache before an element is discarded from the cache. An
+               element won't expire if the time to live is set to '0'. The default value is '0s' ('don't expire').
+               Example: timeToLive="2min".
+            </xsd:documentation>
+         </xsd:annotation>
+      </xsd:attribute>
+
+      <xsd:attribute name="idleTime" type="TimeIntervalType" default="0s">
+         <xsd:annotation>
+            <xsd:documentation>
+               The number of seconds since the last access before an element is discarded from the cache. The default
+               value is '0s' ('don't discard'). Example: idleTime="30seconds".
+            </xsd:documentation>
+         </xsd:annotation>
+      </xsd:attribute>
+
+   </xsd:complexType>
+
+
+   <!--
+      Replication.
+   -->
+   <xsd:complexType name="ReplicationType">
+
+      <xsd:annotation>
+         <xsd:documentation>
+            Defines replication configuration for a distributed cache.
+         </xsd:documentation>
+      </xsd:annotation>
+
+      <xsd:attribute name="replicaCount" use="required">
+
+         <xsd:annotation>
+            <xsd:documentation>
+               The number of backup copies to be made for each element of a cache.
+            </xsd:documentation>
+         </xsd:annotation>
+
+         <xsd:simpleType>
+            <xsd:restriction base="xsd:nonNegativeInteger">
+               <xsd:minInclusive value="0"/>
+               <xsd:maxInclusive value="5"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:attribute>
+   </xsd:complexType>
+
+
+   <!--
+      CoherenceType
+   -->
+   <xsd:complexType name="CoherenceType">
+
+      <xsd:choice>
+         <xsd:element name="lease" type="LeaseType"/>
+      </xsd:choice>
+   </xsd:complexType>
+
+
+   <!--
+      LeaseType
+   -->
+   <xsd:complexType name="LeaseType">
+
+      <xsd:attribute name="leaseTime" type="TimeIntervalType">
+
+         <xsd:annotation>
+            <xsd:documentation>
+               Lease time. If this attribute is not provided, Cacheonix uses value of the attribute
+               'defaultLeaseTime' defined in &lt;server&gt;.
+            </xsd:documentation>
+         </xsd:annotation>
+      </xsd:attribute>
+
+   </xsd:complexType>
+
+
+   <!--
+      LRUType
+   -->
+   <xsd:complexType name="LRUType">
+
+      <xsd:annotation>
+         <xsd:documentation>
+            Defines the Least Recently Used policy for managing cache size. When the cache becomes full, the least
+            recently used item is evicted from the cache.
+         </xsd:documentation>
+      </xsd:annotation>
+
+      <xsd:attribute name="maxBytes" type="BytesType" use="required">
+         <xsd:annotation>
+            <xsd:documentation>
+               The mandatory size of the cache in bytes. If the size of the elements of elements in cache exceeds
+               maxBytes, Cacheonix will evict the least recently used elements. Example: maxBytes="5mb".
+
+               Important: Cacheonix recommends setting 'maxBytes' so that total summa of sizes of all caches
+               doesn't exceed 40% of JVM heap.
+            </xsd:documentation>
+         </xsd:annotation>
+      </xsd:attribute>
+
+      <xsd:attribute name="maxElements" type="xsd:nonNegativeInteger" default="0">
+         <xsd:annotation>
+            <xsd:documentation>
+               The size of the cache in number of elements. If the number of elements in cache exceeds maxElements,
+               Cacheonix will evict the least recently used elements. Cacheonix does not limit the number of elements
+               in cache if the maximum number of elements is not set or if it is set to zero. Example: maxElements="5000".
+            </xsd:documentation>
+         </xsd:annotation>
+      </xsd:attribute>
+
+   </xsd:complexType>
+
+
+   <!--
+      NoEvictionType
+   -->
+   <xsd:complexType name="FixedSizeType">
+
+      <xsd:annotation>
+         <xsd:documentation>
+            Defines the fixed-size policy for managing cache size. When the cache becomes full, the cache will throw
+            a runtime exception in response to requests to add more elements. Use the fixed size policy to configure
+            Cacheonix to run in the loss-less data grid mode.
+         </xsd:documentation>
+      </xsd:annotation>
+
+      <xsd:attribute name="maxBytes" type="BytesType" use="required">
+         <xsd:annotation>
+            <xsd:documentation>
+               The mandatory size of the cache in bytes. In case of the fixed cache size, Cacheonix will return a error
+               to a request to add an element to the cache if the size of the elements of elements in cache exceeds
+               maxBytes. Example: maxBytes="5mb".
+
+               Important: Cacheonix recommends setting 'maxBytes' so that total summa of sizes of all caches
+               doesn't exceed 40% of JVM heap.
+            </xsd:documentation>
+         </xsd:annotation>
+      </xsd:attribute>
+
+   </xsd:complexType>
+
+
+   <!--
+      BytesType
+   -->
+   <xsd:simpleType name="BytesType">
+
+      <xsd:annotation>
+         <xsd:documentation>
+            Defines a size in bytes. Cacheonix supports bytes, kilobytes (k, kb), megabytes (mb) and gigabytes (gb) as
+            a unit of measure. Example: maxBytes="5mb".
+         </xsd:documentation>
+      </xsd:annotation>
+
+      <xsd:restriction base="xsd:string">
+         <xsd:pattern value="([0-9]+)(bytes|kilobytes|k|kb|megabytes|mb|m|gigabytes|gb|g|%)"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+
+
+   <!--
+      ElementEventsType
+   -->
+   <xsd:complexType name="ElementEventsType">
+
+      <xsd:annotation>
+         <xsd:documentation>
+            Provides a configuration for the notifier about element updates.
+         </xsd:documentation>
+      </xsd:annotation>
+
+      <xsd:attribute name="notification" type="ElementEventsNotificationType" use="optional" default="synchronous"/>
+   </xsd:complexType>
+
+
+   <!--
+      ElementEventsType
+   -->
+   <xsd:simpleType name="ElementEventsNotificationType">
+
+      <xsd:annotation>
+         <xsd:documentation>
+            Defines the concurrency of sending element update events.
+         </xsd:documentation>
+      </xsd:annotation>
+
+      <xsd:restriction base="xsd:string">
+         <xsd:pattern value="(synchronous|sync|asynchronous|async)"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+
+   <!--
+      DataSourceType
+   -->
+   <xsd:complexType name="DataSourceType">
+
+      <xsd:sequence>
+         <xsd:element name="param" type="PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="prefetch" type="PrefetchType" minOccurs="0" maxOccurs="1"/>
+      </xsd:sequence>
+
+      <xsd:attribute name="className" type="JavaClassNameType" use="required"/>
+   </xsd:complexType>
+
+
+   <!--
+      InvalidatorType
+   -->
+   <xsd:complexType name="InvalidatorType">
+
+      <xsd:sequence>
+         <xsd:element name="param" type="PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+
+      <xsd:attribute name="className" type="JavaClassNameType" use="required"/>
+   </xsd:complexType>
+
+
+   <!--
+      DataStoreType
+   -->
+   <xsd:complexType name="DataStoreType">
+
+      <xsd:sequence>
+         <xsd:element name="param" type="PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+
+      <xsd:attribute name="className" type="JavaClassNameType" use="required"/>
+   </xsd:complexType>
+
+
+   <!--
+      LoaderType
+   -->
+   <xsd:complexType name="LoaderType">
+
+      <xsd:sequence>
+         <xsd:element name="param" type="PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+
+      <xsd:attribute name="className" type="JavaClassNameType" use="required"/>
+   </xsd:complexType>
+
+
+   <!--
+      PropertyType
+   -->
+   <xsd:complexType name="PropertyType">
+
+      <xsd:attribute name="name" type="xsd:NCName" use="required"/>
+      <xsd:attribute name="value" type="xsd:string" use="required"/>
+   </xsd:complexType>
+
+
+   <!--
+      JavaClassNameType
+   -->
+   <xsd:simpleType name="JavaClassNameType">
+
+      <xsd:restriction base="xsd:string">
+         <xsd:pattern value="(([a-z])+.)+[A-Z]([A-Za-z])+"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+
+   <!--
+      KnownAddressBroadcastType
+   -->
+   <xsd:complexType name="KnownAddressBroadcastType">
+
+      <xsd:sequence>
+         <xsd:element name="tcp" type="TCPBroadcastAddressType" minOccurs="1" maxOccurs="1"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <!--
+      TCPBroadcastAddressType
+   -->
+   <xsd:complexType name="TCPBroadcastAddressType">
+
+      <xsd:attribute name="port" type="xsd:positiveInteger" default="9998"/>
+      <xsd:attribute name="address" type="IPAddressType"/>
+   </xsd:complexType>
+
+
+   <!--
+      LoggingType
+   -->
+   <xsd:complexType name="LoggingType">
+
+      <xsd:annotation>
+         <xsd:documentation>
+            Defines Cacheonix logging configuration.
+         </xsd:documentation>
+      </xsd:annotation>
+
+      <xsd:attribute name="level" default="WARNING">
+
+         <xsd:annotation>
+            <xsd:documentation>
+               Defines the logging level. The logging level can be overridden by setting JVM system parameter
+               'cacheonix.logging.level' from the command line. The default logging level is 'WARNING'.
+            </xsd:documentation>
+         </xsd:annotation>
+
+         <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+               <xsd:enumeration value="ERROR"/>
+               <xsd:enumeration value="error"/>
+               <xsd:enumeration value="WARNING"/>
+               <xsd:enumeration value="warning"/>
+               <xsd:enumeration value="DEBUG"/>
+               <xsd:enumeration value="debug"/>
+            </xsd:restriction>
+         </xsd:simpleType>
+      </xsd:attribute>
+   </xsd:complexType>
+
+
+   <!--
+      LoggingType
+   -->
+   <xsd:complexType name="OverflowToDiskType">
+
+      <xsd:attribute name="maxOverflowBytes" type="BytesType" use="required"/>
+   </xsd:complexType>
+
+
+   <!-- Prefetch configuration -->
+   <xsd:complexType name="PrefetchType">
+
+      <xsd:attribute name="enabled" type="xsd:boolean" use="optional" default="true">
+         <xsd:annotation>
+            <xsd:documentation>
+               Defines if prefetch is enabled. Set to 'true' to enable prefetch. Set to 'false'
+               to disable prefetch. By default the prefetch is set to 'true' (enabled).
+            </xsd:documentation>
+         </xsd:annotation>
+      </xsd:attribute>
+
+   </xsd:complexType>
+
+
+   <!--
+      WebSessionReplica
+   -->
+   <xsd:complexType name="WebSessionReplicaType">
+
+      <xsd:annotation>
+         <xsd:documentation>
+            Type representing a configuration for replicated web sessions.
+         </xsd:documentation>
+      </xsd:annotation>
+
+      <xsd:sequence>
+
+         <xsd:element name="property" type="PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+
+         <xsd:choice>
+            <xsd:annotation>
+               <xsd:documentation>
+                  A store that holds data of replicated web sessions.
+               </xsd:documentation>
+            </xsd:annotation>
+
+            <xsd:element name="partitionedStore" type="PartitionedWebSessionStoreType"/>
+         </xsd:choice>
+
+      </xsd:sequence>
+
+      <xsd:attribute name="name" type="xsd:token" default="default">
+         <xsd:annotation>
+            <xsd:documentation>
+               A unique configuration name.
+            </xsd:documentation>
+         </xsd:annotation>
+      </xsd:attribute>
+   </xsd:complexType>
+
+
+   <!--
+      WebSessionStoreType
+   -->
+   <xsd:complexType name="WebSessionStoreType">
+
+      <xsd:annotation>
+         <xsd:documentation>
+            Defines an abstract store for replicated web sessions.
+         </xsd:documentation>
+      </xsd:annotation>
+
+      <xsd:sequence>
+
+         <xsd:element name="property" type="PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+
+      <xsd:attribute name="maxBytes" type="BytesType" use="required">
+
+         <xsd:annotation>
+            <xsd:documentation>
+               The mandatory size of the store in bytes. If the size of the elements of elements in cache exceeds
+               maxBytes, Cacheonix will throw an out-of-memory exception. Example: maxBytes="5mb". Important: Cacheonix
+               recommends setting 'maxBytes' so that total summa of sizes of all session stores and caches doesn't
+               exceed 40% of JVM heap.
+            </xsd:documentation>
+         </xsd:annotation>
+      </xsd:attribute>
+   </xsd:complexType>
+
+
+   <!--
+      PartitionedWebSessionStoreType
+   -->
+   <xsd:complexType name="PartitionedWebSessionStoreType">
+
+      <xsd:annotation>
+         <xsd:documentation>
+            Defines a partitioned store for replicated web sessions. The partitioned store evenly distributes session
+            data and its replicas in the cluster.
+         </xsd:documentation>
+      </xsd:annotation>
+
+      <xsd:complexContent>
+         <xsd:extension base="WebSessionStoreType">
+
+            <xsd:attribute name="replicaCount" default="3">
+               <xsd:annotation>
+                  <xsd:documentation>
+                     The number of backup copies to be made for each session attribute.
+                  </xsd:documentation>
+               </xsd:annotation>
+               <xsd:simpleType>
+                  <xsd:restriction base="xsd:nonNegativeInteger">
+                     <xsd:minInclusive value="1"/>
+                     <xsd:maxInclusive value="5"/>
+                  </xsd:restriction>
+               </xsd:simpleType>
+            </xsd:attribute>
+         </xsd:extension>
+      </xsd:complexContent>
+
+   </xsd:complexType>
+
+</xsd:schema>

@@ -1,0 +1,466 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Math - Release Managers Guide</title>
+    <style type="text/css" media="all">
+      @import url("./css/maven-base.css");
+      @import url("./css/maven-theme.css");
+      @import url("./css/site.css");
+    </style>
+    <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+          <meta name="author" content="Mark Diggory" />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+  <body class="composite">
+    <div id="banner">
+                  <a href="../" id="bannerLeft">
+    
+                                            <img src="../images/logo.png" alt="" />
+    
+            </a>
+                        <a href="index.html" id="bannerRight">
+    
+                                            <img src="images/math.gif" alt="" />
+    
+            </a>
+            <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+            
+  
+    
+            <div class="xleft">
+        Last Published: 18 February 2008
+                  &nbsp;| Version: 1.2
+                      </div>
+            <div class="xright">            <a href="http://www.apachecon.com/" class="externalLink">ApacheCon</a>
+            |
+                <a href="http://www.apache.org" class="externalLink">Apache</a>
+            |
+                <a href="../">Commons</a>
+            
+  
+
+  
+    
+            
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+            
+  
+    
+                   <h5>Math</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="index.html">Overview</a>
+          </li>
+              
+    <li class="none">
+                    <a href="proposal.html">Proposal</a>
+          </li>
+              
+    <li class="none">
+                    <a href="developers.html">Developers Guide</a>
+          </li>
+              
+    <li class="none">
+                    <a href="apidocs/index.html">Javadoc (1.2 release)</a>
+          </li>
+              
+    <li class="none">
+                    <a href="api-1.1/index.html">Javadoc (1.1 release)</a>
+          </li>
+              
+    <li class="none">
+                    <a href="api-1.0/index.html">Javadoc (1.0 release)</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://svn.apache.org/viewvc/commons/proper/math/trunk" class="externalLink">Source Repository (current)</a>
+          </li>
+              
+    <li class="none">
+                    <a href="issue-tracking.html">Issue Tracking</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://wiki.apache.org/commons/Math" class="externalLink">Wiki</a>
+          </li>
+          </ul>
+              <h5>User Guide</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="userguide/index.html">Contents</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/overview.html">Overview</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/stat.html">Statistics</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/random.html">Data Generation</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/linear.html">Linear Algebra</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/analysis.html">Numerical Analysis</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/special.html">Special Functions</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/utilities.html">Utilities</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/complex.html">Complex Numbers</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/distribution.html">Distributions</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/fraction.html">Fractions</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/transform.html">Transform Methods</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/geometry.html">3D Geometry</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/estimation.html">Parametric Estimation</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/optimization.html">Optimization</a>
+          </li>
+              
+    <li class="none">
+                    <a href="userguide/ode.html">Ordinary Differential Equations</a>
+          </li>
+          </ul>
+              <h5>Project Documentation</h5>
+            <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-info.html">Project Information</a>
+                </li>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-reports.html">Project Reports</a>
+                </li>
+          </ul>
+              <h5>Commons</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="../">Home</a>
+          </li>
+              
+                
+              
+      
+              
+        <li class="collapsed">
+                    <a href="../components.html">Components</a>
+                </li>
+              
+                
+              
+      
+              
+        <li class="collapsed">
+                    <a href="../sandbox/index.html">Sandbox</a>
+                </li>
+              
+                
+              
+      
+              
+        <li class="collapsed">
+                    <a href="../dormant/index.html">Dormant</a>
+                </li>
+              
+    <li class="none">
+                    <a href="../volunteering.html">Volunteering</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../patches.html">Contributing Patches</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../building.html">Building Components</a>
+          </li>
+              
+    <li class="none">
+                    <a href="../releases/index.html">Releasing Components</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://wiki.apache.org/commons/FrontPage" class="externalLink">Wiki</a>
+          </li>
+          </ul>
+              <h5>ASF</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://www.apache.org/foundation/sponsorship.html" class="externalLink">Sponsorship</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://www.apache.org/foundation/thanks.html" class="externalLink">Thanks</a>
+          </li>
+          </ul>
+                                           <a href="http://maven.apache.org/" title="Built by Maven" class="poweredBy">
+            <img alt="Built by Maven" src="./images/logos/maven-feather.png"></img>
+          </a>
+                       
+  
+
+  
+    
+            
+  
+    
+        </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <div class="section"><h2><a name="Aims"></a>
+Aims</h2>
+<p>
+    As different individuals may be filling the role of Release Manager
+    for the Math project at different times. This documentation is provided 
+    as a means of organizing release procedures such that releases
+    can maintain consistency.
+    </p>
+</div>
+<div class="section"><h2><a name="Guidelines"></a>
+Guidelines</h2>
+<p>
+   Math Project Releases are primarily facilitated using Maven's 'dist' and 'jar' 
+   goals to build releases in tar.gz, zip and jar archive formats. Additional
+   goals and processes have been added using the included <code>maven.xml</code>
+   file in the root directory.
+   </p>
+</div>
+<div class="section"><h2><a name="Distribution_Contents"></a>
+Distribution Contents</h2>
+<div class="section"><h3><a name="Binary_Releases_tar.gz_and_zip"></a>
+Binary Releases (tar.gz and zip)</h3>
+<div class="source"><pre>
+        
+   Length     Date   Time    Name
+  --------    ----   ----    ----
+         0  01-29-04 09:31   commons-math-0.1-dev/
+     11358  01-29-04 09:31   commons-math-0.1-dev/LICENSE.txt
+         0  01-29-04 09:31   commons-math-0.1-dev/docs/
+         0  01-29-04 09:31   commons-math-0.1-dev/docs/clover/
+      ...
+      6103  01-29-04 09:31   commons-math-0.1-dev/docs/apidocs/
+      ...
+    124140  01-29-04 09:31   commons-math-0.1-dev/commons-math-0.1-dev.jar
+    110531  01-29-04 09:31   commons-math-0.1-dev/commons-beanutils-1.5.jar
+    165119  01-29-04 09:31   commons-math-0.1-dev/commons-collections-2.1.jar
+     72176  01-29-04 09:31   commons-math-0.1-dev/commons-discovery-20030211.213356.jar
+     31605  01-29-04 09:31   commons-math-0.1-dev/commons-logging-1.0.3.jar
+    169763  01-29-04 09:31   commons-math-0.1-dev/commons-lang-2.0.jar
+    
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Source_Releases"></a>
+Source Releases</h3>
+<p>
+     *src release* (tar.gz and zip)
+    </p>
+<div class="source"><pre>
+    
+ Archive:  commons-math-0.1-dev-src.zip
+   Length     Date   Time    Name
+  --------    ----   ----    ----
+         0  01-29-04 09:31   commons-math-0.1-dev/
+         0  01-29-04 09:31   commons-math-0.1-dev/src/
+       282  01-29-04 09:31   commons-math-0.1-dev/src/conf/MANIFEST.MF
+         0  01-29-04 09:31   commons-math-0.1-dev/src/test/
+         ...
+         0  01-29-04 09:31   commons-math-0.1-dev/src/java/
+         ...
+         0  01-29-04 09:31   commons-math-0.1-dev/src/conf/
+       370  01-29-04 09:31   commons-math-0.1-dev/maven.xml
+      4692  01-29-04 09:31   commons-math-0.1-dev/project.xml
+       801  01-29-04 09:31   commons-math-0.1-dev/project.properties
+     11358  01-29-04 09:31   commons-math-0.1-dev/LICENSE.txt
+      6635  01-29-04 09:31   commons-math-0.1-dev/build.xml
+    
+    </pre>
+</div>
+<p>This project.xml is the one with the dependencies resolved to a version. 
+    This build.xml is generated off the above project.xml, so its dependencies 
+    are resolved as well.
+    </p>
+</div>
+<div class="section"><h3><a name="Jar_Releases"></a>
+Jar Releases</h3>
+<p>
+     *jar release* (jar)
+    </p>
+<div class="source"><pre>
+    
+
+ Archive:  commons-math-0.1-dev.jar
+   Length     Date   Time    Name
+  --------    ----   ----    ----
+         0  01-29-04 09:30   META-INF/
+       423  01-29-04 09:30   META-INF/MANIFEST.MF
+     11358  01-29-04 09:23   META-INF/LICENSE.txt
+         0  01-17-04 15:05   org/
+         0  01-17-04 15:05   org/apache/
+         0  01-17-04 15:05   org/apache/commons/
+         0  01-17-04 15:05   org/apache/commons/math/
+         0  01-17-04 15:05   org/apache/commons/math/analysis/
+         0  01-29-04 09:24   org/apache/commons/math/complex/
+         0  01-28-04 16:32   org/apache/commons/math/distribution/
+         0  01-28-04 16:32   org/apache/commons/math/linear/
+         0  01-17-04 15:05   org/apache/commons/math/random/
+         0  01-28-04 16:32   org/apache/commons/math/stat/
+         0  01-17-04 15:05   org/apache/commons/math/stat/univariate/
+         0  01-17-04 15:05   org/apache/commons/math/stat/univariate/rank/
+         0  01-17-04 15:05   org/apache/commons/math/stat/univariate/moment/
+         0  01-17-04 15:05   org/apache/commons/math/stat/univariate/summary/
+         0  01-17-04 15:05   org/apache/commons/math/special/
+         0  01-17-04 15:05   org/apache/commons/math/util/
+      1609  01-29-04 09:24   org/apache/commons/math/analysis/BisectionSolver.class
+      3033  01-29-04 09:24   org/apache/commons/math/analysis/UnivariateRealSolverImpl.class
+       799  01-29-04 09:24   org/apache/commons/math/analysis/UnivariateRealSolver.class
+       247  01-29-04 09:24   org/apache/commons/math/analysis/UnivariateRealFunction.class
+
+        ... 
+    
+    </pre>
+</div>
+</div>
+</div>
+<div class="section"><h2><a name="Deploying"></a>
+Deploying</h2>
+<p>
+     Info on deploying releases using Maven.
+    </p>
+</div>
+
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2003-2008
+    
+          The Apache Software Foundation
+          
+  
+
+  
+    
+            
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>

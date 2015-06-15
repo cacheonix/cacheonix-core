@@ -1,0 +1,21 @@
+<?xml version ="1.0"?>
+<cacheonix xmlns="http://www.cacheonix.com/schema/configuration"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.cacheonix.com/schema/configuration http://www.cacheonix.com/schema/cacheonix-config-2.0.xsd">
+
+   <tempDir path="${java.io.temp}"/>
+
+   <local>
+
+      <!--
+      Cache to support testing of Hibernate plugin.
+      -->
+      <localCache name="test_hibernate_cache">
+         <store>
+            <lru maxElements="10" maxBytes="10mb"/>
+            <overflowToDisk maxOverflowBytes="1mb"/>
+            <expiration timeToLive="1s"/>
+         </store>
+      </localCache>
+   </local>
+</cacheonix>

@@ -1,0 +1,604 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>checkstyle - Headers</title>
+    <style type="text/css" media="all">
+      @import url("./css/maven-base.css");
+      @import url("./css/maven-theme.css");
+      @import url("./css/site.css");
+    </style>
+    <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+          <meta name="author" content="Checkstyle Development Team" />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+  <body class="composite">
+    <div id="banner">
+                    <span id="bannerLeft">
+    
+            Checkstyle 5.3
+    
+            </span>
+                        <a href="" id="bannerRight">
+    
+                                            <img src="images/logo.png" alt="Checkstyle" />
+    
+            </a>
+            <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+  
+  
+    
+            <div class="xleft">
+        Last Published: 2010-10-19
+                      </div>
+            <div class="xright">      
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+  
+  
+    
+                   <h5>About</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="index.html">Checkstyle</a>
+          </li>
+              
+    <li class="none">
+                    <a href="releasenotes.html">Release Notes</a>
+          </li>
+          </ul>
+              <h5>Documentation</h5>
+            <ul>
+              
+          
+              
+      
+              
+        <li class="expanded">
+                    <a href="config.html">Configuration</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="property_types.html">Property Types</a>
+          </li>
+              </ul>
+        </li>
+              
+          
+              
+      
+            
+      
+              
+        <li class="expanded">
+                    <a href="running.html">Running</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="anttask.html">Ant Task</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="cmdline.html">Command Line</a>
+          </li>
+              </ul>
+        </li>
+              
+    <li class="none">
+                    <a href="availablechecks.html">Available Checks</a>
+          </li>
+              
+          
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+            
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+            <li class="expanded">
+                    <a href="checks.html">Standard Checks</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="config_annotation.html">Annotations</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_blocks.html">Block Checks</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_design.html">Class Design</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_coding.html">Coding</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_duplicates.html">Duplicate Code</a>
+          </li>
+                  
+    <li class="none">
+              <strong>Headers</strong>
+        </li>
+                  
+    <li class="none">
+                    <a href="config_imports.html">Imports</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_javadoc.html">Javadoc Comments</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_metrics.html">Metrics</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_misc.html">Miscellaneous</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_modifier.html">Modifiers</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_naming.html">Naming Conventions</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_regexp.html">Regexp</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_sizes.html">Size Violations</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_whitespace.html">Whitespace</a>
+          </li>
+              </ul>
+        </li>
+              
+          
+              
+      
+            
+      
+            
+      
+              
+        <li class="expanded">
+                    <a href="extending.html">Extending Checkstyle</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="writingchecks.html">Writing checks</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="writingfilters.html">Writing filters</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="writinglisteners.html">Writing listeners</a>
+          </li>
+              </ul>
+        </li>
+          </ul>
+              <h5>Developers</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="apidocs/index.html">Javadoc</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://sourceforge.net/projects/checkstyle" class="externalLink">Project Page</a>
+          </li>
+              
+    <li class="none">
+                    <a href="contributing.html">Contributing</a>
+          </li>
+          </ul>
+              <h5>Project Documentation</h5>
+            <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-info.html">Project Information</a>
+                </li>
+              
+                
+              
+      
+              
+        <li class="collapsed">
+                    <a href="project-reports.html">Project Reports</a>
+                </li>
+          </ul>
+                                                 
+                        
+                        
+            <a href="http://sourceforge.net/projects/checkstyle" title="SourceForge" class="poweredBy">
+                            <img alt="SourceForge" src="http://sflogo.sourceforge.net/sflogo.php?group_id=29721&type=11" />
+            </a>
+                               
+  
+
+  
+    
+  
+  
+    
+        </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <div class="section"><h2><a name="Header"></a>Header</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p>
+          Checks that a source file begins with a specified header. Property
+          <code> headerFile</code> specifies a file that contains
+          the required header.  Alternatively, the header specification can be
+          set directly in the <code>header</code> property
+          without the need for an external file.
+        </p>
+<p>
+          Property <code>ignoreLines</code> specifies the line
+          numbers to ignore when matching lines in a header file. This
+          property is very useful for supporting headers that contain
+          copyright dates. For example, consider the following header:
+        </p>
+<div class="source"><pre>
+line 1: ////////////////////////////////////////////////////////////////////
+line 2: // checkstyle:
+line 3: // Checks Java source code for adherence to a set of rules.
+line 4: // Copyright (C) 2002  Oliver Burn
+line 5: ////////////////////////////////////////////////////////////////////
+        </pre>
+</div>
+<p>
+          Since the year information will change over time, you can tell
+          Checkstyle to ignore line 4 by setting property <code>ignoreLines</code> to <code> 4</code>.
+        </p>
+</div>
+<div class="section"><h3><a name="Properties"></a>Properties</h3>
+<table class="bodyTable"><tr class="a"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="b"><td>headerFile</td>
+<td>name of the file containing the required header</td>
+<td><a href="property_types.html#string">string</a></td>
+<td><code>null</code></td>
+</tr>
+<tr class="a"><td>charset</td>
+<td>character encoding to use when reading the headerFile</td>
+<td><a href="property_types.html#string">string</a></td>
+<td>the charset property of the parent
+            <a href="config.html#Checker">Checker</a> module</td>
+</tr>
+<tr class="b"><td>header</td>
+<td>
+              the required header specified inline. Individual header lines
+              must be separated by the string <code>&quot;\n&quot;</code> (even on platforms with a
+              different line separator), see examples below.
+            </td>
+<td><a href="property_types.html#string">string</a></td>
+<td><code>null</code></td>
+</tr>
+<tr class="a"><td>ignoreLines</td>
+<td>line numbers to ignore</td>
+<td><a href="property_types.html#intSet">list of integers</a></td>
+<td><code>{}</code></td>
+</tr>
+<tr class="b"><td>fileExtensions</td>
+<td>file type extension of files to process</td>
+<td><a href="property_types.html#stringSet">String Set</a></td>
+<td><code>{}</code></td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="Example"></a>Example</h3>
+<p>
+          To configure the check to use header file <code>&quot;java.header&quot;</code> and ignore lines <code>2</code>, <code>3</code>, and <code> 4</code> and only process Java files:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;Header&quot;&gt;
+    &lt;property name=&quot;headerFile&quot; value=&quot;java.header&quot;/&gt;
+    &lt;property name=&quot;ignoreLines&quot; value=&quot;2, 3, 4&quot;/&gt;
+    &lt;property name=&quot;fileExtensions&quot; value=&quot;java&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+<p>
+          To configure the check to verify that each file starts with the
+          header
+        </p>
+<div class="source"><pre>
+// Copyright (C) 2004 MyCompany
+// All rights reserved
+        </pre>
+</div>
+<p>
+          without the need for an external header file:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;Header&quot;&gt;
+    &lt;property name=&quot;header&quot;
+              value=&quot;// Copyright (C) 2004 MyCompany\n// All rights reserved&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p> com.puppycrawl.tools.checkstyle.checks.header </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#Checker">Checker</a></p>
+</div>
+</div>
+<div class="section"><h2><a name="RegexpHeader"></a>RegexpHeader</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p>
+          Checks the header of a source file against a header that contains a
+          <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/regex/Pattern.html" class="externalLink">regular
+          expression</a> for each line of the source header.
+        </p>
+<p>
+          Rationale: In some projects <a href="#Header">checking against a
+          fixed header</a> is not sufficient, e.g. the header might require a
+          copyright line where the year information is not static.
+        </p>
+<p>
+          For example, consider the following header:
+        </p>
+<div class="source"><pre>
+line  1: ^/{71}$
+line  2: ^// checkstyle:$
+line  3: ^// Checks Java source code for adherence to a set of rules\.$
+line  4: ^// Copyright \(C\) \d\d\d\d  Oliver Burn$
+line  5: ^// Last modification by \$Author.*\$$
+line  6: ^/{71}$
+line  7:
+line  8: ^package
+line  9:
+line 10: ^import
+line 11:
+line 12: ^/\*\*
+line 13: ^ \*([^/]|$)
+line 14: ^ \*/
+        </pre>
+</div>
+<p>
+          Lines 1 and 6 demonstrate a more compact notation for 71 '/'
+          characters. Line 4 enforces that the copyright notice includes a
+          four digit year. Line 5 is an example how to enforce revision
+          control keywords in a file header. Lines 12-14 is a template for
+          javadoc (line 13 is so complicated to remove conflict with and of
+          javadoc comment).
+        </p>
+<p>
+          Different programming languages have different comment syntax
+          rules, but all of them start a comment with a non-word
+          character. Hence you can often use the non-word character
+          class to abstract away the concrete comment syntax and allow
+          checking the header for different languages with a single
+          header definition.  For example, consider the following header
+          specification (note that this is not the full Apache license
+          header):
+        </p>
+<div class="source"><pre>
+line 1: ^#!
+line 2: ^&lt;\?xml.*&gt;$
+line 3: ^\W*$
+line 4: ^\W*Copyright 2006 The Apache Software Foundation or its licensors, as applicable\.$
+line 5: ^\W*Licensed under the Apache License, Version 2\.0 \(the &quot;License&quot;\);$
+line 6: ^\W*$
+        </pre>
+</div>
+<p>
+          Lines 1 and 2 leave room for technical header lines, e.g. the
+          &quot;#!/bin/sh&quot; line in Unix shell scripts, or the xml file header
+          of XML files.  Set the multiline property to &quot;1, 2&quot; so these
+          lines can be ignored for file types where they do no apply.
+          Lines 3 through 6 define the actual header content. Note how
+          lines 2, 4 and 5 use escapes for characters that have special
+          regexp semantics.
+        </p>
+</div>
+<div class="section"><h3><a name="Properties"></a>Properties</h3>
+<table class="bodyTable"><tr class="a"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="b"><td>headerFile</td>
+<td>name of the file containing the required header</td>
+<td><a href="property_types.html#string">string</a></td>
+<td><code>null</code></td>
+</tr>
+<tr class="a"><td>charset</td>
+<td>character encoding to use when reading the headerFile</td>
+<td><a href="property_types.html#string">string</a></td>
+<td>the charset property of the parent
+            <a href="config.html#Checker">Checker</a> module</td>
+</tr>
+<tr class="b"><td>header</td>
+<td>
+              the required header specified inline. Individual header lines
+              must be separated by the string <code>&quot;\n&quot;</code> (even on platforms with a
+              different line separator), and regular expressions must not span
+              multiple lines.
+            </td>
+<td><a href="property_types.html#string">string</a></td>
+<td><code>null</code></td>
+</tr>
+<tr class="a"><td>multiLines</td>
+<td>line numbers to repeat (zero or more times)</td>
+<td><a href="property_types.html#intSet">list of integers</a></td>
+<td><code>{}</code></td>
+</tr>
+<tr class="b"><td>fileExtensions</td>
+<td>file type extension of files to process</td>
+<td><a href="property_types.html#stringSet">String Set</a></td>
+<td><code>{}</code></td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="Example"></a>Example</h3>
+<p>
+          To configure the check to use header file <code>&quot;java.header&quot;</code> and <code>10</code> and <code>13</code> muli-lines:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;RegexpHeader&quot;&gt;
+    &lt;property name=&quot;headerFile&quot; value=&quot;java.header&quot;/&gt;
+    &lt;property name=&quot;multiLines&quot; value=&quot;10, 13&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+<p>
+          To configure the check to verify that each file starts with the
+          header
+        </p>
+<div class="source"><pre>
+^// Copyright \(C\) (\d\d\d\d -)? 2004 MyCompany$
+^// All rights reserved$
+        </pre>
+</div>
+<p>
+          without the need for an external header file:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;RegexpHeader&quot;&gt;
+  &lt;property
+    name=&quot;header&quot;
+    value=&quot;^// Copyright \(C\) (\d\d\d\d -)? 2004 MyCompany$\n^// All rights reserved$&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+<p><u>Note</u>: <code>ignoreLines</code> property has been
+          removed from this check to simplify it.  To make some line optional
+          use &quot;^.*$&quot; regexp for this line.
+        </p>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p>
+          com.puppycrawl.tools.checkstyle.checks.header
+        </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#Checker">Checker</a></p>
+</div>
+</div>
+
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2001-2010
+    
+          
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>

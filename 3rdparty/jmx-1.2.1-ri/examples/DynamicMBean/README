@@ -1,0 +1,84 @@
+/*
+ * @(#)file      README
+ * @(#)author    Sun Microsystems, Inc.
+ * @(#)version   1.8
+ * @(#)date      03/07/15
+ *
+ * Copyright 2000-2003 Sun Microsystems, Inc.  All rights reserved.
+ * This software is the proprietary information of Sun Microsystems, Inc.
+ * Use is subject to license terms.
+ * 
+ * Copyright 2000-2003 Sun Microsystems, Inc.  Tous droits réservés.
+ * Ce logiciel est proprieté de Sun Microsystems, Inc.
+ * Distribué par des licences qui en restreignent l'utilisation. 
+ */
+
+
+                         Dynamic MBean Example
+                         =====================
+
+
+-----------------------------------------------------------------------
+1. Overview
+-----------------------------------------------------------------------
+
+This example shows how to implement a dynamic MBean and manage it
+through a simple JMX agent application:
+
+ - Develop a dynamic MBean that implements the DynamicMBean interface
+   and correctly exposes its management interface at runtime.
+
+ - Develop a simple JMX agent for exercising the MBean:
+    . Initialize the MBean server
+    . Add the dynamic MBean to the MBean server
+    . Find the MBeans management interface
+    . Get and set attributes, invoke operations on the MBean
+    . Handle the response when trying to invoke methods not exposed
+      for management
+
+
+-----------------------------------------------------------------------
+2. File List
+-----------------------------------------------------------------------
+
+This example is based on the following source files:
+
+ * SimpleDynamic.java:
+    - A dynamic MBean
+
+ * DynamicAgent.java:
+    - Creates an MBean server
+    - Registers a dynamic MBean in the MBean server
+    - Gets information on the management interface of the MBean
+    - Invokes dynamic MBean methods exposed for management with
+      success and tries to invoke methods not exposed for management
+      without success 
+
+
+-----------------------------------------------------------------------
+3. Building and Running the Example
+-----------------------------------------------------------------------
+
+To build and run this example, make sure that your PATH and CLASSPATH
+environment variables are correctly set to use the Java 2 platform. In
+addition, your CLASSPATH must also contain the JMX reference implemen-
+tation jar file (jmxri.jar), as well as the current directory (.).
+
+These instructions assume the classpath is set in an environment
+variable, though it may also be given on the command line with the
+-classpath option.
+
+To compile the example, type the following commands:
+
+   cd examples/DynamicMBean/
+   javac *.java
+
+To run the example using the classes you have just built, type the
+following command:
+
+   java DynamicAgent
+
+You then interact with the agent through the standard input and output
+in the window where it was launched. The DynamicAgent class displays
+information about each management step and waits for user input before
+continuing.

@@ -1,0 +1,9 @@
+<MLET
+	NAME="examples:adaptor=jrmp"
+	CODE="mx4j.adaptor.rmi.jrmp.JRMPAdaptor"
+	<!-- The codebase is relative to the place where the JVM is started -->
+	<!-- For this example, start the JVM from the dist directory, -->
+	<!-- or adjust the codebase value -->
+	CODEBASE="lib"
+	ARCHIVE="mx4j-tools.jar">
+</MLET>
