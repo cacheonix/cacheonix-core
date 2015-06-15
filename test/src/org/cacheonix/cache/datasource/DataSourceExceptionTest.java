@@ -32,5 +32,6 @@ public final class DataSourceExceptionTest extends TestCase {
       assertTrue(new DataSourceException(MESSAGE).getMessage().contains(MESSAGE));
       assertTrue(new DataSourceException(MESSAGE, CAUSE).getMessage().contains(MESSAGE));
       assertEquals(CAUSE, new DataSourceException(MESSAGE, CAUSE).getCause());
+      assertEquals(CAUSE, new DataSourceException(CAUSE).getCause());
    }
 }
