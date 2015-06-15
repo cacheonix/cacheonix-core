@@ -42,13 +42,13 @@ public final class BinaryStoreDataSourceFactory {
    /**
     * Creates data store.
     *
-    * @param clock
+    * @param clock                  a clock
     * @param cacheName              a cache name.
     * @param dataSourceClass        a data source class name.
     * @param dataSourceProperties   user-supplied data source properties.
-    * @param prefetchEnabled
-    * @param prefetchScheduler
-    * @param prefetchElementUpdater
+    * @param prefetchEnabled        true if the data store should pre-fetch the data.
+    * @param prefetchScheduler      a pre-fetch scheduler.
+    * @param prefetchElementUpdater a updater of an element for that a newer version is found.
     * @return a new data source.
     */
    @SuppressWarnings("MethodMayBeStatic")
