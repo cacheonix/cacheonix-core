@@ -1,11 +1,10 @@
 package org.cacheonix.impl.cache.datasource;
 
 import java.util.Properties;
-import java.util.Timer;
 
 import junit.framework.TestCase;
 import org.cacheonix.impl.clock.Clock;
-import org.cacheonix.impl.clock.ClockImpl;
+import org.mockito.Mockito;
 
 /**
  * A tester for {@link BinaryStoreDataSourceFactory}.
@@ -13,8 +12,6 @@ import org.cacheonix.impl.clock.ClockImpl;
 public final class BinaryStoreDataSourceFactoryTest extends TestCase {
 
    private BinaryStoreDataSourceFactory binaryStoreDataSourceFactory;
-
-   private Timer timer;
 
    private Clock clock;
 
@@ -38,17 +35,13 @@ public final class BinaryStoreDataSourceFactoryTest extends TestCase {
 
       binaryStoreDataSourceFactory = new BinaryStoreDataSourceFactory();
 
-      timer = new Timer("TestTimer", false);
-      clock = new ClockImpl(1L);
-      clock.attachTo(timer);
+      clock = Mockito.mock(Clock.class);
    }
 
 
    public void tearDown() throws Exception {
 
       binaryStoreDataSourceFactory = null;
-      timer.cancel();
-      timer = null;
       clock = null;
 
       super.tearDown();
@@ -59,7 +52,6 @@ public final class BinaryStoreDataSourceFactoryTest extends TestCase {
 
       return "BinaryStoreDataSourceFactoryTest{" +
               "binaryStoreDataSourceFactory=" + binaryStoreDataSourceFactory +
-              ", timer=" + timer +
               ", clock=" + clock +
               '}';
    }
