@@ -1,6 +1,6 @@
 # Cacheonix Distributed Java Cache
 
-Cacheonix is a distributed cache for Java capable of running is clusters as small as a few machines to thousands of machines.
+Cacheonix is a distributed cache for Java capable of running in clusters small and large.
 
 ## Strict Data Consistency
 
