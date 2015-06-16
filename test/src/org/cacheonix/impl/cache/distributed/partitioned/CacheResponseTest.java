@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Set;
 
+import junit.framework.TestCase;
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.cache.item.BinaryFactoryBuilder;
 import org.cacheonix.impl.cache.item.BinaryType;
@@ -30,7 +31,6 @@ import org.cacheonix.impl.net.serializer.SerializerFactory;
 import org.cacheonix.impl.util.array.HashSet;
 import org.cacheonix.impl.util.cache.EntryImpl;
 import org.cacheonix.impl.util.logging.Logger;
-import junit.framework.TestCase;
 
 /**
  * CacheGetResponse Tester.
@@ -46,7 +46,7 @@ public final class CacheResponseTest extends TestCase {
     *
     * @noinspection UNUSED_SYMBOL, UnusedDeclaration
     */
-   private static final Logger LOG = Logger.getLogger(CancelBucketTransferMessageTest.class); // NOPMD
+   private static final Logger LOG = Logger.getLogger(CacheResponseTest.class); // NOPMD
 
    private Binary value = null;
 
