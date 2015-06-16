@@ -22,7 +22,7 @@ import org.cacheonix.CacheonixTestCase;
  */
 public final class ClockTest extends CacheonixTestCase {
 
-   private Clock clock;
+   private ClockImpl clock;
 
    private Timer timer;
 
@@ -51,7 +51,7 @@ public final class ClockTest extends CacheonixTestCase {
       super.setUp();
 
       timer = new Timer("Test timer");
-      clock = new Clock(1000L);
+      clock = new ClockImpl(1000L);
       clock.attachTo(timer);
    }
 

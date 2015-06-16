@@ -24,7 +24,7 @@ public final class ClockDiscontinuityTest extends CacheonixTestCase {
 
    private static final long JUMP_DETECTION_POLL_PERIOD_MILLIS = 1000L;
 
-   private Clock clock;
+   private ClockImpl clock;
 
    private TestWallClock wallClock;
 
@@ -110,7 +110,7 @@ public final class ClockDiscontinuityTest extends CacheonixTestCase {
       super.setUp();
 
       wallClock = new TestWallClock();
-      clock = new Clock(MINIMAL_INTER_PROCESS_DELAY_NANOS, JUMP_DETECTION_POLL_PERIOD_MILLIS, wallClock);
+      clock = new ClockImpl(MINIMAL_INTER_PROCESS_DELAY_NANOS, JUMP_DETECTION_POLL_PERIOD_MILLIS, wallClock);
    }
 
 

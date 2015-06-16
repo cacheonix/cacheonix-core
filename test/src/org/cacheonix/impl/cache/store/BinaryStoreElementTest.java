@@ -20,6 +20,7 @@ import org.cacheonix.impl.cache.distributed.partitioned.CancelBucketTransferMess
 import org.cacheonix.impl.cache.invalidator.DummyCacheInvalidator;
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.clock.Clock;
+import org.cacheonix.impl.clock.ClockImpl;
 import org.cacheonix.impl.clock.Time;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
@@ -159,7 +160,7 @@ public final class BinaryStoreElementTest extends CacheonixTestCase {
       final DummyDiskStorage diskStorage = new DummyDiskStorage(TEST_CACHE_NAME);
       value = VALUE;
       timer = new Timer("TestTimer", false);
-      clock = new Clock(1000L);
+      clock = new ClockImpl(1000L);
       clock.attachTo(timer);
       element = new BinaryStoreElement(KEY, value, clock.currentTime(), EXPIRATION_TIME, IDLE_TIME_MILLIS, sizeCalculator, invalidator, diskStorage);
    }

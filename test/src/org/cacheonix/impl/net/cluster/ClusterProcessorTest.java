@@ -26,6 +26,7 @@ import org.cacheonix.ShutdownMode;
 import org.cacheonix.TestConstants;
 import org.cacheonix.TestUtils;
 import org.cacheonix.impl.clock.Clock;
+import org.cacheonix.impl.clock.ClockImpl;
 import org.cacheonix.impl.clock.Time;
 import org.cacheonix.impl.cluster.node.MessageSender;
 import org.cacheonix.impl.cluster.node.state.ReplicatedState;
@@ -184,7 +185,7 @@ public final class ClusterProcessorTest extends CacheonixTestCase {
 
       // Create clock
       final Timer timer = new Timer();
-      final Clock clock = new Clock(1000L);
+      final Clock clock = new ClockImpl(1000L);
       clock.attachTo(timer);
 
       // Create TCP Server
@@ -362,7 +363,7 @@ public final class ClusterProcessorTest extends CacheonixTestCase {
 
          // Create clock
          final Timer timer = new Timer();
-         final Clock clock = new Clock(1000L);
+         final Clock clock = new ClockImpl(1000L);
          clock.attachTo(timer);
          clocks.add(clock);
 

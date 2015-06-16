@@ -23,13 +23,14 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import junit.framework.AssertionFailedError;
+import junit.framework.TestCase;
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.cache.item.InvalidObjectException;
 import org.cacheonix.impl.clock.Clock;
+import org.cacheonix.impl.clock.ClockImpl;
 import org.cacheonix.impl.util.MutableBoolean;
 import org.cacheonix.impl.util.exception.ExceptionUtils;
-import junit.framework.AssertionFailedError;
-import junit.framework.TestCase;
 
 /**
  * @noinspection JUnitTestCaseWithNoTests, JUnitTestClassNamingConvention
@@ -241,7 +242,7 @@ public abstract class CacheonixTestCase extends TestCase {
       super.setUp();
 
       timer = new Timer("TestTimer", false);
-      clock = new Clock(1L);
+      clock = new ClockImpl(1L);
       clock.attachTo(timer);
 
       // Set up executor

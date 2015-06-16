@@ -5,6 +5,7 @@ import java.util.Timer;
 
 import junit.framework.TestCase;
 import org.cacheonix.impl.clock.Clock;
+import org.cacheonix.impl.clock.ClockImpl;
 
 /**
  * A tester for {@link BinaryStoreDataSourceFactory}.
@@ -38,7 +39,7 @@ public final class BinaryStoreDataSourceFactoryTest extends TestCase {
       binaryStoreDataSourceFactory = new BinaryStoreDataSourceFactory();
 
       timer = new Timer("TestTimer", false);
-      clock = new Clock(1L);
+      clock = new ClockImpl(1L);
       clock.attachTo(timer);
    }
 
