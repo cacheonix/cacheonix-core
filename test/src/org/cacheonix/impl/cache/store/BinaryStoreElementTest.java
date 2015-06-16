@@ -16,7 +16,6 @@ package org.cacheonix.impl.cache.store;
 import java.util.Timer;
 
 import org.cacheonix.CacheonixTestCase;
-import org.cacheonix.impl.cache.distributed.partitioned.CancelBucketTransferMessageTest;
 import org.cacheonix.impl.cache.invalidator.DummyCacheInvalidator;
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.clock.Clock;
@@ -40,7 +39,7 @@ public final class BinaryStoreElementTest extends CacheonixTestCase {
     *
     * @noinspection UNUSED_SYMBOL, UnusedDeclaration
     */
-   private static final Logger LOG = Logger.getLogger(CancelBucketTransferMessageTest.class); // NOPMD
+   private static final Logger LOG = Logger.getLogger(BinaryStoreElementTest.class); // NOPMD
 
    private static final String TEST_CACHE_NAME = "test.cache.name";
 
