@@ -13,11 +13,11 @@
  */
 package com.impl.examples.cache;
 
-import com.impl.storage.disk.StorageException;
+import junit.framework.TestCase;
 import org.cacheonix.Cacheonix;
 import org.cacheonix.ShutdownMode;
 import org.cacheonix.cache.Cache;
-import junit.framework.TestCase;
+import org.cacheonix.impl.storage.disk.StorageException;
 
 /**
  * Tester for Cacheonix.

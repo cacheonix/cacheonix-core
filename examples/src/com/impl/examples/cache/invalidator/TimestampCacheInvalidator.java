@@ -19,12 +19,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import com.impl.examples.util.DatabaseConnector;
+import com.impl.examples.util.JDBCUtils;
 import org.cacheonix.cache.invalidator.CacheInvalidator;
 import org.cacheonix.cache.invalidator.CacheInvalidatorContext;
 import org.cacheonix.cache.invalidator.Invalidateable;
-import com.impl.examples.util.DatabaseConnector;
-import com.impl.examples.util.JDBCUtils;
-import com.impl.storage.disk.StorageException;
+import org.cacheonix.impl.storage.disk.StorageException;
 
 /**
  * Invalidator of cache based on an incremental update counter (timestamp).
