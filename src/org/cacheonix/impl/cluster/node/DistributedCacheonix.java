@@ -36,31 +36,17 @@ import org.cacheonix.exceptions.RuntimeInterruptedException;
 import org.cacheonix.exceptions.RuntimeTimeoutException;
 import org.cacheonix.impl.AbstractCacheonix;
 import org.cacheonix.impl.cache.CacheonixCache;
-import org.cacheonix.impl.cache.distributed.partitioned.AssignBucketMessage;
-import org.cacheonix.impl.cache.distributed.partitioned.BeginBucketTransferMessage;
-import org.cacheonix.impl.cache.distributed.partitioned.BucketTransferRejectedAnnouncement;
 import org.cacheonix.impl.cache.distributed.partitioned.CacheNodeJoinedMessage;
 import org.cacheonix.impl.cache.distributed.partitioned.CacheNodeLeftMessage;
 import org.cacheonix.impl.cache.distributed.partitioned.CacheProcessor;
 import org.cacheonix.impl.cache.distributed.partitioned.CacheProcessorKey;
-import org.cacheonix.impl.cache.distributed.partitioned.CancelBucketTransferMessage;
-import org.cacheonix.impl.cache.distributed.partitioned.FinishBucketTransferMessage;
 import org.cacheonix.impl.cache.distributed.partitioned.LeaveCacheGroupAnnouncement;
-import org.cacheonix.impl.cache.distributed.partitioned.OrphanBucketMessage;
 import org.cacheonix.impl.cache.distributed.partitioned.PartitionedCache;
 import org.cacheonix.impl.cache.distributed.partitioned.RepartitionAnnouncement;
-import org.cacheonix.impl.cache.distributed.partitioned.RestoreBucketMessage;
 import org.cacheonix.impl.cache.distributed.partitioned.SetCacheNodeStateMessage;
 import org.cacheonix.impl.cache.distributed.partitioned.subscriber.EntryEventSubscriptionConfigurationSubscriber;
 import org.cacheonix.impl.clock.Clock;
 import org.cacheonix.impl.cluster.node.state.ReplicatedState;
-import org.cacheonix.impl.cluster.node.state.bucket.AssignBucketCommand;
-import org.cacheonix.impl.cluster.node.state.bucket.BeginBucketTransferCommand;
-import org.cacheonix.impl.cluster.node.state.bucket.BucketEventListener;
-import org.cacheonix.impl.cluster.node.state.bucket.CancelBucketTransferCommand;
-import org.cacheonix.impl.cluster.node.state.bucket.FinishBucketTransferCommand;
-import org.cacheonix.impl.cluster.node.state.bucket.OrphanBucketCommand;
-import org.cacheonix.impl.cluster.node.state.bucket.RestoreBucketCommand;
 import org.cacheonix.impl.cluster.node.state.group.Group;
 import org.cacheonix.impl.cluster.node.state.group.GroupEventSubscriber;
 import org.cacheonix.impl.cluster.node.state.group.GroupMember;
@@ -313,8 +299,9 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
          final int wireableFactorySize = WireableFactory.getInstance().size();
          LOG.debug("Wireable factory size: " + wireableFactorySize);
 
+         final BucketEventDispatcher bucketEventDispatcher = new BucketEventDispatcher(address, clusterProcessor);
+         replicatedState.addBucketEventListener(Group.GROUP_TYPE_CACHE, bucketEventDispatcher);
          replicatedState.addGroupEventSubscriber(Group.GROUP_TYPE_CACHE, this);
-         replicatedState.addBucketEventListener(Group.GROUP_TYPE_CACHE, new BucketEventDispatcher());
 
          // Set up cluster processor
          clusterProcessor.subscribeMulticastMessageListener(this);
@@ -1194,176 +1181,6 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
       } finally {
          writeLock.unlock();
       }
-   }
-
-
-   // ================================================================================================================
-   //
-   // BucketEventDispatcher
-   //
-   // ================================================================================================================
-
-   /**
-    * Receives bucket events and puts them to the serializer queue.
-    */
-   private final class BucketEventDispatcher implements BucketEventListener {
-
-      /**
-       * {@inheritDoc}
-       * <p/>
-       * This implementation converts the commands to <code>TransferBucketRequest</code> and posts the message to the
-       * execution queue.
-       *
-       * @see BeginBucketTransferMessage
-       */
-      public void execute(final BeginBucketTransferCommand command) {
-
-         final ClusterNodeAddress localAddress = getAddress();
-         if (localAddress.equals(command.getCurrentOwner())) {
-
-            final BeginBucketTransferMessage message = new BeginBucketTransferMessage(command.getCacheName());
-
-            message.setClusterUUID(clusterProcessor.getProcessorState().getClusterView().getClusterUUID());
-            message.setBucketNumbers(command.getBucketNumbers());
-            message.setSourceStorageNumber(command.getSourceStorageNumber());
-            message.setDestinationStorageNumber(command.getDestinationStorageNumber());
-            message.setCurrentOwner(command.getCurrentOwner());
-            message.setNewOwner(command.getNewOwner());
-            message.setReceiver(localAddress);
-            clusterProcessor.post(message);
-         }
-      }
-
-
-      /**
-       * {@inheritDoc}
-       * <p/>
-       * This implementation posts FinishBucketTransferMessage to the execution queue.
-       */
-      public void execute(final FinishBucketTransferCommand command) {
-
-         // Check if we are a previous owner. A previous owner holds the bucket and the transfer lock.
-         final ClusterNodeAddress localAddress = getAddress();
-         final ClusterNodeAddress previousOwner = command.getPreviousOwner();
-         final ClusterNodeAddress newOwner = command.getNewOwner();
-         if (!localAddress.equals(previousOwner) && !localAddress.equals(newOwner)) {
-            return;
-         }
-
-         // Create message
-         final FinishBucketTransferMessage message = new FinishBucketTransferMessage(command.getCacheName());
-         message.getBucketNumbers().addAll(command.getBucketNumbers());
-
-         message.setClusterUUID(clusterProcessor.getProcessorState().getClusterView().getClusterUUID());
-         message.setSourceStorageNumber(command.getSourceStorageNumber());
-         message.setDestinationStorageNumber(command.getDestinationStorageNumber());
-         message.setNewOwner(newOwner);
-         message.setPreviousOwner(previousOwner);
-         message.setReceiver(localAddress);
-
-         // Post
-         clusterProcessor.post(message);
-      }
-
-
-      /**
-       * This command comes as a result of the replicated state executing <code>BucketTransferRejectedAnnouncement</code>.
-       * Also, it can be sent to cancel pending transfers as a result of the replicated processing a notification about
-       * node leaving the group.
-       *
-       * @param command command
-       * @see BucketTransferRejectedAnnouncement
-       */
-      public void execute(final CancelBucketTransferCommand command) {
-
-         // Check if we are a previous owner. A previous owner holds the bucket and the transfer lock.
-         final ClusterNodeAddress previousOwnerAddress = command.getPreviousOwner();
-         final ClusterNodeAddress newOwnerAddress = command.getNewOwner();
-         final ClusterNodeAddress localAddress = getAddress();
-
-         if (localAddress.equals(previousOwnerAddress) || localAddress.equals(newOwnerAddress)) {
-
-            final CancelBucketTransferMessage message = new CancelBucketTransferMessage(command.getCacheName());
-
-            message.setClusterUUID(clusterProcessor.getProcessorState().getClusterView().getClusterUUID());
-            message.setBucketNumbers(command.getBucketNumbers());
-            message.setSourceStorageNumber(command.getSourceStorageNumber());
-            message.setDestinationStorageNumber(command.getDestinationStorageNumber());
-            message.setPreviousOwner(previousOwnerAddress);
-            message.setNewOwner(newOwnerAddress);
-            message.setReceiver(localAddress);
-            clusterProcessor.post(message);
-         }
-      }
-
-
-      /**
-       * {@inheritDoc}
-       * <p/>
-       * This implementation converts the commands to a local <code>RestoreBucketMessage</code> and posts it to the
-       * async execution queue.
-       *
-       * @see RestoreBucketMessage
-       */
-      public void execute(final RestoreBucketCommand command) {
-
-         // Check if ours
-         final ClusterNodeAddress localAddress = getAddress();
-         if (localAddress.equals(command.getAddress())) {
-            // Create async message
-            final Message message = new RestoreBucketMessage(command.getCacheName(),
-                    command.getBucketNumbers(), command.getFromStorageNumber(), localAddress);
-
-            message.setClusterUUID(clusterProcessor.getProcessorState().getClusterView().getClusterUUID());
-            clusterProcessor.post(message);
-         }
-      }
-
-
-      public void execute(final OrphanBucketCommand command) {
-
-         if (!getAddress().equals(command.getOwnerAddress())) {
-
-            return;
-         }
-
-         //
-         final Message message = new OrphanBucketMessage(command.getCacheName(), command.getStorageNumber(),
-                 command.getBucketNumber());
-
-         message.setClusterUUID(clusterProcessor.getProcessorState().getClusterView().getClusterUUID());
-         message.setReceiver(getAddress());
-         clusterProcessor.post(message);
-      }
-
-
-      public void execute(final AssignBucketCommand command) {
-
-         if (!getAddress().equals(command.getOwnerAddress())) {
-
-            return;
-         }
-
-         //
-         final Message message = new AssignBucketMessage(command.getCacheName(), command.getStorageNumber(),
-                 command.getBucketNumber());
-
-         message.setClusterUUID(clusterProcessor.getProcessorState().getClusterView().getClusterUUID());
-         message.setReceiver(getAddress());
-         clusterProcessor.post(message);
-      }
-   }
-
-   // ================================================================================================================
-   //
-   // Utility methods
-   //
-   // ================================================================================================================
-
-
-   ClusterNodeAddress getAddress() {
-
-      return address;
    }
 
 
