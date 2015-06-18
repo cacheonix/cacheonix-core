@@ -32,8 +32,8 @@ import org.cacheonix.impl.util.exception.ExceptionUtils;
 import org.cacheonix.impl.util.logging.Logger;
 
 /**
- * Server server is a top processor that is responsible for servicing input request coming from the network and out
- * output requests coming to the network.
+ * Server is a top processor that is responsible for servicing input request coming from the network and output requests
+ * coming to the network.
  * <p/>
  *
  * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
@@ -84,8 +84,8 @@ public abstract class RequestProcessor extends SimpleProcessor {
    private final Clock clock;
 
 
-   protected RequestProcessor(final Clock clock, final Timer timer, final String name,
-                              final ClusterNodeAddress address, final Router router) {
+   protected RequestProcessor(final Clock clock, final Timer timer, final String name, final ClusterNodeAddress address,
+           final Router router) {
 
       super(name);
       this.localInetAddresses = createLocalInetAddresses();
@@ -113,7 +113,7 @@ public abstract class RequestProcessor extends SimpleProcessor {
     * to a processor that serves sending messages out.
     *
     * @return the router that is responsible for placing a message being sent to an input queue of a proper local
-    *         processor or to a processor that serves sending messages out.
+    * processor or to a processor that serves sending messages out.
     */
    public final Router getRouter() {
 
@@ -242,7 +242,8 @@ public abstract class RequestProcessor extends SimpleProcessor {
     */
    public final <T> T execute(final Message message) throws RetryException {
 
-      Assert.assertFalse(isProcessorThread(), "This method cannot be called from the processor thread because it blocks");
+      Assert.assertFalse(isProcessorThread(),
+              "This method cannot be called from the processor thread because it blocks");
 
       final ResponseWaiter responseWaiter = route(message);
 
@@ -287,7 +288,7 @@ public abstract class RequestProcessor extends SimpleProcessor {
     *
     * @param message the message to dispatch
     * @return a ResponseWaiter that a client thread should use if it wants to wait for a result. See {@link
-    *         #execute(Message)} for details.
+    * #execute(Message)} for details.
     */
    public ResponseWaiter route(final Message message) {
 
