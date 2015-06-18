@@ -1188,7 +1188,7 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
                  templateName);
          if (defaultConfiguration == null) {
             throw new IllegalArgumentException(
-                    "Cache configuration not found and default configuration template is not set: " + cacheName);
+                    "Cannot create cache \"" + cacheName + "\": cache configuration not found and default configuration template is not set");
          }
          return createAndRegisterCache(cacheName, defaultConfiguration, true);
       } finally {
