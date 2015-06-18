@@ -122,7 +122,7 @@ public abstract class Processor implements Shutdownable {
          } else {
             debugShutdownTime(shutdownWaitDuration);
          }
-      } catch (final InterruptedException e) {
+      } catch (final InterruptedException ignored) {
          Thread.currentThread().interrupt();
       }
    }
