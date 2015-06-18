@@ -52,18 +52,22 @@ public final class BinaryFactoryBuilder {
    public BinaryFactory createFactory(final BinaryType storageType) {
 
       if (storageType.equals(BinaryType.BY_COMPRESSED_COPY)) {
-         return decorate(new CompressedBinaryFactory());
+
+         return decorateAsImmutable(new CompressedBinaryFactory());
       } else if (storageType.equals(BinaryType.BY_COPY)) {
-         return decorate(new PassByCopyBinaryFactory());
+
+         return decorateAsImmutable(new PassByCopyBinaryFactory());
       } else if (storageType.equals(BinaryType.BY_REFERERENCE)) {
-         return decorate(new PassByReferenceBinaryFactory());
+
+         return decorateAsImmutable(new PassByReferenceBinaryFactory());
       } else {
+
          throw new IllegalArgumentException("Unknown storage type: " + storageType);
       }
    }
 
 
-   private BinaryFactory decorate(final BinaryFactory factory) {
+   private static BinaryFactory decorateAsImmutable(final BinaryFactory factory) {
 
       return new ImmutableBinaryFactoryDecorator(factory);
    }
