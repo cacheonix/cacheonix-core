@@ -20,12 +20,13 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
+import junit.framework.TestCase;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
 import org.cacheonix.impl.net.serializer.SerializerUtils;
 import org.cacheonix.impl.util.logging.Logger;
-import junit.framework.TestCase;
 
 /**
  * Tester for  PartitionElementValueByCopy.
@@ -100,6 +101,14 @@ public final class PassByReferenceBinaryTest extends TestCase {
 
       assertEquals(binary, new ObjectInputStream(new ByteArrayInputStream(baos.toByteArray())).readObject());
    }
+
+
+   public void testEquals() {
+
+      assertEquals(new PassByReferenceBinary(new Serializable[]{0, 1, 2}),
+              new PassByReferenceBinary(new Serializable[]{0, 1, 2}));
+   }
+
 
 
    protected final void setUp() throws Exception {

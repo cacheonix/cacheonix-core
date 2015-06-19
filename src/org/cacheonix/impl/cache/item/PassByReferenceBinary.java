@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 import java.io.Serializable;
+import java.util.Arrays;
 
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
@@ -131,8 +132,21 @@ public final class PassByReferenceBinary implements Binary {
 
       final PassByReferenceBinary that = (PassByReferenceBinary) obj;
 
-      return !(reference != null ? !reference.equals(that.reference) : that.reference != null);
 
+      if (reference == null || that.reference == null) {
+         return false;
+      }
+
+      if (reference.getClass() != that.reference.getClass()) {
+         return false;
+      }
+
+      // Array
+      if (reference.getClass().isArray()) {
+         return Arrays.equals((Object[]) reference, (Object[]) that.reference);
+      }
+
+      return reference.equals(that.reference);
    }
 
 
