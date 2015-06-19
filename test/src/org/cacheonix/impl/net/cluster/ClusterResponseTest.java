@@ -17,9 +17,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Set;
 
+import junit.framework.TestCase;
+import org.cacheonix.TestUtils;
 import org.cacheonix.impl.cache.item.Binary;
-import org.cacheonix.impl.cache.item.BinaryFactoryBuilder;
-import org.cacheonix.impl.cache.item.BinaryType;
 import org.cacheonix.impl.cache.item.CompressedBinary;
 import org.cacheonix.impl.cache.item.InvalidObjectException;
 import org.cacheonix.impl.cache.item.PassByCopyBinary;
@@ -30,7 +30,6 @@ import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
 import org.cacheonix.impl.util.array.HashSet;
 import org.cacheonix.impl.util.cache.EntryImpl;
-import junit.framework.TestCase;
 
 /**
  */
@@ -131,7 +130,7 @@ public class ClusterResponseTest extends TestCase {
    protected void setUp() throws Exception {
 
       super.setUp();
-      value = BinaryFactoryBuilder.getInstance().createFactory(BinaryType.BY_REFERERENCE).createBinary("value");
+      value = TestUtils.toBinary("value");
       response = new ClusterResponse();
       response.setResult(value);
    }

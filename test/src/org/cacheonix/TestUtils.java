@@ -23,17 +23,24 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.cacheonix.impl.cache.item.Binary;
+import org.cacheonix.impl.cache.item.BinaryFactory;
 import org.cacheonix.impl.cache.item.BinaryFactoryBuilder;
-import org.cacheonix.impl.cache.item.BinaryType;
 import org.cacheonix.impl.cache.item.InvalidObjectException;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.util.CollectionUtils;
 import org.cacheonix.impl.util.exception.ExceptionUtils;
 
+import static org.cacheonix.impl.cache.item.BinaryType.BY_REFERERENCE;
+
 /**
  * Test helper.
  */
 public final class TestUtils {
+
+
+   private static final BinaryFactoryBuilder BINARY_FACTORY_BUILDER = new BinaryFactoryBuilder();
+
+   private static final BinaryFactory BINARY_FACTORY = BINARY_FACTORY_BUILDER.createFactory(BY_REFERERENCE);
 
 
    /**
@@ -150,6 +157,6 @@ public final class TestUtils {
 
    public static Binary toBinary(final Object obj) throws InvalidObjectException {
 
-      return BinaryFactoryBuilder.getInstance().createFactory(BinaryType.BY_REFERERENCE).createBinary(obj);
+      return BINARY_FACTORY.createBinary(obj);
    }
 }

@@ -21,28 +21,6 @@ package org.cacheonix.impl.cache.item;
  */
 public final class BinaryFactoryBuilder {
 
-   private static final BinaryFactoryBuilder instance = new BinaryFactoryBuilder();
-
-
-   /**
-    * Singleton constructor.
-    */
-   private BinaryFactoryBuilder() {
-
-   }
-
-
-   /**
-    * Returns builder singleton instance.
-    *
-    * @return builder singleton instance.
-    */
-   public static BinaryFactoryBuilder getInstance() {
-
-      return instance;
-   }
-
-
    /**
     * Creates the factory according to config.
     *

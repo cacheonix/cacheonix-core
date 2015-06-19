@@ -68,6 +68,11 @@ public final class BinaryStore implements Wireable {
    public static final WireableBuilder BUILDER = new Builder();
 
    /**
+    * A factory for binaries.
+    */
+   private static final BinaryFactoryBuilder BINARY_FACTORY_BUILDER = new BinaryFactoryBuilder();
+
+   /**
     * Logger.
     *
     * @noinspection UNUSED_SYMBOL, UnusedDeclaration
@@ -85,7 +90,7 @@ public final class BinaryStore implements Wireable {
    private transient Clock clock;
 
 
-   private final BinaryFactory binaryFactory = BinaryFactoryBuilder.getInstance().createFactory(BinaryType.BY_COPY);
+   private final BinaryFactory binaryFactory = BINARY_FACTORY_BUILDER.createFactory(BinaryType.BY_COPY);
 
    /**
     * Map the holds cache entries.

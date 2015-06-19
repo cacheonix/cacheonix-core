@@ -25,9 +25,14 @@ import org.cacheonix.impl.util.array.HashSet;
 public final class BinaryUtils {
 
    /**
+    * A binary factory builder.
+    */
+   private static final BinaryFactoryBuilder BINARY_FACTORY_BUILDER = new BinaryFactoryBuilder();
+
+   /**
     * Binary factory is used to convert
     */
-   private static final BinaryFactory binaryFactory = BinaryFactoryBuilder.getInstance().createFactory(BinaryType.BY_COPY);
+   private static final BinaryFactory binaryFactory = BINARY_FACTORY_BUILDER.createFactory(BinaryType.BY_COPY);
 
 
    /**

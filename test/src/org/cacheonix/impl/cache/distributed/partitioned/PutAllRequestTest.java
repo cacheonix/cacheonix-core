@@ -44,6 +44,8 @@ public final class PutAllRequestTest extends CacheonixTestCase {
     */
    private static final Logger LOG = Logger.getLogger(PutAllRequestTest.class); // NOPMD
 
+   private static final BinaryFactoryBuilder BINARY_FACTORY_BUILDER = new BinaryFactoryBuilder();
+
    private static final Time EXPIRATION_TIME_MILLIS = new Time(1000L, 0);
 
    private static final String TEST_CACHE = "test.cache";
@@ -68,7 +70,7 @@ public final class PutAllRequestTest extends CacheonixTestCase {
 
    public void testSerializeDeserialize() throws IOException, ClassNotFoundException, InvalidObjectException {
 
-      final BinaryFactory binaryFactory = BinaryFactoryBuilder.getInstance().createFactory(BinaryType.BY_COPY);
+      final BinaryFactory binaryFactory = BINARY_FACTORY_BUILDER.createFactory(BinaryType.BY_COPY);
       final HashMap<Binary, Binary> map = new HashMap<Binary, Binary>(1);
       map.put(binaryFactory.createBinary("key"), binaryFactory.createBinary("value"));
       request.setEntrySet(map);

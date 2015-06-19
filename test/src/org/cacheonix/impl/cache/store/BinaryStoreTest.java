@@ -37,6 +37,8 @@ import org.cacheonix.impl.util.cache.DummyObjectSizeCalculator;
  */
 public final class BinaryStoreTest extends CacheonixTestCase {
 
+   private static final BinaryFactoryBuilder BINARY_FACTORY_BUILDER = new BinaryFactoryBuilder();
+
    private static final int MAX_SIZE = 100;
 
    private static final String DISK_STORAGE_NAME = "test";
@@ -141,7 +143,7 @@ public final class BinaryStoreTest extends CacheonixTestCase {
       super.setUp();
 
       binaryStore = createBinaryStore();
-      binaryFactory = BinaryFactoryBuilder.getInstance().createFactory(BinaryType.BY_COPY);
+      binaryFactory = BINARY_FACTORY_BUILDER.createFactory(BinaryType.BY_COPY);
    }
 
 

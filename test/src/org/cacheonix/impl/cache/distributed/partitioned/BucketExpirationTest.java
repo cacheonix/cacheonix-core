@@ -14,13 +14,11 @@
 package org.cacheonix.impl.cache.distributed.partitioned;
 
 import org.cacheonix.CacheonixTestCase;
+import org.cacheonix.TestUtils;
 import org.cacheonix.impl.cache.datasource.DummyBinaryStoreDataSource;
 import org.cacheonix.impl.cache.datastore.DummyDataStore;
 import org.cacheonix.impl.cache.invalidator.DummyCacheInvalidator;
 import org.cacheonix.impl.cache.item.Binary;
-import org.cacheonix.impl.cache.item.BinaryFactory;
-import org.cacheonix.impl.cache.item.BinaryFactoryBuilder;
-import org.cacheonix.impl.cache.item.BinaryType;
 import org.cacheonix.impl.cache.store.BinaryStore;
 import org.cacheonix.impl.cache.store.SharedCounter;
 import org.cacheonix.impl.storage.disk.DummyDiskStorage;
@@ -89,7 +87,6 @@ public final class BucketExpirationTest extends CacheonixTestCase {
 
       super.setUp();
 
-      final BinaryFactory binaryFactory = BinaryFactoryBuilder.getInstance().createFactory(BinaryType.BY_REFERERENCE);
       final BinaryStore keyStore = new BinaryStore(getClock(), EXPIRATION_INTERVAL_MILLIS, Integer.MAX_VALUE);
 
       keyStore.setObjectSizeCalculator(new DummyObjectSizeCalculator());
@@ -100,8 +97,8 @@ public final class BucketExpirationTest extends CacheonixTestCase {
       keyStore.attachToByteCounter(new SharedCounter(0L));
       keyStore.attachToElementCounter(new SharedCounter(0L));
 
-      key = binaryFactory.createBinary("key");
-      value = binaryFactory.createBinary("value");
+      key = TestUtils.toBinary("key");
+      value = TestUtils.toBinary("value");
       bucket = new Bucket(BUCKET_NUMBER, keyStore, LEASE_DURATION_MILLIS);
    }
 

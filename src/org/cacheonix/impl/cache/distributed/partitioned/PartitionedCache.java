@@ -31,7 +31,6 @@ import org.cacheonix.cache.subscriber.EntryModifiedSubscriber;
 import org.cacheonix.cluster.CacheMember;
 import org.cacheonix.exceptions.CacheonixException;
 import org.cacheonix.exceptions.NotSubscribedException;
-import org.cacheonix.locks.ReadWriteLock;
 import org.cacheonix.impl.cache.CacheonixCache;
 import org.cacheonix.impl.cache.distributed.partitioned.subscriber.AddEntryModifiedSubscriberRequest;
 import org.cacheonix.impl.cache.distributed.partitioned.subscriber.RemoveEntryModifiedSubscriberRequest;
@@ -57,6 +56,7 @@ import org.cacheonix.impl.util.array.HashSet;
 import org.cacheonix.impl.util.array.IntObjectHashMap;
 import org.cacheonix.impl.util.cache.EntryImpl;
 import org.cacheonix.impl.util.logging.Logger;
+import org.cacheonix.locks.ReadWriteLock;
 
 /**
  * PartitionedCache implements CacheonixCache by converting method calls to requests and sending them to an associated
@@ -75,9 +75,14 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
     */
    private static final Logger LOG = Logger.getLogger(PartitionedCache.class); // NOPMD
 
+   /**
+    * A binary factory builder.
+    */
+   private static final BinaryFactoryBuilder BINARY_FACTORY_BUILDER = new BinaryFactoryBuilder();
+
    // REVIEWME: simeshev@cacheonix.com - 2009-07-16 - Consider depending on the configuration. Right now configuration defines only
 
-   private final BinaryFactory binaryFactory = BinaryFactoryBuilder.getInstance().createFactory(BinaryType.BY_COPY);
+   private final BinaryFactory binaryFactory = BINARY_FACTORY_BUILDER.createFactory(BinaryType.BY_COPY);
 
    /**
     * Retries an operation if it throws a RetryException.
@@ -113,7 +118,8 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
    /**
     * Bucket index calculator.
     */
-   private final BucketIndexCalculator bucketCalculator = new BucketIndexCalculator(ConfigurationConstants.BUCKET_COUNT);
+   private final BucketIndexCalculator bucketCalculator = new BucketIndexCalculator(
+           ConfigurationConstants.BUCKET_COUNT);
 
    /**
     * Cluster clock.
@@ -122,7 +128,7 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
 
 
    public PartitionedCache(final ClusterProcessor clusterProcessor, final Clock clock, final ClusterNodeAddress address,
-                           final String cacheName, final long defaultUnlockTimeoutMillis) {
+           final String cacheName, final long defaultUnlockTimeoutMillis) {
 
       this.clusterProcessor = clusterProcessor;
       this.defaultUnlockTimeoutMillis = defaultUnlockTimeoutMillis;
@@ -174,7 +180,7 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
 
 
    public Serializable execute(final EntryFilter entryFilter, final Executable executable,
-                               final Aggregator aggregator) {
+           final Aggregator aggregator) {
 
       // Create copies to get a bullet-proof guarantee that they can pass through the wire
       final Executable executableCopy = copy(executable);
@@ -212,23 +218,24 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
 
       // Run
       @SuppressWarnings("unchecked")
-      final Collection<Serializable> partialResults = (Collection<Serializable>) retrier.retryUntilDone(new Retryable() {
+      final Collection<Serializable> partialResults = (Collection<Serializable>) retrier.retryUntilDone(
+              new Retryable() {
 
-         public Object execute() throws RetryException {
+                 public Object execute() throws RetryException {
 
-            final ClusterProcessor clusterProcessor = PartitionedCache.this.clusterProcessor;
-            final ExecuteAllRequest request = new ExecuteAllRequest(cacheName);
-            request.setKeySet(toBinaryKeySet(keys));
-            request.setExecutable(executable);
-            return clusterProcessor.execute(request);
-         }
+                    final ClusterProcessor clusterProcessor = PartitionedCache.this.clusterProcessor;
+                    final ExecuteAllRequest request = new ExecuteAllRequest(cacheName);
+                    request.setKeySet(toBinaryKeySet(keys));
+                    request.setExecutable(executable);
+                    return clusterProcessor.execute(request);
+                 }
 
 
-         public String description() {
+                 public String description() {
 
-            return "removeAll";
-         }
-      });
+                    return "removeAll";
+                 }
+              });
       return aggregator.aggregate(partialResults);
    }
 
@@ -417,7 +424,8 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
 
             final ClusterProcessor clusterProcessor = PartitionedCache.this.clusterProcessor;
             final GetEntrySetRequest request = new GetEntrySetRequest(cacheName);
-            final LinkedList<Entry<Binary, Binary>> binaryEntries = (LinkedList<Entry<Binary, Binary>>) clusterProcessor.execute(request);
+            final LinkedList<Entry<Binary, Binary>> binaryEntries = (LinkedList<Entry<Binary, Binary>>) clusterProcessor.execute(
+                    request);
 
             // Convert to object collection
             final Set<Object> result = new HashSet<Object>(binaryEntries.size());
@@ -564,7 +572,8 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
             final ClusterProcessor clusterProcessor = PartitionedCache.this.clusterProcessor;
             final Binary binaryKey = createBinary(key);
             final Binary binaryValue = createBinary(value);
-            final ReplaceIfMappedRequest request = new ReplaceIfMappedRequest(address, cacheName, binaryKey, binaryValue);
+            final ReplaceIfMappedRequest request = new ReplaceIfMappedRequest(address, cacheName, binaryKey,
+                    binaryValue);
             return result((Binary) clusterProcessor.execute(request));
          }
 
@@ -751,7 +760,8 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
             final Binary binaryKey = createBinary(key);
             final Binary binaryValue = createBinary(value);
             final Time expirationTime = expirationTimeMillis > 0 ? clock.currentTime().add(expirationTimeMillis) : null;
-            final PutRequest request = new PutRequest(address, cacheName, binaryKey, binaryValue, expirationTime, false);
+            final PutRequest request = new PutRequest(address, cacheName, binaryKey, binaryValue, expirationTime,
+                    false);
 
             final ClusterProcessor clusterProcessor = PartitionedCache.this.clusterProcessor;
             final CacheableValue cacheableValue = clusterProcessor.execute(request);
@@ -907,7 +917,8 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
          public Object execute() throws RetryException {
 
             final ClusterProcessor clusterProcessor = PartitionedCache.this.clusterProcessor;
-            final GetKeyOwnerRequest request = new GetKeyOwnerRequest(cacheName, 0, bucketCalculator.calculateBucketIndex(key));
+            final GetKeyOwnerRequest request = new GetKeyOwnerRequest(cacheName, 0,
+                    bucketCalculator.calculateBucketIndex(key));
             request.setReceiver(address);
             final ClusterNodeAddress owner = (ClusterNodeAddress) clusterProcessor.execute(request);
             return new CacheMemberImpl(owner, cacheName);
@@ -947,7 +958,7 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
 
 
    private void addEventSubscriber(final HashSet<Binary> binaryKeys, // NOPMD
-                                   final EntryModifiedSubscriber subscriber) {
+           final EntryModifiedSubscriber subscriber) {
 
       final ClusterProcessor clusterProcessor = this.clusterProcessor;
 
@@ -991,14 +1002,14 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
     * {@inheritDoc}
     */
    public void removeEventSubscriber(final K key,
-                                     final EntryModifiedSubscriber subscriber) throws NotSubscribedException {
+           final EntryModifiedSubscriber subscriber) throws NotSubscribedException {
 
       removeEventSubscriber(BinaryUtils.toBinarySet(key), subscriber);
    }
 
 
    private void removeEventSubscriber(final HashSet<Binary> binaryKeys, // NOPMD
-                                      final EntryModifiedSubscriber subscriber) {
+           final EntryModifiedSubscriber subscriber) {
 
       final ClusterProcessor clusterProcessor = this.clusterProcessor;
 
@@ -1046,7 +1057,8 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
 
    public ReadWriteLock getReadWriteLock(final Serializable lockKey) {
 
-      return new DistributedReadWriteLock(clusterProcessor, lockRegionName, BinaryUtils.toBinary(lockKey), defaultUnlockTimeoutMillis);
+      return new DistributedReadWriteLock(clusterProcessor, lockRegionName, BinaryUtils.toBinary(lockKey),
+              defaultUnlockTimeoutMillis);
    }
 
 

@@ -18,9 +18,8 @@ import java.util.ArrayList;
 import java.util.Set;
 
 import junit.framework.TestCase;
+import org.cacheonix.TestUtils;
 import org.cacheonix.impl.cache.item.Binary;
-import org.cacheonix.impl.cache.item.BinaryFactoryBuilder;
-import org.cacheonix.impl.cache.item.BinaryType;
 import org.cacheonix.impl.cache.item.CompressedBinary;
 import org.cacheonix.impl.cache.item.InvalidObjectException;
 import org.cacheonix.impl.cache.item.PassByCopyBinary;
@@ -149,7 +148,7 @@ public final class CacheResponseTest extends TestCase {
 
       super.setUp();
       serializer = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
-      value = BinaryFactoryBuilder.getInstance().createFactory(BinaryType.BY_REFERERENCE).createBinary("value");
+      value = TestUtils.toBinary("value");
       response = new CacheResponse(TEST_CACHE);
       response.setResult(value);
    }
