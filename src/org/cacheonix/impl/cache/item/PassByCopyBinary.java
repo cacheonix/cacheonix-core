@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 import java.io.Serializable;
+import java.util.Arrays;
 
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
@@ -148,11 +149,20 @@ public final class PassByCopyBinary implements Binary {
 
       final PassByCopyBinary that = (PassByCopyBinary) obj;
 
-      if (copy != null ? !copy.equals(that.copy) : that.copy != null) {
+      if (copy == null || that.copy == null) {
          return false;
       }
 
-      return true;
+      if (!copy.getClass().equals(that.copy.getClass())) {
+         return false;
+      }
+
+      // Array
+      if (copy.getClass().isArray()) {
+         return Arrays.equals((Object[]) copy, (Object[]) that.copy);
+      }
+
+      return copy.equals(that.copy);
    }
 
 

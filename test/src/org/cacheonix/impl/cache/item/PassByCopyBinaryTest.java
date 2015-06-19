@@ -18,6 +18,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
 import org.cacheonix.CacheonixTestCase;
 import org.cacheonix.impl.net.serializer.Serializer;
@@ -76,7 +77,15 @@ public final class PassByCopyBinaryTest extends CacheonixTestCase {
       oos.writeObject(binary);
       oos.flush();
 
-      assertEquals((byte[]) binary.getValue(), (byte[]) ((Binary) new ObjectInputStream(new ByteArrayInputStream(baos.toByteArray())).readObject()).getValue());
+      assertEquals((byte[]) binary.getValue(), (byte[]) ((Binary) new ObjectInputStream(
+              new ByteArrayInputStream(baos.toByteArray())).readObject()).getValue());
+   }
+
+
+   public void testEquals() throws InvalidObjectException {
+
+      assertEquals(new PassByCopyBinary(new Serializable[]{0, 1, 2}),
+              new PassByCopyBinary(new Serializable[]{0, 1, 2}));
    }
 
 
