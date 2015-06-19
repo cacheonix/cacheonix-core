@@ -172,11 +172,17 @@ public final class CompressedBinary implements Binary {
          return false;
       }
 
-      if (!getValue().equals(that.getValue())) {
+      if (Arrays.equals(this.compressedCopy, that.compressedCopy)) {
+         return true;
+      }
+
+      final Object thisValue = getValue();
+      final Object thatValue = that.getValue();
+      if (thisValue == null || thatValue == null) {
          return false;
       }
 
-      return true;
+      return thisValue.equals(thatValue);
    }
 
 

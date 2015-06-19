@@ -18,11 +18,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
+import junit.framework.TestCase;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
 import org.cacheonix.impl.util.logging.Logger;
-import junit.framework.TestCase;
 
 /**
  * Tester for CompressedPartitionElementValue.
@@ -70,6 +71,13 @@ public final class CompressedBinaryTest extends TestCase {
       oos.flush();
 
       assertEquals(binary, new ObjectInputStream(new ByteArrayInputStream(baos.toByteArray())).readObject());
+   }
+
+
+   public void testEquals() throws InvalidObjectException {
+
+      assertEquals(new CompressedBinary(new Serializable[]{0, 1, 2}),
+              new CompressedBinary(new Serializable[]{0, 1, 2}));
    }
 
 
