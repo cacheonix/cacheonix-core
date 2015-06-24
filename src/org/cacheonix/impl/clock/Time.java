@@ -95,7 +95,7 @@ public final class Time implements Comparable, Wireable {
     */
    public Time add(final long timeMillis) {
 
-      if (millis == 0) {
+      if (timeMillis == 0) {
 
          return this;
       } else {
