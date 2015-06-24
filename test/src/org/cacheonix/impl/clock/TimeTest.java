@@ -117,6 +117,7 @@ public class TimeTest extends TestCase {
       final long addCount = 888L;
       final Time timeAdded = time.add(new Time(addMillis, addCount));
       assertEquals(new Time(MILLIS + addMillis, COUNT + addCount), timeAdded);
+      assertSame(time.add(new Time(0, 0)), time);
    }
 
 
