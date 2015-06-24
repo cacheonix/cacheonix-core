@@ -20,7 +20,7 @@ import org.cacheonix.CacheonixTestCase;
 /**
  * Tester for Clock.
  */
-public final class ClockTest extends CacheonixTestCase {
+public final class ClockImplTest extends CacheonixTestCase {
 
    private ClockImpl clock;
 
