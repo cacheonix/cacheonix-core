@@ -226,16 +226,19 @@ public final class ClockImpl implements Clock {
 
    public String toString() {
 
-      return "Clock{" +
-              "lastClockReadingMillis=" + lastClockReadingMillis +
-              ", count=" + count +
-              ", offsetMillis=" + offsetMillis +
-              ", adjustmentMillis=" + adjustmentMillis +
-              ", minimalInterProcessDelayNanos=" + minimalInterProcessDelayNanos +
-              ", jumpDetectionPeriodMillis=" + jumpDetectionPeriodMillis +
-              ", maxDiscontinuityMillis=" + maxDiscontinuityMillis +
-              ", lastReturnedClockMillis=" + lastReturnedClockMillis +
-              ", wallClock=" + wallClock +
-              '}';
+      synchronized (lock) {
+
+         return "Clock{" +
+                 "lastClockReadingMillis=" + lastClockReadingMillis +
+                 ", count=" + count +
+                 ", offsetMillis=" + offsetMillis +
+                 ", adjustmentMillis=" + adjustmentMillis +
+                 ", minimalInterProcessDelayNanos=" + minimalInterProcessDelayNanos +
+                 ", jumpDetectionPeriodMillis=" + jumpDetectionPeriodMillis +
+                 ", maxDiscontinuityMillis=" + maxDiscontinuityMillis +
+                 ", lastReturnedClockMillis=" + lastReturnedClockMillis +
+                 ", wallClock=" + wallClock +
+                 '}';
+      }
    }
 }
