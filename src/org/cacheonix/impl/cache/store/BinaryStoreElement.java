@@ -65,7 +65,7 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
     * Shallow size of empty BinaryStoreElement used to calculate total byte size in memory of BinaryStoreElement. See
     * <code>BinaryStoreElementTest.testWriteReadWire()</code> for calculation.
     */
-   static final int SIZE_CACHE_ELEMENT_OVERHEAD = 96;
+   static final int SIZE_CACHE_ELEMENT_OVERHEAD = 152;
 
 
    /**

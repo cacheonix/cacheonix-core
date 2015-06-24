@@ -123,8 +123,7 @@ public abstract class AbstractCacheonix extends Cacheonix {
       this.cacheConfigMap = createCacheConfigMap(config);
       this.config = config;
       this.timer = new Timer("CacheonixTimer");
-      this.clock = new ClockImpl(1000L);
-      this.clock.attachTo(timer);
+      this.clock = new ClockImpl(1000L).attachTo(timer);
       this.threadPoolExecutor = new ThreadPoolExecutor(1, 2, 20, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(), new UserThreadFactory("CacheonixExecutor"));
       this.prefetchScheduler = new PrefetchScheduler(new PrefetchStageThreadPoolAdapter(threadPoolExecutor));
    }

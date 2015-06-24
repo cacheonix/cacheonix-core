@@ -242,8 +242,7 @@ public abstract class CacheonixTestCase extends TestCase {
       super.setUp();
 
       timer = new Timer("TestTimer", false);
-      clock = new ClockImpl(1L);
-      clock.attachTo(timer);
+      clock = new ClockImpl(1L).attachTo(timer);
 
       // Set up executor
       eventNotificationExecutor = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>());

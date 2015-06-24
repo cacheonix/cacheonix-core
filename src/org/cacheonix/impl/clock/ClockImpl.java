@@ -101,9 +101,13 @@ public final class ClockImpl implements Clock {
 
 
    /**
-    * {@inheritDoc}
+    * Initializes time interval-based polling of this clock to enable protection from jumps back or forward. This method
+    * should be called before first call to currentTime(), ideally immediately after creating the clock.
+    *
+    * @param timer the timer to use to poll this clock.
+    * @return this to enabled call cascading.
     */
-   public void attachTo(final Timer timer) {
+   public Clock attachTo(final Timer timer) {
 
       timer.schedule(new TimerTask() {
 
@@ -112,6 +116,8 @@ public final class ClockImpl implements Clock {
             readClock();
          }
       }, jumpDetectionPeriodMillis, jumpDetectionPeriodMillis);
+
+      return this;
    }
 
 

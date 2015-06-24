@@ -1,19 +1,9 @@
 package org.cacheonix.impl.clock;
 
-import java.util.Timer;
-
 /**
  * A monotonic physical clock.
  */
 public interface Clock {
-
-   /**
-    * Initializes time interval-based polling of this clock to enable protection from jumps back or forward. This method
-    * should be called before first call to currentTime(), ideally immediately after creating the clock.
-    *
-    * @param timer the timer to use to poll this clock.
-    */
-   void attachTo(Timer timer);
 
    /**
     * Returns current physical time.

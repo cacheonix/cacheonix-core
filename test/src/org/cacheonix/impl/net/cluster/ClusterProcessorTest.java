@@ -185,8 +185,7 @@ public final class ClusterProcessorTest extends CacheonixTestCase {
 
       // Create clock
       final Timer timer = new Timer();
-      final Clock clock = new ClockImpl(1000L);
-      clock.attachTo(timer);
+      final Clock clock = new ClockImpl(1000L).attachTo(timer);
 
       // Create TCP Server
       final TCPServer tcpServer = new TCPServer(clock, LOCALHOST, getAddress(joinProcessIndex).getTcpPort(), messageHandler, NETWORK_TIMEOUT_MILLIS, SELECTOR_TIMEOUT_MILLIS);
@@ -363,8 +362,7 @@ public final class ClusterProcessorTest extends CacheonixTestCase {
 
          // Create clock
          final Timer timer = new Timer();
-         final Clock clock = new ClockImpl(1000L);
-         clock.attachTo(timer);
+         final Clock clock = new ClockImpl(1000L).attachTo(timer);
          clocks.add(clock);
 
          final MessageSender messageSender = new MessageSender(nodeAddress, NETWORK_TIMEOUT_MILLIS, SELECTOR_TIMEOUT_MILLIS, clock);
