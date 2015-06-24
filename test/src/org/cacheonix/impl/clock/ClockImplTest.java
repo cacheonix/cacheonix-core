@@ -40,6 +40,16 @@ public final class ClockImplTest extends CacheonixTestCase {
    }
 
 
+   public void testAdjust() throws Exception {
+
+      final Time timeBeforeAdjustment = clock.currentTime();
+      final Time newTime = timeBeforeAdjustment.add(1000);
+      clock.adjust(newTime);
+
+      assertTrue(clock.currentTime().compareTo(newTime) >= 0);
+   }
+
+
    public void testToString() throws Exception {
 
       assertNotNull(clock.toString());
@@ -51,7 +61,7 @@ public final class ClockImplTest extends CacheonixTestCase {
       super.setUp();
 
       timer = new Timer("Test timer");
-      clock = new ClockImpl(1000L);
+      clock = new ClockImpl(100L);
       clock.attachTo(timer);
    }
 
