@@ -13,13 +13,9 @@
  */
 package org.cacheonix.impl.cache.store;
 
-import java.util.Timer;
-
 import org.cacheonix.CacheonixTestCase;
 import org.cacheonix.impl.cache.invalidator.DummyCacheInvalidator;
 import org.cacheonix.impl.cache.item.Binary;
-import org.cacheonix.impl.clock.Clock;
-import org.cacheonix.impl.clock.ClockImpl;
 import org.cacheonix.impl.clock.Time;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
@@ -57,11 +53,6 @@ public final class BinaryStoreElementTest extends CacheonixTestCase {
 
    private Binary value;
 
-   private Clock clock;
-
-   private Timer timer;
-
-
    public void testGetValue() throws Exception {
 
       assertEquals(value, element.getValue());
@@ -70,13 +61,13 @@ public final class BinaryStoreElementTest extends CacheonixTestCase {
 
    public void testGetCreatedTimeMillis() throws Exception {
 
-      assertTrue(element.getCreatedTime().compareTo(clock.currentTime()) < 0);
+      assertTrue(element.getCreatedTime().compareTo(getClock().currentTime()) < 0);
    }
 
 
    public void testGetLastTimeAccessedMillis() throws Exception {
 
-      assertTrue(element.getIdleTime().compareTo(clock.currentTime()) < 0);
+      assertTrue(element.getIdleTime().compareTo(getClock().currentTime()) < 0);
    }
 
 
@@ -92,7 +83,7 @@ public final class BinaryStoreElementTest extends CacheonixTestCase {
 
       Thread.sleep(2 * EXPIRATION_TIME_MILLIS);
 
-      assertTrue(element.isExpired(clock));
+      assertTrue(element.isExpired(getClock()));
    }
 
 
@@ -158,16 +149,15 @@ public final class BinaryStoreElementTest extends CacheonixTestCase {
       final DummyCacheInvalidator invalidator = new DummyCacheInvalidator();
       final DummyDiskStorage diskStorage = new DummyDiskStorage(TEST_CACHE_NAME);
       value = VALUE;
-      timer = new Timer("TestTimer", false);
-      clock = new ClockImpl(1000L);
-      clock.attachTo(timer);
-      element = new BinaryStoreElement(KEY, value, clock.currentTime(), EXPIRATION_TIME, IDLE_TIME_MILLIS, sizeCalculator, invalidator, diskStorage);
+      element = new BinaryStoreElement(KEY, value, getClock().currentTime(), EXPIRATION_TIME, IDLE_TIME_MILLIS, sizeCalculator, invalidator, diskStorage);
    }
 
 
    public void tearDown() throws Exception {
 
-      timer.cancel();
+      element = null;
+
+      value = null;
 
       super.tearDown();
    }
