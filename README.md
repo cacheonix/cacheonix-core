@@ -9,3 +9,7 @@ The most important feature of Cacheonix is strict data consistency. Cacheonix gu
 ## cacheonix-core
 
 Cacheonix's Core project contains distributed caching functionality.
+
+## Documentation 
+
+Chechk [Cacheonix Wiki](http://wiki.cacheonix.org/display/CCHNX/Cacheonix+Knowledge+Base) for detailed documentation.
