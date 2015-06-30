@@ -45,12 +45,7 @@ import java.io.ObjectOutput;
 @SuppressWarnings("RedundantIfStatement")
 public final class ClusterState implements Externalizable {
 
-   private static final byte BLOCKED_CODE = (byte) 0;
-
-   private static final byte OPERATIONAL_CODE = (byte) 1;
-
-   private static final byte RECONFIGURING_CODE = (byte) 2;
-
+   static final byte BLOCKED_CODE = (byte) 0;
 
    /**
     * A state describing a blocked cluster. A blocked cluster does not send multicast messages. A blocked cluster
@@ -58,11 +53,14 @@ public final class ClusterState implements Externalizable {
     */
    public static final ClusterState BLOCKED = new ClusterState(BLOCKED_CODE, "Blocked");
 
+   static final byte OPERATIONAL_CODE = (byte) 1;
 
    /**
     * A state defining an operational cluster. As the name implies, an operational cluster functions normally.
     */
    public static final ClusterState OPERATIONAL = new ClusterState(OPERATIONAL_CODE, "Operational");
+
+   static final byte RECONFIGURING_CODE = (byte) 2;
 
    /**
     * A state defining a cluster that has lost one of its members and that is now restoring its operational state.
@@ -92,37 +90,6 @@ public final class ClusterState implements Externalizable {
    @SuppressWarnings("UnusedDeclaration")
    public ClusterState() {
 
-   }
-
-
-   public String getName() {
-
-      return name;
-   }
-
-
-   public boolean equals(final Object o) {
-
-      if (this == o) {
-         return true;
-      }
-      if (o == null || getClass() != o.getClass()) {
-         return false;
-      }
-
-      final ClusterState that = (ClusterState) o;
-
-      if (code != that.code) {
-         return false;
-      }
-
-      return true;
-   }
-
-
-   public int hashCode() {
-
-      return (int) code;
    }
 
 
@@ -159,6 +126,37 @@ public final class ClusterState implements Externalizable {
    public static void writeDataOutput(final ClusterState clusterState, final DataOutput output) throws IOException {
 
       output.writeByte(clusterState.code);
+   }
+
+
+   public String getName() {
+
+      return name;
+   }
+
+
+   public boolean equals(final Object o) {
+
+      if (this == o) {
+         return true;
+      }
+      if (o == null || getClass() != o.getClass()) {
+         return false;
+      }
+
+      final ClusterState that = (ClusterState) o;
+
+      if (code != that.code) {
+         return false;
+      }
+
+      return true;
+   }
+
+
+   public int hashCode() {
+
+      return (int) code;
    }
 
 
