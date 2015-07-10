@@ -14,7 +14,6 @@
 package org.cacheonix.impl.net.cluster;
 
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -65,8 +64,8 @@ final class MulticastMessageListenerList {
    public void notify(final Message message) {
 
       if (!subscribers.isEmpty()) {
-         for (final Iterator<MulticastMessageListener> iter = subscribers.iterator(); iter.hasNext(); ) {
-            iter.next().receive(message);
+         for (final MulticastMessageListener subscriber : subscribers) {
+            subscriber.receive(message);
          }
       }
    }
@@ -85,9 +84,9 @@ final class MulticastMessageListenerList {
       }
 
       // Process
-      for (final Iterator<MulticastMessageListener> iter = subscribers.iterator(); iter.hasNext(); ) {
+      for (final MulticastMessageListener subscriber : subscribers) {
          try {
-            iter.next().notifyClusterNodeJoined(new ClusterNodeJoinedEventImpl(nodes));
+            subscriber.notifyClusterNodeJoined(new ClusterNodeJoinedEventImpl(nodes));
          } catch (final Exception e) {
             ExceptionUtils.ignoreException(e, "Ignored to let other subscribers to proceed");
          }
@@ -107,9 +106,9 @@ final class MulticastMessageListenerList {
       }
 
       // Process
-      for (final Iterator<MulticastMessageListener> iter = subscribers.iterator(); iter.hasNext(); ) {
+      for (final MulticastMessageListener subscriber : subscribers) {
          try {
-            iter.next().notifyClusterNodeLeft(new ClusterNodeLeftEventImpl(nodes));
+            subscriber.notifyClusterNodeLeft(new ClusterNodeLeftEventImpl(nodes));
          } catch (final Exception e) {
             ExceptionUtils.ignoreException(e, "Ignored to let other subscribers to proceed");
          }
@@ -130,9 +129,9 @@ final class MulticastMessageListenerList {
       }
 
       // Process
-      for (final Iterator<MulticastMessageListener> iter = subscribers.iterator(); iter.hasNext(); ) {
+      for (final MulticastMessageListener subscriber : subscribers) {
          try {
-            iter.next().notifyClusterNodeBlocked();
+            subscriber.notifyClusterNodeBlocked();
          } catch (final Exception e) {
             ExceptionUtils.ignoreException(e, "Ignored to let other subscribers to proceed");
          }
@@ -153,9 +152,9 @@ final class MulticastMessageListenerList {
       }
 
       // Process
-      for (final Iterator<MulticastMessageListener> iter = subscribers.iterator(); iter.hasNext(); ) {
+      for (final MulticastMessageListener subscriber : subscribers) {
          try {
-            iter.next().notifyClusterNodeUnblocked();
+            subscriber.notifyClusterNodeUnblocked();
          } catch (final Exception e) {
             ExceptionUtils.ignoreException(e, "Ignored to let other subscribers to proceed");
          }
@@ -170,9 +169,9 @@ final class MulticastMessageListenerList {
       }
 
       // Process
-      for (final Iterator<MulticastMessageListener> iter = subscribers.iterator(); iter.hasNext(); ) {
+      for (final MulticastMessageListener subscriber : subscribers) {
          try {
-            iter.next().notifyReset();
+            subscriber.notifyReset();
          } catch (final Exception e) {
             ExceptionUtils.ignoreException(e, "Ignored to let other subscribers to proceed");
          }
