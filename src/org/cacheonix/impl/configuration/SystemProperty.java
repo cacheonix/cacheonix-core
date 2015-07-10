@@ -22,7 +22,7 @@ import org.cacheonix.impl.util.logging.Logger;
 /**
  * Holds names of Cacheonix system properties.
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Aug 4, 2008 5:45:50 PM
  */
 public final class SystemProperty {

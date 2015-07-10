@@ -24,7 +24,7 @@ import org.cacheonix.impl.util.logging.Logger;
 /**
  * An enumeration of flags to use to determine what information should be provided by <code>EntryModifiedEvent</code>.
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @noinspection NumericCastThatLosesPrecision
  * @see EntryModifiedSubscriber#getEventContentFlags()
  */

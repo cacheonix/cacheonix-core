@@ -34,7 +34,7 @@ import java.io.Serializable;
  * <p/>
  * Classes implementing <code>CacheLoader</code> must provide a public no-argument constructor.
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  */
 public interface CacheLoader {
 

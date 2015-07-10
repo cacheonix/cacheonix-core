@@ -18,7 +18,7 @@ import junit.framework.TestCase;
 /**
  * SerializerFactory Tester.
  *
- * @author simeshev@cacheonix.com
+ * @author simeshev@cacheonix.org
  * @version 1.0
  * @since <pre>04/04/2008</pre>
  */

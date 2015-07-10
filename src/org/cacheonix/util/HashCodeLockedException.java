@@ -21,7 +21,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * already calculated.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @noinspection SameParameterValue
  * @since Apr 13, 2008 6:07:26 PM
  */

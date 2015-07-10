@@ -22,7 +22,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * LoggingLevelTest
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Jan 9, 2010 5:14:12 PM
  */
 public final class LoggingLevelTest extends CacheonixTestCase {

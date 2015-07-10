@@ -23,7 +23,7 @@ import org.cacheonix.examples.util.DatabaseConnector;
 import org.cacheonix.examples.util.JDBCUtils;
 
 /**
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  */
 class InvoiceStorageManager {
 

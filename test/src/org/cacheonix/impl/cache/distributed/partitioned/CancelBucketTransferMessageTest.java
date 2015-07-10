@@ -25,7 +25,7 @@ import junit.framework.TestCase;
  * CancelBucketTransferMessageTest
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since May 24, 2010 9:48:21 PM
  */
 public final class CancelBucketTransferMessageTest extends TestCase {

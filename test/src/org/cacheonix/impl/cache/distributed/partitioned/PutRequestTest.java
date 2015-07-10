@@ -26,7 +26,7 @@ import org.cacheonix.impl.net.serializer.SerializerFactory;
 /**
  * CachePutRequestImpl Tester.
  *
- * @author simeshev@cacheonix.com
+ * @author simeshev@cacheonix.org
  * @version 1.0
  * @since <pre>04/29/2008</pre>
  */

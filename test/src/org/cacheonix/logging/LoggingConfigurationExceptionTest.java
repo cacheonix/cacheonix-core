@@ -21,7 +21,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * LoggingConfigurationExceptionTest
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Jan 9, 2010 5:11:50 PM
  */
 public final class LoggingConfigurationExceptionTest extends CacheonixTestCase {

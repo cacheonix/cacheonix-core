@@ -23,7 +23,7 @@ import junit.framework.TestCase;
 /**
  * CleanupMarker Tester.
  *
- * @author simeshev@cacheonix.com
+ * @author simeshev@cacheonix.org
  * @version 1.0
  * @since <pre>04/08/2008</pre>
  */

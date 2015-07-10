@@ -32,7 +32,7 @@ import org.cacheonix.impl.util.AssertionException;
 /**
  * MarkerListImpl Tester.
  *
- * @author simeshev@cacheonix.com
+ * @author simeshev@cacheonix.org
  * @version 1.0
  * @noinspection ConstantNamingConvention, ResultOfObjectAllocationIgnored
  * @since <pre>04/01/2008</pre>

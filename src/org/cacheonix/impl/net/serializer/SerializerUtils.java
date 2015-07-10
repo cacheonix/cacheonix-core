@@ -52,7 +52,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * SerializationUtils
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @noinspection UnusedDeclaration, NumericCastThatLosesPrecision @since Mar 28, 2008 3:55:39 PM
  */
 public final class SerializerUtils {
@@ -339,13 +339,13 @@ public final class SerializerUtils {
 
 
    public static Object readObject(final ObjectInput in) throws IOException, ClassNotFoundException {
-      // REVIEWME: simeshev@cacheonix.com - 2009-08-06 -> handling nulls, ints and exceptions
+      // REVIEWME: simeshev@cacheonix.org - 2009-08-06 -> handling nulls, ints and exceptions
       return in.readObject();
    }
 
 
    public static void writeObject(final ObjectOutput out, final Object result) throws IOException {
-      // REVIEWME: simeshev@cacheonix.com - 2009-08-06 -> handling nulls, ints and exceptions
+      // REVIEWME: simeshev@cacheonix.org - 2009-08-06 -> handling nulls, ints and exceptions
       out.writeObject(result);
    }
 

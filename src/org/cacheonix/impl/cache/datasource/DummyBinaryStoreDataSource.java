@@ -25,7 +25,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * DummyBinaryStoreDataSource
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Jul 30, 2008 12:15:15 AM
  */
 public final class DummyBinaryStoreDataSource implements BinaryStoreDataSource {

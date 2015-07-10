@@ -22,7 +22,7 @@ import org.cacheonix.impl.util.logging.Logger;
 /**
  * Requests listeners to finish bucket transfer.
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Oct 27, 2009 3:35:44 PM
  */
 public final class FinishBucketTransferCommand extends BucketCommand {

@@ -49,7 +49,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * <p/>
  * KeySetRequest completes when all owners respond.
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Apr 22, 2010 2:29:40 PM
  */
 @SuppressWarnings("RedundantIfStatement")
@@ -313,7 +313,7 @@ public abstract class KeySetRequest extends AggregatingRequest {
 
                      if (storageNumber == 0) {
 
-                        // REVIEWME: simeshev@cacheonix.com - 2010-03-05 - Right now we post
+                        // REVIEWME: simeshev@cacheonix.org - 2010-03-05 - Right now we post
                         // unassigned to self. This may create a send-receive-retry cycle
                         // while the ownership is stabilized. Consider a timed approach,
                         // maybe through a deferred request queue.

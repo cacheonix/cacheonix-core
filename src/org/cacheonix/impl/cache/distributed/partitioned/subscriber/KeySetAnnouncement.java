@@ -51,7 +51,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * <p/>
  * KeySetRequest completes when all owners respond.
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Apr 22, 2010 2:29:40 PM
  */
 @SuppressWarnings({"RedundantIfStatement", "WeakerAccess", "WeakerAccess"})
@@ -318,7 +318,7 @@ public abstract class KeySetAnnouncement extends AggregatingAnnouncement {
 
                      if (storageNumber == 0) {
 
-                        // REVIEWME: simeshev@cacheonix.com - 2010-03-05 - Right now we post
+                        // REVIEWME: simeshev@cacheonix.org - 2010-03-05 - Right now we post
                         // unassigned to self. This may create a send-receive-retry cycle
                         // while the ownership is stabilized. Consider a timed approach,
                         // maybe through a deferred request queue.
@@ -647,7 +647,7 @@ public abstract class KeySetAnnouncement extends AggregatingAnnouncement {
                      //noinspection ControlFlowStatementWithoutBraces
                      if (LOG.isDebugEnabled()) LOG.debug("Response count reached : " + responseCount); // NOPMD
 
-                     // NOTE: simeshev@cacheonix.com - 2011-02-19 - Call to default implementation initiates finish.
+                     // NOTE: simeshev@cacheonix.org - 2011-02-19 - Call to default implementation initiates finish.
                      super.notifyResponseReceived(message);
                   }
 
@@ -664,7 +664,7 @@ public abstract class KeySetAnnouncement extends AggregatingAnnouncement {
                   // of primary or replica response.
                   getOwnerWaiter().getPartialResponses().add(response);
 
-                  // NOTE: simeshev@cacheonix.com - 2011-02-19 - Call to default implementation initiates finish.
+                  // NOTE: simeshev@cacheonix.org - 2011-02-19 - Call to default implementation initiates finish.
                   // We call it from a condition block because some paths must wait for more responses.
                   super.notifyResponseReceived(message);
 
@@ -681,7 +681,7 @@ public abstract class KeySetAnnouncement extends AggregatingAnnouncement {
 
                   if (request.isRootRequest()) {
 
-                     // NOTE: simeshev@cacheonix.com - 2010-12-26 - It is possible for a root request
+                     // NOTE: simeshev@cacheonix.org - 2010-12-26 - It is possible for a root request
                      // to receive a Response.RESULT_RETRY if case the root request is submitted when
                      // local cache processor is not there yet or it is already not there as a result of
                      // reset or shutdown (see ClusterProcessor's dispatch() and enqueue()).
@@ -703,7 +703,7 @@ public abstract class KeySetAnnouncement extends AggregatingAnnouncement {
                      rootPartialResponses.add(message);
                   }
 
-                  // NOTE: simeshev@cacheonix.com - 2011-02-19 - Default implementation initiates finish.
+                  // NOTE: simeshev@cacheonix.org - 2011-02-19 - Default implementation initiates finish.
                   // We call it from a condition block because some paths must wait for more responses.
                   super.notifyResponseReceived(message);
 
@@ -715,7 +715,7 @@ public abstract class KeySetAnnouncement extends AggregatingAnnouncement {
                   final Response unexpectedResponseError = createResponseCodeError(response);
                   getOwnerWaiter().getPartialResponses().add(unexpectedResponseError);
 
-                  // NOTE: simeshev@cacheonix.com - 2011-02-19 - Call to default implementation initiates finish.
+                  // NOTE: simeshev@cacheonix.org - 2011-02-19 - Call to default implementation initiates finish.
                   // We call it from a condition block because some paths must wait for more responses.
                   super.notifyResponseReceived(message);
 
@@ -738,7 +738,7 @@ public abstract class KeySetAnnouncement extends AggregatingAnnouncement {
             final Response unexpectedResponseError = createUnexpectedResponseError(message);
             getOwnerWaiter().getPartialResponses().add(unexpectedResponseError);
 
-            // NOTE: simeshev@cacheonix.com - 2011-02-19 - Call to default implementation initiates finish.
+            // NOTE: simeshev@cacheonix.org - 2011-02-19 - Call to default implementation initiates finish.
             // We call it from a condition block because some paths must wait for more responses.
             super.notifyResponseReceived(message);
          }
@@ -763,7 +763,7 @@ public abstract class KeySetAnnouncement extends AggregatingAnnouncement {
          final KeySetAnnouncement announcement = (KeySetAnnouncement) getRequest();
          if (leftAddress.equals(announcement.bucketOwnerAddress)) {
 
-            // NOTE: simeshev@cacheonix.com - 2011-02-21 - When the bucket owner leaves,
+            // NOTE: simeshev@cacheonix.org - 2011-02-21 - When the bucket owner leaves,
             // it means that there is no point in waiting for the response from bucket
             // owner. Reminder: we use a response from bucket owner to delay returning
             // to the client. It does not affect handling rejects. We just increment

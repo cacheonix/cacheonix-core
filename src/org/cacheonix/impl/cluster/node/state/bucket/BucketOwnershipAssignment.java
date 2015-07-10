@@ -43,7 +43,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * CacheGroup
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @noinspection RedundantIfStatement, NonFinalFieldReferenceInEquals, NonFinalFieldReferencedInHashCode,
  * StandardVariableNames, ImplicitNumericConversion, UnnecessaryUnboxing
  */
@@ -70,7 +70,7 @@ public final class BucketOwnershipAssignment implements Wireable {
     * A map of bucket owner addresses to bucket owners. Bucket owners carry information about what buckets they own and
     * what buckets are being transferred in or out.
     * <p/>
-    * NOTE: simeshev@cacheonix.com - 2010-02-10 - It it *critical* for consistent bucket ownership assignment that the
+    * NOTE: simeshev@cacheonix.org - 2010-02-10 - It it *critical* for consistent bucket ownership assignment that the
     * TreeMap (using natural sort order of keys) is used. HashMap does not work order of traversal depends on order of
     * insertion, and it is not always guaranteed that the nodes are inserted in the same order. See bug CACHEONIX-168
     * for more information.
@@ -257,7 +257,7 @@ public final class BucketOwnershipAssignment implements Wireable {
     */
    public IntArrayList getOwnedBuckets(final int storageNumber, final ClusterNodeAddress ownerAddress) {
 
-      // REVIEWME: simeshev@cacheonix.com - 2010-03-16 -> Synchronization on the internal list of owned buckets
+      // REVIEWME: simeshev@cacheonix.org - 2010-03-16 -> Synchronization on the internal list of owned buckets
       final BucketOwner bucketOwner = bucketOwners[storageNumber].get(ownerAddress);
       final Collection<Integer> ownedBuckets = bucketOwner.getOwnedBuckets();
       final IntArrayList result = new IntArrayList(ownedBuckets.size());
@@ -1425,7 +1425,7 @@ public final class BucketOwnershipAssignment implements Wireable {
 
       Assert.assertTrue(storageNumber != 0, "Inbound replicas make sense only for replica owner: {0}", storageNumber);
 
-      // NOTE: simeshev@cacheonix.com - 2010-02-26 - declared it
+      // NOTE: simeshev@cacheonix.org - 2010-02-26 - declared it
       final CancelBucketTransferCommand[] command = new CancelBucketTransferCommand[1];
       final IntObjectHashMap<BucketTransfer> inboundReplicas = receiver.getInboundReplicas();
       inboundReplicas.forEachEntry(new IntObjectProcedure<BucketTransfer>() {
@@ -1552,7 +1552,7 @@ public final class BucketOwnershipAssignment implements Wireable {
       final TreeMap<ClusterNodeAddress, BucketOwner>[] maps = new TreeMap[replicaCount + 1];
       for (byte i = 0; i <= replicaCount; i++) {
 
-         // NOTE: simeshev@cacheonix.com - 2010-02-10 - It it *critical* for consistent bucket ownership
+         // NOTE: simeshev@cacheonix.org - 2010-02-10 - It it *critical* for consistent bucket ownership
          // assignment that the TreeMap (using natural sort order of keys) is used. HashMap does not work
          // order of traversal depends on order of insertion, and it is not always guaranteed that the
          // nodes are inserted in the same order. See bug CACHEONIX-168 for more information.

@@ -22,7 +22,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * CacheNodeJoinedMessage
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @noinspection RedundantIfStatement
  * @since Jul 13, 2009 10:34:17 PM
  */
@@ -67,7 +67,7 @@ public final class CacheNodeJoinedMessage extends LocalCacheMessage {
     * Processes cache member joined notification.
     */
    protected void executeOperational() {
-      // REVIEWME: simeshev@cacheonix.com - 2009-11-07 - decide what
+      // REVIEWME: simeshev@cacheonix.org - 2009-11-07 - decide what
       // to do with it or if we need it. One of the uses is an API
       // that notifies about nodes joining and leaving.
    }

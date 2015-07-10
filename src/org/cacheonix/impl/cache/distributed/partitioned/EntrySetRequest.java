@@ -46,7 +46,7 @@ import org.cacheonix.impl.util.logging.Logger;
 /**
  * EntrySetRequest is sent to owners of a set of entries.
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  */
 @SuppressWarnings("RedundantIfStatement")
 public abstract class EntrySetRequest extends AggregatingRequest {
@@ -305,7 +305,7 @@ public abstract class EntrySetRequest extends AggregatingRequest {
                   if (bucketOwner == null) {
 
                      if (storageNumber == 0) {
-                        // REVIEWME: simeshev@cacheonix.com - 2010-03-05 - Right now we post
+                        // REVIEWME: simeshev@cacheonix.org - 2010-03-05 - Right now we post
                         // unassigned to self. This may create a send-receive-retry cycle
                         // while the ownership is stabilized. Consider a timed approach,
                         // maybe through a deferred request queue.

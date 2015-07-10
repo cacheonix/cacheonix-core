@@ -19,7 +19,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * An event that is sent to subscribers when a member leaves a group.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  */
 public final class GroupMemberLeftEvent {
 

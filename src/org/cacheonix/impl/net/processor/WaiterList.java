@@ -26,7 +26,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * WaiterList
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Jul 8, 2009 7:08:25 PM
  */
 public final class WaiterList {
@@ -71,7 +71,7 @@ public final class WaiterList {
     */
    public void register(final Waiter waiter) {
 
-      // NOTE: simeshev@cacheonix.com - 2011-08-08 - Sending the message to failed process
+      // NOTE: simeshev@cacheonix.org - 2011-08-08 - Sending the message to failed process
       // will cause the sender to respond with failure so the waiter will finish even if
       // the destination is gone.
 

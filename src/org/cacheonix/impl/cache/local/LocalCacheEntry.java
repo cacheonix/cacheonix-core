@@ -27,7 +27,7 @@ import org.cacheonix.impl.cache.item.Binary;
  * An implementation of CacheEntry used by the local cache.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @see LocalCache#execute(Executable, Aggregator)
  * @see LocalCache#execute(EntryFilter, Executable, Aggregator)
  * @see LocalCache#executeAll(Set, Executable, Aggregator)

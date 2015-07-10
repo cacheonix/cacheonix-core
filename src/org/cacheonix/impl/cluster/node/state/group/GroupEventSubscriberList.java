@@ -21,7 +21,7 @@ import org.cacheonix.impl.util.logging.Logger;
 /**
  * A list of subscribers to group events.
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @see GroupEventSubscriber
  * @see GroupMemberJoinedEvent
  * @see GroupMemberLeftEvent

@@ -22,7 +22,7 @@ import junit.framework.TestCase;
  * TestUtilsTest
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Jun 23, 2008 9:45:42 PM
  */
 public final class TestUtilsTest extends TestCase {

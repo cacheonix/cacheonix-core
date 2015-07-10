@@ -27,7 +27,7 @@ import org.cacheonix.impl.util.logging.Logger;
 /**
  * An implementation of the {@link EntryModifiedEvent} that is sent to local subscribers.
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @see BinaryEntryModifiedSubscriber#notifyKeysUpdated(List)
  * @since Aug 13, 2008 4:20:21 PM
  */

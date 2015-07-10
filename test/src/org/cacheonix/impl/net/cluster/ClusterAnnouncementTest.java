@@ -28,7 +28,7 @@ import junit.framework.TestCase;
 /**
  * ClusterAnnouncement Tester.
  *
- * @author simeshev@cacheonix.com
+ * @author simeshev@cacheonix.org
  * @version 1.0
  * @since <pre>04/01/2008</pre>
  */

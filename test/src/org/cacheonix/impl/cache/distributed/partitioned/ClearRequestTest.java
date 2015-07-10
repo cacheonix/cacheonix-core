@@ -24,7 +24,7 @@ import org.cacheonix.impl.net.serializer.SerializerFactory;
 /**
  * SizeRequestTest Tester.
  *
- * @author simeshev@cacheonix.com
+ * @author simeshev@cacheonix.org
  * @version 1.0
  */
 public final class ClearRequestTest extends CacheonixTestCase {

@@ -29,7 +29,7 @@ import org.cacheonix.impl.util.logging.Logger;
 /**
  * Cache get request is sent by the distributed cache when the key is stored remotely.
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @noinspection NonFinalFieldReferencedInHashCode, NonFinalFieldReferenceInEquals, RedundantIfStatement,
  * UnnecessaryParentheses
  * @see PartitionedCache#get(Object)

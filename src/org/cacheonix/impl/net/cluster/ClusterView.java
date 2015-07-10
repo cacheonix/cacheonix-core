@@ -35,7 +35,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * Marker list.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @noinspection NonFinalFieldReferenceInEquals, NonFinalFieldReferencedInHashCode , RedundantIfStatement @since Mar 26,
  * 2008 9:30:48 PM
  */
@@ -222,7 +222,7 @@ public final class ClusterView implements Wireable {
       final int otherListSize = otherList.size();
 
       // Check if we have strict majority
-      // REVIEWME: simeshev@cacheonix.com - 2008-04-26 - This is a very simplistic approach. We
+      // REVIEWME: simeshev@cacheonix.org - 2008-04-26 - This is a very simplistic approach. We
       // might actually check if this is the real intersection.
       final boolean strictMajority = clusterNodeList.size() > otherListSize >> 1;
       if (strictMajority) {

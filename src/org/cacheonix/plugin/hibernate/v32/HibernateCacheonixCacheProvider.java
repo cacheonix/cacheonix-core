@@ -36,7 +36,7 @@ import org.hibernate.cfg.Environment;
  * <code>hibernate.cache.provider_configuration_file_resource_path=cacheonix-2.xml</code>. Cacheonix will look for the
  * configuration file in the root of the classpath.
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  */
 public final class HibernateCacheonixCacheProvider implements CacheProvider {
 

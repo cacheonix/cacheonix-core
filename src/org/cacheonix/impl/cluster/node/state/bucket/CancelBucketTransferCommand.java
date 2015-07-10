@@ -25,7 +25,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * Requests listeners to cancel bucket transfer.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Oct 27, 2009 5:29:43 PM
  */
 public final class CancelBucketTransferCommand extends BucketCommand {

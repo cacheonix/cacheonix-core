@@ -30,7 +30,7 @@ import org.cacheonix.impl.storage.disk.StorageException;
  * Invalidator of cache based on an incremental update counter (timestamp).
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  */
 public final class TimestampCacheInvalidator implements CacheInvalidator {
 
@@ -100,7 +100,7 @@ public final class TimestampCacheInvalidator implements CacheInvalidator {
                cacheElement.invalidate();
             }
          } catch (final StorageException e) {
-            // REVIEWME: simeshev@cacheonix.com -> why getValue is throwing an exception?
+            // REVIEWME: simeshev@cacheonix.org -> why getValue is throwing an exception?
             throw new IllegalArgumentException(e.toString());
          } catch (final SQLException ignored) {
             cacheElement.invalidate();

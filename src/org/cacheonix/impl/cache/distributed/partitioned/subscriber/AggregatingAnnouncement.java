@@ -48,7 +48,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * to a particular request. In this regard <code>AggregatingAnnouncement</code>  is an implementation of the template
  * method pattern.
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  */
 @SuppressWarnings({"RedundantIfStatement", "WeakerAccess"})
 public abstract class AggregatingAnnouncement extends Request implements Prepareable {

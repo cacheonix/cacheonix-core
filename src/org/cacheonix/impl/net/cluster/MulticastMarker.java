@@ -202,7 +202,7 @@ public final class MulticastMarker extends OperationalMarker {
     */
    public void rollbackJoin() {
 
-      // NOTE: simeshev@cacheonix.com - 2011-02-24 - Storing the marker for forward rolls the seqNum forward
+      // NOTE: simeshev@cacheonix.org - 2011-02-24 - Storing the marker for forward rolls the seqNum forward
       // and it stayed untouched until this moment, so it is safe
       // to decrement.
 
@@ -604,7 +604,7 @@ public final class MulticastMarker extends OperationalMarker {
 
                final long seqNumEnd = clusterProcessor.getProcessorState().getCurrent();
 
-               // REVIEWME: simeshev@cacheonix.com - 2008-03-29 - we send the whole bunch,
+               // REVIEWME: simeshev@cacheonix.org - 2008-03-29 - we send the whole bunch,
                // though the original TMP description mentions only one message.
 
                if (LOG.isDebugEnabled()) {
@@ -823,7 +823,7 @@ public final class MulticastMarker extends OperationalMarker {
       //
       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-      // NOTE: simeshev@cacheonix.com - 2010-08-25 - Join request can be handled only when there
+      // NOTE: simeshev@cacheonix.org - 2010-08-25 - Join request can be handled only when there
       // is no delivery round or all frames in the current delivery round has been delivered.
       if (multicastMarker.originator == null || (multicastMarker.current != null && multicastMarker.previous != null && multicastMarker.current.equals(multicastMarker.previous))) {
 
@@ -831,7 +831,7 @@ public final class MulticastMarker extends OperationalMarker {
          final LinkedList<JoiningNode> joinRequests = clusterProcessor.getProcessorState().getJoinRequests();
          if (!joinRequests.isEmpty()) {
 
-            // NOTE: simeshev@cacheonix.com - 2011-04-13 - It is important to check if this node is in 'Leave' becuase
+            // NOTE: simeshev@cacheonix.org - 2011-04-13 - It is important to check if this node is in 'Leave' becuase
             // it means that it is in the second state of leaving, and ir shouldn't become a join coordinator because
             // it won't be able to forward the stored marker becuase it may be dead by the time joining node response
             // to the MarkerListRequest. See bug CACHEONIX-307 for more information.
@@ -1022,7 +1022,7 @@ public final class MulticastMarker extends OperationalMarker {
 
       LOG.info("Switched to majority cluster: " + processor.getProcessorState().getClusterView());
 
-      // REVIEWME: simeshev@cacheonix.com - 2010-07-07 - What are the implications
+      // REVIEWME: simeshev@cacheonix.org - 2010-07-07 - What are the implications
       // of sending the new marker to self instead of just forwarding it?
 
       marker.setReceiver(processor.getAddress());
@@ -1135,7 +1135,7 @@ public final class MulticastMarker extends OperationalMarker {
 
          sendJoinedToSelf(marker.joinSeqNum, marker.getJoiningNode().getAddress());
 
-         // REVIEWME: simeshev@cacheonix.com - 2010-07-04 - What are the implications
+         // REVIEWME: simeshev@cacheonix.org - 2010-07-04 - What are the implications
          // of sending the new marker to self instead of just forwarding it?
          marker.setReceiver(processor.getAddress());
          processor.post(marker);

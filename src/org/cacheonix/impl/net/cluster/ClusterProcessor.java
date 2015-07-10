@@ -55,7 +55,7 @@ import org.cacheonix.impl.util.time.Timeout;
  * MulticastConnectionImpl
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @noinspection JavaDoc, ClassEscapesDefinedScope @since Mar 20, 2008 3:59:09 PM
  */
 public final class ClusterProcessor extends RequestProcessor implements MulticastServerListener {
@@ -268,7 +268,7 @@ public final class ClusterProcessor extends RequestProcessor implements Multicas
     * <p/>
     * The listener receives a message once it is received.
     * <p/>
-    * REVIEWME: simeshev@cacheonix.com - 2008-03-20 - consider moving to a constructor.
+    * REVIEWME: simeshev@cacheonix.org - 2008-03-20 - consider moving to a constructor.
     *
     * @param listener to addGroupMembershipSubscriber.
     */
@@ -588,7 +588,7 @@ public final class ClusterProcessor extends RequestProcessor implements Multicas
     */
    public void deliverAssembledMulticastMessages() throws IOException {
 
-      // NOTE: simeshev@cacheonix.com - 2010-09-16 - We call processMessage() with cluster UID
+      // NOTE: simeshev@cacheonix.org - 2010-09-16 - We call processMessage() with cluster UID
       // check set to <code>false</code> because if the messages are there it means they have been received
       // within the same cluster. If the node would have joined an other cluster, reset() would
       // have cleaned messages up and there wouldn't be messages.

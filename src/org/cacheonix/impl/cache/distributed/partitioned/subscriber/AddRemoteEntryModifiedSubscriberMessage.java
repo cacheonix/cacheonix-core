@@ -155,7 +155,7 @@ public final class AddRemoteEntryModifiedSubscriberMessage extends LocalCacheMes
          // Add subscriber to the bucket
 
 
-         // REVIEWME: simeshev@cacheonix.com - 2011-02-10 -> This may lead to over-subscription if this is a new bucket
+         // REVIEWME: simeshev@cacheonix.org - 2011-02-10 -> This may lead to over-subscription if this is a new bucket
          // because getOrCreateBucket() also sets subscriptions to the new bucket from the replicated state (group).
          // This message is executed by the local cache processor *after* the replicated state was modified, so the
          // new bucket gets subscriptions from the replicated state *and* from the code below. Right now the binary

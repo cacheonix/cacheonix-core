@@ -20,7 +20,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * Stack trace at object costruction. This throwable is used to track impossible resource leaks.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Mar 20, 2008 9:06:53 PM
  */
 public final class StackTraceAtCreate extends Throwable {

@@ -49,7 +49,7 @@ public final class LockOwner implements Wireable {
     * The cluster time at that a cluster representative will begin a forced lock release. If null, means that it is not
     * set yet.
     * <p/>
-    * NOTE: simeshev@cacheonix.com - 2010-08-12 - This is a transient field and makes sense only on the cluster
+    * NOTE: simeshev@cacheonix.org - 2010-08-12 - This is a transient field and makes sense only on the cluster
     * representative.. If the cluster representative changes, the forced unlock process will start from scratches.
     *
     * @see MulticastMarker#processUnlockTimeouts()

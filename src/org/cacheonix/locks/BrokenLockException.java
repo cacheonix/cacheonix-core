@@ -24,7 +24,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * not match the number of calls to <code>lock()</code>, or when the cluster node joined another cluster while holding a
  * lock. because it was unlock timed out.
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  */
 public final class BrokenLockException extends CacheonixException {
 

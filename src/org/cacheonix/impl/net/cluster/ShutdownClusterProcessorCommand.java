@@ -45,7 +45,7 @@ public final class ShutdownClusterProcessorCommand extends Command {
     */
    public void execute() {
 
-      // REVIEWME: simeshev@cacheonix.com - 2011-02-25 - Not sure if
+      // REVIEWME: simeshev@cacheonix.org - 2011-02-25 - Not sure if
       // we need it. Maybe we should have a shutdown notification?
       processor.getMulticastMessageListeners().notifyNodesLeft(Collections.singletonList(processor.getAddress()));
 

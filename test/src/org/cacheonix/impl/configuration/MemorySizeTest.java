@@ -18,7 +18,7 @@ import junit.framework.TestCase;
 /**
  * MemorySize Tester.
  *
- * @author simeshev@cacheonix.com
+ * @author simeshev@cacheonix.org
  * @version 1.0
  * @since <pre>06/16/2008</pre>
  */

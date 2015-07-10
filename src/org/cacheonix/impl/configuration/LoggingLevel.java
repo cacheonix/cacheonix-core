@@ -28,7 +28,7 @@ import org.cacheonix.impl.util.logging.PropertyConfigurator;
  * An enumeration defining logging levels.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @noinspection FieldNotUsedInToString, NumericCastThatLosesPrecision
  */
 public final class LoggingLevel implements Serializable {

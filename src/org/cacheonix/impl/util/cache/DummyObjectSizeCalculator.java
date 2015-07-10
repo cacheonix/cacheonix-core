@@ -19,7 +19,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * Dummy object size calculator always return zero for the object size in bytes.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Jul 26, 2008 3:54:09 AM
  */
 public final class DummyObjectSizeCalculator implements ObjectSizeCalculator {

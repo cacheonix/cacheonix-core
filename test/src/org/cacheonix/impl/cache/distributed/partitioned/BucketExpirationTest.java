@@ -29,7 +29,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * A tester for key expiration in a bucket with configured expiration.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  */
 public final class BucketExpirationTest extends CacheonixTestCase {
 

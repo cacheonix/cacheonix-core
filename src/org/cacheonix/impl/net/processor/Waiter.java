@@ -25,7 +25,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * Waiter
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @noinspection ALL @since Jul 8, 2009 7:58:06 PM
  */
 public class Waiter implements ResponseWaiter {
@@ -158,7 +158,7 @@ public class Waiter implements ResponseWaiter {
 
                   final RequestProcessor processor = getRequest().getProcessor();
 
-                  // NOTE: simeshev@cacheonix.com - 2011-06-20 - We need this check because, per CACHEONIX-372,
+                  // NOTE: simeshev@cacheonix.org - 2011-06-20 - We need this check because, per CACHEONIX-372,
                   // it is possible to timeout without ever be assigned a processor.
                   if (processor != null) {
 

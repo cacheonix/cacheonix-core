@@ -35,7 +35,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * doesn't have a bucket yet or the bucket is still being transferred.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @noinspection RedundantIfStatement, ParameterNameDiffersFromOverriddenParameter, ClassNameSameAsAncestorName
  * @see BeginBucketTransferMessage#executeOperational()
  * @since Oct 27, 2009 12:04:56 PM

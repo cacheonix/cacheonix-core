@@ -23,7 +23,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * An implementation of CacheEntry used by distributed cached.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @see KeySetRequest#processKeys(List)
  * @see BucketSetRequest#processBuckets(List)
  * @since May 17, 2010 10:42:31 PM

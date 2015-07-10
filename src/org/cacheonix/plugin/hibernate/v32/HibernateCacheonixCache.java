@@ -26,7 +26,7 @@ import org.hibernate.cache.Timestamper;
 /**
  * Cacheonix plugin for Hibernate.
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  */
 @SuppressWarnings("unchecked")
 public final class HibernateCacheonixCache implements Cache {
@@ -164,7 +164,7 @@ public final class HibernateCacheonixCache implements Cache {
     * Generate a timestamp
     */
    public long nextTimestamp() {
-      // REVIEWME: simeshev@cacheonix.com - 2008-01-22 -
+      // REVIEWME: simeshev@cacheonix.org - 2008-01-22 -
       // consider effect of this time stamping mechanism on
       // clustered caches.
       return Timestamper.next();

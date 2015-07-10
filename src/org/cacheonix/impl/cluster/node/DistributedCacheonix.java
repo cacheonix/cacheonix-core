@@ -673,7 +673,7 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
          beginCreateCacheNode(cacheName, cacheConfig);
       }
 
-      // REVIEWME: simeshev@cacheonix.com - 2020-02-11 -> This should be moved to the place
+      // REVIEWME: simeshev@cacheonix.org - 2020-02-11 -> This should be moved to the place
       // where group add is announced when re-sending group member joined announcement to
       // the freshly joined cluster is ready.
 
@@ -747,7 +747,7 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
          cacheProcessor.shutdown();
          LOG.debug("Cache processor " + cacheName + " has been shutdown");
 
-         // REVIEWME: simeshev@cacheonix.com - 2010-02-05 - Not sure if we should
+         // REVIEWME: simeshev@cacheonix.org - 2010-02-05 - Not sure if we should
          // remove it from the map first or remove from destination first.
 
          // Remove from the message receiver
@@ -914,7 +914,7 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
 
             } catch (final Exception e) {
 
-               // REVIEME: simeshev@cacheonix.com - 2011-07-11 Consider setting up a cache processor that has failed with an error.
+               // REVIEME: simeshev@cacheonix.org - 2011-07-11 Consider setting up a cache processor that has failed with an error.
 
                // Report error
                LOG.error(
@@ -1012,7 +1012,7 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
             final CacheProcessor cacheProcessor = cacheProcessorMap.get(cacheName);
             if (cacheProcessor == null) {
 
-               // NOTE: simeshev@cacheonix.com - 2010-02-15 - We can do it because
+               // NOTE: simeshev@cacheonix.org - 2010-02-15 - We can do it because
                // the events are processed sequentially. If the node is gone, it may
                // appear only after this event was processed.
                LOG.debug("Ignoring this notification because there is no a cache processor \""
@@ -1048,7 +1048,7 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
       if (LOG.isDebugEnabled()) {
          LOG.debug("Received: " + event);
       }
-      // TODO: simeshev@cacheonix.com - 2009-11-07 - Decide what to do with it
+      // TODO: simeshev@cacheonix.org - 2009-11-07 - Decide what to do with it
    }
 
 

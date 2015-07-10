@@ -20,7 +20,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * GroupEventSubscriberListTest
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Jan 2, 2010 10:18:14 PM
  */
 public final class GroupEventSubscriberListTest extends CacheonixTestCase {

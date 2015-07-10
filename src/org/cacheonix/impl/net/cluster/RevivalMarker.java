@@ -29,7 +29,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * Revival marker.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Apr 5, 2008 6:36:35 PM
  */
 public final class RevivalMarker implements Wireable {

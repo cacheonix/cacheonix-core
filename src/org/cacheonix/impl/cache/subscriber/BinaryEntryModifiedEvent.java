@@ -32,7 +32,7 @@ import org.cacheonix.impl.util.logging.Logger;
 /**
  * Implementation of the {@link EntryModifiedEvent}.
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @see EntryModifiedSubscriber
  * @since Aug 13, 2008 4:20:21 PM
  */

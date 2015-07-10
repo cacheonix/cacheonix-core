@@ -17,7 +17,7 @@ package org.cacheonix.impl.util.cache;
  * Object size calculator.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  */
 public interface ObjectSizeCalculator {
 

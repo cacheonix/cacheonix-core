@@ -28,7 +28,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * CacheResponse
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @noinspection NonFinalFieldReferenceInEquals, NonFinalFieldReferencedInHashCode, RedundantIfStatement
  * @since Jan 17, 2009 9:48:37 PM
  */

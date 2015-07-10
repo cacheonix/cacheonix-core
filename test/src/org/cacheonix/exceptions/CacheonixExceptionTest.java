@@ -19,7 +19,7 @@ import junit.framework.TestCase;
 /**
  * CacheonixException Tester.
  *
- * @author simeshev@cacheonix.com
+ * @author simeshev@cacheonix.org
  * @version 1.0
  * @since <pre>09/08/2008</pre>
  */

@@ -20,7 +20,7 @@ import org.cacheonix.impl.net.processor.Frame;
  * Listener for multicast messages received by the multicast server.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @see MulticastServerImpl#addListener(MulticastServerListener)
  * @see ClusterProcessor#startup()
  * @since Mar 29, 2008 11:14:44 AM

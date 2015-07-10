@@ -36,7 +36,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * Java serializer. Portable only for exchanging messages between Java VMs.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Mar 30, 2008 6:28:47 PM
  */
 final class JavaSerializer implements Serializer {

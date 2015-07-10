@@ -22,7 +22,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * Actionable timeout is a timeout that executes an action upon timeout.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Apr 6, 2008 12:07:26 AM
  */
 public abstract class ActionableTimeout implements Shutdownable {

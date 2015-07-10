@@ -28,7 +28,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * Member of CacheGroup. Represents a single cache member.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @noinspection NonFinalFieldReferencedInHashCode, NonFinalFieldReferenceInEquals, RedundantIfStatement @since Jan 19,
  * 2009 3:11:25 AM
  */

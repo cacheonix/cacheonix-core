@@ -32,7 +32,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * PutAllRequestTest
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Dec 20, 2009 7:18:53 PM
  */
 public final class PutAllRequestTest extends CacheonixTestCase {

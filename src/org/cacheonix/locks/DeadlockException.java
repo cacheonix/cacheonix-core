@@ -22,7 +22,7 @@ import org.cacheonix.exceptions.CacheonixException;
  * Cacheonix prevents a thread from being locked in a deadlock by throwing a DeadlockException from
  * <code>lock()</code>.
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @see Lock#lock()
  */
 public final class DeadlockException extends CacheonixException {

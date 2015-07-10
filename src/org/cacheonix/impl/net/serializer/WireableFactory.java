@@ -123,7 +123,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * WireableFactory
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Mar 1, 2010 9:29:20 PM
  */
 public final class WireableFactory {

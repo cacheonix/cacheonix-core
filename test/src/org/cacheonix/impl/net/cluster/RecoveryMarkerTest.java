@@ -28,7 +28,7 @@ import junit.framework.TestCase;
 /**
  * RecoveryMarker Tester.
  *
- * @author simeshev@cacheonix.com
+ * @author simeshev@cacheonix.org
  * @version 1.0
  * @since <pre>04/26/2008</pre>
  */

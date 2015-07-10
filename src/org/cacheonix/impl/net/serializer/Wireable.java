@@ -21,7 +21,7 @@ import java.io.IOException;
  * Wireable
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Mar 1, 2010 7:41:35 PM
  */
 public interface Wireable {

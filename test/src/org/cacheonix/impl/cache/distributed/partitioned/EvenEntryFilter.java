@@ -22,7 +22,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * EvenFilter
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since May 20, 2010 4:38:33 PM
  */
 final class EvenEntryFilter implements EntryFilter {

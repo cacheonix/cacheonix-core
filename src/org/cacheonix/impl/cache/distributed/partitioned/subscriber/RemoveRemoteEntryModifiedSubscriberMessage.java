@@ -129,7 +129,7 @@ public final class RemoveRemoteEntryModifiedSubscriberMessage extends LocalCache
 
       // Check if bucket owner
 
-      // NOTE: simeshev@cacheonix.com - 2011-02-11 - This check should work even if the bucket
+      // NOTE: simeshev@cacheonix.org - 2011-02-11 - This check should work even if the bucket
       // is currently being transferred out because the notification about completion has not
       // been received yet, but the leave message causing this call has already been received.
       if (!cacheProcessor.isBucketOwner(0, bucketNumber)) {

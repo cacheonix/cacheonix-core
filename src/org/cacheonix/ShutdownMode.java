@@ -26,7 +26,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * forced shutdown as a node failure.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @noinspection NumericCastThatLosesPrecision, QuestionableName
  * @see Cacheonix#shutdown()
  * @since Jun 9, 2008 11:09:01 PM

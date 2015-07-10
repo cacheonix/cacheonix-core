@@ -20,7 +20,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * MockProcessJoinedSubscriber
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since May 2, 2008 1:59:35 PM
  */
 final class TestMulticastMessageListenerList implements MulticastMessageListener {

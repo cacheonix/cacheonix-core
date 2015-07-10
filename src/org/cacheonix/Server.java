@@ -19,7 +19,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * A stand-alone Cacheonix server.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  */
 public final class Server {
 

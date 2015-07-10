@@ -51,7 +51,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * Bucket
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @noinspection NonFinalFieldReferenceInEquals, RedundantIfStatement, ParameterNameDiffersFromOverriddenParameter
  * @since Aug 3, 2009 10:28:35 PM
  */

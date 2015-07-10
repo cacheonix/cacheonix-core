@@ -19,7 +19,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * CyclicCountDown
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Apr 3, 2008 10:31:48 PM
  */
 public final class CyclicCountDown {

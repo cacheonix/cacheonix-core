@@ -19,7 +19,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * Hash code calculator factory
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Apr 13, 2008 4:03:16 PM
  */
 public final class HashCodeCalculatorFactory {

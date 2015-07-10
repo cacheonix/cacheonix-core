@@ -18,7 +18,7 @@ import junit.framework.TestCase;
 /**
  * ArrayUtils Tester.
  *
- * @author simeshev@cacheonix.com
+ * @author simeshev@cacheonix.org
  * @version 1.0
  * @since <pre>03/21/2008</pre>
  */

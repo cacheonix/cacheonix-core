@@ -26,7 +26,7 @@ import junit.framework.TestCase;
  * RepartitionAnnouncementTest
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Nov 9, 2009 8:06:51 PM
  */
 public final class RepartitionAnnouncementTest extends TestCase {

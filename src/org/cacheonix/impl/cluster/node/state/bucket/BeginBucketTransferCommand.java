@@ -25,7 +25,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * Requests listeners to begin bucket transfer.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Oct 23, 2009 1:41:20 PM
  */
 public final class BeginBucketTransferCommand extends BucketCommand {

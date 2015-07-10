@@ -28,7 +28,7 @@ import org.cacheonix.impl.util.time.Timeout;
  * Join status is a bean that holds information related to join process that a process in Blocked state maybe
  * participating in.
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Apr 20, 2008 2:35:12 PM
  */
 public final class JoinStatus {

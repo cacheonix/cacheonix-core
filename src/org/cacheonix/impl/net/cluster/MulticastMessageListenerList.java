@@ -27,7 +27,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * messages and cluster events.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @see ClusterProcessor#getMulticastMessageListeners()
  * @see MulticastMessageListener
  * @since Jan 20, 2009 7:08:57 PM

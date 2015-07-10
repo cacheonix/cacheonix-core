@@ -19,7 +19,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * Value object that record number of transfers
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Aug 17, 2009 4:47:20 PM
  */
 public final class TransferInProgress {

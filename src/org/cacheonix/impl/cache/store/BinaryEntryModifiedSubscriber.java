@@ -27,7 +27,7 @@ import org.cacheonix.impl.cache.subscriber.BinaryEntryModifiedEvent;
  * <code>EntryModifiedEvent</code> after an entry was added to the cache, deleted or updated.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @see EntryModifiedEvent
  */
 public interface BinaryEntryModifiedSubscriber {

@@ -27,7 +27,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * AggregatingCacheResponse
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Apr 4, 2010 11:50:33 PM
  */
 @SuppressWarnings("RedundantIfStatement")

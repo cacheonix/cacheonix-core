@@ -19,7 +19,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * An event that is sent to subsctibers when a member joins a group.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Jan 21, 2009 2:03:27 AM
  */
 public final class GroupMemberJoinedEvent {

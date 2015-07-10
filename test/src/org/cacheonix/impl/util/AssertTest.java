@@ -21,7 +21,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * AssertTest
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Jan 11, 2010 8:56:35 PM
  */
 public final class AssertTest extends CacheonixTestCase {

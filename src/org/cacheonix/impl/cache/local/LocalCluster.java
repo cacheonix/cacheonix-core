@@ -101,7 +101,7 @@ public final class LocalCluster implements Cluster {
     */
    public void addClusterEventSubscriber(final ClusterEventSubscriber clusterEventSubscriber) {
 
-      // REVIEWME: simeshev@cacheonix.com - 2012-03-10 - Do we need some
+      // REVIEWME: simeshev@cacheonix.org - 2012-03-10 - Do we need some
       // sort of an implementation or does this method just do nothing.
    }
 
@@ -114,7 +114,7 @@ public final class LocalCluster implements Cluster {
     */
    public void removeClusterEventSubscriber(final ClusterEventSubscriber clusterEventSubscriber) {
 
-      // REVIEWME: simeshev@cacheonix.com - 2012-03-10 - Do we need some
+      // REVIEWME: simeshev@cacheonix.org - 2012-03-10 - Do we need some
       // sort of an implementation or does this method just do nothing.
    }
 }

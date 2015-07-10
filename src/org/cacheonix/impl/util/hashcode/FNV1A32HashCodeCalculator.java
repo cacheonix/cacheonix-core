@@ -19,7 +19,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * FNV1A32HashCodeCalculator
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Apr 13, 2008 3:53:09 PM
  */
 final class FNV1A32HashCodeCalculator implements HashCodeCalculator {

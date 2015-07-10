@@ -29,7 +29,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * AtomicRemoveRequest removes a key from a distributed cache according to specification defined by {@link
  * Cache#remove(Object)}.
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @noinspection NonFinalFieldReferencedInHashCode, NonFinalFieldReferenceInEquals, RedundantIfStatement,
  * UnnecessaryParentheses
  */

@@ -32,7 +32,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * Once the whole message is assembled, the queue pushes it out by calling a listener.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Mar 30, 2008 5:45:43 PM
  */
 final class MessageAssembler {
@@ -111,7 +111,7 @@ final class MessageAssembler {
                   size += partialPacket.getPayload().length;
                }
 
-               // OPTIMIZEME: simeshev@cacheonix.com - 2011-05-16 - Instead of creating a full-copy byte array below,
+               // OPTIMIZEME: simeshev@cacheonix.org - 2011-05-16 - Instead of creating a full-copy byte array below,
                // reduce memory consumption by creating a specialized input stream for the serializer that would pick
                // the data from the parts.
 

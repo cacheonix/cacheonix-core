@@ -43,7 +43,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * implementation of actions specific to a particular request. In this regard <code>AggregatingRequest</code>  is an
  * implementation of the template method pattern.
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  */
 public abstract class AggregatingRequest extends CacheDataRequest implements Prepareable {
 
@@ -514,7 +514,7 @@ public abstract class AggregatingRequest extends CacheDataRequest implements Pre
                      // AggregatingRequest's notifyFinished() will re-submit
                      // all entries left in the request.
 
-                     // NOTE: simeshev@cacheonix.com - 2010-12-26 - It is possible for a root request
+                     // NOTE: simeshev@cacheonix.org - 2010-12-26 - It is possible for a root request
                      // to receive a Response.RESULT_RETRY if case the root request is submitted when
                      // local cache processor is not there yet or it is already not there as a result of
                      // reset or shutdown (see ClusterProcessor's dispatch() and enqueue()).

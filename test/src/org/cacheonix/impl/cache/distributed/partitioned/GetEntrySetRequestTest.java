@@ -25,7 +25,7 @@ import org.cacheonix.impl.util.array.IntHashSet;
 /**
  * GetEntrySetRequest Tester.
  *
- * @author simeshev@cacheonix.com
+ * @author simeshev@cacheonix.org
  * @version 1.0
  */
 public final class GetEntrySetRequestTest extends CacheonixTestCase {

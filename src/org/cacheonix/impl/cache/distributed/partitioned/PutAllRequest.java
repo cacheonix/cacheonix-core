@@ -29,7 +29,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * though the primary owners to the back up owners.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @noinspection RedundantIfStatement, WeakerAccess, NonFinalFieldReferenceInEquals, NonFinalFieldReferencedInHashCode,
  * ThrowableResultOfMethodCallIgnored, ThrowableInstanceNeverThrown
  * @since Dec 19, 2009 12:53:57 PM

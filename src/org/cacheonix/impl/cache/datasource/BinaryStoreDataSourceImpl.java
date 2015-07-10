@@ -30,7 +30,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * An adapter for {@link DataSource} that is an optional supplier of data to the cache for the case when a key is not in
  * the cache (a cache miss).
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  */
 public final class BinaryStoreDataSourceImpl implements BinaryStoreDataSource {
 

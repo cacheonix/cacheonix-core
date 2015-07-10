@@ -48,7 +48,7 @@ import org.cacheonix.impl.util.thread.DaemonThreadFactory;
 /**
  * MulticastConnectionImpl Tester.
  *
- * @author simeshev@cacheonix.com
+ * @author simeshev@cacheonix.org
  * @version 1.0
  * @noinspection ProhibitedExceptionDeclared, JUnitTestMethodWithNoAssertions @since <pre>03/21/2008</pre>
  */

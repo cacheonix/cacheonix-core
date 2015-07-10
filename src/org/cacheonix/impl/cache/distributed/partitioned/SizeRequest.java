@@ -26,7 +26,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * Request to calculate cache size.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @see PartitionedCache#clear()
  */
 public final class SizeRequest extends BucketSetRequest {

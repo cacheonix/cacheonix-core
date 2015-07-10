@@ -36,7 +36,7 @@ import org.cacheonix.impl.util.thread.UserThreadFactory;
  * AbstractCacheonix
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @noinspection ProtectedField, AbstractMethodCallInConstructor
  * @since May 9, 2009 4:07:51 PM
  */

@@ -75,7 +75,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * CacheProcessor is a specialized request processor that serves cache requests.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Apr 28, 2008 8:09:17 PM
  */
 public final class CacheProcessor extends RequestProcessor {
@@ -365,7 +365,7 @@ public final class CacheProcessor extends RequestProcessor {
 
       final Bucket removedBucket = bucketStorages[storageNumber].remove(bucketNumber);
 
-      // NOTE: simeshev@cacheonix.com - 2011-01-05 - In theory this method is not going
+      // NOTE: simeshev@cacheonix.org - 2011-01-05 - In theory this method is not going
       // to be called against a non-existing bucket, but, just in case let's check.
       if (removedBucket != null) {
 
@@ -408,7 +408,7 @@ public final class CacheProcessor extends RequestProcessor {
       // Set entry modification subscribers
       if (primaryStorage) {
 
-         // REVIEWME: simeshev@cacheonix.com - 2011-02-09 -> Possibility of ConcurrentModificationException. Switch
+         // REVIEWME: simeshev@cacheonix.org - 2011-02-09 -> Possibility of ConcurrentModificationException. Switch
          // to creating a replicated copy of the modification subscriptions at each CacheProcessor. The try/catch
          // block is only a temp solution.
 

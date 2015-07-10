@@ -64,7 +64,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * }
  * </pre>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @noinspection NumericCastThatLosesPrecision
  * @since Apr 13, 2008 3:05:53 PM
  */

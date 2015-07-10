@@ -21,7 +21,7 @@ import junit.framework.TestCase;
  * BucketIndexCalculatorTest
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Mar 22, 2009 4:35:20 PM
  */
 public final class BucketIndexCalculatorTest extends TestCase {

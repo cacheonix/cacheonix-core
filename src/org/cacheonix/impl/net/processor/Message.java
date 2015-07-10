@@ -29,7 +29,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * equivalent of the procedure call in RPC.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @noinspection PointlessArithmeticExpression, RedundantIfStatement, NonFinalFieldReferenceInEquals,
  * NonFinalFieldReferencedInHashCode, NonFinalFieldReferencedInHashCode, ParameterNameDiffersFromOverriddenParameter,
  * ConstantNamingConvention, TransientFieldInNonSerializableClass

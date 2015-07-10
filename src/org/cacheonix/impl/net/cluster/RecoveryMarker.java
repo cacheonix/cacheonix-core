@@ -38,7 +38,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * RecoveryMarker
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Apr 5, 2008 6:36:35 PM
  */
 @SuppressWarnings({"SimplifiableIfStatement", "RedundantIfStatement"})
@@ -160,7 +160,7 @@ public final class RecoveryMarker extends MarkerRequest {
 
    protected void processNormal() {
 
-      // NOTE: simeshev@cacheonix.com - by that time we could have started the recovery because of
+      // NOTE: simeshev@cacheonix.org - by that time we could have started the recovery because of
       // the timeout and we have become an originator of the round. Setting it to the recovery
       // state with the originator flag not set may lead to the situation when there are no
       // originators that know that they are originators. That may lead to the situation when
@@ -217,7 +217,7 @@ public final class RecoveryMarker extends MarkerRequest {
       // Notify cluster event subscribers
       notifySubscribersClusterStateChanged(ClusterState.RECONFIGURING);
 
-      // NOTE: simeshev@cacheonix.com - 2010-12-23 - it is possible that a node in a Normal
+      // NOTE: simeshev@cacheonix.org - 2010-12-23 - it is possible that a node in a Normal
       // state receives a recovery marker with self as an originator. This may happen when
       // a marker timeout occurs while this node is alone, thus initiating recovery for a
       // single node.
@@ -229,7 +229,7 @@ public final class RecoveryMarker extends MarkerRequest {
 
       processor.getProcessorState().setRecoveryOriginator(processor.getAddress().equals(recoveryMarker.originator));
 
-      // REVIEWME: simeshev@cacheonix.com - 2010-07-06 - What are the implications
+      // REVIEWME: simeshev@cacheonix.org - 2010-07-06 - What are the implications
       // of sending the new marker to self instead of just forwarding it?
 
       // Receive marker in recovery state
@@ -281,7 +281,7 @@ public final class RecoveryMarker extends MarkerRequest {
       // Notify cluster subscribers
       notifySubscribersClusterStateChanged(ClusterState.RECONFIGURING);
 
-      // NOTE: simeshev@cacheonix.com - 2010-12-23 - it is possible that a node in a blocked
+      // NOTE: simeshev@cacheonix.org - 2010-12-23 - it is possible that a node in a blocked
       // state receives a recovery marker with self as an originator. This may happen when
       // a marker timeout occurs while this node is alone, thus initiating recovery for a
       // single node.
@@ -293,7 +293,7 @@ public final class RecoveryMarker extends MarkerRequest {
 
       processor.getProcessorState().setRecoveryOriginator(processor.getAddress().equals(recoveryMarker.originator));
 
-      // REVIEWME: simeshev@cacheonix.com - 2010-07-06 - What are the implications
+      // REVIEWME: simeshev@cacheonix.org - 2010-07-06 - What are the implications
       // of sending the new marker to self instead of just forwarding it?
 
       // Post marker to self in recovery state
@@ -500,7 +500,7 @@ public final class RecoveryMarker extends MarkerRequest {
 
       processor.getProcessorState().setState(ClusterProcessorState.STATE_RECOVERY);
 
-      // NOTE: simeshev@cacheonix.com - 2010-12-23 - it is possible that a node in a Cleanup
+      // NOTE: simeshev@cacheonix.org - 2010-12-23 - it is possible that a node in a Cleanup
       // state receives a recovery marker with self as an originator. This may happen when
       // a marker timeout occurs while this node is alone, thus initiating recovery for a
       // single node.
@@ -513,13 +513,13 @@ public final class RecoveryMarker extends MarkerRequest {
 
       final boolean recoveryOriginator = processor.getAddress().equals(recoveryMarker.originator);
 
-      // DELETEME: simeshev@cacheonix.com - 2011-02-14
+      // DELETEME: simeshev@cacheonix.org - 2011-02-14
       //noinspection ControlFlowStatementWithoutBraces
       if (LOG.isDebugEnabled()) LOG.debug("Is recovery originator: " + recoveryOriginator); // NOPMD
 
       processor.getProcessorState().setRecoveryOriginator(recoveryOriginator);
 
-      // REVIEWME: simeshev@cacheonix.com - 2010-07-07 - What are the implications
+      // REVIEWME: simeshev@cacheonix.org - 2010-07-07 - What are the implications
       // of sending the new marker to self instead of just forwarding it?
 
       // Post marker to self in Cleanup state
@@ -736,7 +736,7 @@ public final class RecoveryMarker extends MarkerRequest {
                final ReceiverAddress failedProcess = getRequest().getReceiver();
                final ClusterNodeAddress self = processor.getAddress();
 
-               // NOTE: simeshev@cacheonix.com - 2010-12-23 - we check that the failed processes is not self because
+               // NOTE: simeshev@cacheonix.org - 2010-12-23 - we check that the failed processes is not self because
                // it is possible that recovery marker was rejected because the node was alone and then it joined
                // another cluster while the recovery marker was still in flight.
 

@@ -24,7 +24,7 @@ import org.cacheonix.impl.util.logging.Logger;
 /**
  * An enumeration of types of updates that <code>EntryModifiedEvent</code> is sent for.
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @noinspection NumericCastThatLosesPrecision
  * @see EntryModifiedEvent#getUpdateType()
  */

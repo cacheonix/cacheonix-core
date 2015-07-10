@@ -44,7 +44,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * Request to invoke an executable on a set of buckets.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @see PartitionedCache#execute(Executable, Aggregator)
  */
 public final class ExecuteRequest extends BucketSetRequest {
@@ -137,11 +137,11 @@ public final class ExecuteRequest extends BucketSetRequest {
             final Set<Map.Entry<Binary, Binary>> entries = bucket.entrySet();
             for (final Map.Entry<Binary, Binary> entry : entries) {
 
-               // REVIEWME: simeshev@cacheonix.com - 2010-05-20 - Consider passing
+               // REVIEWME: simeshev@cacheonix.org - 2010-05-20 - Consider passing
                // whole entry to DistributedCacheEntry - this will save saving
                // a reference in the list.
 
-               // REVIEWME: simeshev@cacheonix.com - 2010-05-20 - Consider using
+               // REVIEWME: simeshev@cacheonix.org - 2010-05-20 - Consider using
                // a limited size batch of entries instead of collecting them all
                // together.
                final DistributedCacheEntry executableCacheEntry = new DistributedCacheEntry(entry.getKey(), entry.getValue());

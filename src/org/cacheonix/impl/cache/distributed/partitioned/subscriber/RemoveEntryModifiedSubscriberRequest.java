@@ -121,7 +121,7 @@ public final class RemoveEntryModifiedSubscriberRequest extends LocalCacheReques
 
          // Not subscribed, return error
 
-         // NOTE: simeshev@cacheonix.com - 2011-02-09 - It's OK to return
+         // NOTE: simeshev@cacheonix.org - 2011-02-09 - It's OK to return
          // an exception becuase this is a local request/response
          getProcessor().post(createErrorResponse(new NotSubscribedException(subscriber.toString())));
 

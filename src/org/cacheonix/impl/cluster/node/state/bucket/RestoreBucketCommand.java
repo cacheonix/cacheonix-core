@@ -24,7 +24,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * RestorePrimaryBucketCommand
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Oct 31, 2009 6:34:12 PM
  */
 public final class RestoreBucketCommand extends BucketCommand {

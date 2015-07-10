@@ -22,7 +22,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * DummyCacheInvalidator
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Jul 30, 2008 4:30:32 PM
  */
 public final class DummyCacheInvalidator implements CacheInvalidator {

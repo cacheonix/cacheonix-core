@@ -25,7 +25,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * ChangeBucketOwnershipMessageTest
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @noinspection ConstantNamingConvention
  * @since Aug 14, 2009 3:10:23 PM
  */

@@ -17,7 +17,7 @@ package org.cacheonix.impl.cluster.node.state.bucket;
  * BucketEventSubscriber
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Oct 23, 2009 8:21:54 PM
  */
 public interface BucketEventListener {

@@ -28,7 +28,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * Request to add a cache member.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @noinspection UnnecessaryParentheses, UnnecessaryParentheses, NonFinalFieldReferenceInEquals,
  * NonFinalFieldReferencedInHashCode, RedundantIfStatement, ParameterNameDiffersFromOverriddenParameter
  * @since Jan 19, 2009 2:54:01 AM

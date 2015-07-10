@@ -23,7 +23,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * DataSourceContextImpl
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Jul 30, 2008 12:13:48 AM
  */
 public final class DataSourceContextImpl implements DataSourceContext {

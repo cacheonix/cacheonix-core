@@ -22,7 +22,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * <p/>
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Mar 22, 2009 4:14:20 PM
  */
 public final class BucketIndexCalculator {

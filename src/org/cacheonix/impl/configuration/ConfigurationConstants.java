@@ -22,7 +22,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * Configuration constants. Some of them are are candidates for making into Cacheonix configuration.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Apr 1, 2008 9:23:28 PM
  */
 public final class ConfigurationConstants {

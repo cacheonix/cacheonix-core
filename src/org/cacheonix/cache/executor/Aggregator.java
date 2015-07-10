@@ -26,7 +26,7 @@ import org.cacheonix.cache.Cache;
  * distributed processing of cache entries. The <code>Aggregator</code> must process the partial results and return the
  * final result.
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @see Cache#executeAll(Set, Executable, Aggregator)
  * @since May 14, 2010 9:35:04 PM
  */

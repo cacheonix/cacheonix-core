@@ -30,7 +30,7 @@ import junit.framework.TestCase;
  * SerializationUtilsTest
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Jul 1, 2009 8:36:38 PM
  */
 public final class SerializationUtilsTest extends TestCase {

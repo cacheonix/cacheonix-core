@@ -40,7 +40,7 @@ import org.cacheonix.cache.Cache;
  * Use {@link Cache#addEventSubscriber(Set, EntryModifiedSubscriber)} to add an <code>EntryModifiedSubscriber</code> to
  * the cache.
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @see EntryModifiedEvent
  */
 public interface EntryModifiedSubscriber {

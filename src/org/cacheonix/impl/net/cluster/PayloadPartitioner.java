@@ -29,7 +29,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * Payload partitioner splits an object into a set of wire-level MulticastPacket objects.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Mar 28, 2008 6:06:06 PM
  */
 final class PayloadPartitioner {

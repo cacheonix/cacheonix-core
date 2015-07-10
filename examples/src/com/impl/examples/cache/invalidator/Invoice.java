@@ -26,7 +26,7 @@ import java.sql.Date;
  * This class also demonstrates how to implement {@link Externalizable}. See {@link #writeExternal(ObjectOutput)} and
  * {@link #readExternal(ObjectInput)} for details.
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  */
 public final class Invoice implements Externalizable {
 

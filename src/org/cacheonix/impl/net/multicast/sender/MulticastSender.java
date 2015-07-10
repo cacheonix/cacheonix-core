@@ -22,7 +22,7 @@ import org.cacheonix.impl.net.processor.Router;
  * Low-level multicast message sender that takes in account multiple interfaces.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Mar 28, 2008 4:04:18 PM
  */
 public interface MulticastSender {

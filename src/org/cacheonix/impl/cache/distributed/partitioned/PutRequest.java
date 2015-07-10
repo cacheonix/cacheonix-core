@@ -32,7 +32,7 @@ import org.cacheonix.impl.util.logging.Logger;
 /**
  * Cache put request is sent by the distributed cache when the key is stored remotely.
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @noinspection NonFinalFieldReferencedInHashCode, NonFinalFieldReferenceInEquals, RedundantIfStatement,
  * UnnecessaryParentheses
  */
@@ -134,7 +134,7 @@ public final class PutRequest extends KeyRequest {
 
          if (putIfAbsent) {
 
-            // NOTE: simeshev@cacheonix.com - 2012-07-01 - If putAbsent is set and the previous value
+            // NOTE: simeshev@cacheonix.org - 2012-07-01 - If putAbsent is set and the previous value
             // is not null, this means that the update *was not* performed. This in turn means that
             // modifiedKey *should not* be set so that it doesn't cause further updates in replicas
 
@@ -166,11 +166,11 @@ public final class PutRequest extends KeyRequest {
          }
 
          // Calculate expiration time
-         // DELETEME: simeshev@cacheonix.com - 2011-05-18 - Temporarily disabled caching.
-         // REVIEWME: simeshev@cacheonix.com - 2011-05-18 -> Implement expiration time as a minimum of cacheUntil and expiration time.
+         // DELETEME: simeshev@cacheonix.org - 2011-05-18 - Temporarily disabled caching.
+         // REVIEWME: simeshev@cacheonix.org - 2011-05-18 -> Implement expiration time as a minimum of cacheUntil and expiration time.
 //      final Time resultExpirationTime = isWillCache() && false ? renewLease(bucket, expirationTime) : null;
 
-         // REVIEWME: simeshev@cacheonix.com - 2011-05-18 -> Implement CacheableResult visitor pattern so that it handles
+         // REVIEWME: simeshev@cacheonix.org - 2011-05-18 -> Implement CacheableResult visitor pattern so that it handles
          // passing previousValue as a result and the current value as a new result
 
          // We need to send the previous value back of only for primary updates

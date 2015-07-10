@@ -45,7 +45,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * delegates the implementation of actions specific to a particular request. In this regard <code>KeyRequest</code>  is
  * an implementation of the template method pattern.
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  */
 public abstract class KeyRequest extends CacheDataRequest implements Prepareable {
 

@@ -337,7 +337,7 @@ final class ClusterProcessorStateImpl implements ClusterProcessorState {
     */
    public void setClusterView(final ClusterView clusterView) {
 
-      // REVIEWME: simeshev@cacheonix.com - 2009-03-06 - This essentially operates on the parameter - consider creating
+      // REVIEWME: simeshev@cacheonix.org - 2009-03-06 - This essentially operates on the parameter - consider creating
       // a copy instead. Review usages of setClusterView. Maybe implement hand-off protocol by clearing owner's
       // reference.
 

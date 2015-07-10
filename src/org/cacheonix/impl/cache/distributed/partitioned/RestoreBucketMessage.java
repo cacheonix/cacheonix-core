@@ -25,7 +25,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * A a local message that restores a primary bucket from a local replica.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Sep 1, 2009 4:19:13 PM
  */
 public final class RestoreBucketMessage extends LocalCacheMessage {

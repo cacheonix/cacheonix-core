@@ -27,7 +27,7 @@ import org.cacheonix.impl.net.processor.UUID;
 /**
  * JoinStatus Tester.
  *
- * @author simeshev@cacheonix.com
+ * @author simeshev@cacheonix.org
  * @since <pre>04/26/2008</pre>
  */
 public final class JoinStatusTest extends CacheonixTestCase {

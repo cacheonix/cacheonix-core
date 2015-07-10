@@ -20,7 +20,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * RuntimeInvalidObjectException
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since May 14, 2010 11:21:53 PM
  */
 public final class RuntimeInvalidObjectException extends CacheonixException {

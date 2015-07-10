@@ -32,7 +32,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * defined by the multicast address and multicast port.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Mar 28, 2008 4:04:18 PM
  */
 public final class PlainMulticastSender implements MulticastSender {

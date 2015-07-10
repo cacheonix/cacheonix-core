@@ -34,7 +34,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * <p/>
  * The Cluster announcement can be set by clusters in Normal and in Blocked state.
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Apr 1, 2008 6:20:20 PM
  */
 @SuppressWarnings("RedundantIfStatement")

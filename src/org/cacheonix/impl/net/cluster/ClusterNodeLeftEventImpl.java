@@ -25,7 +25,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * ClusterNodeLeftEventImpl
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Mar 16, 2009 1:45:06 AM
  */
 final class ClusterNodeLeftEventImpl implements ClusterNodeLeftEvent {

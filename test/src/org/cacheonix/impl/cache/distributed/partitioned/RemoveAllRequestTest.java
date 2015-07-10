@@ -27,7 +27,7 @@ import org.cacheonix.impl.util.array.IntObjectHashMap;
 /**
  * RemoveAllRequest Tester.
  *
- * @author simeshev@cacheonix.com
+ * @author simeshev@cacheonix.org
  */
 public final class RemoveAllRequestTest extends CacheonixTestCase {
 

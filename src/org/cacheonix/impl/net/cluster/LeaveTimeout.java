@@ -21,7 +21,7 @@ import org.cacheonix.impl.util.thread.TimeoutAction;
  * LeaveTimeout
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Jul 1, 2009 6:30:46 PM
  */
 final class LeaveTimeout extends ActionableTimeout {

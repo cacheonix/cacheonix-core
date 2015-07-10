@@ -25,7 +25,7 @@ import junit.framework.TestCase;
  * JoinCacheGroupRequestTest
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Jul 8, 2009 5:52:48 PM
  */
 public final class JoinGroupMessageTest extends TestCase {

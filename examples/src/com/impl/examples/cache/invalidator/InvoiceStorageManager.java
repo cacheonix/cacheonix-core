@@ -23,7 +23,7 @@ import com.impl.examples.util.DatabaseConnector;
 import com.impl.examples.util.JDBCUtils;
 
 /**
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  */
 class InvoiceStorageManager {
 

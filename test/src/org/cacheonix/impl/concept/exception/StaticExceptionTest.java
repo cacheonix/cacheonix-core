@@ -21,7 +21,7 @@ import junit.framework.TestCase;
  * StaticExceptionTest
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Sep 4, 2009 11:08:28 PM
  */
 public final class StaticExceptionTest extends TestCase {

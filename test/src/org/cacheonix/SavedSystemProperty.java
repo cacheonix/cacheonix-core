@@ -19,7 +19,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * SavedSystemProperty
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Mar 6, 2009 1:07:58 PM
  */
 public final class SavedSystemProperty {

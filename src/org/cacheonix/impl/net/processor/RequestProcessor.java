@@ -36,7 +36,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * coming to the network.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @noinspection ThrowableResultOfMethodCallIgnored
  * @since Jul 15, 2009 3:40:14 PM
  */

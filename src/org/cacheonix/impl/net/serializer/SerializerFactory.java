@@ -19,7 +19,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * SerializerFactory
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Mar 30, 2008 6:23:07 PM
  */
 public final class SerializerFactory {

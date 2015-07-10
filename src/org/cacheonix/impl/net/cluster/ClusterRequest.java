@@ -61,7 +61,7 @@ public abstract class ClusterRequest extends Request {
     */
    public void execute() throws InterruptedException {
 
-      // DELETEME: simeshev@cacheonix.com - when debugging done
+      // DELETEME: simeshev@cacheonix.org - when debugging done
 //      if (logReceive && LOG.isDebugEnabled()) {
 //         LOG.debug("Received request: " + this);
 //      }

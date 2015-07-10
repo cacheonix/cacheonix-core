@@ -29,7 +29,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * A message that is processed by a named cache.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Jan 17, 2009 9:48:52 PM
  */
 public abstract class CacheRequest extends Request {

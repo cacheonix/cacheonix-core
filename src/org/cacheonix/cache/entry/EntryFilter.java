@@ -23,7 +23,7 @@ import org.cacheonix.cache.executor.Executable;
  * An object that defines filtered access to cached data.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  */
 public interface EntryFilter extends Serializable {
 

@@ -26,7 +26,7 @@ import org.cacheonix.impl.util.logging.Logger;
 /**
  * Cluster announcer.
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Apr 16, 2008 11:50:26 PM
  */
 final class ClusterAnnouncer {

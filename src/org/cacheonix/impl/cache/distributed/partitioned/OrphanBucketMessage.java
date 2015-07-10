@@ -99,7 +99,7 @@ public final class OrphanBucketMessage extends LocalCacheMessage {
       final Bucket bucket = processor.getBucket((int) storageNumber, bucketNumber);
       if (bucket == null || bucket.isReconfiguring()) {
 
-         // REVIEWME: simeshev@cacheonix.com - 2011-04-07 -> Not clear if it is OK to bail out
+         // REVIEWME: simeshev@cacheonix.org - 2011-04-07 -> Not clear if it is OK to bail out
          // and leave the bucket undeleted. What are the other options? Wait longer until
          // readers finish? Don't try to lock just delete? What are the implications?
 

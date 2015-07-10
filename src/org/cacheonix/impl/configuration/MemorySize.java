@@ -22,7 +22,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * MemorySize
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Jun 16, 2008 11:19:59 PM
  */
 public final class MemorySize implements Serializable {

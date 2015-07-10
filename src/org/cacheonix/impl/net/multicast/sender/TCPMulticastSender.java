@@ -59,7 +59,7 @@ public final class TCPMulticastSender implements MulticastSender {
     */
    public void setRouter(final Router router) {
 
-      // REVIEWME: simeshev@cacheonix.com - 2011-08-30 - Consider setting router in a constructor instead
+      // REVIEWME: simeshev@cacheonix.org - 2011-08-30 - Consider setting router in a constructor instead
       this.router = router;
    }
 
@@ -72,7 +72,7 @@ public final class TCPMulticastSender implements MulticastSender {
     */
    public void sendFrame(final Frame frame) {
 
-      // OPTIMIZEME: simeshev@cacheonix.com - There is an opportunity here to pre-populate MulticastFrameMessage's
+      // OPTIMIZEME: simeshev@cacheonix.org - There is an opportunity here to pre-populate MulticastFrameMessage's
       // visited list to reduce re-broadcasts. Consider it once the processor's state known receivers are available.
 
       // Send the frame message to receivers

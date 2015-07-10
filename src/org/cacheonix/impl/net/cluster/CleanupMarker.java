@@ -31,7 +31,7 @@ import org.cacheonix.impl.util.logging.Logger;
 /**
  * Cleanup marker. The cleanup marker circulates in the ring in during the second stage of recovery.
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  */
 @SuppressWarnings("RedundantIfStatement")
 public final class CleanupMarker extends MarkerRequest {
@@ -159,7 +159,7 @@ public final class CleanupMarker extends MarkerRequest {
       // Notify cluster event subscribers
       notifySubscribersClusterStateChanged(ClusterState.RECONFIGURING);
 
-      // REVIEWME: simeshev@cacheonix.com - 2010-07-07 - What are the implications
+      // REVIEWME: simeshev@cacheonix.org - 2010-07-07 - What are the implications
       // of sending the new marker to self instead of just forwarding it?
 
       // Receive marker in recovery state
@@ -188,7 +188,7 @@ public final class CleanupMarker extends MarkerRequest {
       // Cancel 'home alone' timeout
       processor.getProcessorState().getHomeAloneTimeout().cancel();
 
-      // REVIEWME: simeshev@cacheonix.com - 2010-07-07 - What are the implications
+      // REVIEWME: simeshev@cacheonix.org - 2010-07-07 - What are the implications
       // of sending the new marker to self instead of just forwarding it?
 
       // Receive marker in recovery state
@@ -224,7 +224,7 @@ public final class CleanupMarker extends MarkerRequest {
       // D
       final Long highestSequenceNumberDelivered = processor.getProcessorState().getHighestSequenceNumberDelivered();
 
-      // REVIEWME: simeshev@cacheonix.com - 2008-04-09 - Let's assume for now that we can process
+      // REVIEWME: simeshev@cacheonix.org - 2008-04-09 - Let's assume for now that we can process
       // the returned marker inline with the fist time marker.
 
       if (self.equals(cleanupMarker.originator)) {
@@ -298,7 +298,7 @@ public final class CleanupMarker extends MarkerRequest {
             final MulticastMarker multicastMarker = new MulticastMarker(currentClusterView.getClusterUUID());
             multicastMarker.setNextAnnouncementTime(processor.getClock().currentTime());
 
-            // NOTE: simeshev@cacheonix.com - 2010-02-09 - We set it to zero
+            // NOTE: simeshev@cacheonix.org - 2010-02-09 - We set it to zero
             // if it is null because null means "there were no messages"
             multicastMarker.setSeqNum(adjustedSeqNum);
             multicastMarker.setPrevious(cleanupMarker.highSeqNum);
@@ -524,7 +524,7 @@ public final class CleanupMarker extends MarkerRequest {
     */
    private boolean isAllMessagesDelivered() {
 
-      // NOTE: simeshev@cacheonix.com - 2010-12-18 - The first part ensures completion when: a) there have been messages
+      // NOTE: simeshev@cacheonix.org - 2010-12-18 - The first part ensures completion when: a) there have been messages
       // and all have been delivered (e.g normal completion); b) there have not been any messages. The second part
       // ensures completion when there have not been undelivered messages but there were previous messages.
 

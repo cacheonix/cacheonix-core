@@ -19,7 +19,7 @@ import java.util.List;
  * A server that runs Cacheonix instance for the given cache name. A clustered cache consists of a set of
  * <code>CacheMembers</code>.
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  */
 public interface CacheMember {
 

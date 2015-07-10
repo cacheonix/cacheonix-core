@@ -19,7 +19,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * GroupKey
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @noinspection SimplifiableIfStatement
  * @since Jan 19, 2009 2:49:30 AM
  */

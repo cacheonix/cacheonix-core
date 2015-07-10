@@ -27,7 +27,7 @@ import junit.framework.TestCase;
  * JavaSerializerTest
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Mar 2, 2010 1:59:29 PM
  */
 public final class JavaSerializerTest extends TestCase {

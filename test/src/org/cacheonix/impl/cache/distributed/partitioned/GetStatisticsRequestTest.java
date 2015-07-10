@@ -24,7 +24,7 @@ import org.cacheonix.impl.net.serializer.SerializerFactory;
 /**
  * GetStatisticsRequest Tester.
  *
- * @author simeshev@cacheonix.com
+ * @author simeshev@cacheonix.org
  * @version 1.0
  */
 public final class GetStatisticsRequestTest extends CacheonixTestCase {

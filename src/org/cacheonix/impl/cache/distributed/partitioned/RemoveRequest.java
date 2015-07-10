@@ -23,7 +23,7 @@ import org.cacheonix.impl.util.logging.Logger;
 /**
  * RemoveRequest removes a key from a distributed cache.
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @noinspection NonFinalFieldReferencedInHashCode, NonFinalFieldReferenceInEquals, RedundantIfStatement,
  * UnnecessaryParentheses
  */

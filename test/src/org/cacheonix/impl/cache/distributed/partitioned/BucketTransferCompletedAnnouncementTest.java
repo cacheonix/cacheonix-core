@@ -27,7 +27,7 @@ import junit.framework.TestCase;
  * BucketTransferCompletedAnnouncementTest
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @noinspection ConstantNamingConvention
  * @since Nov 9, 2009 7:52:32 PM
  */

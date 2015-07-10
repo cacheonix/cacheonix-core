@@ -24,7 +24,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * Hasher
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Apr 2, 2008 6:20:53 PM
  */
 public final class HashCodeUtils {

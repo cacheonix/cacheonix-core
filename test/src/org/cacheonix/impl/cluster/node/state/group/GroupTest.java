@@ -25,7 +25,7 @@ import org.cacheonix.impl.util.logging.Logger;
 /**
  * CacheGroup Tester.
  *
- * @author simeshev@cacheonix.com
+ * @author simeshev@cacheonix.org
  * @version 1.0
  * @since <pre>01/20/2009</pre>
  */

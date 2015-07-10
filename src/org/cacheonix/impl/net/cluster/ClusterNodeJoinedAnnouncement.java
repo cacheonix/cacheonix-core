@@ -115,7 +115,7 @@ public final class ClusterNodeJoinedAnnouncement extends Message {
       // Request reset of the joined node is self
       if (processor.getAddress().equals(joined)) {
 
-         // REVIEWME: simeshev@cacheonix.com - 2011-12-12 -> Not necessarily
+         // REVIEWME: simeshev@cacheonix.org - 2011-12-12 -> Not necessarily
          // was blocked, for instance, moved from a smaller cluster.
          multicastMessageListeners.notifyNodeUnblocked();
       }

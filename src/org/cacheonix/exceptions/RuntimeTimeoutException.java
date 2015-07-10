@@ -19,7 +19,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * RuntimeTimeoutException
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Aug 26, 2009 10:21:20 PM
  */
 public final class RuntimeTimeoutException extends CacheonixException {

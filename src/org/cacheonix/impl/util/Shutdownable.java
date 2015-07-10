@@ -17,7 +17,7 @@ package org.cacheonix.impl.util;
  * A Shutdownable is an service or an objec that can be shutdown. The shutdwon method is invoked to release resources
  * that the object is holding (such as sockets).
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Jan 12, 2009 7:36:14 PM
  */
 public interface Shutdownable {

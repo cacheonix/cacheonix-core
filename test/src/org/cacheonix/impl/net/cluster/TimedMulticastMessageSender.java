@@ -21,7 +21,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * TimedMulticastMessageSender
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Apr 5, 2008 10:52:47 PM
  */
 final class TimedMulticastMessageSender implements Runnable {

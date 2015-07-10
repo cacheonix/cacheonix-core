@@ -37,7 +37,7 @@ import java.util.Collection;
  *  &lt;/localCache&gt;
  * </pre>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  */
 public interface DataStore {
 

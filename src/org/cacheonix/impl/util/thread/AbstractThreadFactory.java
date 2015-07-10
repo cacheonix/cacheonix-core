@@ -24,7 +24,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * AbstractThreadFactory
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Jan 12, 2009 8:39:24 PM
  */
 abstract class AbstractThreadFactory implements ThreadFactory {

@@ -286,7 +286,7 @@ public abstract class MarkerRequest extends ClusterRequest {
 
       processor.getProcessorState().getJoinStatus().clear();
 
-      // REVIEWME: simeshev@cacheonix.com - 2008-04-17 -> markerListBeforeRecovery.size() can change
+      // REVIEWME: simeshev@cacheonix.org - 2008-04-17 -> markerListBeforeRecovery.size() can change
       // after multiple Recovery -> Cleanup -> Recovery
 
 

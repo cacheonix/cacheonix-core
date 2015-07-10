@@ -20,7 +20,7 @@ import java.util.List;
  * A Cacheonix cluster member is an instance of Cacheonix that is a part of the cluster. A cluster consists of a set of
  * <code>ClusterMembers</code>.
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  */
 public interface ClusterMember extends Externalizable {
 

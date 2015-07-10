@@ -230,7 +230,7 @@ public final class HibernateCacheonixCacheTest extends TestCase {
    protected void setUp() throws Exception {
 
       super.setUp();
-      // NOTE: simeshev@cacheonix.com - 2009-06-20 - Enabled autocreate becuase without
+      // NOTE: simeshev@cacheonix.org - 2009-06-20 - Enabled autocreate becuase without
       // it now other test can proceed after testDestroy() executes.
       savedAutocreate.save();
       SystemProperty.enableAutocreate();

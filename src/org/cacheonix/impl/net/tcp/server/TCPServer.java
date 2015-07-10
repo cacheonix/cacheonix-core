@@ -198,7 +198,7 @@ public final class TCPServer implements Shutdownable {
       // Interrupt selector thread. This should unblock any NIO operations.
       ThreadUtils.interruptAndJoin(selectorThread, 1000L);
 
-      // NOTE: simeshev@cacheonix.com - 2010-10-27 - I have observed on several
+      // NOTE: simeshev@cacheonix.org - 2010-10-27 - I have observed on several
       // occasions that selector.select(); misses the interrupt. So, we try
       // again.
       if (!isShutDown()) {

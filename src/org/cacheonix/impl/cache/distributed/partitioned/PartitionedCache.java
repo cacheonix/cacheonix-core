@@ -62,7 +62,7 @@ import org.cacheonix.locks.ReadWriteLock;
  * PartitionedCache implements CacheonixCache by converting method calls to requests and sending them to an associated
  * CacheProcessor.
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @noinspection ProhibitedExceptionThrown, RedundantIfStatement
  * @since Jul 11, 2009 10:11:52 PM
  */
@@ -80,7 +80,7 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
     */
    private static final BinaryFactoryBuilder BINARY_FACTORY_BUILDER = new BinaryFactoryBuilder();
 
-   // REVIEWME: simeshev@cacheonix.com - 2009-07-16 - Consider depending on the configuration. Right now configuration defines only
+   // REVIEWME: simeshev@cacheonix.org - 2009-07-16 - Consider depending on the configuration. Right now configuration defines only
 
    private final BinaryFactory binaryFactory = BINARY_FACTORY_BUILDER.createFactory(BinaryType.BY_COPY);
 
@@ -265,7 +265,7 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
       retrier.retryUntilDone(new Retryable() {
 
          public Object execute() throws RetryException {
-            // NOTE: simeshev@cacheonix.com - 2010-03-16 - ClearRequest
+            // NOTE: simeshev@cacheonix.org - 2010-03-16 - ClearRequest
             // is a chained request, so we set receiver to self.
 
             final ClusterProcessor clusterProcessor = PartitionedCache.this.clusterProcessor;

@@ -33,7 +33,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * Retains only provided keys.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @see PartitionedCache#clear()
  */
 public final class RetainAllRequest extends BucketSetRequest {

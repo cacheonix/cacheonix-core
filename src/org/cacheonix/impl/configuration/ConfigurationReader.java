@@ -34,7 +34,7 @@ import org.xml.sax.SAXParseException;
  * Configuration reader.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  */
 public final class ConfigurationReader {
 

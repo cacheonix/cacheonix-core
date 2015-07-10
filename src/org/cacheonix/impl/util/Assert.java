@@ -22,7 +22,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * Assert
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Apr 4, 2008 2:15:27 AM
  */
 public final class Assert {

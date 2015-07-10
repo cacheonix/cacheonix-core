@@ -26,7 +26,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * and a stack trace showing when it was created.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Mar 30, 2008 6:32:42 PM
  */
 final class UnknownTypeSerializer implements Serializer {

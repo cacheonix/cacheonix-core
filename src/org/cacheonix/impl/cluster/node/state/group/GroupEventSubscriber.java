@@ -16,7 +16,7 @@ package org.cacheonix.impl.cluster.node.state.group;
 /**
  * An interface that objects interested in subscribing to group events should implement.
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  */
 public interface GroupEventSubscriber {
 

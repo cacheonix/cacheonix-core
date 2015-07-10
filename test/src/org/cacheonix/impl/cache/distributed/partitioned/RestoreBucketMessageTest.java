@@ -20,7 +20,7 @@ import junit.framework.TestCase;
  * RestoreBucketMessageTest
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since May 24, 2010 3:21:29 PM
  */
 public final class RestoreBucketMessageTest extends TestCase {

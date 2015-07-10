@@ -48,7 +48,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * CacheGroup
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @noinspection ParameterHidesMemberVariable, RedundantIfStatement, ParameterNameDiffersFromOverriddenParameter,
  * NonFinalFieldReferenceInEquals, NonFinalFieldReferencedInHashCode
  * @since Jan 19, 2009 3:18:28 AM
@@ -253,7 +253,7 @@ public final class Group implements Wireable {
       }
 
       // Notify
-      // REVIEWME: simeshev@cacheonix.com - 2008-01-21 -> passing the group member by reference is dangerous
+      // REVIEWME: simeshev@cacheonix.org - 2008-01-21 -> passing the group member by reference is dangerous
       groupEventSubscriberList.notifyMemberJoined(new GroupMemberJoinedEvent(newMember));
 
       // Add to RBOAT
@@ -275,7 +275,7 @@ public final class Group implements Wireable {
             foundMember = member;
             if (foundMember.getAddress().equals(leftAddress)) {
 
-               // NOTE: simeshev@cacheonix.com - 2010-09-10 - It is possible that
+               // NOTE: simeshev@cacheonix.org - 2010-09-10 - It is possible that
                // remove for the member is called more than once.
                //
                // Example:
@@ -308,7 +308,7 @@ public final class Group implements Wireable {
 
 
          // Notify subscribers
-         // REVIEWME: simeshev@cacheonix.com - 2008-01-21 -> passing the group member by reference is dangerous
+         // REVIEWME: simeshev@cacheonix.org - 2008-01-21 -> passing the group member by reference is dangerous
          groupEventSubscriberList.notifyMemberLeft(new GroupMemberLeftEvent(foundMember));
 
 
@@ -435,7 +435,7 @@ public final class Group implements Wireable {
             final AtomicReference<HashMap<Binary, HashSet<EntryModifiedSubscription>>> keysToSubscriptions = new AtomicReference<HashMap<Binary, HashSet<EntryModifiedSubscription>>>(entryModifiedSubscriptions.get(bucketNumber));
             if (keysToSubscriptions.get() == null) {
 
-               // REVIEWME: simeshev@cacheonix.com - Should we return
+               // REVIEWME: simeshev@cacheonix.org - Should we return
                // some kind of an error if over-un-subscription occurs?
 
                // No subscriptions, continue
@@ -452,7 +452,7 @@ public final class Group implements Wireable {
                   final HashSet<EntryModifiedSubscription> keySubscriptions = keysToSubscriptions.get().get(key);
                   if (keySubscriptions == null) {
 
-                     // REVIEWME: simeshev@cacheonix.com - Should we return
+                     // REVIEWME: simeshev@cacheonix.org - Should we return
                      // some kind of an error if over-un-subscription occurs?
 
                      // No subscriptions, continue

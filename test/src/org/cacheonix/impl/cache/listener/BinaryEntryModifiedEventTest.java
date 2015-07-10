@@ -27,7 +27,7 @@ import org.cacheonix.impl.net.serializer.SerializerFactory;
 /**
  * BinaryEntryModifiedEvent Tester.
  *
- * @author simeshev@cacheonix.com
+ * @author simeshev@cacheonix.org
  * @version 1.0
  * @since <pre>08/27/2008</pre>
  */

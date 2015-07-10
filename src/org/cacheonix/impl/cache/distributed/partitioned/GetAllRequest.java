@@ -39,7 +39,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * GetAllRequest returns a list of values for a given set of keys.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @see PartitionedCache#getAll(Set)
  */
 public final class GetAllRequest extends KeySetRequest {

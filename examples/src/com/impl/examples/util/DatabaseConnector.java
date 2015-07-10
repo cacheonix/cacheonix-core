@@ -21,7 +21,7 @@ import java.util.Properties;
 /**
  * Database connector.
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  */
 public final class DatabaseConnector {
 

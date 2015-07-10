@@ -18,7 +18,7 @@ import org.cacheonix.CacheonixTestCase;
 /**
  * DummyBinaryStoreDataSource Tester.
  *
- * @author simeshev@cacheonix.com
+ * @author simeshev@cacheonix.org
  * @version 1.0
  * @since <pre>07/30/2008</pre>
  */

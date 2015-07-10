@@ -28,7 +28,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * Request to obtain cache statistics.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @see PartitionedCache#getStatistics() ()
  */
 public final class GetStatisticsRequest extends BucketSetRequest {

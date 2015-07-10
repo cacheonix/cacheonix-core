@@ -48,7 +48,7 @@ import java.util.Collection;
  * &lt;/cacheonix&gt;
  * </pre>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  */
 public interface DataSource {
 

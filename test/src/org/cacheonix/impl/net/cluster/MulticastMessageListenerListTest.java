@@ -24,7 +24,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * MulticastMessageListenerListTest
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Feb 4, 2010 9:10:40 PM
  */
 public final class MulticastMessageListenerListTest extends CacheonixTestCase {

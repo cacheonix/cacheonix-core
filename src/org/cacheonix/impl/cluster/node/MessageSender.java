@@ -31,7 +31,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * message sender's input queue is a sink.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Jul 18, 2009 3:24:31 PM
  */
 public final class MessageSender extends Processor {

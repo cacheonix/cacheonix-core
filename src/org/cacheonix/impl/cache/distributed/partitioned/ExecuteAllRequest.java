@@ -45,7 +45,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * ExecuteAllRequest invokes an executable against a set of keys.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @see PartitionedCache#executeAll(Set, Executable, Aggregator)
  */
 public final class ExecuteAllRequest extends KeySetRequest {
@@ -142,7 +142,7 @@ public final class ExecuteAllRequest extends KeySetRequest {
             }
          });
 
-         // REVIEWME: simeshev@cacheonix.com - 2010-12-31 - Right now we just throw an exception that is going
+         // REVIEWME: simeshev@cacheonix.org - 2010-12-31 - Right now we just throw an exception that is going
          // to be caught in CacheRequest.execute() and converted to an error response that is going to be
          // posted to the sender. Is there an effect of this way of processing on the fact that it is
          // thrown in the middle of the cycle?

@@ -26,7 +26,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * A standard implementation of the ObjectSizeCalculator.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Jul 26, 2008 6:36:52 PM
  */
 public final class StandardObjectSizeCalculator implements ObjectSizeCalculator {

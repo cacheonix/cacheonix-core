@@ -25,7 +25,7 @@ import org.cacheonix.impl.clock.Time;
  * Cacheonix sends <code>EntryModifiedEvent</code> to <code>EntryModifiedSubscriber</code> after the entry was added to
  * the cache or updated.
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @see EntryModifiedSubscriber#notifyKeysUpdated(List)
  */
 public interface EntryModifiedEvent {

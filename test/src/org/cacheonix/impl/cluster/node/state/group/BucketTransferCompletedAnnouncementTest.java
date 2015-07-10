@@ -28,7 +28,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * AnnounceBucketOwnerMessageTest
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Aug 14, 2009 1:48:30 AM
  */
 public final class BucketTransferCompletedAnnouncementTest extends CacheonixTestCase {

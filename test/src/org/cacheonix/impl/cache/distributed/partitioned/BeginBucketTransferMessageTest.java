@@ -24,7 +24,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * BeginBucketTransferMessageTest
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Dec 18, 2009 9:18:54 PM
  */
 public final class BeginBucketTransferMessageTest extends CacheonixTestCase {

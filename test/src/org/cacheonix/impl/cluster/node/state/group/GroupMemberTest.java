@@ -24,7 +24,7 @@ import junit.framework.TestCase;
 /**
  * CacheGroupMember Tester.
  *
- * @author simeshev@cacheonix.com
+ * @author simeshev@cacheonix.org
  * @version 1.0
  * @since <pre>01/21/2009</pre>
  */

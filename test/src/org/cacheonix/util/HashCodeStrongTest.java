@@ -18,7 +18,7 @@ import junit.framework.TestCase;
 /**
  * HashCode Tester.
  *
- * @author simeshev@cacheonix.com
+ * @author simeshev@cacheonix.org
  * @version 1.0
  * @since <pre>05/03/2008</pre>
  */

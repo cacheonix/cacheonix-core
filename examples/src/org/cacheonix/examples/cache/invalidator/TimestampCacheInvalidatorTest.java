@@ -25,7 +25,7 @@ import junit.framework.TestCase;
  * Example of using CacheInvalidator to invalidate a cache based on a time stamp in a backing database table.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  */
 public final class TimestampCacheInvalidatorTest extends TestCase {
 

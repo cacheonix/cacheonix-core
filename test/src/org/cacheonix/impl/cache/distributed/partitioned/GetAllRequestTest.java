@@ -20,7 +20,7 @@ import junit.framework.TestCase;
  * GetAllRequestTest
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since May 24, 2010 9:41:09 PM
  */
 public final class GetAllRequestTest extends TestCase {

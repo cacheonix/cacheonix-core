@@ -24,7 +24,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * A cache message that can be sent only to a local cache.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Nov 6, 2009 8:02:30 PM
  */
 public abstract class LocalCacheMessage extends CacheMessage {

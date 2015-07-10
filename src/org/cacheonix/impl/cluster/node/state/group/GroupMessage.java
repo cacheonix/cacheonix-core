@@ -30,7 +30,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * A request to add a group member. This request is executed by all cluster views synchronuously.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @noinspection NonFinalFieldReferenceInEquals, NonFinalFieldReferenceInEquals, NonFinalFieldReferenceInEquals,
  * NonFinalFieldReferenceInEquals, NonFinalFieldReferenceInEquals, NonFinalFieldReferenceInEquals,
  * NonFinalFieldReferencedInHashCode, NonFinalFieldReferencedInHashCode, NonFinalFieldReferencedInHashCode

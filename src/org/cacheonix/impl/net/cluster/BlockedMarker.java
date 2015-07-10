@@ -32,7 +32,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * marker is to maintain the marker list for the situation when a new member joins the ring and forms the majority or a
  * majority ring becomes accessible.
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Apr 16, 2008 9:26:04 PM
  */
 public final class BlockedMarker extends OperationalMarker {
@@ -352,7 +352,7 @@ public final class BlockedMarker extends OperationalMarker {
       // Begin joining if there are proper cluster announcements.
       processClusterAnnouncements();
 
-      // NOTE: simeshev@cacheonix.com - 2010-02-09 - When joining, it is possible that there
+      // NOTE: simeshev@cacheonix.org - 2010-02-09 - When joining, it is possible that there
       // are two blocked markers circulating. One is of previous smaller cluster and one is
       // for the bigger that the node has just joined. This can lead to problems. The node
       // ignores a marker that has now become a foreign marker.
@@ -455,14 +455,14 @@ public final class BlockedMarker extends OperationalMarker {
       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       // Handle join request(s)
       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-      // REVIEWME: simeshev@cacheonix.com - 2008-04-20 - Consider using a single joinRequest
+      // REVIEWME: simeshev@cacheonix.org - 2008-04-20 - Consider using a single joinRequest
       // instead of a queue. Currently of the majority got formed, pending requests will be abandoned.
 
       // NOPMD
       final LinkedList<JoiningNode> joinRequests = processor.getProcessorState().getJoinRequests();
       if (!joinRequests.isEmpty()) {
 
-         // NOTE: simeshev@cacheonix.com - 2011-04-13 - It is important to check if this node is in 'Leave' becuase
+         // NOTE: simeshev@cacheonix.org - 2011-04-13 - It is important to check if this node is in 'Leave' becuase
          // it means that it is in the second state of leaving, and ir shouldn't become a join coordinator because
          // it won't be able to forward the stored marker becuase it may be dead by the time joining node response
          // to the MarkerListRequest. See bug CACHEONIX-307 for more information.
@@ -599,7 +599,7 @@ public final class BlockedMarker extends OperationalMarker {
          // Notify cluster event subscribers
          notifySubscribersClusterStateChanged(ClusterState.BLOCKED);
 
-         // REVIEWME: simeshev@cacheonix.com - 2010-07-07 - What are the implications
+         // REVIEWME: simeshev@cacheonix.org - 2010-07-07 - What are the implications
          // of sending the new marker to self instead of just forwarding it?
 
          final BlockedMarker blockedMarker = copy();

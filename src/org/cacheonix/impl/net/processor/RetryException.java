@@ -23,7 +23,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * OperationNotSupportedException}.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @see Waiter#waitForResult
  * @since Aug 19, 2009 10:48:41 PM
  */

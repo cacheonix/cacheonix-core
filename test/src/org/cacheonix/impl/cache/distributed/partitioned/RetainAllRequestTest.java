@@ -26,7 +26,7 @@ import org.cacheonix.impl.util.array.HashSet;
 /**
  * RetainAllRequest Tester.
  *
- * @author simeshev@cacheonix.com
+ * @author simeshev@cacheonix.org
  */
 public final class RetainAllRequestTest extends CacheonixTestCase {
 

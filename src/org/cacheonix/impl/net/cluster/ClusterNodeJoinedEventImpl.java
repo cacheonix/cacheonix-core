@@ -26,7 +26,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * An event that is sent to subscribers when a node joins the cluster. This event is sent both when a local node joins
  * the cluster and remote nodes join the cluster.
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Mar 16, 2009 1:47:14 AM
  */
 final class ClusterNodeJoinedEventImpl implements ClusterNodeJoinedEvent {

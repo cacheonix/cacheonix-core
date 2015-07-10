@@ -29,7 +29,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * message queue.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Jul 10, 2009 10:46:34 PM
  */
 public class SimpleProcessor extends Processor {
@@ -130,7 +130,7 @@ public class SimpleProcessor extends Processor {
     */
    private final class Worker implements Runnable {
 
-      // DELETEME: simeshev@cacheonix.com 2011-06-06 - Deleted when debugging is done.
+      // DELETEME: simeshev@cacheonix.org 2011-06-06 - Deleted when debugging is done.
       private final Random random = new Random(System.currentTimeMillis());
 
       /**
@@ -197,7 +197,7 @@ public class SimpleProcessor extends Processor {
                   return;
 
                } catch (final Exception e) {
-                  // REVIEWME: simeshev@cacheonix.com - 2009-07-14 -> Decide what to do
+                  // REVIEWME: simeshev@cacheonix.org - 2009-07-14 -> Decide what to do
                   LOG.error(e, e);
                }
             }

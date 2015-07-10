@@ -32,7 +32,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * Obtains and collects entry sets from all bucket owners.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Mar 18, 2010 12:31:51 PM
  */
 public final class GetEntrySetRequest extends BucketSetRequest {

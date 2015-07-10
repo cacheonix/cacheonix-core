@@ -27,7 +27,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * A tester for LocalCache handling expiration.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since May 26, 2008 10:40:58 PM
  */
 public final class LocalCacheAsynchronousExpirationTest extends CacheonixTestCase {

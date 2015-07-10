@@ -22,7 +22,7 @@ import org.cacheonix.impl.util.logging.Logger;
 /**
  * Local cache member.
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  */
 final class LocalCacheMember implements CacheMember {
 

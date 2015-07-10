@@ -41,7 +41,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * A replicated destination for reliable multicast messages.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @noinspection NonFinalFieldReferenceInEquals, NonFinalFieldReferencedInHashCode,
  * TransientFieldInNonSerializableClass
  */
@@ -91,7 +91,7 @@ public final class ReplicatedState implements Wireable {
          LOG.debug("Resetting replicated state, new state: " + newState);
       }
 
-      // Set group. NOTE: simeshev@cacheonix.com - 2009-08-13 - newState
+      // Set group. NOTE: simeshev@cacheonix.org - 2009-08-13 - newState
       // is a hand-off object so it is OK to use references.
       this.groupMap = newState.groupMap;
 
@@ -171,7 +171,7 @@ public final class ReplicatedState implements Wireable {
 
    public void reattachSubscribers(final Group cacheGroup) {
 
-      // REVIEWME: simeshev@cacheonix.com - 2009-08-05 -> currently groupEventSubscriberList and bucketEventListenerList is shared with cache group.
+      // REVIEWME: simeshev@cacheonix.org - 2009-08-05 -> currently groupEventSubscriberList and bucketEventListenerList is shared with cache group.
       final int groupType = cacheGroup.getGroupType();
       cacheGroup.reattachGroupEventSubscriberList(getGroupEventSubscriberList(groupType));
       cacheGroup.reattachBucketEventListenerList(getBucketListenerList(groupType));

@@ -32,7 +32,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * completed.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Aug 13, 2009 3:51:09 PM
  */
 @SuppressWarnings("RedundantIfStatement")

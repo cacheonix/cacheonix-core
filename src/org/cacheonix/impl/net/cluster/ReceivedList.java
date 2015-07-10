@@ -25,7 +25,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * ReceivedList
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Mar 31, 2008 2:09:16 PM
  */
 @SuppressWarnings({"unchecked", "AutoUnboxing"})

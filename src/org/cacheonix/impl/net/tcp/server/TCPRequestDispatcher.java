@@ -19,7 +19,7 @@ import org.cacheonix.impl.net.processor.Message;
  * Message handler. Processes TCP messages.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Mar 27, 2008 11:08:40 AM
  */
 public interface TCPRequestDispatcher {

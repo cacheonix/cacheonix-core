@@ -20,7 +20,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * This exception is thrown when an error occurs while configuring Cacheonix logging.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Jan 9, 2010 5:08:05 PM
  */
 public final class LoggingConfigurationException extends CacheonixException {

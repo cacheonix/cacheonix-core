@@ -22,7 +22,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * BeginBucketTransferCommandTest
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Nov 18, 2009 7:35:21 PM
  */
 public final class CancelBucketTransferCommandTest extends CacheonixTestCase {

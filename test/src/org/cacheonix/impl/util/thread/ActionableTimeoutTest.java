@@ -19,7 +19,7 @@ import org.cacheonix.impl.util.MutableBoolean;
 /**
  * ActionableTimeout Tester.
  *
- * @author simeshev@cacheonix.com
+ * @author simeshev@cacheonix.org
  * @version 1.0
  * @since <pre>04/06/2008</pre>
  */

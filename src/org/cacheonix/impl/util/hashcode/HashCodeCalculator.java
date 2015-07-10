@@ -19,7 +19,7 @@ import java.io.Serializable;
  * HashCodeGenerator hash code generator.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Apr 13, 2008 3:49:25 PM
  */
 public interface HashCodeCalculator extends Serializable {

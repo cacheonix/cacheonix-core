@@ -30,7 +30,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * AtomicReplaceRequest replaces a key from a distributed cache according to specification defined by {@link
  * Cache#replace(Serializable, Serializable, Serializable)}
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @noinspection NonFinalFieldReferencedInHashCode, NonFinalFieldReferenceInEquals, RedundantIfStatement,
  * UnnecessaryParentheses
  */

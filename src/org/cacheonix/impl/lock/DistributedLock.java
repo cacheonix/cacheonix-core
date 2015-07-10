@@ -206,7 +206,7 @@ public final class DistributedLock implements Lock {
     */
    public Condition newCondition() {
 
-      // REVIEWME: simeshev@cacheonix.com - 2011-08-10 -> Implement.
+      // REVIEWME: simeshev@cacheonix.org - 2011-08-10 -> Implement.
       throw new UnsupportedOperationException();
    }
 

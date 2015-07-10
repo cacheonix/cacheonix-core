@@ -21,7 +21,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * HashCodeType is an enumeration of available types of {@link HashCode}.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @noinspection NumericCastThatLosesPrecision
  * @since Apr 13, 2008 3:11:03 PM
  */

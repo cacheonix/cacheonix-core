@@ -29,7 +29,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * Utility methods for working with collections.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Apr 6, 2008 6:50:50 PM
  */
 public final class CollectionUtils {

@@ -17,7 +17,7 @@ package org.cacheonix.cache.datastore;
  * An object to store using <code>DataStore</code>.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @see DataStore#store(Storable)
  */
 public interface Storable {

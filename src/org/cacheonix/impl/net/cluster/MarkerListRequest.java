@@ -34,7 +34,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * MarkerListMessage
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @noinspection NonFinalFieldReferenceInEquals, RedundantIfStatement @since Apr 1, 2008 10:04:47 PM
  */
 public final class MarkerListRequest extends ClusterRequest {
@@ -424,7 +424,7 @@ public final class MarkerListRequest extends ClusterRequest {
             //noinspection ControlFlowStatementWithoutBraces
             if (LOG.isDebugEnabled()) LOG.debug("Forwarding marker: " + markerToForward); // NOPMD
 
-            // NOTE: simeshev@cacheonix.com - It's critical to use an advanced marker-specific forward
+            // NOTE: simeshev@cacheonix.org - It's critical to use an advanced marker-specific forward
             // that incorporates handling left. Failing to do so leads to not removing a leaving node
             // when handling a join. See CACHEONIX-307 for more information.
 

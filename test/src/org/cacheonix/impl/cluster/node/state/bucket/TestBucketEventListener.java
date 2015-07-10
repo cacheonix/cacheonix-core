@@ -21,7 +21,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * TestBucketEventListener
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Dec 2, 2009 12:47:30 AM
  */
 final class TestBucketEventListener implements BucketEventListener {

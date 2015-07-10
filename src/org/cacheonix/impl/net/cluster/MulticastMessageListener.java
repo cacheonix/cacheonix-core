@@ -19,7 +19,7 @@ import org.cacheonix.impl.net.processor.Message;
  * MulticastMessageListener
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Mar 30, 2008 6:14:21 PM
  */
 public interface MulticastMessageListener {

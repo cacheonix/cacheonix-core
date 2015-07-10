@@ -20,7 +20,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * NoWaitWaiter
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Jul 12, 2009 12:23:51 AM
  */
 public final class NowaitWaiter implements ResponseWaiter {

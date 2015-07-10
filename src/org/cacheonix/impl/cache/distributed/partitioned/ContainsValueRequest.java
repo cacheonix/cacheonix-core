@@ -31,7 +31,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * ContainsValueRequest
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Dec 10, 2009 10:25:46 PM
  */
 @SuppressWarnings("RedundantIfStatement")

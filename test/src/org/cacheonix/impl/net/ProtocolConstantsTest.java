@@ -19,7 +19,7 @@ import junit.framework.TestCase;
 /**
  * ProtocolConstants Tester.
  *
- * @author simeshev@cacheonix.com
+ * @author simeshev@cacheonix.org
  * @version 1.0
  * @since <pre>03/28/2008</pre>
  */

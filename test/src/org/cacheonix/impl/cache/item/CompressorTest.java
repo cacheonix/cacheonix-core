@@ -21,7 +21,7 @@ import junit.framework.TestCase;
 /**
  * Compressor Tester.
  *
- * @author simeshev@cacheonix.com
+ * @author simeshev@cacheonix.org
  * @since <pre>12/16/2008</pre>
  */
 public final class CompressorTest extends TestCase {

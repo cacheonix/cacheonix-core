@@ -19,7 +19,7 @@ import junit.framework.TestCase;
 /**
  * LoggingLevel Tester.
  *
- * @author simeshev@cacheonix.com
+ * @author simeshev@cacheonix.org
  * @version 1.0
  * @since <pre>06/01/2008</pre>
  */

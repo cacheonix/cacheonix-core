@@ -161,7 +161,7 @@ public class Router {
                   } else {
 
                      // It is possible when a request was not prepared, so the receiver was not set.
-                     // REVIEWME: simeshev@cacheonix.com - 2011-08-08 -> use direct finish instead ?
+                     // REVIEWME: simeshev@cacheonix.org - 2011-08-08 -> use direct finish instead ?
                      waiter.notifyResponseReceived(createProcessNotFoundResponse(request));
                   }
 
@@ -235,7 +235,7 @@ public class Router {
                   // Optimize for local single-node delivery.
                   if (message.getReceiver().isAddressOf(localAddress)) {
 
-                     // REVIEWME: simeshev@cacheonix.com - 2011-06-07 - Is a local-only request really such a bad thing?
+                     // REVIEWME: simeshev@cacheonix.org - 2011-06-07 - Is a local-only request really such a bad thing?
                      if (message instanceof Request && !(message instanceof RouteByReferenceRequest)) {
 
                         // A deep copy must be enqueued to the local processor made
@@ -436,7 +436,7 @@ public class Router {
 
       switch (message.getDestination()) {
 
-         // REVIEWME: simeshev@cacheonix.com - 2010-07-31 -> These destinations may need to be eliminated
+         // REVIEWME: simeshev@cacheonix.org - 2010-07-31 -> These destinations may need to be eliminated
          // to unify handling message preparation and responseRequired for reliable mcast messages
          // that require local response (send-to-all-wait-for-response-from local. If so, it would
          // always need to be Message.DESTINATION_CLUSTER

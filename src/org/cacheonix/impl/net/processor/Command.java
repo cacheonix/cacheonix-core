@@ -19,7 +19,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * Command executed by the Processor.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Jan 8, 2010 8:17:22 AM
  */
 public abstract class Command {

@@ -29,7 +29,7 @@ import org.cacheonix.impl.util.logging.Logger;
 /**
  * MulticastMarker Tester.
  *
- * @author simeshev@cacheonix.com
+ * @author simeshev@cacheonix.org
  * @version 1.0
  * @since <pre>03/26/2008</pre>
  */

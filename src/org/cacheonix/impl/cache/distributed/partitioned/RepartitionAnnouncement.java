@@ -25,7 +25,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * An request to the bucket ownership assignment to run repartitioning.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Oct 27, 2009 12:04:56 PM
  */
 public final class RepartitionAnnouncement extends GroupMessage {

@@ -20,7 +20,7 @@ import junit.framework.TestCase;
  * RuntimeInterruptedException Tester
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Mar 21, 2008 12:40:38 AM
  */
 public final class StackTraceAtCreateTest extends TestCase {

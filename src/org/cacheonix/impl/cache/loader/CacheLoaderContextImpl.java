@@ -23,7 +23,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * An implmenetation of CacheLoaderContext.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Aug 11, 2008 10:31:21 PM
  */
 public final class CacheLoaderContextImpl implements CacheLoaderContext {

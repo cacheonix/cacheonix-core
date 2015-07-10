@@ -31,7 +31,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * SafeEntryUpdateSubscriber.
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Aug 13, 2008 4:54:58 PM
  */
 public final class SafeEntryUpdateSubscriber implements IdentityEntryModifiedSubscriber {

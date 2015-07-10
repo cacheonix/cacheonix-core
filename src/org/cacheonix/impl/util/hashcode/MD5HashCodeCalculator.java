@@ -28,7 +28,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * MD5HashCodeCalculator
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Apr 13, 2008 6:57:55 PM
  */
 public final class MD5HashCodeCalculator implements HashCodeCalculator, Wireable {

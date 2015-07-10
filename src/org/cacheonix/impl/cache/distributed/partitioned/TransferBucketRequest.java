@@ -35,7 +35,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * TransferRequest
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @noinspection RedundantIfStatement
  * @since Aug 12, 2009 5:27:36 PM
  */
@@ -262,7 +262,7 @@ public final class TransferBucketRequest extends CacheRequest {
       sourceStorageNumber = in.readByte();
       destinationStorageNumber = in.readByte();
 
-      // OPTIMIZEME: simeshev@cacheonix.com - 2009-11-17 - Consider writing a reference
+      // OPTIMIZEME: simeshev@cacheonix.org - 2009-11-17 - Consider writing a reference
       // if owners are present in receiver set.
       newOwner = SerializerUtils.readAddress(in);
       currentOwner = SerializerUtils.readAddress(in);

@@ -21,7 +21,7 @@ import org.cacheonix.impl.util.thread.TimeoutAction;
  * ObtainMulticastMarkerTimeout
  * <p/>
  *
- * @author <a href="mailto:simeshev@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Apr 6, 2008 12:16:02 AM
  */
 final class ObtainMulticastMarkerTimeout extends ActionableTimeout {
