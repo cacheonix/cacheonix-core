@@ -1339,7 +1339,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/annotations/annotations.iml" filepath="$PROJECT_DIR$/annotations/annotations.iml" />
       <module fileurl="file://$PROJECT_DIR$/cacheonix.iml" filepath="$PROJECT_DIR$/cacheonix.iml" />
-      <module fileurl="file://$PROJECT_DIR$/examples/Examples.iml" filepath="$PROJECT_DIR$/examples/Examples.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/examples.iml" filepath="$PROJECT_DIR$/examples/examples.iml" />
     </modules>
   </component>
   <component name="ProjectResources">
