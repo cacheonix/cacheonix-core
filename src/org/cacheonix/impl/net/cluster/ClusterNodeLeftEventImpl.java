@@ -19,7 +19,6 @@ import java.util.Collections;
 import java.util.List;
 
 import org.cacheonix.impl.net.ClusterNodeAddress;
-import org.cacheonix.impl.net.NetUtils;
 import org.cacheonix.impl.util.logging.Logger;
 
 /**
@@ -44,13 +43,6 @@ final class ClusterNodeLeftEventImpl implements ClusterNodeLeftEvent {
    ClusterNodeLeftEventImpl(final Collection<ClusterNodeAddress> nodes) {
 
       this.nodes = new ArrayList<ClusterNodeAddress>(nodes);
-   }
-
-
-   @SuppressWarnings("unchecked")
-   ClusterNodeLeftEventImpl(final ClusterNodeAddress address) {
-
-      this(NetUtils.addressToList(address));
    }
 
 
