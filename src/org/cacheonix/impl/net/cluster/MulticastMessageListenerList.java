@@ -48,7 +48,8 @@ final class MulticastMessageListenerList {
 
 
    /**
-    * @param listener
+    * @param listener a lister to add to the internal registry of listeners so that it can be notified later about
+    *                 received macast messages.
     */
    public void add(final MulticastMessageListener listener) {
 
