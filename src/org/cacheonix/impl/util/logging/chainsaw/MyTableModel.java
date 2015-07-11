@@ -465,12 +465,12 @@ final class MyTableModel
       if (aEvent.getPriority().isGreaterOrEqual(mPriorityFilter) &&
               aEvent.getThreadName().contains(mThreadFilter) &&
               aEvent.getCategoryName().contains(mCategoryFilter) &&
-              (mNDCFilter.length() == 0 ||
+              (mNDCFilter.isEmpty() ||
                       aEvent.getNDC() != null && aEvent.getNDC().contains(mNDCFilter))) {
          final String rm = aEvent.getMessage();
          if (rm == null) {
             // only match if we have not filtering in place
-            return mMessageFilter.length() == 0;
+            return mMessageFilter.isEmpty();
          } else {
             return rm.contains(mMessageFilter);
          }

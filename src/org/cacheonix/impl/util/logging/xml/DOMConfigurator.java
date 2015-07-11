@@ -903,7 +903,7 @@ problem: we can't create an Appender */ catch (final Exception oops) {
       LogLog.debug("debug attribute= \"" + debugAttrib + "\".");
       // if the log4j.dtd is not specified in the XML file, then the
       // "debug" attribute is returned as the empty string.
-      if (debugAttrib.length() != 0 && !"null".equals(debugAttrib)) {
+      if (!debugAttrib.isEmpty() && !"null".equals(debugAttrib)) {
          LogLog.setInternalDebugging(OptionConverter.toBoolean(debugAttrib, true));
       } else {
          LogLog.debug("Ignoring " + INTERNAL_DEBUG_ATTR + " attribute.");
@@ -915,7 +915,7 @@ problem: we can't create an Appender */ catch (final Exception oops) {
       //
       final String resetAttrib = subst(element.getAttribute(RESET_ATTR));
       LogLog.debug("reset attribute= \"" + resetAttrib + "\".");
-      if (resetAttrib != null && resetAttrib.length() != 0) {
+      if (resetAttrib != null && !resetAttrib.isEmpty()) {
          if (OptionConverter.toBoolean(resetAttrib, false)) {
             repository.resetConfiguration();
          }
@@ -923,7 +923,7 @@ problem: we can't create an Appender */ catch (final Exception oops) {
 
 
       final String confDebug = subst(element.getAttribute(CONFIG_DEBUG_ATTR));
-      if (confDebug.length() != 0 && !"null".equals(confDebug)) {
+      if (!confDebug.isEmpty() && !"null".equals(confDebug)) {
          LogLog.warn("The \"" + CONFIG_DEBUG_ATTR + "\" attribute is deprecated.");
          LogLog.warn("Use the \"" + INTERNAL_DEBUG_ATTR + "\" attribute instead.");
          LogLog.setInternalDebugging(OptionConverter.toBoolean(confDebug, true));
@@ -931,7 +931,7 @@ problem: we can't create an Appender */ catch (final Exception oops) {
 
       final String thresholdStr = subst(element.getAttribute(THRESHOLD_ATTR));
       LogLog.debug("Threshold =\"" + thresholdStr + "\".");
-      if (thresholdStr != null && thresholdStr.length() != 0 && !"null".equals(thresholdStr)) {
+      if (thresholdStr != null && !thresholdStr.isEmpty() && !"null".equals(thresholdStr)) {
          repository.setThreshold(thresholdStr);
       }
 

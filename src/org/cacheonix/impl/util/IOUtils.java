@@ -559,7 +559,7 @@ public final class IOUtils {
    public static String skipEmptyLines(final BufferedReader reader) throws IOException {
 
       String line = reader.readLine();
-      while (line != null && line.length() == 0) {
+      while (line != null && line.isEmpty()) {
          line = reader.readLine();
       }
       return line;

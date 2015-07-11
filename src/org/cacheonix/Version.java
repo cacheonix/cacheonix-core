@@ -63,13 +63,13 @@ public final class Version {
       shortFullVersion = result.toString();
 
       // dynamic part
-      if (releaseDate().length() > 0) {
+      if (!releaseDate().isEmpty()) {
          result.append(STR_SPACE).append(releaseDate());
       }
-      if (releaseChange().length() > 0) {
+      if (!releaseChange().isEmpty()) {
          result.append(STR_SPACE).append(releaseChange());
       }
-      if (releaseBuild().length() > 0 && !"0".equals(releaseBuild())) {
+      if (!releaseBuild().isEmpty() && !"0".equals(releaseBuild())) {
          result.append(STR_SPACE).append("build ").append(releaseBuild());
       }
       longFullVersion = result.toString();

@@ -536,7 +536,7 @@ public final class PropertyConfigurator implements Configurator {
               props);
       LogLog.debug("Handling " + ADDITIVITY_PREFIX + loggerName + "=[" + value + ']');
       // touch additivity only if necessary
-      if (value != null && value.length() != 0) {
+      if (value != null && !value.isEmpty()) {
          final boolean additivity = OptionConverter.toBoolean(value, true);
          LogLog.debug("Setting additivity for \"" + loggerName + "\" to " +
                  additivity);
@@ -558,7 +558,7 @@ public final class PropertyConfigurator implements Configurator {
       // If value is not in the form ", appender.." or "", then we should set
       // the level of the loggeregory.
 
-      if (!(value.startsWith(",") || value.length() == 0)) {
+      if (!(value.startsWith(",") || value.isEmpty())) {
 
          // just to be on the safe side...
          if (!st.hasMoreTokens()) {

@@ -53,7 +53,7 @@ public final class Transform {
       // if so, return what was sent in.
 
       if (input == null
-              || input.length() == 0
+              || input.isEmpty()
               || input.indexOf('"') == -1 && input.indexOf('&') == -1 && input.indexOf('<') == -1 && input.indexOf('>') == -1) {
          return input;
       }
