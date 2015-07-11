@@ -22,13 +22,6 @@ import org.cacheonix.exceptions.CacheonixException;
  */
 public final class AssertionException extends CacheonixException {
 
-   /**
-    * Creates AssertionException.
-    */
-   public AssertionException() {
-
-   }
-
 
    /**
     * Creates AssertionException.
@@ -38,17 +31,5 @@ public final class AssertionException extends CacheonixException {
    public AssertionException(final String message) {
 
       super(message);
-   }
-
-
-   /**
-    * Creates AssertionException.
-    *
-    * @param message a message.
-    * @param cause   a cause.
-    */
-   public AssertionException(final String message, final Throwable cause) {
-
-      super(message, cause);
    }
 }
