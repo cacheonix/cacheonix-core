@@ -36,8 +36,8 @@ import org.cacheonix.impl.configuration.ConfigurationConstants;
 import org.cacheonix.impl.configuration.ConfigurationReader;
 import org.cacheonix.impl.configuration.MulticastBroadcastConfiguration;
 import org.cacheonix.impl.configuration.SystemProperty;
-import org.cacheonix.impl.util.array.HashMap;
 import org.cacheonix.impl.util.StringUtils;
+import org.cacheonix.impl.util.array.HashMap;
 import org.cacheonix.impl.util.logging.Logger;
 
 /**
@@ -293,7 +293,8 @@ public abstract class Cacheonix {
          // Get from current directory
          final File currentDirCacheonixXml = new File(configurationPath);
          if (currentDirCacheonixXml.exists()) {
-            return getInstanceFromExternalPath(currentDirCacheonixXml.getCanonicalFile().toURL().toExternalForm());
+            return getInstanceFromExternalPath(
+                    currentDirCacheonixXml.getCanonicalFile().toURI().toURL().toExternalForm());
          }
 
          return getInstanceFromExternalPath(configurationPath);
