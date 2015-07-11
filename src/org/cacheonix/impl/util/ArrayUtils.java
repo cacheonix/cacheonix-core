@@ -14,10 +14,6 @@
 package org.cacheonix.impl.util;
 
 import java.net.InetAddress;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.cacheonix.impl.net.ClusterNodeAddress;
 
 /**
  * Utility methods for manipulating arrays.
@@ -88,37 +84,6 @@ public final class ArrayUtils {
 
 
    /**
-    * Splits an array into a list of arrays.
-    *
-    * @param array     the array to split.
-    * @param chunkSize the size of a chunk.
-    * @return a list of arrays.
-    */
-   public static List<byte[]> split(final byte[] array, final int chunkSize) {
-
-      if (array == null || array.length == 0) {
-         return new ArrayList<byte[]>(0);
-      } else {
-         // Get counters
-         final int fullChunkCount = array.length / chunkSize;
-         final int lastChunkSize = array.length % chunkSize;
-         final List<byte[]> result = new ArrayList<byte[]>(fullChunkCount + (lastChunkSize > 0 ? 1 : 0));
-
-         // Get full chunks
-         for (int i = 0; i < fullChunkCount; i++) {
-            final int from = i * chunkSize;
-            final int to = from + chunkSize;
-            result.add(copyOfRange(array, from, to));
-         }
-
-         // ... Get last chunk
-
-         return result;
-      }
-   }
-
-
-   /**
     * Creates a copy of an array of {@link InetAddress} objects.
     *
     * @param array an array of {@link InetAddress} objects.
@@ -129,35 +94,6 @@ public final class ArrayUtils {
       final InetAddress[] result = new InetAddress[array.length];
       System.arraycopy(array, 0, result, 0, array.length);
       return result;
-   }
-
-
-   public static ClusterNodeAddress[] copy(final ClusterNodeAddress[] array) {
-
-      final ClusterNodeAddress[] result = new ClusterNodeAddress[array.length];
-      System.arraycopy(array, 0, result, 0, array.length);
-      return result;
-   }
-
-
-   public static boolean[] copy(final boolean[] array) {
-
-      final boolean[] result = new boolean[array.length];
-      System.arraycopy(array, 0, result, 0, array.length);
-      return result;
-   }
-
-
-   public static List<Integer> asList(final int[] ints) {
-
-      if (ints == null) {
-         return null;
-      }
-      final List<Integer> list = new ArrayList<Integer>(ints.length);
-      for (final int anInt : ints) {
-         list.add(anInt);
-      }
-      return list;
    }
 
 
