@@ -510,7 +510,7 @@ public interface Cache<K extends Serializable, V extends Serializable> extends C
     * @param keySet the set of keys to retain.
     * @return <code>true</code> if the cache was modified by the <code>retainAll()</code> operation.
     */
-   public boolean retainAll(Set<K> keySet);
+   boolean retainAll(Set<K> keySet);
 
    /**
     * Invokes the <code>executable</code> for all entries in this cache. The <code>aggregator</code> performs conversion

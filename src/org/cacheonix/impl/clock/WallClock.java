@@ -17,5 +17,5 @@ package org.cacheonix.impl.clock;
  */
 interface WallClock {
 
-   public long currentTimeMillis();
+   long currentTimeMillis();
 }

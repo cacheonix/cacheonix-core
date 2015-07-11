@@ -119,5 +119,5 @@ public interface BinaryEntryModifiedSubscriber {
    Set<EntryModifiedEventType> getModificationTypes();
 
 
-   public int getIdentity();
+   int getIdentity();
 }

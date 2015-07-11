@@ -25,5 +25,5 @@ public interface IdentityEntryModifiedSubscriber extends EntryModifiedSubscriber
     *
     * @return subscriber's identity.
     */
-   public int getIdentity();
+   int getIdentity();
 }

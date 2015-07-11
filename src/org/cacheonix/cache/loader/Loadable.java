@@ -30,5 +30,5 @@ public interface Loadable {
     * @param key   the cache key.
     * @param value the value to load.
     */
-   public void load(Serializable key, Serializable value) throws StorageException, IOException;
+   void load(Serializable key, Serializable value) throws StorageException, IOException;
 }
