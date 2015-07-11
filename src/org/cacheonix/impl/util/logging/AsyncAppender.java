@@ -539,6 +539,7 @@ public final class AsyncAppender extends AppenderSkeleton
        * @param discardMap discard map, may not be null.
        * @param appenders  appenders, may not be null.
        */
+      @SuppressWarnings("AssignmentToCollectionOrArrayFieldFromParameter")
       Dispatcher(
               final AsyncAppender parent, final List buffer, final Map discardMap,
               final AppenderAttachableImpl appenders) {

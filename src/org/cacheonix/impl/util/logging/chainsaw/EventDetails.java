@@ -74,6 +74,7 @@ final class EventDetails {
     * @param aThrowableStrRep a <code>String[]</code> value
     * @param aLocationDetails a <code>String</code> value
     */
+   @SuppressWarnings("AssignmentToCollectionOrArrayFieldFromParameter")
    EventDetails(final long aTimeStamp,
                 final Priority aPriority,
                 final String aCategoryName,

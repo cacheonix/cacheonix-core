@@ -138,6 +138,7 @@ public final class LogBrokerMonitor {
    /**
     * Construct a LogBrokerMonitor.
     */
+   @SuppressWarnings("AssignmentToCollectionOrArrayFieldFromParameter")
    public LogBrokerMonitor(final List logLevels) {
 
       _levels = logLevels;

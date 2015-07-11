@@ -278,6 +278,7 @@ public final class SocketHubAppender extends AppenderSkeleton {
       /**
        * Create a thread and start the monitor.
        */
+      @SuppressWarnings("AssignmentToCollectionOrArrayFieldFromParameter")
       ServerMonitor(final int _port, final Vector _oosList) {
          port = _port;
          oosList = _oosList;
