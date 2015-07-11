@@ -50,6 +50,7 @@ public final class TCPServer implements Shutdownable {
    /**
     * Stack trace at create.
     */
+   @SuppressWarnings("ThrowableInstanceNeverThrown")
    private final StackTraceAtCreate stackTraceAtCreate = new StackTraceAtCreate();
 
    private static final int OPERATIONAL_STATUS_NOT_STARTED = 0;

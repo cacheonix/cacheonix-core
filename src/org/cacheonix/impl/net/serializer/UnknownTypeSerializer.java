@@ -41,6 +41,7 @@ final class UnknownTypeSerializer implements Serializer {
    /**
     * Stack trace at create.
     */
+   @SuppressWarnings("ThrowableInstanceNeverThrown")
    private final StackTraceAtCreate stackTraceAtCreate = new StackTraceAtCreate();
 
    /**
