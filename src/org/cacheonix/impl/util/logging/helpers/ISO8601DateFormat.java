@@ -18,7 +18,6 @@
 package org.cacheonix.impl.util.logging.helpers;
 
 import java.text.FieldPosition;
-import java.text.ParsePosition;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
