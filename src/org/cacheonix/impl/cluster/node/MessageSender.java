@@ -19,9 +19,9 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 import org.cacheonix.impl.clock.Clock;
 import org.cacheonix.impl.net.ClusterNodeAddress;
+import org.cacheonix.impl.net.processor.AbstractProcessor;
 import org.cacheonix.impl.net.processor.Command;
 import org.cacheonix.impl.net.processor.Message;
-import org.cacheonix.impl.net.processor.Processor;
 import org.cacheonix.impl.net.processor.Router;
 import org.cacheonix.impl.util.Assert;
 import org.cacheonix.impl.util.logging.Logger;
@@ -34,7 +34,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Jul 18, 2009 3:24:31 PM
  */
-public final class MessageSender extends Processor {
+public final class MessageSender extends AbstractProcessor {
 
    /**
     * Logger.

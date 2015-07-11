@@ -39,6 +39,7 @@ import org.cacheonix.impl.cache.CacheonixCache;
 import org.cacheonix.impl.cache.distributed.partitioned.CacheNodeJoinedMessage;
 import org.cacheonix.impl.cache.distributed.partitioned.CacheNodeLeftMessage;
 import org.cacheonix.impl.cache.distributed.partitioned.CacheProcessor;
+import org.cacheonix.impl.cache.distributed.partitioned.CacheProcessorImpl;
 import org.cacheonix.impl.cache.distributed.partitioned.CacheProcessorKey;
 import org.cacheonix.impl.cache.distributed.partitioned.LeaveCacheGroupAnnouncement;
 import org.cacheonix.impl.cache.distributed.partitioned.PartitionedCache;
@@ -882,7 +883,7 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
                final PartitionedCacheConfiguration cacheConfig = serverConfig.getPartitionedCacheType(cacheConfigName);
 
                // Create cache processor
-               final CacheProcessor newCacheProcessor = new CacheProcessor(timer, clock, getPrefetchScheduler(), router,
+               final CacheProcessor newCacheProcessor = new CacheProcessorImpl(timer, clock, getPrefetchScheduler(), router,
                        getEventNotificationExecutor(), group, cacheName, address, cacheConfig);
                newCacheProcessor.startup();
 

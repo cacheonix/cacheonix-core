@@ -32,12 +32,12 @@ import org.cacheonix.impl.clock.Clock;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.multicast.sender.MulticastSender;
 import org.cacheonix.impl.net.multicast.server.MulticastServerListener;
+import org.cacheonix.impl.net.processor.AbstractRequestProcessor;
 import org.cacheonix.impl.net.processor.Command;
 import org.cacheonix.impl.net.processor.Frame;
 import org.cacheonix.impl.net.processor.Message;
 import org.cacheonix.impl.net.processor.Prepareable;
 import org.cacheonix.impl.net.processor.Request;
-import org.cacheonix.impl.net.processor.RequestProcessor;
 import org.cacheonix.impl.net.processor.Response;
 import org.cacheonix.impl.net.processor.Router;
 import org.cacheonix.impl.net.processor.SenderInetAddressAware;
@@ -58,7 +58,7 @@ import org.cacheonix.impl.util.time.Timeout;
  * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @noinspection JavaDoc, ClassEscapesDefinedScope @since Mar 20, 2008 3:59:09 PM
  */
-public final class ClusterProcessor extends RequestProcessor implements MulticastServerListener {
+public final class ClusterProcessor extends AbstractRequestProcessor implements MulticastServerListener {
 
    /**
     * Logger.
@@ -202,7 +202,7 @@ public final class ClusterProcessor extends RequestProcessor implements Multicas
    }
 
 
-   protected void processMessage(final Message message) throws InterruptedException, IOException {
+   public void processMessage(final Message message) throws InterruptedException, IOException {
 
       processMessage(message, true);
    }

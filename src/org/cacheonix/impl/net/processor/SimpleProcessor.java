@@ -32,7 +32,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Jul 10, 2009 10:46:34 PM
  */
-public class SimpleProcessor extends Processor {
+public class SimpleProcessor extends AbstractProcessor {
 
    /**
     * Logger.
