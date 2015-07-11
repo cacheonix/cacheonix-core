@@ -2,6 +2,9 @@ package org.cacheonix.impl.cache.distributed.partitioned;
 
 import junit.framework.TestCase;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+
 /**
  * A tester for {@link AssignBucketMessage}.
  */
@@ -16,6 +19,9 @@ public final class AssignBucketMessageTest extends TestCase {
 
    private AssignBucketMessage assignBucketMessage;
 
+   private CacheProcessor cacheProcessor;
+
+
    public void testGetStorageNumber() throws Exception {
 
       assertEquals(STORAGE_NUMBER, assignBucketMessage.getStorageNumber());
@@ -25,6 +31,20 @@ public final class AssignBucketMessageTest extends TestCase {
    public void testGetBucketNumber() throws Exception {
 
       assertEquals(BUCKET_NUMBER, assignBucketMessage.getBucketNumber());
+   }
+
+
+   public void testExecuteOperational() throws Exception {
+
+      assignBucketMessage.setProcessor(cacheProcessor);
+      assignBucketMessage.executeOperational();
+      verify(cacheProcessor).createBucket(STORAGE_NUMBER, BUCKET_NUMBER);
+   }
+
+
+   public void testExecuteBlocked() throws Exception {
+
+      testExecuteOperational();
    }
 
 
@@ -39,7 +59,11 @@ public final class AssignBucketMessageTest extends TestCase {
       super.setUp();
 
       //
+      cacheProcessor = mock(CacheProcessor.class);
+
+      //
       assignBucketMessage = new AssignBucketMessage(CACHE_NAME, STORAGE_NUMBER, BUCKET_NUMBER);
+      assignBucketMessage.setProcessor(cacheProcessor);
    }
 
 
@@ -54,6 +78,7 @@ public final class AssignBucketMessageTest extends TestCase {
 
       return "AssignBucketMessageTest{" +
               "assignBucketMessage=" + assignBucketMessage +
+              ", cacheProcessor=" + cacheProcessor +
               "} " + super.toString();
    }
 }
