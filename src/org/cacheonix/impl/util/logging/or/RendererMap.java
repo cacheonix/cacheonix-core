@@ -157,8 +157,8 @@ public final class RendererMap {
          return r;
       } else {
          final Class[] ia = c.getInterfaces();
-         for (int i = 0; i < ia.length; i++) {
-            r = searchInterfaces(ia[i]);
+         for (final Class anIa : ia) {
+            r = searchInterfaces(anIa);
             if (r != null) {
                return r;
             }

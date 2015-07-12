@@ -329,8 +329,8 @@ public final class SMTPAppender extends AppenderSkeleton
             if (layout.ignoresThrowable()) {
                final String[] s = event.getThrowableStrRep();
                if (s != null) {
-                  for (int j = 0; j < s.length; j++) {
-                     sbuf.append(s[j]);
+                  for (final String value : s) {
+                     sbuf.append(value);
                      sbuf.append(Layout.LINE_SEP);
                   }
                }

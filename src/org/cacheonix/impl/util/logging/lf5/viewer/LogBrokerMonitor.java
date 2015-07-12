@@ -1477,8 +1477,8 @@ public final class LogBrokerMonitor {
          fonts = tk.getFontList();
       }
 
-      for (int j = 0; j < fonts.length; j++) {
-         fontCombo.addItem(fonts[j]);
+      for (final String font : fonts) {
+         fontCombo.addItem(font);
       }
 
       fontCombo.setSelectedItem(_fontName);

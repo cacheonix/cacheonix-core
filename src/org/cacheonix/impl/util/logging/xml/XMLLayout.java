@@ -165,8 +165,8 @@ public final class XMLLayout extends Layout {
       final String[] s = event.getThrowableStrRep();
       if (s != null) {
          buf.append("<log4j:throwable><![CDATA[");
-         for (int i = 0; i < s.length; i++) {
-            Transform.appendEscapingCDATA(buf, s[i]);
+         for (final String value : s) {
+            Transform.appendEscapingCDATA(buf, value);
             buf.append("\r\n");
          }
          buf.append("]]></log4j:throwable>\r\n");
@@ -191,8 +191,8 @@ public final class XMLLayout extends Layout {
             buf.append("<log4j:properties>\r\n");
             final Object[] keys = keySet.toArray();
             Arrays.sort(keys);
-            for (int i = 0; i < keys.length; i++) {
-               final String key = keys[i].toString();
+            for (final Object key1 : keys) {
+               final String key = key1.toString();
                final Object val = event.getMDC(key);
                if (val != null) {
                   buf.append("<log4j:data name=\"");

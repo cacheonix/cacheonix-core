@@ -86,8 +86,8 @@ public final class Log4JLogRecord extends LogRecord {
 
       final StringBuilder stackTrace = new StringBuilder(100);
 
-      for (int i = 0; i < stackTraceArray.length; i++) {
-         final String nextLine = stackTraceArray[i] + '\n';
+      for (final String aStackTraceArray : stackTraceArray) {
+         final String nextLine = aStackTraceArray + '\n';
          stackTrace.append(nextLine);
       }
 

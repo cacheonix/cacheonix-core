@@ -237,9 +237,9 @@ public final class PropertySetter {
          introspect();
       }
 
-      for (int i = 0; i < props.length; i++) {
-         if (name.equals(props[i].getName())) {
-            return props[i];
+      for (final PropertyDescriptor prop : props) {
+         if (name.equals(prop.getName())) {
+            return prop;
          }
       }
       return null;

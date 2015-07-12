@@ -23,7 +23,6 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -590,10 +589,8 @@ public final class AsyncAppender extends AppenderSkeleton
                      //
                      int index = bufferSize;
 
-                     for (
-                             final Iterator iter = discardMap.values().iterator();
-                             iter.hasNext(); ) {
-                        events[index++] = ((DiscardSummary) iter.next()).createEvent();
+                     for (final Object o : discardMap.values()) {
+                        events[index++] = ((DiscardSummary) o).createEvent();
                      }
 
                      //
@@ -612,9 +609,9 @@ public final class AsyncAppender extends AppenderSkeleton
                //   process events after lock on buffer is released.
                //
                if (events != null) {
-                  for (int i = 0; i < events.length; i++) {
+                  for (final LoggingEvent event : events) {
                      synchronized (appenders) {
-                        appenders.appendLoopOnAppenders(events[i]);
+                        appenders.appendLoopOnAppenders(event);
                      }
                   }
                }

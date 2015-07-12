@@ -74,8 +74,8 @@ final class FNV1A32HashCodeCalculator implements HashCodeCalculator {
       if (value == null || value.length == 0) {
          return;
       }
-      for (int i = 0; i < value.length; i++) {
-         add(value[i]);
+      for (final byte aValue : value) {
+         add(aValue);
       }
    }
 

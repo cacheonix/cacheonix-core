@@ -138,8 +138,8 @@ final class DetailPanel
       }
 
       final StringBuilder sb = new StringBuilder(100);
-      for (int i = 0; i < strs.length; i++) {
-         sb.append(strs[i]).append('\n');
+      for (final String str : strs) {
+         sb.append(str).append('\n');
       }
 
       return sb.toString();

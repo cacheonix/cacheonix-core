@@ -362,8 +362,8 @@ public final class StringUtils {
    public static String intArrayToString(final int[] array) {
 
       final StringBuilder result = new StringBuilder(array.length);
-      for (int i = 0; i < array.length; i++) {
-         result.append((char) array[i]);
+      for (final int anArray : array) {
+         result.append((char) anArray);
       }
       return result.toString();
    }
@@ -424,8 +424,8 @@ public final class StringUtils {
    public static String linesToString(final List stringList) {
 
       final StringBuilder result = new StringBuilder(300);
-      for (int i = 0, n = stringList.size(); i < n; i++) {
-         result.append((String) stringList.get(i)).append('\n');
+      for (Object aStringList : stringList) {
+         result.append((String) aStringList).append('\n');
       }
       return result.toString();
    }
@@ -666,8 +666,8 @@ public final class StringUtils {
          // return false;
          return true;
       }
-      for (int i = 0; i < length; i++) {
-         if (!isBase64(arrayOctect[i])) {
+      for (final byte anArrayOctect : arrayOctect) {
+         if (!isBase64(anArrayOctect)) {
             return false;
          }
       }

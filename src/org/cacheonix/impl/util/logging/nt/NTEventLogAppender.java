@@ -123,8 +123,8 @@ public final class NTEventLogAppender extends AppenderSkeleton {
          final String[] s = event.getThrowableStrRep();
          if (s != null) {
             final int len = s.length;
-            for (int i = 0; i < len; i++) {
-               sbuf.append(s[i]);
+            for (final String value : s) {
+               sbuf.append(value);
             }
          }
       }

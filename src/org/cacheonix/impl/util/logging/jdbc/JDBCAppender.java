@@ -21,7 +21,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import org.cacheonix.impl.util.IOUtils;
 import org.cacheonix.impl.util.logging.AppenderSkeleton;
@@ -220,14 +219,13 @@ public final class JDBCAppender extends AppenderSkeleton {
    public final void flushBuffer() {
       //Do the actual logging
       removes.ensureCapacity(buffer.size());
-      for (final Iterator i = buffer.iterator(); i.hasNext();) {
+      for (final Object aBuffer : buffer) {
          try {
-            final LoggingEvent logEvent = (LoggingEvent) i.next();
+            final LoggingEvent logEvent = (LoggingEvent) aBuffer;
             final String sql = getLogStatement(logEvent);
             execute(sql);
             removes.add(logEvent);
-         }
-         catch (final SQLException e) {
+         } catch (final SQLException e) {
             errorHandler.error("Failed to excute sql", e,
                     ErrorCode.FLUSH_FAILURE);
          }

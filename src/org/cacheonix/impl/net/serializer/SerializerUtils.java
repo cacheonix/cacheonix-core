@@ -129,8 +129,8 @@ public final class SerializerUtils {
       } else {
          final int listSize = list.size();
          out.writeInt(listSize);
-         for (int i = 0; i < listSize; i++) {
-            (list.get(i)).writeExternal(out);
+         for (Externalizable aList : list) {
+            aList.writeExternal(out);
          }
       }
    }

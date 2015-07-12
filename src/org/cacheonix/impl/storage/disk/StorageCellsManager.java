@@ -731,8 +731,7 @@ public final class StorageCellsManager {
             final byte controlByte = StorageConstants.STORAGE_CELL_FREE;
             final long nextPos = StorageConstants.FINAL_STORAGECELL_IN_SEQUENCE;
 
-            for (int i = 0; i < selectedCells.size(); ++i) {
-               final Object currentCell = selectedCells.get(i);
+            for (final Object currentCell : selectedCells) {
                if (currentCell instanceof Long) {
                   final long offset = ((Long) currentCell).longValue() * storageCellSize;
                   if (offset >= 0L) {

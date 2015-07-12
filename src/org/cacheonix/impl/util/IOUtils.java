@@ -48,7 +48,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.zip.ZipEntry;
@@ -314,8 +313,8 @@ public final class IOUtils {
    public static boolean deleteFilesHard(final List fileList) {
 
       boolean result = true;
-      for (final Iterator i = fileList.iterator(); i.hasNext(); ) {
-         result = deleteFileHard((File) i.next()) && result;
+      for (final Object aFileList : fileList) {
+         result = deleteFileHard((File) aFileList) && result;
       }
       return result;
    }
@@ -333,8 +332,8 @@ public final class IOUtils {
       if (fileToDelete.isDirectory()) {
          final String[] files = fileToDelete.list();
          if (files != null) {
-            for (int ii = 0; ii < files.length; ii++) {
-               deleteFileHard(new File(fileToDelete, files[ii]));
+            for (final String file1 : files) {
+               deleteFileHard(new File(fileToDelete, file1));
             }
          }
       }
@@ -366,8 +365,8 @@ public final class IOUtils {
          LOG.warn("Trying to empty read-only or inaccessible directory " + dir);
       }
       final File[] files = toUNC(dir).listFiles();
-      for (int i = 0; i < files.length; i++) {
-         deleteFileHard(files[i]);
+      for (final File file : files) {
+         deleteFileHard(file);
       }
    }
 
@@ -629,9 +628,9 @@ public final class IOUtils {
          }
 
          final String[] children = srcDir.list();
-         for (int i = 0; i < children.length; i++) {
-            copyDirectory(new File(srcDir, children[i]),
-                    new File(dstDir, children[i]));
+         for (final String aChildren : children) {
+            copyDirectory(new File(srcDir, aChildren),
+                    new File(dstDir, aChildren));
          }
       } else {
          copyFile(srcDir, dstDir);

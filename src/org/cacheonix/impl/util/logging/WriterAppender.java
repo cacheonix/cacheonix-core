@@ -281,8 +281,8 @@ public class WriterAppender extends AppenderSkeleton {
          final String[] s = event.getThrowableStrRep();
          if (s != null) {
             final int len = s.length;
-            for (int i = 0; i < len; i++) {
-               this.qw.write(s[i]);
+            for (final String value : s) {
+               this.qw.write(value);
                this.qw.write(Layout.LINE_SEP);
             }
          }

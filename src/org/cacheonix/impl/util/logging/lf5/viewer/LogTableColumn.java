@@ -77,8 +77,8 @@ public final class LogTableColumn implements Serializable {
 
       _logTableColumnMap = new HashMap(11);
 
-      for (int i = 0; i < _log4JColumns.length; i++) {
-         _logTableColumnMap.put(_log4JColumns[i]._label, _log4JColumns[i]);
+      for (final LogTableColumn _log4JColumn : _log4JColumns) {
+         _logTableColumnMap.put(_log4JColumn._label, _log4JColumn);
       }
    }
 

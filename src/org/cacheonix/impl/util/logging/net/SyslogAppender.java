@@ -424,11 +424,11 @@ public final class SyslogAppender extends AppenderSkeleton {
       if (layout.ignoresThrowable()) {
          final String[] s = event.getThrowableStrRep();
          if (s != null) {
-            for (int i = 0; i < s.length; i++) {
-               if (s[i].startsWith("\t")) {
-                  sqw.write(hdr + TAB + s[i].substring(1));
+            for (final String value : s) {
+               if (value.startsWith("\t")) {
+                  sqw.write(hdr + TAB + value.substring(1));
                } else {
-                  sqw.write(hdr + s[i]);
+                  sqw.write(hdr + value);
                }
             }
          }

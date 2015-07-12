@@ -105,14 +105,14 @@ public final class LogLevel implements Serializable {
               SEVERE, WARNING, CONFIG, FINE, FINER, FINEST};
 
       _logLevelMap = new HashMap(11);
-      for (int i = 0; i < _allDefaultLevels.length; i++) {
-         _logLevelMap.put(_allDefaultLevels[i]._label, _allDefaultLevels[i]);
+      for (final LogLevel _allDefaultLevel1 : _allDefaultLevels) {
+         _logLevelMap.put(_allDefaultLevel1._label, _allDefaultLevel1);
       }
 
       // prepopulate map with levels and text color of black
       _logLevelColorMap = new HashMap(11);
-      for (int i = 0; i < _allDefaultLevels.length; i++) {
-         _logLevelColorMap.put(_allDefaultLevels[i], Color.black);
+      for (final LogLevel _allDefaultLevel : _allDefaultLevels) {
+         _logLevelColorMap.put(_allDefaultLevel, Color.black);
       }
    }
 
@@ -204,8 +204,8 @@ public final class LogLevel implements Serializable {
    public static void register(final LogLevel[] logLevels) {
 
       if (logLevels != null) {
-         for (int i = 0; i < logLevels.length; i++) {
-            register(logLevels[i]);
+         for (final LogLevel logLevel : logLevels) {
+            register(logLevel);
          }
       }
    }
@@ -267,8 +267,8 @@ public final class LogLevel implements Serializable {
       _logLevelColorMap.clear();
 
       // repopulate map and reset text color black
-      for (int i = 0; i < _allDefaultLevels.length; i++) {
-         _logLevelColorMap.put(_allDefaultLevels[i], Color.black);
+      for (final LogLevel _allDefaultLevel : _allDefaultLevels) {
+         _logLevelColorMap.put(_allDefaultLevel, Color.black);
       }
    }
 

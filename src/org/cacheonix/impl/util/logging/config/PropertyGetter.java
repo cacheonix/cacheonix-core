@@ -74,8 +74,8 @@ public final class PropertyGetter {
 
    public final void getProperties(final PropertyCallback callback, final String prefix) {
 
-      for (int i = 0; i < props.length; i++) {
-         final Method getter = props[i].getReadMethod();
+      for (final PropertyDescriptor prop : props) {
+         final Method getter = prop.getReadMethod();
          if (getter == null) {
             continue;
          }
@@ -83,7 +83,7 @@ public final class PropertyGetter {
             //System.err.println("Ignoring " + props[i].getName() +" " + getter.getReturnType());
             continue;
          }
-         final String name = props[i].getName();
+         final String name = prop.getName();
          try {
             final Object result = getter.invoke(obj, NULL_ARG);
             //System.err.println("PROP " + name +": " + result);

@@ -53,14 +53,14 @@ public final class ThreadGroupRenderer implements ObjectRenderer {
          sbuf.append(']');
          final Thread[] t = new Thread[tg.activeCount()];
          tg.enumerate(t);
-         for (int i = 0; i < t.length; i++) {
+         for (final Thread aT : t) {
             sbuf.append(Layout.LINE_SEP);
             sbuf.append("   Thread=[");
-            sbuf.append(t[i].getName());
+            sbuf.append(aT.getName());
             sbuf.append(',');
-            sbuf.append(t[i].getPriority());
+            sbuf.append(aT.getPriority());
             sbuf.append(',');
-            sbuf.append(t[i].isDaemon());
+            sbuf.append(aT.isDaemon());
             sbuf.append(']');
          }
          return sbuf.toString();
