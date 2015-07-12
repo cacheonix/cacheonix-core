@@ -493,7 +493,7 @@ public final class AsyncAppender extends AppenderSkeleton
          final String msg =
                  MessageFormat.format(
                          "Discarded {0} messages due to full event buffer including: {1}",
-                         new Object[]{Integer.valueOf(count), maxEvent.getMessage()});
+                         Integer.valueOf(count), maxEvent.getMessage());
 
          return new LoggingEvent(
                  "org.cacheonix.impl.util.logging.AsyncAppender.DONT_REPORT_LOCATION",

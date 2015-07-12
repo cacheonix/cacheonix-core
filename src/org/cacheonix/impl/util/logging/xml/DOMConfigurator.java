@@ -408,6 +408,7 @@ problem: we can't create an Appender */ catch (final Exception oops) {
    /**
     * Used internally to parse an category element.
     */
+   @SuppressWarnings("RedundantArrayCreation")
    protected final void parseCategory(final Element loggerElement) {
       // Create a new org.cacheonix.impl.util.logging.Category object from the <category> element.
       final String catName = subst(loggerElement.getAttribute(NAME_ATTR));
@@ -426,7 +427,7 @@ problem: we can't create an Appender */ catch (final Exception oops) {
             final Class clazz = Loader.loadClass(className);
             final Method getInstanceMethod = clazz.getMethod("getLogger",
                     ONE_STRING_PARAM);
-            cat = (Logger) getInstanceMethod.invoke(null, new Object[]{catName});
+            cat = (Logger) getInstanceMethod.invoke(null, catName);
          } catch (final Exception oops) {
             LogLog.error("Could not retrieve category [" + catName +
                     "]. Reported error follows.", oops);
@@ -609,6 +610,7 @@ problem: we can't create an Appender */ catch (final Exception oops) {
    /**
     * Used internally to parse a level  element.
     */
+   @SuppressWarnings("RedundantArrayCreation")
    protected final void parseLevel(final Element element, final Logger logger, final boolean isRoot) {
 
       String catName = logger.getName();
@@ -636,7 +638,7 @@ problem: we can't create an Appender */ catch (final Exception oops) {
                final Method toLevelMethod = clazz.getMethod("toLevel",
                        ONE_STRING_PARAM);
                final Level pri = (Level) toLevelMethod.invoke(null,
-                       new Object[]{priStr});
+                       priStr);
                logger.setLevel(pri);
             } catch (final Exception oops) {
                LogLog.error("Could not create level [" + priStr +

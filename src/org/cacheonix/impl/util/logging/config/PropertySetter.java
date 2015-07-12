@@ -197,7 +197,7 @@ public final class PropertySetter {
       }
       LogLog.debug("Setting property [" + name + "] to [" + arg + "].");
       try {
-         setter.invoke(obj, new Object[]{arg});
+         setter.invoke(obj, arg);
       } catch (final Exception ex) {
          throw new PropertySetterException(ex);
       }
