@@ -4,7 +4,7 @@ import org.cacheonix.ShutdownException;
 import org.cacheonix.impl.util.Shutdownable;
 
 /**
- * Created by vimeshev on 7/10/15.
+ * A {@link Command} processor.
  */
 public interface Processor extends Shutdownable {
 
