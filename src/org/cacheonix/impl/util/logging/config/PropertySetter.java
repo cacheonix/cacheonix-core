@@ -216,9 +216,9 @@ public final class PropertySetter {
       if (String.class.isAssignableFrom(type)) {
          return val;
       } else if (Integer.TYPE.isAssignableFrom(type)) {
-         return new Integer(v);
+         return Integer.valueOf(v);
       } else if (Long.TYPE.isAssignableFrom(type)) {
-         return new Long(v);
+         return Long.valueOf(v);
       } else if (Boolean.TYPE.isAssignableFrom(type)) {
          if ("true".equalsIgnoreCase(v)) {
             return Boolean.TRUE;
