@@ -119,7 +119,7 @@ public final class GetMaxSizeRequest extends CacheRequest {
       }
 
 
-      protected void notifyFinished() {
+      protected synchronized void notifyFinished() {
 
          if (!isResponseReceived()) {
             setResult(new RetryException());

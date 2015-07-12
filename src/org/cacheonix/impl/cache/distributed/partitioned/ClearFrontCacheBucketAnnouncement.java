@@ -181,7 +181,7 @@ public final class ClearFrontCacheBucketAnnouncement extends Request {
       }
 
 
-      protected void notifyFinished() {
+      protected synchronized void notifyFinished() {
 
          getOwnerWaiter().getPartialWaiters().remove(this);
 

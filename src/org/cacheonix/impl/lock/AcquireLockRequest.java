@@ -547,7 +547,7 @@ public final class AcquireLockRequest extends LockRequest {
       }
 
 
-      public void notifyTimeout() {
+      public synchronized void notifyTimeout() {
 
          // Timeout means that the lock has not been satisfied within
          // a requested period of time. Post the announcement
