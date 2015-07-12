@@ -344,7 +344,7 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
 
             final ClusterProcessor clusterProcessor = PartitionedCache.this.clusterProcessor;
             final ValuesRequest request = new ValuesRequest(cacheName);
-            final LinkedList<Binary> binaryValues = (LinkedList<Binary>) clusterProcessor.execute(request);
+            final LinkedList<Binary> binaryValues = clusterProcessor.execute(request);
 
             // Convert to object collection
             final Collection<Object> result = new ArrayList<Object>(binaryValues.size());
@@ -424,7 +424,7 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
 
             final ClusterProcessor clusterProcessor = PartitionedCache.this.clusterProcessor;
             final GetEntrySetRequest request = new GetEntrySetRequest(cacheName);
-            final LinkedList<Entry<Binary, Binary>> binaryEntries = (LinkedList<Entry<Binary, Binary>>) clusterProcessor.execute(
+            final LinkedList<Entry<Binary, Binary>> binaryEntries = clusterProcessor.execute(
                     request);
 
             // Convert to object collection
@@ -459,7 +459,7 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
 
             final ClusterProcessor clusterProcessor = PartitionedCache.this.clusterProcessor;
             final GetKeySetRequest request = new GetKeySetRequest(cacheName);
-            final LinkedList<Binary> binaryKeys = (LinkedList<Binary>) clusterProcessor.execute(request);
+            final LinkedList<Binary> binaryKeys = clusterProcessor.execute(request);
 
             // Convert to object collection
             final Set<Object> result = new HashSet<Object>(binaryKeys.size());
@@ -920,7 +920,7 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
             final GetKeyOwnerRequest request = new GetKeyOwnerRequest(cacheName, 0,
                     bucketCalculator.calculateBucketIndex(key));
             request.setReceiver(address);
-            final ClusterNodeAddress owner = (ClusterNodeAddress) clusterProcessor.execute(request);
+            final ClusterNodeAddress owner = clusterProcessor.execute(request);
             return new CacheMemberImpl(owner, cacheName);
          }
 

@@ -323,7 +323,7 @@ public final class ClusterProcessor extends AbstractRequestProcessor implements 
          // Request size of the ClusterView
          final Request clusterViewSizeRequest = new GetClusterViewSizeRequest();
          clusterViewSizeRequest.setReceiver(getAddress());
-         final Integer clusterViewSize = (Integer) execute(clusterViewSizeRequest);
+         final Integer clusterViewSize = execute(clusterViewSizeRequest);
 
          // Single size means that it is pointless to wait for cache members to finish
          shutdownCacheProcessorsGracefully = clusterViewSize > 1;
