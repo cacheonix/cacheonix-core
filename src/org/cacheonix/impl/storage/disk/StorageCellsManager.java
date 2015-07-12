@@ -104,7 +104,7 @@ public final class StorageCellsManager {
          if (!initialized) {
             final Object[] startItems = (Object[]) startupObject;
             storageName = (String) startItems[0];
-            storageSize = ((Long) startItems[1]).longValue();
+            storageSize = (Long) startItems[1];
             filePath = (String) startItems[2];
 
             randomFile = new File(filePath);
@@ -657,7 +657,7 @@ public final class StorageCellsManager {
          // REVIEWME: @SF -> Preferred to put into SortedArray (Queue or like that)
          // and then flush it to disk
          final int lastItem = selectedCells.size() - 1;
-         long currentCell = ((Long) selectedCells.get(0)).longValue();
+         long currentCell = (Long) selectedCells.get(0);
          position = storageCellSize * currentCell;
          int lengthToRecord = data.length;
 
@@ -665,11 +665,11 @@ public final class StorageCellsManager {
 
          for (int i = 0; i < lastItem + 1; ++i) {
             Arrays.fill(buffer, (byte) 0);
-            currentCell = ((Long) selectedCells.get(i)).longValue();
+            currentCell = (Long) selectedCells.get(i);
             long nextCell = StorageConstants.FINAL_STORAGECELL_IN_SEQUENCE;
             long nextPos = nextCell;
             if (i < lastItem) {
-               nextCell = ((Long) selectedCells.get(i + 1)).longValue();
+               nextCell = (Long) selectedCells.get(i + 1);
                nextPos = storageCellSize * nextCell;
             }
 
@@ -733,7 +733,7 @@ public final class StorageCellsManager {
 
             for (final Object currentCell : selectedCells) {
                if (currentCell instanceof Long) {
-                  final long offset = ((Long) currentCell).longValue() * storageCellSize;
+                  final long offset = (Long) currentCell * storageCellSize;
                   if (offset >= 0L) {
                      try {
                         StorageUtilities.controlInfoToByteArray(buffer, 0, controlByte, nextPos);

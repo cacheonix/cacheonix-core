@@ -305,7 +305,7 @@ public final class OptionConverter {
       }
       if (s != null) {
          try {
-            return Long.valueOf(s).longValue() * multiplier;
+            return Long.valueOf(s) * multiplier;
          } catch (final NumberFormatException e) {
             LogLog.error('[' + s + "] is not in proper int form.");
             LogLog.error('[' + value + "] not in expected format.", e);
