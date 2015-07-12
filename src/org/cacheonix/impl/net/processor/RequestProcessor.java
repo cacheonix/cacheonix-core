@@ -10,7 +10,7 @@ import org.cacheonix.impl.clock.Clock;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 
 /**
- * Created by vimeshev on 7/10/15.
+ * A {@link Message} processor.
  */
 public interface RequestProcessor extends Processor {
 
