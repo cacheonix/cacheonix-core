@@ -16,8 +16,9 @@ package org.cacheonix.impl.cache.loader;
 import java.util.Properties;
 
 import org.cacheonix.cache.loader.CacheLoaderContext;
-import org.cacheonix.impl.util.CollectionUtils;
 import org.cacheonix.impl.util.logging.Logger;
+
+import static org.cacheonix.impl.util.CollectionUtils.copyProperties;
 
 /**
  * An implmenetation of CacheLoaderContext.
@@ -56,7 +57,7 @@ public final class CacheLoaderContextImpl implements CacheLoaderContext {
    public CacheLoaderContextImpl(final String cacheName, final Properties properties) {
 
       this.cacheName = cacheName;
-      this.properties = CollectionUtils.copyProperties(properties);
+      this.properties = copyProperties(properties);
    }
 
 
@@ -74,7 +75,7 @@ public final class CacheLoaderContextImpl implements CacheLoaderContext {
     */
    public Properties getProperties() {
 
-      return CollectionUtils.copyProperties(properties);
+      return copyProperties(properties);
    }
 
 
