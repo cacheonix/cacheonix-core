@@ -101,7 +101,7 @@ public abstract class LogFactor5Dialog extends JDialog {
       final GridBagLayout gbLayout = (GridBagLayout) container.getLayout();
 
 
-      while (message.length() > 0) {
+      while (!message.isEmpty()) {
          final int newLineIndex = message.indexOf((int) '\n');
          final String line;
          if (newLineIndex >= 0) {

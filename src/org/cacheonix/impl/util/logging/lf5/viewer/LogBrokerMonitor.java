@@ -394,7 +394,7 @@ public final class LogBrokerMonitor {
    protected final void sortByNDC() {
 
       final String text = _NDCTextFilter;
-      if (text == null || text.length() == 0) {
+      if (text == null || text.isEmpty()) {
          return;
       }
 
@@ -407,7 +407,7 @@ public final class LogBrokerMonitor {
    protected final void findSearchText() {
 
       final String text = _searchText;
-      if (text == null || text.length() == 0) {
+      if (text == null || text.isEmpty()) {
          return;
       }
       final int startRow = getFirstSelectedRow();

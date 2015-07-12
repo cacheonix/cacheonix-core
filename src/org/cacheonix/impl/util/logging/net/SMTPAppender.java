@@ -155,17 +155,17 @@ public final class SMTPAppender extends AppenderSkeleton
          msg.setFrom();
       }
 
-      if (to != null && to.length() > 0) {
+      if (to != null && !to.isEmpty()) {
          msg.setRecipients(Message.RecipientType.TO, parseAddress(to));
       }
 
       //Add CC receipients if defined.
-      if (cc != null && cc.length() > 0) {
+      if (cc != null && !cc.isEmpty()) {
          msg.setRecipients(Message.RecipientType.CC, parseAddress(cc));
       }
 
       //Add BCC receipients if defined.
-      if (bcc != null && bcc.length() > 0) {
+      if (bcc != null && !bcc.isEmpty()) {
          msg.setRecipients(Message.RecipientType.BCC, parseAddress(bcc));
       }
    }

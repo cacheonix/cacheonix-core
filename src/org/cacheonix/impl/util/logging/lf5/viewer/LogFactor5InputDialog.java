@@ -121,7 +121,7 @@ public final class LogFactor5InputDialog extends LogFactor5Dialog {
    public final String getText() {
       final String s = _textField.getText();
 
-      if (s != null && s.trim().length() == 0) {
+      if (s != null && s.trim().isEmpty()) {
          return null;
       }
 

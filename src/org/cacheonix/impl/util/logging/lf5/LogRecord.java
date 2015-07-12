@@ -131,7 +131,7 @@ public abstract class LogRecord implements Serializable {
          return false;
       }
       final String thrownString = thrown.toString();
-      return thrownString != null && thrownString.trim().length() != 0;
+      return thrownString != null && !thrownString.trim().isEmpty();
    }
 
 

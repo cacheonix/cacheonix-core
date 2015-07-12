@@ -204,7 +204,7 @@ public final class ConfigurationManager {
       final NamedNodeMap map = n.getAttributes();
       final String text = getValue(map, NAME);
 
-      if (text == null || text.length() == 0) {
+      if (text == null || text.isEmpty()) {
          return;
       }
       _monitor.setNDCLogRecordFilter(text);

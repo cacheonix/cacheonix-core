@@ -277,7 +277,7 @@ public final class LogFileParser implements Runnable {
 
 
    private LogRecord createLogRecord(final String record) {
-      if (record == null || record.trim().length() == 0) {
+      if (record == null || record.trim().isEmpty()) {
          return null;
       }
 

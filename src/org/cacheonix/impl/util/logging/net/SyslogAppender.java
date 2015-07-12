@@ -402,7 +402,7 @@ public final class SyslogAppender extends AppenderSkeleton {
 
       final String hdr = getPacketHeader(event.timeStamp);
       String packet = layout.format(event);
-      if (facilityPrinting || hdr.length() > 0) {
+      if (facilityPrinting || !hdr.isEmpty()) {
          final StringBuilder buf = new StringBuilder(hdr);
          if (facilityPrinting) {
             buf.append(facilityStr);
@@ -623,7 +623,7 @@ public final class SyslogAppender extends AppenderSkeleton {
       if (sqw != null) {
          String packet = msg;
          final String hdr = getPacketHeader(new Date().getTime());
-         if (facilityPrinting || hdr.length() > 0) {
+         if (facilityPrinting || !hdr.isEmpty()) {
             final StringBuilder buf = new StringBuilder(hdr);
             if (facilityPrinting) {
                buf.append(facilityStr);
