@@ -1017,9 +1017,8 @@ public final class LogBrokerMonitor {
    protected final List updateView() {
 
       final ArrayList updatedList = new ArrayList(3);
-      final Iterator columnIterator = _columns.iterator();
-      while (columnIterator.hasNext()) {
-         final LogTableColumn column = (LogTableColumn) columnIterator.next();
+      for (final Object _column : _columns) {
+         final LogTableColumn column = (LogTableColumn) _column;
          final JCheckBoxMenuItem result = getLogTableColumnMenuItem(column);
          // check and see if the checkbox is checked
          if (result.isSelected()) {

@@ -23,7 +23,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import javax.swing.*;
@@ -409,9 +408,8 @@ public final class ConfigurationManager {
    private void processLogLevels(final Map logLevelMenuItems, final StringBuffer xml) {
 
       xml.append("\t<loglevels>\r\n");
-      final Iterator it = logLevelMenuItems.entrySet().iterator();
-      while (it.hasNext()) {
-         final Map.Entry entry = (Map.Entry) it.next();
+      for (final Object o : logLevelMenuItems.entrySet()) {
+         final Map.Entry entry = (Map.Entry) o;
          final LogLevel level = (LogLevel) entry.getKey();
          final JCheckBoxMenuItem item = (JCheckBoxMenuItem) entry.getValue();
          exportLogLevelXMLElement(level.getLabel(), item.isSelected(), xml);
@@ -426,9 +424,8 @@ public final class ConfigurationManager {
 
       xml.append("\t<loglevelcolors>\r\n");
       // iterate through the list of log levels being used (log4j, jdk1.4, custom levels)
-      final Iterator it = logLevelMenuItems.keySet().iterator();
-      while (it.hasNext()) {
-         final LogLevel level = (LogLevel) it.next();
+      for (final Object o : logLevelMenuItems.keySet()) {
+         final LogLevel level = (LogLevel) o;
          // for each level, get the associated color from the log level color map
          final Color color = (Color) logLevelColors.get(level);
          exportLogLevelColorXMLElement(level.getLabel(), color, xml);
@@ -441,9 +438,8 @@ public final class ConfigurationManager {
    private void processLogTableColumns(final List logTableColumnMenuItems, final StringBuffer xml) {
 
       xml.append("\t<logtablecolumns>\r\n");
-      final Iterator it = logTableColumnMenuItems.iterator();
-      while (it.hasNext()) {
-         final LogTableColumn column = (LogTableColumn) it.next();
+      for (final Object logTableColumnMenuItem : logTableColumnMenuItems) {
+         final LogTableColumn column = (LogTableColumn) logTableColumnMenuItem;
          final JCheckBoxMenuItem item = _monitor.getTableColumnMenuItem(column);
          exportLogTableColumnXMLElement(column.getLabel(), item.isSelected(), xml);
       }

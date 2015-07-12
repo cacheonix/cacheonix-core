@@ -20,7 +20,6 @@ import java.awt.*;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -214,9 +213,8 @@ public final class LogLevel implements Serializable {
    public static void register(final List logLevels) {
 
       if (logLevels != null) {
-         final Iterator it = logLevels.iterator();
-         while (it.hasNext()) {
-            register((LogLevel) it.next());
+         for (final Object logLevel : logLevels) {
+            register((LogLevel) logLevel);
          }
       }
    }

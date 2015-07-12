@@ -18,7 +18,6 @@ package org.cacheonix.impl.util.logging.lf5.viewer;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -170,9 +169,8 @@ public final class FilteredLogTableModel extends AbstractTableModel {
 
    protected final List createFilteredRecordsList() {
       final List result = new ArrayList(_allRecords.size());
-      final Iterator records = _allRecords.iterator();
-      while (records.hasNext()) {
-         final LogRecord current = (LogRecord) records.next();
+      for (final Object _allRecord : _allRecords) {
+         final LogRecord current = (LogRecord) _allRecord;
          if (_filter.passes(current)) {
             result.add(current);
          }

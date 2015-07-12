@@ -20,7 +20,6 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -105,9 +104,8 @@ final class MyTableModel
 
                boolean toHead = true; // were events added to head
                boolean needUpdate = false;
-               final Iterator it = mPendingEvents.iterator();
-               while (it.hasNext()) {
-                  final EventDetails event = (EventDetails) it.next();
+               for (final Object mPendingEvent : mPendingEvents) {
+                  final EventDetails event = (EventDetails) mPendingEvent;
                   mAllEvents.add(event);
                   toHead = toHead && event == mAllEvents.first();
                   needUpdate = needUpdate || matchFilter(event);
@@ -422,10 +420,9 @@ final class MyTableModel
       final long start = System.currentTimeMillis();
       final int size = mAllEvents.size();
       final List filtered = new ArrayList(size);
-      final Iterator it = mAllEvents.iterator();
 
-      while (it.hasNext()) {
-         final EventDetails event = (EventDetails) it.next();
+      for (final Object mAllEvent : mAllEvents) {
+         final EventDetails event = (EventDetails) mAllEvent;
          if (matchFilter(event)) {
             filtered.add(event);
          }
