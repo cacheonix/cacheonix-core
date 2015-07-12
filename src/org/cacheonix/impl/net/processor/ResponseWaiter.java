@@ -27,7 +27,7 @@ public interface ResponseWaiter {
     * @throws RuntimeTimeoutException if runtime error occurs.
     * @throws RetryException          if request should be retried.
     */
-   public Object waitForResult() throws RetryException, RuntimeTimeoutException;
+   Object waitForResult() throws RetryException, RuntimeTimeoutException;
 
    boolean isFinished();
 }

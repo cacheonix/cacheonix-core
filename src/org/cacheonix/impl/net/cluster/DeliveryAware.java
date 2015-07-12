@@ -22,5 +22,5 @@ public interface DeliveryAware {
    /**
     * Notifies this message that the multicast request was delivered by all members of the cluster.
     */
-   public void notifyDelivered();
+   void notifyDelivered();
 }

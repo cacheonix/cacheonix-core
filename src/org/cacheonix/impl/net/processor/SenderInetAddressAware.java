@@ -26,5 +26,5 @@ public interface SenderInetAddressAware {
     *
     * @param senderInetAddress the IP address of the machine that sent this message.
     */
-   public void setSenderInetAddress(final InetAddress senderInetAddress);
+   void setSenderInetAddress(final InetAddress senderInetAddress);
 }
