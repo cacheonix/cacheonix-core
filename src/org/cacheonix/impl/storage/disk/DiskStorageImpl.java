@@ -3,7 +3,7 @@
  * (the "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
- *      http://www.cacheonix.com/products/cacheonix/license-lgpl-2.1.htm
+ *      http://www.cacheonix.org/products/cacheonix/license-lgpl-2.1.htm
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -21,7 +21,7 @@ import org.cacheonix.impl.util.logging.Logger;
 /**
  * <b>DiskStorageImpl</b> class implements storage interface for use of standard file system file as storage
  *
- * @author sfichel@cacheonix.com
+ * @author sfichel@cacheonix.org
  */
 public final class DiskStorageImpl implements DiskStorage {
 

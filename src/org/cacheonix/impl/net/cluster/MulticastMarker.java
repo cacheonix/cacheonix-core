@@ -3,7 +3,7 @@
  * (the "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
- *      http://www.cacheonix.com/products/cacheonix/license-lgpl-2.1.htm
+ *      http://www.cacheonix.org/products/cacheonix/license-lgpl-2.1.htm
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -64,7 +64,7 @@ public final class MulticastMarker extends OperationalMarker {
    /**
     * Max multicast messages messages allowed to send.
     * <p/>
-    * OPTIMIZEME: slava@cacheonix.com - 20090-12-08 - As for this writing MulticastReceiver is single threaded, so
+    * OPTIMIZEME: slava@cacheonix.org - 20090-12-08 - As for this writing MulticastReceiver is single threaded, so
     * setting the max number of messages too high causes receive buffer overflow in the MulticastReceiver because it
     * cannot pull the messages fast enough. This value should a function of flow control rather then a constant. The
     * function should minimize the number of retransmits.
@@ -1194,7 +1194,7 @@ public final class MulticastMarker extends OperationalMarker {
       }
       // Notify subscribers about changes in the configuration
 
-      // REVIEWME: slava@cacheonix.com - 2009-12-23 - This is a cut and paste
+      // REVIEWME: slava@cacheonix.org - 2009-12-23 - This is a cut and paste
       // everywhere where new NormalState() is found. Consider re-using.
 
       final ClusterView previousClusterView = processor.getProcessorState().getLastOperationalClusterView();

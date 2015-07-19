@@ -24,9 +24,9 @@
  * <h1>Documentation</h1>
  *
  * <ul>
- *   <li><a href="http://wiki.cacheonix.com/display/CCHNX20/Configuring+Cacheonix">Configuring Cacheonix</a></li>
- *   <li><a href="http://wiki.cacheonix.com/display/CCHNX/Cacheonix+Knowledge+Base">Online Documentation</a></li>
- *   <li><a href="http://wiki.cacheonix.com/display/CCHNX20/Programming+With+Cacheonix">Online Code Examples</a></li>
+ *   <li><a href="http://wiki.cacheonix.org/display/CCHNX20/Configuring+Cacheonix">Configuring Cacheonix</a></li>
+ *   <li><a href="http://wiki.cacheonix.org/display/CCHNX/Cacheonix+Knowledge+Base">Online Documentation</a></li>
+ *   <li><a href="http://wiki.cacheonix.org/display/CCHNX20/Programming+With+Cacheonix">Online Code Examples</a></li>
  * </ul>
  *
  * <h1>High-level Cacheonix Packages</h1>
@@ -44,8 +44,8 @@
  * <p><strong>See Also:</strong>
  *
  * <ul>
- *    <li><a href="http://www.cacheonix.com/products/cacheonix/index.htm">Cacheonix Home</a></li>
- *    <li><a href="http://www.cacheonix.com/support.htm">Cacheonix Support</a></li>
+ *    <li><a href="http://www.cacheonix.org/products/cacheonix/index.htm">Cacheonix Home</a></li>
+ *    <li><a href="http://www.cacheonix.org/support.htm">Cacheonix Support</a></li>
  * </ul>
  * </p>
  * @since Cacheonix 1.0

@@ -3,7 +3,7 @@
  * (the "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
- *      http://www.cacheonix.com/products/cacheonix/license-lgpl-2.1.htm
+ *      http://www.cacheonix.org/products/cacheonix/license-lgpl-2.1.htm
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,7 +18,7 @@ public interface StorageConstants {
    // ////////////////////////////////////////////////////////////////////////////////////////////
    // Parameters which need to be configured
    //
-   long DEFAULT_STORAGE_CLUSTER_SIZE = 141L; // TODO @SF - sfishel@cacheonix.com -
+   long DEFAULT_STORAGE_CLUSTER_SIZE = 141L; // TODO @SF - sfishel@cacheonix.org -
    // Limit
    // < 4KB Create interface with Constants
    // Make it megabytes (default 1MB)

@@ -3,7 +3,7 @@
  * (the "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
- *      http://www.cacheonix.com/products/cacheonix/license-lgpl-2.1.htm
+ *      http://www.cacheonix.org/products/cacheonix/license-lgpl-2.1.htm
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -328,7 +328,7 @@ public class Waiter implements ResponseWaiter {
     * @return timeout message
     */
    private String createTimeoutMessage(final long timeoutMillis) {
-      // REVIEWME: slava@cacheonix.com - 2010-01-02:
+      // REVIEWME: slava@cacheonix.org - 2010-01-02:
       //           a) Need to replace with .append();
       //           b) Need to impement short versions of the setToSring() below
       final StringBuffer sb = new StringBuffer(300);

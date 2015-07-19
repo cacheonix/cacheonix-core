@@ -3,7 +3,7 @@
  * (the "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
- *      http://www.cacheonix.com/products/cacheonix/license-lgpl-2.1.htm
+ *      http://www.cacheonix.org/products/cacheonix/license-lgpl-2.1.htm
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -23,7 +23,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * <p/>
  * Created on Mar 8, 2008 2:01:20 PM
  *
- * @author <a href="mailto:slava@cacheonix.com">Slava Imeshev</a>
+ * @author <a href="mailto:slava@cacheonix.org">Slava Imeshev</a>
  */
 final class TestIbatisCacheFactory implements IBatisCacheFactory {
 

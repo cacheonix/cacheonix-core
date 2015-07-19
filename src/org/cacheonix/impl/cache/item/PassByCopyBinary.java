@@ -3,7 +3,7 @@
  * (the "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
- *      http://www.cacheonix.com/products/cacheonix/license-lgpl-2.1.htm
+ *      http://www.cacheonix.org/products/cacheonix/license-lgpl-2.1.htm
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -43,7 +43,7 @@ public final class PassByCopyBinary implements Binary {
    private static final long serialVersionUID = 0L;
 
    /**
-    * REVIEWME: slava@cacheonix.com - this should be made a configuration parameter.
+    * REVIEWME: slava@cacheonix.org - this should be made a configuration parameter.
     */
    private Serializer serializer = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
 

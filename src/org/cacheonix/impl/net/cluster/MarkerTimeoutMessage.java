@@ -3,7 +3,7 @@
  * (the "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
- *      http://www.cacheonix.com/products/cacheonix/license-lgpl-2.1.htm
+ *      http://www.cacheonix.org/products/cacheonix/license-lgpl-2.1.htm
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -152,7 +152,7 @@ public final class MarkerTimeoutMessage extends ClusterMessage {
 
    protected void processRecovery() {
 
-      // Remove our predecessor on the ring. REVIEWME: slava@cacheonix.com - 2010-01-23 - This is a temporary work
+      // Remove our predecessor on the ring. REVIEWME: slava@cacheonix.org - 2010-01-23 - This is a temporary work
       // around the problem where a receiver of the RecoveryMarker receives the marker but actively refuses to processes
       // it, such as in the case when another cluster was formed and they no longer interested in getting this node's
       // recovery marker. Right now we don't have a way to know it, so we just remove nodes one by one on each timeout.

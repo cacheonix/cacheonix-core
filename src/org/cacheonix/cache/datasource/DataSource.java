@@ -3,7 +3,7 @@
  * (the "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
- *      http://www.cacheonix.com/products/cacheonix/license-lgpl-2.1.htm
+ *      http://www.cacheonix.org/products/cacheonix/license-lgpl-2.1.htm
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -29,9 +29,9 @@ import java.util.Collection;
  * <b>Example of cacheonix-config.xml that defines a cache backed by a data source:</b>
  * <pre>
  * &lt;?xml version ="1.0"?&gt;
- * &lt;cacheonix xmlns="http://www.cacheonix.com/schema/configuration"
+ * &lt;cacheonix xmlns="http://www.cacheonix.org/schema/configuration"
  *            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- *            xsi:schemaLocation="http://www.cacheonix.com/schema/configuration http://www.cacheonix.com/schema/cacheonix-config-2.0.xsd"&gt;
+ *            xsi:schemaLocation="http://www.cacheonix.org/schema/configuration http://www.cacheonix.org/schema/cacheonix-config-2.0.xsd"&gt;
  *
  *    &lt;local&gt;
  *

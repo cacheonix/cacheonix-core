@@ -1,7 +1,7 @@
 <?xml version ="1.0"?>
 
-<xsd:schema xmlns="http://www.cacheonix.com/schema/configuration" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-            targetNamespace="http://www.cacheonix.com/schema/configuration"
+<xsd:schema xmlns="http://www.cacheonix.org/schema/configuration" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://www.cacheonix.org/schema/configuration"
             elementFormDefault="qualified" attributeFormDefault="unqualified">
 
    <!--

@@ -3,7 +3,7 @@
  * (the "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
- *      http://www.cacheonix.com/products/cacheonix/license-lgpl-2.1.htm
+ *      http://www.cacheonix.org/products/cacheonix/license-lgpl-2.1.htm
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -22,7 +22,7 @@ import java.util.Collection;
  * external data storage. <code>DataStore</code> API represents a writing part of data grid functionality in Cacheonix.
  * <p/>
  * The cache data store is configured by supplying a name of the class implementing <code>DataStore</code> in the
- * <code>dataStore</code> attribute of the <code>store</code> element in <a href="http://wiki.cacheonix.com/display/CCHNX20/Configuring+Cacheonix">cacheonix-config.xml</a>.
+ * <code>dataStore</code> attribute of the <code>store</code> element in <a href="http://wiki.cacheonix.org/display/CCHNX20/Configuring+Cacheonix">cacheonix-config.xml</a>.
  * <p/>
  * Classes implementing <code>DataStore</code> must provide a public or an un-protected no-argument constructor.
  * <p/>

@@ -3,7 +3,7 @@
  * (the "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
- *      http://www.cacheonix.com/products/cacheonix/license-lgpl-2.1.htm
+ *      http://www.cacheonix.org/products/cacheonix/license-lgpl-2.1.htm
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -183,7 +183,7 @@ public final class RecoveryMarker extends MarkerRequest {
          return;
       }
 
-      // NOTE: slava@cacheonix.com - 2009-12-22 - Make sure that the recovery marker is coming from
+      // NOTE: slava@cacheonix.org - 2009-12-22 - Make sure that the recovery marker is coming from
       // a member of our cluster. Otherwise it is possible to enter into the RecoveryState with no
       // originator present. This leads into infinite forwarding of the recovery marker. See
       // CACHEONIX-144 for more information.
@@ -246,7 +246,7 @@ public final class RecoveryMarker extends MarkerRequest {
       final ClusterProcessor processor = getClusterProcessor();
       final RecoveryMarker recoveryMarker = copy();
 
-      // NOTE: slava@cacheonix.com - 2009-12-22 - Check if the originator belongs to our cluster.
+      // NOTE: slava@cacheonix.org - 2009-12-22 - Check if the originator belongs to our cluster.
       // If not, we should ignore the marker because we won't be able to forward it to a node
       // that we don't know about and thus won't be able to complete the recovery. See
       // CACHEONIX-144 for more information.
@@ -309,7 +309,7 @@ public final class RecoveryMarker extends MarkerRequest {
       final RecoveryMarker recoveryMarker = copy();
 
 
-      // NOTE: slava@cacheonix.com - 2009-12-22 - Check if the originator belongs to our cluster.
+      // NOTE: slava@cacheonix.org - 2009-12-22 - Check if the originator belongs to our cluster.
       // If not, we should ignore the marker because we won't be able to forward it to a node
       // that we don't know about and thus won't be able to complete the recovery. See
       // CACHEONIX-144 for more information.
@@ -472,7 +472,7 @@ public final class RecoveryMarker extends MarkerRequest {
 
       final ClusterProcessor processor = getClusterProcessor();
 
-      // NOTE: slava@cacheonix.com - 2009-12-22 - Check if the originator belongs to our cluster.
+      // NOTE: slava@cacheonix.org - 2009-12-22 - Check if the originator belongs to our cluster.
       // If not, we should ignore the marker because we won't be able to forward it to a node
       // that we don't know about and thus won't be able to complete the recovery. See
       // CACHEONIX-144 for more information.

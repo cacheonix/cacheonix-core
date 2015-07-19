@@ -2,9 +2,9 @@
 <!--
    This Cacheonix configuration is for supporting FrontCacheTest.
 -->
-<cacheonix xmlns="http://www.cacheonix.com/schema/configuration"
+<cacheonix xmlns="http://www.cacheonix.org/schema/configuration"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://www.cacheonix.com/schema/configuration http://www.cacheonix.com/schema/cacheonix-config-2.0.xsd">
+           xsi:schemaLocation="http://www.cacheonix.org/schema/configuration http://www.cacheonix.org/schema/cacheonix-config-2.0.xsd">
 
 
    <logging level="DEBUG"/>

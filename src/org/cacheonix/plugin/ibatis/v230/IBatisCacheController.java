@@ -3,7 +3,7 @@
  * (the "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
- *      http://www.cacheonix.com/products/cacheonix/license-lgpl-2.1.htm
+ *      http://www.cacheonix.org/products/cacheonix/license-lgpl-2.1.htm
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -26,7 +26,7 @@ import com.ibatis.sqlmap.engine.cache.CacheModel;
  * Cacheonix implementation of iBatis' cache controller. <p/> <h2>Cache Controller Lifecycle</h2> <p/> <ol> <li>iBatis
  * creates IBatisCacheController by calling its default constructor {@link IBatisCacheController#IBatisCacheController()}
  * .</li> <li>iBatis calls {@link IBatisCacheController#configure(Properties)} </li> </ol> <p/> <h2>Configuring iBatis
- * Cache Controller</h2> <p>Visit Cacheonix documentation, section <a href="http://wiki.cacheonix.com/display/CCHNX20/Configuring+Distributed+iBatis+Cache">Configuring
+ * Cache Controller</h2> <p>Visit Cacheonix documentation, section <a href="http://wiki.cacheonix.org/display/CCHNX20/Configuring+Distributed+iBatis+Cache">Configuring
  * Distributed iBatis Cache</a> for detailed information on configuring Cacheonix iBatis cache controller.</p>
  */
 public final class IBatisCacheController implements CacheController {

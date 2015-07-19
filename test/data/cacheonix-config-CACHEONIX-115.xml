@@ -3,9 +3,9 @@
    This Cacheonix configuration is for the enhancement requests CACHEONIX-115. It adds attribute
    defaultLockTimeoutMillis="70000"
 -->
-<cacheonix xmlns="http://www.cacheonix.com/schema/configuration"
+<cacheonix xmlns="http://www.cacheonix.org/schema/configuration"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://www.cacheonix.com/schema/configuration http://www.cacheonix.com/schema/cacheonix-config-2.0.xsd">
+           xsi:schemaLocation="http://www.cacheonix.org/schema/configuration http://www.cacheonix.org/schema/cacheonix-config-2.0.xsd">
 
    <tempDir path="${java.io.temp}"/>
 

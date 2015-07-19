@@ -3,7 +3,7 @@
  * (the "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
- *      http://www.cacheonix.com/products/cacheonix/license-lgpl-2.1.htm
+ *      http://www.cacheonix.org/products/cacheonix/license-lgpl-2.1.htm
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -496,7 +496,7 @@ public final class BlockedMarker extends OperationalMarker {
                   // Remember marker to forward
                   ((MarkerListRequest.Waiter) markerListRequest.getWaiter()).setMarkerToForward(blockedMarker);
 
-                  // REVIEWME: slava@cacheonix.com - 2009-12-12 - The request has been made
+                  // REVIEWME: slava@cacheonix.org - 2009-12-12 - The request has been made
                   // synchronous to avoid it arriving after the first mcast marker is sent
                   // to the joining node. This would not be necessary if the channel was FIFO.
                   // Right now multiple threads process outbound messages, so violation

@@ -3,7 +3,7 @@
  * (the "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
- *      http://www.cacheonix.com/products/cacheonix/license-lgpl-2.1.htm
+ *      http://www.cacheonix.org/products/cacheonix/license-lgpl-2.1.htm
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -95,7 +95,7 @@ public final class RestoreBucketMessage extends LocalCacheMessage {
       final CacheProcessor cacheProcessor = getCacheProcessor();
       for (final Integer bucketNumber : getBucketNumbers()) {
 
-         // REVIEWME: slava@cacheonix.com - 2009-12-17 -> What about us thinking that we already
+         // REVIEWME: slava@cacheonix.org - 2009-12-17 -> What about us thinking that we already
          // own the bucket and serving PutRequest even though we have not restored the bucket
          // yet. We way need a direct AssignBucketOwnershipCommand to explicitly set up
          // non-null buckets and treat all null buckets as not ours *yet*.

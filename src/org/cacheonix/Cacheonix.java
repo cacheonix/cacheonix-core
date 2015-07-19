@@ -3,7 +3,7 @@
  * (the "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
- *      http://www.cacheonix.com/products/cacheonix/license-lgpl-2.1.htm
+ *      http://www.cacheonix.org/products/cacheonix/license-lgpl-2.1.htm
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -48,9 +48,9 @@ import org.cacheonix.impl.util.logging.Logger;
  * <pre>
  * Cache cache = Cacheonix.getInstance().getCache("my.cache");
  * </pre>
- * <h1>Configuring Cacheonix</h1> <p>Visit <a href="http://wiki.cacheonix.com/display/CCHNX20/Configuring+Cacheonix">online
+ * <h1>Configuring Cacheonix</h1> <p>Visit <a href="http://wiki.cacheonix.org/display/CCHNX20/Configuring+Cacheonix">online
  * Cacheonix documentation</a> for information on configuring Cacheonix.</p> <p/> <h1>Code Examples</h1> <p>Visit <a
- * href="http://wiki.cacheonix.com/display/CCHNX20/Programming+With+Cacheonix">online code examples</a> for examples on
+ * href="http://wiki.cacheonix.org/display/CCHNX20/Programming+With+Cacheonix">online code examples</a> for examples on
  * working with the cache API.</p>
  *
  * @see #getCache(String)
@@ -169,9 +169,9 @@ public abstract class Cacheonix {
     * <p/>
     * <pre>
     * &lt;?xml version ="1.0"?&gt;
-    * &lt;cacheonix xmlns="http://www.cacheonix.com/schema/configuration"
+    * &lt;cacheonix xmlns="http://www.cacheonix.org/schema/configuration"
     *       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    *       xsi:schemaLocation="http://www.cacheonix.com/schema/configuration http://www.cacheonix.com/schema/cacheonix-config-2.0.xsd"&gt;
+    *       xsi:schemaLocation="http://www.cacheonix.org/schema/configuration http://www.cacheonix.org/schema/cacheonix-config-2.0.xsd"&gt;
     *
     *    &lt;server&gt;
     *
@@ -233,9 +233,9 @@ public abstract class Cacheonix {
     * <p/>
     * <pre>
     * &lt;?xml version ="1.0"?&gt;
-    * &lt;cacheonix xmlns="http://www.cacheonix.com/schema/configuration"
+    * &lt;cacheonix xmlns="http://www.cacheonix.org/schema/configuration"
     *       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    *       xsi:schemaLocation="http://www.cacheonix.com/schema/configuration http://www.cacheonix.com/schema/cacheonix-config-2.0.xsd"&gt;
+    *       xsi:schemaLocation="http://www.cacheonix.org/schema/configuration http://www.cacheonix.org/schema/cacheonix-config-2.0.xsd"&gt;
     *
     *    &lt;server&gt;
     *
@@ -347,7 +347,7 @@ public abstract class Cacheonix {
 
    /**
     * Returns a singleton instance of Cacheonix using a default Cacheonix configuration. Cacheonix finds the default
-    * configuration by looking for <a href="http://wiki.cacheonix.com/display/CCHNX20/Configuring+Cacheonix">cacheonix-config.xml</a>
+    * configuration by looking for <a href="http://wiki.cacheonix.org/display/CCHNX20/Configuring+Cacheonix">cacheonix-config.xml</a>
     * in the following order. Each step is executed only if the previous step has not defined the configuration: <ol>
     * <li>Use the configuration defined by the URL in the system property <code>cacheonix.configuration</code>. The
     * property is passed to JVM by using command line parameter <code>-Dcacheonix.configuration=&lt;path to

@@ -3,7 +3,7 @@
  * (the "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
- *      http://www.cacheonix.com/products/cacheonix/license-lgpl-2.1.htm
+ *      http://www.cacheonix.org/products/cacheonix/license-lgpl-2.1.htm
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -21,7 +21,7 @@ import java.io.Serializable;
  * Distributed Cacheonix calls CacheLoader when the first cache member joins the cluster.
  * <p/>
  * The name of the class implementing <code>CacheLoader</code> is configured using <code>loader</code> attribute of the
- * <code>cache</code> element in <a href="http://wiki.cacheonix.com/display/CCHNX20/Configuring+Cacheonix">cacheonix-config.xml</a>.
+ * <code>cache</code> element in <a href="http://wiki.cacheonix.org/display/CCHNX20/Configuring+Cacheonix">cacheonix-config.xml</a>.
  * <p/>
  * <b>Example:</b>
  * <pre>

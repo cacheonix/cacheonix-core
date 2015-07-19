@@ -3,7 +3,7 @@
  * (the "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
- *      http://www.cacheonix.com/products/cacheonix/license-lgpl-2.1.htm
+ *      http://www.cacheonix.org/products/cacheonix/license-lgpl-2.1.htm
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -325,7 +325,7 @@ public final class CleanupMarker extends MarkerRequest {
                for (long num = retransmitNumBegin; num <= highestContinuousNumberReceivedButNotDelivered; num++) {
 
                   // Send packet - note re-setting cluster UUID because it was received from the previous cluster
-                  // configuration. REVIEWME: slava@cacheonix.com - 2009-12-28 - consider re-setting it once
+                  // configuration. REVIEWME: slava@cacheonix.org - 2009-12-28 - consider re-setting it once
                   // when switching to the recovery mode.
 
                   final Frame frame = processor.getProcessorState().getReceivedList().getMessage(num);
