@@ -16,13 +16,25 @@ package org.cacheonix.locks;
 import junit.framework.TestCase;
 
 /**
+ * A tester for {@link DeadlockException}.
  */
+@SuppressWarnings("ThrowableInstanceNeverThrown")
 public final class DeadlockExceptionTest extends TestCase {
 
-   @SuppressWarnings("ThrowableInstanceNeverThrown")
+
+   private static final String MESSAGE = "Test message";
+
+
    public void testDefaultConstructor() {
 
       assertNotNull(new DeadlockException().toString());
    }
 
+
+   public void testConstructor() {
+
+      final DeadlockException deadlockException = new DeadlockException(MESSAGE);
+      assertNotNull(deadlockException.toString());
+      assertTrue(deadlockException.getMessage().contains(MESSAGE));
+   }
 }
