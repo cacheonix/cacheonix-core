@@ -20,12 +20,30 @@ import org.cacheonix.CacheonixTestCase;
  */
 public final class SystemWallClockTest extends CacheonixTestCase {
 
+   private static final long TIMEOUT_MILLIS = 1000L;
+
    private SystemWallClock clock;
 
 
    public void testCurrentTimeMillis() throws Exception {
 
+      // Check that it returns a meaningful value
       assertTrue(clock.currentTimeMillis() > 0);
+
+      // Check that it's ticking
+      final long timeoutTime = System.currentTimeMillis() + TIMEOUT_MILLIS;
+      final long initialReading = clock.currentTimeMillis();
+      while (System.currentTimeMillis() < timeoutTime) {
+         if (clock.currentTimeMillis() != initialReading) {
+
+            // Clock ticked
+            break;
+         }
+      }
+
+      if (initialReading == clock.currentTimeMillis()) {
+         fail("The clock didn't change for the period of " + TIMEOUT_MILLIS + "ms");
+      }
    }
 
 
@@ -34,5 +52,21 @@ public final class SystemWallClockTest extends CacheonixTestCase {
       super.setUp();
 
       clock = new SystemWallClock();
+   }
+
+
+   public void tearDown() throws Exception {
+
+      clock = null;
+
+      super.tearDown();
+   }
+
+
+   public String toString() {
+
+      return "SystemWallClockTest{" +
+              "clock=" + clock +
+              "} " + super.toString();
    }
 }
