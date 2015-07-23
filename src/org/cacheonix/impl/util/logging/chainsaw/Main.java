@@ -34,6 +34,8 @@ import org.cacheonix.impl.util.logging.PropertyConfigurator;
 public final class Main
         extends JFrame {
 
+   private static final long serialVersionUID = -6028388522057752098L;
+
    /**
     * the default port number to listen on *
     */

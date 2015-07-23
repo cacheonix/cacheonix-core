@@ -24,7 +24,6 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import org.cacheonix.impl.util.logging.Level;
-import org.cacheonix.impl.util.logging.Logger;
 import org.cacheonix.impl.util.logging.Priority;
 
 /**
@@ -34,12 +33,7 @@ import org.cacheonix.impl.util.logging.Priority;
  */
 final class ControlPanel extends JPanel {
 
-   /**
-    * use the log messages *
-    */
-   private static final Logger LOG =
-           Logger.getLogger(ControlPanel.class);
-
+   private static final long serialVersionUID = -3604271086571353664L;
 
    /**
     * Creates a new <code>ControlPanel</code> instance.

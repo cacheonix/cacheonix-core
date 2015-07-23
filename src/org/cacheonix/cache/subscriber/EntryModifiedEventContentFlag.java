@@ -31,6 +31,8 @@ import org.cacheonix.impl.util.logging.Logger;
 public final class EntryModifiedEventContentFlag implements Externalizable {
 
 
+   private static final long serialVersionUID = 2066116659243442125L;
+
    private static final int CODE_NEED_KEY = 1;
 
    private static final int CODE_NEED_NEW_VALUE = 2;
@@ -39,13 +41,13 @@ public final class EntryModifiedEventContentFlag implements Externalizable {
 
    private static final int CODE_NEED_ALL = 4;
 
+
    /**
     * Logger.
     *
     * @noinspection UNUSED_SYMBOL, UnusedDeclaration
     */
    private static final Logger LOG = Logger.getLogger(EntryModifiedEventContentFlag.class); // NOPMD
-
 
    /**
     * Event should supply the key that value was updated.

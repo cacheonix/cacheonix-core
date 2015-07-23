@@ -21,6 +21,8 @@ import java.io.NotSerializableException;
  */
 public final class LocalMessageNotSerializableException extends NotSerializableException {
 
+   private static final long serialVersionUID = -1641810857384934453L;
+
    static final String MESSAGE = "Local message is not allowed to travel across the wire";
 
 

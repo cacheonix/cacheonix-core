@@ -25,6 +25,8 @@ import org.cacheonix.impl.util.logging.Logger;
  */
 public final class RuntimeInvalidObjectException extends CacheonixException {
 
+   private static final long serialVersionUID = 7860199864742943082L;
+
    /**
     * Logger.
     *

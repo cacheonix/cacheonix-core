@@ -30,6 +30,8 @@ import org.cacheonix.impl.util.logging.Logger;
  */
 public final class EntryModifiedEventType implements Externalizable {
 
+   private static final long serialVersionUID = -3096981749084597287L;
+
    private static final int ADD_CODE = (int) 1;
 
    private static final int UPDATE_CODE = (int) 2;

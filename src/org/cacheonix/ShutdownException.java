@@ -20,6 +20,9 @@ import org.cacheonix.exceptions.CacheonixException;
  */
 public final class ShutdownException extends CacheonixException {
 
+   private static final long serialVersionUID = 6086455619561429669L;
+
+
    /**
     * Creates a new exception with <code>null</code> as its detail message.  The cause is not initialized, and may
     * subsequently be initialized by a call to {@link #initCause}.

@@ -23,6 +23,9 @@ import org.cacheonix.exceptions.CacheonixException;
 public final class AssertionException extends CacheonixException {
 
 
+   private static final long serialVersionUID = -3401137412681826877L;
+
+
    /**
     * Creates AssertionException.
     *

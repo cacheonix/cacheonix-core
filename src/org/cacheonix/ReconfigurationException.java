@@ -24,6 +24,9 @@ import org.cacheonix.exceptions.CacheonixException;
  */
 public final class ReconfigurationException extends CacheonixException {
 
+   private static final long serialVersionUID = -5935676107110854442L;
+
+
    /**
     * Creates ReconfigurationException.
     */

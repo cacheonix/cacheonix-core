@@ -45,6 +45,8 @@ import java.io.ObjectOutput;
 @SuppressWarnings("RedundantIfStatement")
 public final class ClusterState implements Externalizable {
 
+   private static final long serialVersionUID = -7719006305712515961L;
+
    static final byte BLOCKED_CODE = (byte) 0;
 
    /**

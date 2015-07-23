@@ -18,6 +18,9 @@ package org.cacheonix.exceptions;
  */
 public final class InvalidParameterException extends CacheonixException {
 
+   private static final long serialVersionUID = -3136520340191149320L;
+
+
    /**
     * Creates InvalidParameterException.
     *

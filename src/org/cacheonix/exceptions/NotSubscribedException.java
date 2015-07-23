@@ -25,6 +25,9 @@ import org.cacheonix.cache.subscriber.EntryModifiedSubscriber;
  */
 public final class NotSubscribedException extends CacheonixException {
 
+   private static final long serialVersionUID = 1953567097120431016L;
+
+
    /**
     * Creates a new <code>NotSubscribedException</code>.
     *

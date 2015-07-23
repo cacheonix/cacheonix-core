@@ -21,6 +21,9 @@ import org.cacheonix.exceptions.CacheonixException;
  */
 public final class UnrecoverableSelectException extends CacheonixException {
 
+   private static final long serialVersionUID = -6371695467338857614L;
+
+
    public UnrecoverableSelectException() {
 
    }

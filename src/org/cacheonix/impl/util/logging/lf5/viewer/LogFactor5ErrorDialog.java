@@ -31,6 +31,9 @@ import javax.swing.*;
 // Contributed by ThoughtWorks Inc.
 
 public final class LogFactor5ErrorDialog extends LogFactor5Dialog {
+
+   private static final long serialVersionUID = 3287071157067565556L;
+
    //--------------------------------------------------------------------------
    //   Constants:
    //--------------------------------------------------------------------------

@@ -27,6 +27,8 @@ import org.cacheonix.impl.net.serializer.SerializerUtils;
 @SuppressWarnings("RedundantIfStatement")
 public final class ClusterMemberAddressImpl implements ClusterMemberAddress {
 
+   private static final long serialVersionUID = 3937437755889768537L;
+
    /**
     * An inet address of the cluster member.
     */

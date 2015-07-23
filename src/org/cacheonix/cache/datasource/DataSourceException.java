@@ -35,6 +35,9 @@ import org.cacheonix.exceptions.CacheonixException;
  */
 public final class DataSourceException extends CacheonixException {
 
+   private static final long serialVersionUID = 72866608056733872L;
+
+
    /**
     * Creates a new DataSourceException  with <code>null</code> as its detail message.  The cause is not initialized,
     * and may subsequently be initialized by a call to {@link #initCause}.

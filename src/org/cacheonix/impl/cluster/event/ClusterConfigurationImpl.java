@@ -29,6 +29,8 @@ import org.cacheonix.cluster.ClusterState;
 @SuppressWarnings("RedundantIfStatement")
 public final class ClusterConfigurationImpl implements ClusterConfiguration {
 
+   private static final long serialVersionUID = 4356310544242603491L;
+
    private Collection<ClusterMember> clusterMembers;
 
    private ClusterState clusterState;

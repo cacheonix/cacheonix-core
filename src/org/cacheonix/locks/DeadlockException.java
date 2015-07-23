@@ -27,6 +27,9 @@ import org.cacheonix.exceptions.CacheonixException;
  */
 public final class DeadlockException extends CacheonixException {
 
+   private static final long serialVersionUID = 2246669773242123556L;
+
+
    /**
     * Creates <code>DeadlockException</code>.
     */

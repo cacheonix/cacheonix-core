@@ -23,8 +23,6 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import org.cacheonix.impl.util.logging.Logger;
-
 /**
  * A panel for showing a stack trace.
  *
@@ -34,11 +32,7 @@ final class DetailPanel
         extends JPanel
         implements ListSelectionListener {
 
-   /**
-    * used to log events *
-    */
-   private static final Logger LOG =
-           Logger.getLogger(DetailPanel.class);
+   private static final long serialVersionUID = 4765271272405720984L;
 
    /**
     * used to format the logging event *

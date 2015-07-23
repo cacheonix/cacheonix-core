@@ -21,6 +21,8 @@ import java.util.Map;
  */
 final class DefinedFieldCache extends LinkedHashMap<String, Field[]> {
 
+   private static final long serialVersionUID = -3994446045477896583L;
+
    private static final int CACHE_SIZE = 1000;
 
 

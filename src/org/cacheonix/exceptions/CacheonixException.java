@@ -22,6 +22,9 @@ import org.cacheonix.impl.util.exception.ExceptionUtils;
 public class CacheonixException extends RuntimeException {
 
 
+   private static final long serialVersionUID = 6685849083203061559L;
+
+
    /**
     * Creates a new Cacheonix exception with <code>null</code> as its detail message.  The cause is not initialized, and
     * may subsequently be initialized by a call to {@link #initCause}.

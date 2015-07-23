@@ -29,6 +29,8 @@ import org.cacheonix.cluster.ClusterMemberAddress;
 @SuppressWarnings("RedundantIfStatement")
 public final class ClusterMemberImpl implements ClusterMember {
 
+   private static final long serialVersionUID = 8470993930384713397L;
+
    /**
     * A name of the cluster this member belongs to.
     */

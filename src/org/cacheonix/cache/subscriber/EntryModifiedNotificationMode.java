@@ -31,6 +31,8 @@ import org.cacheonix.impl.util.logging.Logger;
 public final class EntryModifiedNotificationMode implements Externalizable {
 
 
+   private static final long serialVersionUID = 3233085322940742702L;
+
    /**
     * Logger.
     *

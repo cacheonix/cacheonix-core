@@ -30,6 +30,8 @@ import javax.swing.*;
 
 public abstract class LogFactor5Dialog extends JDialog {
 
+   private static final long serialVersionUID = 2146476638867344311L;
+
    //--------------------------------------------------------------------------
    //   Constants:
    //--------------------------------------------------------------------------

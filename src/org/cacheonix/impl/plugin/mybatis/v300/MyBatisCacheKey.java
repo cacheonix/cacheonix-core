@@ -29,6 +29,8 @@ import org.apache.ibatis.cache.CacheKey;
 @SuppressWarnings("RedundantIfStatement")
 public final class MyBatisCacheKey implements Externalizable {
 
+   private static final long serialVersionUID = 5913884318234726314L;
+
    private static final Class<? extends CacheKey> CACHE_KEY_CLASS = CacheKey.class;
 
    private static final Field HASH_CODE_FIELD = getField("hashcode");
