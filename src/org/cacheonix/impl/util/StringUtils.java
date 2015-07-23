@@ -424,7 +424,7 @@ public final class StringUtils {
    public static String linesToString(final List stringList) {
 
       final StringBuilder result = new StringBuilder(300);
-      for (Object aStringList : stringList) {
+      for (final Object aStringList : stringList) {
          result.append((String) aStringList).append('\n');
       }
       return result.toString();

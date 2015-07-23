@@ -303,7 +303,7 @@ public final class CacheProcessorImpl extends AbstractRequestProcessor implement
          LOG.debug("Removing " + bucketNumbers.size() + " buckets from storage " + storageNumber);
       }
 
-      for (Integer bucketNumber : bucketNumbers) { // NOPMD
+      for (final Integer bucketNumber : bucketNumbers) { // NOPMD
          removeBucket(storageNumber, bucketNumber);
       }
    }
