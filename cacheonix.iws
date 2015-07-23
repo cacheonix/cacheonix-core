@@ -4,7 +4,7 @@
     <option name="ANALYSIS_IN_BACKGROUND" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2dfc76ba-2c24-4fb6-9e63-bbb53d68de72" name="Default" comment="Code quality: Added missing">
+    <list default="true" id="2dfc76ba-2c24-4fb6-9e63-bbb53d68de72" name="Default" comment="">
       <change type="DELETED" beforePath="$PROJECT_DIR$/cacheonix.iws" afterPath="" />
     </list>
     <ignored path="cacheonix.iws" />
@@ -1062,13 +1062,7 @@
       <workItem from="1435618538080" duration="3505000" />
       <workItem from="1436372093293" duration="6440000" />
       <workItem from="1436580180292" duration="4241000" />
-      <workItem from="1437282425958" duration="6717000" />
-    </task>
-    <task id="LOCAL-00011" summary="Fixed referring to fields out of synchronized context">
-      <created>1435108775326</created>
-      <option name="number" value="00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1435108775327</updated>
+      <workItem from="1437282425958" duration="6767000" />
     </task>
     <task id="LOCAL-00012" summary="Added a test for ClockImpl.adjust()">
       <created>1435164613052</created>
@@ -1358,11 +1352,17 @@
       <option name="project" value="LOCAL" />
       <updated>1437686517086</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="Removed cacheonix.iws as it should local, not shared.">
+      <created>1437686659256</created>
+      <option name="number" value="00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1437686659256</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60240000" />
+    <option name="totallyTimeSpent" value="60290000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="2560" height="1509" extended-state="6" />
@@ -1480,7 +1480,6 @@
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Code quality: Suppressed a warning regarding passing a collection by reference." />
     <MESSAGE value="Code quality: Replaced calls to  .size() or .length() comparisons with a 0 literal with a call to .isEmpty()" />
     <MESSAGE value="Code quality: Replaced 'for' loop with 'foreach'" />
     <MESSAGE value="Code quality: Removed unnecessary unboxing." />
@@ -1505,7 +1504,8 @@
     <MESSAGE value="Code quality: Added missing serialVersionUID" />
     <MESSAGE value="Code quality: fixed unsynchronized methods overriding synchronized methods." />
     <MESSAGE value="Code quality: removed unused signalling." />
-    <option name="LAST_COMMIT_MESSAGE" value="Code quality: removed unused signalling." />
+    <MESSAGE value="Removed cacheonix.iws as it should local, not shared." />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed cacheonix.iws as it should local, not shared." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
