@@ -50,7 +50,7 @@ public final class NOPLogger extends Logger {
    /**
     * {@inheritDoc}
     */
-   public void addAppender(final Appender newAppender) {
+   public synchronized void addAppender(final Appender newAppender) {
 
    }
 
@@ -130,7 +130,7 @@ public final class NOPLogger extends Logger {
    /**
     * {@inheritDoc}
     */
-   public Enumeration getAllAppenders() {
+   public synchronized Enumeration getAllAppenders() {
 
       return new Vector(0).elements();
    }
@@ -139,7 +139,7 @@ public final class NOPLogger extends Logger {
    /**
     * {@inheritDoc}
     */
-   public Appender getAppender(final String name) {
+   public synchronized Appender getAppender(final String name) {
 
       return null;
    }
@@ -269,7 +269,7 @@ public final class NOPLogger extends Logger {
    /**
     * {@inheritDoc}
     */
-   public void removeAllAppenders() {
+   public synchronized void removeAllAppenders() {
 
    }
 
@@ -277,7 +277,7 @@ public final class NOPLogger extends Logger {
    /**
     * {@inheritDoc}
     */
-   public void removeAppender(final Appender appender) {
+   public synchronized void removeAppender(final Appender appender) {
 
    }
 
@@ -285,7 +285,7 @@ public final class NOPLogger extends Logger {
    /**
     * {@inheritDoc}
     */
-   public void removeAppender(final String name) {
+   public synchronized void removeAppender(final String name) {
 
    }
 
