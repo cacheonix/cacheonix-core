@@ -173,7 +173,7 @@ public final class StandardObjectSizeCalculator implements ObjectSizeCalculator 
    public long sizeOf(final Object obj) {
 
 
-      final Map<Object, Object> visited = new IdentityHashMap<Object, Object>();
+      final Map<Object, Object> visited = new IdentityHashMap<Object, Object>(11);
 
       final LinkedList<Object> stack = new LinkedList<Object>();
 
