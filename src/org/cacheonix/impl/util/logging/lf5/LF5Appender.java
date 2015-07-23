@@ -173,6 +173,7 @@ public final class LF5Appender extends AppenderSkeleton {
     *
     * @param o A boolean value indicating whether the two LF5Appenders are equal.
     */
+   @SuppressWarnings("RedundantIfStatement")
    public boolean equals(final Object o) {
 
       if (this == o) {
