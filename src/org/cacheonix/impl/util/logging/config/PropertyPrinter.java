@@ -107,7 +107,7 @@ public final class PropertyPrinter implements PropertyGetter.PropertyCallback {
 
       final Enumeration appenders = cat.getAllAppenders();
       final Level prio = cat.getLevel();
-      final StringBuffer appenderString = new StringBuffer(prio == null ? "" : prio.toString());
+      final StringBuilder appenderString = new StringBuilder(prio == null ? "" : prio.toString());
 
 
       while (appenders.hasMoreElements()) {
