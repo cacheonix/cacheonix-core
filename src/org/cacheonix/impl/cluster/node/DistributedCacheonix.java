@@ -165,11 +165,6 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
    private final Condition cacheMapChanged = reentrantLock.newCondition();
 
    /**
-    * This condition is used to notify interested parties about changes in the {@link #cacheProcessorMap}.
-    */
-   private final Condition cacheProcessorMapChanged = reentrantLock.newCondition();
-
-   /**
     * Routes messages to local processors or to a message sender
     */
    private final Router router;
@@ -900,7 +895,6 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
                try {
 
                   cacheProcessorMap.put(cacheName, newCacheProcessor);
-                  cacheProcessorMapChanged.signalAll();
                } finally {
 
                   reentrantLock.unlock();
