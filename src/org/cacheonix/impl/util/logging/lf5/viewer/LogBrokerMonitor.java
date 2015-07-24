@@ -183,7 +183,6 @@ public final class LogBrokerMonitor {
 
          public void run() {
 
-            Thread.yield();
             pause(delay);
             _logMonitorFrame.setVisible(true);
          }
