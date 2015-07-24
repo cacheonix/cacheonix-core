@@ -763,7 +763,6 @@
       <inspection_tool class="TestMethodIsPublicVoidNoArg" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="TextLabelInSwitchStatement" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ThreadLocalNotStaticFinal" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="ThreadPriority" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ThreadRun" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ThreadStartInConstruction" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ThreadStopSuspendResume" enabled="true" level="WARNING" enabled_by_default="true" />
