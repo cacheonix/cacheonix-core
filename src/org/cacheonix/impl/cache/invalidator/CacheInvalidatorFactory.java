@@ -43,25 +43,25 @@ public final class CacheInvalidatorFactory {
     * Instantiates a cache invalidator.
     *
     * @param cacheName             the cache name.
-    * @param invalidatorClass      the name of class implementing {@link CacheInvalidator}.
+    * @param invalidatorClassName  the name of class implementing {@link CacheInvalidator}.
     * @param invalidatorProperties the properties passed to the cache invalidator instance after it has been
     *                              instantiated.
     * @return a new instance of the cache invalidator.
     */
-   public CacheInvalidator createInvalidator(final String cacheName, final String invalidatorClass,
+   public CacheInvalidator createInvalidator(final String cacheName, final String invalidatorClassName,
            final Properties invalidatorProperties) {
 
       final CacheInvalidator invalidator;
       try {
          // Inform
-         final boolean invalidatorBlank = StringUtils.isBlank(invalidatorClass);
+         final boolean invalidatorBlank = StringUtils.isBlank(invalidatorClassName);
          if (!invalidatorBlank) {
-            LOG.info("Creating invalidator for " + cacheName + ": " + invalidatorClass);
+            LOG.info("Creating invalidator for " + cacheName + ": " + invalidatorClassName);
          }
          // Create invalidator
-         final Class clazz = Class.forName(invalidatorBlank ? DUMMY_INVALIDATOR_NAME : invalidatorClass);
+         final Class clazz = Class.forName(invalidatorBlank ? DUMMY_INVALIDATOR_NAME : invalidatorClassName);
          if (!CacheInvalidator.class.isAssignableFrom(clazz)) {
-            throw new CacheonixException("Class " + invalidatorClass
+            throw new CacheonixException("Class " + invalidatorClassName
                     + " configured as an invalidator for cache "
                     + cacheName + " does not implement interface CacheInvalidator");
          }
