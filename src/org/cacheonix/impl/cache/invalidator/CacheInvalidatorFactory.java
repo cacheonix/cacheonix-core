@@ -40,15 +40,16 @@ public final class CacheInvalidatorFactory {
 
 
    /**
-    * Creates data source.
+    * Instantiates a cache invalidator.
     *
-    * @param cacheName
-    * @param invalidatorClass
-    * @param invalidatorProperties
-    * @return
+    * @param cacheName             the cache name.
+    * @param invalidatorClass      the name of class implementing {@link CacheInvalidator}.
+    * @param invalidatorProperties the properties passed to the cache invalidator instance after it has been
+    *                              instantiated.
+    * @return a new instance of the cache invalidator.
     */
    public CacheInvalidator createInvalidator(final String cacheName, final String invalidatorClass,
-                                             final Properties invalidatorProperties) {
+           final Properties invalidatorProperties) {
 
       final CacheInvalidator invalidator;
       try {
