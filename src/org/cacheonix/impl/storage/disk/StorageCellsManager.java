@@ -645,13 +645,12 @@ public final class StorageCellsManager {
     * @param selectedCells - List of Cells to be written to file
     * @param data          - byte array to be recorded to disk
     * @return - <u>long</u> postion of the first cell on disk
-    * @throws IOException
+    * @throws StorageException
     */
    private long writeToStorage(final List selectedCells, final byte[] data)
            throws StorageException {
 
-      long position = -1L;
-      int useful_length = (int) (storageCellSize - (long) StorageConstants.STORAGE_CELL_HEADER_SIZE);
+      final long position;
 
       try {
          // REVIEWME: @SF -> Preferred to put into SortedArray (Queue or like that)
@@ -663,6 +662,7 @@ public final class StorageCellsManager {
 
          final byte[] buffer = new byte[(int) storageCellSize];
 
+         int useful_length = (int) (storageCellSize - (long) StorageConstants.STORAGE_CELL_HEADER_SIZE);
          for (int i = 0; i < lastItem + 1; ++i) {
             Arrays.fill(buffer, (byte) 0);
             currentCell = (Long) selectedCells.get(i);
@@ -706,7 +706,6 @@ public final class StorageCellsManager {
          }
       } catch (final Exception e) {
          clearCells(selectedCells);
-         position = -1L;
          throw new StorageException(e);
       }
 
