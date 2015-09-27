@@ -254,11 +254,7 @@ public final class HTMLLayout extends Layout {
     */
    public String getFooter() {
 
-      final StringBuilder sbuf = new StringBuilder(30);
-      sbuf.append("</table>").append(Layout.LINE_SEP);
-      sbuf.append("<br>").append(Layout.LINE_SEP);
-      sbuf.append("</body></html>");
-      return sbuf.toString();
+      return "</table>" + Layout.LINE_SEP + "<br>" + Layout.LINE_SEP + "</body></html>";
    }
 
 

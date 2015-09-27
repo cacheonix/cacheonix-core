@@ -170,10 +170,7 @@ public final class LogLevel implements Serializable {
       }
 
       if (logLevel == null) {
-         final StringBuilder buf = new StringBuilder(60);
-         buf.append("Error while trying to parse (").append(level).append(") into");
-         buf.append(" a LogLevel.");
-         throw new LogLevelFormatException(buf.toString());
+         throw new LogLevelFormatException("Error while trying to parse (" + level + ") into" + " a LogLevel.");
       }
       return logLevel;
    }

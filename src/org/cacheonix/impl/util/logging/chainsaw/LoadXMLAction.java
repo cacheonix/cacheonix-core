@@ -130,18 +130,10 @@ final class LoadXMLAction extends AbstractAction {
 
       synchronized (mParser) {
          // Create a dummy document to parse the file
-         final StringBuilder buf = new StringBuilder(100);
-         buf.append("<?xml version=\"1.0\" standalone=\"yes\"?>\n");
-         buf.append("<!DOCTYPE log4j:eventSet ");
-         buf.append("[<!ENTITY data SYSTEM \"file:///");
-         buf.append(aFile);
-         buf.append("\">]>\n");
-         buf.append("<log4j:eventSet xmlns:log4j=\"Claira\">\n");
-         buf.append("&data;\n");
-         buf.append("</log4j:eventSet>\n");
 
          final InputSource is =
-                 new InputSource(new StringReader(buf.toString()));
+                 new InputSource(new StringReader(
+                         "<?xml version=\"1.0\" standalone=\"yes\"?>\n" + "<!DOCTYPE log4j:eventSet " + "[<!ENTITY data SYSTEM \"file:///" + aFile + "\">]>\n" + "<log4j:eventSet xmlns:log4j=\"Claira\">\n" + "&data;\n" + "</log4j:eventSet>\n"));
          mParser.parse(is);
          return mHandler.getNumEvents();
       }

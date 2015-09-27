@@ -140,12 +140,7 @@ public class CategoryNodeRenderer extends DefaultTreeCellRenderer {
 
    protected final String buildToolTip(final CategoryNode node) {
 
-      final StringBuilder result = new StringBuilder(50);
-      result.append(node.getTitle()).append(" contains a total of ");
-      result.append(node.getTotalNumberOfRecords());
-      result.append(" LogRecords.");
-      result.append(" Right-click for more info.");
-      return result.toString();
+      return node.getTitle() + " contains a total of " + node.getTotalNumberOfRecords() + " LogRecords." + " Right-click for more info.";
    }
    //--------------------------------------------------------------------------
    //   Private Methods:

@@ -353,9 +353,7 @@ public abstract class LogRecord implements Serializable {
     */
    public final String toString() {
 
-      final StringBuilder buf = new StringBuilder(40);
-      buf.append("LogRecord: [").append(_level).append(", ").append(_message).append(']');
-      return buf.toString();
+      return "LogRecord: [" + _level + ", " + _message + ']';
    }
 
 

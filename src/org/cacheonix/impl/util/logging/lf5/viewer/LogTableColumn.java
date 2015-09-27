@@ -119,10 +119,8 @@ public final class LogTableColumn implements Serializable {
       }
 
       if (tableColumn == null) {
-         final StringBuilder buf = new StringBuilder(111);
-         buf.append("Error while trying to parse (").append(column).append(") into");
-         buf.append(" a LogTableColumn.");
-         throw new LogTableColumnFormatException(buf.toString());
+         throw new LogTableColumnFormatException(
+                 "Error while trying to parse (" + column + ") into" + " a LogTableColumn.");
       }
       return tableColumn;
    }

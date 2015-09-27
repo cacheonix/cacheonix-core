@@ -747,13 +747,7 @@ public final class LogBrokerMonitor {
 
    protected final String getStatusText(final int displayedRows, final int totalRows) {
 
-      final StringBuilder result = new StringBuilder(40);
-      result.append("Displaying: ");
-      result.append(displayedRows);
-      result.append(" records out of a total of: ");
-      result.append(totalRows);
-      result.append(" records.");
-      return result.toString();
+      return "Displaying: " + displayedRows + " records out of a total of: " + totalRows + " records.";
    }
 
 
