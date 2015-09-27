@@ -96,7 +96,7 @@ public final class TelnetAppender extends AppenderSkeleton {
          sh.close();
          try {
             sh.join();
-         } catch (final InterruptedException ex) {
+         } catch (final InterruptedException ignored) {
          }
       }
    }
@@ -152,13 +152,13 @@ public final class TelnetAppender extends AppenderSkeleton {
          for (final Enumeration e = connections.elements(); e.hasMoreElements();) {
             try {
                ((Socket) e.nextElement()).close();
-            } catch (final Exception ex) {
+            } catch (final Exception ignored) {
             }
          }
 
          try {
             serverSocket.close();
-         } catch (final Exception ex) {
+         } catch (final Exception ignored) {
          }
       }
 
@@ -212,7 +212,7 @@ public final class TelnetAppender extends AppenderSkeleton {
 
          try {
             serverSocket.close();
-         } catch (final IOException ex) {
+         } catch (final IOException ignored) {
          }
       }
 

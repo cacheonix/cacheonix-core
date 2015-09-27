@@ -106,7 +106,7 @@ public final class SocketNode implements Runnable {
          if (socket != null) {
             try {
                socket.close();
-            } catch (final IOException ex) {
+            } catch (final IOException ignored) {
             }
          }
       }
