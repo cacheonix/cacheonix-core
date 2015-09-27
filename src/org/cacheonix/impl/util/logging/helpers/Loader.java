@@ -33,8 +33,10 @@ public final class Loader {
    static final String TSTR = "Caught Exception while in Loader.getResource. This may be innocuous.";
 
    // We conservatively assume that we are running under Java 1.x
+   @SuppressWarnings("StaticNonFinalField")
    private static boolean java1 = true;
 
+   @SuppressWarnings("StaticNonFinalField")
    private static boolean ignoreTCL = false;
 
 

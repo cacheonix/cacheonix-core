@@ -44,6 +44,7 @@ public final class SimpleSocketServer {
 
    static final Logger cat = Logger.getLogger(SimpleSocketServer.class);
 
+   @SuppressWarnings("StaticNonFinalField")
    static int port;
 
 

@@ -71,6 +71,7 @@ public final class LocationInfo implements Serializable {
    private static final long serialVersionUID = -1325822038990805636L;
 
    // Check if we are running in IBM's visual age.
+   @SuppressWarnings("StaticNonFinalField")
    static boolean inVisualAge = false;
 
 

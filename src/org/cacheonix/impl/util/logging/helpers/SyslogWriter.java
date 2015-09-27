@@ -39,6 +39,7 @@ public final class SyslogWriter extends Writer {
    /**
     * Host string from last constructed SyslogWriter.
     */
+   @SuppressWarnings("StaticNonFinalField")
    static String syslogHost;
 
    private InetAddress address = null;

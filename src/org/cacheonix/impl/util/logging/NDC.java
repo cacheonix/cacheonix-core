@@ -90,6 +90,7 @@ public final class NDC {
 
    static final Hashtable ht = new Hashtable(11);
 
+   @SuppressWarnings("StaticNonFinalField")
    static int pushCounter = 0; // the number of times push has been called
    // after the latest call to lazyRemove
 

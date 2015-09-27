@@ -39,7 +39,9 @@ public final class Roller {
    static final Logger cat = Logger.getLogger(Roller.class);
 
 
+   @SuppressWarnings("StaticNonFinalField")
    static String host;
+   @SuppressWarnings("StaticNonFinalField")
    static int port;
 
 

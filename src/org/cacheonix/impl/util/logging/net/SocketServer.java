@@ -78,7 +78,9 @@ public final class SocketServer {
    static final String CONFIG_FILE_EXT = ".lcf";
 
    static final Logger cat = Logger.getLogger(SocketServer.class);
+   @SuppressWarnings("StaticNonFinalField")
    static SocketServer server;
+   @SuppressWarnings("StaticNonFinalField")
    static int port;
 
    // key=inetAddress, value=hierarchy

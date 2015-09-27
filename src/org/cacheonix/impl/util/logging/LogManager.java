@@ -63,8 +63,10 @@ public final class LogManager {
 
    public static final String RESOURCE_WARN = "/META-INF/cacheonix-logging-warn.properties";
 
+   @SuppressWarnings("StaticNonFinalField")
    private static Object guard = null;
 
+   @SuppressWarnings("StaticNonFinalField")
    private static RepositorySelector repositorySelector;
 
 

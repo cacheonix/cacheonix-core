@@ -50,6 +50,7 @@ public final class ISO8601DateFormat extends AbsoluteTimeDateFormat {
    }
 
 
+   @SuppressWarnings("StaticNonFinalField")
    private static long lastTime;
 
    private static final char[] lastTimeString = new char[20];

@@ -64,6 +64,7 @@ public class AbsoluteTimeDateFormat extends DateFormat {
    }
 
 
+   @SuppressWarnings("StaticNonFinalField")
    private static long previousTime;
 
    private static final char[] previousTimeWithoutMillis = new char[9]; // "HH:mm:ss."

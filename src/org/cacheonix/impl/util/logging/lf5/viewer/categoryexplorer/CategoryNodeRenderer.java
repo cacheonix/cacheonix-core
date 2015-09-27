@@ -47,6 +47,7 @@ public class CategoryNodeRenderer extends DefaultTreeCellRenderer {
 
    private final JPanel _panel = new JPanel();
 
+   @SuppressWarnings("StaticNonFinalField")
    private static ImageIcon _sat = null;
 //   protected JLabel              _label  = new JLabel();
 

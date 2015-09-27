@@ -41,6 +41,7 @@ public abstract class LogRecord implements Serializable {
    //--------------------------------------------------------------------------
    //   Protected Variables:
    //--------------------------------------------------------------------------
+   @SuppressWarnings("StaticNonFinalField")
    private static long _seqCount = 0L;
 
    protected LogLevel _level;

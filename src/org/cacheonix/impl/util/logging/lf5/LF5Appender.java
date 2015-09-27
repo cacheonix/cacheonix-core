@@ -44,6 +44,7 @@ public final class LF5Appender extends AppenderSkeleton {
 
    protected LogBrokerMonitor _logMonitor = null;
 
+   @SuppressWarnings("StaticNonFinalField")
    private static LogBrokerMonitor _defaultLogMonitor;
 
    //--------------------------------------------------------------------------

@@ -52,11 +52,13 @@ public final class LogLog {
     */
    public static final String CONFIG_DEBUG_KEY = "log4j.configDebug";
 
+   @SuppressWarnings("StaticNonFinalField")
    private static boolean debugEnabled = false;
 
    /**
     * In quietMode not even errors generate any output.
     */
+   @SuppressWarnings("StaticNonFinalField")
    private static boolean quietMode = false;
 
    private static final String PREFIX = "log4j: ";

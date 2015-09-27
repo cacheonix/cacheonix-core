@@ -44,6 +44,7 @@ public final class AdapterLogRecord extends LogRecord {
    //--------------------------------------------------------------------------
    //   Private Variables:
    //--------------------------------------------------------------------------
+   @SuppressWarnings("StaticNonFinalField")
    private static LogLevel severeLevel = null;
 
    //--------------------------------------------------------------------------
