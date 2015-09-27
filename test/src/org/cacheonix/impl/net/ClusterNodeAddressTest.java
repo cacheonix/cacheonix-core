@@ -16,12 +16,12 @@ package org.cacheonix.impl.net;
 import java.io.IOException;
 import java.net.InetAddress;
 
+import junit.framework.TestCase;
 import org.cacheonix.CacheonixTestCase;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
 import org.cacheonix.impl.util.IOUtils;
 import org.cacheonix.impl.util.logging.Logger;
-import junit.framework.TestCase;
 
 /**
  * Tests {@link ClusterNodeAddress}
@@ -47,11 +47,14 @@ public final class ClusterNodeAddressTest extends TestCase {
 
    private static final String TEST_HOST_NAME = "test_host_name";
 
-   private static final ClusterNodeAddress DIFFERENT_1 = new ClusterNodeAddress(TCP_PORT, TEST_HOST_NAME, (int) NUMBER_6, new InetAddress[]{IP_ADDRESS});
+   private static final ClusterNodeAddress DIFFERENT_1 = new ClusterNodeAddress(TCP_PORT, TEST_HOST_NAME,
+           new InetAddress[]{IP_ADDRESS});
 
-   private static final ClusterNodeAddress SAME_1 = new ClusterNodeAddress(TCP_PORT, TEST_HOST_NAME, (int) NUMBER_5, new InetAddress[]{IP_ADDRESS});
+   private static final ClusterNodeAddress SAME_1 = new ClusterNodeAddress(TCP_PORT, TEST_HOST_NAME,
+           new InetAddress[]{IP_ADDRESS});
 
-   private static final ClusterNodeAddress SAME_2 = new ClusterNodeAddress(TCP_PORT, TEST_HOST_NAME, (int) NUMBER_5, new InetAddress[]{IP_ADDRESS});
+   private static final ClusterNodeAddress SAME_2 = new ClusterNodeAddress(TCP_PORT, TEST_HOST_NAME,
+           new InetAddress[]{IP_ADDRESS});
 
 
    public void testCompare() {
@@ -68,15 +71,15 @@ public final class ClusterNodeAddressTest extends TestCase {
    }
 
 
-   public void testGetNumber() {
-
-      assertEquals(NUMBER_5, SAME_1.getNumber());
-   }
-
-
    public void testGetPort() {
 
       assertEquals(TCP_PORT, SAME_1.getTcpPort());
+   }
+
+
+   public void testGetCoreCount() {
+
+      assertTrue(SAME_1.getCoreCount() > 0);
    }
 
 

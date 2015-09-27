@@ -15,20 +15,12 @@ package org.cacheonix.impl.net;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.InetAddress;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Properties;
 
-import org.cacheonix.util.HashCode;
-import org.cacheonix.util.HashCodeType;
 import org.cacheonix.impl.net.serializer.SerializerUtils;
 import org.cacheonix.impl.net.serializer.Wireable;
 import org.cacheonix.impl.net.serializer.WireableBuilder;
@@ -36,8 +28,9 @@ import org.cacheonix.impl.util.ArrayUtils;
 import org.cacheonix.impl.util.IOUtils;
 import org.cacheonix.impl.util.StringUtils;
 import org.cacheonix.impl.util.array.HashMap;
-import org.cacheonix.impl.util.exception.ExceptionUtils;
 import org.cacheonix.impl.util.logging.Logger;
+import org.cacheonix.util.HashCode;
+import org.cacheonix.util.HashCodeType;
 
 /**
  * Processes communicate by exchanging messages. Each process is unique. An example of a process is a cache.
@@ -53,8 +46,6 @@ public final class ClusterNodeAddress implements Comparable, Wireable {
     */
    public static final WireableBuilder BUILDER = new Builder();
 
-   private static final String CACHEONIX_CLUSTER_NUMBER = "cacheonix.cluster.number";
-
    /**
     * Logger.
     *
@@ -65,7 +56,8 @@ public final class ClusterNodeAddress implements Comparable, Wireable {
    /**
     * Cache that keeps inlined cluster node addresses.
     */
-   private static final HashMap<ClusterNodeAddress, ClusterNodeAddress> cache = new HashMap<ClusterNodeAddress, ClusterNodeAddress>(111); // NOPMD
+   private static final HashMap<ClusterNodeAddress, ClusterNodeAddress> cache = new HashMap<ClusterNodeAddress, ClusterNodeAddress>(
+           111); // NOPMD
 
    /**
     * TCP tcpPort number of the process.
@@ -76,12 +68,6 @@ public final class ClusterNodeAddress implements Comparable, Wireable {
     * Resolved host name or string representation of the
     */
    private String hostName = null;
-
-   /**
-    * Random number that should be assigned at creation time. This ID is used to spread out processes identity when
-    * forming total order for messages.
-    */
-   private int number = 0;
 
    /**
     * List of InetAddresses.
@@ -104,11 +90,10 @@ public final class ClusterNodeAddress implements Comparable, Wireable {
    /**
     * @noinspection UnnecessaryThis, JavaDoc
     */
-   public ClusterNodeAddress(final int port, final String hostName, final int number, final InetAddress[] addresses) {
+   public ClusterNodeAddress(final int port, final String hostName, final InetAddress[] addresses) {
 
       this.tcpPort = port;
       this.hostName = hostName;
-      this.number = number;
       this.addresses = ArrayUtils.copy(addresses);
       this.precalculatedHashCode = calculateHashCode();
       this.coreCount = Runtime.getRuntime().availableProcessors();
@@ -149,19 +134,9 @@ public final class ClusterNodeAddress implements Comparable, Wireable {
    }
 
 
-   public int getCoreCount() {
+   int getCoreCount() {
 
       return coreCount;
-   }
-
-
-   /**
-    * @return random number assigned at creation time. This ID is used to spread out processes identity when forming
-    *         total order for messages.
-    */
-   public int getNumber() {
-
-      return number;
    }
 
 
@@ -212,9 +187,6 @@ public final class ClusterNodeAddress implements Comparable, Wireable {
       if (precalculatedHashCode != other.precalculatedHashCode) {
          return false;
       }
-      if (number != other.number) {
-         return false;
-      }
 
       if (!Arrays.equals(addresses, other.addresses)) {
          return false;
@@ -239,7 +211,6 @@ public final class ClusterNodeAddress implements Comparable, Wireable {
       hashCode.add(coreCount);
       hashCode.add(hostName);
       hashCode.add(IOUtils.inetAddressesHashCode(addresses));
-      hashCode.add(number);
       return hashCode.getValue();
    }
 
@@ -269,7 +240,7 @@ public final class ClusterNodeAddress implements Comparable, Wireable {
     *
     * @param o the Object to be compared.
     * @return a negative integer, zero, or a positive integer as this object is less than, equal to, or greater than the
-    *         specified object.
+    * specified object.
     * @throws ClassCastException if the specified object's type prevents it from being compared to this Object.
     */
    public int compareTo(final Object o) {
@@ -297,14 +268,6 @@ public final class ClusterNodeAddress implements Comparable, Wireable {
          return -1;
       }
 
-      if (number > other.number) {
-         return 1;
-      }
-
-      if (number < other.number) {
-         return -1;
-      }
-
       final int addressesCompare = IOUtils.inetAddressesCompare(addresses, other.addresses);
       if (addressesCompare > 0) {
          return 1;
@@ -326,111 +289,31 @@ public final class ClusterNodeAddress implements Comparable, Wireable {
 
 
    /**
-    * Creates a process ID using given parameters.
+    * Creates a cluster node address uniquely identifying a cluster node using given parameters.
     *
-    * @param address
-    * @param port
-    * @return
+    * @param address the address of the node.
+    * @param port    the port of the node.
+    * @return a new instance
     * @throws IOException
     */
    public static ClusterNodeAddress createAddress(final String address, final int port) throws IOException {
 
-      try {
-         final List<InetAddress> inetAddressList = new ArrayList<InetAddress>(3);
-         final String hostName;
-         if (StringUtils.isBlank(address)) {
+      final List<InetAddress> inetAddressList = new ArrayList<InetAddress>(3);
+      final String hostName;
+      if (StringUtils.isBlank(address)) {
 
-            inetAddressList.addAll(NetUtils.getLocalInetAddresses());
-            hostName = InetAddress.getLocalHost().getHostName();
-         } else {
-
-            final InetAddress inetAddress = InetAddress.getByName(address);
-            hostName = inetAddress.getHostName();
-            inetAddressList.add(inetAddress);
-         }
-
-         final InetAddress[] inetAddresses = inetAddressList.toArray(new InetAddress[inetAddressList.size()]);
-
-         final int number = readNumber();
-
-         return new ClusterNodeAddress(port, hostName, number, inetAddresses
-         );
-      } catch (final NoSuchAlgorithmException e) {
-         throw IOUtils.createIOException(e);
-      }
-   }
-
-
-   /**
-    * Best-effort method to read or create cluster number.
-    *
-    * @return Random number of this address.
-    * @throws NoSuchAlgorithmException if the algorithm used to generate the random number is not available.
-    */
-   private static synchronized int readNumber() throws NoSuchAlgorithmException {
-      // Get user directory
-      final String userDir = System.getProperty("user.dir");
-      if (StringUtils.isBlank(userDir)) {
-         return 0;
-      }
-
-      // Read number
-      final File cacheonixProperties = new File(userDir, ".cacheonix.properties");
-      if (cacheonixProperties.exists()) {
-         return readClusterNumber(cacheonixProperties);
+         inetAddressList.addAll(NetUtils.getLocalInetAddresses());
+         hostName = InetAddress.getLocalHost().getHostName();
       } else {
-         // Try to create the file
-         final boolean newFile;
-         try {
-            newFile = cacheonixProperties.createNewFile();
-         } catch (final IOException e) {
-            LOG.warn(e, e);
-            return 0;
-         }
-         if (newFile) {
-            final SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
-            random.setSeed(System.currentTimeMillis());
-            final Properties properties = new Properties();
-            final int number = random.nextInt();
-            properties.setProperty(CACHEONIX_CLUSTER_NUMBER, Integer.toString(number));
-            try {
-               FileOutputStream out = null;
-               try {
-                  out = new FileOutputStream(cacheonixProperties);
-                  properties.store(out, "Cacheonix persistent properties");
-               } finally {
-                  IOUtils.closeHard(out);
-               }
-               return number;
-            } catch (final Exception e) {
-               LOG.warn(e, e);
-               return 0;
-            }
-         } else {
-            return readClusterNumber(cacheonixProperties);
-         }
+
+         final InetAddress inetAddress = InetAddress.getByName(address);
+         hostName = inetAddress.getHostName();
+         inetAddressList.add(inetAddress);
       }
-   }
 
+      final InetAddress[] inetAddresses = inetAddressList.toArray(new InetAddress[inetAddressList.size()]);
 
-   private static int readClusterNumber(final File cacheonixProperties) {
-
-      int result = 0;
-      final Properties properties = new Properties();
-      FileInputStream inStream = null;
-      try {
-         inStream = new FileInputStream(cacheonixProperties);
-         properties.load(inStream);
-         final String property = properties.getProperty(CACHEONIX_CLUSTER_NUMBER);
-         if (StringUtils.isValidInteger(property)) {
-            result = Integer.parseInt(property);
-         }
-      } catch (final Exception e) {
-         ExceptionUtils.ignoreException(e, "Cannot read the file, ignoring");
-      } finally {
-         IOUtils.closeHard(inStream);
-      }
-      return result;
+      return new ClusterNodeAddress(port, hostName, inetAddresses);
    }
 
 
@@ -503,7 +386,6 @@ public final class ClusterNodeAddress implements Comparable, Wireable {
             SerializerUtils.writeInetAddress(address, out, false);
          }
       }
-      out.writeInt(number);
       out.writeInt(tcpPort);
       out.writeShort(coreCount);
       out.writeInt(precalculatedHashCode);
@@ -522,7 +404,6 @@ public final class ClusterNodeAddress implements Comparable, Wireable {
             addresses[i] = SerializerUtils.readInetAddress(in, false);
          }
       }
-      number = in.readInt();
       tcpPort = in.readInt();
       coreCount = in.readShort();
       precalculatedHashCode = in.readInt();
