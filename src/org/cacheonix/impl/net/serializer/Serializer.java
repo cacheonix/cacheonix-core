@@ -53,7 +53,7 @@ public interface Serializer {
     * @param bytes
     * @return object
     */
-   Object deserialize(byte[] bytes) throws IOException, ClassNotFoundException;
+   Object deserialize(byte[] bytes) throws IOException;
 
 
    byte[] serialize(Object obj) throws IOException;

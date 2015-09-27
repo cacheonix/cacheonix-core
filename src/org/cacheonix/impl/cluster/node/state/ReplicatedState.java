@@ -119,8 +119,6 @@ public final class ReplicatedState implements Wireable {
          return (ReplicatedState) ser.deserialize(ser.serialize(this));
       } catch (final IOException e) {
          throw new RuntimeIOException(e);
-      } catch (final ClassNotFoundException e) {
-         throw new RuntimeClassNotFoundException(e);
       }
    }
 

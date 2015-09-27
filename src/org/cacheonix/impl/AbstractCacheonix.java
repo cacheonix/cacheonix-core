@@ -17,7 +17,6 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import org.cacheonix.Cacheonix;
 import org.cacheonix.cache.Cache;
 import org.cacheonix.cache.ConfigurationException;
-import org.cacheonix.exceptions.RuntimeStorageException;
 import org.cacheonix.impl.cache.CacheonixCache;
 import org.cacheonix.impl.cache.datasource.PrefetchScheduler;
 import org.cacheonix.impl.cache.datasource.PrefetchStageThreadPoolAdapter;
@@ -185,7 +184,7 @@ public abstract class AbstractCacheonix extends Cacheonix {
     *
     * @throws StorageException
     */
-   protected abstract void doStartup() throws StorageException;
+   protected abstract void doStartup();
 
 
    /**
@@ -222,8 +221,6 @@ public abstract class AbstractCacheonix extends Cacheonix {
          // Call template method.
          doStartup();
 
-      } catch (final StorageException e) {
-         throw new RuntimeStorageException(e);
       } finally {
          writeLock.unlock();
       }

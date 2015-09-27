@@ -649,7 +649,7 @@ public final class Group implements Wireable {
    }
 
 
-   public void readWire(final DataInputStream in) throws IOException, ClassNotFoundException {
+   public void readWire(final DataInputStream in) throws IOException {
 
       version = in.readLong();
       groupType = in.readInt();

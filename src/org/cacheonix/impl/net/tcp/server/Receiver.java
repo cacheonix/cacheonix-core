@@ -297,7 +297,7 @@ final class Receiver extends KeyHandler {
    /**
     * {@inheritDoc}
     */
-   public void handleIdle(final SelectionKey idleKey) throws InterruptedException {
+   public void handleIdle(final SelectionKey idleKey) {
 
       registerInactivity(idleKey);
    }

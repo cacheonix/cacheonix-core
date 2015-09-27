@@ -481,7 +481,7 @@ final class Sender extends KeyHandler {
     * @param key a key carrying the channel.
     * @throws IOException if I/O error occurs.
     */
-   private void writeMessages(final SelectionKey key) throws IOException, InterruptedException {
+   private void writeMessages(final SelectionKey key) throws IOException {
 
       long totalBytesWritten = 0L;
 
