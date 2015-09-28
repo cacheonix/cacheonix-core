@@ -25,7 +25,7 @@ import org.cacheonix.impl.net.serializer.SerializerUtils;
  * An implementation of ClusterMemberAddress.
  */
 @SuppressWarnings("RedundantIfStatement")
-public final class ClusterMemberAddressImpl implements ClusterMemberAddress {
+final class ClusterMemberAddressImpl implements ClusterMemberAddress {
 
    private static final long serialVersionUID = 3937437755889768537L;
 
@@ -35,6 +35,9 @@ public final class ClusterMemberAddressImpl implements ClusterMemberAddress {
    private InetAddress inetAddress;
 
 
+   /**
+    * A public construtor required by {@link java.io.Externalizable}.
+    */
    public ClusterMemberAddressImpl() {
 
    }
@@ -45,7 +48,7 @@ public final class ClusterMemberAddressImpl implements ClusterMemberAddress {
     *
     * @param inetAddress the inet address of the cluster member.
     */
-   public ClusterMemberAddressImpl(final InetAddress inetAddress) {
+   ClusterMemberAddressImpl(final InetAddress inetAddress) {
 
       this.inetAddress = inetAddress;
    }
