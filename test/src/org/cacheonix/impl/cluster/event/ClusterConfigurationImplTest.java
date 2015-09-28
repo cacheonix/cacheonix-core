@@ -16,11 +16,11 @@ package org.cacheonix.impl.cluster.event;
 import java.util.ArrayList;
 import java.util.List;
 
+import junit.framework.TestCase;
 import org.cacheonix.cluster.ClusterMember;
 import org.cacheonix.cluster.ClusterState;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
-import junit.framework.TestCase;
 
 /**
  * Tester for {@link ClusterConfigurationImpl}.
@@ -47,6 +47,13 @@ public final class ClusterConfigurationImplTest extends TestCase {
 
       final Serializer ser = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
       assertEquals(clusterConfiguration, ser.deserialize(ser.serialize(clusterConfiguration)));
+   }
+
+
+   public void testDefaultConstrcutor() {
+
+      final ClusterConfigurationImpl clusterConfiguration = new ClusterConfigurationImpl();
+      assertNotNull(clusterConfiguration.toString());
    }
 
 

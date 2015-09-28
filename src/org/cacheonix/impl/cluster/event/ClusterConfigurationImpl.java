@@ -27,7 +27,7 @@ import org.cacheonix.cluster.ClusterState;
  * An implementation of user API ClusterConfiguration.
  */
 @SuppressWarnings("RedundantIfStatement")
-public final class ClusterConfigurationImpl implements ClusterConfiguration {
+final class ClusterConfigurationImpl implements ClusterConfiguration {
 
    private static final long serialVersionUID = 4356310544242603491L;
 
@@ -51,7 +51,7 @@ public final class ClusterConfigurationImpl implements ClusterConfiguration {
     * @param clusterState   a cluster state.
     * @param clusterMembers a list of cluster members that this constructor uses to create a copy.
     */
-   public ClusterConfigurationImpl(final ClusterState clusterState, final Collection<ClusterMember> clusterMembers) {
+   ClusterConfigurationImpl(final ClusterState clusterState, final Collection<ClusterMember> clusterMembers) {
 
       this.clusterMembers = new ArrayList<ClusterMember>(clusterMembers);
       this.clusterState = clusterState;
