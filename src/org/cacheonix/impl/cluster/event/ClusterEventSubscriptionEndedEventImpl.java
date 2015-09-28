@@ -19,7 +19,7 @@ import org.cacheonix.cluster.ClusterEventSubscriptionEndedEvent;
 /**
  * An implementation of ClusterEventSubscriptionEndedEvent.
  */
-public final class ClusterEventSubscriptionEndedEventImpl implements ClusterEventSubscriptionEndedEvent {
+final class ClusterEventSubscriptionEndedEventImpl implements ClusterEventSubscriptionEndedEvent {
 
    private final ClusterConfiguration clusterConfiguration;
 
@@ -29,7 +29,7 @@ public final class ClusterEventSubscriptionEndedEventImpl implements ClusterEven
     *
     * @param clusterConfiguration the cluster configuration.
     */
-   public ClusterEventSubscriptionEndedEventImpl(final ClusterConfiguration clusterConfiguration) {
+   ClusterEventSubscriptionEndedEventImpl(final ClusterConfiguration clusterConfiguration) {
 
       this.clusterConfiguration = clusterConfiguration;
    }
