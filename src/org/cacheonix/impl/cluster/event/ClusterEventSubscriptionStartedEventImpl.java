@@ -19,7 +19,7 @@ import org.cacheonix.cluster.ClusterEventSubscriptionStartedEvent;
 /**
  * An implementation of {@link ClusterEventSubscriptionStartedEvent}.
  */
-public final class ClusterEventSubscriptionStartedEventImpl implements ClusterEventSubscriptionStartedEvent {
+final class ClusterEventSubscriptionStartedEventImpl implements ClusterEventSubscriptionStartedEvent {
 
    private final ClusterConfiguration clusterConfiguration;
 
@@ -29,7 +29,7 @@ public final class ClusterEventSubscriptionStartedEventImpl implements ClusterEv
     *
     * @param clusterConfiguration the cluster configuration.
     */
-   public ClusterEventSubscriptionStartedEventImpl(final ClusterConfiguration clusterConfiguration) {
+   ClusterEventSubscriptionStartedEventImpl(final ClusterConfiguration clusterConfiguration) {
 
       this.clusterConfiguration = clusterConfiguration;
    }
