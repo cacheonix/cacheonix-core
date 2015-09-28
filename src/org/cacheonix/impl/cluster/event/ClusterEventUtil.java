@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.cacheonix.cluster.ClusterConfiguration;
 import org.cacheonix.cluster.ClusterMember;
 import org.cacheonix.cluster.ClusterMemberAddress;
 import org.cacheonix.cluster.ClusterState;
@@ -35,7 +36,7 @@ public class ClusterEventUtil {
    }
 
 
-   public static ClusterConfigurationImpl getUserClusterConfiguration(final String clusterName,
+   public static ClusterConfiguration getUserClusterConfiguration(final String clusterName,
                                                                       final int state, final ClusterView clusterView) {
 
       // Create cluster member list
