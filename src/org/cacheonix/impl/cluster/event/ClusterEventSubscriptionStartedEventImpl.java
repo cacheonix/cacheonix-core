@@ -17,7 +17,7 @@ import org.cacheonix.cluster.ClusterConfiguration;
 import org.cacheonix.cluster.ClusterEventSubscriptionStartedEvent;
 
 /**
- * An implementation of ClusterEventSubscriptionStartedEvent.
+ * An implementation of {@link ClusterEventSubscriptionStartedEvent}.
  */
 public final class ClusterEventSubscriptionStartedEventImpl implements ClusterEventSubscriptionStartedEvent {
 
