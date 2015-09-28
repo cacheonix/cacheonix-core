@@ -36,7 +36,7 @@ final class ClusterMemberAddressImpl implements ClusterMemberAddress {
 
 
    /**
-    * A public construtor required by {@link java.io.Externalizable}.
+    * A public constructor required by {@link java.io.Externalizable}.
     */
    public ClusterMemberAddressImpl() {
 
