@@ -13,11 +13,11 @@
  */
 package org.cacheonix.impl.net.cluster;
 
-import org.cacheonix.impl.cache.distributed.partitioned.BucketTransferCompletedAnnouncement;
 import junit.framework.TestCase;
+import org.cacheonix.impl.cache.distributed.partitioned.BucketTransferCompletedAnnouncement;
 
 /**
- * A tester for AssembledMessage.
+ * A tester for {@link AssembledMessage}.
  */
 public class AssembledMessageTest extends TestCase {
 
