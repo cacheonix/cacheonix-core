@@ -530,7 +530,11 @@ public abstract class BucketSetRequest extends AggregatingRequest {
                                             final AggregatingResponse response) {
 
          final IntHashSet rejectedBuckets = response.handOffRejectedBuckets();
-         if (rejectedBuckets != null && !rejectedBuckets.isEmpty()) {
+         if (rejectedBuckets == null || rejectedBuckets.isEmpty()) {
+
+            // All buckets were processed, no rejected buckets
+            request.clear();
+         } else {
 
             // This is the only place we cast to a particular request type
             final BucketSetRequest bucketSetRequest = (BucketSetRequest) request;
@@ -539,10 +543,6 @@ public abstract class BucketSetRequest extends AggregatingRequest {
             final boolean sizeIsSame = bucketSetRequest.getBucketSet().size() == rejectedBuckets.size();
             final boolean rbsModified = bucketSetRequest.getBucketSet().retainAll(rejectedBuckets.toArray());
             Assert.assertTrue(rbsModified || sizeIsSame, "Request bucket set should have had rejected buckets");
-         } else {
-
-            // All buckets were processed, no rejected buckets
-            request.clear();
          }
 
          // REVIEWME: simeshev@cacheonix.org - 2010-05-13 - Right now we add all responses w/o considering if they
