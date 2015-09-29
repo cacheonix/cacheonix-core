@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.gargoylesoftware.base.testing.OrderedTestSuite;
+import junit.framework.TestSuite;
 import org.cacheonix.Cacheonix;
 import org.cacheonix.CacheonixTestCase;
 import org.cacheonix.SavedSystemProperty;
@@ -28,8 +30,6 @@ import org.cacheonix.impl.configuration.SystemProperty;
 import org.cacheonix.impl.util.array.HashMap;
 import org.cacheonix.impl.util.logging.Logger;
 import org.cacheonix.impl.util.time.Timeout;
-import com.gargoylesoftware.base.testing.OrderedTestSuite;
-import junit.framework.TestSuite;
 
 /**
  * Tests clustered cache
@@ -116,7 +116,7 @@ public final class CacheNodeOnNodeLeavingWithReplicasTest extends CacheonixTestC
          ownedKeys.add(key);
       }
 
-      // REVIEWME: simeshev@viewtier.com - 2010-08-17 -> After moving the connection pool
+      // REVIEWME: simeshev@cacheonix.org - 2010-08-17 -> After moving the connection pool
       // to the MessageSender unique to the cluster node, this one started to fail.
       // assertEquals(NODE_COUNT, ownersToKeys.size());
 
@@ -173,7 +173,7 @@ public final class CacheNodeOnNodeLeavingWithReplicasTest extends CacheonixTestC
 
       // Assert there NO holes because back up should have picked them up
 
-      // REVIEWME: simeshev@viewtier.com - 2010-08-17 -> After moving the connection pool
+      // REVIEWME: simeshev@cacheonix.org - 2010-08-17 -> After moving the connection pool
       // to the MessageSender unique to the cluster node, this one started to fail.
 
       //      LOG.debug("=============== Assert there NO holes because back up should have picked them up ============================");

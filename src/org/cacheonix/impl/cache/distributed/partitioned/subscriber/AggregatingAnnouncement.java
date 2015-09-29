@@ -203,7 +203,7 @@ public abstract class AggregatingAnnouncement extends Request implements Prepare
          // This is a root, submit subrequests instead of executing
          final Collection<? extends AggregatingAnnouncement> subAnnouncements = split(0);
 
-         // NOTE: simeshev@viewtier.com - 2010-01-12 - If there are no subrequests,
+         // NOTE: simeshev@cacheonix.org - 2010-01-12 - If there are no subrequests,
          // there is nothing to wait for. This may happen if no data was provided.
          // Finish now. The aggregate() method must be prepared to deal with an
          // empty result. For the majority it seems that an empty success means

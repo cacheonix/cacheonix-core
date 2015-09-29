@@ -623,7 +623,7 @@ public abstract class EntrySetRequest extends AggregatingRequest {
          }
 
 
-         // REVIEWME: simeshev@viewtier.com - 2010-05-13 - Right now we add all responses w/o considering if they
+         // REVIEWME: simeshev@cacheonix.org - 2010-05-13 - Right now we add all responses w/o considering if they
          // are going to be aggregated (for instance, ClearRequest only cares about errors). This may lead for
          // responses hanging around for longer than they should instead of being GC-ed immediately.
 
