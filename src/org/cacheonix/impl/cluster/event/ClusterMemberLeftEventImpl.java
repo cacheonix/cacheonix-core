@@ -20,7 +20,7 @@ import org.cacheonix.cluster.ClusterMember;
 import org.cacheonix.cluster.ClusterMemberLeftEvent;
 
 /**
- *
+ * An implementation of {@link ClusterMemberLeftEvent}.
  */
 public final class ClusterMemberLeftEventImpl implements ClusterMemberLeftEvent {
 
