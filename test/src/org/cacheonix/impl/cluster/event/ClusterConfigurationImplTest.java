@@ -22,11 +22,15 @@ import org.cacheonix.cluster.ClusterState;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
 
+import static org.cacheonix.cluster.ClusterState.OPERATIONAL;
+
 /**
  * Tester for {@link ClusterConfigurationImpl}.
  */
 public final class ClusterConfigurationImplTest extends TestCase {
 
+
+   private static final ClusterState CLUSTER_STATE = OPERATIONAL;
 
    private static final String CLUSTER_NAME = "TestClusterName";
 
@@ -63,6 +67,25 @@ public final class ClusterConfigurationImplTest extends TestCase {
    }
 
 
+   public void testGetClusterState() throws Exception {
+
+      assertEquals(CLUSTER_STATE, clusterConfiguration.getClusterState());
+   }
+
+
+   public void testEquals() throws Exception {
+
+      assertEquals(new ClusterConfigurationImpl(OPERATIONAL, clusterMembers), clusterConfiguration);
+      assertFalse(clusterConfiguration.equals(null));
+   }
+
+
+   public void testHashCode() throws Exception {
+
+      assertEquals(761562785, clusterConfiguration.hashCode());
+   }
+
+
    public void setUp() throws Exception {
 
       super.setUp();
@@ -71,7 +94,7 @@ public final class ClusterConfigurationImplTest extends TestCase {
       clusterMembers.add(EventTestUtil.clusterMember(CLUSTER_NAME, "1.1.1.1", PORT));
       clusterMembers.add(EventTestUtil.clusterMember(CLUSTER_NAME, "2.2.2.2", PORT));
 
-      clusterConfiguration = new ClusterConfigurationImpl(ClusterState.OPERATIONAL, clusterMembers);
+      clusterConfiguration = new ClusterConfigurationImpl(CLUSTER_STATE, clusterMembers);
    }
 
 
