@@ -51,7 +51,7 @@ import org.cacheonix.impl.util.thread.ActionableTimeout;
 import org.cacheonix.impl.util.time.Timeout;
 
 /**
- * MulticastConnectionImpl
+ * A processor of cluster messages.
  * <p/>
  *
  * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
