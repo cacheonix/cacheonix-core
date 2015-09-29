@@ -52,14 +52,14 @@ import org.cacheonix.impl.util.thread.DaemonThreadFactory;
  * @version 1.0
  * @noinspection ProhibitedExceptionDeclared, JUnitTestMethodWithNoAssertions @since <pre>03/21/2008</pre>
  */
-public final class ClusterProcessorTest extends CacheonixTestCase {
+public final class ClusterProcessorImplTest extends CacheonixTestCase {
 
    /**
     * Logger.
     *
     * @noinspection UNUSED_SYMBOL, UnusedDeclaration
     */
-   private static final Logger LOG = Logger.getLogger(ClusterProcessorTest.class); // NOPMD
+   private static final Logger LOG = Logger.getLogger(ClusterProcessorImplTest.class); // NOPMD
 
    private static final int BASE_TCP_PORT = TestConstants.PORT;
 
@@ -97,9 +97,11 @@ public final class ClusterProcessorTest extends CacheonixTestCase {
 
    private final List<TCPServer> servers = new ArrayList<TCPServer>(PROCESS_COUNT);
 
-   private final List<TestMarkerCountingTCPRequestDispatcher> messageHandlers = new ArrayList<TestMarkerCountingTCPRequestDispatcher>(PROCESS_COUNT);
+   private final List<TestMarkerCountingTCPRequestDispatcher> messageHandlers = new ArrayList<TestMarkerCountingTCPRequestDispatcher>(
+           PROCESS_COUNT);
 
-   private final List<TestMulticastMessageListener> mcastMessageListeners = new ArrayList<TestMulticastMessageListener>(PROCESS_COUNT);
+   private final List<TestMulticastMessageListener> mcastMessageListeners = new ArrayList<TestMulticastMessageListener>(
+           PROCESS_COUNT);
 
    private final List<MessageSender> messageSenders = new ArrayList<MessageSender>(PROCESS_COUNT);
 
@@ -143,8 +145,8 @@ public final class ClusterProcessorTest extends CacheonixTestCase {
          // Sender connection does not receive its messages
          final TestMulticastMessageListener mcastMessageListener = getMcastMessageListener(i);
          assertTrue("Message listener # " + i + " should receive min "
-                 + minMessageCount + " messages, received: "
-                 + mcastMessageListener.getMessageCount(),
+                         + minMessageCount + " messages, received: "
+                         + mcastMessageListener.getMessageCount(),
                  mcastMessageListener.getMessageCount() >= minMessageCount);
 
          LOG.debug("Process " + i + " received " + mcastMessageListener.getMessageCount() + " messages");
@@ -167,7 +169,8 @@ public final class ClusterProcessorTest extends CacheonixTestCase {
       router.setClusterUUID(initialClusterUUID);
 
       // Create connection objects
-      final ClusterProcessor newProcessor = createClusterProcessor(newAddress, InetAddress.getByName(MULTICAST_ADDRESS), MULTICAST_PORT, MULTICAST_TTL, TEST_CLUSTER_NAME, router, initialClusterUUID);
+      final ClusterProcessor newProcessor = createClusterProcessor(newAddress, InetAddress.getByName(MULTICAST_ADDRESS),
+              MULTICAST_PORT, router, initialClusterUUID);
       final ReplicatedState replicatedState = new ReplicatedState();
 
 
@@ -188,7 +191,8 @@ public final class ClusterProcessorTest extends CacheonixTestCase {
       final Clock clock = new ClockImpl(1000L).attachTo(timer);
 
       // Create TCP Server
-      final TCPServer tcpServer = new TCPServer(clock, LOCALHOST, getAddress(joinProcessIndex).getTcpPort(), messageHandler, NETWORK_TIMEOUT_MILLIS, SELECTOR_TIMEOUT_MILLIS);
+      final TCPServer tcpServer = new TCPServer(clock, LOCALHOST, getAddress(joinProcessIndex).getTcpPort(),
+              messageHandler, NETWORK_TIMEOUT_MILLIS, SELECTOR_TIMEOUT_MILLIS);
       tcpServer.startup();
       servers.add(tcpServer);
 
@@ -200,7 +204,8 @@ public final class ClusterProcessorTest extends CacheonixTestCase {
 
       // Create
       final ClusterNodeAddress nodeAddress = getClusterProcessor(joinProcessIndex).getAddress();
-      final MessageSender messageSender = new MessageSender(nodeAddress, NETWORK_TIMEOUT_MILLIS, SELECTOR_TIMEOUT_MILLIS, clock);
+      final MessageSender messageSender = new MessageSender(nodeAddress, NETWORK_TIMEOUT_MILLIS,
+              SELECTOR_TIMEOUT_MILLIS, clock);
       messageSenders.add(messageSender);
       router.setOutput(messageSender);
       messageSender.setRouter(router);
@@ -235,7 +240,8 @@ public final class ClusterProcessorTest extends CacheonixTestCase {
       // Assert token list size
       for (int i = 0; i < clusterProcessors.size(); i++) {
 
-         assertEquals(clusterProcessors.size(), (clusterProcessors.get(i)).getProcessorState().getClusterView().getSize());
+         assertEquals(clusterProcessors.size(),
+                 (clusterProcessors.get(i)).getProcessorState().getClusterView().getSize());
       }
 
       // Assert token counter
@@ -318,7 +324,7 @@ public final class ClusterProcessorTest extends CacheonixTestCase {
          // Sender connection does not receive its messages
          if (i != senderConnection) {
             assertEquals("Message listener # " + i
-                    + " should receive " + messageCount + " messages",
+                            + " should receive " + messageCount + " messages",
                     messageCount, getMcastMessageListener(i).getMessageCount());
          }
       }
@@ -346,7 +352,7 @@ public final class ClusterProcessorTest extends CacheonixTestCase {
          // Marker list with process # 0 as originator
          final int multicastPort = MULTICAST_PORT;
          final ClusterProcessor clusterProcessor = createClusterProcessor(nodeAddress, multicastAddress, multicastPort,
-                 MULTICAST_TTL, TEST_CLUSTER_NAME, router, initialClusterUUID);
+                 router, initialClusterUUID);
 
 
          clusterProcessor.getProcessorState().setReplicateState(new ReplicatedState());
@@ -365,16 +371,19 @@ public final class ClusterProcessorTest extends CacheonixTestCase {
          final Clock clock = new ClockImpl(1000L).attachTo(timer);
          clocks.add(clock);
 
-         final MessageSender messageSender = new MessageSender(nodeAddress, NETWORK_TIMEOUT_MILLIS, SELECTOR_TIMEOUT_MILLIS, clock);
+         final MessageSender messageSender = new MessageSender(nodeAddress, NETWORK_TIMEOUT_MILLIS,
+                 SELECTOR_TIMEOUT_MILLIS, clock);
          messageSender.setRouter(router);
          router.setOutput(messageSender);
          messageSenders.add(messageSender);
          messageSender.startup();
 
          // Create TCP server that handle TCP communications
-         final TestMarkerCountingTCPRequestDispatcher messageHandler = new TestMarkerCountingTCPRequestDispatcher(i, clusterProcessors.get(i));
+         final TestMarkerCountingTCPRequestDispatcher messageHandler = new TestMarkerCountingTCPRequestDispatcher(i,
+                 clusterProcessors.get(i));
          messageHandlers.add(messageHandler);
-         final TCPServer tcpServer = new TCPServer(clock, LOCALHOST, nodeAddress.getTcpPort(), messageHandler, NETWORK_TIMEOUT_MILLIS, SELECTOR_TIMEOUT_MILLIS);
+         final TCPServer tcpServer = new TCPServer(clock, LOCALHOST, nodeAddress.getTcpPort(), messageHandler,
+                 NETWORK_TIMEOUT_MILLIS, SELECTOR_TIMEOUT_MILLIS);
          servers.add(tcpServer);
          tcpServer.startup();
 
@@ -495,18 +504,15 @@ public final class ClusterProcessorTest extends CacheonixTestCase {
 
 
    private ClusterProcessor createClusterProcessor(final ClusterNodeAddress newAddress,
-                                                   final InetAddress multicastAddress, final int multicastPort,
-                                                   final int multicastTTL, final String clusterName,
-                                                   final Router router,
-                                                   final UUID initialClusterUUID) throws IOException {
+           final InetAddress multicastAddress, final int multicastPort,
+           final Router router, final UUID initialClusterUUID) throws IOException {
 
-      final PlainMulticastSender multicastSender = new PlainMulticastSender(multicastAddress,
-              multicastPort,
-              multicastTTL);
+      final PlainMulticastSender multicastSender = new PlainMulticastSender(multicastAddress, multicastPort,
+              MULTICAST_TTL);
 
-      return new ClusterProcessor(clusterName, getClock(), getTimer(), router, multicastSender, newAddress, HOME_ALONE_TIMEOUT_MILLIS,
-              WORST_CASE_LATENCY_MILLIS, GRACEFUL_SHUTDOWN_TIMEOUT_MILLIS, CLUSTER_SURVEY_TIMEOUT_MILLS,
-              CLUSTER_ANNOUNCEMENT_TIMEOUT_MILLS, initialClusterUUID);
+      return new ClusterProcessorImpl(TEST_CLUSTER_NAME, getClock(), getTimer(), router, multicastSender, newAddress,
+              HOME_ALONE_TIMEOUT_MILLIS, WORST_CASE_LATENCY_MILLIS, GRACEFUL_SHUTDOWN_TIMEOUT_MILLIS,
+              CLUSTER_SURVEY_TIMEOUT_MILLS, CLUSTER_ANNOUNCEMENT_TIMEOUT_MILLS, initialClusterUUID);
    }
 
 
@@ -618,7 +624,7 @@ public final class ClusterProcessorTest extends CacheonixTestCase {
 
    public String toString() {
 
-      return "ClusterProcessorTest{" +
+      return "ClusterProcessorImplTest{" +
               "clusterProcessors=" + clusterProcessors +
               ", processes=" + processes +
               ", servers=" + servers +

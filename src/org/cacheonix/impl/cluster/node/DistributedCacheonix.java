@@ -72,6 +72,7 @@ import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.cluster.ClusterNodeJoinedEvent;
 import org.cacheonix.impl.net.cluster.ClusterNodeLeftEvent;
 import org.cacheonix.impl.net.cluster.ClusterProcessor;
+import org.cacheonix.impl.net.cluster.ClusterProcessorImpl;
 import org.cacheonix.impl.net.cluster.ClusterProcessorKey;
 import org.cacheonix.impl.net.cluster.MulticastClientProcessorKey;
 import org.cacheonix.impl.net.cluster.MulticastMessageListener;
@@ -409,7 +410,7 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
    /**
     * {@inheritDoc}
     */
-   final Cache createAndRegisterCache(final String cacheName, final PartitionedCacheConfiguration cacheConfig,
+   private final Cache createAndRegisterCache(final String cacheName, final PartitionedCacheConfiguration cacheConfig,
            final boolean useConfigurationAsTemplate) {
       //
       // Validate that cache configuration is not a template if it should not be.
@@ -622,9 +623,8 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
       final long gracefulShutdownTimeoutMillis = serverConfig.getGracefulShutdownTimeoutMillis();
       final String clusterName = clusterConfiguration.getName();
 
-      return new ClusterProcessor(clusterName, clock, timer, router, multicastSender, address, homeAloneTimeoutMillis,
-              worstCaseLatencyMillis,
-              gracefulShutdownTimeoutMillis, clusterSurveyTimeoutMillis, clusterAnnouncementTimeoutMillis,
+      return new ClusterProcessorImpl(clusterName, clock, timer, router, multicastSender, address, homeAloneTimeoutMillis,
+              worstCaseLatencyMillis, gracefulShutdownTimeoutMillis, clusterSurveyTimeoutMillis, clusterAnnouncementTimeoutMillis,
               initialClusterUUID);
    }
 
@@ -954,9 +954,9 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
 
             // Forward it directly to the cache processor
             cacheProcessor.enqueue(message);
-         } catch (final InterruptedException ignore) {
+         } catch (final InterruptedException e) {
 
-            ExceptionUtils.ignoreException(ignore, "Nothing we can do here");
+            ExceptionUtils.ignoreException(e, "Nothing we can do here");
             Thread.currentThread().interrupt();
          }
       }
@@ -1044,12 +1044,6 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
          LOG.debug("Received: " + event);
       }
       // TODO: simeshev@cacheonix.org - 2009-11-07 - Decide what to do with it
-   }
-
-
-   public ClusterProcessor getClusterProcessor() {
-
-      return clusterProcessor;
    }
 
 

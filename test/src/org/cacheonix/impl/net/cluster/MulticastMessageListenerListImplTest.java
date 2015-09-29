@@ -21,22 +21,22 @@ import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.util.logging.Logger;
 
 /**
- * MulticastMessageListenerListTest
+ * MulticastMessageListenerListImplTest
  * <p/>
  *
  * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Feb 4, 2010 9:10:40 PM
  */
-public final class MulticastMessageListenerListTest extends CacheonixTestCase {
+public final class MulticastMessageListenerListImplTest extends CacheonixTestCase {
 
    /**
     * Logger.
     *
     * @noinspection UNUSED_SYMBOL, UnusedDeclaration
     */
-   private static final Logger LOG = Logger.getLogger(MulticastMessageListenerListTest.class); // NOPMD
+   private static final Logger LOG = Logger.getLogger(MulticastMessageListenerListImplTest.class); // NOPMD
 
-   private MulticastMessageListenerList subscribers;
+   private MulticastMessageListenerListImpl subscribers;
 
    private TestMulticastMessageListenerList subscriber;
 
@@ -80,7 +80,7 @@ public final class MulticastMessageListenerListTest extends CacheonixTestCase {
 
       super.setUp();
       subscriber = new TestMulticastMessageListenerList();
-      subscribers = new MulticastMessageListenerList();
+      subscribers = new MulticastMessageListenerListImpl();
       assertEquals(0, subscribers.getSubscriberCount());
       subscribers.add(subscriber);
    }
@@ -89,7 +89,7 @@ public final class MulticastMessageListenerListTest extends CacheonixTestCase {
    @Override
    public String toString() {
 
-      return "MulticastMessageListenerListTest{" +
+      return "MulticastMessageListenerListImplTest{" +
               "subscriberList=" + subscribers +
               "} " + super.toString();
    }

@@ -17,16 +17,16 @@ import junit.framework.TestCase;
 import org.cacheonix.impl.cache.distributed.partitioned.BucketTransferCompletedAnnouncement;
 
 /**
- * A tester for {@link AssembledMessage}.
+ * A tester for {@link AssembledMessageImpl}.
  */
-public class AssembledMessageTest extends TestCase {
+public final class AssembledMessageImplTest extends TestCase {
 
 
    private static final long START_FRAME = 7777L;
 
    private BucketTransferCompletedAnnouncement message;
 
-   private AssembledMessage assembledMessage;
+   private AssembledMessageImpl assembledMessage;
 
 
    public void testGetMessage() throws Exception {
@@ -52,7 +52,7 @@ public class AssembledMessageTest extends TestCase {
       super.setUp();
 
       message = new BucketTransferCompletedAnnouncement("cache.name");
-      assembledMessage = new AssembledMessage(message, START_FRAME);
+      assembledMessage = new AssembledMessageImpl(message, START_FRAME);
    }
 
 
@@ -62,5 +62,14 @@ public class AssembledMessageTest extends TestCase {
       message = null;
 
       super.tearDown();
+   }
+
+
+   public String toString() {
+
+      return "AssembledMessageImplTest{" +
+              "message=" + message +
+              ", assembledMessage=" + assembledMessage +
+              '}';
    }
 }

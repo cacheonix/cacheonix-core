@@ -16,10 +16,10 @@ package org.cacheonix.impl.net.cluster;
 import java.io.IOException;
 import java.util.List;
 
+import junit.framework.TestCase;
 import org.cacheonix.TestUtils;
 import org.cacheonix.impl.net.processor.Frame;
 import org.cacheonix.impl.util.AssertionException;
-import junit.framework.TestCase;
 
 /**
  * DeliveryQueue Tester.
@@ -28,13 +28,13 @@ import junit.framework.TestCase;
  * @version 1.0
  * @since <pre>03/30/2008</pre>
  */
-public final class MessageAssemblerTest extends TestCase {
+public final class MessageAssemblerImplTest extends TestCase {
 
    private static final int MULTIPART_OBJECT_SIZE = Frame.MAXIMUM_MCAST_PAYLOAD_LENGTH * 3;
 
    private static final int SINGLE_PART_OBJECT_SIZE = Frame.MAXIMUM_MCAST_PAYLOAD_LENGTH / 3;
 
-   private MessageAssembler messageAssembler;
+   private MessageAssemblerImpl messageAssembler;
 
 
    public void testAddSinglePartMessage() throws IOException {
@@ -98,7 +98,7 @@ public final class MessageAssemblerTest extends TestCase {
       for (final Object part : parts) {
          messageAssembler.add((Frame) part);
       }
-      assertEquals(new AssembledMessage(messageToPartition, -1), messageAssembler.poll());
+      assertEquals(new AssembledMessageImpl(messageToPartition, -1), messageAssembler.poll());
       assertNull(messageAssembler.poll());
    }
 
@@ -106,13 +106,13 @@ public final class MessageAssemblerTest extends TestCase {
    protected void setUp() throws Exception {
 
       super.setUp();
-      messageAssembler = new MessageAssembler();
+      messageAssembler = new MessageAssemblerImpl();
    }
 
 
    public String toString() {
 
-      return "MessageAssemblerTest{" +
+      return "MessageAssemblerImplTest{" +
               "messageAssembler=" + messageAssembler +
               "} " + super.toString();
    }
