@@ -32,7 +32,9 @@ public final class ClusterNodeAddressTest extends TestCase {
 
    private static final InetAddress IP_ADDRESS = IOUtils.getInetAddress(IP_ADDRESS_AS_STRING);
 
-   private static final int TCP_PORT = 9999;
+   private static final int TCP_PORT_1 = 9999;
+
+   private static final int TCP_PORT_2 = 8888;
 
    /**
     * Logger.
@@ -41,19 +43,15 @@ public final class ClusterNodeAddressTest extends TestCase {
     */
    private static final Logger LOG = Logger.getLogger(ClusterNodeAddressTest.class); // NOPMD
 
-   private static final int NUMBER_5 = 5;
-
-   private static final int NUMBER_6 = 6;
-
    private static final String TEST_HOST_NAME = "test_host_name";
 
-   private static final ClusterNodeAddress DIFFERENT_1 = new ClusterNodeAddress(TCP_PORT, TEST_HOST_NAME,
+   private static final ClusterNodeAddress DIFFERENT_1 = new ClusterNodeAddress(TCP_PORT_2, TEST_HOST_NAME,
            new InetAddress[]{IP_ADDRESS});
 
-   private static final ClusterNodeAddress SAME_1 = new ClusterNodeAddress(TCP_PORT, TEST_HOST_NAME,
+   private static final ClusterNodeAddress SAME_1 = new ClusterNodeAddress(TCP_PORT_1, TEST_HOST_NAME,
            new InetAddress[]{IP_ADDRESS});
 
-   private static final ClusterNodeAddress SAME_2 = new ClusterNodeAddress(TCP_PORT, TEST_HOST_NAME,
+   private static final ClusterNodeAddress SAME_2 = new ClusterNodeAddress(TCP_PORT_1, TEST_HOST_NAME,
            new InetAddress[]{IP_ADDRESS});
 
 
@@ -73,7 +71,7 @@ public final class ClusterNodeAddressTest extends TestCase {
 
    public void testGetPort() {
 
-      assertEquals(TCP_PORT, SAME_1.getTcpPort());
+      assertEquals(TCP_PORT_1, SAME_1.getTcpPort());
    }
 
 
@@ -85,7 +83,7 @@ public final class ClusterNodeAddressTest extends TestCase {
 
    public void testHashCode() {
 
-      assertEquals(-1417435877, SAME_1.hashCode());
+      assertEquals(-1930334286, SAME_1.hashCode());
    }
 
 
@@ -109,21 +107,21 @@ public final class ClusterNodeAddressTest extends TestCase {
 
    public void testCreateProcessID() throws IOException {
 
-      final ClusterNodeAddress clusterNodeAddress = ClusterNodeAddress.createAddress(IP_ADDRESS_AS_STRING, TCP_PORT);
+      final ClusterNodeAddress clusterNodeAddress = ClusterNodeAddress.createAddress(IP_ADDRESS_AS_STRING, TCP_PORT_1);
       assertNotNull(clusterNodeAddress);
    }
 
 
    public void testCreateProcessIDWithEmptyListenAddress() throws IOException {
 
-      final ClusterNodeAddress clusterNodeAddress = ClusterNodeAddress.createAddress("", TCP_PORT);
+      final ClusterNodeAddress clusterNodeAddress = ClusterNodeAddress.createAddress("", TCP_PORT_1);
       assertNotNull(clusterNodeAddress);
    }
 
 
-   public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+   public void testSerializeDeserialize() throws IOException {
 
-      final ClusterNodeAddress clusterNodeAddress = ClusterNodeAddress.createAddress(null, TCP_PORT);
+      final ClusterNodeAddress clusterNodeAddress = ClusterNodeAddress.createAddress(null, TCP_PORT_1);
       final SerializerFactory instance = SerializerFactory.getInstance();
       final Serializer serializer = instance.getSerializer(Serializer.TYPE_JAVA);
       final byte[] bytes = serializer.serialize(clusterNodeAddress);
