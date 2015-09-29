@@ -134,7 +134,6 @@ public abstract class ClusterRequest extends Request {
    /**
     * Processes this message while it is at the cluster service that is in a Recovery state.
     *
-    * @throws InterruptedException if the processor thread was shutdown.
     */
    protected abstract void processRecovery();
 
@@ -143,7 +142,6 @@ public abstract class ClusterRequest extends Request {
     * Processes this message while it is at the cluster service that is in a Cleanup state.
     *
     * @throws IOException          if I/O error occurred.
-    * @throws InterruptedException if the processor thread was shutdown.
     */
    protected abstract void processCleanup() throws IOException;
 
