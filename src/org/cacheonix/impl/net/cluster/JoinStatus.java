@@ -119,7 +119,7 @@ public final class JoinStatus {
     *
     * @param joiningToProcess the address the node is joining.
     */
-   public void setJoiningToProcess(final ClusterNodeAddress joiningToProcess) {
+   public void setJoiningTo(final ClusterNodeAddress joiningToProcess) {
 
       this.joiningToProcess = joiningToProcess;
    }

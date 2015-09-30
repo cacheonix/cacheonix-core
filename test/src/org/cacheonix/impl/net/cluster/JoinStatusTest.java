@@ -35,10 +35,10 @@ public final class JoinStatusTest extends CacheonixTestCase {
    private JoinStatus joinStatus = null;
 
 
-   public void testSetGetJoiningToProcess() throws Exception {
+   public void testSetGetJoiningTo() throws Exception {
 
       final ClusterNodeAddress clusterNodeAddress = TestUtils.createTestAddress();
-      joinStatus.setJoiningToProcess(clusterNodeAddress);
+      joinStatus.setJoiningTo(clusterNodeAddress);
       assertEquals(clusterNodeAddress, joinStatus.getJoiningToProcess());
    }
 
@@ -68,7 +68,7 @@ public final class JoinStatusTest extends CacheonixTestCase {
    public void testIsJoining() {
 
       assertFalse(joinStatus.isJoining());
-      joinStatus.setJoiningToProcess(TestUtils.createTestAddress());
+      joinStatus.setJoiningTo(TestUtils.createTestAddress());
       assertTrue(joinStatus.isJoining());
    }
 

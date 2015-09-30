@@ -196,7 +196,7 @@ abstract class OperationalMarker extends MarkerRequest {
 
       // Reset timers
       joinStatus.clear();
-      joinStatus.setJoiningToProcess(member);
+      joinStatus.setJoiningTo(member);
       joinStatus.getTimeout().reset();
 
       // Post join request
