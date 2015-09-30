@@ -50,14 +50,6 @@ abstract class OperationalMarker extends MarkerRequest {
 
    /**
     * Required by Externalizable.
-    */
-   protected OperationalMarker() {
-
-   }
-
-
-   /**
-    * Required by Externalizable.
     *
     * @param wireableType the wireable type.
     * @param clusterUUID  UUID of the cluster
