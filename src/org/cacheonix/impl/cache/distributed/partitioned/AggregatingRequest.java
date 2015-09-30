@@ -77,7 +77,7 @@ public abstract class AggregatingRequest extends CacheDataRequest implements Pre
 
 
    /**
-    * Creates an AggregatingCacheRequest using given wireable type and cache name.
+    * Creates an <code>AggregatingRequest</code> using given wireable type and cache name.
     *
     * @param wireableType unique wireable type. The wireable type should have {@link Wireable#DESTINATION_CACHE_PROCESSOR}.
     * @param cacheName    cache name

@@ -97,7 +97,7 @@ public abstract class KeyRequest extends CacheDataRequest implements Prepareable
 
 
    /**
-    * Creates an AggregatingCacheRequest using given wireable type and cache name.
+    * Creates an <code>KeyRequest</code> using given wireable type and cache name.
     *
     * @param wireableType            unique wireable type. The wireable type should have {@link
     *                                Wireable#DESTINATION_CACHE_PROCESSOR}.

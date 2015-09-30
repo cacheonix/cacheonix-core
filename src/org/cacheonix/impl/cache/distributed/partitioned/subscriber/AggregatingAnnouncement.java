@@ -85,7 +85,7 @@ public abstract class AggregatingAnnouncement extends Request implements Prepare
 
 
    /**
-    * Creates an AggregatingCacheRequest using given wireable type and cache name.
+    * Creates an <code>AggregatingAnnouncement</code> using given wireable type and cache name.
     *
     * @param wireableType unique wireable type. The wireable type should have {@link Wireable#DESTINATION_REPLICATED_STATE}.
     * @param cacheName    cache name
