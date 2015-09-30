@@ -295,6 +295,7 @@ abstract class OperationalMarker extends MarkerRequest {
               "predecessor=" + predecessor +
               ", join=" + joiningNode +
               ", leave=" + leave +
-              "} " + super.toString();
+              ", nextAnnouncementTime=" + nextAnnouncementTime +
+              '}';
    }
 }
