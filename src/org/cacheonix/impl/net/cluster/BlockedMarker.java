@@ -113,7 +113,7 @@ public final class BlockedMarker extends OperationalMarker {
 
          if (self.equals(getLeave())) {
 
-            // Leave marker returned to us
+            // This node is leaving and Leave marker has returned back to us
             if (LOG.isDebugEnabled()) {
                LOG.debug("Leave marker returned to us:" + getLeave());
             }
@@ -122,8 +122,7 @@ public final class BlockedMarker extends OperationalMarker {
             setLeave(null);
          } else {
 
-            // Track progress
-
+            // Track progress of the other node leaving
             if (!processor.getProcessorState().getClusterView().contains(getLeave())) {
                // Leaving node is already gone
                setLeave(null);
@@ -134,7 +133,7 @@ public final class BlockedMarker extends OperationalMarker {
          // Marker is not serving a leave
          if (processor.isShuttingDown()) {
 
-            // We have to leave
+            // The shutdown has been requested and we have to begin the process of gracefully leaving the cluster
             if (LOG.isDebugEnabled()) {
                LOG.debug("This node is shutting down, initiate leave: " + self.getTcpPort());
             }
@@ -145,12 +144,17 @@ public final class BlockedMarker extends OperationalMarker {
 
       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       //
-      // Send
+      // Forward
       //
       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-      // First post marker to guarantee that it is in the queue
+      // The response is not if this node has left becuase it won't be able to process it.
+      // This may cause unnecessary timeouts.
       setResponseRequired(!left);
+
+      // First post marker to guarantee that it is in the queue. This is needed because
+      // the post-processing logic may post shutdown command which may prevent this marker
+      // being forwarded.
       processor.post(this);
 
       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -165,10 +169,9 @@ public final class BlockedMarker extends OperationalMarker {
          }
 
 
-         // Now put the shutdown command. Anything posted after this may not be executed.
+         // Now enqueue the shutdown command. Anything posted after this may not be executed.
          processor.enqueue(new ShutdownClusterProcessorCommand(processor));
 
-//         context.changeState(new ShutdownState(context));
       } else {
          if (isLeaveSet() && !self.equals(getLeave())) {
             // Other left, adjust the cluster view
@@ -182,12 +185,18 @@ public final class BlockedMarker extends OperationalMarker {
    }
 
 
+   /**
+    * {@inheritDoc}
+    */
    public void rollbackJoin() {
 
       clearJoin();
    }
 
 
+   /**
+    * {@inheritDoc}
+    */
    protected void processClusterAnnouncements() {
 
       final ClusterProcessor processor = getClusterProcessor();
@@ -228,7 +237,8 @@ public final class BlockedMarker extends OperationalMarker {
 
       // Check if this is an announcement from our own cluster
 
-      if (strongestObservedClusterNode.getClusterUUID().equals(processor.getProcessorState().getClusterView().getClusterUUID())) {
+      if (strongestObservedClusterNode.getClusterUUID().equals(
+              processor.getProcessorState().getClusterView().getClusterUUID())) {
          return;
       }
 
@@ -410,7 +420,8 @@ public final class BlockedMarker extends OperationalMarker {
                // notify about revival the application and forward the normal marker.
                if (LOG.isDebugEnabled()) {
 
-                  LOG.info("BBBBBBBBBBBBBBBBBBBb We have majority, new member list size is " + processor.getProcessorState().getClusterView().getSize() + ": " + processor.getProcessorState().getClusterView());
+                  LOG.info(
+                          "BBBBBBBBBBBBBBBBBBBb We have majority, new member list size is " + processor.getProcessorState().getClusterView().getSize() + ": " + processor.getProcessorState().getClusterView());
                }
 
                // Blocked cluster has to run through cleanup because there may be gaps in the
@@ -432,14 +443,16 @@ public final class BlockedMarker extends OperationalMarker {
                processor.getProcessorState().setClusterView(joinStatus.getJoiningToCluster());
                processor.getRouter().setClusterUUID(joinStatus.getJoiningToCluster().getClusterUUID());
 
-               processor.getProcessorState().updateLastOperationalClusterView(joinStatus.getLastOperationalClusterView());
+               processor.getProcessorState().updateLastOperationalClusterView(
+                       joinStatus.getLastOperationalClusterView());
 
                processor.getProcessorState().getReplicatedState().reset(joinStatus.getReplicatedState());
                processor.getMessageAssembler().setParts(joinStatus.getMessageAssemblerParts());
                joinStatus.clear();
 
 
-               LOG.debug("Joined blocked cluster, new cluster configuration: " + processor.getProcessorState().getClusterView());
+               LOG.debug(
+                       "Joined blocked cluster, new cluster configuration: " + processor.getProcessorState().getClusterView());
             } else {
 
                // Amend the marker list only if this is not us who is joining
@@ -447,7 +460,8 @@ public final class BlockedMarker extends OperationalMarker {
                   LOG.debug("Add joining to our list: " + blockedMarker);
                }
 
-               processor.getProcessorState().getClusterView().insert(blockedMarker.getPredecessor(), blockedMarker.getJoiningNode());
+               processor.getProcessorState().getClusterView().insert(blockedMarker.getPredecessor(),
+                       blockedMarker.getJoiningNode());
             }
          }
       }
@@ -488,8 +502,10 @@ public final class BlockedMarker extends OperationalMarker {
 
                   // Create marker list
 
-                  final MarkerListRequest markerListRequest = new MarkerListRequest(self, processor.getProcessorState().getClusterView(),
-                          processor.getProcessorState().getLastOperationalClusterView(), processor.getProcessorState().getReplicatedState(),
+                  final MarkerListRequest markerListRequest = new MarkerListRequest(self,
+                          processor.getProcessorState().getClusterView(),
+                          processor.getProcessorState().getLastOperationalClusterView(),
+                          processor.getProcessorState().getReplicatedState(),
                           processor.getMessageAssembler().getParts());
                   markerListRequest.setReceiver(joiningNodeAddress);
 
@@ -530,7 +546,8 @@ public final class BlockedMarker extends OperationalMarker {
 
             // Reached next announcement time
 
-            blockedMarker.setNextAnnouncementTime(currentTime.add(processor.getProcessorState().getClusterAnnouncementTimeoutMillis()));
+            blockedMarker.setNextAnnouncementTime(
+                    currentTime.add(processor.getProcessorState().getClusterAnnouncementTimeoutMillis()));
             processor.announceCluster(false);
          }
       }
@@ -544,7 +561,8 @@ public final class BlockedMarker extends OperationalMarker {
          // Stayed alone enough - switch to operational mode
          if (LOG.isDebugEnabled()) {
 
-            LOG.debug("Found ourselves alone, begin cleanup: " + self + ", clusterView: " + processor.getProcessorState().getClusterView());
+            LOG.debug(
+                    "Found ourselves alone, begin cleanup: " + self + ", clusterView: " + processor.getProcessorState().getClusterView());
          }
 
          beginCleanup();
