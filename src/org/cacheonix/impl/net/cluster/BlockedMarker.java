@@ -202,7 +202,6 @@ public final class BlockedMarker extends OperationalMarker {
       final ClusterProcessor processor = getClusterProcessor();
 
       final JoinStatus joinStatus = processor.getProcessorState().getJoinStatus();
-      final ClusterNodeAddress self = processor.getAddress();
 
       final ObservedClusterNode strongestObservedClusterNode = joinStatus.getStrongestObservedClusterNode();
       if (strongestObservedClusterNode == null) {
@@ -284,6 +283,7 @@ public final class BlockedMarker extends OperationalMarker {
 
                // Check if we are bigger then the other guy. The other guy will
                // try to join us after it hears our announcement.
+               final ClusterNodeAddress self = processor.getAddress();
                if (self.compareTo(theirSenderAddress) < 0) {
 
                   // We are smaller then the other guy, join
