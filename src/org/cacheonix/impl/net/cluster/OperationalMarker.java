@@ -175,9 +175,9 @@ abstract class OperationalMarker extends MarkerRequest {
    /**
     * Initiates join process to the member in the cluster announcement.
     *
-    * @param joinToMember address of the member to join
+    * @param member address of the member to join
     */
-   protected final void initiateJoinTo(final ClusterNodeAddress joinToMember) {
+   protected final void initiateJoinTo(final ClusterNodeAddress member) {
 
       final ClusterProcessor processor = getClusterProcessor();
 
@@ -187,21 +187,21 @@ abstract class OperationalMarker extends MarkerRequest {
       // we joined a blocked cluster and cleaned the join status. We have to check if the
       // member is not in the cluster view. We have to check for this.
 
-      if (processor.getProcessorState().getClusterView().contains(joinToMember)) {
+      if (processor.getProcessorState().getClusterView().contains(member)) {
          return;
       }
 
 
-      LOG.debug("Initiating join to: " + joinToMember);
+      LOG.debug("Initiating join to: " + member);
 
       // Reset timers
       joinStatus.clear();
-      joinStatus.setJoiningToProcess(joinToMember);
+      joinStatus.setJoiningToProcess(member);
       joinStatus.getTimeout().reset();
 
       // Post join request
 
-      final JoinRequest joinRequest = new JoinRequest(joinToMember);
+      final JoinRequest joinRequest = new JoinRequest(member);
       processor.post(joinRequest);
 
       processor.getProcessorState().getHomeAloneTimeout().reset();
