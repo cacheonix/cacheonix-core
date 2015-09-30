@@ -24,6 +24,8 @@ import org.cacheonix.impl.configuration.ClusterConfiguration;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.processor.UUID;
 
+import static org.cacheonix.impl.configuration.ConfigurationConstants.DEFAULT_JOIN_TIMEOUT_MILLIS;
+
 /**
  * JoinStatus Tester.
  *
@@ -61,7 +63,7 @@ public final class JoinStatusTest extends CacheonixTestCase {
 
    public void testGetTimeout() throws Exception {
 
-      assertEquals(JoinStatus.JOINT_TIMEOUT_MILLIS, joinStatus.getTimeout().getDuration());
+      assertEquals(DEFAULT_JOIN_TIMEOUT_MILLIS, joinStatus.getTimeout().getDuration());
    }
 
 

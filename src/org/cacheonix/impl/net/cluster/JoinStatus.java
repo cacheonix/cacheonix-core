@@ -18,11 +18,12 @@ import java.util.List;
 
 import org.cacheonix.impl.cluster.node.state.ReplicatedState;
 import org.cacheonix.impl.configuration.ClusterConfiguration;
-import org.cacheonix.impl.configuration.ConfigurationConstants;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.processor.Frame;
 import org.cacheonix.impl.util.logging.Logger;
 import org.cacheonix.impl.util.time.Timeout;
+
+import static org.cacheonix.impl.configuration.ConfigurationConstants.DEFAULT_JOIN_TIMEOUT_MILLIS;
 
 /**
  * Join status is a bean that holds information related to join process that a process in Blocked state maybe
@@ -42,12 +43,6 @@ public final class JoinStatus {
 
 
    /**
-    * Time to wait for a member that we tried to join to respond.
-    */
-   public static final long JOINT_TIMEOUT_MILLIS = ConfigurationConstants.DEFAULT_JOIN_TIMEOUT_MILLIS;
-
-
-   /**
     * Process that we are trying to join.
     */
    private ClusterNodeAddress joiningToProcess = null;
@@ -61,7 +56,7 @@ public final class JoinStatus {
    /**
     * A timeout to join.
     */
-   private final Timeout timeout = new Timeout(JOINT_TIMEOUT_MILLIS);
+   private final Timeout timeout = new Timeout(DEFAULT_JOIN_TIMEOUT_MILLIS);
 
    /**
     * Timeout to wait to identify all available Cacheonix nodes before stating a join procedure.
@@ -216,7 +211,7 @@ public final class JoinStatus {
     * has expired, will clear joining status and return <code>false</code>.
     *
     * @return <code>true</code> if joining. Returns <code>false</code> if not joining. If was joining but the timeout
-    *         has expired, will clear joining status and return <code>false</code>.
+    * has expired, will clear joining status and return <code>false</code>.
     */
    public boolean isJoining() {
 
