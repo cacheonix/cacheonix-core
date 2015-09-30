@@ -177,7 +177,7 @@ abstract class OperationalMarker extends MarkerRequest {
     *
     * @param joinToMember address of the member to join
     */
-   protected final void initiateJoin(final ClusterNodeAddress joinToMember) {
+   protected final void initiateJoinTo(final ClusterNodeAddress joinToMember) {
 
       final ClusterProcessor processor = getClusterProcessor();
 

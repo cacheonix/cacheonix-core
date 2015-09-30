@@ -276,12 +276,12 @@ public final class MulticastMarker extends OperationalMarker {
       final int theirMarkerListSize = strongestObservedClusterNode.getMarkerListSize();
       if (ourSize < theirMarkerListSize) {
 
-         initiateJoin(strongestObservedClusterNode.getSenderAddress());
+         initiateJoinTo(strongestObservedClusterNode.getSenderAddress());
       } else if (ourSize == theirMarkerListSize) {
 
          if (strongestObservedClusterNode.getRepresentative().compareTo(clusterView.getRepresentative()) > 0) {
 
-            initiateJoin(strongestObservedClusterNode.getSenderAddress());
+            initiateJoinTo(strongestObservedClusterNode.getSenderAddress());
          }
       }
    }

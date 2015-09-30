@@ -253,7 +253,7 @@ public final class BlockedMarker extends OperationalMarker {
       if (strongestObservedClusterNode.isOperationalCluster()) {
 
          // This node is blocked and their cluster is operational
-         initiateJoin(theirSenderAddress);
+         initiateJoinTo(theirSenderAddress);
       } else {
 
          // Do we have members other than us?
@@ -270,7 +270,7 @@ public final class BlockedMarker extends OperationalMarker {
                if (ourRepresentative.compareTo(theirRepresentative) < 0) {
 
                   // Their representative is bigger then ours, join them
-                  initiateJoin(theirSenderAddress);
+                  initiateJoinTo(theirSenderAddress);
                }
             }
          } else {
@@ -279,7 +279,7 @@ public final class BlockedMarker extends OperationalMarker {
             if (theirMarkerListSize > 1) {
 
                // The announcer is not a singleton. Join the existing ring.
-               initiateJoin(theirSenderAddress);
+               initiateJoinTo(theirSenderAddress);
             } else {
 
                // Check if we are bigger then the other guy. The other guy will
@@ -287,7 +287,7 @@ public final class BlockedMarker extends OperationalMarker {
                if (self.compareTo(theirSenderAddress) < 0) {
 
                   // We are smaller then the other guy, join
-                  initiateJoin(theirSenderAddress);
+                  initiateJoinTo(theirSenderAddress);
                }
             }
          }
