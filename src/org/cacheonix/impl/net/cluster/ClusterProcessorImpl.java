@@ -87,7 +87,7 @@ public final class ClusterProcessorImpl extends AbstractRequestProcessor impleme
    /**
     * A timeout to control loss of a marker.
     */
-   private final ActionableTimeout obtainMarkerTimeout;
+   private final ActionableTimeout markerTimeout;
 
    /**
     * A timeout to control leaving cluster gracefully.
@@ -174,7 +174,7 @@ public final class ClusterProcessorImpl extends AbstractRequestProcessor impleme
       this.gracefulShutdownTimeoutMillis = gracefulShutdownTimeoutMillis;
       this.processorState.setWorstCaseLatencyMillis(worstCaseLatencyMillis);
       this.processorState.setClusterView(new ClusterView(initialClusterUUID, self));
-      this.obtainMarkerTimeout = new ObtainMulticastMarkerTimeout(this);
+      this.markerTimeout = new ObtainMulticastMarkerTimeout(this);
       this.multicastSender = multicastSender;
       this.clusterAnnouncer = new ClusterAnnouncer(clock, this.multicastSender, clusterName, self);
       this.processorState.setJoinStatus(new JoinStatus(adjustedClusterSurveyTimeoutMillis));
@@ -407,7 +407,7 @@ public final class ClusterProcessorImpl extends AbstractRequestProcessor impleme
       leaveTimeout.get().shutdown();
 
       // Shutdown marker timeout
-      obtainMarkerTimeout.shutdown();
+      markerTimeout.shutdown();
 
       // Shutdown message processor
       super.shutdown();
@@ -498,9 +498,9 @@ public final class ClusterProcessorImpl extends AbstractRequestProcessor impleme
    /**
     * {@inheritDoc}
     */
-   public ActionableTimeout getObtainMarkerTimeout() {
+   public void cancelMarkerTimeout() {
 
-      return obtainMarkerTimeout;
+      markerTimeout.cancel();
    }
 
 

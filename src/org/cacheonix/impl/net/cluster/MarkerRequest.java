@@ -86,13 +86,14 @@ public abstract class MarkerRequest extends ClusterRequest {
       processor.getProcessorState().incrementMarkerCounter();
 
       // Stop timeout
-      processor.getObtainMarkerTimeout().cancel();
+      processor.cancelMarkerTimeout();
 
       try {
 
          super.execute();
       } finally {
-         processor.getObtainMarkerTimeout().reset();
+
+         processor.cancelMarkerTimeout();
       }
    }
 

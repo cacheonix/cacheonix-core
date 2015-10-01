@@ -22,7 +22,6 @@ import org.cacheonix.impl.cache.distributed.partitioned.CacheProcessor;
 import org.cacheonix.impl.net.multicast.server.MulticastServerListener;
 import org.cacheonix.impl.net.processor.Frame;
 import org.cacheonix.impl.net.processor.RequestProcessor;
-import org.cacheonix.impl.util.thread.ActionableTimeout;
 
 /**
  * A processor responsible for executing reliable multicast messages.
@@ -77,7 +76,10 @@ public interface ClusterProcessor extends RequestProcessor, MulticastServerListe
 
    boolean isShuttingDown();
 
-   ActionableTimeout getObtainMarkerTimeout();
+   /**
+    * Stops waiting for a marker.
+    */
+   void cancelMarkerTimeout();
 
    /**
     * Delivers assembled requests accumulated in the request assembler.
