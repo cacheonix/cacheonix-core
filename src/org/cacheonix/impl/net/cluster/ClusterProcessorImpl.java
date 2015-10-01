@@ -177,7 +177,7 @@ public final class ClusterProcessorImpl extends AbstractRequestProcessor impleme
       this.markerTimeout = new ObtainMulticastMarkerTimeout(this);
       this.multicastSender = multicastSender;
       this.clusterAnnouncer = new ClusterAnnouncer(clock, this.multicastSender, clusterName, self);
-      this.processorState.setJoinStatus(new JoinStatus(adjustedClusterSurveyTimeoutMillis));
+      this.processorState.setJoinStatus(new JoinStatusImpl(adjustedClusterSurveyTimeoutMillis));
       this.processorState.getHomeAloneTimeout().reset();
       this.reset();
    }

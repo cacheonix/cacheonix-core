@@ -32,9 +32,9 @@ import static org.cacheonix.impl.configuration.ConfigurationConstants.DEFAULT_JO
  * @author simeshev@cacheonix.org
  * @since <pre>04/26/2008</pre>
  */
-public final class JoinStatusTest extends CacheonixTestCase {
+public final class JoinStatusImplTest extends CacheonixTestCase {
 
-   private JoinStatus joinStatus = null;
+   private JoinStatusImpl joinStatus = null;
 
 
    public void testSetGetJoiningTo() throws Exception {
@@ -92,7 +92,7 @@ public final class JoinStatusTest extends CacheonixTestCase {
    protected void setUp() throws Exception {
 
       super.setUp();
-      joinStatus = new JoinStatus(ClusterConfiguration.DEFAULT_CLUSTER_SURVEY_TIMEOUT_MILLS);
+      joinStatus = new JoinStatusImpl(ClusterConfiguration.DEFAULT_CLUSTER_SURVEY_TIMEOUT_MILLS);
    }
 
 
@@ -111,7 +111,7 @@ public final class JoinStatusTest extends CacheonixTestCase {
 
    public String toString() {
 
-      return "JoinStatusTest{" +
+      return "JoinStatusImplTest{" +
               "joinStatus=" + joinStatus +
               "} " + super.toString();
    }

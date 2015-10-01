@@ -23,6 +23,8 @@ public final class TestConstants {
 
    public static final int PORT_7676 = 7676;
 
+   public static final int PORT_7677 = 7677;
+
    public static final String MULTICAST_ADDRESS = "228.0.0.1";
 
    public static final int MULTICAST_PORT = 9999;
