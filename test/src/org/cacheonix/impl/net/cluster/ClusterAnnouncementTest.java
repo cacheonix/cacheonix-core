@@ -15,6 +15,7 @@ package org.cacheonix.impl.net.cluster;
 
 import java.io.IOException;
 
+import junit.framework.TestCase;
 import org.cacheonix.TestConstants;
 import org.cacheonix.TestUtils;
 import org.cacheonix.impl.net.ClusterNodeAddress;
@@ -23,7 +24,6 @@ import org.cacheonix.impl.net.processor.UUID;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
 import org.cacheonix.impl.net.serializer.Wireable;
-import junit.framework.TestCase;
 
 /**
  * ClusterAnnouncement Tester.
@@ -38,7 +38,7 @@ public final class ClusterAnnouncementTest extends TestCase {
 
    private static final int MARKER_LIST_SIZE = 2;
 
-   private static final int PORT = TestConstants.PORT;
+   private static final int PORT = TestConstants.PORT_7676;
 
    private ClusterAnnouncement clusterAnnouncement;
 

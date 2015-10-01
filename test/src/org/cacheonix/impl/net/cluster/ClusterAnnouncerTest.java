@@ -53,7 +53,7 @@ public final class ClusterAnnouncerTest extends CacheonixTestCase {
 
    public void testAnnounce() throws IOException, ClassNotFoundException {
 
-      announcer.announce(UUID.randomUUID(), TestUtils.createTestAddress(TestConstants.PORT + 1), 2, true);
+      announcer.announce(UUID.randomUUID(), TestUtils.createTestAddress(TestConstants.PORT_7676 + 1), 2, true);
 
       final Frame frame = multicastSender.getFrame();
       assertEquals(-1L, frame.getSequenceNumber());
@@ -71,7 +71,7 @@ public final class ClusterAnnouncerTest extends CacheonixTestCase {
 
       super.setUp();
       multicastSender = new TestMulticastSender();
-      clusterNodeAddress = TestUtils.createTestAddress(TestConstants.PORT);
+      clusterNodeAddress = TestUtils.createTestAddress(TestConstants.PORT_7676);
       announcer = new ClusterAnnouncer(getClock(), multicastSender, TEST_CLUSTER_NAME, clusterNodeAddress);
    }
 

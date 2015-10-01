@@ -39,11 +39,11 @@ import org.cacheonix.impl.util.AssertionException;
  */
 public final class ClusterViewTest extends CacheonixTestCase {
 
-   private static final ClusterNodeAddress PROCESS_ID_0 = TestUtils.createTestAddress(TestConstants.PORT);
+   private static final ClusterNodeAddress PROCESS_ID_0 = TestUtils.createTestAddress(TestConstants.PORT_7676);
 
-   private static final ClusterNodeAddress PROCESS_ID_1 = TestUtils.createTestAddress(TestConstants.PORT + 1);
+   private static final ClusterNodeAddress PROCESS_ID_1 = TestUtils.createTestAddress(TestConstants.PORT_7676 + 1);
 
-   private static final ClusterNodeAddress PROCESS_ID_2 = TestUtils.createTestAddress(TestConstants.PORT + 2);
+   private static final ClusterNodeAddress PROCESS_ID_2 = TestUtils.createTestAddress(TestConstants.PORT_7676 + 2);
 
    private ClusterView clusterView;
 

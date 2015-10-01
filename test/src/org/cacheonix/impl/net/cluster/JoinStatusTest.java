@@ -98,9 +98,9 @@ public final class JoinStatusTest extends CacheonixTestCase {
 
    private static ClusterView createClusterView() {
 
-      final ClusterNodeAddress proc0 = TestUtils.createTestAddress(TestConstants.PORT);
-      final ClusterNodeAddress proc1 = TestUtils.createTestAddress(TestConstants.PORT + 1);
-      final ClusterNodeAddress proc2 = TestUtils.createTestAddress(TestConstants.PORT + 2);
+      final ClusterNodeAddress proc0 = TestUtils.createTestAddress(TestConstants.PORT_7676);
+      final ClusterNodeAddress proc1 = TestUtils.createTestAddress(TestConstants.PORT_7676 + 1);
+      final ClusterNodeAddress proc2 = TestUtils.createTestAddress(TestConstants.PORT_7676 + 2);
       final List<JoiningNode> list = new ArrayList<JoiningNode>(3);
       list.add(new JoiningNode(proc0));
       list.add(new JoiningNode(proc1));

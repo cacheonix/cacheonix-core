@@ -15,13 +15,13 @@ package org.cacheonix.impl.net.cluster;
 
 import java.io.IOException;
 
+import junit.framework.TestCase;
 import org.cacheonix.TestConstants;
 import org.cacheonix.TestUtils;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
 import org.cacheonix.impl.net.serializer.Wireable;
-import junit.framework.TestCase;
 
 /**
  * GetClusterViewSizeRequest Tester.
@@ -83,7 +83,7 @@ public final class GetClusterViewSizeRequestTest extends TestCase {
 
       super.setUp();
 
-      address = TestUtils.createTestAddress(TestConstants.PORT);
+      address = TestUtils.createTestAddress(TestConstants.PORT_7676);
 
       message = new GetClusterViewSizeRequest();
       message.setSender(address);

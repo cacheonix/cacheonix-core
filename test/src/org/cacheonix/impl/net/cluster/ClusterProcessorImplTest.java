@@ -61,7 +61,7 @@ public final class ClusterProcessorImplTest extends CacheonixTestCase {
     */
    private static final Logger LOG = Logger.getLogger(ClusterProcessorImplTest.class); // NOPMD
 
-   private static final int BASE_TCP_PORT = TestConstants.PORT;
+   private static final int BASE_TCP_PORT = TestConstants.PORT_7676;
 
    private static final int MULTICAST_PORT = TestConstants.MULTICAST_PORT;
 

@@ -21,9 +21,7 @@ public final class TestConstants {
 
    public static final String LOCALHOST = "127.0.0.1";
 
-   public static final int PORT = 7676;
-
-   public static final int PORT_PLUS_ONE = PORT + 1;
+   public static final int PORT_7676 = 7676;
 
    public static final String MULTICAST_ADDRESS = "228.0.0.1";
 

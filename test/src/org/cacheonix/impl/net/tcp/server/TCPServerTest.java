@@ -43,7 +43,7 @@ public final class TCPServerTest extends CacheonixTestCase {
     */
    private static final Logger LOG = Logger.getLogger(TCPServerTest.class); // NOPMD
 
-   private static final int PORT = TestConstants.PORT;
+   private static final int PORT = TestConstants.PORT_7676;
 
    private static final String LOCALHOST = TestConstants.LOCALHOST;
 

@@ -30,6 +30,7 @@ import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.util.CollectionUtils;
 import org.cacheonix.impl.util.exception.ExceptionUtils;
 
+import static org.cacheonix.TestConstants.PORT_7676;
 import static org.cacheonix.impl.cache.item.BinaryType.BY_REFERERENCE;
 
 /**
@@ -121,7 +122,7 @@ public final class TestUtils {
 
    public static ClusterNodeAddress createTestAddress() {
 
-      return createTestAddress(TestConstants.PORT);
+      return createTestAddress(PORT_7676);
    }
 
 

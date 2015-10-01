@@ -91,7 +91,7 @@ public final class MarkerListRequestTest extends CacheonixTestCase {
 
       super.setUp();
 
-      address = TestUtils.createTestAddress(TestConstants.PORT);
+      address = TestUtils.createTestAddress(TestConstants.PORT_7676);
 
       final ClusterView clusterView = new ClusterView(UUID.randomUUID(), address);
       final ClusterView lastOperationalClusterView = new ClusterView(UUID.randomUUID(), address);
