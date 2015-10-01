@@ -20,6 +20,10 @@ import org.cacheonix.impl.net.processor.Request;
 import org.cacheonix.impl.net.processor.Response;
 import org.cacheonix.impl.util.logging.Logger;
 
+import static org.cacheonix.impl.net.cluster.ClusterProcessorState.STATE_BLOCKED;
+import static org.cacheonix.impl.net.cluster.ClusterProcessorState.STATE_CLEANUP;
+import static org.cacheonix.impl.net.cluster.ClusterProcessorState.STATE_NORMAL;
+import static org.cacheonix.impl.net.cluster.ClusterProcessorState.STATE_RECOVERY;
 import static org.cacheonix.impl.net.processor.Response.RESULT_ERROR;
 
 /**
@@ -73,19 +77,19 @@ public abstract class ClusterRequest extends Request {
 
          switch (processor.getProcessorState().getState()) {
 
-            case ClusterProcessorState.STATE_NORMAL:
+            case STATE_NORMAL:
 
                processNormal();
                break;
-            case ClusterProcessorState.STATE_BLOCKED:
+            case STATE_BLOCKED:
 
                processBlocked();
                break;
-            case ClusterProcessorState.STATE_RECOVERY:
+            case STATE_RECOVERY:
 
                processRecovery();
                break;
-            case ClusterProcessorState.STATE_CLEANUP:
+            case STATE_CLEANUP:
 
                processCleanup();
                break;
@@ -135,7 +139,6 @@ public abstract class ClusterRequest extends Request {
 
    /**
     * Processes this message while it is at the cluster service that is in a Recovery state.
-    *
     */
    protected abstract void processRecovery();
 
@@ -143,7 +146,7 @@ public abstract class ClusterRequest extends Request {
    /**
     * Processes this message while it is at the cluster service that is in a Cleanup state.
     *
-    * @throws IOException          if I/O error occurred.
+    * @throws IOException if I/O error occurred.
     */
    protected abstract void processCleanup() throws IOException;
 
