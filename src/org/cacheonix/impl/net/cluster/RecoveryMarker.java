@@ -21,7 +21,6 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import org.cacheonix.cluster.ClusterState;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.processor.InvalidMessageException;
 import org.cacheonix.impl.net.processor.ReceiverAddress;
@@ -33,6 +32,11 @@ import org.cacheonix.impl.net.serializer.Wireable;
 import org.cacheonix.impl.net.serializer.WireableBuilder;
 import org.cacheonix.impl.util.CollectionUtils;
 import org.cacheonix.impl.util.logging.Logger;
+
+import static org.cacheonix.impl.net.cluster.ClusterProcessorState.STATE_BLOCKED;
+import static org.cacheonix.impl.net.cluster.ClusterProcessorState.STATE_RECOVERY;
+import static org.cacheonix.impl.net.processor.Response.RESULT_ERROR;
+import static org.cacheonix.impl.net.processor.Response.RESULT_SUCCESS;
 
 /**
  * RecoveryMarker
@@ -79,8 +83,8 @@ public final class RecoveryMarker extends MarkerRequest {
 
 
    public RecoveryMarker(final UUID newClusterUUID, final ClusterNodeAddress originator,
-                         final List<JoiningNode> currentList,
-                         final List<JoiningNode> previousList) {
+           final List<JoiningNode> currentList,
+           final List<JoiningNode> previousList) {
 
       super(TYPE_CLUSTER_RECOVERY_MARKER);
       this.setRequiresSameCluster(false);
@@ -177,7 +181,7 @@ public final class RecoveryMarker extends MarkerRequest {
          //noinspection ControlFlowStatementWithoutBraces
          if (LOG.isDebugEnabled()) LOG.debug(errorResult); // NOPMD
 
-         final Response errorResponse = createResponse(ClusterResponse.RESULT_ERROR);
+         final Response errorResponse = createResponse(RESULT_ERROR);
          errorResponse.setResult(errorResult);
          processor.post(errorResponse);
          return;
@@ -196,26 +200,28 @@ public final class RecoveryMarker extends MarkerRequest {
          //noinspection ControlFlowStatementWithoutBraces
          if (LOG.isDebugEnabled()) LOG.debug(errorResult); // NOPMD
 
-         final Response errorResponse = createResponse(ClusterResponse.RESULT_ERROR);
+         final Response errorResponse = createResponse(RESULT_ERROR);
          errorResponse.setResult(errorResult);
          processor.post(errorResponse);
          return;
       }
 
       // Respond with success
-      processor.post(createResponse(ClusterResponse.RESULT_SUCCESS));
+      processor.post(createResponse(RESULT_SUCCESS));
 
       if (LOG.isDebugEnabled()) {
-         LOG.debug("<><><><><><><><><><><><><><> Created recovery state: " + processor.getAddress().getTcpPort() + ", originator: " + originator);
+         LOG.debug(
+                 "<><><><><><><><><><><><><><> Created recovery state: " + processor.getAddress().getTcpPort() + ", originator: " + originator);
       }
 
-      processor.getProcessorState().setState(ClusterProcessorState.STATE_RECOVERY);
+      final int newState = STATE_RECOVERY;
+      processor.getProcessorState().setState(newState);
 
       // Cancel 'home alone' timeout
       processor.getProcessorState().getHomeAloneTimeout().cancel();
 
       // Notify cluster event subscribers
-      notifySubscribersClusterStateChanged(ClusterState.RECONFIGURING);
+      notifySubscribersClusterStateChanged(newState);
 
       // NOTE: simeshev@cacheonix.org - 2010-12-23 - it is possible that a node in a Normal
       // state receives a recovery marker with self as an originator. This may happen when
@@ -258,7 +264,7 @@ public final class RecoveryMarker extends MarkerRequest {
          //noinspection ControlFlowStatementWithoutBraces
          if (LOG.isDebugEnabled()) LOG.debug(errorResult); // NOPMD
 
-         final Response errorResponse = createResponse(ClusterResponse.RESULT_ERROR);
+         final Response errorResponse = createResponse(RESULT_ERROR);
          errorResponse.setResult(errorResult);
          processor.post(errorResponse);
          return;
@@ -266,20 +272,22 @@ public final class RecoveryMarker extends MarkerRequest {
 
 
       // Respond with success
-      processor.post(createResponse(ClusterResponse.RESULT_SUCCESS));
+      processor.post(createResponse(RESULT_SUCCESS));
 
       // Switch to Recovery state
       if (LOG.isDebugEnabled()) {
-         LOG.debug("<><><><><><><><><><><><><><> Created recovery state: " + processor.getAddress().getTcpPort() + ", originator: " + originator);
+         LOG.debug(
+                 "<><><><><><><><><><><><><><> Created recovery state: " + processor.getAddress().getTcpPort() + ", originator: " + originator);
       }
 
-      processor.getProcessorState().setState(ClusterProcessorState.STATE_RECOVERY);
+      final int newState = STATE_RECOVERY;
+      processor.getProcessorState().setState(newState);
 
       // Cancel 'home alone' timeout
       processor.getProcessorState().getHomeAloneTimeout().cancel();
 
       // Notify cluster subscribers
-      notifySubscribersClusterStateChanged(ClusterState.RECONFIGURING);
+      notifySubscribersClusterStateChanged(newState);
 
       // NOTE: simeshev@cacheonix.org - 2010-12-23 - it is possible that a node in a blocked
       // state receives a recovery marker with self as an originator. This may happen when
@@ -321,7 +329,7 @@ public final class RecoveryMarker extends MarkerRequest {
          //noinspection ControlFlowStatementWithoutBraces
          if (LOG.isDebugEnabled()) LOG.debug(errorResult); // NOPMD
 
-         final Response errorResponse = createResponse(ClusterResponse.RESULT_ERROR);
+         final Response errorResponse = createResponse(RESULT_ERROR);
          errorResponse.setResult(errorResult);
          processor.post(errorResponse);
 
@@ -329,7 +337,7 @@ public final class RecoveryMarker extends MarkerRequest {
       }
 
       // Respond with success
-      processor.post(createResponse(ClusterResponse.RESULT_SUCCESS));
+      processor.post(createResponse(RESULT_SUCCESS));
 
       // When a stub receives the marker with a non-empty previousList,
       // it stores Previous list as the marker list
@@ -339,7 +347,9 @@ public final class RecoveryMarker extends MarkerRequest {
             LOG.debug("Store Previous list as the marker list: " + recoveryMarker.previousList);
          }
 
-         processor.getProcessorState().setClusterView(new ClusterView(recoveryMarker.newClusterUUID, recoveryMarker.originator, recoveryMarker.previousList, self));
+         processor.getProcessorState().setClusterView(
+                 new ClusterView(recoveryMarker.newClusterUUID, recoveryMarker.originator, recoveryMarker.previousList,
+                         self));
          processor.getRouter().setClusterUUID(recoveryMarker.newClusterUUID);
       }
 
@@ -358,18 +368,21 @@ public final class RecoveryMarker extends MarkerRequest {
             }
             if (CollectionUtils.same(recoveryMarker.currentList, recoveryMarker.previousList)) {
 
-               LOG.debug("New member list of " + recoveryMarker.currentList.size() + " members has been formed: " + recoveryMarker.currentList);
+               LOG.debug(
+                       "New member list of " + recoveryMarker.currentList.size() + " members has been formed: " + recoveryMarker.currentList);
                // New list formed
                //
                // Check if we have a majority
 
-               if (processor.getProcessorState().getClusterView().hasMajorityOver(processor.getProcessorState().getLastOperationalClusterView()) || processor.getProcessorState().getClusterView().getSize() >= processor.getProcessorState().getTargetMajoritySize()) {
+               if (processor.getProcessorState().getClusterView().hasMajorityOver(
+                       processor.getProcessorState().getLastOperationalClusterView()) || processor.getProcessorState().getClusterView().getSize() >= processor.getProcessorState().getTargetMajoritySize()) {
 
                   // We have majority, begin stage 2 of recovery by creating and forwarding
                   // cleanup marker
                   if (LOG.isDebugEnabled()) {
 
-                     LOG.info("We have majority, new member list size is " + recoveryMarker.currentList.size() + ": " + processor.getProcessorState().getClusterView());
+                     LOG.info(
+                             "We have majority, new member list size is " + recoveryMarker.currentList.size() + ": " + processor.getProcessorState().getClusterView());
                   }
 
                   // Begin cleanup
@@ -380,9 +393,10 @@ public final class RecoveryMarker extends MarkerRequest {
 
                   if (LOG.isDebugEnabled()) {
 
-                     LOG.debug("We do not have majority (target majority size is " + processor.getProcessorState().getTargetMajoritySize()
-                             + ") , new marker list size is " + processor.getProcessorState().getClusterView().getSize()
-                             + ": " + processor.getProcessorState().getClusterView());
+                     LOG.debug(
+                             "We do not have majority (target majority size is " + processor.getProcessorState().getTargetMajoritySize()
+                                     + ") , new marker list size is " + processor.getProcessorState().getClusterView().getSize()
+                                     + ": " + processor.getProcessorState().getClusterView());
                   }
 
                   // Switch to blocked state
@@ -395,18 +409,21 @@ public final class RecoveryMarker extends MarkerRequest {
 
                // Not the same, start another recovery round
                if (LOG.isDebugEnabled()) {
-                  LOG.debug("R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R Not the same, starting another recovery round: " + self.getTcpPort());
+                  LOG.debug(
+                          "R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R Not the same, starting another recovery round: " + self.getTcpPort());
                }
                recoveryMarker.previousList.clear();
                recoveryMarker.previousList.addAll(recoveryMarker.currentList);
-               processor.getProcessorState().setClusterView(new ClusterView(recoveryMarker.newClusterUUID, self, recoveryMarker.previousList, self));
+               processor.getProcessorState().setClusterView(
+                       new ClusterView(recoveryMarker.newClusterUUID, self, recoveryMarker.previousList, self));
                processor.getRouter().setClusterUUID(recoveryMarker.newClusterUUID);
             }
          } else if (self.compareTo(recoveryMarker.originator) > 0) {
 
             // Destroy other recovery marker
             if (LOG.isDebugEnabled()) {
-               LOG.debug("R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-Destroyed other recovery marker: " + recoveryMarker);
+               LOG.debug(
+                       "R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-Destroyed other recovery marker: " + recoveryMarker);
             }
 
             return;
@@ -415,7 +432,8 @@ public final class RecoveryMarker extends MarkerRequest {
             // Not an originator of this recovery round, *our* marker will be destroyed some time
             // later
             if (LOG.isDebugEnabled()) {
-               LOG.debug("Not an originator of this recovery round, *our* marker will be destroyed some time, later: " + self.getTcpPort());
+               LOG.debug(
+                       "Not an originator of this recovery round, *our* marker will be destroyed some time, later: " + self.getTcpPort());
             }
             if (recoveryMarker.previousList.isEmpty()) {
 
@@ -484,7 +502,7 @@ public final class RecoveryMarker extends MarkerRequest {
          //noinspection ControlFlowStatementWithoutBraces
          if (LOG.isDebugEnabled()) LOG.debug(errorResult); // NOPMD
 
-         final Response errorResponse = createResponse(ClusterResponse.RESULT_ERROR);
+         final Response errorResponse = createResponse(RESULT_ERROR);
          errorResponse.setResult(errorResult);
          processor.post(errorResponse);
 
@@ -492,13 +510,14 @@ public final class RecoveryMarker extends MarkerRequest {
       }
 
       // Respond with success
-      processor.post(createResponse(ClusterResponse.RESULT_SUCCESS));
+      processor.post(createResponse(RESULT_SUCCESS));
 
       if (LOG.isDebugEnabled()) {
-         LOG.debug("<><><><><><><><><><><><><><> Created recovery state: " + processor.getAddress().getTcpPort() + ", coordinator: " + originator);
+         LOG.debug(
+                 "<><><><><><><><><><><><><><> Created recovery state: " + processor.getAddress().getTcpPort() + ", coordinator: " + originator);
       }
 
-      processor.getProcessorState().setState(ClusterProcessorState.STATE_RECOVERY);
+      processor.getProcessorState().setState(STATE_RECOVERY);
 
       // NOTE: simeshev@cacheonix.org - 2010-12-23 - it is possible that a node in a Cleanup
       // state receives a recovery marker with self as an originator. This may happen when
@@ -558,6 +577,7 @@ public final class RecoveryMarker extends MarkerRequest {
       processor.post(cleanupMarker);
    }
 
+
    /**
     * Begins blocking the minority cluster by changing state to blocked and sending the blocked marker.
     *
@@ -576,8 +596,8 @@ public final class RecoveryMarker extends MarkerRequest {
       // REVIEWME: simeshev@cacheonix.org - 2008-04-17 -> markerListBeforeRecovery.size() can change
       // after multiple Recovery -> Cleanup -> Recovery
 
-
-      processor.getProcessorState().setState(ClusterProcessorState.STATE_BLOCKED);
+      final int newState = STATE_BLOCKED;
+      processor.getProcessorState().setState(newState);
 
       processor.getProcessorState().setTargetMajoritySize(targetMajorityMarkerListSize);
       processor.getMulticastMessageListeners().notifyNodeBlocked();
@@ -585,10 +605,11 @@ public final class RecoveryMarker extends MarkerRequest {
       processor.getProcessorState().getHomeAloneTimeout().reset();
 
       // Notify cluster event subscribers
-      notifySubscribersClusterStateChanged(ClusterState.BLOCKED);
+      notifySubscribersClusterStateChanged(newState);
 
       // Create and forward new BlockedMarker
-      final BlockedMarker blockedMarker = new BlockedMarker(processor.getProcessorState().getClusterView().getClusterUUID());
+      final BlockedMarker blockedMarker = new BlockedMarker(
+              processor.getProcessorState().getClusterView().getClusterUUID());
 
       blockedMarker.setReceiver(processor.getProcessorState().getClusterView().getNextElement());
       processor.post(blockedMarker);
@@ -764,7 +785,7 @@ public final class RecoveryMarker extends MarkerRequest {
          if (message instanceof ClusterResponse) {
 
             final ClusterResponse response = (ClusterResponse) message;
-            if (response.getResultCode() != ClusterResponse.RESULT_SUCCESS) {
+            if (response.getResultCode() != RESULT_SUCCESS) {
 
                // Forward to the next node failed - handle next process failure.
 
@@ -783,10 +804,12 @@ public final class RecoveryMarker extends MarkerRequest {
 
                   if (processor.getProcessorState().getClusterView().contains(failedProcess)) {
 
-                     final ClusterNodeAddress processNextAfterFailed = processor.getProcessorState().getClusterView().getNextElement(failedProcess);
+                     final ClusterNodeAddress processNextAfterFailed = processor.getProcessorState().getClusterView().getNextElement(
+                             failedProcess);
 
                      if (LOG.isDebugEnabled()) {
-                        LOG.debug("Amend current list by removing the failed process " + failedProcess.getTcpPort() + ", failed request: " + getRequest() + ", response: " + message);
+                        LOG.debug(
+                                "Amend current list by removing the failed process " + failedProcess.getTcpPort() + ", failed request: " + getRequest() + ", response: " + message);
                      }
 
                      // Check if the failed process was originator
@@ -798,7 +821,8 @@ public final class RecoveryMarker extends MarkerRequest {
                         // Originator is gone with the next-process failure,
                         // we have to initiate a new recovery round
                         if (LOG.isDebugEnabled()) {
-                           LOG.debug("RRRRRRRRRRRRRRRRRRRRRRRRRRRRRR Originator " + failedProcess + " is gone with the next-process failure. Initiating a new recovery round");
+                           LOG.debug(
+                                   "RRRRRRRRRRRRRRRRRRRRRRRRRRRRRR Originator " + failedProcess + " is gone with the next-process failure. Initiating a new recovery round");
                         }
 
                         processor.getProcessorState().setRecoveryOriginator(true);
@@ -835,7 +859,8 @@ public final class RecoveryMarker extends MarkerRequest {
 
                      // Ignore failure if the cluster has already adjusted
                      // to the loss of the member
-                     LOG.debug("Ignored failure because cluster has already adjusted to the loss of the member: " + message);
+                     LOG.debug(
+                             "Ignored failure because cluster has already adjusted to the loss of the member: " + message);
                   }
                }
             }

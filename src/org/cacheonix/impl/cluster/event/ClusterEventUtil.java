@@ -77,16 +77,16 @@ public class ClusterEventUtil {
     * @return user cluster state.
     * @throws IllegalArgumentException if the state machine cannot be converted to the user cluster state.
     */
-   private static ClusterState convertStateMachineToUserClusterState(final int state) throws IllegalArgumentException {
+   public static ClusterState convertStateMachineToUserClusterState(final int state) throws IllegalArgumentException {
 
       switch (state) {
          case ClusterProcessorState.STATE_BLOCKED:
             return ClusterState.BLOCKED;
-         case ClusterProcessorState.STATE_CLEANUP:
-            return ClusterState.RECONFIGURING;
          case ClusterProcessorState.STATE_NORMAL:
             return ClusterState.OPERATIONAL;
          case ClusterProcessorState.STATE_RECOVERY:
+            return ClusterState.RECONFIGURING;
+         case ClusterProcessorState.STATE_CLEANUP:
             return ClusterState.RECONFIGURING;
          default:
             throw new IllegalArgumentException("Unknown state: " + state);

@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Set;
 
-import org.cacheonix.cluster.ClusterState;
 import org.cacheonix.impl.clock.Time;
 import org.cacheonix.impl.lock.LockOwner;
 import org.cacheonix.impl.lock.LockQueue;
@@ -40,6 +39,8 @@ import org.cacheonix.impl.util.Assert;
 import org.cacheonix.impl.util.array.HashMap;
 import org.cacheonix.impl.util.array.ObjectObjectProcedure;
 import org.cacheonix.impl.util.logging.Logger;
+
+import static org.cacheonix.impl.net.cluster.ClusterProcessorState.STATE_NORMAL;
 
 /**
  * Multicast marker. The multicast marker circulates in the ring in normal mode.
@@ -261,7 +262,8 @@ public final class MulticastMarker extends OperationalMarker {
 
       // By now this node's cluster UUID might have changed
 
-      if (processor.getProcessorState().getClusterView().getClusterUUID().equals(strongestObservedClusterNode.getClusterUUID())) {
+      if (processor.getProcessorState().getClusterView().getClusterUUID().equals(
+              strongestObservedClusterNode.getClusterUUID())) {
          return;
       }
 
@@ -395,7 +397,8 @@ public final class MulticastMarker extends OperationalMarker {
 
             processor.getProcessorState().getClusterView().remove(getLeave());
 
-            processor.getProcessorState().updateLastOperationalClusterView(processor.getProcessorState().getClusterView());
+            processor.getProcessorState().updateLastOperationalClusterView(
+                    processor.getProcessorState().getClusterView());
             processor.notifyNodesLeft(nodesLeft);
 
             // Post a message to self with a message ID equal the number reserved for the leave
@@ -486,7 +489,7 @@ public final class MulticastMarker extends OperationalMarker {
     * @param lockOwner    the lock owner.
     */
    private void beginReleasingExpiredLocks(final LockQueueKey lockQueueKey, final LockQueue lockQueue,
-                                           final LockOwner lockOwner) {
+           final LockOwner lockOwner) {
 
       // Nothing to release
       if (lockOwner == null) {
@@ -548,9 +551,11 @@ public final class MulticastMarker extends OperationalMarker {
 
                // Insert joined to the cluster view
 
-               clusterProcessor.getProcessorState().getClusterView().insert(multicastMarker.getPredecessor(), joiningNode);
+               clusterProcessor.getProcessorState().getClusterView().insert(multicastMarker.getPredecessor(),
+                       joiningNode);
 
-               clusterProcessor.getProcessorState().updateLastOperationalClusterView(clusterProcessor.getProcessorState().getClusterView());
+               clusterProcessor.getProcessorState().updateLastOperationalClusterView(
+                       clusterProcessor.getProcessorState().getClusterView());
 
                // Sends a join mcast announcement to self to support ordering of
                // configuration changes with messages (a total order).
@@ -572,7 +577,8 @@ public final class MulticastMarker extends OperationalMarker {
 
             // Reached next announcement time
 
-            multicastMarker.setNextAnnouncementTime(currentTime.add(clusterProcessor.getProcessorState().getClusterAnnouncementTimeoutMillis()));
+            multicastMarker.setNextAnnouncementTime(
+                    currentTime.add(clusterProcessor.getProcessorState().getClusterAnnouncementTimeoutMillis()));
             clusterProcessor.announceCluster(true);
          }
       }
@@ -609,7 +615,8 @@ public final class MulticastMarker extends OperationalMarker {
 
                if (LOG.isDebugEnabled()) {
 
-                  LOG.debug("Current decreased, re-transmitting from " + seqNumBegin + " to " + seqNumEnd + ". Current: " + multicastMarker.current + ", saved Current: " + clusterProcessor.getProcessorState().getCurrent() + ", messagesAllowedToSend: " + messagesAllowedToSend);
+                  LOG.debug(
+                          "Current decreased, re-transmitting from " + seqNumBegin + " to " + seqNumEnd + ". Current: " + multicastMarker.current + ", saved Current: " + clusterProcessor.getProcessorState().getCurrent() + ", messagesAllowedToSend: " + messagesAllowedToSend);
                }
 
                final ReceivedList receivedList = clusterProcessor.getProcessorState().getReceivedList();
@@ -674,7 +681,8 @@ public final class MulticastMarker extends OperationalMarker {
             if (highestContinuousNumberReceived < multicastMarker.current) {
 
                if (LOG.isDebugEnabled()) {
-                  LOG.debug("Requesting retransmit, highestContinuousNumberReceived: " + highestContinuousNumberReceived + ", marker.current: " + multicastMarker.current + ", marker: " + multicastMarker);
+                  LOG.debug(
+                          "Requesting retransmit, highestContinuousNumberReceived: " + highestContinuousNumberReceived + ", marker.current: " + multicastMarker.current + ", marker: " + multicastMarker);
                }
 
                // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -760,10 +768,12 @@ public final class MulticastMarker extends OperationalMarker {
          // Current is not set, begin delivery round (2)
          //
          // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-         if (!self.equals(multicastMarker.getLeave()) && !clusterProcessor.isShuttingDown() && highestContinuousNumberReceived != null && (highestSequenceNumberDelivered == null || highestContinuousNumberReceived > highestSequenceNumberDelivered)) {
+         if (!self.equals(
+                 multicastMarker.getLeave()) && !clusterProcessor.isShuttingDown() && highestContinuousNumberReceived != null && (highestSequenceNumberDelivered == null || highestContinuousNumberReceived > highestSequenceNumberDelivered)) {
 
             if (LOG.isDebugEnabled()) {
-               LOG.debug("Current is not set, begin delivery round, highestSequenceNumberDelivered (Di): " + highestSequenceNumberDelivered + ", highestContinuousNumberReceived (Ri): " + highestContinuousNumberReceived);
+               LOG.debug(
+                       "Current is not set, begin delivery round, highestSequenceNumberDelivered (Di): " + highestSequenceNumberDelivered + ", highestContinuousNumberReceived (Ri): " + highestContinuousNumberReceived);
             }
 
             clusterProcessor.getProcessorState().setCurrent(highestContinuousNumberReceived);
@@ -825,7 +835,8 @@ public final class MulticastMarker extends OperationalMarker {
 
       // NOTE: simeshev@cacheonix.org - 2010-08-25 - Join request can be handled only when there
       // is no delivery round or all frames in the current delivery round has been delivered.
-      if (multicastMarker.originator == null || (multicastMarker.current != null && multicastMarker.previous != null && multicastMarker.current.equals(multicastMarker.previous))) {
+      if (multicastMarker.originator == null || (multicastMarker.current != null && multicastMarker.previous != null && multicastMarker.current.equals(
+              multicastMarker.previous))) {
 
          // NOPMD
          final LinkedList<JoiningNode> joinRequests = clusterProcessor.getProcessorState().getJoinRequests();
@@ -851,7 +862,8 @@ public final class MulticastMarker extends OperationalMarker {
 
                      clusterProcessor.getProcessorState().getClusterView().insert(self, joiningNode);
 
-                     clusterProcessor.getProcessorState().updateLastOperationalClusterView(clusterProcessor.getProcessorState().getClusterView());
+                     clusterProcessor.getProcessorState().updateLastOperationalClusterView(
+                             clusterProcessor.getProcessorState().getClusterView());
 
                      // Set up join in the marker
                      final long joinSeqNum = multicastMarker.seqNum + 1;
@@ -863,8 +875,10 @@ public final class MulticastMarker extends OperationalMarker {
 
                      // Create marker list
 
-                     final MarkerListRequest markerListRequest = new MarkerListRequest(self, clusterProcessor.getProcessorState().getClusterView(),
-                             clusterProcessor.getProcessorState().getLastOperationalClusterView(), clusterProcessor.getProcessorState().getReplicatedState(),
+                     final MarkerListRequest markerListRequest = new MarkerListRequest(self,
+                             clusterProcessor.getProcessorState().getClusterView(),
+                             clusterProcessor.getProcessorState().getLastOperationalClusterView(),
+                             clusterProcessor.getProcessorState().getReplicatedState(),
                              clusterProcessor.getMessageAssembler().getParts());
                      markerListRequest.setReceiver(joiningNodeAddress);
 
@@ -1099,13 +1113,14 @@ public final class MulticastMarker extends OperationalMarker {
          joinStatus.clear();
 
          // Change state
-         processor.getProcessorState().setState(ClusterProcessorState.STATE_NORMAL);
+         final int newState = STATE_NORMAL;
+         processor.getProcessorState().setState(newState);
 
          // Cancel 'home alone' timeout
          processor.getProcessorState().getHomeAloneTimeout().cancel();
 
          // Notify cluster event subscribers
-         notifySubscribersClusterStateChanged(ClusterState.OPERATIONAL);
+         notifySubscribersClusterStateChanged(newState);
 
 
          // Calculate nodes left and joined
@@ -1240,13 +1255,14 @@ public final class MulticastMarker extends OperationalMarker {
       processor.getProcessorState().getJoinStatus().clear();
 
       // Change state
-      processor.getProcessorState().setState(ClusterProcessorState.STATE_NORMAL);
+      final int newState = STATE_NORMAL;
+      processor.getProcessorState().setState(newState);
 
       // Cancel 'home alone' timeout
       processor.getProcessorState().getHomeAloneTimeout().cancel();
 
       // Notify cluster event subscribers
-      notifySubscribersClusterStateChanged(ClusterState.OPERATIONAL);
+      notifySubscribersClusterStateChanged(newState);
 
       // Forward instead of receiving itself to support synchronous delivery of configuration messages.
       final MulticastMarker marker = copy();

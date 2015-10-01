@@ -18,7 +18,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.LinkedList;
 
-import org.cacheonix.cluster.ClusterState;
 import org.cacheonix.impl.clock.Time;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.processor.Response;
@@ -26,6 +25,11 @@ import org.cacheonix.impl.net.processor.UUID;
 import org.cacheonix.impl.net.serializer.Wireable;
 import org.cacheonix.impl.net.serializer.WireableBuilder;
 import org.cacheonix.impl.util.logging.Logger;
+
+import static org.cacheonix.impl.net.cluster.ClusterProcessorState.STATE_BLOCKED;
+import static org.cacheonix.impl.net.cluster.ClusterProcessorState.STATE_CLEANUP;
+import static org.cacheonix.impl.net.processor.Response.RESULT_ERROR;
+import static org.cacheonix.impl.net.processor.Response.RESULT_SUCCESS;
 
 /**
  * Blocked marker is sent in a ring that transitioned from the Recover state to blocked state. The goal of the blocked
@@ -310,7 +314,7 @@ public final class BlockedMarker extends OperationalMarker {
       // the node was alone before joining other cluster.
       if (getProcessor().getAddress().equals(getSender())) {
 
-         getProcessor().post(createResponse(ClusterResponse.RESULT_SUCCESS));
+         getProcessor().post(createResponse(RESULT_SUCCESS));
       } else {
 
          final String errorResult = "Received Blocked marker while in Normal state: " + this;
@@ -318,7 +322,7 @@ public final class BlockedMarker extends OperationalMarker {
          //noinspection ControlFlowStatementWithoutBraces
          if (LOG.isDebugEnabled()) LOG.debug(errorResult); // NOPMD
 
-         final Response errorResponse = createResponse(ClusterResponse.RESULT_ERROR);
+         final Response errorResponse = createResponse(RESULT_ERROR);
          errorResponse.setResult(errorResult);
          getProcessor().post(errorResponse);
       }
@@ -379,11 +383,11 @@ public final class BlockedMarker extends OperationalMarker {
             if (getProcessor().getAddress().equals(getSender())) {
 
                LOG.debug("Destroyed old blocked marker: " + this);
-               getProcessor().post(createResponse(ClusterResponse.RESULT_SUCCESS));
+               getProcessor().post(createResponse(RESULT_SUCCESS));
             } else {
 
                LOG.warn("Received a marker from a foreign cluster: " + blockedMarker);
-               final Response errorResponse = createResponse(ClusterResponse.RESULT_ERROR);
+               final Response errorResponse = createResponse(RESULT_ERROR);
                errorResponse.setResult("Received a marker from a foreign cluster: " + blockedMarker);
                processor.post(errorResponse);
             }
@@ -394,7 +398,7 @@ public final class BlockedMarker extends OperationalMarker {
 
 
       // Response to marker sender with success
-      processor.post(createResponse(ClusterResponse.RESULT_SUCCESS));
+      processor.post(createResponse(RESULT_SUCCESS));
 
       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       // Add joined process
@@ -598,7 +602,7 @@ public final class BlockedMarker extends OperationalMarker {
 
       if (processor.getProcessorState().getClusterView().getClusterUUID().equals(getClusterUUID())) {
 
-         processor.post(createResponse(ClusterResponse.RESULT_SUCCESS));
+         processor.post(createResponse(RESULT_SUCCESS));
 
          // Reset join state. Switching to a stable state should clear join state possibly
          // acquired before going through recovery process. See CACHEONIX-279 for details.
@@ -607,7 +611,8 @@ public final class BlockedMarker extends OperationalMarker {
 
          // Change state
 
-         processor.getProcessorState().setState(ClusterProcessorState.STATE_BLOCKED);
+         final int newState = STATE_BLOCKED;
+         processor.getProcessorState().setState(newState);
 
          processor.getProcessorState().setTargetMajoritySize(targetMajorityClusterSize);
          processor.getMulticastMessageListeners().notifyNodeBlocked();
@@ -615,7 +620,7 @@ public final class BlockedMarker extends OperationalMarker {
          processor.getProcessorState().getHomeAloneTimeout().reset();
 
          // Notify cluster event subscribers
-         notifySubscribersClusterStateChanged(ClusterState.BLOCKED);
+         notifySubscribersClusterStateChanged(newState);
 
          // REVIEWME: simeshev@cacheonix.org - 2010-07-07 - What are the implications
          // of sending the new marker to self instead of just forwarding it?
@@ -629,7 +634,7 @@ public final class BlockedMarker extends OperationalMarker {
          if (processor.getAddress().equals(getSender())) {
 
             LOG.debug("Destroyed old blocked marker: " + this);
-            getProcessor().post(createResponse(ClusterResponse.RESULT_SUCCESS));
+            getProcessor().post(createResponse(RESULT_SUCCESS));
          } else {
 
             final String errorResult = "Ignored blocked marker: " + this;
@@ -637,7 +642,7 @@ public final class BlockedMarker extends OperationalMarker {
             //noinspection ControlFlowStatementWithoutBraces
             if (LOG.isDebugEnabled()) LOG.debug(errorResult); // NOPMD
 
-            final Response errorResponse = createResponse(ClusterResponse.RESULT_ERROR);
+            final Response errorResponse = createResponse(RESULT_ERROR);
             errorResponse.setResult(errorResult);
             getProcessor().post(errorResponse);
          }
@@ -658,7 +663,7 @@ public final class BlockedMarker extends OperationalMarker {
 
          LOG.debug("Destroyed old blocked marker: " + this);
 
-         getProcessor().post(createResponse(ClusterResponse.RESULT_SUCCESS));
+         getProcessor().post(createResponse(RESULT_SUCCESS));
       } else {
 
          final String errorResult = "Ignored blocked marker: " + this;
@@ -666,7 +671,7 @@ public final class BlockedMarker extends OperationalMarker {
          //noinspection ControlFlowStatementWithoutBraces
          if (LOG.isDebugEnabled()) LOG.debug(errorResult); // NOPMD
 
-         final Response errorResponse = createResponse(ClusterResponse.RESULT_ERROR);
+         final Response errorResponse = createResponse(RESULT_ERROR);
          errorResponse.setResult(errorResult);
          getProcessor().post(errorResponse);
       }
@@ -687,13 +692,14 @@ public final class BlockedMarker extends OperationalMarker {
       final CleanupMarker cleanupMarker = CleanupMarker.originate(processor);
 
       // Change state to Cleanup, set as originator.
-      processor.getProcessorState().setState(ClusterProcessorState.STATE_CLEANUP);
+      final int newState = STATE_CLEANUP;
+      processor.getProcessorState().setState(newState);
 
       // Cancel 'home alone' timeout
       processor.getProcessorState().getHomeAloneTimeout().cancel();
 
       // Notifies cluster subscribers
-      notifySubscribersClusterStateChanged(ClusterState.RECONFIGURING);
+      notifySubscribersClusterStateChanged(newState);
 
       // Forward cleanup marker
       forwardCleanupMarker(cleanupMarker);

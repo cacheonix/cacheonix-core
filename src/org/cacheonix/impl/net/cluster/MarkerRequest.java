@@ -42,6 +42,10 @@ import org.cacheonix.impl.util.Assert;
 import org.cacheonix.impl.util.CollectionUtils;
 import org.cacheonix.impl.util.logging.Logger;
 
+import static org.cacheonix.impl.cluster.event.ClusterEventUtil.convertStateMachineToUserClusterState;
+import static org.cacheonix.impl.net.cluster.ClusterProcessorState.STATE_RECOVERY;
+import static org.cacheonix.impl.net.processor.Response.RESULT_SUCCESS;
+
 /**
  * Marker request is a marker that sends
  */
@@ -162,7 +166,8 @@ public abstract class MarkerRequest extends ClusterRequest {
 
       //noinspection ControlFlowStatementWithoutBraces
       if (LOG.isDebugEnabled())
-         LOG.debug("Sending joined to self, reservedJoinSeqNum: " + reservedJoinSeqNum + ", joined: " + joined); // NOPMD
+         LOG.debug(
+                 "Sending joined to self, reservedJoinSeqNum: " + reservedJoinSeqNum + ", joined: " + joined); // NOPMD
 
       final ClusterProcessor processor = getClusterProcessor();
 
@@ -296,7 +301,7 @@ public abstract class MarkerRequest extends ClusterRequest {
    }
 
 
-   protected void notifySubscribersClusterStateChanged(final ClusterState newClusterState) {
+   protected void notifySubscribersClusterStateChanged(final int newClusterState) {
 
       final ClusterProcessorState processorState = getClusterProcessor().getProcessorState();
       final List<ClusterEventSubscriber> clusterEventSubscribers = processorState.getClusterEventSubscribers();
@@ -308,11 +313,14 @@ public abstract class MarkerRequest extends ClusterRequest {
 
                try {
 
-                  clusterEventSubscriber.notifyClusterStateChanged(new ClusterStateChangedEventImpl(newClusterState));
+                  final ClusterState clusterState = convertStateMachineToUserClusterState(newClusterState);
+                  final ClusterStateChangedEventImpl stateChangedEvent = new ClusterStateChangedEventImpl(clusterState);
+                  clusterEventSubscriber.notifyClusterStateChanged(stateChangedEvent);
                } catch (final Throwable e) { // NOPMD A catch statement should never catch throwable since it includes errors.
 
                   // Isolate errors possibly thrown by a call to a user API
-                  LOG.warn("Error while notifying subscriber" + clusterEventSubscriber + "that cluster state changed: " + e, e);
+                  LOG.warn("Error while notifying subscriber" + clusterEventSubscriber
+                          + "that cluster state changed: " + e, e);
                }
             }
          });
@@ -341,7 +349,7 @@ public abstract class MarkerRequest extends ClusterRequest {
        */
       public void notifyResponseReceived(final Response response) throws InterruptedException {
 
-         if (response.getResultCode() != ClusterResponse.RESULT_SUCCESS) {
+         if (response.getResultCode() != RESULT_SUCCESS) {
 
             beginRecovery(response);
          }
@@ -373,7 +381,8 @@ public abstract class MarkerRequest extends ClusterRequest {
 
             final ReceiverAddress failedNodeAddress = getRequest().getReceiver();
 
-            final ClusterNodeAddress beginRecoveryWith = processor.getProcessorState().getClusterView().getNextElement(failedNodeAddress);
+            final ClusterNodeAddress beginRecoveryWith = processor.getProcessorState().getClusterView().getNextElement(
+                    failedNodeAddress);
 
 //            // Ignore self who has changed the cluster while waiting for response
 //
@@ -425,15 +434,17 @@ public abstract class MarkerRequest extends ClusterRequest {
 
          // Change state to recovery, with us as an Originator
          if (LOG.isDebugEnabled()) {
-            LOG.debug("<><><><><><><><><><><><><><> Created recovery state: " + self.getTcpPort() + ", originator: " + true);
+            LOG.debug(
+                    "<><><><><><><><><><><><><><> Created recovery state: " + self.getTcpPort() + ", originator: " + true);
          }
 
-         processor.getProcessorState().setState(ClusterProcessorState.STATE_RECOVERY);
+         final int newState = STATE_RECOVERY;
+         processor.getProcessorState().setState(newState);
 
          processor.getProcessorState().setRecoveryOriginator(true);
 
          // Notify cluster event subscribers
-         request.notifySubscribersClusterStateChanged(ClusterState.RECONFIGURING);
+         request.notifySubscribersClusterStateChanged(newState);
 
          // Notify cluster event subscribers
 

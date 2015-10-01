@@ -18,7 +18,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.Set;
 
-import org.cacheonix.cluster.ClusterState;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.processor.Frame;
 import org.cacheonix.impl.net.processor.Response;
@@ -27,6 +26,10 @@ import org.cacheonix.impl.net.serializer.Wireable;
 import org.cacheonix.impl.net.serializer.WireableBuilder;
 import org.cacheonix.impl.util.Assert;
 import org.cacheonix.impl.util.logging.Logger;
+
+import static org.cacheonix.impl.net.cluster.ClusterProcessorState.STATE_CLEANUP;
+import static org.cacheonix.impl.net.cluster.ClusterProcessorState.STATE_NORMAL;
+import static org.cacheonix.impl.net.processor.Response.RESULT_SUCCESS;
 
 /**
  * Cleanup marker. The cleanup marker circulates in the ring in during the second stage of recovery.
@@ -148,16 +151,17 @@ public final class CleanupMarker extends MarkerRequest {
       }
 
       // Respond with success
-      processor.post(createResponse(ClusterResponse.RESULT_SUCCESS));
+      processor.post(createResponse(RESULT_SUCCESS));
 
       // Set Cleanup state
-      processor.getProcessorState().setState(ClusterProcessorState.STATE_CLEANUP);
+      final int newState = STATE_CLEANUP;
+      processor.getProcessorState().setState(newState);
 
       // Cancel 'home alone' timeout
       processor.getProcessorState().getHomeAloneTimeout().cancel();
 
       // Notify cluster event subscribers
-      notifySubscribersClusterStateChanged(ClusterState.RECONFIGURING);
+      notifySubscribersClusterStateChanged(newState);
 
       // REVIEWME: simeshev@cacheonix.org - 2010-07-07 - What are the implications
       // of sending the new marker to self instead of just forwarding it?
@@ -177,13 +181,13 @@ public final class CleanupMarker extends MarkerRequest {
       final ClusterProcessor processor = getClusterProcessor();
 
       // Respond with success
-      processor.post(createResponse(ClusterResponse.RESULT_SUCCESS));
+      processor.post(createResponse(RESULT_SUCCESS));
 
       //noinspection ControlFlowStatementWithoutBraces
       if (LOG.isDebugEnabled()) LOG.debug("Joining cleanup round: " + processor.getAddress());
 
       // Set Cleanup state
-      processor.getProcessorState().setState(ClusterProcessorState.STATE_CLEANUP);
+      processor.getProcessorState().setState(STATE_CLEANUP);
 
       // Cancel 'home alone' timeout
       processor.getProcessorState().getHomeAloneTimeout().cancel();
@@ -208,7 +212,7 @@ public final class CleanupMarker extends MarkerRequest {
       final ClusterNodeAddress self = processor.getAddress();
 
       // Respond with success
-      processor.post(createResponse(ClusterResponse.RESULT_SUCCESS));
+      processor.post(createResponse(RESULT_SUCCESS));
 
       // Receive frames
       receiveFrames();
@@ -286,13 +290,14 @@ public final class CleanupMarker extends MarkerRequest {
             processor.getProcessorState().getJoinStatus().clear();
 
             // Change state
-            processor.getProcessorState().setState(ClusterProcessorState.STATE_NORMAL);
+            final int newState = STATE_NORMAL;
+            processor.getProcessorState().setState(newState);
 
             // Cancel 'home alone' timeout
             processor.getProcessorState().getHomeAloneTimeout().cancel();
 
             // Notify cluster event subscribers
-            notifySubscribersClusterStateChanged(ClusterState.OPERATIONAL);
+            notifySubscribersClusterStateChanged(newState);
 
             // Receive marker
             final MulticastMarker multicastMarker = new MulticastMarker(currentClusterView.getClusterUUID());
