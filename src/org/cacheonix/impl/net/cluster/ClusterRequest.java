@@ -20,6 +20,8 @@ import org.cacheonix.impl.net.processor.Request;
 import org.cacheonix.impl.net.processor.Response;
 import org.cacheonix.impl.util.logging.Logger;
 
+import static org.cacheonix.impl.net.processor.Response.RESULT_ERROR;
+
 /**
  * Contains functions common for messages used to maintain the cluster.
  */
@@ -94,7 +96,7 @@ public abstract class ClusterRequest extends Request {
                //noinspection ControlFlowStatementWithoutBraces
                if (LOG.isDebugEnabled()) LOG.debug(errorResult); // NOPMD
 
-               final Response errorResponse = createResponse(ClusterResponse.RESULT_ERROR);
+               final Response errorResponse = createResponse(RESULT_ERROR);
                errorResponse.setResult(errorResult);
                getProcessor().post(errorResponse);
 
@@ -106,7 +108,7 @@ public abstract class ClusterRequest extends Request {
          LOG.error("Error while executing cluster request: " + e.toString(), e);
 
          // Respond with error
-         final Response errorResponse = createResponse(ClusterResponse.RESULT_ERROR);
+         final Response errorResponse = createResponse(RESULT_ERROR);
          errorResponse.setResult(e);
          getProcessor().post(errorResponse);
       }
