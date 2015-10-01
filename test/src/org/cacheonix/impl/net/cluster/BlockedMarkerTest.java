@@ -77,8 +77,8 @@ public final class BlockedMarkerTest extends CacheonixTestCase {
 
    public void testSetGetTargetMajorityMarkerListSize() throws Exception {
 
-      blockedMarker.setTargetMajorityMarkerListSize(222);
-      assertEquals(222, blockedMarker.getTargetMajorityMarkerListSize());
+      blockedMarker.setTargetMajorityClusterSize(222);
+      assertEquals(222, blockedMarker.getTargetMajorityClusterSize());
    }
 
 

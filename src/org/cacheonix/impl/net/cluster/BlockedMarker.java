@@ -49,7 +49,7 @@ public final class BlockedMarker extends OperationalMarker {
     */
    private static final Logger LOG = Logger.getLogger(BlockedMarker.class); // NOPMD
 
-   private int targetMajorityMarkerListSize = Integer.MAX_VALUE;
+   private int targetMajorityClusterSize = Integer.MAX_VALUE;
 
 
    public BlockedMarker() {
@@ -66,15 +66,15 @@ public final class BlockedMarker extends OperationalMarker {
    }
 
 
-   public int getTargetMajorityMarkerListSize() {
+   public int getTargetMajorityClusterSize() {
 
-      return targetMajorityMarkerListSize;
+      return targetMajorityClusterSize;
    }
 
 
-   public void setTargetMajorityMarkerListSize(final int targetMajorityMarkerListSize) {
+   public void setTargetMajorityClusterSize(final int targetMajorityClusterSize) {
 
-      this.targetMajorityMarkerListSize = targetMajorityMarkerListSize;
+      this.targetMajorityClusterSize = targetMajorityClusterSize;
    }
 
 
@@ -414,7 +414,7 @@ public final class BlockedMarker extends OperationalMarker {
                LOG.debug("Checking if we reached majority: " + self);
             }
 
-            if (processor.getProcessorState().getClusterView().getSize() >= targetMajorityMarkerListSize) {
+            if (processor.getProcessorState().getClusterView().getSize() >= targetMajorityClusterSize) {
 
                // Yes, we have reached majority. Reset the received queue, delivery counters,
                // notify about revival the application and forward the normal marker.
@@ -609,7 +609,7 @@ public final class BlockedMarker extends OperationalMarker {
 
          processor.getProcessorState().setState(ClusterProcessorState.STATE_BLOCKED);
 
-         processor.getProcessorState().setTargetMajoritySize(targetMajorityMarkerListSize);
+         processor.getProcessorState().setTargetMajoritySize(targetMajorityClusterSize);
          processor.getMulticastMessageListeners().notifyNodeBlocked();
 
          processor.getProcessorState().getHomeAloneTimeout().reset();
@@ -708,7 +708,7 @@ public final class BlockedMarker extends OperationalMarker {
    private BlockedMarker copy() {
 
       final BlockedMarker result = new BlockedMarker();
-      result.setTargetMajorityMarkerListSize(targetMajorityMarkerListSize);
+      result.setTargetMajorityClusterSize(targetMajorityClusterSize);
       result.setNextAnnouncementTime(getNextAnnouncementTime());
       result.setRequiresSameCluster(isRequiresSameCluster());
       result.setPredecessor(getPredecessor());
@@ -730,7 +730,7 @@ public final class BlockedMarker extends OperationalMarker {
    public void readWire(final DataInputStream in) throws IOException, ClassNotFoundException {
 
       super.readWire(in);
-      targetMajorityMarkerListSize = in.readInt();
+      targetMajorityClusterSize = in.readInt();
    }
 
 
@@ -747,7 +747,7 @@ public final class BlockedMarker extends OperationalMarker {
    public void writeWire(final DataOutputStream out) throws IOException {
 
       super.writeWire(out);
-      out.writeInt(targetMajorityMarkerListSize);
+      out.writeInt(targetMajorityClusterSize);
    }
 
 
@@ -766,7 +766,7 @@ public final class BlockedMarker extends OperationalMarker {
 
       final BlockedMarker that = (BlockedMarker) o;
 
-      if (targetMajorityMarkerListSize != that.targetMajorityMarkerListSize) {
+      if (targetMajorityClusterSize != that.targetMajorityClusterSize) {
          return false;
       }
 
@@ -777,7 +777,7 @@ public final class BlockedMarker extends OperationalMarker {
    public int hashCode() {
 
       int result = super.hashCode();
-      result = 31 * result + targetMajorityMarkerListSize;
+      result = 31 * result + targetMajorityClusterSize;
       return result;
    }
 
@@ -785,7 +785,7 @@ public final class BlockedMarker extends OperationalMarker {
    public String toString() {
 
       return "BlockedMarker{" +
-              "targetMajorityMarkerListSize=" + targetMajorityMarkerListSize +
+              "targetMajorityClusterSize=" + targetMajorityClusterSize +
               "} " + super.toString();
    }
 

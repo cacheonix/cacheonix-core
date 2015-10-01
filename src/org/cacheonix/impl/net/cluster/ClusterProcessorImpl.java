@@ -252,7 +252,7 @@ public final class ClusterProcessorImpl extends AbstractRequestProcessor impleme
       multicastMessageListeners.notifyNodeBlocked();
 
       final BlockedMarker blockedMarker = new BlockedMarker(processorState.getClusterView().getClusterUUID());
-      blockedMarker.setTargetMajorityMarkerListSize(processorState.getTargetMajoritySize());
+      blockedMarker.setTargetMajorityClusterSize(processorState.getTargetMajoritySize());
       blockedMarker.setNextAnnouncementTime(getClock().currentTime());
       blockedMarker.setReceiver(getAddress());
       post(blockedMarker);
