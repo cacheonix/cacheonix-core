@@ -558,6 +558,42 @@ public final class RecoveryMarker extends MarkerRequest {
       processor.post(cleanupMarker);
    }
 
+   /**
+    * Begins blocking the minority cluster by changing state to blocked and sending the blocked marker.
+    *
+    * @param targetMajorityMarkerListSize target majority marker list size
+    */
+   private final void beginBlocking(final int targetMajorityMarkerListSize) {
+
+      // Set context state
+      final ClusterProcessor processor = getClusterProcessor();
+
+      // Reset join state. Switching to a stable state should clear join state possibly
+      // acquired before going through recovery process. See CACHEONIX-279 for details.
+
+      processor.getProcessorState().getJoinStatus().clear();
+
+      // REVIEWME: simeshev@cacheonix.org - 2008-04-17 -> markerListBeforeRecovery.size() can change
+      // after multiple Recovery -> Cleanup -> Recovery
+
+
+      processor.getProcessorState().setState(ClusterProcessorState.STATE_BLOCKED);
+
+      processor.getProcessorState().setTargetMajoritySize(targetMajorityMarkerListSize);
+      processor.getMulticastMessageListeners().notifyNodeBlocked();
+
+      processor.getProcessorState().getHomeAloneTimeout().reset();
+
+      // Notify cluster event subscribers
+      notifySubscribersClusterStateChanged(ClusterState.BLOCKED);
+
+      // Create and forward new BlockedMarker
+      final BlockedMarker blockedMarker = new BlockedMarker(processor.getProcessorState().getClusterView().getClusterUUID());
+
+      blockedMarker.setReceiver(processor.getProcessorState().getClusterView().getNextElement());
+      processor.post(blockedMarker);
+   }
+
 
    /**
     * Creates a copy of this <code>RecoveryMarker</code> suitable for forwarding.
