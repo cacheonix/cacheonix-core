@@ -708,12 +708,12 @@ public final class BlockedMarker extends OperationalMarker {
    private BlockedMarker copy() {
 
       final BlockedMarker result = new BlockedMarker();
+      result.setTargetMajorityMarkerListSize(targetMajorityMarkerListSize);
       result.setNextAnnouncementTime(getNextAnnouncementTime());
       result.setRequiresSameCluster(isRequiresSameCluster());
       result.setPredecessor(getPredecessor());
-      result.setLeave(getLeave());
       result.setJoiningNode(getJoiningNode());
-      result.targetMajorityMarkerListSize = targetMajorityMarkerListSize;
+      result.setLeave(getLeave());
       return result;
    }
 
