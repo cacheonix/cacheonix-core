@@ -37,7 +37,7 @@ import org.cacheonix.impl.util.AssertionException;
  * @noinspection ConstantNamingConvention, ResultOfObjectAllocationIgnored
  * @since <pre>04/01/2008</pre>
  */
-public final class ClusterViewTest extends CacheonixTestCase {
+public final class ClusterViewImplTest extends CacheonixTestCase {
 
    private static final ClusterNodeAddress PROCESS_ID_0 = TestUtils.createTestAddress(TestConstants.PORT_7676);
 
@@ -66,7 +66,7 @@ public final class ClusterViewTest extends CacheonixTestCase {
    public void testCreateEmpty() throws Exception {
 
       try {
-         new ClusterView(UUID.randomUUID(), PROCESS_ID_0, Collections.<JoiningNode>emptyList(), PROCESS_ID_0);
+         new ClusterViewImpl(UUID.randomUUID(), PROCESS_ID_0, Collections.<JoiningNode>emptyList(), PROCESS_ID_0);
          fail("Expected exception but it was not thrown");
       } catch (final Exception ignored) { // NOPMD
       }
@@ -75,7 +75,7 @@ public final class ClusterViewTest extends CacheonixTestCase {
 
    public void testCreateSingle() throws Exception {
 
-      assertNotNull(new ClusterView(UUID.randomUUID(), PROCESS_ID_0));
+      assertNotNull(new ClusterViewImpl(UUID.randomUUID(), PROCESS_ID_0));
    }
 
 
@@ -149,7 +149,8 @@ public final class ClusterViewTest extends CacheonixTestCase {
       final ArrayList<JoiningNode> nodeList = new ArrayList<JoiningNode>(3);
       nodeList.add(new JoiningNode(PROCESS_ID_1));
       nodeList.add(new JoiningNode(PROCESS_ID_2));
-      final ClusterView previousClusterView = new ClusterView(UUID.randomUUID(), REPRESENTATIVE, nodeList, PROCESS_ID_1);
+      final ClusterViewImpl previousClusterView = new ClusterViewImpl(UUID.randomUUID(), REPRESENTATIVE, nodeList,
+              PROCESS_ID_1);
       final Set<ClusterNodeAddress> nodesLeft = clusterView.calculateNodesLeft(previousClusterView);
       assertEquals(1, nodesLeft.size());
       assertEquals(PROCESS_ID_2, nodesLeft.iterator().next());
@@ -163,7 +164,8 @@ public final class ClusterViewTest extends CacheonixTestCase {
       //
       final ArrayList<JoiningNode> nodeList = new ArrayList<JoiningNode>(3);
       nodeList.add(new JoiningNode(PROCESS_ID_0));
-      final ClusterView previousClusterView = new ClusterView(UUID.randomUUID(), REPRESENTATIVE, nodeList, PROCESS_ID_0);
+      final ClusterViewImpl previousClusterView = new ClusterViewImpl(UUID.randomUUID(), REPRESENTATIVE, nodeList,
+              PROCESS_ID_0);
       final Collection<ClusterNodeAddress> nodesJoined = clusterView.calculateNodesJoined(previousClusterView);
       assertEquals(1, nodesJoined.size());
       assertEquals(PROCESS_ID_1, nodesJoined.iterator().next());
@@ -175,14 +177,14 @@ public final class ClusterViewTest extends CacheonixTestCase {
       list = new ArrayList<JoiningNode>(3);
       list.add(new JoiningNode(PROCESS_ID_0));
       list.add(new JoiningNode(PROCESS_ID_1));
-      clusterView = new ClusterView(UUID.randomUUID(), REPRESENTATIVE, list, PROCESS_ID_0);
+      clusterView = new ClusterViewImpl(UUID.randomUUID(), REPRESENTATIVE, list, PROCESS_ID_0);
       super.setUp();
    }
 
 
    public String toString() {
 
-      return "ClusterViewTest{" +
+      return "ClusterViewImplTest{" +
               "clusterView=" + clusterView +
               ", list=" + list +
               "} " + super.toString();

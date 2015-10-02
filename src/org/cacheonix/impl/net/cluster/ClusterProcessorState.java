@@ -35,14 +35,17 @@ public interface ClusterProcessorState extends ProcessorState {
     * This cluster node is in the Normal state.
     */
    int STATE_NORMAL = 1;
+
    /**
     * This cluster node is in the Recovery state.
     */
    int STATE_RECOVERY = 2;
+
    /**
     * This cluster node is in the Blocked state.
     */
    int STATE_BLOCKED = 3;
+
    /**
     * This cluster node is in the Cleanup state.
     */
@@ -53,7 +56,7 @@ public interface ClusterProcessorState extends ProcessorState {
     * networks.
     *
     * @return a set of receiver addresses known to a cluster processor that is used to broadcast messages on TCP-only
-    *         networks.
+    * networks.
     */
    HashSet<ClusterNodeAddress> getKnownReceivers(); // NOPMD
 
@@ -151,8 +154,8 @@ public interface ClusterProcessorState extends ProcessorState {
    /**
     * Sets the time interval that defines how often Cacheonix cluster announces itself using multicast.
     *
-    * @param clusterAnnouncementTimeoutMillis
-    *         the time interval that defines how often Cacheonix cluster announces itself using multicast.
+    * @param clusterAnnouncementTimeoutMillis the time interval that defines how often Cacheonix cluster announces
+    *                                         itself using multicast.
     */
    void setClusterAnnouncementTimeoutMillis(long clusterAnnouncementTimeoutMillis);
 
@@ -261,8 +264,7 @@ public interface ClusterProcessorState extends ProcessorState {
     * The timer is <b>re-started</b> when a node sends a request to join and when it receives a success response to join
     * request.
     *
-    * @return a timer that measures time for how long a node stayed alone without other nodes present to form a
-    *         cluster.
+    * @return a timer that measures time for how long a node stayed alone without other nodes present to form a cluster.
     */
    Timeout getHomeAloneTimeout();
 

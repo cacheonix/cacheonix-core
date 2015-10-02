@@ -276,7 +276,7 @@ public final class MarkerListRequest extends ClusterRequest {
    public void readWire(final DataInputStream in) throws IOException, ClassNotFoundException {
 
       super.readWire(in);
-      clusterView = new ClusterView();
+      clusterView = new ClusterViewImpl();
       clusterView.readWire(in);
       final String repStateClassName = SerializerUtils.readString(in);
       replicatedState = (ReplicatedState) SerializerUtils.newInstance(Class.forName(repStateClassName));
@@ -294,7 +294,7 @@ public final class MarkerListRequest extends ClusterRequest {
       final boolean lastOperationalClusterViewIsNull = in.readBoolean();
       if (!lastOperationalClusterViewIsNull) {
 
-         lastOperationalClusterView = new ClusterView();
+         lastOperationalClusterView = new ClusterViewImpl();
          lastOperationalClusterView.readWire(in);
       }
    }

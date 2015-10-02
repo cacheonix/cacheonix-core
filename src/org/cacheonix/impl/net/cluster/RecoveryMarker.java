@@ -348,7 +348,8 @@ public final class RecoveryMarker extends MarkerRequest {
          }
 
          processor.getProcessorState().setClusterView(
-                 new ClusterView(recoveryMarker.newClusterUUID, recoveryMarker.originator, recoveryMarker.previousList,
+                 new ClusterViewImpl(recoveryMarker.newClusterUUID, recoveryMarker.originator,
+                         recoveryMarker.previousList,
                          self));
          processor.getRouter().setClusterUUID(recoveryMarker.newClusterUUID);
       }
@@ -415,7 +416,7 @@ public final class RecoveryMarker extends MarkerRequest {
                recoveryMarker.previousList.clear();
                recoveryMarker.previousList.addAll(recoveryMarker.currentList);
                processor.getProcessorState().setClusterView(
-                       new ClusterView(recoveryMarker.newClusterUUID, self, recoveryMarker.previousList, self));
+                       new ClusterViewImpl(recoveryMarker.newClusterUUID, self, recoveryMarker.previousList, self));
                processor.getRouter().setClusterUUID(recoveryMarker.newClusterUUID);
             }
          } else if (self.compareTo(recoveryMarker.originator) > 0) {

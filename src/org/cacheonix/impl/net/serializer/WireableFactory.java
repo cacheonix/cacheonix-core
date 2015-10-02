@@ -98,7 +98,7 @@ import org.cacheonix.impl.net.cluster.ClusterAnnouncement;
 import org.cacheonix.impl.net.cluster.ClusterNodeJoinedAnnouncement;
 import org.cacheonix.impl.net.cluster.ClusterNodeLeftAnnouncement;
 import org.cacheonix.impl.net.cluster.ClusterResponse;
-import org.cacheonix.impl.net.cluster.ClusterView;
+import org.cacheonix.impl.net.cluster.ClusterViewImpl;
 import org.cacheonix.impl.net.cluster.GetClusterViewSizeRequest;
 import org.cacheonix.impl.net.cluster.JoinRequest;
 import org.cacheonix.impl.net.cluster.JoiningNode;
@@ -151,7 +151,7 @@ public final class WireableFactory {
       addMaker(Wireable.TYPE_GROUP_MEMBER, GroupMember.BUILDER);
       addMaker(Wireable.TYPE_BUCKET_OWNERSHIP_ASSIGNMENT, BucketOwnershipAssignment.BUILDER);
       addMaker(Wireable.TYPE_MD5_HASH_CODE_CALC, MD5HashCodeCalculator.BUILDER);
-      addMaker(Wireable.TYPE_CLUSTER_VIEW, ClusterView.BUILDER);
+      addMaker(Wireable.TYPE_CLUSTER_VIEW, ClusterViewImpl.BUILDER);
       addMaker(Wireable.TYPE_GROUP, Group.BUILDER);
       addMaker(Wireable.TYPE_NODE_ADDRESS, ClusterNodeAddress.BUILDER);
       addMaker(Wireable.TYPE_REVIVAL_MARKER, RevivalMarker.BUILDER);

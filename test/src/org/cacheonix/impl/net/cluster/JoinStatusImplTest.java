@@ -105,7 +105,7 @@ public final class JoinStatusImplTest extends CacheonixTestCase {
       list.add(new JoiningNode(proc0));
       list.add(new JoiningNode(proc1));
       list.add(new JoiningNode(proc2));
-      return new ClusterView(UUID.randomUUID(), proc1, list, proc2);
+      return new ClusterViewImpl(UUID.randomUUID(), proc1, list, proc2);
    }
 
 

@@ -173,7 +173,7 @@ public final class ClusterProcessorImpl extends AbstractRequestProcessor impleme
       this.processorState.setClusterAnnouncementTimeoutMillis(clusterAnnouncementTimeoutMillis);
       this.gracefulShutdownTimeoutMillis = gracefulShutdownTimeoutMillis;
       this.processorState.setWorstCaseLatencyMillis(worstCaseLatencyMillis);
-      this.processorState.setClusterView(new ClusterView(initialClusterUUID, self));
+      this.processorState.setClusterView(new ClusterViewImpl(initialClusterUUID, self));
       this.markerTimeout = new ObtainMulticastMarkerTimeout(this);
       this.multicastSender = multicastSender;
       this.clusterAnnouncer = new ClusterAnnouncer(clock, this.multicastSender, clusterName, self);
