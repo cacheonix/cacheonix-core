@@ -37,7 +37,6 @@ import org.cacheonix.impl.net.processor.ReceiverAddress;
 import org.cacheonix.impl.net.processor.Request;
 import org.cacheonix.impl.net.processor.Response;
 import org.cacheonix.impl.net.processor.UUID;
-import org.cacheonix.impl.net.serializer.Wireable;
 import org.cacheonix.impl.util.Assert;
 import org.cacheonix.impl.util.CollectionUtils;
 import org.cacheonix.impl.util.logging.Logger;
@@ -57,16 +56,6 @@ public abstract class MarkerRequest extends ClusterRequest {
     * @noinspection UNUSED_SYMBOL, UnusedDeclaration
     */
    private static final Logger LOG = Logger.getLogger(MarkerRequest.class); // NOPMD
-
-
-   /**
-    * Default constructor. Required by <code>Wireable</code>.
-    *
-    * @see Wireable
-    */
-   protected MarkerRequest() {
-
-   }
 
 
    protected MarkerRequest(final int wireableType) {
