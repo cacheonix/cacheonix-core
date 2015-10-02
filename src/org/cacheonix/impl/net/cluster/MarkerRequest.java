@@ -13,23 +13,14 @@
  */
 package org.cacheonix.impl.net.cluster;
 
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Queue;
 import java.util.concurrent.Executor;
 
 import org.cacheonix.cluster.ClusterEventSubscriber;
 import org.cacheonix.cluster.ClusterState;
 import org.cacheonix.impl.cluster.event.ClusterStateChangedEventImpl;
-import org.cacheonix.impl.lock.AcquireLockRequest;
-import org.cacheonix.impl.lock.LockOwner;
-import org.cacheonix.impl.lock.LockQueue;
-import org.cacheonix.impl.lock.LockQueueKey;
-import org.cacheonix.impl.lock.LockRegistry;
-import org.cacheonix.impl.lock.NextLockRequestGranter;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.processor.Frame;
 import org.cacheonix.impl.net.processor.InvalidMessageException;
@@ -181,54 +172,6 @@ public abstract class MarkerRequest extends ClusterRequest {
       // Send to ourselves
 
       processor.getProcessorState().getReceivedList().add(nodeJoinedFrame);
-   }
-
-
-   /**
-    * Removes left nodes from the replicated lock queue. Grants pending lock requests if the left nodes held locks.
-    *
-    * @param nodesLeft a collection of addresses of nodes that left the cluster.
-    */
-   protected void removeFromLockQueue(final Collection<ClusterNodeAddress> nodesLeft) {
-
-      final ClusterProcessor processor = getClusterProcessor();
-
-      final LockRegistry lockRegistry = processor.getProcessorState().getReplicatedState().getLockRegistry();
-      for (final Map.Entry<LockQueueKey, LockQueue> entry : lockRegistry.getLockQueues().entrySet()) {
-
-         // Process a particular lock queue
-         final LockQueue lockQueue = entry.getValue();
-         for (final ClusterNodeAddress leftAddress : nodesLeft) {
-
-            // Clear write lock owner
-            final LockOwner writeLockOwner = lockQueue.getWriteLockOwner();
-            if (writeLockOwner != null) {
-               if (writeLockOwner.getAddress().equals(leftAddress)) {
-                  lockQueue.clearWriteLockOwner();
-               }
-            }
-
-            // Clear read lock owner
-            for (final Iterator<LockOwner> iter = lockQueue.getReadLockOwners().iterator(); iter.hasNext(); ) {
-               final LockOwner readLockOwner = iter.next();
-               if (readLockOwner.getAddress().equals(leftAddress)) {
-                  iter.remove();
-               }
-            }
-
-            // Remove address from the request queue
-            for (final Iterator<AcquireLockRequest> iter = lockQueue.getPendingRequests().iterator(); iter.hasNext(); ) {
-               final AcquireLockRequest request = iter.next();
-               if (request.getOwnerAddress().equals(leftAddress)) {
-                  iter.remove();
-               }
-            }
-         }
-
-         // Grant next request(s). The granter is capable of detecting if there is work do do
-         final NextLockRequestGranter nextLockRequestGranter = new NextLockRequestGranter(processor, lockQueue);
-         nextLockRequestGranter.grantNextLockRequests();
-      }
    }
 
 
