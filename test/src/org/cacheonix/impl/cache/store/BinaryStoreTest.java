@@ -24,6 +24,7 @@ import org.cacheonix.impl.cache.item.BinaryFactory;
 import org.cacheonix.impl.cache.item.BinaryFactoryBuilder;
 import org.cacheonix.impl.cache.item.BinaryType;
 import org.cacheonix.impl.clock.Time;
+import org.cacheonix.impl.clock.TimeImpl;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
 import org.cacheonix.impl.net.serializer.Wireable;
@@ -120,7 +121,7 @@ public final class BinaryStoreTest extends CacheonixTestCase {
       binaryStore.put(key, value, expirationTime);
 
       final Binary newValue = toBinary("new.value");
-      final Time timeToRead = new Time(10, 0);
+      final Time timeToRead = new TimeImpl(10, 0);
       final ReadableElement previousElement = binaryStore.update(key, newValue, timeToRead, 0);
       assertNotNull(previousElement);
    }

@@ -19,6 +19,7 @@ import org.cacheonix.CacheonixTestCase;
 import org.cacheonix.cache.subscriber.EntryModifiedEventType;
 import org.cacheonix.cluster.CacheMember;
 import org.cacheonix.impl.clock.Time;
+import org.cacheonix.impl.clock.TimeImpl;
 
 /**
  * Tester for LocalEntryModifiedEvent.
@@ -33,7 +34,7 @@ public final class LocalEntryModifiedEventTest extends CacheonixTestCase {
 
    private static final String PREVIOUS_VALUE = "previous-value";
 
-   private static final Time LAST_UPDATE_TIME_MILLIS = new Time(777, 0);
+   private static final Time LAST_UPDATE_TIME_MILLIS = new TimeImpl(777, 0);
 
    private static final int VERSION = 888;
 

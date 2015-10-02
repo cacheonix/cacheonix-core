@@ -42,6 +42,7 @@ import org.cacheonix.impl.cache.item.BinaryType;
 import org.cacheonix.impl.cache.item.InvalidObjectException;
 import org.cacheonix.impl.clock.Clock;
 import org.cacheonix.impl.clock.Time;
+import org.cacheonix.impl.clock.TimeImpl;
 import org.cacheonix.impl.net.serializer.SerializerUtils;
 import org.cacheonix.impl.net.serializer.Wireable;
 import org.cacheonix.impl.net.serializer.WireableBuilder;
@@ -173,8 +174,8 @@ public final class BinaryStore implements Wireable {
    public BinaryStore(final Clock clock, final long expirationIntervalMillis, final long idleIntervalMillis) {
 
       this.clock = clock;
-      this.expirationInterval = expirationIntervalMillis == 0 ? null : new Time(expirationIntervalMillis, 0L);
-      this.idleInterval = idleIntervalMillis == 0 ? null : new Time(idleIntervalMillis, 0L);
+      this.expirationInterval = expirationIntervalMillis == 0 ? null : new TimeImpl(expirationIntervalMillis, 0L);
+      this.idleInterval = idleIntervalMillis == 0 ? null : new TimeImpl(idleIntervalMillis, 0L);
       this.elements = new HashMap<Binary, BinaryStoreElement>(INITIAL_CAPACITY);
       this.initLinkedList();
    }

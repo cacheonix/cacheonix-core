@@ -16,9 +16,6 @@ package org.cacheonix.impl.lock;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 
-import org.cacheonix.locks.BrokenLockException;
-import org.cacheonix.locks.DeadlockException;
-import org.cacheonix.locks.Lock;
 import org.cacheonix.impl.cache.distributed.partitioned.Retrier;
 import org.cacheonix.impl.cache.distributed.partitioned.Retryable;
 import org.cacheonix.impl.cache.item.Binary;
@@ -27,6 +24,9 @@ import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.cluster.ClusterProcessor;
 import org.cacheonix.impl.net.processor.RetryException;
 import org.cacheonix.impl.util.logging.Logger;
+import org.cacheonix.locks.BrokenLockException;
+import org.cacheonix.locks.DeadlockException;
+import org.cacheonix.locks.Lock;
 
 /**
  * A distributed lock.

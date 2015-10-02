@@ -24,7 +24,7 @@ import org.cacheonix.impl.cache.item.CompressedBinary;
 import org.cacheonix.impl.cache.item.InvalidObjectException;
 import org.cacheonix.impl.cache.item.PassByCopyBinary;
 import org.cacheonix.impl.cache.item.PassByReferenceBinary;
-import org.cacheonix.impl.clock.Time;
+import org.cacheonix.impl.clock.TimeImpl;
 import org.cacheonix.impl.net.processor.Message;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
@@ -70,17 +70,17 @@ public class ClusterResponseTest extends TestCase {
    public void testSerializeDeserializeWithTimestamp() throws IOException, ClassNotFoundException {
 
       response.setResult(value);
-      response.setTimestamp(new Time(1000L, 2000L));
+      response.setTimestamp(new TimeImpl(1000L, 2000L));
       assertSerializedEquals(response);
    }
 
 
    public void testSetTimestamp() throws Exception {
 
-      final Time timestamp = new Time(1000L, 2000L);
+      final TimeImpl timestamp = new TimeImpl(1000L, 2000L);
       response.setTimestamp(timestamp);
-      assertEquals(new Time(1000L, 2000L), response.getTimestamp());
-      assertTrue(!new Time(2000L, 4000L).equals(response.getTimestamp()));
+      assertEquals(new TimeImpl(1000L, 2000L), response.getTimestamp());
+      assertTrue(!new TimeImpl(2000L, 4000L).equals(response.getTimestamp()));
    }
 
 

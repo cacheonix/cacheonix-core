@@ -34,6 +34,7 @@ import org.cacheonix.impl.cache.distributed.partitioned.Bucket;
 import org.cacheonix.impl.cache.distributed.partitioned.CacheableValue;
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.clock.Time;
+import org.cacheonix.impl.clock.TimeImpl;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.cluster.JoiningNode;
 import org.cacheonix.impl.net.processor.ReceiverAddress;
@@ -735,7 +736,7 @@ public final class SerializerUtils {
          return null;
       } else {
 
-         final Time time = new Time();
+         final TimeImpl time = new TimeImpl();
          time.readWire(in);
          return time;
       }

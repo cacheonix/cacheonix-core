@@ -73,7 +73,7 @@ import org.cacheonix.impl.cache.store.BinaryStore;
 import org.cacheonix.impl.cache.store.BinaryStoreElement;
 import org.cacheonix.impl.cache.store.CacheStatisticsImpl;
 import org.cacheonix.impl.cache.subscriber.BinaryEntryModifiedEvent;
-import org.cacheonix.impl.clock.Time;
+import org.cacheonix.impl.clock.TimeImpl;
 import org.cacheonix.impl.cluster.event.AddClusterEventSubscriberRequest;
 import org.cacheonix.impl.cluster.event.RemoveClusterEventSubscriberRequest;
 import org.cacheonix.impl.cluster.node.state.ReplicatedState;
@@ -165,7 +165,7 @@ public final class WireableFactory {
       addMaker(Wireable.TYPE_CACHE_STATISTICS, CacheStatisticsImpl.BUILDER);
       addMaker(Wireable.TYPE_BINARY_ENTRY_MODIFIED_EVENT, BinaryEntryModifiedEvent.BUILDER);
       addMaker(Wireable.TYPE_ENTRY_MODIFICATION_SUBSCRIPTION, EntryModifiedSubscription.BUILDER);
-      addMaker(Wireable.TYPE_TIME, Time.BUILDER);
+      addMaker(Wireable.TYPE_TIME, TimeImpl.BUILDER);
       addMaker(Wireable.TYPE_CACHEABLE_VALUE, CacheableValue.BUILDER);
       addMaker(Wireable.TYPE_CACHEABLE_ENTRY, CacheableEntry.BUILDER);
       addMaker(Wireable.TYPE_JOINING_NODE, JoiningNode.BUILDER);

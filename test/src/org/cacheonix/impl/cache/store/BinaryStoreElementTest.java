@@ -16,7 +16,7 @@ package org.cacheonix.impl.cache.store;
 import org.cacheonix.CacheonixTestCase;
 import org.cacheonix.impl.cache.invalidator.DummyCacheInvalidator;
 import org.cacheonix.impl.cache.item.Binary;
-import org.cacheonix.impl.clock.Time;
+import org.cacheonix.impl.clock.TimeImpl;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
 import org.cacheonix.impl.storage.disk.DummyDiskStorage;
@@ -41,9 +41,9 @@ public final class BinaryStoreElementTest extends CacheonixTestCase {
 
    private static final long EXPIRATION_TIME_MILLIS = 1L;
 
-   private static final Time EXPIRATION_TIME = new Time(EXPIRATION_TIME_MILLIS, 0);
+   private static final TimeImpl EXPIRATION_TIME = new TimeImpl(EXPIRATION_TIME_MILLIS, 0);
 
-   private static final Time IDLE_TIME_MILLIS = new Time(2L, 0);
+   private static final TimeImpl IDLE_TIME_MILLIS = new TimeImpl(2L, 0);
 
    private static final Binary KEY = toBinary("key");
 
@@ -73,9 +73,9 @@ public final class BinaryStoreElementTest extends CacheonixTestCase {
 
    public void testSetLastTimeAccessedMillis() throws Exception {
 
-      element.setIdleTime(new Time(EXPIRATION_TIME_MILLIS, 0));
+      element.setIdleTime(new TimeImpl(EXPIRATION_TIME_MILLIS, 0));
 
-      assertEquals(new Time(EXPIRATION_TIME_MILLIS, 0), element.getIdleTime());
+      assertEquals(new TimeImpl(EXPIRATION_TIME_MILLIS, 0), element.getIdleTime());
    }
 
 

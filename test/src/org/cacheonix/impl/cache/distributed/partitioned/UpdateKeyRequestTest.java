@@ -18,7 +18,7 @@ import java.io.IOException;
 import org.cacheonix.CacheonixTestCase;
 import org.cacheonix.TestUtils;
 import org.cacheonix.impl.cache.item.Binary;
-import org.cacheonix.impl.clock.Time;
+import org.cacheonix.impl.clock.TimeImpl;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
 
@@ -36,7 +36,7 @@ public final class UpdateKeyRequestTest extends CacheonixTestCase {
 
    private static final Binary KEY = toBinary("test.key");
 
-   private static final Time TIME_TO_READ = new Time(10, 0);
+   private static final TimeImpl TIME_TO_READ = new TimeImpl(10, 0);
 
 
    private UpdateKeyRequest request;

@@ -18,7 +18,7 @@ import java.io.IOException;
 import org.cacheonix.CacheonixTestCase;
 import org.cacheonix.TestUtils;
 import org.cacheonix.impl.cache.item.Binary;
-import org.cacheonix.impl.clock.Time;
+import org.cacheonix.impl.clock.TimeImpl;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
@@ -40,7 +40,7 @@ public final class PutRequestTest extends CacheonixTestCase {
 
    private PutRequest request = null;
 
-   private static final Time EXPIRATION_TIME = new Time(2000, 0);
+   private static final TimeImpl EXPIRATION_TIME = new TimeImpl(2000, 0);
 
 
    /**

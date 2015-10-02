@@ -27,6 +27,7 @@ import org.cacheonix.impl.cache.store.BinaryStore;
 import org.cacheonix.impl.cache.store.ReadableElement;
 import org.cacheonix.impl.cache.store.SharedCounter;
 import org.cacheonix.impl.clock.Time;
+import org.cacheonix.impl.clock.TimeImpl;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
 import org.cacheonix.impl.storage.disk.DummyDiskStorage;
@@ -133,7 +134,7 @@ public final class BucketTest extends CacheonixTestCase {
    }
 
 
-   public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+   public void testSerializeDeserialize() throws IOException {
 
       bucket.put(key, value, expirationTime);
       final Serializer ser = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
@@ -146,7 +147,7 @@ public final class BucketTest extends CacheonixTestCase {
       bucket.put(key, value, expirationTime);
 
       final Binary newValue = toBinary("new.value");
-      final Time timeToRead = new Time(10, 0);
+      final Time timeToRead = new TimeImpl(10, 0);
       final ReadableElement previousElement = bucket.update(key, newValue, timeToRead, 0);
       assertNotNull(previousElement);
    }

@@ -20,18 +20,18 @@ import org.cacheonix.impl.net.serializer.SerializerFactory;
 /**
  * Tester for Time.
  */
-public class TimeTest extends TestCase {
+public class TimeImplTest extends TestCase {
 
    private static final long MILLIS = 1000L;
 
    private static final long COUNT = 5L;
 
-   private Time time;
+   private TimeImpl time;
 
 
    public void testDefaultConstructor() throws Exception {
 
-      final Time defaultContructorTime = new Time();
+      final Time defaultContructorTime = new TimeImpl();
       assertEquals(0, defaultContructorTime.getMillis());
       assertEquals(0, defaultContructorTime.getCount());
    }
@@ -51,15 +51,15 @@ public class TimeTest extends TestCase {
 
    public void testCompareTo() throws Exception {
 
-      assertEquals(0, time.compareTo(new Time(MILLIS, COUNT)));
+      assertEquals(0, time.compareTo(new TimeImpl(MILLIS, COUNT)));
 
-      assertEquals(1, time.compareTo(new Time(MILLIS - 1, COUNT)));
-      assertEquals(1, time.compareTo(new Time(MILLIS, COUNT - 1)));
-      assertEquals(1, time.compareTo(new Time(MILLIS - 1, COUNT - 1)));
+      assertEquals(1, time.compareTo(new TimeImpl(MILLIS - 1, COUNT)));
+      assertEquals(1, time.compareTo(new TimeImpl(MILLIS, COUNT - 1)));
+      assertEquals(1, time.compareTo(new TimeImpl(MILLIS - 1, COUNT - 1)));
 
-      assertEquals(-1, time.compareTo(new Time(MILLIS + 1, COUNT)));
-      assertEquals(-1, time.compareTo(new Time(MILLIS, COUNT + 1)));
-      assertEquals(-1, time.compareTo(new Time(MILLIS + 1, COUNT + 1)));
+      assertEquals(-1, time.compareTo(new TimeImpl(MILLIS + 1, COUNT)));
+      assertEquals(-1, time.compareTo(new TimeImpl(MILLIS, COUNT + 1)));
+      assertEquals(-1, time.compareTo(new TimeImpl(MILLIS + 1, COUNT + 1)));
 
       assertEquals(1, time.compareTo(new Object()));
    }
@@ -67,9 +67,9 @@ public class TimeTest extends TestCase {
 
    public void testEquals() throws Exception {
 
-      assertEquals(time, new Time(MILLIS, COUNT));
-      assertFalse(new Time(MILLIS + 1, COUNT).equals(time));
-      assertFalse(new Time(MILLIS, COUNT + 1).equals(time));
+      assertEquals(time, new TimeImpl(MILLIS, COUNT));
+      assertFalse(new TimeImpl(MILLIS + 1, COUNT).equals(time));
+      assertFalse(new TimeImpl(MILLIS, COUNT + 1).equals(time));
       assertTrue(time.equals(time));
       assertFalse(time.equals(null));
       assertFalse(time.equals(new Object()));
@@ -78,21 +78,21 @@ public class TimeTest extends TestCase {
 
    public void testSubtract() throws Exception {
 
-      assertEquals(new Time(0, 0), time.subtract(new Time(MILLIS, COUNT)));
-      assertEquals(new Time(-1, -1), time.subtract(new Time(MILLIS + 1, COUNT + 1)));
-      assertNotSame(time, time.subtract(new Time(MILLIS, COUNT)));
+      assertEquals(new TimeImpl(0, 0), time.subtract(new TimeImpl(MILLIS, COUNT)));
+      assertEquals(new TimeImpl(-1, -1), time.subtract(new TimeImpl(MILLIS + 1, COUNT + 1)));
+      assertNotSame(time, time.subtract(new TimeImpl(MILLIS, COUNT)));
    }
 
 
    public void testDivide() throws Exception {
 
-      assertEquals(new Time(3, 2), new Time(6, 4).divide(2));
+      assertEquals(new TimeImpl(3, 2), new TimeImpl(6, 4).divide(2));
    }
 
 
    public void testZeroTime() {
 
-      assertEquals(Time.ZERO, new Time(0L, 0L));
+      assertEquals(TimeImpl.ZERO, new TimeImpl(0L, 0L));
    }
 
 
@@ -100,7 +100,7 @@ public class TimeTest extends TestCase {
 
       final long addMillis = 777L;
       final Time timeAdded = time.add(addMillis);
-      assertEquals(new Time(MILLIS + addMillis, COUNT), timeAdded);
+      assertEquals(new TimeImpl(MILLIS + addMillis, COUNT), timeAdded);
    }
 
 
@@ -115,9 +115,9 @@ public class TimeTest extends TestCase {
 
       final long addMillis = 777L;
       final long addCount = 888L;
-      final Time timeAdded = time.add(new Time(addMillis, addCount));
-      assertEquals(new Time(MILLIS + addMillis, COUNT + addCount), timeAdded);
-      assertSame(time.add(new Time(0, 0)), time);
+      final Time timeAdded = time.add(new TimeImpl(addMillis, addCount));
+      assertEquals(new TimeImpl(MILLIS + addMillis, COUNT + addCount), timeAdded);
+      assertSame(time.add(new TimeImpl(0, 0)), time);
    }
 
 
@@ -144,7 +144,7 @@ public class TimeTest extends TestCase {
 
       super.setUp();
 
-      time = new Time(MILLIS, COUNT);
+      time = new TimeImpl(MILLIS, COUNT);
    }
 
 
@@ -158,7 +158,7 @@ public class TimeTest extends TestCase {
 
    public String toString() {
 
-      return "TimeTest{" +
+      return "TimeImplTest{" +
               "time=" + time +
               "} " + super.toString();
    }

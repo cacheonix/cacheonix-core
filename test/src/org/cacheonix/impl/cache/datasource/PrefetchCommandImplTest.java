@@ -1,7 +1,7 @@
 package org.cacheonix.impl.cache.datasource;
 
 import org.cacheonix.CacheonixTestCase;
-import org.cacheonix.impl.clock.Time;
+import org.cacheonix.impl.clock.TimeImpl;
 
 import static org.mockito.Mockito.mock;
 
@@ -24,7 +24,7 @@ public final class PrefetchCommandImplTest extends CacheonixTestCase {
 
       super.setUp();
       prefetchCommand = new PrefetchCommandImpl(mock(PrefetchElementUpdater.class),
-              mock(BinaryStoreDataSource.class), toBinary("Test key"), new Time(), 1);
+              mock(BinaryStoreDataSource.class), toBinary("Test key"), new TimeImpl(), 1);
    }
 
 

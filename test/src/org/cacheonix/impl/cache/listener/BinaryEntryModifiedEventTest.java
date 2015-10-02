@@ -20,7 +20,7 @@ import org.cacheonix.cache.subscriber.EntryModifiedEventType;
 import org.cacheonix.cluster.CacheMember;
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.cache.subscriber.BinaryEntryModifiedEvent;
-import org.cacheonix.impl.clock.Time;
+import org.cacheonix.impl.clock.TimeImpl;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
 
@@ -33,7 +33,7 @@ import org.cacheonix.impl.net.serializer.SerializerFactory;
  */
 public final class BinaryEntryModifiedEventTest extends CacheonixTestCase {
 
-   private static final Time LAST_UPDATE_TIME_MILLIS = new Time(1L, 0);
+   private static final TimeImpl LAST_UPDATE_TIME_MILLIS = new TimeImpl(1L, 0);
 
    private static final long VERSION = 2L;
 

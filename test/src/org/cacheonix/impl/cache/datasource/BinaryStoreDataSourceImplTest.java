@@ -19,6 +19,7 @@ import org.cacheonix.cache.datasource.SimpleDataSourceObject;
 import org.cacheonix.impl.cache.invalidator.DummyCacheInvalidator;
 import org.cacheonix.impl.cache.store.BinaryStoreElement;
 import org.cacheonix.impl.clock.Time;
+import org.cacheonix.impl.clock.TimeImpl;
 import org.cacheonix.impl.storage.disk.DummyDiskStorage;
 import org.cacheonix.impl.util.cache.DummyObjectSizeCalculator;
 import org.mockito.Mockito;
@@ -76,7 +77,7 @@ public final class BinaryStoreDataSourceImplTest extends CacheonixTestCase {
 
       final Time createdTime = getClock().currentTime();
       final Time expirationTime = getClock().currentTime().add(100);
-      final Time timeTookToReadFromDataSource = new Time(50, 0);
+      final Time timeTookToReadFromDataSource = new TimeImpl(50, 0);
       final BinaryStoreElement element = new BinaryStoreElement(toBinary(TEST_KEY), toBinary(TEST_VALUE), createdTime,
               expirationTime, null, sizeCalculator, invalidator, diskStorage);
 

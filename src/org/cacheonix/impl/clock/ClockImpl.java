@@ -189,7 +189,7 @@ public final class ClockImpl implements Clock {
 
          }
 
-         return new Time(currentClockMillis + adjustmentMillis, count);
+         return new TimeImpl(currentClockMillis + adjustmentMillis, count);
       }
    }
 

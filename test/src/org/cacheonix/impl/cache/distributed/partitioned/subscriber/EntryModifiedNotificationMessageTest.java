@@ -19,7 +19,7 @@ import java.util.List;
 import org.cacheonix.CacheonixTestCase;
 import org.cacheonix.cache.subscriber.EntryModifiedEventType;
 import org.cacheonix.impl.cache.subscriber.BinaryEntryModifiedEvent;
-import org.cacheonix.impl.clock.Time;
+import org.cacheonix.impl.clock.TimeImpl;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
 import org.cacheonix.impl.net.serializer.Wireable;
@@ -72,8 +72,10 @@ public final class EntryModifiedNotificationMessageTest extends CacheonixTestCas
    private static List<BinaryEntryModifiedEvent> createEvents() {
 
       final List<BinaryEntryModifiedEvent> events = new ArrayList<BinaryEntryModifiedEvent>(2);
-      events.add(new BinaryEntryModifiedEvent(EntryModifiedEventType.ADD, toBinary("key"), toBinary("new value"), toBinary("previous value"), new Time(999L, 0), 1, null));
-      events.add(new BinaryEntryModifiedEvent(EntryModifiedEventType.UPDATE, toBinary("key"), toBinary("new value1"), toBinary("previous value1"), new Time(999L, 0), 1, null));
+      events.add(new BinaryEntryModifiedEvent(EntryModifiedEventType.ADD, toBinary("key"), toBinary("new value"),
+              toBinary("previous value"), new TimeImpl(999L, 0), 1, null));
+      events.add(new BinaryEntryModifiedEvent(EntryModifiedEventType.UPDATE, toBinary("key"), toBinary("new value1"),
+              toBinary("previous value1"), new TimeImpl(999L, 0), 1, null));
       return events;
    }
 

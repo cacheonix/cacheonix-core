@@ -14,7 +14,7 @@
 package org.cacheonix.impl.cache.datasource;
 
 import org.cacheonix.CacheonixTestCase;
-import org.cacheonix.impl.clock.Time;
+import org.cacheonix.impl.clock.TimeImpl;
 
 /**
  * Tester for BinaryStoreDataSourceObjectImpl.
@@ -26,7 +26,7 @@ public class BinaryStoreDataSourceObjectImplTest extends CacheonixTestCase {
 
    private BinaryStoreDataSourceObjectImpl binaryStoreDataSourceObject;
 
-   private Time timeToRead;
+   private TimeImpl timeToRead;
 
 
    public void testGetObject() throws Exception {
@@ -51,7 +51,7 @@ public class BinaryStoreDataSourceObjectImplTest extends CacheonixTestCase {
 
       super.setUp();
 
-      timeToRead = new Time(10, 0);
+      timeToRead = new TimeImpl(10, 0);
       binaryStoreDataSourceObject = new BinaryStoreDataSourceObjectImpl(TEST_OBJECT, timeToRead);
    }
 

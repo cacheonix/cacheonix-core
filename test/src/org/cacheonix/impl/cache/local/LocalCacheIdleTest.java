@@ -18,7 +18,7 @@ import org.cacheonix.impl.cache.datasource.DummyBinaryStoreDataSource;
 import org.cacheonix.impl.cache.datastore.DummyDataStore;
 import org.cacheonix.impl.cache.invalidator.DummyCacheInvalidator;
 import org.cacheonix.impl.cache.loader.DummyCacheLoader;
-import org.cacheonix.impl.clock.Time;
+import org.cacheonix.impl.clock.TimeImpl;
 import org.cacheonix.impl.configuration.ElementEventNotification;
 import org.cacheonix.impl.storage.disk.DummyDiskStorage;
 import org.cacheonix.impl.util.cache.DummyObjectSizeCalculator;
@@ -112,7 +112,7 @@ public final class LocalCacheIdleTest extends CacheonixTestCase {
 
    public void testGetIdleTimeMillis() {
 
-      assertEquals(new Time(IDLE_TIME_MILLIS, 0), cache.getIdleInterval());
+      assertEquals(new TimeImpl(IDLE_TIME_MILLIS, 0), cache.getIdleInterval());
    }
 
 

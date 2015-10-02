@@ -15,7 +15,7 @@ package org.cacheonix.impl.cache.distributed.partitioned;
 
 import org.cacheonix.CacheonixTestCase;
 import org.cacheonix.impl.cache.item.Binary;
-import org.cacheonix.impl.clock.Time;
+import org.cacheonix.impl.clock.TimeImpl;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
 import org.cacheonix.impl.net.serializer.Wireable;
@@ -33,7 +33,7 @@ public final class CacheableValueTest extends CacheonixTestCase {
 
    private Binary binaryValue;
 
-   private Time expirationTime;
+   private TimeImpl expirationTime;
 
    private CacheableValue cacheableValue;
 
@@ -73,7 +73,7 @@ public final class CacheableValueTest extends CacheonixTestCase {
 
    public void testEquals() throws Exception {
 
-      assertEquals(new CacheableValue(toBinary(VALUE), new Time(MILLIS, COUNT)), cacheableValue);
+      assertEquals(new CacheableValue(toBinary(VALUE), new TimeImpl(MILLIS, COUNT)), cacheableValue);
    }
 
 
@@ -106,7 +106,7 @@ public final class CacheableValueTest extends CacheonixTestCase {
       super.setUp();
 
       binaryValue = toBinary(VALUE);
-      expirationTime = new Time(MILLIS, COUNT);
+      expirationTime = new TimeImpl(MILLIS, COUNT);
       cacheableValue = new CacheableValue(binaryValue, expirationTime);
    }
 

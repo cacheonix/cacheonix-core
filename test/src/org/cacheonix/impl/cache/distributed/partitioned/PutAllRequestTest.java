@@ -22,7 +22,7 @@ import org.cacheonix.impl.cache.item.BinaryFactory;
 import org.cacheonix.impl.cache.item.BinaryFactoryBuilder;
 import org.cacheonix.impl.cache.item.BinaryType;
 import org.cacheonix.impl.cache.item.InvalidObjectException;
-import org.cacheonix.impl.clock.Time;
+import org.cacheonix.impl.clock.TimeImpl;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
 import org.cacheonix.impl.util.array.HashMap;
@@ -46,7 +46,7 @@ public final class PutAllRequestTest extends CacheonixTestCase {
 
    private static final BinaryFactoryBuilder BINARY_FACTORY_BUILDER = new BinaryFactoryBuilder();
 
-   private static final Time EXPIRATION_TIME_MILLIS = new Time(1000L, 0);
+   private static final TimeImpl EXPIRATION_TIME_MILLIS = new TimeImpl(1000L, 0);
 
    private static final String TEST_CACHE = "test.cache";
 

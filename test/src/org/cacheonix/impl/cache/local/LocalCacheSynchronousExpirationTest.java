@@ -18,7 +18,7 @@ import org.cacheonix.impl.cache.datasource.DummyBinaryStoreDataSource;
 import org.cacheonix.impl.cache.datastore.DummyDataStore;
 import org.cacheonix.impl.cache.invalidator.DummyCacheInvalidator;
 import org.cacheonix.impl.cache.loader.DummyCacheLoader;
-import org.cacheonix.impl.clock.Time;
+import org.cacheonix.impl.clock.TimeImpl;
 import org.cacheonix.impl.configuration.ElementEventNotification;
 import org.cacheonix.impl.storage.disk.DummyDiskStorage;
 import org.cacheonix.impl.util.cache.DummyObjectSizeCalculator;
@@ -70,7 +70,7 @@ public final class LocalCacheSynchronousExpirationTest extends CacheonixTestCase
    @SuppressWarnings("PointlessArithmeticExpression")
    public void testGetExpirationTimeMillis() {
 
-      assertEquals(new Time(EXPIRATION_TIME_MILLIS, 0), cache.getExpirationInterval());
+      assertEquals(new TimeImpl(EXPIRATION_TIME_MILLIS, 0), cache.getExpirationInterval());
    }
 
 

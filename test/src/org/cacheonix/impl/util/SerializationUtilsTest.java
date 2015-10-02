@@ -20,11 +20,12 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.InetAddress;
 
+import junit.framework.TestCase;
 import org.cacheonix.impl.clock.Time;
+import org.cacheonix.impl.clock.TimeImpl;
 import org.cacheonix.impl.net.processor.UUID;
 import org.cacheonix.impl.net.serializer.SerializerUtils;
 import org.cacheonix.impl.util.logging.Logger;
-import junit.framework.TestCase;
 
 /**
  * SerializationUtilsTest
@@ -63,7 +64,7 @@ public final class SerializationUtilsTest extends TestCase {
 
    public void testWriteReadTime() throws IOException {
 
-      final Time original = new Time(1000, 2000);
+      final TimeImpl original = new TimeImpl(1000, 2000);
       final ByteArrayOutputStream baos = new ByteArrayOutputStream(64);
       SerializerUtils.writeTime(original, new DataOutputStream(baos));
       final byte[] bytes = baos.toByteArray();
