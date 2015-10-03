@@ -206,9 +206,14 @@ public final class BlockedMarker extends OperationalMarker {
       final ClusterProcessor processor = getClusterProcessor();
 
       final JoinStatus joinStatus = processor.getProcessorState().getJoinStatus();
-
       final ObservedClusterNode strongestObservedClusterNode = joinStatus.getStrongestObservedClusterNode();
       if (strongestObservedClusterNode == null) {
+         return;
+      }
+
+      // Check if this is an announcement from our own cluster
+      if (strongestObservedClusterNode.getClusterUUID().equals(
+              processor.getProcessorState().getClusterView().getClusterUUID())) {
          return;
       }
 
@@ -235,13 +240,6 @@ public final class BlockedMarker extends OperationalMarker {
       if (clusterView.isRepresentative() && ourMarkerListSize > 1) {
 
          // Ignore, the representative will leave only when it is alone
-         return;
-      }
-
-      // Check if this is an announcement from our own cluster
-
-      if (strongestObservedClusterNode.getClusterUUID().equals(
-              processor.getProcessorState().getClusterView().getClusterUUID())) {
          return;
       }
 
