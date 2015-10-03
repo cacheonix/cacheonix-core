@@ -5,7 +5,7 @@ import org.cacheonix.impl.net.serializer.Wireable;
 /**
  * An immutable reading of a physical clock.
  */
-public interface Time extends Comparable, Wireable {
+public interface Time extends Comparable<Time>, Wireable {
 
    long getMillis();
 
