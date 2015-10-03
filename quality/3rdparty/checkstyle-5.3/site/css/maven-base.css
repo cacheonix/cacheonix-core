@@ -1,12 +1,12 @@
 body {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
 }
 img {
   border:none;
 }
 table {
-  padding:0px;
+  padding:0;
   width: 100%;
   margin-left: -2px;
   margin-right: -2px;
@@ -31,7 +31,7 @@ div.clear hr{
   font-weight: bold;
 }
 #bannerLeft img, #bannerRight img {
-  margin: 0px;
+  margin: 0;
 }
 .xleft, #bannerLeft img {
   float:left;
@@ -40,7 +40,7 @@ div.clear hr{
   float:right;
 }
 #banner {
-  padding: 0px;
+  padding: 0;
 }
 #banner img {
   border: none;
@@ -101,7 +101,7 @@ div.clear hr{
   margin: 20px 0 20px 17px;
 }
 #search img {
-    margin: 0px;
+    margin: 0;
     display: block;
 }
 #search #q, #search #btnG {
@@ -109,7 +109,7 @@ div.clear hr{
     margin-bottom:10px;
 }
 #search form {
-    margin: 0px;
+    margin: 0;
 }
 #lastPublished {
   font-size: x-small;
@@ -131,13 +131,13 @@ div.clear hr{
 }
 #breadcrumbs {
   font-size: x-small;
-  margin: 0pt;
+  margin: 0;
 }
 .source {
   padding: 12px;
   margin: 1em 7px 1em 7px;
 }
 .source pre {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
 }
