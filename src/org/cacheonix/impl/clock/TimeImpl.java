@@ -125,7 +125,7 @@ public final class TimeImpl implements Time {
    }
 
 
-   public int compareTo(final Object o) {
+   public int compareTo(final Time o) {
 
       if (!(o instanceof TimeImpl)) {
 
