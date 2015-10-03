@@ -61,7 +61,7 @@ public class TimeImplTest extends TestCase {
       assertEquals(-1, time.compareTo(new TimeImpl(MILLIS, COUNT + 1)));
       assertEquals(-1, time.compareTo(new TimeImpl(MILLIS + 1, COUNT + 1)));
 
-      assertEquals(1, time.compareTo(new Object()));
+      assertEquals(1, time.compareTo(TimeImpl.ZERO));
    }
 
 
