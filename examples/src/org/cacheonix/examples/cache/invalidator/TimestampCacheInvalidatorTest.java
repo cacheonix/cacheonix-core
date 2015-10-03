@@ -16,10 +16,10 @@ package org.cacheonix.examples.cache.invalidator;
 import java.sql.Date;
 import java.sql.SQLException;
 
+import junit.framework.TestCase;
 import org.cacheonix.Cacheonix;
 import org.cacheonix.ShutdownMode;
 import org.cacheonix.cache.Cache;
-import junit.framework.TestCase;
 
 /**
  * Example of using CacheInvalidator to invalidate a cache based on a time stamp in a backing database table.
@@ -153,7 +153,7 @@ public final class TimestampCacheInvalidatorTest extends TestCase {
       final String configurationPath = System.getProperty("cacheonix.examples.cacheonix.config.xml");
 
       // Validate
-      if (configurationPath == null || configurationPath.length() == 0) {
+      if (configurationPath == null || configurationPath.isEmpty()) {
          throw new IllegalStateException("Property 'cacheonix.examples.cacheonix.config.xml' is not set. " +
                  "Make sure that your IDE provides property 'cacheonix.examples.cacheonix.config.xml' " +
                  "to the JUnit runner and that it is set to the path to 'cacheonix-config.xml' " +

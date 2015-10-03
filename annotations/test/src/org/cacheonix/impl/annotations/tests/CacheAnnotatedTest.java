@@ -104,7 +104,7 @@ public class CacheAnnotatedTest {
 
       String strRes = null;
 
-      if (buf.toString().length() > 0) {
+      if (!buf.toString().isEmpty()) {
          strRes = buf.toString();
       }
 

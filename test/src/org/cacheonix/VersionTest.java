@@ -13,8 +13,8 @@
  */
 package org.cacheonix;
 
-import org.cacheonix.impl.util.StringUtils;
 import junit.framework.TestCase;
+import org.cacheonix.impl.util.StringUtils;
 
 /**
  * Tests {@link Version}
@@ -51,7 +51,7 @@ public final class VersionTest extends TestCase {
 
    public void testPatchVersion() {
 
-      assertTrue(version.patchVersion().length() > 0);
+      assertTrue(!version.patchVersion().isEmpty());
    }
 
 
