@@ -80,7 +80,7 @@ public class SelectorWorker implements Runnable {
          while (!Thread.currentThread().isInterrupted()) {
 
             // Wait for channel readiness
-            select(selector, selectorTimeoutMillis);
+            selector.select(selectorTimeoutMillis);
 
             // Process selection
             processSelection();
@@ -94,6 +94,9 @@ public class SelectorWorker implements Runnable {
 
          LOG.error("Failed to accept a connection, selector thread terminates: " + e.toString(), e);
       } catch (final RuntimeException e) {
+
+         LOG.error("Unexpected error, selector thread terminates: " + e.toString(), e);
+      } catch (final IOException e) {
 
          LOG.error("Unexpected error, selector thread terminates: " + e.toString(), e);
       } finally {
@@ -210,26 +213,6 @@ public class SelectorWorker implements Runnable {
 
             throw interrupted[0];
          }
-      }
-   }
-
-
-   /**
-    * Selects the selector using the given timeout. This method wraps the IOException thrown by selector.select() into a
-    * RuntimeException because selector does not throw recoverable runtime errors. We use this method to separate other
-    * IOExceptions.
-    *
-    * @param selector the selector to select
-    * @param timeout  the select timeout
-    * @return the number of selected keys.
-    * @throws UnrecoverableSelectException if an IOException was thrown by selector.select().
-    */
-   private static int select(final Selector selector, final long timeout) throws UnrecoverableSelectException {
-
-      try {
-         return selector.select(timeout);
-      } catch (final IOException e) {
-         throw new UnrecoverableSelectException(e);
       }
    }
 
