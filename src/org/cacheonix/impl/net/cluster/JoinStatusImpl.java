@@ -104,9 +104,9 @@ final class JoinStatusImpl implements JoinStatus {
    }
 
 
-   public void setJoiningTo(final ClusterNodeAddress joiningToProcess) {
+   public void setJoiningTo(final ClusterNodeAddress process) {
 
-      this.joiningToProcess = joiningToProcess;
+      this.joiningToProcess = process;
    }
 
 

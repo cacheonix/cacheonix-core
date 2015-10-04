@@ -38,9 +38,9 @@ interface JoinStatus {
    /**
     * Sets the process we are joining to.
     *
-    * @param joiningToProcess the address the node is joining.
+    * @param process the address the node is joining.
     */
-   void setJoiningTo(ClusterNodeAddress joiningToProcess);
+   void setJoiningTo(ClusterNodeAddress process);
 
    /**
     * Returns the marker list that we received from the {@link #getJoiningToProcess()}.
