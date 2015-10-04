@@ -356,10 +356,9 @@ public final class BlockedMarker extends OperationalMarker {
    protected void processBlocked() throws IOException, InterruptedException {
 
       final ClusterProcessor processor = getClusterProcessor();
-      final BlockedMarker blockedMarker = copy();
-      final ClusterNodeAddress self = processor.getAddress();
+      final ClusterProcessorState processorState = processor.getProcessorState();
 
-      final JoinStatus joinStatus = processor.getProcessorState().getJoinStatus();
+      final JoinStatus joinStatus = processorState.getJoinStatus();
 
       // Begin joining if there are proper cluster announcements.
       processClusterAnnouncements();
@@ -369,7 +368,8 @@ public final class BlockedMarker extends OperationalMarker {
       // for the bigger that the node has just joined. This can lead to problems. The node
       // ignores a marker that has now become a foreign marker.
 
-      if (!processor.getProcessorState().getClusterView().getClusterUUID().equals(getClusterUUID())) {
+      final BlockedMarker blockedMarker = copy();
+      if (!processorState.getClusterView().getClusterUUID().equals(getClusterUUID())) {
 
 
          if (joinStatus.isJoining() && joinStatus.isReceivedMarkerList()
@@ -401,6 +401,7 @@ public final class BlockedMarker extends OperationalMarker {
       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       // Add joined process
       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+      final ClusterNodeAddress self = processor.getAddress();
       if (blockedMarker.getPredecessor() != null) {
 
          if (self.equals(blockedMarker.getPredecessor())) {
@@ -416,14 +417,14 @@ public final class BlockedMarker extends OperationalMarker {
                LOG.debug("Checking if we reached majority: " + self);
             }
 
-            if (processor.getProcessorState().getClusterView().getSize() >= targetMajorityClusterSize) {
+            if (processorState.getClusterView().getSize() >= targetMajorityClusterSize) {
 
                // Yes, we have reached majority. Reset the received queue, delivery counters,
                // notify about revival the application and forward the normal marker.
                if (LOG.isDebugEnabled()) {
 
                   LOG.info(
-                          "BBBBBBBBBBBBBBBBBBBb We have majority, new member list size is " + processor.getProcessorState().getClusterView().getSize() + ": " + processor.getProcessorState().getClusterView());
+                          "BBBBBBBBBBBBBBBBBBBb We have majority, new member list size is " + processorState.getClusterView().getSize() + ": " + processorState.getClusterView());
                }
 
                // Blocked cluster has to run through cleanup because there may be gaps in the
@@ -442,19 +443,17 @@ public final class BlockedMarker extends OperationalMarker {
 
                // We are joining, and this is the first mcast marker we have received. This
                // should happen only after the predecessor has sent us the cluster view.
-               processor.getProcessorState().setClusterView(joinStatus.getJoiningToCluster());
+               processorState.setClusterView(joinStatus.getJoiningToCluster());
                processor.getRouter().setClusterUUID(joinStatus.getJoiningToCluster().getClusterUUID());
 
-               processor.getProcessorState().updateLastOperationalClusterView(
-                       joinStatus.getLastOperationalClusterView());
+               processorState.updateLastOperationalClusterView(joinStatus.getLastOperationalClusterView());
 
-               processor.getProcessorState().getReplicatedState().reset(joinStatus.getReplicatedState());
+               processorState.getReplicatedState().reset(joinStatus.getReplicatedState());
                processor.getMessageAssembler().setParts(joinStatus.getMessageAssemblerParts());
                joinStatus.clear();
 
 
-               LOG.debug(
-                       "Joined blocked cluster, new cluster configuration: " + processor.getProcessorState().getClusterView());
+               LOG.debug("Joined blocked cluster, new cluster configuration: " + processorState.getClusterView());
             } else {
 
                // Amend the marker list only if this is not us who is joining
@@ -462,7 +461,7 @@ public final class BlockedMarker extends OperationalMarker {
                   LOG.debug("Add joining to our list: " + blockedMarker);
                }
 
-               processor.getProcessorState().getClusterView().insert(blockedMarker.getPredecessor(),
+               processorState.getClusterView().insert(blockedMarker.getPredecessor(),
                        blockedMarker.getJoiningNode());
             }
          }
@@ -475,7 +474,7 @@ public final class BlockedMarker extends OperationalMarker {
       // instead of a queue. Currently of the majority got formed, pending requests will be abandoned.
 
       // NOPMD
-      final LinkedList<JoiningNode> joinRequests = processor.getProcessorState().getJoinRequests();
+      final LinkedList<JoiningNode> joinRequests = processorState.getJoinRequests();
       if (!joinRequests.isEmpty()) {
 
          // NOTE: simeshev@cacheonix.org - 2011-04-13 - It is important to check if this node is in 'Leave' becuase
@@ -491,11 +490,11 @@ public final class BlockedMarker extends OperationalMarker {
 
                // Check if not already joined
 
-               if (!processor.getProcessorState().getClusterView().contains(joiningNodeAddress)) {
+               if (!processorState.getClusterView().contains(joiningNodeAddress)) {
 
                   // Insert immediately after ourselves
 
-                  processor.getProcessorState().getClusterView().insert(self, joiningNode);
+                  processorState.getClusterView().insert(self, joiningNode);
 
                   // Set up join in the marker
                   blockedMarker.setJoiningNode(joiningNode);
@@ -505,9 +504,9 @@ public final class BlockedMarker extends OperationalMarker {
                   // Create marker list
 
                   final MarkerListRequest markerListRequest = new MarkerListRequest(self,
-                          processor.getProcessorState().getClusterView(),
-                          processor.getProcessorState().getLastOperationalClusterView(),
-                          processor.getProcessorState().getReplicatedState(),
+                          processorState.getClusterView(),
+                          processorState.getLastOperationalClusterView(),
+                          processorState.getReplicatedState(),
                           processor.getMessageAssembler().getParts());
                   markerListRequest.setReceiver(joiningNodeAddress);
 
@@ -541,7 +540,7 @@ public final class BlockedMarker extends OperationalMarker {
       //
       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-      if (!processor.isShuttingDown() && !processor.getProcessorState().getJoinStatus().isJoining()) {
+      if (!processor.isShuttingDown() && !processorState.getJoinStatus().isJoining()) {
 
          final Time currentTime = processor.getClock().currentTime();
          if (currentTime.compareTo(blockedMarker.getNextAnnouncementTime()) >= 0) {
@@ -549,7 +548,7 @@ public final class BlockedMarker extends OperationalMarker {
             // Reached next announcement time
 
             blockedMarker.setNextAnnouncementTime(
-                    currentTime.add(processor.getProcessorState().getClusterAnnouncementTimeoutMillis()));
+                    currentTime.add(processorState.getClusterAnnouncementTimeoutMillis()));
             processor.announceCluster(false);
          }
       }
@@ -558,13 +557,13 @@ public final class BlockedMarker extends OperationalMarker {
       // Decide if we waited enough to try to form the cluster.
       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-      if (!joinStatus.isJoining() && processor.getProcessorState().getClusterView().getSize() == 1 && processor.getProcessorState().getHomeAloneTimeout().isExpired()) {
+      if (!joinStatus.isJoining() && processorState.getClusterView().getSize() == 1 && processorState.getHomeAloneTimeout().isExpired()) {
 
          // Stayed alone enough - switch to operational mode
          if (LOG.isDebugEnabled()) {
 
             LOG.debug(
-                    "Found ourselves alone, begin cleanup: " + self + ", clusterView: " + processor.getProcessorState().getClusterView());
+                    "Found ourselves alone, begin cleanup: " + self + ", clusterView: " + processorState.getClusterView());
          }
 
          beginCleanup();
