@@ -581,20 +581,19 @@ public final class Frame {
    }
 
 
-   @Override
    public String toString() {
 
       return "Frame{" +
-              "sequenceNumber=" + sequenceNumber +
-              ", clusterUUID=" + clusterUUID +
-              ", compressionType=" + compressionType +
-              ", maximumMessageLength=" + maximumMessageLength +
+              "clusterUUID=" + clusterUUID +
+              ", messageType=" + messageType +
+              ", senderInetAddress=" + senderInetAddress +
+              ", sequenceNumber=" + sequenceNumber +
               ", partCount=" + partCount +
               ", partIndex=" + partIndex +
-              ", senderInetAddress=" + senderInetAddress +
-              ", payload=" + payload.length +
               ", payloadLength=" + payloadLength +
               ", serializerType=" + serializerType +
+              ", compressionType=" + compressionType +
+              ", maximumMessageLength=" + maximumMessageLength +
               '}';
    }
 }
