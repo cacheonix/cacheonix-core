@@ -181,10 +181,11 @@ public abstract class CacheMessage extends Message {
 
       final int destination = convertTypeToDestination(type);
       final int expected = DESTINATION_CACHE_PROCESSOR;
-      if (destination != expected) {
-         throw new IllegalArgumentException("Expected destination type " + expected + " but it was " + destination);
+      if (destination == expected) {
+         return type;
       }
-      return type;
+
+      throw new IllegalArgumentException("Expected destination type " + expected + " but it was " + destination);
    }
 
 
