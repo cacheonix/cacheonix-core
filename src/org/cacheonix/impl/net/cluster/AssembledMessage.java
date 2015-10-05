@@ -5,7 +5,7 @@ import org.cacheonix.impl.net.processor.Message;
 /**
  * An immutable holder of an assembled message and metadata characterising the assembly process.
  */
-interface AssembledMessage {
+public interface AssembledMessage {
 
    Message getMessage();
 

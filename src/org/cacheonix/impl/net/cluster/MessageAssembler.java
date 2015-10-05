@@ -14,7 +14,7 @@ import org.cacheonix.impl.net.processor.Frame;
  * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Mar 30, 2008 5:45:43 PM
  */
-interface MessageAssembler {
+public interface MessageAssembler {
 
    /**
     * Adds a multicast packet to the end of the assembler.
