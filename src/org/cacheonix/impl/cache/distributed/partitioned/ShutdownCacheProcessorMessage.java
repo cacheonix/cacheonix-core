@@ -59,8 +59,6 @@ public final class ShutdownCacheProcessorMessage extends LocalCacheMessage {
    /**
     * Operational means that the context CacheProcessor is servicing requests normally. We should initiate a graceful
     * shutdown.
-    *
-    * @throws InterruptedException if the context thread was interrupted.
     */
    protected void executeOperational() {
 
@@ -81,8 +79,6 @@ public final class ShutdownCacheProcessorMessage extends LocalCacheMessage {
     * the context <code>CacheProcessor</code>'s knowledge, the parent <code>ClusterProcessor</code> is not sending
     * reliable mcast messages. This makes graceful shutdown of the context <code>CacheProcessor</code> impossible as it
     * requires announcing and confirming bucket ownership change. We should perform an immediate forced shutdown.
-    *
-    * @throws InterruptedException if the context thread was interrupted.
     */
    protected void executeBlocked() {
 
