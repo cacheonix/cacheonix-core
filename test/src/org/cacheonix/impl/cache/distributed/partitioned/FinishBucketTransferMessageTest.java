@@ -57,7 +57,7 @@ public final class FinishBucketTransferMessageTest extends CacheonixTestCase {
 
    public void testSetGetBucketNumber() {
 
-      final List bucketNumbers = new ArrayList(11);
+      final List<Integer> bucketNumbers = new ArrayList<Integer>(11);
       bucketNumbers.add(Integer.valueOf(BUCKET_NUMBER));
       message.setBucketNumbers(bucketNumbers);
       assertEquals(bucketNumbers, message.getBucketNumbers());
