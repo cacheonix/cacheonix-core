@@ -18,8 +18,8 @@ package org.cacheonix.impl.transformer;
 
 import java.util.Map;
 
-import org.cacheonix.cache.annotations.CacheDataSource;
 import junit.framework.TestCase;
+import org.cacheonix.cache.annotations.CacheDataSource;
 import org.objectweb.asm.Type;
 
 /**
@@ -79,9 +79,7 @@ public class CacheonixAnnotationCollectorTest extends TestCase {
     */
    public void testVisit() {
 
-      collector.visit(
-              CacheonixAnnotation.CACHEDATASOURCE_EXPIRATION_TIME_MILLIS,
-              new Integer(1000));
+      collector.visit( CacheonixAnnotation.CACHEDATASOURCE_EXPIRATION_TIME_MILLIS, Integer.valueOf(1000));
       collector.visitEnd();
       final Type tp = Type.getType(CacheDataSource.class);
       final String desc = tp.getDescriptor();
