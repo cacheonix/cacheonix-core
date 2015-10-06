@@ -297,6 +297,8 @@ public final class LocalCacheWithDiskStorageTest extends CacheonixTestCase {
    @SuppressWarnings("RedundantIfStatement")
    private static final class ByteArrayKey implements Externalizable {
 
+      private static final long serialVersionUID = 3595907779192315311L;
+
       private byte[] content;
 
 

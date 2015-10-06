@@ -39,6 +39,8 @@ public final class UUID implements Externalizable, Comparable {
     */
    private static final SecureRandom SECURE_RANDOM = new SecureRandom();
 
+   private static final long serialVersionUID = 7526791105598336979L;
+
    private long mostSignificantBits;
 
    private long leastSignificantBits;

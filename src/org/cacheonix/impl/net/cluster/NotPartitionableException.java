@@ -21,6 +21,9 @@ import org.cacheonix.impl.net.processor.Message;
  */
 public final class NotPartitionableException extends CacheonixException {
 
+   private static final long serialVersionUID = -140684474528361834L;
+
+
    public NotPartitionableException(final Message message, final Throwable e) {
 
       super(messageToErrorString(message), e);

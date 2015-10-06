@@ -34,6 +34,8 @@ final class EvenEntryFilter implements EntryFilter {
     */
    private static final Logger LOG = Logger.getLogger(EvenEntryFilter.class); // NOPMD
 
+   private static final long serialVersionUID = -6747858702310115492L;
+
 
    public boolean matches(final CacheEntry cacheEntry) {
 

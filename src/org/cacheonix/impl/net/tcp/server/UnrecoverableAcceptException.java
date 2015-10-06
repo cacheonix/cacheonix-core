@@ -22,6 +22,9 @@ import org.cacheonix.exceptions.CacheonixException;
  */
 public final class UnrecoverableAcceptException extends CacheonixException {
 
+   private static final long serialVersionUID = 7908749977067442371L;
+
+
    /**
     * Creates UnrecoverableAcceptException
     *

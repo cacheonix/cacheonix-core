@@ -20,4 +20,5 @@ import org.cacheonix.exceptions.CacheonixException;
  */
 public final class TimeoutException extends CacheonixException {
 
+   private static final long serialVersionUID = 1991630613042134807L;
 }

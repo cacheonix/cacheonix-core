@@ -191,6 +191,8 @@ public final class LocalCacheExecuteTest extends CacheonixTestCase {
        */
       private static final Logger LOG = Logger.getLogger(EvenEntryFilter.class); // NOPMD
 
+      private static final long serialVersionUID = -7019390425271991967L;
+
 
       public boolean matches(final CacheEntry cacheEntry) {
 

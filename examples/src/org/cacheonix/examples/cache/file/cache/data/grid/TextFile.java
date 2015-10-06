@@ -23,6 +23,8 @@ import java.io.ObjectOutput;
  */
 public final class TextFile implements Externalizable {
 
+   private static final long serialVersionUID = -338699327725129534L;
+
    /**
     * A time when the file was modified last time.
     */

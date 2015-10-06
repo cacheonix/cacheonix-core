@@ -23,6 +23,9 @@ import org.cacheonix.exceptions.CacheonixException;
  */
 public final class InvalidMessageException extends CacheonixException {
 
+   private static final long serialVersionUID = -1091561740778197791L;
+
+
    /**
     * {@inheritDoc}
     */

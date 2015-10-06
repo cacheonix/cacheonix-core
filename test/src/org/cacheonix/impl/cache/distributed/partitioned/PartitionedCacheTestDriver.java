@@ -36,10 +36,6 @@ import org.cacheonix.cache.entry.CacheEntry;
 import org.cacheonix.cache.entry.EntryFilter;
 import org.cacheonix.cluster.CacheMember;
 import org.cacheonix.exceptions.RuntimeInterruptedException;
-import org.cacheonix.locks.BrokenLockException;
-import org.cacheonix.locks.DeadlockException;
-import org.cacheonix.locks.Lock;
-import org.cacheonix.locks.ReadWriteLock;
 import org.cacheonix.impl.configuration.SystemProperty;
 import org.cacheonix.impl.lock.DistributedLock;
 import org.cacheonix.impl.util.ArgumentValidator;
@@ -47,6 +43,10 @@ import org.cacheonix.impl.util.MutableBoolean;
 import org.cacheonix.impl.util.array.HashMap;
 import org.cacheonix.impl.util.array.HashSet;
 import org.cacheonix.impl.util.logging.Logger;
+import org.cacheonix.locks.BrokenLockException;
+import org.cacheonix.locks.DeadlockException;
+import org.cacheonix.locks.Lock;
+import org.cacheonix.locks.ReadWriteLock;
 
 /**
  * Tests clustered cache
@@ -2163,6 +2163,9 @@ public abstract class PartitionedCacheTestDriver extends CacheonixTestCase {
 
 
    protected static final class Executable implements org.cacheonix.cache.executor.Executable {
+
+      private static final long serialVersionUID = -1963185501088791484L;
+
 
       public Serializable execute(final Collection<CacheEntry> cacheEntries) {
 

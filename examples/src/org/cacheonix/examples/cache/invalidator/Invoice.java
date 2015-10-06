@@ -30,6 +30,8 @@ import java.sql.Date;
  */
 public final class Invoice implements Externalizable {
 
+   private static final long serialVersionUID = 3984073786997129229L;
+
    private Date date = null;
 
    private int id;

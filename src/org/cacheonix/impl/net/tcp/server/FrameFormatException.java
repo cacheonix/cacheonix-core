@@ -17,6 +17,9 @@ package org.cacheonix.impl.net.tcp.server;
  */
 public class FrameFormatException extends Exception {
 
+   private static final long serialVersionUID = 5045018977566605641L;
+
+
    public FrameFormatException(final String message) {
 
       super(message);
