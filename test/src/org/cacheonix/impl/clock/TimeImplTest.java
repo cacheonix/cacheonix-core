@@ -65,6 +65,7 @@ public class TimeImplTest extends TestCase {
    }
 
 
+   @SuppressWarnings("ObjectEqualsNull")
    public void testEquals() throws Exception {
 
       assertEquals(time, new TimeImpl(MILLIS, COUNT));

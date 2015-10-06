@@ -73,6 +73,7 @@ public final class ClusterConfigurationImplTest extends TestCase {
    }
 
 
+   @SuppressWarnings("ObjectEqualsNull")
    public void testEquals() throws Exception {
 
       assertEquals(new ClusterConfigurationImpl(OPERATIONAL, clusterMembers), clusterConfiguration);
