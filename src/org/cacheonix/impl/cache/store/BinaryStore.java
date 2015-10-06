@@ -1370,11 +1370,12 @@ public final class BinaryStore implements Wireable {
 
       try {
 
-         if (containsKey(key)) {
+         final ReadableElement readableElement = get(key);
+         if (readableElement != null) {
 
             // Bucket contains the key
 
-            return get(key).getValue();
+            return readableElement.getValue();
          } else {
 
             // Bucket didn't contain the key, do put
