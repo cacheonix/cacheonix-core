@@ -176,9 +176,9 @@ public final class LockOwner implements Wireable {
    public void writeWire(final DataOutputStream out) throws IOException {
 
       SerializerUtils.writeTime(unlockTimeout, out);
-      SerializerUtils.writeInteger(out, threadID);
       SerializerUtils.writeAddress(address, out);
       SerializerUtils.writeString(threadName, out);
+      out.writeInt(threadID);
       out.writeInt(entryCount);
       out.writeBoolean(readLock);
    }
@@ -187,9 +187,9 @@ public final class LockOwner implements Wireable {
    public void readWire(final DataInputStream in) throws IOException {
 
       unlockTimeout = SerializerUtils.readTime(in);
-      threadID = SerializerUtils.readInteger(in);
       address = SerializerUtils.readAddress(in);
       threadName = SerializerUtils.readString(in);
+      threadID = in.readInt();
       entryCount = in.readInt();
       readLock = in.readBoolean();
    }
