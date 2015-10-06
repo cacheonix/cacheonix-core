@@ -449,10 +449,10 @@ public abstract class KeyRequest extends CacheDataRequest implements Prepareable
 
       super.readWire(in);
 
-      storageNumber = SerializerUtils.readInteger(in);
       bucketNumber = SerializerUtils.readInteger(in);
       lockReconfiguringBucket = in.readBoolean();
       key = SerializerUtils.readBinary(in);
+      storageNumber = in.readInt();
       prepared = in.readBoolean();
    }
 
@@ -464,10 +464,10 @@ public abstract class KeyRequest extends CacheDataRequest implements Prepareable
 
       super.writeWire(out);
 
-      SerializerUtils.writeInteger(out, storageNumber);
       SerializerUtils.writeInteger(out, bucketNumber);
       out.writeBoolean(lockReconfiguringBucket);
       SerializerUtils.writeBinary(out, key);
+      out.writeInt(storageNumber);
       out.writeBoolean(prepared);
    }
 
