@@ -327,11 +327,7 @@ public final class LocalCacheConfiguration extends DocumentReader {
          }
       } else if ("template".equals(attributeName)) {
 
-         final boolean readBoolean = Boolean.parseBoolean(attributeValue);
-         if (readBoolean) {
-
-            template = readBoolean;
-         }
+         template = Boolean.parseBoolean(attributeValue);
       }
    }
 
