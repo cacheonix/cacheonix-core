@@ -15,6 +15,7 @@ package org.cacheonix.impl.storage.disk;
 
 import junit.framework.TestCase;
 
+@SuppressWarnings("ThrowableInstanceNeverThrown")
 public final class StorageFullExceptionTest extends TestCase {
 
    private static final String TEST_MESSAGE = "test StorageExceptionFull message";

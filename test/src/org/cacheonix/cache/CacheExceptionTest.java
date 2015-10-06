@@ -13,13 +13,13 @@
  */
 package org.cacheonix.cache;
 
-import org.cacheonix.Version;
 import junit.framework.TestCase;
+import org.cacheonix.Version;
 
 /**
  * Tests CacheException
  *
- * @noinspection ClassWithoutLogger
+ * @noinspection ClassWithoutLogger, ThrowableInstanceNeverThrown
  */
 public final class CacheExceptionTest extends TestCase {
 

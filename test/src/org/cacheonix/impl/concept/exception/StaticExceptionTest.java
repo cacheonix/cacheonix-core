@@ -13,9 +13,9 @@
  */
 package org.cacheonix.impl.concept.exception;
 
+import junit.framework.TestCase;
 import org.cacheonix.impl.net.processor.RetryException;
 import org.cacheonix.impl.util.logging.Logger;
-import junit.framework.TestCase;
 
 /**
  * StaticExceptionTest
@@ -24,6 +24,7 @@ import junit.framework.TestCase;
  * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Sep 4, 2009 11:08:28 PM
  */
+@SuppressWarnings("ThrowableInstanceNeverThrown")
 public final class StaticExceptionTest extends TestCase {
 
    /**

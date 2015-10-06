@@ -18,6 +18,7 @@ import junit.framework.TestCase;
 /**
  * A tester <tt>DataSourceException</tt>.
  */
+@SuppressWarnings("ThrowableInstanceNeverThrown")
 public final class DataSourceExceptionTest extends TestCase {
 
 
