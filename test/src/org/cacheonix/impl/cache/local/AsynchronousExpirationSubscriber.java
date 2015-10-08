@@ -2,7 +2,6 @@ package org.cacheonix.impl.cache.local;
 
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -74,7 +73,7 @@ final class AsynchronousExpirationSubscriber implements EntryModifiedSubscriber 
     */
    public List<EntryModifiedEventContentFlag> getEventContentFlags() {
 
-      return Arrays.asList(EntryModifiedEventContentFlag.NEED_ALL);
+      return Collections.singletonList(EntryModifiedEventContentFlag.NEED_ALL);
    }
 
 
