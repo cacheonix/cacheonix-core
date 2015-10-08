@@ -467,7 +467,7 @@
         <option name="onlyReportPrivateGetter" value="false" />
       </inspection_tool>
       <inspection_tool class="CallToSimpleSetterInClass" enabled="true" level="WARNING" enabled_by_default="true">
-        <option name="ignoreSetterCallsOnOtherObjects" value="false" />
+        <option name="ignoreSetterCallsOnOtherObjects" value="true" />
         <option name="onlyReportPrivateSetter" value="false" />
       </inspection_tool>
       <inspection_tool class="CallToStringConcatCanBeReplacedByOperator" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -699,7 +699,7 @@
       <inspection_tool class="ReturnNull" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="m_reportObjectMethods" value="false" />
         <option name="m_reportArrayMethods" value="false" />
-        <option name="m_reportCollectionMethods" value="true" />
+        <option name="m_reportCollectionMethods" value="false" />
         <option name="m_ignorePrivateMethods" value="false" />
       </inspection_tool>
       <inspection_tool class="ReturnOfDateField" enabled="true" level="WARNING" enabled_by_default="true" />
