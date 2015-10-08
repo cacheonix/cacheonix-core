@@ -45,7 +45,7 @@ public final class SerializationUtilsTest extends TestCase {
 
    private static final int SERIALIZED_UUID_LENGTH = 17;
 
-   private static final Object SERIALIZED_TIME_LENGTH = 17;
+   private static final int SERIALIZED_TIME_LENGTH = 17;
 
 
    public void testWriteReadUuid() throws IOException {
