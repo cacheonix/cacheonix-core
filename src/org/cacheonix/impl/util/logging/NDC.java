@@ -220,6 +220,7 @@ public final class NDC {
    }
 
 
+   @SuppressWarnings("CallToNativeMethodWhileLocked")
    private
    static void lazyRemove() {
 

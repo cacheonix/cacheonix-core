@@ -29,6 +29,7 @@ import org.cacheonix.impl.util.logging.spi.LoggingEvent;
  * @author Ceki G&uuml;lc&uuml;
  * @since version 0.9.1
  */
+@SuppressWarnings("CallToNativeMethodWhileLocked")
 public final class BoundedFIFO {
 
    LoggingEvent[] buf;
