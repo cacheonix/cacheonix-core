@@ -253,13 +253,16 @@ public final class AddEntryModifiedSubscriptionAnnouncement extends KeySetAnnoun
    /**
     * Waits for a response from the owner of the keys
     */
+   @SuppressWarnings("FieldAccessedSynchronizedAndUnsynchronized")
    static class Waiter extends KeySetAnnouncement.Waiter {
 
 
       /**
        * An originator request that should be responded to after this announcement finishes.
+       *
+       * This a transient field.
        */
-      private transient Request parentRequest;
+      private Request parentRequest;
 
 
       /**
@@ -278,7 +281,7 @@ public final class AddEntryModifiedSubscriptionAnnouncement extends KeySetAnnoun
        *
        * @param parentRequest the originator request that should be responded to after this announcement finishes.
        */
-      public void setParentRequest(final Request parentRequest) {
+      public synchronized void setParentRequest(final Request parentRequest) {
 
          this.parentRequest = parentRequest;
       }
