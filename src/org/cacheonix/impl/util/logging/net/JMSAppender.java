@@ -87,6 +87,7 @@ import org.cacheonix.impl.util.logging.spi.LoggingEvent;
  *
  * @author Ceki G&uuml;lc&uuml;
  */
+@SuppressWarnings("FieldAccessedSynchronizedAndUnsynchronized")
 public final class JMSAppender extends AppenderSkeleton {
 
    String securityPrincipalName = null;
@@ -100,8 +101,11 @@ public final class JMSAppender extends AppenderSkeleton {
    String password = null;
    boolean locationInfo = false;
 
+   @SuppressWarnings("FieldAccessedSynchronizedAndUnsynchronized")
    TopicConnection topicConnection = null;
+   @SuppressWarnings("FieldAccessedSynchronizedAndUnsynchronized")
    TopicSession topicSession = null;
+   @SuppressWarnings("FieldAccessedSynchronizedAndUnsynchronized")
    TopicPublisher topicPublisher = null;
 
 

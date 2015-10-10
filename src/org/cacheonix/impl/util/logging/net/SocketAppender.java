@@ -83,6 +83,7 @@ import org.cacheonix.impl.util.logging.spi.LoggingEvent;
  * @since 0.8.4
  */
 
+@SuppressWarnings("FieldAccessedSynchronizedAndUnsynchronized")
 public final class SocketAppender extends AppenderSkeleton {
 
    /**

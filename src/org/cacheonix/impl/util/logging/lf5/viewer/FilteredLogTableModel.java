@@ -35,6 +35,7 @@ import org.cacheonix.impl.util.logging.lf5.PassingLogRecordFilter;
 
 // Contributed by ThoughtWorks Inc.
 
+@SuppressWarnings("FieldAccessedSynchronizedAndUnsynchronized")
 public final class FilteredLogTableModel extends AbstractTableModel {
    //--------------------------------------------------------------------------
    //   Constants:

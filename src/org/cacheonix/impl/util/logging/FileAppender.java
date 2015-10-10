@@ -39,6 +39,7 @@ import org.cacheonix.impl.util.logging.spi.ErrorCode;
  *
  * @author Ceki G&uuml;lc&uuml;
  */
+@SuppressWarnings("FieldAccessedSynchronizedAndUnsynchronized")
 public class FileAppender extends WriterAppender {
 
    /**

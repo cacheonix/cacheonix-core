@@ -39,6 +39,7 @@ import org.cacheonix.impl.util.logging.spi.LoggingEvent;
  * @author Ceki G&uuml;lc&uuml;
  * @author Anders Kristensen
  */
+@SuppressWarnings("FieldAccessedSynchronizedAndUnsynchronized")
 public final class SyslogAppender extends AppenderSkeleton {
    // The following constants are extracted from a syslog.h file
    // copyrighted by the Regents of the University of California

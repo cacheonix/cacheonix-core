@@ -35,6 +35,7 @@ import org.cacheonix.impl.util.logging.spi.OptionHandler;
  * @author Ceki G&uuml;lc&uuml;
  * @since 0.8.1
  */
+@SuppressWarnings("FieldAccessedSynchronizedAndUnsynchronized")
 public abstract class AppenderSkeleton implements Appender, OptionHandler {
 
    /**

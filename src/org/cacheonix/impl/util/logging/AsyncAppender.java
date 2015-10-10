@@ -44,6 +44,7 @@ import org.cacheonix.impl.util.logging.xml.DOMConfigurator;
  * @author Curt Arnold
  * @since 0.9.1
  */
+@SuppressWarnings("FieldAccessedSynchronizedAndUnsynchronized")
 public final class AsyncAppender extends AppenderSkeleton
         implements AppenderAttachable {
 

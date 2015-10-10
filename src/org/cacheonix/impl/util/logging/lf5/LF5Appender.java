@@ -33,6 +33,7 @@ import org.cacheonix.impl.util.logging.spi.LoggingEvent;
 
 // Contributed by ThoughtWorks Inc.
 
+@SuppressWarnings("FieldAccessedSynchronizedAndUnsynchronized")
 public final class LF5Appender extends AppenderSkeleton {
    //--------------------------------------------------------------------------
    // Constants:

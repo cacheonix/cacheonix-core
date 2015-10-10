@@ -36,6 +36,7 @@ import org.cacheonix.impl.util.logging.spi.LoggingEvent;
  * @author Ceki G&uuml;lc&uuml;
  * @since 1.1
  */
+@SuppressWarnings("FieldAccessedSynchronizedAndUnsynchronized")
 public class WriterAppender extends AppenderSkeleton {
 
 
