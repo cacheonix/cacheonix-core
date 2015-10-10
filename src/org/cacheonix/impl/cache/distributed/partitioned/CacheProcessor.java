@@ -15,7 +15,7 @@ import org.cacheonix.impl.net.processor.RequestProcessor;
 import org.cacheonix.impl.util.array.IntHashSet;
 
 /**
- * A processor of cache requests.
+ * A context for cache requests.
  */
 public interface CacheProcessor extends RequestProcessor {
 
@@ -49,6 +49,11 @@ public interface CacheProcessor extends RequestProcessor {
     */
    int getState();
 
+   /**
+    * Returns a cache name this processor serves.
+    *
+    * @return the cache name this processor serves.
+    */
    String getCacheName();
 
    /**
