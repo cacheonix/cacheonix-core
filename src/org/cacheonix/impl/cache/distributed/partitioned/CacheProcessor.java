@@ -1,6 +1,5 @@
 package org.cacheonix.impl.cache.distributed.partitioned;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Executor;
@@ -77,14 +76,6 @@ public interface CacheProcessor extends RequestProcessor {
    int getBucketCount();
 
    /**
-    * Removes buckets from a storage.
-    *
-    * @param storageNumber a storage numbers.
-    * @param bucketNumbers a list of bucket numbers.
-    */
-   void removeBuckets(byte storageNumber, List<Integer> bucketNumbers);
-
-   /**
     * Removes a bucket from a storage.
     *
     * @param storageNumber a storage number.
@@ -124,21 +115,7 @@ public interface CacheProcessor extends RequestProcessor {
     */
    Map<Integer, LocalSubscription> getLocalEntryModifiedSubscriptions();
 
-   /**
-    * Returns a max number of elements in memory.
-    *
-    * @return the max number of elements in memory.
-    */
-   long getMaxSize();
-
    boolean hasBucket(int storageNumber, int bucketNumber);
 
    boolean isBucketOwner(int storageNumber, int bucketNumber);
-
-   /**
-    * {@inheritDoc}
-    * <p/>
-    * This implementation extends the default behaviour by destroying disk storages created at construction.
-    */
-   void shutdown();
 }

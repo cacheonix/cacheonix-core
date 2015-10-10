@@ -15,7 +15,6 @@ package org.cacheonix.impl.cache.distributed.partitioned;
 
 import java.io.File;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Timer;
@@ -96,7 +95,8 @@ public final class CacheProcessorImpl extends AbstractRequestProcessor implement
    /**
     * Bucket index calculator.
     */
-   private final BucketIndexCalculator bucketCalculator = new BucketIndexCalculator(ConfigurationConstants.BUCKET_COUNT);
+   private final BucketIndexCalculator bucketCalculator = new BucketIndexCalculator(
+           ConfigurationConstants.BUCKET_COUNT);
 
    private final ObjectSizeCalculatorFactory objectSizeCalculatorFactory = new ObjectSizeCalculatorFactory();
 
@@ -194,7 +194,8 @@ public final class CacheProcessorImpl extends AbstractRequestProcessor implement
       this.cacheName = ArgumentValidator.validateArgumentNotBlank(cacheName, "cacheName");
       this.cacheConfig = cacheConfig;
       this.dataSource = createDataSource(cacheName, cacheConfig, prefetchStage, getRouter(), getClock());
-      this.diskStorages = createDiskStorages(cacheName, Integer.toString(System.identityHashCode(this)), group.getReplicaCount(), cacheConfig);
+      this.diskStorages = createDiskStorages(cacheName, Integer.toString(System.identityHashCode(this)),
+              group.getReplicaCount(), cacheConfig);
       this.bucketStorages = createLocalBucketsStorage(group.getReplicaCount());
       this.byteCounter = new SharedCounter(group.getPartitionSizeBytes());
       this.elementCounter = new SharedCounter(group.getMaxElements());
@@ -245,8 +246,10 @@ public final class CacheProcessorImpl extends AbstractRequestProcessor implement
 
    public Bucket createBucket(final int storageNumber, final Integer bucketNumber) {
 
-      Assert.assertTrue(cacheConfig.isPartitionContributor(), "Creating bucket store is allowed only for partition contributors: {0} ", cacheConfig);
-      Assert.assertNotNull(cacheConfig.getStore().getLru(), "Unknown result eviction policy: {0}", cacheConfig.getStore().getLru());
+      Assert.assertTrue(cacheConfig.isPartitionContributor(),
+              "Creating bucket store is allowed only for partition contributors: {0} ", cacheConfig);
+      Assert.assertNotNull(cacheConfig.getStore().getLru(), "Unknown result eviction policy: {0}",
+              cacheConfig.getStore().getLru());
 
       //
       final boolean primaryStore = storageNumber == 0;
@@ -282,20 +285,6 @@ public final class CacheProcessorImpl extends AbstractRequestProcessor implement
    public int getBucketCount() {
 
       return group.getBucketCount();
-   }
-
-
-
-
-   public void removeBuckets(final byte storageNumber, final List<Integer> bucketNumbers) {
-
-      if (LOG.isDebugEnabled()) {
-         LOG.debug("Removing " + bucketNumbers.size() + " buckets from storage " + storageNumber);
-      }
-
-      for (final Integer bucketNumber : bucketNumbers) { // NOPMD
-         removeBucket(storageNumber, bucketNumber);
-      }
    }
 
 
@@ -344,34 +333,36 @@ public final class CacheProcessorImpl extends AbstractRequestProcessor implement
 
          try {
 
-            final HashMap<Binary, HashSet<EntryModifiedSubscription>> bucketSubscriptions = group.getEntryModifiedSubscriptions().get(bucketNumber); // NOPMD
+            final HashMap<Binary, HashSet<EntryModifiedSubscription>> bucketSubscriptions = group.getEntryModifiedSubscriptions().get(
+                    bucketNumber); // NOPMD
             if (!CollectionUtils.isEmpty(bucketSubscriptions)) {
 
-               bucketSubscriptions.forEachEntry(new ObjectObjectProcedure<Binary, HashSet<EntryModifiedSubscription>>() {
+               bucketSubscriptions.forEachEntry(
+                       new ObjectObjectProcedure<Binary, HashSet<EntryModifiedSubscription>>() {
 
-                  public boolean execute(final Binary key,
-                                         final HashSet<EntryModifiedSubscription> keySubscriptions) { // NOPMD
+                          public boolean execute(final Binary key,
+                                  final HashSet<EntryModifiedSubscription> keySubscriptions) { // NOPMD
 
-                     keySubscriptions.forEach(new ObjectProcedure<EntryModifiedSubscription>() {
+                             keySubscriptions.forEach(new ObjectProcedure<EntryModifiedSubscription>() {
 
-                        public boolean execute(final EntryModifiedSubscription subscription) {
+                                public boolean execute(final EntryModifiedSubscription subscription) {
 
-                           // Create a remote subscriber
-                           final RemoteEntryModifiedSubscriber subscriber = new RemoteEntryModifiedSubscriber();
-                           subscriber.setSubscription(subscription);
-                           subscriber.setCacheName(getCacheName());
-                           subscriber.setProcessor(CacheProcessorImpl.this);
+                                   // Create a remote subscriber
+                                   final RemoteEntryModifiedSubscriber subscriber = new RemoteEntryModifiedSubscriber();
+                                   subscriber.setSubscription(subscription);
+                                   subscriber.setCacheName(getCacheName());
+                                   subscriber.setProcessor(CacheProcessorImpl.this);
 
-                           // Add subscriber to the bucket
-                           bucket.addEventSubscriber(key, subscriber);
+                                   // Add subscriber to the bucket
+                                   bucket.addEventSubscriber(key, subscriber);
 
-                           return true;
-                        }
-                     });
+                                   return true;
+                                }
+                             });
 
-                     return true;
-                  }
-               });
+                             return true;
+                          }
+                       });
             }
          } catch (final Exception e) {
 
@@ -427,12 +418,6 @@ public final class CacheProcessorImpl extends AbstractRequestProcessor implement
    }
 
 
-   public long getMaxSize() {
-
-      return elementCounter.getMaxValue();
-   }
-
-
    public boolean hasBucket(final int storageNumber, final int bucketNumber) {
 
       return bucketStorages[storageNumber].containsKey(bucketNumber);
@@ -445,6 +430,11 @@ public final class CacheProcessorImpl extends AbstractRequestProcessor implement
    }
 
 
+   /**
+    * {@inheritDoc}
+    * <p/>
+    * This implementation extends the default behaviour by destroying disk storages created at construction.
+    */
    public void shutdown() {
 
       try {
@@ -543,17 +533,20 @@ public final class CacheProcessorImpl extends AbstractRequestProcessor implement
 
 
    private static BinaryStoreDataSource createDataSource(final String cacheName,
-                                                         final PartitionedCacheConfiguration cacheConfig,
-                                                         final PrefetchStage prefetchScheduler, final Router router,
-                                                         final Clock clock) {
+           final PartitionedCacheConfiguration cacheConfig,
+           final PrefetchStage prefetchScheduler, final Router router,
+           final Clock clock) {
 
       final DataSourceConfiguration dataSourceConfiguration = cacheConfig.getStore().getDataSource();
       final String dataSourceClass = dataSourceConfiguration == null ? null : dataSourceConfiguration.getClassName();
-      final Properties dataSourceProperties = dataSourceConfiguration == null ? new Properties() : PropertyConfiguration.toProperties(dataSourceConfiguration.getParams());
+      final Properties dataSourceProperties = dataSourceConfiguration == null ? new Properties() : PropertyConfiguration.toProperties(
+              dataSourceConfiguration.getParams());
       final BinaryStoreDataSourceFactory binaryStoreDataSourceFactory = new BinaryStoreDataSourceFactory();
       final boolean prefetchEnabled = dataSourceConfiguration != null && dataSourceConfiguration.isPrefetchConfigurationSet() && dataSourceConfiguration.getPrefetchConfiguration().isEnabled();
-      final DistributedPrefetchElementUpdater prefetchElementUpdater = new DistributedPrefetchElementUpdater(router, cacheName);
-      return binaryStoreDataSourceFactory.createDataSource(clock, cacheName, dataSourceClass, dataSourceProperties, prefetchEnabled, prefetchScheduler, prefetchElementUpdater);
+      final DistributedPrefetchElementUpdater prefetchElementUpdater = new DistributedPrefetchElementUpdater(router,
+              cacheName);
+      return binaryStoreDataSourceFactory.createDataSource(clock, cacheName, dataSourceClass, dataSourceProperties,
+              prefetchEnabled, prefetchScheduler, prefetchElementUpdater);
    }
 
 
@@ -571,8 +564,8 @@ public final class CacheProcessorImpl extends AbstractRequestProcessor implement
     * @throws StorageException if an error occurs while creating a storage.
     */
    private static DiskStorage[] createDiskStorages(final String cacheName, final String cacheProcessorIdentity,
-                                                   final int replicaCount,
-                                                   final PartitionedCacheConfiguration cacheConfig)
+           final int replicaCount,
+           final PartitionedCacheConfiguration cacheConfig)
            throws StorageException {
 
       final DiskStorage[] result = new DiskStorage[replicaCount + 1];
@@ -583,7 +576,8 @@ public final class CacheProcessorImpl extends AbstractRequestProcessor implement
          final String tempDir = cacheConfig.getServerConfiguration().getCacheonixConfiguration().getTempDir().getPath();
          final String diskStorageName = ConfigurationConstants.STORAGE_FILE_PREFIX + cacheName + '-' + cacheProcessorIdentity + '-' + storageIndex;
          final String storageFile = tempDir + File.separatorChar + diskStorageName + ConfigurationConstants.STORAGE_FILE_EXTENSION;
-         final DiskStorage diskStorage = StorageFactory.createStorage(diskStorageName, adjustedOverflowSizeMBytes, storageFile);
+         final DiskStorage diskStorage = StorageFactory.createStorage(diskStorageName, adjustedOverflowSizeMBytes,
+                 storageFile);
          result[storageIndex] = diskStorage;
       }
       return result;
@@ -600,7 +594,8 @@ public final class CacheProcessorImpl extends AbstractRequestProcessor implement
 
       final InvalidatorConfiguration invalidatorConfiguration = cacheConfig.getStore().getInvalidator();
       final String invalidatorClass = invalidatorConfiguration == null ? null : invalidatorConfiguration.getClassName();
-      final Properties invalidatorProperties = invalidatorConfiguration == null ? new Properties() : PropertyConfiguration.toProperties(invalidatorConfiguration.getParams());
+      final Properties invalidatorProperties = invalidatorConfiguration == null ? new Properties() : PropertyConfiguration.toProperties(
+              invalidatorConfiguration.getParams());
       final CacheInvalidatorFactory invalidatorFactory = new CacheInvalidatorFactory();
       return invalidatorFactory.createInvalidator(cacheName, invalidatorClass, invalidatorProperties);
    }
@@ -615,7 +610,8 @@ public final class CacheProcessorImpl extends AbstractRequestProcessor implement
       }
       final DataStoreConfiguration dataStoreConfiguration = cacheConfig.getStore().getDataStore();
       final String dataStoreClass = dataStoreConfiguration == null ? null : dataStoreConfiguration.getClassName();
-      final Properties dataStoreProperties = dataStoreConfiguration == null ? new Properties() : PropertyConfiguration.toProperties(dataStoreConfiguration.getParams());
+      final Properties dataStoreProperties = dataStoreConfiguration == null ? new Properties() : PropertyConfiguration.toProperties(
+              dataStoreConfiguration.getParams());
       final DataStoreFactory dataStoreFactory = new DataStoreFactory();
       return dataStoreFactory.createDataStore(cacheName, dataStoreClass, dataStoreProperties);
    }

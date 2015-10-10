@@ -164,7 +164,14 @@ public final class CancelBucketTransferMessage extends LocalCacheMessage {
          }
       } else if (address.equals(newOwner)) {
 
-         cacheProcessor.removeBuckets(destinationStorageNumber, bucketNumbers);
+         // Remove buckets
+         if (LOG.isDebugEnabled()) {
+            LOG.debug("Removing " + bucketNumbers.size() + " buckets from storage " + destinationStorageNumber);
+         }
+
+         for (final Integer bucketNumber : bucketNumbers) { // NOPMD
+            cacheProcessor.removeBucket(destinationStorageNumber, bucketNumber);
+         }
       }
    }
 
