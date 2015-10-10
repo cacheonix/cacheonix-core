@@ -12,7 +12,6 @@ import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.cache.store.BinaryEntryModifiedSubscriberAdapter;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.processor.RequestProcessor;
-import org.cacheonix.impl.util.array.IntHashSet;
 
 /**
  * A context for cache requests.
@@ -76,13 +75,6 @@ public interface CacheProcessor extends RequestProcessor {
    int getReplicaCount();
 
    int getBucketCount();
-
-   /**
-    * Returns a new bucket set populated with bucket numbers according to the bucket count.
-    *
-    * @return the a new bucket set populated with bucket numbers according to the bucket count.
-    */
-   IntHashSet createBucketSet();
 
    /**
     * Removes buckets from a storage.

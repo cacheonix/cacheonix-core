@@ -131,7 +131,11 @@ public abstract class BucketSetRequest extends AggregatingRequest {
       // All root bucket set requests require a full bucket set
       if (isRootRequest()) {
 
-         bucketSet = getCacheProcessor().createBucketSet();
+         final int bucketCount = getCacheProcessor().getBucketCount();
+         bucketSet  = new IntHashSet(bucketCount);
+         for (int i = 0; i < bucketCount; i++) {
+            bucketSet.add(i);
+         }
       }
 
       // Call super

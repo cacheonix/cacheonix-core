@@ -58,7 +58,6 @@ import org.cacheonix.impl.util.Assert;
 import org.cacheonix.impl.util.CollectionUtils;
 import org.cacheonix.impl.util.array.HashMap;
 import org.cacheonix.impl.util.array.HashSet;
-import org.cacheonix.impl.util.array.IntHashSet;
 import org.cacheonix.impl.util.array.IntObjectHashMap;
 import org.cacheonix.impl.util.array.ObjectObjectProcedure;
 import org.cacheonix.impl.util.array.ObjectProcedure;
@@ -286,15 +285,6 @@ public final class CacheProcessorImpl extends AbstractRequestProcessor implement
    }
 
 
-   public final IntHashSet createBucketSet() {
-
-      final int bucketCount = getBucketCount();
-      final IntHashSet intHashSet = new IntHashSet(bucketCount);
-      for (int i = 0; i < bucketCount; i++) {
-         intHashSet.add(i);
-      }
-      return intHashSet;
-   }
 
 
    public void removeBuckets(final byte storageNumber, final List<Integer> bucketNumbers) {
