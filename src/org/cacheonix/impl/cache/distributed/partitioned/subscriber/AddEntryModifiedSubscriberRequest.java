@@ -60,9 +60,9 @@ public final class AddEntryModifiedSubscriberRequest extends LocalCacheRequest i
    private HashSet<Binary> keys = null; // NOPMD
 
    /**
-    * A local subscriber as provided by the client.
+    * A local subscriber as provided by the client. This is a transient field.
     */
-   private transient EntryModifiedSubscriber localSubscriber;
+   private EntryModifiedSubscriber localSubscriber;
 
    private ClusterNodeAddress subscriberAddress;
 
