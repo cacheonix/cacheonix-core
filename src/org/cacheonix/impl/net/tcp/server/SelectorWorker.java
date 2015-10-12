@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.impl.cluster.node;
+package org.cacheonix.impl.net.tcp.server;
 
 import java.io.IOException;
 import java.nio.channels.SelectionKey;
@@ -19,7 +19,6 @@ import java.nio.channels.Selector;
 import java.util.Iterator;
 import java.util.Set;
 
-import org.cacheonix.impl.net.tcp.server.UnrecoverableAcceptException;
 import org.cacheonix.impl.util.IOUtils;
 import org.cacheonix.impl.util.array.HashSet;
 import org.cacheonix.impl.util.array.ObjectProcedure;

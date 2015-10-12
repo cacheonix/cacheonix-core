@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.impl.cluster.node;
+package org.cacheonix.impl;
 
 import org.cacheonix.CacheonixTestCase;
 import org.cacheonix.TestUtils;
@@ -27,12 +27,12 @@ import org.cacheonix.impl.util.logging.Logger;
 /**
  * @noinspection FieldCanBeLocal, JavaDoc, ProhibitedExceptionDeclared
  */
-public class DistributedCacheonixTest extends CacheonixTestCase {
+public class DistributedCacheonixTCPMulticastTest extends CacheonixTestCase {
 
    @SuppressWarnings("UnusedDeclaration")
-   private static final Logger LOG = Logger.getLogger(DistributedCacheonixTest.class); // NOPMD
+   private static final Logger LOG = Logger.getLogger(DistributedCacheonixTCPMulticastTest.class); // NOPMD
 
-   private static final String CLUSTER_MEMBER_IMPL_TEST_XML = "cacheonix-config-ClusterMemberImplTest.xml";
+   private static final String CACHEONIX_CONFIG_CLUSTER_MEMBER_IMPL_TEST_XML = "cacheonix-config-DistributedCacheonixTCPMulticastTest.xml";
 
    private static final String TEST_KEY1 = "test_key1";
 
@@ -87,7 +87,7 @@ public class DistributedCacheonixTest extends CacheonixTestCase {
 
       super.setUp();
       final ConfigurationReader configurationReader = new ConfigurationReader();
-      final CacheonixConfiguration configuration = configurationReader.readConfiguration(TestUtils.getTestFile(CLUSTER_MEMBER_IMPL_TEST_XML).getCanonicalPath());
+      final CacheonixConfiguration configuration = configurationReader.readConfiguration(TestUtils.getTestFile(CACHEONIX_CONFIG_CLUSTER_MEMBER_IMPL_TEST_XML).getCanonicalPath());
       final ServerConfiguration serverConfiguration = configuration.getServer();
       cacheConfig = serverConfiguration.getPartitionedCacheList().get(0);
       node = new DistributedCacheonix(serverConfiguration);

@@ -15,8 +15,6 @@ package org.cacheonix.impl.net.tcp.server;
 
 import java.nio.channels.Selector;
 
-import org.cacheonix.impl.cluster.node.SelectorWorker;
-
 /**
  * A selector worker used by TCPServer.
  */

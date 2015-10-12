@@ -11,13 +11,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.impl.cluster.node;
+package org.cacheonix.impl.net.tcp.server;
 
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
 
-import org.cacheonix.impl.net.tcp.server.UnrecoverableAcceptException;
 import org.cacheonix.impl.util.time.Timeout;
 
 /**

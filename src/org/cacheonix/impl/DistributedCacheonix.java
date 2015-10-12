@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.impl.cluster.node;
+package org.cacheonix.impl;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -34,7 +34,6 @@ import org.cacheonix.cache.CacheExistsException;
 import org.cacheonix.cluster.Cluster;
 import org.cacheonix.exceptions.RuntimeInterruptedException;
 import org.cacheonix.exceptions.RuntimeTimeoutException;
-import org.cacheonix.impl.AbstractCacheonix;
 import org.cacheonix.impl.cache.CacheonixCache;
 import org.cacheonix.impl.cache.distributed.partitioned.CacheNodeJoinedMessage;
 import org.cacheonix.impl.cache.distributed.partitioned.CacheNodeLeftMessage;
@@ -47,6 +46,7 @@ import org.cacheonix.impl.cache.distributed.partitioned.RepartitionAnnouncement;
 import org.cacheonix.impl.cache.distributed.partitioned.SetCacheNodeStateMessage;
 import org.cacheonix.impl.cache.distributed.partitioned.subscriber.EntryEventSubscriptionConfigurationSubscriber;
 import org.cacheonix.impl.clock.Clock;
+import org.cacheonix.impl.cluster.ClusterImpl;
 import org.cacheonix.impl.cluster.node.state.ReplicatedState;
 import org.cacheonix.impl.cluster.node.state.group.Group;
 import org.cacheonix.impl.cluster.node.state.group.GroupEventSubscriber;

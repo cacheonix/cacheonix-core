@@ -1,4 +1,4 @@
-package org.cacheonix.impl.cluster.node;
+package org.cacheonix.impl;
 
 import org.cacheonix.impl.cache.distributed.partitioned.AssignBucketMessage;
 import org.cacheonix.impl.cache.distributed.partitioned.BeginBucketTransferMessage;

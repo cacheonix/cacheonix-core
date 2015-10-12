@@ -11,13 +11,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.impl.cluster.node;
+package org.cacheonix.impl.cluster;
 
 import java.io.Serializable;
 
 import org.cacheonix.cluster.Cluster;
 import org.cacheonix.cluster.ClusterEventSubscriber;
-import org.cacheonix.locks.ReadWriteLock;
 import org.cacheonix.impl.cache.distributed.partitioned.Retrier;
 import org.cacheonix.impl.cache.distributed.partitioned.Retryable;
 import org.cacheonix.impl.cache.item.Binary;
@@ -28,6 +27,7 @@ import org.cacheonix.impl.lock.DistributedReadWriteLock;
 import org.cacheonix.impl.net.cluster.ClusterProcessor;
 import org.cacheonix.impl.net.processor.RetryException;
 import org.cacheonix.impl.util.ArgumentValidator;
+import org.cacheonix.locks.ReadWriteLock;
 
 /**
  * An implementation of the API interface for object that represents an API view of a cluster that a Cacheonix is a

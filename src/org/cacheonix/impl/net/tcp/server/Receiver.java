@@ -23,7 +23,6 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 
 import org.cacheonix.impl.clock.Clock;
-import org.cacheonix.impl.cluster.node.KeyHandler;
 import org.cacheonix.impl.configuration.SystemProperty;
 import org.cacheonix.impl.net.Protocol;
 import org.cacheonix.impl.net.processor.Frame;
