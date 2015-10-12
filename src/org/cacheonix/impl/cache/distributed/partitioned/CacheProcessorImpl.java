@@ -418,6 +418,12 @@ public final class CacheProcessorImpl extends AbstractRequestProcessor implement
    }
 
 
+   public long getMaxSize() {
+
+      return elementCounter.getMaxValue();
+   }
+
+
    public boolean hasBucket(final int storageNumber, final int bucketNumber) {
 
       return bucketStorages[storageNumber].containsKey(bucketNumber);

@@ -115,6 +115,13 @@ public interface CacheProcessor extends RequestProcessor {
     */
    Map<Integer, LocalSubscription> getLocalEntryModifiedSubscriptions();
 
+   /**
+    * Returns a max number of elements in memory.
+    *
+    * @return the max number of elements in memory.
+    */
+   long getMaxSize();
+
    boolean hasBucket(int storageNumber, int bucketNumber);
 
    boolean isBucketOwner(int storageNumber, int bucketNumber);
