@@ -25,17 +25,17 @@ import org.cacheonix.impl.util.logging.Logger;
  *
  * @noinspection NonStaticInnerClassInSecureContext
  */
-final class DistributedCacheonixTCPRequestDispatcher implements TCPRequestDispatcher {
+final class TCPRequestDispatcherImpl implements TCPRequestDispatcher {
 
    /**
     * @noinspection UNUSED_SYMBOL, UnusedDeclaration
     */
-   private static final Logger LOG = Logger.getLogger(DistributedCacheonixTCPRequestDispatcher.class); // NOPMD
+   private static final Logger LOG = Logger.getLogger(TCPRequestDispatcherImpl.class); // NOPMD
 
    private final Router router;
 
 
-   public DistributedCacheonixTCPRequestDispatcher(final Router router) {
+   public TCPRequestDispatcherImpl(final Router router) {
 
       this.router = router;
    }
@@ -58,7 +58,7 @@ final class DistributedCacheonixTCPRequestDispatcher implements TCPRequestDispat
 
    public String toString() {
 
-      return "DistributedCacheonixTCPRequestDispatcher{" +
+      return "TCPRequestDispatcherImpl{" +
               '}';
    }
 }
