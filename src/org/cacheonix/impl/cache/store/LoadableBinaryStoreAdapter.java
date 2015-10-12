@@ -18,8 +18,8 @@ import java.io.Serializable;
 
 import org.cacheonix.cache.loader.Loadable;
 import org.cacheonix.impl.cache.item.BinaryUtils;
+import org.cacheonix.impl.cache.storage.disk.StorageException;
 import org.cacheonix.impl.clock.Time;
-import org.cacheonix.impl.storage.disk.StorageException;
 
 /**
  */

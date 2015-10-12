@@ -20,12 +20,12 @@ import org.cacheonix.TestUtils;
 import org.cacheonix.impl.cache.datasource.DummyBinaryStoreDataSource;
 import org.cacheonix.impl.cache.datastore.DummyDataStore;
 import org.cacheonix.impl.cache.invalidator.DummyCacheInvalidator;
+import org.cacheonix.impl.cache.storage.disk.DummyDiskStorage;
 import org.cacheonix.impl.cache.store.BinaryStore;
 import org.cacheonix.impl.cache.store.SharedCounter;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
-import org.cacheonix.impl.storage.disk.DummyDiskStorage;
 import org.cacheonix.impl.util.cache.DummyObjectSizeCalculator;
 import org.cacheonix.impl.util.logging.Logger;
 

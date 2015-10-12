@@ -13,7 +13,7 @@
  */
 package org.cacheonix.exceptions;
 
-import org.cacheonix.impl.storage.disk.StorageException;
+import org.cacheonix.impl.cache.storage.disk.StorageException;
 import org.cacheonix.impl.util.StringUtils;
 import org.cacheonix.impl.util.logging.Logger;
 

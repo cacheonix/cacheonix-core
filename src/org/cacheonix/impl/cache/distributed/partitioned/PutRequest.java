@@ -20,13 +20,13 @@ import java.io.IOException;
 import org.cacheonix.exceptions.CacheonixException;
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.cache.item.InvalidObjectException;
+import org.cacheonix.impl.cache.storage.disk.StorageException;
 import org.cacheonix.impl.cache.store.ReadableElement;
 import org.cacheonix.impl.clock.Time;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.serializer.SerializerUtils;
 import org.cacheonix.impl.net.serializer.Wireable;
 import org.cacheonix.impl.net.serializer.WireableBuilder;
-import org.cacheonix.impl.storage.disk.StorageException;
 import org.cacheonix.impl.util.logging.Logger;
 
 /**

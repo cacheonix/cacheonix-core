@@ -17,10 +17,10 @@ import org.cacheonix.CacheonixTestCase;
 import org.cacheonix.cache.datasource.DataSource;
 import org.cacheonix.cache.datasource.SimpleDataSourceObject;
 import org.cacheonix.impl.cache.invalidator.DummyCacheInvalidator;
+import org.cacheonix.impl.cache.storage.disk.DummyDiskStorage;
 import org.cacheonix.impl.cache.store.BinaryStoreElement;
 import org.cacheonix.impl.clock.Time;
 import org.cacheonix.impl.clock.TimeImpl;
-import org.cacheonix.impl.storage.disk.DummyDiskStorage;
 import org.cacheonix.impl.util.cache.DummyObjectSizeCalculator;
 import org.mockito.Mockito;
 

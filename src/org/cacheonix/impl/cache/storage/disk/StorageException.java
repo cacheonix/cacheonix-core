@@ -11,24 +11,37 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.cache.loader;
+package org.cacheonix.impl.cache.storage.disk;
 
-import java.io.IOException;
-import java.io.Serializable;
-
-import org.cacheonix.impl.cache.storage.disk.StorageException;
+import org.cacheonix.cache.CacheException;
 
 /**
- * Loadable is a class that is passed to {@link CacheLoader#load(Loadable)} in order to load data into Cacheonix at
- * startup.
+ * <b>StorageException</b> is thrown when errors occur in the storage subsystem.
+ *
+ * @author sfichel@chacheonix.com
  */
-public interface Loadable {
+public class StorageException extends CacheException {
+
+   private static final long serialVersionUID = 0L;
+
 
    /**
-    * Loads a value associated with a key into Cacheonix.
-    *
-    * @param key   the cache key.
-    * @param value the value to load.
+    * @param cause - Throwable
     */
-   void load(Serializable key, Serializable value) throws StorageException, IOException;
+   public StorageException(final Throwable cause) {
+
+      super(cause);
+   }
+
+
+   public StorageException(final String message, final Throwable cause) {
+
+      super(message, cause);
+   }
+
+
+   public StorageException(final String message) {
+
+      super(message);
+   }
 }

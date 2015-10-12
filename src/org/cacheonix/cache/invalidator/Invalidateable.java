@@ -13,7 +13,7 @@
  */
 package org.cacheonix.cache.invalidator;
 
-import org.cacheonix.impl.storage.disk.StorageException;
+import org.cacheonix.impl.cache.storage.disk.StorageException;
 
 /**
  * An invalidateable cache element. When the back-end invalidation is enabled, Cacheonix passes an instance of

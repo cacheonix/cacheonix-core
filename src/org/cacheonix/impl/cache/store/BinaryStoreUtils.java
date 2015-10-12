@@ -14,7 +14,7 @@
 package org.cacheonix.impl.cache.store;
 
 import org.cacheonix.impl.cache.item.Binary;
-import org.cacheonix.impl.storage.disk.StorageException;
+import org.cacheonix.impl.cache.storage.disk.StorageException;
 
 /**
  * Utility methods for binary store.

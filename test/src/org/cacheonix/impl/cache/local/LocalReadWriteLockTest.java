@@ -19,16 +19,16 @@ import java.util.concurrent.CountDownLatch;
 
 import org.cacheonix.CacheonixTestCase;
 import org.cacheonix.TestConstants;
-import org.cacheonix.locks.Lock;
-import org.cacheonix.locks.ReadWriteLock;
 import org.cacheonix.impl.cache.datasource.DummyBinaryStoreDataSource;
 import org.cacheonix.impl.cache.datastore.DummyDataStore;
 import org.cacheonix.impl.cache.invalidator.DummyCacheInvalidator;
 import org.cacheonix.impl.cache.loader.DummyCacheLoader;
+import org.cacheonix.impl.cache.storage.disk.DummyDiskStorage;
 import org.cacheonix.impl.configuration.ElementEventNotification;
-import org.cacheonix.impl.storage.disk.DummyDiskStorage;
 import org.cacheonix.impl.util.cache.DummyObjectSizeCalculator;
 import org.cacheonix.impl.util.logging.Logger;
+import org.cacheonix.locks.Lock;
+import org.cacheonix.locks.ReadWriteLock;
 
 /**
  * Tester for LocalReadWriteLock.

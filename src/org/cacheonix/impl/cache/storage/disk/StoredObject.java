@@ -11,29 +11,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.impl.cache.store;
-
-import org.cacheonix.impl.cache.item.Binary;
-import org.cacheonix.impl.cache.storage.disk.StorageException;
-import org.cacheonix.impl.clock.Time;
+package org.cacheonix.impl.cache.storage.disk;
 
 /**
- * A read-only binary store element. This element is attached to an element stored in the binary store.
+ * This interface defines a stored object. It is used by the cache subsystem for fast object retrieval.
  */
-public interface ReadableElement {
+public interface StoredObject {
 
    /**
-    * Returns this store element value.
-    *
-    * @return the value of the element.
-    * @throws StorageException if a storage error occured.
+    * @return returns an offest in data file that serialized objected is stored at.
     */
-   Binary getValue() throws StorageException;
+   long getValueOffset();
+
 
    /**
-    * Returns time this element expires.
-    *
-    * @return time this element expires.
+    * @return legth of serialized value.
     */
-   Time getExpirationTime();
+   long getValueLength();
 }

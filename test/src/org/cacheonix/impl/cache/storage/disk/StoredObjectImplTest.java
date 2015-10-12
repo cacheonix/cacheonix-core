@@ -11,24 +11,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.cache.loader;
+package org.cacheonix.impl.cache.storage.disk;
 
-import java.io.IOException;
-import java.io.Serializable;
-
-import org.cacheonix.impl.cache.storage.disk.StorageException;
+import junit.framework.TestCase;
 
 /**
- * Loadable is a class that is passed to {@link CacheLoader#load(Loadable)} in order to load data into Cacheonix at
- * startup.
+ * Tests {@link StoredObjectImpl}.
  */
-public interface Loadable {
+public final class StoredObjectImplTest extends TestCase {
+
+   private static final int VALUE_OFFSET = 111;
+
+   private static final int VALUE_LENGTH = 222;
+
 
    /**
-    * Loads a value associated with a key into Cacheonix.
-    *
-    * @param key   the cache key.
-    * @param value the value to load.
+    * Tests constructor.
     */
-   void load(Serializable key, Serializable value) throws StorageException, IOException;
+   public void testCreate() {
+
+      final StoredObjectImpl storedObject = new StoredObjectImpl((long) VALUE_OFFSET, (long) VALUE_LENGTH);
+      assertEquals((long) VALUE_LENGTH, storedObject.getValueLength());
+      assertEquals((long) VALUE_OFFSET, storedObject.getValueOffset());
+   }
 }

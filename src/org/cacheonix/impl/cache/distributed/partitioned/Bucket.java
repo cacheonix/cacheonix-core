@@ -32,6 +32,7 @@ import org.cacheonix.exceptions.RuntimeIOException;
 import org.cacheonix.impl.cache.datasource.BinaryStoreDataSource;
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.cache.item.InvalidObjectException;
+import org.cacheonix.impl.cache.storage.disk.DiskStorage;
 import org.cacheonix.impl.cache.store.BinaryEntryModifiedSubscriber;
 import org.cacheonix.impl.cache.store.BinaryStore;
 import org.cacheonix.impl.cache.store.PreviousValue;
@@ -43,7 +44,6 @@ import org.cacheonix.impl.configuration.LeaseConfiguration;
 import org.cacheonix.impl.net.serializer.SerializerUtils;
 import org.cacheonix.impl.net.serializer.Wireable;
 import org.cacheonix.impl.net.serializer.WireableBuilder;
-import org.cacheonix.impl.storage.disk.DiskStorage;
 import org.cacheonix.impl.util.cache.ObjectSizeCalculator;
 import org.cacheonix.impl.util.logging.Logger;
 

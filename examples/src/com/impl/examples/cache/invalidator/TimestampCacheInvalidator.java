@@ -24,7 +24,7 @@ import com.impl.examples.util.JDBCUtils;
 import org.cacheonix.cache.invalidator.CacheInvalidator;
 import org.cacheonix.cache.invalidator.CacheInvalidatorContext;
 import org.cacheonix.cache.invalidator.Invalidateable;
-import org.cacheonix.impl.storage.disk.StorageException;
+import org.cacheonix.impl.cache.storage.disk.StorageException;
 
 /**
  * Invalidator of cache based on an incremental update counter (timestamp).
