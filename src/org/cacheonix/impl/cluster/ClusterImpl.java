@@ -21,8 +21,6 @@ import org.cacheonix.impl.cache.distributed.partitioned.Retrier;
 import org.cacheonix.impl.cache.distributed.partitioned.Retryable;
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.cache.item.BinaryUtils;
-import org.cacheonix.impl.cluster.event.AddClusterEventSubscriberRequest;
-import org.cacheonix.impl.cluster.event.RemoveClusterEventSubscriberRequest;
 import org.cacheonix.impl.lock.DistributedReadWriteLock;
 import org.cacheonix.impl.net.cluster.ClusterProcessor;
 import org.cacheonix.impl.net.processor.RetryException;

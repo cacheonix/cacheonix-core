@@ -20,7 +20,7 @@ import java.util.concurrent.Executor;
 
 import org.cacheonix.cluster.ClusterEventSubscriber;
 import org.cacheonix.cluster.ClusterState;
-import org.cacheonix.impl.cluster.event.ClusterStateChangedEventImpl;
+import org.cacheonix.impl.cluster.ClusterStateChangedEventImpl;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.processor.Frame;
 import org.cacheonix.impl.net.processor.InvalidMessageException;
@@ -32,7 +32,7 @@ import org.cacheonix.impl.util.Assert;
 import org.cacheonix.impl.util.CollectionUtils;
 import org.cacheonix.impl.util.logging.Logger;
 
-import static org.cacheonix.impl.cluster.event.ClusterEventUtil.convertStateMachineToUserClusterState;
+import static org.cacheonix.impl.cluster.ClusterEventUtil.convertStateMachineToUserClusterState;
 import static org.cacheonix.impl.net.cluster.ClusterProcessorState.STATE_RECOVERY;
 import static org.cacheonix.impl.net.processor.Response.RESULT_SUCCESS;
 

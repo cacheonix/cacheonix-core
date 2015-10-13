@@ -11,13 +11,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.impl.cluster.event;
+package org.cacheonix.impl.cluster;
 
 import java.util.concurrent.Executor;
 
 import org.cacheonix.cluster.ClusterConfiguration;
 import org.cacheonix.cluster.ClusterEventSubscriber;
-import org.cacheonix.cluster.ClusterEventSubscriptionStartedEvent;
+import org.cacheonix.cluster.ClusterEventSubscriptionEndedEvent;
 import org.cacheonix.impl.net.cluster.ClusterProcessor;
 import org.cacheonix.impl.net.cluster.ClusterProcessorState;
 import org.cacheonix.impl.net.cluster.ClusterView;
@@ -29,7 +29,7 @@ import org.cacheonix.impl.net.serializer.WireableBuilder;
 /**
  * A request to add a cluster event subscriber.
  */
-public final class AddClusterEventSubscriberRequest extends LocalClusterRequest {
+public final class RemoveClusterEventSubscriberRequest extends LocalClusterRequest {
 
    /**
     * Maker used by WireableFactory.
@@ -43,26 +43,33 @@ public final class AddClusterEventSubscriberRequest extends LocalClusterRequest 
     * Required by Wireable.
     */
    @SuppressWarnings("UnusedDeclaration")
-   public AddClusterEventSubscriberRequest() {
+   public RemoveClusterEventSubscriberRequest() {
 
    }
 
 
-   public AddClusterEventSubscriberRequest(final ClusterEventSubscriber clusterEventSubscriber) {
+   /**
+    * Creates RemoveClusterEventSubscriberRequest.
+    *
+    * @param clusterEventSubscriber the local subscriber.
+    */
+   public RemoveClusterEventSubscriberRequest(final ClusterEventSubscriber clusterEventSubscriber) {
 
-      super(Wireable.TYPE_ADD_USER_CLUSTER_EVENT_SUBSCRIBER);
+      super(Wireable.TYPE_REMOVE_USER_CLUSTER_EVENT_SUBSCRIBER);
 
       this.clusterEventSubscriber = clusterEventSubscriber;
    }
 
 
    /**
-    * Processes this message while it is at the cluster service that is in a Normal (operational) state.
+    * {@inheritDoc}
+    * <p/>
+    * This implementation removes the cluster event subscriber and notifies the subscriber that the subscription ended.
     */
    protected void processNormal() {
 
-      // Use current operational cluster view
-      addSubscriber(getClusterProcessor().getProcessorState().getClusterView());
+      // Use current cluster view
+      removeSubscriber(getClusterProcessor().getProcessorState().getClusterView());
    }
 
 
@@ -72,7 +79,7 @@ public final class AddClusterEventSubscriberRequest extends LocalClusterRequest 
    protected void processBlocked() {
 
       // Use last operational cluster view
-      addSubscriber(getClusterProcessor().getProcessorState().getLastOperationalClusterView());
+      removeSubscriber(getClusterProcessor().getProcessorState().getLastOperationalClusterView());
    }
 
 
@@ -82,7 +89,7 @@ public final class AddClusterEventSubscriberRequest extends LocalClusterRequest 
    protected void processRecovery() {
 
       // Use last operational cluster view
-      addSubscriber(getClusterProcessor().getProcessorState().getLastOperationalClusterView());
+      removeSubscriber(getClusterProcessor().getProcessorState().getLastOperationalClusterView());
    }
 
 
@@ -92,16 +99,21 @@ public final class AddClusterEventSubscriberRequest extends LocalClusterRequest 
    protected void processCleanup() {
 
       // Use last operational cluster view
-      addSubscriber(getClusterProcessor().getProcessorState().getLastOperationalClusterView());
+      removeSubscriber(getClusterProcessor().getProcessorState().getLastOperationalClusterView());
    }
 
 
-   private void addSubscriber(final ClusterView clusterView) {
+   /**
+    * Removes the subscriber using a given cluster view (current or last operational) depending on the state.
+    *
+    * @param clusterView a cluster view (current or last operational) depending on the state.
+    */
+   private void removeSubscriber(final ClusterView clusterView) {
 
       // Register the subscriber
-      final ClusterProcessor processor = getClusterProcessor();
-      final ClusterProcessorState processorState = processor.getProcessorState();
-      processorState.addUserClusterEventSubscriber(clusterEventSubscriber);
+      final ClusterProcessor clusterProcessor = getClusterProcessor();
+      final ClusterProcessorState processorState = clusterProcessor.getProcessorState();
+      processorState.removeUserClusterEventSubscriber(clusterEventSubscriber);
 
       // Create configuration
       final String clusterName = processorState.getClusterName();
@@ -109,7 +121,7 @@ public final class AddClusterEventSubscriberRequest extends LocalClusterRequest 
       final ClusterConfiguration clusterConfiguration = ClusterEventUtil.getUserClusterConfiguration(clusterName, state, clusterView);
 
       // Create event
-      final ClusterEventSubscriptionStartedEvent subscriptionStartedEvent = new ClusterEventSubscriptionStartedEventImpl(clusterConfiguration);
+      final ClusterEventSubscriptionEndedEvent subscriptionEndedEvent = new ClusterEventSubscriptionEndedEventImpl(clusterConfiguration);
 
       // Notify the subscriber that the subscription started
       final Executor executor = processorState.getUserEventExecutor();
@@ -118,18 +130,17 @@ public final class AddClusterEventSubscriberRequest extends LocalClusterRequest 
          public void run() {
 
             // Notify
-            clusterEventSubscriber.notifyClusterEventSubscriptionStarted(subscriptionStartedEvent);
+            clusterEventSubscriber.notifyClusterEventSubscriptionEnded(subscriptionEndedEvent);
          }
       });
 
-
-      processor.post(createResponse(Response.RESULT_SUCCESS));
+      clusterProcessor.post(createResponse(Response.RESULT_SUCCESS));
    }
 
 
    public String toString() {
 
-      return "AddClusterEventSubscriberRequest{" +
+      return "RemoveClusterEventSubscriberRequest{" +
               "clusterEventSubscriber=" + clusterEventSubscriber +
               "} " + super.toString();
    }
@@ -142,7 +153,7 @@ public final class AddClusterEventSubscriberRequest extends LocalClusterRequest 
 
       public Wireable create() {
 
-         return new AddClusterEventSubscriberRequest();
+         return new RemoveClusterEventSubscriberRequest();
       }
    }
 }

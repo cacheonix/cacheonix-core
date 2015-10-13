@@ -25,8 +25,8 @@ import java.util.Map;
 
 import org.cacheonix.cluster.ClusterEventSubscriber;
 import org.cacheonix.cluster.ClusterMember;
-import org.cacheonix.impl.cluster.event.ClusterEventUtil;
-import org.cacheonix.impl.cluster.event.ClusterMemberLeftEventImpl;
+import org.cacheonix.impl.cluster.ClusterEventUtil;
+import org.cacheonix.impl.cluster.ClusterMemberLeftEventImpl;
 import org.cacheonix.impl.lock.AcquireLockRequest;
 import org.cacheonix.impl.lock.LockOwner;
 import org.cacheonix.impl.lock.LockQueue;

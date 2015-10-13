@@ -11,17 +11,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.impl.cluster.event;
+package org.cacheonix.impl.cluster;
 
 import java.io.IOException;
 import java.io.NotSerializableException;
 
+import junit.framework.TestCase;
 import org.cacheonix.cluster.ClusterEventSubscriber;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
 import org.cacheonix.impl.net.serializer.Wireable;
 import org.cacheonix.impl.net.serializer.WireableFactory;
-import junit.framework.TestCase;
 
 import static org.mockito.Mockito.mock;
 

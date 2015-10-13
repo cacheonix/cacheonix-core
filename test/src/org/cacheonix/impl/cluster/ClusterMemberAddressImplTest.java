@@ -11,13 +11,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.impl.cluster.event;
+package org.cacheonix.impl.cluster;
 
 import java.net.InetAddress;
 
+import junit.framework.TestCase;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
-import junit.framework.TestCase;
 
 /**
  * Tester for {@link ClusterMemberAddressImpl}.

@@ -11,35 +11,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.impl.cluster.event;
+package org.cacheonix.impl.cluster;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.cacheonix.cluster.ClusterMember;
 import junit.framework.TestCase;
+import org.cacheonix.cluster.ClusterMember;
 
 /**
- * Tester for ClusterMemberLeftEventImpl.
+ * Tester for ClusterMemberJoinedEventImpl.
  */
-public class ClusterMemberLeftEventImplTest extends TestCase {
+public class ClusterMemberJoinedEventImplTest extends TestCase {
 
 
    private ClusterMemberImpl clusterMember;
 
-   private ClusterMemberLeftEventImpl clusterMemberLeftEvent;
+   private ClusterMemberJoinedEventImpl clusterMemberJoinedEvent;
 
 
-   public void testGetLeftMembers() throws Exception {
+   public void testGetJoinedMembers() throws Exception {
 
-      final Collection<ClusterMember> leftMembers = clusterMemberLeftEvent.getLeftMembers();
-      assertEquals(clusterMember, leftMembers.iterator().next());
+      final Collection<ClusterMember> joinedMembers = clusterMemberJoinedEvent.getJoinedMembers();
+      assertEquals(clusterMember, joinedMembers.iterator().next());
    }
 
 
    public void testToString() throws Exception {
 
-      assertNotNull(clusterMemberLeftEvent.toString());
+      assertNotNull(clusterMemberJoinedEvent.toString());
    }
 
 
@@ -48,17 +48,17 @@ public class ClusterMemberLeftEventImplTest extends TestCase {
       super.setUp();
 
       clusterMember = EventTestUtil.clusterMember("TestClusterName", "1.1.1.1", 7777);
-      final ArrayList<ClusterMember> leftMembers = new ArrayList<ClusterMember>(1);
-      leftMembers.add(clusterMember);
+      final ArrayList<ClusterMember> joinedMembers = new ArrayList<ClusterMember>(1);
+      joinedMembers.add(clusterMember);
 
-      clusterMemberLeftEvent = new ClusterMemberLeftEventImpl(leftMembers);
+      clusterMemberJoinedEvent = new ClusterMemberJoinedEventImpl(joinedMembers);
    }
 
 
    public void tearDown() throws Exception {
 
 
-      clusterMemberLeftEvent = null;
+      clusterMemberJoinedEvent = null;
       clusterMember = null;
 
       super.tearDown();
@@ -67,9 +67,9 @@ public class ClusterMemberLeftEventImplTest extends TestCase {
 
    public String toString() {
 
-      return "ClusterMemberLeftEventImplTest{" +
+      return "ClusterMemberJoinedEventImplTest{" +
               "clusterMember=" + clusterMember +
-              ", clusterMemberLeftEvent=" + clusterMemberLeftEvent +
+              ", clusterMemberJoinedEvent=" + clusterMemberJoinedEvent +
               "} " + super.toString();
    }
 }

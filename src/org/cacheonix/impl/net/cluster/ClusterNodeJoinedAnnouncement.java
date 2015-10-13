@@ -22,8 +22,8 @@ import java.util.List;
 
 import org.cacheonix.cluster.ClusterEventSubscriber;
 import org.cacheonix.cluster.ClusterMember;
-import org.cacheonix.impl.cluster.event.ClusterEventUtil;
-import org.cacheonix.impl.cluster.event.ClusterMemberJoinedEventImpl;
+import org.cacheonix.impl.cluster.ClusterEventUtil;
+import org.cacheonix.impl.cluster.ClusterMemberJoinedEventImpl;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.processor.Message;
 import org.cacheonix.impl.net.processor.ProcessorKey;
