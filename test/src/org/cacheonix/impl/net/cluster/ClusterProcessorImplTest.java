@@ -30,7 +30,7 @@ import org.cacheonix.impl.clock.Clock;
 import org.cacheonix.impl.clock.ClockImpl;
 import org.cacheonix.impl.clock.Time;
 import org.cacheonix.impl.cluster.node.state.ReplicatedState;
-import org.cacheonix.impl.configuration.ConfigurationConstants;
+import org.cacheonix.impl.config.ConfigurationConstants;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.multicast.sender.PlainMulticastSender;
 import org.cacheonix.impl.net.multicast.server.MulticastServer;

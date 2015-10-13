@@ -21,12 +21,12 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Vector;
 
+import junit.framework.TestCase;
 import org.cacheonix.TestConstants;
 import org.cacheonix.TestUtils;
-import org.cacheonix.impl.configuration.CacheonixConfiguration;
-import org.cacheonix.impl.configuration.ConfigurationReader;
+import org.cacheonix.impl.config.CacheonixConfiguration;
+import org.cacheonix.impl.config.ConfigurationReader;
 import org.cacheonix.impl.util.IOUtils;
-import junit.framework.TestCase;
 
 /**
  */

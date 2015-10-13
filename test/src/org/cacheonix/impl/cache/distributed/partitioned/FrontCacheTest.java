@@ -15,9 +15,9 @@ package org.cacheonix.impl.cache.distributed.partitioned;
 
 import org.cacheonix.CacheonixTestCase;
 import org.cacheonix.TestUtils;
-import org.cacheonix.impl.configuration.CacheonixConfiguration;
-import org.cacheonix.impl.configuration.ConfigurationReader;
-import org.cacheonix.impl.configuration.FrontCacheConfiguration;
+import org.cacheonix.impl.config.CacheonixConfiguration;
+import org.cacheonix.impl.config.ConfigurationReader;
+import org.cacheonix.impl.config.FrontCacheConfiguration;
 
 /**
  */

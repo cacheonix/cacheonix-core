@@ -15,15 +15,15 @@ package org.cacheonix.cache;
 
 import java.net.URL;
 
+import com.gargoylesoftware.base.testing.OrderedTestSuite;
+import junit.framework.TestSuite;
 import org.cacheonix.Cacheonix;
 import org.cacheonix.CacheonixTestCase;
 import org.cacheonix.SavedSystemProperty;
 import org.cacheonix.ShutdownMode;
-import org.cacheonix.impl.configuration.ConfigurationConstants;
-import org.cacheonix.impl.configuration.SystemProperty;
+import org.cacheonix.impl.config.ConfigurationConstants;
+import org.cacheonix.impl.config.SystemProperty;
 import org.cacheonix.impl.util.logging.Logger;
-import com.gargoylesoftware.base.testing.OrderedTestSuite;
-import junit.framework.TestSuite;
 
 /**
  * Tests Cacheonix.

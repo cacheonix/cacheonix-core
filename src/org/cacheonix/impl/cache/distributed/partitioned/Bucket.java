@@ -40,7 +40,7 @@ import org.cacheonix.impl.cache.store.ReadableElement;
 import org.cacheonix.impl.cache.store.SharedCounter;
 import org.cacheonix.impl.clock.Clock;
 import org.cacheonix.impl.clock.Time;
-import org.cacheonix.impl.configuration.LeaseConfiguration;
+import org.cacheonix.impl.config.LeaseConfiguration;
 import org.cacheonix.impl.net.serializer.SerializerUtils;
 import org.cacheonix.impl.net.serializer.Wireable;
 import org.cacheonix.impl.net.serializer.WireableBuilder;

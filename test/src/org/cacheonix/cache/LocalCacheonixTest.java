@@ -19,8 +19,8 @@ import org.cacheonix.SavedSystemProperty;
 import org.cacheonix.ShutdownMode;
 import org.cacheonix.TestConstants;
 import org.cacheonix.cluster.Cluster;
+import org.cacheonix.impl.config.SystemProperty;
 import org.cacheonix.locks.ReadWriteLock;
-import org.cacheonix.impl.configuration.SystemProperty;
 
 /**
  * Tests CacheManager using local cahce configurations only.

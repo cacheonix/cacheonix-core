@@ -13,8 +13,8 @@
  */
 package org.cacheonix.cache.configuration;
 
-import org.cacheonix.impl.configuration.LoggingLevel;
 import junit.framework.TestCase;
+import org.cacheonix.impl.config.LoggingLevel;
 
 /**
  * LoggingLevel Tester.

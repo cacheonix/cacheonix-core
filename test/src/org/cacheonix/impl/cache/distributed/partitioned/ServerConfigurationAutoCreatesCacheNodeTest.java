@@ -21,7 +21,7 @@ import org.cacheonix.CacheonixTestCase;
 import org.cacheonix.SavedSystemProperty;
 import org.cacheonix.ShutdownMode;
 import org.cacheonix.TestUtils;
-import org.cacheonix.impl.configuration.SystemProperty;
+import org.cacheonix.impl.config.SystemProperty;
 import org.cacheonix.impl.util.logging.Logger;
 import org.cacheonix.impl.util.time.Timeout;
 

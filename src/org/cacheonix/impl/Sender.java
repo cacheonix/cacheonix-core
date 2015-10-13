@@ -26,7 +26,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 import org.cacheonix.impl.clock.Clock;
-import org.cacheonix.impl.configuration.SystemProperty;
+import org.cacheonix.impl.config.SystemProperty;
 import org.cacheonix.impl.net.processor.Frame;
 import org.cacheonix.impl.net.processor.Message;
 import org.cacheonix.impl.net.processor.ReceiverAddress;

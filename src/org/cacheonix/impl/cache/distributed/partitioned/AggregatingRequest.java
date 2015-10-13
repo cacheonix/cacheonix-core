@@ -21,8 +21,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.cacheonix.impl.clock.Time;
-import org.cacheonix.impl.configuration.ExpirationConfiguration;
-import org.cacheonix.impl.configuration.FrontCacheConfiguration;
+import org.cacheonix.impl.config.ExpirationConfiguration;
+import org.cacheonix.impl.config.FrontCacheConfiguration;
 import org.cacheonix.impl.net.processor.Message;
 import org.cacheonix.impl.net.processor.PrepareResult;
 import org.cacheonix.impl.net.processor.Prepareable;

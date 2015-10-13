@@ -18,9 +18,9 @@ import java.io.IOException;
 import org.cacheonix.CacheonixTestCase;
 import org.cacheonix.SavedSystemProperty;
 import org.cacheonix.TestUtils;
-import org.cacheonix.impl.configuration.CacheonixConfiguration;
-import org.cacheonix.impl.configuration.ConfigurationReader;
-import org.cacheonix.impl.configuration.SystemProperty;
+import org.cacheonix.impl.config.CacheonixConfiguration;
+import org.cacheonix.impl.config.ConfigurationReader;
+import org.cacheonix.impl.config.SystemProperty;
 import org.cacheonix.impl.util.IOUtils;
 
 /**

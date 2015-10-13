@@ -17,13 +17,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.cacheonix.impl.cluster.node.state.ReplicatedState;
-import org.cacheonix.impl.configuration.ClusterConfiguration;
+import org.cacheonix.impl.config.ClusterConfiguration;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.processor.Frame;
 import org.cacheonix.impl.util.logging.Logger;
 import org.cacheonix.impl.util.time.Timeout;
 
-import static org.cacheonix.impl.configuration.ConfigurationConstants.DEFAULT_JOIN_TIMEOUT_MILLIS;
+import static org.cacheonix.impl.config.ConfigurationConstants.DEFAULT_JOIN_TIMEOUT_MILLIS;
 
 /**
  * Join status is a bean that holds information related to join process that a process in Blocked state maybe

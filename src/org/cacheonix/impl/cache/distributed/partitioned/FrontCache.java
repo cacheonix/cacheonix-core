@@ -23,9 +23,9 @@ import org.cacheonix.impl.cache.store.ReadableElement;
 import org.cacheonix.impl.cache.store.SharedCounter;
 import org.cacheonix.impl.clock.Clock;
 import org.cacheonix.impl.clock.Time;
-import org.cacheonix.impl.configuration.CacheStoreConfiguration;
-import org.cacheonix.impl.configuration.ConfigurationConstants;
-import org.cacheonix.impl.configuration.FrontCacheConfiguration;
+import org.cacheonix.impl.config.CacheStoreConfiguration;
+import org.cacheonix.impl.config.ConfigurationConstants;
+import org.cacheonix.impl.config.FrontCacheConfiguration;
 import org.cacheonix.impl.util.cache.ObjectSizeCalculator;
 import org.cacheonix.impl.util.cache.StandardObjectSizeCalculator;
 

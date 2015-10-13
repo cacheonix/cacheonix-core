@@ -23,7 +23,7 @@ import org.cacheonix.ShutdownMode;
 import org.cacheonix.TestUtils;
 import org.cacheonix.cache.Cache;
 import org.cacheonix.impl.cache.CacheonixCache;
-import org.cacheonix.impl.configuration.SystemProperty;
+import org.cacheonix.impl.config.SystemProperty;
 import org.cacheonix.impl.util.ArrayUtils;
 import org.cacheonix.impl.util.logging.Logger;
 

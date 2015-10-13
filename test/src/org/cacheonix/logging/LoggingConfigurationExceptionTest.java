@@ -14,7 +14,7 @@
 package org.cacheonix.logging;
 
 import org.cacheonix.CacheonixTestCase;
-import org.cacheonix.impl.configuration.LoggingConfigurationException;
+import org.cacheonix.impl.config.LoggingConfigurationException;
 import org.cacheonix.impl.util.logging.Logger;
 
 /**

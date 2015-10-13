@@ -13,7 +13,7 @@
  */
 package org.cacheonix.impl.util;
 
-import org.cacheonix.impl.configuration.ConfigurationConstants;
+import org.cacheonix.impl.config.ConfigurationConstants;
 
 /**
  * Integer utilities.

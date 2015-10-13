@@ -26,16 +26,16 @@ import org.cacheonix.TestUtils;
 import org.cacheonix.cache.Cache;
 import org.cacheonix.cache.entry.EntryFilter;
 import org.cacheonix.cluster.CacheMember;
-import org.cacheonix.locks.BrokenLockException;
-import org.cacheonix.locks.Lock;
-import org.cacheonix.locks.ReadWriteLock;
 import org.cacheonix.impl.cache.CacheonixCache;
-import org.cacheonix.impl.configuration.SystemProperty;
+import org.cacheonix.impl.config.SystemProperty;
 import org.cacheonix.impl.util.ArrayUtils;
 import org.cacheonix.impl.util.MutableBoolean;
 import org.cacheonix.impl.util.array.HashMap;
 import org.cacheonix.impl.util.array.HashSet;
 import org.cacheonix.impl.util.logging.Logger;
+import org.cacheonix.locks.BrokenLockException;
+import org.cacheonix.locks.Lock;
+import org.cacheonix.locks.ReadWriteLock;
 
 /**
  */

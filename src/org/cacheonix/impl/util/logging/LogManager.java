@@ -21,7 +21,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Enumeration;
 
-import org.cacheonix.impl.configuration.SystemProperty;
+import org.cacheonix.impl.config.SystemProperty;
 import org.cacheonix.impl.util.StringUtils;
 import org.cacheonix.impl.util.logging.helpers.Loader;
 import org.cacheonix.impl.util.logging.helpers.LogLog;

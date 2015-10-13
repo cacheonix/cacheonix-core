@@ -25,7 +25,7 @@ import java.nio.channels.ServerSocketChannel;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.cacheonix.impl.clock.Clock;
-import org.cacheonix.impl.configuration.SystemProperty;
+import org.cacheonix.impl.config.SystemProperty;
 import org.cacheonix.impl.util.IOUtils;
 import org.cacheonix.impl.util.Shutdownable;
 import org.cacheonix.impl.util.StringUtils;

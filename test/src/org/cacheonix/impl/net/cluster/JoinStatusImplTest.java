@@ -20,11 +20,11 @@ import org.cacheonix.CacheonixTestCase;
 import org.cacheonix.TestConstants;
 import org.cacheonix.TestUtils;
 import org.cacheonix.impl.cluster.node.state.ReplicatedState;
-import org.cacheonix.impl.configuration.ClusterConfiguration;
+import org.cacheonix.impl.config.ClusterConfiguration;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.processor.UUID;
 
-import static org.cacheonix.impl.configuration.ConfigurationConstants.DEFAULT_JOIN_TIMEOUT_MILLIS;
+import static org.cacheonix.impl.config.ConfigurationConstants.DEFAULT_JOIN_TIMEOUT_MILLIS;
 
 /**
  * JoinStatus Tester.

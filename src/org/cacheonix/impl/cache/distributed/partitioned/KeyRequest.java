@@ -21,8 +21,8 @@ import java.util.List;
 
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.clock.Time;
-import org.cacheonix.impl.configuration.ExpirationConfiguration;
-import org.cacheonix.impl.configuration.FrontCacheConfiguration;
+import org.cacheonix.impl.config.ExpirationConfiguration;
+import org.cacheonix.impl.config.FrontCacheConfiguration;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.processor.InvalidMessageException;
 import org.cacheonix.impl.net.processor.PrepareResult;

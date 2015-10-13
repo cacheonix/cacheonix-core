@@ -17,10 +17,10 @@ import org.cacheonix.CacheonixTestCase;
 import org.cacheonix.TestUtils;
 import org.cacheonix.cache.Cache;
 import org.cacheonix.impl.cache.storage.disk.StorageException;
-import org.cacheonix.impl.configuration.CacheonixConfiguration;
-import org.cacheonix.impl.configuration.ConfigurationReader;
-import org.cacheonix.impl.configuration.PartitionedCacheConfiguration;
-import org.cacheonix.impl.configuration.ServerConfiguration;
+import org.cacheonix.impl.config.CacheonixConfiguration;
+import org.cacheonix.impl.config.ConfigurationReader;
+import org.cacheonix.impl.config.PartitionedCacheConfiguration;
+import org.cacheonix.impl.config.ServerConfiguration;
 import org.cacheonix.impl.util.IOUtils;
 import org.cacheonix.impl.util.logging.Logger;
 

@@ -20,7 +20,7 @@ import java.net.SocketAddress;
 import java.nio.channels.SocketChannel;
 
 import org.cacheonix.Version;
-import org.cacheonix.impl.configuration.SystemProperty;
+import org.cacheonix.impl.config.SystemProperty;
 import org.cacheonix.impl.util.StringUtils;
 import org.cacheonix.impl.util.logging.Logger;
 

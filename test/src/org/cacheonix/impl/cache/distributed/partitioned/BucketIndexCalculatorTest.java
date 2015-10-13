@@ -13,9 +13,9 @@
  */
 package org.cacheonix.impl.cache.distributed.partitioned;
 
-import org.cacheonix.impl.configuration.ConfigurationConstants;
-import org.cacheonix.impl.util.logging.Logger;
 import junit.framework.TestCase;
+import org.cacheonix.impl.config.ConfigurationConstants;
+import org.cacheonix.impl.util.logging.Logger;
 
 /**
  * BucketIndexCalculatorTest

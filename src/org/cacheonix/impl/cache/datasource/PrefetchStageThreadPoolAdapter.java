@@ -17,7 +17,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.cacheonix.impl.configuration.ConfigurationConstants;
+import org.cacheonix.impl.config.ConfigurationConstants;
 
 /**
  * An adapter from a ThreadPoolExecutor to a prefetch stage.

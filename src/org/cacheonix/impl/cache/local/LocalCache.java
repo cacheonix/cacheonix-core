@@ -61,15 +61,15 @@ import org.cacheonix.impl.cache.store.SafeEntryUpdateSubscriber;
 import org.cacheonix.impl.cache.store.SharedCounter;
 import org.cacheonix.impl.clock.Clock;
 import org.cacheonix.impl.clock.Time;
-import org.cacheonix.impl.configuration.ElementEventNotification;
+import org.cacheonix.impl.config.ElementEventNotification;
 import org.cacheonix.impl.util.StringUtils;
 import org.cacheonix.impl.util.array.HashMap;
 import org.cacheonix.impl.util.array.HashSet;
 import org.cacheonix.impl.util.cache.ObjectSizeCalculator;
 import org.cacheonix.impl.util.logging.Logger;
 
-import static org.cacheonix.impl.configuration.ElementEventNotification.ASYNCHRONOUS;
-import static org.cacheonix.impl.configuration.ElementEventNotification.SYNCHRONOUS;
+import static org.cacheonix.impl.config.ElementEventNotification.ASYNCHRONOUS;
+import static org.cacheonix.impl.config.ElementEventNotification.SYNCHRONOUS;
 
 /**
  * Implementation of cache with LRU eviction policy.

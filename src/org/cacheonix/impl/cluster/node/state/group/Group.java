@@ -29,7 +29,7 @@ import org.cacheonix.impl.cache.distributed.partitioned.subscriber.EntryModified
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.cluster.node.state.bucket.BucketEventListenerList;
 import org.cacheonix.impl.cluster.node.state.bucket.BucketOwnershipAssignment;
-import org.cacheonix.impl.configuration.ConfigurationConstants;
+import org.cacheonix.impl.config.ConfigurationConstants;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.serializer.SerializerUtils;
 import org.cacheonix.impl.net.serializer.Wireable;

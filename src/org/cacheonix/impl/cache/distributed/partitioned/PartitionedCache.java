@@ -42,7 +42,7 @@ import org.cacheonix.impl.cache.item.BinaryUtils;
 import org.cacheonix.impl.cache.item.InvalidObjectException;
 import org.cacheonix.impl.clock.Clock;
 import org.cacheonix.impl.clock.Time;
-import org.cacheonix.impl.configuration.ConfigurationConstants;
+import org.cacheonix.impl.config.ConfigurationConstants;
 import org.cacheonix.impl.lock.DistributedReadWriteLock;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.cluster.ClusterProcessor;

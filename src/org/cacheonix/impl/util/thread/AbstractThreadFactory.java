@@ -16,7 +16,7 @@ package org.cacheonix.impl.util.thread;
 import java.util.Map;
 import java.util.concurrent.ThreadFactory;
 
-import org.cacheonix.impl.configuration.SystemProperty;
+import org.cacheonix.impl.config.SystemProperty;
 import org.cacheonix.impl.util.array.HashMap;
 import org.cacheonix.impl.util.logging.Logger;
 

@@ -15,12 +15,12 @@ package org.cacheonix.plugin.hibernate.v32;
 
 import java.util.Map;
 
+import junit.framework.TestCase;
 import org.cacheonix.Cacheonix;
 import org.cacheonix.SavedSystemProperty;
 import org.cacheonix.TestConstants;
-import org.cacheonix.impl.configuration.SystemProperty;
+import org.cacheonix.impl.config.SystemProperty;
 import org.cacheonix.impl.util.logging.Logger;
-import junit.framework.TestCase;
 
 /**
  * Tests {@link HibernateCacheonixCache}.

@@ -14,7 +14,7 @@
 package org.cacheonix.cache.configuration;
 
 import org.cacheonix.CacheonixTestCase;
-import org.cacheonix.impl.configuration.EvictionPolicy;
+import org.cacheonix.impl.config.EvictionPolicy;
 
 /**
  * Tests EvictionPolicy.

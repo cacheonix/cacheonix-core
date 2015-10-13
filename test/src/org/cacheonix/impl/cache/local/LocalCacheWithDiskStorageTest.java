@@ -32,7 +32,7 @@ import org.cacheonix.impl.cache.invalidator.DummyCacheInvalidator;
 import org.cacheonix.impl.cache.loader.DummyCacheLoader;
 import org.cacheonix.impl.cache.storage.disk.DiskStorage;
 import org.cacheonix.impl.cache.storage.disk.StorageFactory;
-import org.cacheonix.impl.configuration.ElementEventNotification;
+import org.cacheonix.impl.config.ElementEventNotification;
 import org.cacheonix.impl.net.serializer.SerializerUtils;
 import org.cacheonix.impl.util.ArrayUtils;
 import org.cacheonix.impl.util.array.HashMap;

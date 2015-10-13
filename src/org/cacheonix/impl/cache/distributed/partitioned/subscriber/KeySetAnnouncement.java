@@ -29,7 +29,7 @@ import org.cacheonix.impl.cluster.node.state.ReplicatedState;
 import org.cacheonix.impl.cluster.node.state.bucket.BucketOwner;
 import org.cacheonix.impl.cluster.node.state.bucket.BucketOwnershipAssignment;
 import org.cacheonix.impl.cluster.node.state.group.Group;
-import org.cacheonix.impl.configuration.ConfigurationConstants;
+import org.cacheonix.impl.config.ConfigurationConstants;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.cluster.ClusterProcessor;
 import org.cacheonix.impl.net.processor.Message;

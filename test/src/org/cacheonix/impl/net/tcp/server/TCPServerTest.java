@@ -25,7 +25,7 @@ import java.util.concurrent.locks.ReentrantLock;
 import org.cacheonix.CacheonixTestCase;
 import org.cacheonix.TestConstants;
 import org.cacheonix.TestUtils;
-import org.cacheonix.impl.configuration.ConfigurationConstants;
+import org.cacheonix.impl.config.ConfigurationConstants;
 import org.cacheonix.impl.net.cluster.JoinRequest;
 import org.cacheonix.impl.net.processor.Frame;
 import org.cacheonix.impl.net.processor.Message;
