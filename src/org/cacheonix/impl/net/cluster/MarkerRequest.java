@@ -153,8 +153,8 @@ public abstract class MarkerRequest extends ClusterRequest {
 
       // Create message
       final ClusterNodeJoinedAnnouncement nodeJoinedAnnouncement = new ClusterNodeJoinedAnnouncement();
-
       nodeJoinedAnnouncement.setClusterUUID(processor.getProcessorState().getClusterView().getClusterUUID());
+      nodeJoinedAnnouncement.setTimestamp(processor.getClock().currentTime());
       nodeJoinedAnnouncement.setSender(joined);
       nodeJoinedAnnouncement.setJoined(joined);
 
@@ -165,9 +165,9 @@ public abstract class MarkerRequest extends ClusterRequest {
 
       // Set reserved sequence number
       final Frame nodeJoinedFrame = frames.get(0);
+      nodeJoinedFrame.setClusterUUID(processor.getProcessorState().getClusterView().getClusterUUID());
       nodeJoinedFrame.setSequenceNumber(reservedJoinSeqNum);
 
-      nodeJoinedFrame.setClusterUUID(processor.getProcessorState().getClusterView().getClusterUUID());
 
       // Send to ourselves
 
