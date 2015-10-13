@@ -6,7 +6,6 @@ import java.util.concurrent.Executor;
 
 import org.cacheonix.cache.Cache;
 import org.cacheonix.cache.subscriber.EntryModifiedSubscriber;
-import org.cacheonix.impl.cache.distributed.partitioned.subscriber.LocalSubscription;
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.cache.store.BinaryEntryModifiedSubscriberAdapter;
 import org.cacheonix.impl.net.ClusterNodeAddress;

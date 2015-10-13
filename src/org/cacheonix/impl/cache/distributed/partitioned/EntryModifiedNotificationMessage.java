@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.impl.cache.distributed.partitioned.subscriber;
+package org.cacheonix.impl.cache.distributed.partitioned;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -20,8 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.cacheonix.impl.cache.distributed.partitioned.CacheMessage;
-import org.cacheonix.impl.cache.distributed.partitioned.CacheProcessor;
 import org.cacheonix.impl.cache.store.BinaryEntryModifiedSubscriber;
 import org.cacheonix.impl.cache.subscriber.BinaryEntryModifiedEvent;
 import org.cacheonix.impl.net.serializer.Wireable;

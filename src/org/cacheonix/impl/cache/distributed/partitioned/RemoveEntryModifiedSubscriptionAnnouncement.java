@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.impl.cache.distributed.partitioned.subscriber;
+package org.cacheonix.impl.cache.distributed.partitioned;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -45,7 +45,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * using {@link Waiter#parentRequest} reference.
  */
 @SuppressWarnings("RedundantIfStatement")
-public final class AddEntryModifiedSubscriptionAnnouncement extends KeySetAnnouncement {
+public final class RemoveEntryModifiedSubscriptionAnnouncement extends KeySetAnnouncement {
 
    /**
     * Maker used by WireableFactory.
@@ -57,47 +57,42 @@ public final class AddEntryModifiedSubscriptionAnnouncement extends KeySetAnnoun
     *
     * @noinspection UNUSED_SYMBOL, UnusedDeclaration
     */
-   private static final Logger LOG = Logger.getLogger(AddEntryModifiedSubscriptionAnnouncement.class); // NOPMD
+   private static final Logger LOG = Logger.getLogger(RemoveEntryModifiedSubscriptionAnnouncement.class); // NOPMD
 
    /**
-    * The subscription information.
+    * Identity of the subscriber to un-subscribe.
     */
-   private EntryModifiedSubscription subscription = null;
+   private int subscriberIdentity;
 
 
    /**
     * Required by wireable.
     */
-   public AddEntryModifiedSubscriptionAnnouncement() {
+   public RemoveEntryModifiedSubscriptionAnnouncement() {
 
    }
 
 
    /**
-    * Creates <code>AddEntryModifiedSubscriptionAnnouncement</code>.
+    * Creates <code>RemoveEntryModifiedSubscriptionAnnouncement</code>.
     *
     * @param cacheName a cache name.
     */
-   public AddEntryModifiedSubscriptionAnnouncement(final String cacheName) {
+   public RemoveEntryModifiedSubscriptionAnnouncement(final String cacheName) {
 
-      super(TYPE_REGISTER_SUBSCRIPTION_ANNOUNCEMENT, cacheName);
+      super(TYPE_UNREGISTER_SUBSCRIPTION_ANNOUNCEMENT, cacheName);
    }
 
 
-   /**
-    * Sets subscription information.
-    *
-    * @param subscription the subscription information to set.
-    */
-   public void setSubscription(final EntryModifiedSubscription subscription) {
+   public void setSubscriberIdentity(final int subscriberIdentity) {
 
-      this.subscription = subscription;
+      this.subscriberIdentity = subscriberIdentity;
    }
 
 
-   EntryModifiedSubscription getSubscription() {
+   int getSubscriberIdentity() {
 
-      return subscription;
+      return subscriberIdentity;
    }
 
 
@@ -147,7 +142,7 @@ public final class AddEntryModifiedSubscriptionAnnouncement extends KeySetAnnoun
       // Modify replicated state. Group will notify the subscriber to configuration
       // EntryEventSubscriptionConfigurationSubscriber that in turn will post a registration
       // message to the local cache processor(s).
-      group.addEntryEventSubscription(keysToProcess, subscription);
+      group.removeEntryModifiedSubscription(keysToProcess, subscriberIdentity);
 
       // Post response  if this node is the owner of the key. This may never happen
       // if the owner dies before the announcement is delivered. The case of the node
@@ -164,8 +159,8 @@ public final class AddEntryModifiedSubscriptionAnnouncement extends KeySetAnnoun
 
    protected KeySetAnnouncement createAnnouncement() {
 
-      final AddEntryModifiedSubscriptionAnnouncement announcement = new AddEntryModifiedSubscriptionAnnouncement(getCacheName());
-      announcement.subscription = subscription;
+      final RemoveEntryModifiedSubscriptionAnnouncement announcement = new RemoveEntryModifiedSubscriptionAnnouncement(getCacheName());
+      announcement.subscriberIdentity = subscriberIdentity;
       return announcement;
    }
 
@@ -199,8 +194,7 @@ public final class AddEntryModifiedSubscriptionAnnouncement extends KeySetAnnoun
 
       super.readWire(in);
 
-      subscription = new EntryModifiedSubscription();
-      subscription.readWire(in);
+      subscriberIdentity = in.readInt();
    }
 
 
@@ -208,7 +202,7 @@ public final class AddEntryModifiedSubscriptionAnnouncement extends KeySetAnnoun
 
       super.writeWire(out);
 
-      subscription.writeWire(out);
+      out.writeInt(subscriberIdentity);
    }
 
 
@@ -224,9 +218,9 @@ public final class AddEntryModifiedSubscriptionAnnouncement extends KeySetAnnoun
          return false;
       }
 
-      final AddEntryModifiedSubscriptionAnnouncement that = (AddEntryModifiedSubscriptionAnnouncement) o;
+      final RemoveEntryModifiedSubscriptionAnnouncement that = (RemoveEntryModifiedSubscriptionAnnouncement) o;
 
-      if (subscription != null ? !subscription.equals(that.subscription) : that.subscription != null) {
+      if (subscriberIdentity != that.subscriberIdentity) {
          return false;
       }
 
@@ -237,15 +231,15 @@ public final class AddEntryModifiedSubscriptionAnnouncement extends KeySetAnnoun
    public int hashCode() {
 
       int result = super.hashCode();
-      result = 31 * result + (subscription != null ? subscription.hashCode() : 0);
+      result = 31 * result + subscriberIdentity;
       return result;
    }
 
 
    public String toString() {
 
-      return "AddEntryModifiedSubscriptionAnnouncement{" +
-              "subscription=" + subscription +
+      return "RemoveEntryModifiedSubscriptionAnnouncement{" +
+              "subscriberIdentity=" + subscriberIdentity +
               "} " + super.toString();
    }
 
@@ -253,16 +247,13 @@ public final class AddEntryModifiedSubscriptionAnnouncement extends KeySetAnnoun
    /**
     * Waits for a response from the owner of the keys
     */
-   @SuppressWarnings("FieldAccessedSynchronizedAndUnsynchronized")
    static class Waiter extends KeySetAnnouncement.Waiter {
 
 
       /**
        * An originator request that should be responded to after this announcement finishes.
-       *
-       * This a transient field.
        */
-      private Request parentRequest;
+      private transient Request parentRequest;
 
 
       /**
@@ -281,7 +272,7 @@ public final class AddEntryModifiedSubscriptionAnnouncement extends KeySetAnnoun
        *
        * @param parentRequest the originator request that should be responded to after this announcement finishes.
        */
-      public synchronized void setParentRequest(final Request parentRequest) {
+      public void setParentRequest(final Request parentRequest) {
 
          this.parentRequest = parentRequest;
       }
@@ -289,13 +280,13 @@ public final class AddEntryModifiedSubscriptionAnnouncement extends KeySetAnnoun
 
       protected synchronized void notifyFinished() {
 
-         final AggregatingAnnouncement request = (AggregatingAnnouncement) getRequest();
-
          // Proceed as usual
          super.notifyFinished();
 
 
          // Post-process by responding to the parent request with success
+
+         final AggregatingAnnouncement request = (AggregatingAnnouncement) getRequest();
 
          if (request.isRootRequest()) {
 
@@ -312,7 +303,7 @@ public final class AddEntryModifiedSubscriptionAnnouncement extends KeySetAnnoun
 
       public Wireable create() {
 
-         return new AddEntryModifiedSubscriptionAnnouncement();
+         return new RemoveEntryModifiedSubscriptionAnnouncement();
       }
    }
 }

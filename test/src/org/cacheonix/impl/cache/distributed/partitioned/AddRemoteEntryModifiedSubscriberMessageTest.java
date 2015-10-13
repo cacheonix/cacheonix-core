@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.impl.cache.distributed.partitioned.subscriber;
+package org.cacheonix.impl.cache.distributed.partitioned;
 
 import java.util.Collections;
 import java.util.Set;

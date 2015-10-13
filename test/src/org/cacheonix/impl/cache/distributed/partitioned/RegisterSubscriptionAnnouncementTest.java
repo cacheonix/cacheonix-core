@@ -11,10 +11,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.impl.cache.distributed.partitioned.subscriber;
+package org.cacheonix.impl.cache.distributed.partitioned;
+
+import java.util.Collections;
+import java.util.Set;
 
 import org.cacheonix.CacheonixTestCase;
 import org.cacheonix.TestUtils;
+import org.cacheonix.cache.subscriber.EntryModifiedEventContentFlag;
+import org.cacheonix.cache.subscriber.EntryModifiedEventType;
+import org.cacheonix.cache.subscriber.EntryModifiedNotificationMode;
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.serializer.Serializer;
@@ -25,7 +31,7 @@ import org.cacheonix.impl.util.array.HashSet;
 /**
  * Tester for AddEntryModifiedSubscriptionAnnouncement.
  */
-public final class RemoveEntryModifiedSubscriptionAnnouncementTest extends CacheonixTestCase {
+public final class RegisterSubscriptionAnnouncementTest extends CacheonixTestCase {
 
    private static final String CACHE_NAME = "test.cache";
 
@@ -33,20 +39,16 @@ public final class RemoveEntryModifiedSubscriptionAnnouncementTest extends Cache
 
    private static final HashSet<Binary> KEY_SET = createKeySet();  // NOPMD
 
-   private static final int SUBSCRIBER_IDENTITY = 777;
+   private static final Set<EntryModifiedEventType> MODIFICATION_TYPES = createModificationTypes();
 
-   private RemoveEntryModifiedSubscriptionAnnouncement announcement;
+   private static final EntryModifiedSubscription SUBSCRIPTION = new EntryModifiedSubscription(5432, TestUtils.createTestAddress(333), EntryModifiedNotificationMode.SINGLE, Collections.singletonList(EntryModifiedEventContentFlag.NEED_ALL), MODIFICATION_TYPES);
 
-
-   public void testSetSubscriberIdentity() throws Exception {
-
-      assertEquals(SUBSCRIBER_IDENTITY, announcement.getSubscriberIdentity());
-   }
+   private AddEntryModifiedSubscriptionAnnouncement announcement;
 
 
-   public void testDefaultConstructor() {
+   public void testSetSubscription() throws Exception {
 
-      assertNotNull(new RemoveEntryModifiedSubscriptionAnnouncement().toString());
+      assertEquals(SUBSCRIPTION, announcement.getSubscription());
    }
 
 
@@ -65,7 +67,18 @@ public final class RemoveEntryModifiedSubscriptionAnnouncementTest extends Cache
 
    public void testGetWireableType() {
 
-      assertEquals(Wireable.TYPE_UNREGISTER_SUBSCRIPTION_ANNOUNCEMENT, announcement.getWireableType());
+      assertEquals(Wireable.TYPE_REGISTER_SUBSCRIPTION_ANNOUNCEMENT, announcement.getWireableType());
+   }
+
+
+   private static Set<EntryModifiedEventType> createModificationTypes() {
+
+      final HashSet<EntryModifiedEventType> eventTypes = new HashSet<EntryModifiedEventType>(4, 0.75f);
+      eventTypes.add(EntryModifiedEventType.ADD);
+      eventTypes.add(EntryModifiedEventType.EVICT);
+      eventTypes.add(EntryModifiedEventType.REMOVE);
+      eventTypes.add(EntryModifiedEventType.UPDATE);
+      return eventTypes;
    }
 
 
@@ -73,9 +86,9 @@ public final class RemoveEntryModifiedSubscriptionAnnouncementTest extends Cache
 
       super.setUp();
 
-      announcement = new RemoveEntryModifiedSubscriptionAnnouncement(CACHE_NAME);
+      announcement = new AddEntryModifiedSubscriptionAnnouncement(CACHE_NAME);
       announcement.setBucketOwnerAddress(BUCKET_OWNER_ADDRESS);
-      announcement.setSubscriberIdentity(SUBSCRIBER_IDENTITY);
+      announcement.setSubscription(SUBSCRIPTION);
       announcement.setKeySet(KEY_SET);
    }
 

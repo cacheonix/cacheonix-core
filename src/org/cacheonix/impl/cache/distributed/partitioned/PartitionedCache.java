@@ -32,8 +32,6 @@ import org.cacheonix.cluster.CacheMember;
 import org.cacheonix.exceptions.CacheonixException;
 import org.cacheonix.exceptions.NotSubscribedException;
 import org.cacheonix.impl.cache.CacheonixCache;
-import org.cacheonix.impl.cache.distributed.partitioned.subscriber.AddEntryModifiedSubscriberRequest;
-import org.cacheonix.impl.cache.distributed.partitioned.subscriber.RemoveEntryModifiedSubscriberRequest;
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.cache.item.BinaryFactory;
 import org.cacheonix.impl.cache.item.BinaryFactoryBuilder;

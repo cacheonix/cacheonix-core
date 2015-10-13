@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.impl.cache.distributed.partitioned.subscriber;
+package org.cacheonix.impl.cache.distributed.partitioned;
 
 import java.util.Collection;
 import java.util.Map;
@@ -19,9 +19,6 @@ import java.util.Set;
 import java.util.concurrent.Executor;
 
 import org.cacheonix.cache.subscriber.EntryModifiedSubscriber;
-import org.cacheonix.impl.cache.distributed.partitioned.CacheProcessor;
-import org.cacheonix.impl.cache.distributed.partitioned.LocalCacheRequest;
-import org.cacheonix.impl.cache.distributed.partitioned.PartitionedCache;
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.cache.item.BinaryUtils;
 import org.cacheonix.impl.cache.store.AsynchronousEntryModifiedSubscriberAdapter;

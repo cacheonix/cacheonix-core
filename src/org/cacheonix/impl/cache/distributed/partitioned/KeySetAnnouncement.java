@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.impl.cache.distributed.partitioned.subscriber;
+package org.cacheonix.impl.cache.distributed.partitioned;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -22,10 +22,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.cacheonix.exceptions.RuntimeIOException;
-import org.cacheonix.impl.cache.distributed.partitioned.BucketIndexCalculator;
-import org.cacheonix.impl.cache.distributed.partitioned.BucketOwner;
-import org.cacheonix.impl.cache.distributed.partitioned.BucketOwnershipAssignment;
-import org.cacheonix.impl.cache.distributed.partitioned.CacheResponse;
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.cluster.node.state.ReplicatedState;
 import org.cacheonix.impl.cluster.node.state.group.Group;
