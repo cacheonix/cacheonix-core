@@ -148,8 +148,7 @@ public final class RemoteEntryModifiedSubscriber implements BinaryEntryModifiedS
    public String toString() {
 
       return "RemoteEntryModifiedSubscriber{" +
-              "processor=" + processor +
-              ", subscription=" + subscription +
+              "subscription=" + subscription +
               '}';
    }
 }

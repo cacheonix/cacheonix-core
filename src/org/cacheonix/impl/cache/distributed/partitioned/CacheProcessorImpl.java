@@ -637,7 +637,11 @@ public final class CacheProcessorImpl extends AbstractRequestProcessor implement
 
       return "CacheProcessor{" +
               "cacheName='" + cacheName + '\'' +
-              ", bucketStorages=" + (bucketStorages == null ? null : Arrays.asList(bucketStorages)) +
+              ", group=" + group +
+              ", elementCounter=" + elementCounter +
+              ", byteCounter=" + byteCounter +
+              ", state=" + state +
+              ", bucketStorages=" + (bucketStorages == null ? null : bucketStorages.length) +
               ", bucketCalculator=" + bucketCalculator +
               ", objectSizeCalculatorFactory=" + objectSizeCalculatorFactory +
               ", binaryStoreDataSourceFactory=" + binaryStoreDataSourceFactory +
@@ -645,11 +649,7 @@ public final class CacheProcessorImpl extends AbstractRequestProcessor implement
               ", dataStoreFactory=" + dataStoreFactory +
               ", cacheConfig=" + cacheConfig +
               ", diskStorages=" + (diskStorages == null ? null : Arrays.asList(diskStorages)) +
-              ", group=" + group +
-              ", elementCounter=" + elementCounter +
               ", localEntryModifiedSubscriptions=" + localEntryModifiedSubscriptions +
-              ", byteCounter=" + byteCounter +
-              ", state=" + state +
               "} " + super.toString();
    }
 }
