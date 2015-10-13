@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.impl.cluster.node.state.bucket;
+package org.cacheonix.impl.cache.distributed.partitioned;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -21,6 +21,7 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
 
+import junit.framework.TestCase;
 import org.cacheonix.TestUtils;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.serializer.Serializer;
@@ -29,7 +30,6 @@ import org.cacheonix.impl.util.Assert;
 import org.cacheonix.impl.util.CollectionUtils;
 import org.cacheonix.impl.util.array.HashSet;
 import org.cacheonix.impl.util.logging.Logger;
-import junit.framework.TestCase;
 
 /**
  * <pre>

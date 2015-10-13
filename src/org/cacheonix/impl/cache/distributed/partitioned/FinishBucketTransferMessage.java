@@ -16,7 +16,6 @@ package org.cacheonix.impl.cache.distributed.partitioned;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.cacheonix.impl.cluster.node.state.bucket.FinishBucketTransferCommand;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.serializer.Wireable;
 import org.cacheonix.impl.net.serializer.WireableBuilder;

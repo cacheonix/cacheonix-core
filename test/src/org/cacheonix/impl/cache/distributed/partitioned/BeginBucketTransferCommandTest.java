@@ -11,9 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.impl.cluster.node.state.bucket;
-
-import java.util.Collections;
+package org.cacheonix.impl.cache.distributed.partitioned;
 
 import org.cacheonix.CacheonixTestCase;
 import org.cacheonix.TestUtils;
@@ -27,20 +25,20 @@ import org.cacheonix.impl.util.logging.Logger;
  * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Nov 18, 2009 7:35:21 PM
  */
-public final class FinishBucketTransferCommandTest extends CacheonixTestCase {
+public final class BeginBucketTransferCommandTest extends CacheonixTestCase {
 
    /**
     * Logger.
     *
     * @noinspection UNUSED_SYMBOL, UnusedDeclaration
     */
-   private static final Logger LOG = Logger.getLogger(FinishBucketTransferCommandTest.class); // NOPMD
+   private static final Logger LOG = Logger.getLogger(BeginBucketTransferCommandTest.class); // NOPMD
 
    private static final String CACHE_NAME = "test.cache.name";
 
    private static final byte SOURCE_STORAGE_NUMBER = 1;
 
-   private static final byte DESTINATION_STORAGE_NUMBER = 2;
+   private static final byte DESTINATION_STORAGE_NUMBER = 1;
 
    private static final ClusterNodeAddress CURRENT_OWNER = TestUtils.createTestAddress(SOURCE_STORAGE_NUMBER);
 
@@ -48,7 +46,7 @@ public final class FinishBucketTransferCommandTest extends CacheonixTestCase {
 
    private static final Integer BUCKET_NUMBER = Integer.valueOf(5);
 
-   private FinishBucketTransferCommand command = null;
+   private BeginBucketTransferCommand command = null;
 
 
    public void testGetSourceStorageNumber() {
@@ -71,27 +69,27 @@ public final class FinishBucketTransferCommandTest extends CacheonixTestCase {
 
    public void testGetBucketNumber() {
 
-      assertEquals(BUCKET_NUMBER, command.getBucketNumbers().get(0));
+      assertEquals(BUCKET_NUMBER, command.getBucketNumbers().iterator().next());
    }
 
 
    public void testGetCurrentOwner() {
 
-      assertEquals(CURRENT_OWNER, command.getPreviousOwner());
+      assertEquals(CURRENT_OWNER, command.getCurrentOwner());
    }
 
 
    protected void setUp() throws Exception {
 
       super.setUp();
-      command = new FinishBucketTransferCommand(CACHE_NAME, SOURCE_STORAGE_NUMBER, DESTINATION_STORAGE_NUMBER, CURRENT_OWNER, NEW_OWNER);
-      command.addBucketNumbers(Collections.singletonList(BUCKET_NUMBER));
+      command = new BeginBucketTransferCommand(CACHE_NAME, SOURCE_STORAGE_NUMBER, DESTINATION_STORAGE_NUMBER, CURRENT_OWNER, NEW_OWNER);
+      command.addBucketNumber(BUCKET_NUMBER);
    }
 
 
    public String toString() {
 
-      return "FinishBucketTransferCommandTest{" +
+      return "BeginBucketTransferCommandTest{" +
               "command=" + command +
               "} " + super.toString();
    }

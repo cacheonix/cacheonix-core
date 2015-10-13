@@ -11,9 +11,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.impl.cluster.node.state.bucket;
+package org.cacheonix.impl.cache.distributed.partitioned;
 
-import java.util.Collections;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -22,42 +22,48 @@ import org.cacheonix.impl.util.IntegerUtils;
 import org.cacheonix.impl.util.logging.Logger;
 
 /**
- * Requests listeners to begin bucket transfer.
+ * Requests listeners to cancel bucket transfer.
  * <p/>
  *
  * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
- * @since Oct 23, 2009 1:41:20 PM
+ * @since Oct 27, 2009 5:29:43 PM
  */
-public final class BeginBucketTransferCommand extends BucketCommand {
+public final class CancelBucketTransferCommand extends BucketCommand {
 
    /**
     * Logger.
     *
     * @noinspection UNUSED_SYMBOL, UnusedDeclaration
     */
-   private static final Logger LOG = Logger.getLogger(BeginBucketTransferCommand.class); // NOPMD
+   private static final Logger LOG = Logger.getLogger(CancelBucketTransferCommand.class); // NOPMD
+
+   private final List<Integer> bucketNumbers = new LinkedList<Integer>();
+
+   private final ClusterNodeAddress previousOwner;
+
+   private final ClusterNodeAddress newOwner;
 
    private final byte sourceStorageNumber;
 
    private final byte destinationStorageNumber;
 
-   private final ClusterNodeAddress currentOwner;
 
-   private final ClusterNodeAddress newOwner;
-
-   private final List<Integer> bucketNumbers;
-
-
-   BeginBucketTransferCommand(final String cacheName, final byte sourceStorageNumber,
-                              final byte destinationStorageNumber, final ClusterNodeAddress currentOwner,
-                              final ClusterNodeAddress newOwners) {
+   /**
+    * @param sourceStorageNumber
+    * @param destinationStorageNumber
+    * @param previousOwner
+    * @param newOwner                 @noinspection AssignmentToCollectionOrArrayFieldFromParameter
+    */
+   CancelBucketTransferCommand(final String cacheName, final byte sourceStorageNumber,
+                               final byte destinationStorageNumber,
+                               final ClusterNodeAddress previousOwner,
+                               final ClusterNodeAddress newOwner) {
 
       super(cacheName);
-      this.destinationStorageNumber = destinationStorageNumber;
       this.sourceStorageNumber = sourceStorageNumber;
-      this.bucketNumbers = new LinkedList<Integer>();
-      this.currentOwner = currentOwner;
-      this.newOwner = newOwners;
+      this.destinationStorageNumber = destinationStorageNumber;
+      this.previousOwner = previousOwner;
+      this.newOwner = newOwner;
    }
 
 
@@ -73,27 +79,26 @@ public final class BeginBucketTransferCommand extends BucketCommand {
    }
 
 
-   public ClusterNodeAddress getNewOwner() {
-
-      return newOwner;
-   }
-
-
    /**
-    * Returns an unmodifiable collection of integers bucket numbers.
+    * Returns an unmodifiable collection of bucket numbers.
     *
-    * @return an unmodifiable list of bucket numbers
     * @noinspection ReturnOfCollectionOrArrayField
     */
    public List<Integer> getBucketNumbers() {
 
-      return Collections.unmodifiableList(bucketNumbers);
+      return bucketNumbers;
    }
 
 
-   public ClusterNodeAddress getCurrentOwner() {
+   public ClusterNodeAddress getPreviousOwner() {
 
-      return currentOwner;
+      return previousOwner;
+   }
+
+
+   public ClusterNodeAddress getNewOwner() {
+
+      return newOwner;
    }
 
 
@@ -103,12 +108,18 @@ public final class BeginBucketTransferCommand extends BucketCommand {
    }
 
 
+   public void addBucketNumbers(final Collection<Integer> bucketNumbers) {
+
+      this.bucketNumbers.addAll(bucketNumbers);
+   }
+
+
    public String toString() {
 
-      return "BeginBucketTransferCommand{" +
+      return "CancelBucketTransferCommand{" +
               "bucketNumbers=" + bucketNumbers +
-              ", currentOwner=" + currentOwner +
               ", newOwner=" + newOwner +
+              ", previousOwner=" + previousOwner +
               ", sourceStorageNumber=" + sourceStorageNumber +
               ", destinationStorageNumber=" + destinationStorageNumber +
               '}';

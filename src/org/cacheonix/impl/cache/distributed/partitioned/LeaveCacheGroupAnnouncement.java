@@ -19,7 +19,6 @@ import java.io.IOException;
 import java.util.Collections;
 
 import org.cacheonix.impl.cluster.node.state.ReplicatedState;
-import org.cacheonix.impl.cluster.node.state.bucket.BucketOwnershipAssignment;
 import org.cacheonix.impl.cluster.node.state.group.Group;
 import org.cacheonix.impl.cluster.node.state.group.GroupMember;
 import org.cacheonix.impl.cluster.node.state.group.GroupMessage;

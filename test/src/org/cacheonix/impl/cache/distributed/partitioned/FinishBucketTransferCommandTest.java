@@ -11,7 +11,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.impl.cluster.node.state.bucket;
+package org.cacheonix.impl.cache.distributed.partitioned;
+
+import java.util.Collections;
 
 import org.cacheonix.CacheonixTestCase;
 import org.cacheonix.TestUtils;
@@ -25,55 +27,71 @@ import org.cacheonix.impl.util.logging.Logger;
  * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Nov 18, 2009 7:35:21 PM
  */
-public final class RestoreBucketCommandTest extends CacheonixTestCase {
+public final class FinishBucketTransferCommandTest extends CacheonixTestCase {
 
    /**
     * Logger.
     *
     * @noinspection UNUSED_SYMBOL, UnusedDeclaration
     */
-   private static final Logger LOG = Logger.getLogger(RestoreBucketCommandTest.class); // NOPMD
+   private static final Logger LOG = Logger.getLogger(FinishBucketTransferCommandTest.class); // NOPMD
 
    private static final String CACHE_NAME = "test.cache.name";
 
-   private static final byte STORAGE_NUMBER = 1;
+   private static final byte SOURCE_STORAGE_NUMBER = 1;
 
-   private static final ClusterNodeAddress ADDRESS = TestUtils.createTestAddress(STORAGE_NUMBER);
+   private static final byte DESTINATION_STORAGE_NUMBER = 2;
+
+   private static final ClusterNodeAddress CURRENT_OWNER = TestUtils.createTestAddress(SOURCE_STORAGE_NUMBER);
+
+   private static final ClusterNodeAddress NEW_OWNER = TestUtils.createTestAddress(2);
 
    private static final Integer BUCKET_NUMBER = Integer.valueOf(5);
 
-   private RestoreBucketCommand command = null;
+   private FinishBucketTransferCommand command = null;
 
 
-   public void testGetStorageNumber() {
+   public void testGetSourceStorageNumber() {
 
-      assertEquals(STORAGE_NUMBER, command.getFromStorageNumber());
+      assertEquals(SOURCE_STORAGE_NUMBER, command.getSourceStorageNumber());
+   }
+
+
+   public void testGetDestinationStorageNumber() {
+
+      assertEquals(DESTINATION_STORAGE_NUMBER, command.getDestinationStorageNumber());
+   }
+
+
+   public void testGetNewOwner() {
+
+      assertEquals(NEW_OWNER, command.getNewOwner());
    }
 
 
    public void testGetBucketNumber() {
 
-      assertEquals(BUCKET_NUMBER, command.getBucketNumbers().iterator().next());
+      assertEquals(BUCKET_NUMBER, command.getBucketNumbers().get(0));
    }
 
 
    public void testGetCurrentOwner() {
 
-      assertEquals(ADDRESS, command.getAddress());
+      assertEquals(CURRENT_OWNER, command.getPreviousOwner());
    }
 
 
    protected void setUp() throws Exception {
 
       super.setUp();
-      command = new RestoreBucketCommand(CACHE_NAME, STORAGE_NUMBER, ADDRESS);
-      command.addBucketNumber(BUCKET_NUMBER);
+      command = new FinishBucketTransferCommand(CACHE_NAME, SOURCE_STORAGE_NUMBER, DESTINATION_STORAGE_NUMBER, CURRENT_OWNER, NEW_OWNER);
+      command.addBucketNumbers(Collections.singletonList(BUCKET_NUMBER));
    }
 
 
    public String toString() {
 
-      return "RestoreBucketCommandTest{" +
+      return "FinishBucketTransferCommandTest{" +
               "command=" + command +
               "} " + super.toString();
    }

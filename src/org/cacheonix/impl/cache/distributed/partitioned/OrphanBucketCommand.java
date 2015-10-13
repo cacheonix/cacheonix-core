@@ -11,13 +11,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.impl.cluster.node.state.bucket;
+package org.cacheonix.impl.cache.distributed.partitioned;
 
 import org.cacheonix.impl.net.ClusterNodeAddress;
 
 /**
  */
-public final class AssignBucketCommand extends BucketCommand {
+public final class OrphanBucketCommand extends BucketCommand {
 
    private final byte storageNumber;
 
@@ -26,7 +26,7 @@ public final class AssignBucketCommand extends BucketCommand {
    private final ClusterNodeAddress ownerAddress;
 
 
-   public AssignBucketCommand(final String cacheName, final byte storageNumber, final Integer bucketNumber,
+   public OrphanBucketCommand(final String cacheName, final byte storageNumber, final Integer bucketNumber,
                               final ClusterNodeAddress ownerAddress) {
 
       //
@@ -59,7 +59,7 @@ public final class AssignBucketCommand extends BucketCommand {
 
    public String toString() {
 
-      return "AssignBucketCommand{" +
+      return "OrphanBucketCommand{" +
               "storage=" + storageNumber +
               ", bucketNumber=" + bucketNumber +
               ", ownerAddress=" + ownerAddress +

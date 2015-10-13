@@ -14,7 +14,6 @@
 package org.cacheonix.impl.cache.distributed.partitioned;
 
 import org.cacheonix.impl.cluster.node.state.ReplicatedState;
-import org.cacheonix.impl.cluster.node.state.bucket.BucketOwnershipAssignment;
 import org.cacheonix.impl.cluster.node.state.group.Group;
 import org.cacheonix.impl.cluster.node.state.group.GroupMessage;
 import org.cacheonix.impl.net.serializer.Wireable;

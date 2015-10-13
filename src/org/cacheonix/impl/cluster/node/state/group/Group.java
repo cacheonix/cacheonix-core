@@ -24,11 +24,11 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
 
+import org.cacheonix.impl.cache.distributed.partitioned.BucketEventListenerList;
+import org.cacheonix.impl.cache.distributed.partitioned.BucketOwnershipAssignment;
 import org.cacheonix.impl.cache.distributed.partitioned.subscriber.EntryEventSubscriptionConfigurationSubscriber;
 import org.cacheonix.impl.cache.distributed.partitioned.subscriber.EntryModifiedSubscription;
 import org.cacheonix.impl.cache.item.Binary;
-import org.cacheonix.impl.cluster.node.state.bucket.BucketEventListenerList;
-import org.cacheonix.impl.cluster.node.state.bucket.BucketOwnershipAssignment;
 import org.cacheonix.impl.config.ConfigurationConstants;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.serializer.SerializerUtils;

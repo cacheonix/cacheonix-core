@@ -23,11 +23,11 @@ import java.util.Map;
 
 import org.cacheonix.exceptions.RuntimeIOException;
 import org.cacheonix.impl.cache.distributed.partitioned.BucketIndexCalculator;
+import org.cacheonix.impl.cache.distributed.partitioned.BucketOwner;
+import org.cacheonix.impl.cache.distributed.partitioned.BucketOwnershipAssignment;
 import org.cacheonix.impl.cache.distributed.partitioned.CacheResponse;
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.cluster.node.state.ReplicatedState;
-import org.cacheonix.impl.cluster.node.state.bucket.BucketOwner;
-import org.cacheonix.impl.cluster.node.state.bucket.BucketOwnershipAssignment;
 import org.cacheonix.impl.cluster.node.state.group.Group;
 import org.cacheonix.impl.config.ConfigurationConstants;
 import org.cacheonix.impl.net.ClusterNodeAddress;
