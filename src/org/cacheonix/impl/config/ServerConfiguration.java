@@ -17,9 +17,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.cacheonix.impl.util.StringUtils;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Node;
+
+import static org.cacheonix.impl.config.SystemProperty.CACHEONIX_GRACEFUL_SHUTDOWN_TIMEOUT_MILLIS;
+import static org.cacheonix.impl.config.SystemProperty.CACHEONIX_SELECTOR_TIMEOUT_MILLIS;
+import static org.cacheonix.impl.config.SystemProperty.CACHEONIX_SOCKET_TIMEOUT_MILLIS;
+import static org.cacheonix.impl.util.StringUtils.readTime;
 
 /**
  * Class ServerConfiguration.
@@ -728,29 +732,27 @@ public final class ServerConfiguration extends DocumentReader {
          continentName = attributeValue;
       } else if ("defaultLockTimeout".equals(attributeName)) {
 
-         defaultLockTimeoutMillis = StringUtils.readTime(attributeValue);
+         defaultLockTimeoutMillis = readTime(attributeValue);
          hasDefaultLockTimeoutMillis = true;
       } else if ("defaultUnlockTimeout".equals(attributeName)) {
 
-         defaultUnlockTimeoutMillis = StringUtils.readTime(attributeValue);
+         defaultUnlockTimeoutMillis = readTime(attributeValue);
          hasDefaultUnlockTimeoutMillis = true;
       } else if ("gracefulShutdownTimeout".equals(attributeName)) {
 
-         gracefulShutdownTimeoutMillis = systemOrAttribute(SystemProperty.CACHEONIX_GRACEFUL_SHUTDOWN_TIMEOUT_MILLIS,
-                 StringUtils.readTime(attributeValue));
+         gracefulShutdownTimeoutMillis = systemOrAttribute(CACHEONIX_GRACEFUL_SHUTDOWN_TIMEOUT_MILLIS,
+                 readTime(attributeValue));
 
       } else if ("defaultLeaseTime".equals(attributeName)) {
 
-         defaultLeaseTimeMillis = StringUtils.readTime(attributeValue);
+         defaultLeaseTimeMillis = readTime(attributeValue);
          hasDefaultLeaseTimeMillis = true;
       } else if ("socketTimeout".equals(attributeName)) {
 
-         setSocketTimeoutMillis(systemOrAttribute(SystemProperty.CACHEONIX_SOCKET_TIMEOUT_MILLIS,
-                 StringUtils.readTime(attributeValue)));
+         setSocketTimeoutMillis(systemOrAttribute(CACHEONIX_SOCKET_TIMEOUT_MILLIS, readTime(attributeValue)));
       } else if ("selectorTimeout".equals(attributeName)) {
 
-         setSelectorTimeoutMillis(systemOrAttribute(SystemProperty.CACHEONIX_SELECTOR_TIMEOUT_MILLIS,
-                 StringUtils.readTime(attributeValue)));
+         setSelectorTimeoutMillis(systemOrAttribute(CACHEONIX_SELECTOR_TIMEOUT_MILLIS, readTime(attributeValue)));
       }
    }
 
