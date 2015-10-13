@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
 
 import org.cacheonix.Cacheonix;
 import org.cacheonix.CacheonixTestCase;
@@ -33,6 +32,17 @@ import org.cacheonix.exceptions.NotSubscribedException;
 import org.cacheonix.impl.util.array.HashMap;
 import org.cacheonix.impl.util.array.HashSet;
 import org.cacheonix.impl.util.logging.Logger;
+
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
+import static org.cacheonix.ShutdownMode.FORCED_SHUTDOWN;
+import static org.cacheonix.cache.subscriber.EntryModifiedEventContentFlag.NEED_ALL;
+import static org.cacheonix.cache.subscriber.EntryModifiedEventContentFlag.NEED_KEY;
+import static org.cacheonix.cache.subscriber.EntryModifiedEventContentFlag.NEED_NEW_VALUE;
+import static org.cacheonix.cache.subscriber.EntryModifiedEventContentFlag.NEED_PREVIOUS_VALUE;
+import static org.cacheonix.cache.subscriber.EntryModifiedEventType.ADD;
+import static org.cacheonix.cache.subscriber.EntryModifiedEventType.EVICT;
+import static org.cacheonix.cache.subscriber.EntryModifiedEventType.REMOVE;
+import static org.cacheonix.cache.subscriber.EntryModifiedEventType.UPDATE;
 
 /**
  * Tests EntryModifiedSubscriber in the distributed cache environment.
@@ -82,9 +92,9 @@ public final class EntryModifiedSubscriberDistributedTest extends CacheonixTestC
 
       // Create subscriber
       final List<EntryModifiedEventContentFlag> contentFlags = new ArrayList<EntryModifiedEventContentFlag>(4);
-      contentFlags.add(EntryModifiedEventContentFlag.NEED_KEY);
-      contentFlags.add(EntryModifiedEventContentFlag.NEED_NEW_VALUE);
-      contentFlags.add(EntryModifiedEventContentFlag.NEED_PREVIOUS_VALUE);
+      contentFlags.add(NEED_KEY);
+      contentFlags.add(NEED_NEW_VALUE);
+      contentFlags.add(NEED_PREVIOUS_VALUE);
 
       final Set<String> watchKeySet = new HashSet<String>(1);
       watchKeySet.add(KEY);
@@ -99,7 +109,7 @@ public final class EntryModifiedSubscriberDistributedTest extends CacheonixTestC
       // Assert
       final List<EntryModifiedEvent> receivedEvents = subscriber.getReceivedEvents();
       assertEquals(1, receivedEvents.size());
-      assertEquals(EntryModifiedEventType.ADD, receivedEvents.get(0).getUpdateType());
+      assertEquals(ADD, receivedEvents.get(0).getUpdateType());
       assertEquals(KEY, receivedEvents.get(0).getUpdatedKey());
       assertEquals(VALUE, receivedEvents.get(0).getNewValue());
       assertNull(receivedEvents.get(0).getPreviousValue());
@@ -110,9 +120,9 @@ public final class EntryModifiedSubscriberDistributedTest extends CacheonixTestC
 
       // Create subscriber
       final List<EntryModifiedEventContentFlag> contentFlags = new ArrayList<EntryModifiedEventContentFlag>(4);
-      contentFlags.add(EntryModifiedEventContentFlag.NEED_KEY);
-      contentFlags.add(EntryModifiedEventContentFlag.NEED_NEW_VALUE);
-      contentFlags.add(EntryModifiedEventContentFlag.NEED_PREVIOUS_VALUE);
+      contentFlags.add(NEED_KEY);
+      contentFlags.add(NEED_NEW_VALUE);
+      contentFlags.add(NEED_PREVIOUS_VALUE);
       final TestEntryModifiedSubscriber subscriber = new TestEntryModifiedSubscriber(contentFlags, 1);
       getCache(0).addEventSubscriber(KEY, subscriber);
 
@@ -122,7 +132,7 @@ public final class EntryModifiedSubscriberDistributedTest extends CacheonixTestC
       // Assert
       final List<EntryModifiedEvent> receivedEvents = subscriber.getReceivedEvents();
       assertEquals(1, receivedEvents.size());
-      assertEquals(EntryModifiedEventType.ADD, receivedEvents.get(0).getUpdateType());
+      assertEquals(ADD, receivedEvents.get(0).getUpdateType());
       assertEquals(KEY, receivedEvents.get(0).getUpdatedKey());
       assertEquals(VALUE, receivedEvents.get(0).getNewValue());
       assertNull(receivedEvents.get(0).getPreviousValue());
@@ -133,9 +143,9 @@ public final class EntryModifiedSubscriberDistributedTest extends CacheonixTestC
 
       // Create subscriber
       final List<EntryModifiedEventContentFlag> contentFlags = new ArrayList<EntryModifiedEventContentFlag>(4);
-      contentFlags.add(EntryModifiedEventContentFlag.NEED_ALL);
-      contentFlags.add(EntryModifiedEventContentFlag.NEED_NEW_VALUE);
-      contentFlags.add(EntryModifiedEventContentFlag.NEED_PREVIOUS_VALUE);
+      contentFlags.add(NEED_ALL);
+      contentFlags.add(NEED_NEW_VALUE);
+      contentFlags.add(NEED_PREVIOUS_VALUE);
 
       final Set<String> watchKeySet = new HashSet<String>(1);
       watchKeySet.add(KEY);
@@ -150,7 +160,7 @@ public final class EntryModifiedSubscriberDistributedTest extends CacheonixTestC
       // Assert
       final List<EntryModifiedEvent> receivedEvents = subscriber.getReceivedEvents();
       assertEquals(1, receivedEvents.size());
-      assertEquals(EntryModifiedEventType.ADD, receivedEvents.get(0).getUpdateType());
+      assertEquals(ADD, receivedEvents.get(0).getUpdateType());
       assertEquals(KEY, receivedEvents.get(0).getUpdatedKey());
       assertEquals(VALUE, receivedEvents.get(0).getNewValue());
       assertNull(receivedEvents.get(0).getPreviousValue());
@@ -161,9 +171,9 @@ public final class EntryModifiedSubscriberDistributedTest extends CacheonixTestC
 
       // Create subscriber
       final List<EntryModifiedEventContentFlag> contentFlags = new ArrayList<EntryModifiedEventContentFlag>(4);
-      contentFlags.add(EntryModifiedEventContentFlag.NEED_KEY);
-      contentFlags.add(EntryModifiedEventContentFlag.NEED_NEW_VALUE);
-      contentFlags.add(EntryModifiedEventContentFlag.NEED_PREVIOUS_VALUE);
+      contentFlags.add(NEED_KEY);
+      contentFlags.add(NEED_NEW_VALUE);
+      contentFlags.add(NEED_PREVIOUS_VALUE);
 
       final int keyCount = 5000; // High enough to cover all buckets at least once
       final Set<String> watchKeySet = new HashSet<String>(1);
@@ -208,9 +218,9 @@ public final class EntryModifiedSubscriberDistributedTest extends CacheonixTestC
 
       // Create subscriber
       final List<EntryModifiedEventContentFlag> contentFlags = new ArrayList<EntryModifiedEventContentFlag>(4);
-      contentFlags.add(EntryModifiedEventContentFlag.NEED_KEY);
-      contentFlags.add(EntryModifiedEventContentFlag.NEED_NEW_VALUE);
-      contentFlags.add(EntryModifiedEventContentFlag.NEED_PREVIOUS_VALUE);
+      contentFlags.add(NEED_KEY);
+      contentFlags.add(NEED_NEW_VALUE);
+      contentFlags.add(NEED_PREVIOUS_VALUE);
 
       final int keyCount = 5000; // High enough to cover all buckets at least once
       final Set<String> watchKeySet = new HashSet<String>(1);
@@ -241,7 +251,7 @@ public final class EntryModifiedSubscriberDistributedTest extends CacheonixTestC
       //
       // Shutdown forcibly
       //
-      cacheManagerList.get(1).shutdown(ShutdownMode.FORCED_SHUTDOWN, true);
+      cacheManagerList.get(1).shutdown(FORCED_SHUTDOWN, true);
 
 
       //
@@ -270,9 +280,9 @@ public final class EntryModifiedSubscriberDistributedTest extends CacheonixTestC
 
       // Create subscriber
       final List<EntryModifiedEventContentFlag> contentFlags = new ArrayList<EntryModifiedEventContentFlag>(4);
-      contentFlags.add(EntryModifiedEventContentFlag.NEED_KEY);
-      contentFlags.add(EntryModifiedEventContentFlag.NEED_NEW_VALUE);
-      contentFlags.add(EntryModifiedEventContentFlag.NEED_PREVIOUS_VALUE);
+      contentFlags.add(NEED_KEY);
+      contentFlags.add(NEED_NEW_VALUE);
+      contentFlags.add(NEED_PREVIOUS_VALUE);
 
       final int keyCount = 5000; // High enough to cover all buckets at least once
       final Set<String> watchKeySet = new HashSet<String>(1);
@@ -303,7 +313,7 @@ public final class EntryModifiedSubscriberDistributedTest extends CacheonixTestC
       LOG.debug("================================================================================================");
 
       // Shutdown forcibly
-      cacheManagerList.get(0).shutdown(ShutdownMode.FORCED_SHUTDOWN, true);
+      cacheManagerList.get(0).shutdown(FORCED_SHUTDOWN, true);
 
       LOG.debug("================================================================================================");
       LOG.debug("=============== Subscribe ======================================================================");
@@ -338,9 +348,9 @@ public final class EntryModifiedSubscriberDistributedTest extends CacheonixTestC
 
       // Create subscriber
       final List<EntryModifiedEventContentFlag> contentFlags = new ArrayList<EntryModifiedEventContentFlag>(4);
-      contentFlags.add(EntryModifiedEventContentFlag.NEED_KEY);
-      contentFlags.add(EntryModifiedEventContentFlag.NEED_NEW_VALUE);
-      contentFlags.add(EntryModifiedEventContentFlag.NEED_PREVIOUS_VALUE);
+      contentFlags.add(NEED_KEY);
+      contentFlags.add(NEED_NEW_VALUE);
+      contentFlags.add(NEED_PREVIOUS_VALUE);
 
       final Set<String> watchKeySet = new HashSet<String>(1);
       watchKeySet.add(KEY);
@@ -366,7 +376,7 @@ public final class EntryModifiedSubscriberDistributedTest extends CacheonixTestC
       // Assert
       final EntryModifiedEvent updateEvent = subscriber.getReceivedEvents().get(1);
       assertEquals(2, subscriber.getReceivedEvents().size());
-      assertEquals(EntryModifiedEventType.UPDATE, updateEvent.getUpdateType());
+      assertEquals(UPDATE, updateEvent.getUpdateType());
       assertEquals(KEY, updateEvent.getUpdatedKey());
       assertEquals(VALUE_2, updateEvent.getNewValue());
       assertEquals(VALUE, updateEvent.getPreviousValue());
@@ -377,7 +387,7 @@ public final class EntryModifiedSubscriberDistributedTest extends CacheonixTestC
 
       // Create subscriber
       final List<EntryModifiedEventContentFlag> contentFlags = new ArrayList<EntryModifiedEventContentFlag>(4);
-      contentFlags.add(EntryModifiedEventContentFlag.NEED_KEY);
+      contentFlags.add(NEED_KEY);
 
       final Set<String> watchKeySet = new HashSet<String>(1);
       watchKeySet.add(KEY);
@@ -391,7 +401,7 @@ public final class EntryModifiedSubscriberDistributedTest extends CacheonixTestC
 
       // Assert
       assertEquals(1, subscriber.getReceivedEvents().size());
-      assertEquals(EntryModifiedEventType.ADD, subscriber.getReceivedEvents().get(0).getUpdateType());
+      assertEquals(ADD, subscriber.getReceivedEvents().get(0).getUpdateType());
       assertEquals(KEY, subscriber.getReceivedEvents().get(0).getUpdatedKey());
       assertNull(subscriber.getReceivedEvents().get(0).getNewValue());
       assertNull(subscriber.getReceivedEvents().get(0).getPreviousValue());
@@ -402,7 +412,7 @@ public final class EntryModifiedSubscriberDistributedTest extends CacheonixTestC
 
       // Create subscriber
       final List<EntryModifiedEventContentFlag> contentFlags = new ArrayList<EntryModifiedEventContentFlag>(4);
-      contentFlags.add(EntryModifiedEventContentFlag.NEED_KEY);
+      contentFlags.add(NEED_KEY);
 
       final Set<String> watchKeySet = new HashSet<String>(1);
       watchKeySet.add(KEY);
@@ -420,7 +430,7 @@ public final class EntryModifiedSubscriberDistributedTest extends CacheonixTestC
       // Assert
       final EntryModifiedEvent updateEvent = subscriber.getReceivedEvents().get(1);
       assertEquals(2, subscriber.getReceivedEvents().size());
-      assertEquals(EntryModifiedEventType.UPDATE, updateEvent.getUpdateType());
+      assertEquals(UPDATE, updateEvent.getUpdateType());
       assertEquals(KEY, updateEvent.getUpdatedKey());
       assertNull(updateEvent.getNewValue());
       assertNull(updateEvent.getPreviousValue());
@@ -431,7 +441,7 @@ public final class EntryModifiedSubscriberDistributedTest extends CacheonixTestC
 
       // Create subscriber
       final List<EntryModifiedEventContentFlag> contentFlags = new ArrayList<EntryModifiedEventContentFlag>(4);
-      contentFlags.add(EntryModifiedEventContentFlag.NEED_PREVIOUS_VALUE);
+      contentFlags.add(NEED_PREVIOUS_VALUE);
 
       final Set<String> watchKeySet = new HashSet<String>(1);
       watchKeySet.add(KEY);
@@ -445,7 +455,7 @@ public final class EntryModifiedSubscriberDistributedTest extends CacheonixTestC
 
       // Assert
       assertEquals(1, subscriber.getReceivedEvents().size());
-      assertEquals(EntryModifiedEventType.ADD, subscriber.getReceivedEvents().get(0).getUpdateType());
+      assertEquals(ADD, subscriber.getReceivedEvents().get(0).getUpdateType());
       assertNull(subscriber.getReceivedEvents().get(0).getUpdatedKey());
       assertNull(subscriber.getReceivedEvents().get(0).getNewValue());
       assertNull(subscriber.getReceivedEvents().get(0).getPreviousValue());
@@ -456,7 +466,7 @@ public final class EntryModifiedSubscriberDistributedTest extends CacheonixTestC
 
       // Create subscriber
       final List<EntryModifiedEventContentFlag> contentFlags = new ArrayList<EntryModifiedEventContentFlag>(4);
-      contentFlags.add(EntryModifiedEventContentFlag.NEED_PREVIOUS_VALUE);
+      contentFlags.add(NEED_PREVIOUS_VALUE);
 
       final Set<String> watchKeySet = new HashSet<String>(1);
       watchKeySet.add(KEY);
@@ -474,7 +484,7 @@ public final class EntryModifiedSubscriberDistributedTest extends CacheonixTestC
       // Assert
       assertEquals(2, subscriber.getReceivedEvents().size());
       final EntryModifiedEvent updateEvent = subscriber.getReceivedEvents().get(1);
-      assertEquals(EntryModifiedEventType.UPDATE, updateEvent.getUpdateType());
+      assertEquals(UPDATE, updateEvent.getUpdateType());
       assertNull(KEY, updateEvent.getUpdatedKey());
       assertNull(updateEvent.getNewValue());
       assertEquals(VALUE, updateEvent.getPreviousValue());
@@ -485,9 +495,9 @@ public final class EntryModifiedSubscriberDistributedTest extends CacheonixTestC
 
       // Create subscriber
       final List<EntryModifiedEventContentFlag> contentFlags = new ArrayList<EntryModifiedEventContentFlag>(4);
-      contentFlags.add(EntryModifiedEventContentFlag.NEED_KEY);
-      contentFlags.add(EntryModifiedEventContentFlag.NEED_NEW_VALUE);
-      contentFlags.add(EntryModifiedEventContentFlag.NEED_PREVIOUS_VALUE);
+      contentFlags.add(NEED_KEY);
+      contentFlags.add(NEED_NEW_VALUE);
+      contentFlags.add(NEED_PREVIOUS_VALUE);
 
       final Set<String> watchKeySet = new HashSet<String>(1);
       watchKeySet.add(KEY);
@@ -517,9 +527,9 @@ public final class EntryModifiedSubscriberDistributedTest extends CacheonixTestC
 
       // Create subscriber
       final List<EntryModifiedEventContentFlag> contentFlags = new ArrayList<EntryModifiedEventContentFlag>(4);
-      contentFlags.add(EntryModifiedEventContentFlag.NEED_KEY);
-      contentFlags.add(EntryModifiedEventContentFlag.NEED_NEW_VALUE);
-      contentFlags.add(EntryModifiedEventContentFlag.NEED_PREVIOUS_VALUE);
+      contentFlags.add(NEED_KEY);
+      contentFlags.add(NEED_NEW_VALUE);
+      contentFlags.add(NEED_PREVIOUS_VALUE);
 
       final Set<String> watchKeySet = new HashSet<String>(1);
       watchKeySet.add(KEY);
@@ -643,10 +653,10 @@ public final class EntryModifiedSubscriberDistributedTest extends CacheonixTestC
       public Set<EntryModifiedEventType> getModificationTypes() {
 
          final HashSet<EntryModifiedEventType> eventTypes = new HashSet<EntryModifiedEventType>(4, 0.75f);
-         eventTypes.add(EntryModifiedEventType.ADD);
-         eventTypes.add(EntryModifiedEventType.EVICT);
-         eventTypes.add(EntryModifiedEventType.REMOVE);
-         eventTypes.add(EntryModifiedEventType.UPDATE);
+         eventTypes.add(ADD);
+         eventTypes.add(EVICT);
+         eventTypes.add(REMOVE);
+         eventTypes.add(UPDATE);
 
          return eventTypes;
       }
@@ -660,7 +670,7 @@ public final class EntryModifiedSubscriberDistributedTest extends CacheonixTestC
 
       public List<EntryModifiedEvent> getReceivedEvents() throws InterruptedException {
 
-         if (!latch.await(5000, TimeUnit.MILLISECONDS)) {
+         if (!latch.await(5000, MILLISECONDS)) {
 
             throw new IllegalStateException("Timed out waiting for " + expectedNumberOfEvents + " events, current count: " + latch.getCount());
          }
