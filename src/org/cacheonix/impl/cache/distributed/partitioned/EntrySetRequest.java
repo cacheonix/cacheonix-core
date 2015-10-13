@@ -281,7 +281,7 @@ public abstract class EntrySetRequest extends AggregatingRequest {
            final IntObjectHashMap<HashMap<Binary, Binary>> entrySetToSplit) {
 
       // Check if there is anything to handle
-      if (entrySet == null || entrySet.isEmpty()) {
+      if (entrySetToSplit == null || entrySetToSplit.isEmpty()) {
          return Collections.emptyList();
       }
 
