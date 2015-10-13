@@ -46,12 +46,12 @@ public abstract class CacheDataRequest extends CacheRequest {
    private Time willCacheUntil = null;
 
 
-   protected CacheDataRequest() {
+   CacheDataRequest() {
 
    }
 
 
-   protected CacheDataRequest(final int wireableType, final String cacheName, final boolean readRequest) {
+   CacheDataRequest(final int wireableType, final String cacheName, final boolean readRequest) {
 
       super(wireableType, cacheName);
 
@@ -78,7 +78,7 @@ public abstract class CacheDataRequest extends CacheRequest {
     *
     * @return the flag indicating if the result is going to be cached if the result is cacheable.
     */
-   public final boolean isWillCache() {
+   final boolean isWillCache() {
 
       return willCacheUntil != null;
    }
@@ -90,7 +90,7 @@ public abstract class CacheDataRequest extends CacheRequest {
     * @param willCacheUntil the time until that the requester would like to cache the results if the result is
     *                       cacheable.
     */
-   public final void setWillCacheUntil(final Time willCacheUntil) {
+   final void setWillCacheUntil(final Time willCacheUntil) {
 
       this.willCacheUntil = willCacheUntil;
    }
@@ -114,7 +114,7 @@ public abstract class CacheDataRequest extends CacheRequest {
     * @param desiredLeaseExtensionTime element's time to live.
     * @return new lease time as it was set in the bucket.
     */
-   protected final Time renewLease(final Bucket bucket, final Time desiredLeaseExtensionTime) {
+   final Time renewLease(final Bucket bucket, final Time desiredLeaseExtensionTime) {
 
       final Time currentTime = getProcessor().getClock().currentTime();
       final long leaseDurationMillis = bucket.getLeaseDurationMillis();
@@ -236,7 +236,7 @@ public abstract class CacheDataRequest extends CacheRequest {
    }
 
 
-   protected boolean hasUnexpiredLease(final Bucket bucket) {
+   boolean hasUnexpiredLease(final Bucket bucket) {
 
       final Time leaseExpirationTime = bucket.getLeaseExpirationTime();
       final Time currentTime = getProcessor().getClock().currentTime();
@@ -313,7 +313,7 @@ public abstract class CacheDataRequest extends CacheRequest {
        *
        * @return the list of partial waiters.
        */
-      protected final Set<Waiter> getPartialWaiters() {
+      final Set<Waiter> getPartialWaiters() {
 
          final boolean ownerNull = ownerWaiter.get() == null || ((AggregatingRequest) ownerWaiter.get().getRequest()).isRootRequest();
          Assert.assertTrue(ownerNull, "This method can be called only if owner is null: {0}", ownerWaiter.get());
@@ -330,7 +330,7 @@ public abstract class CacheDataRequest extends CacheRequest {
        *
        * @return <code>true</code> if partial waiter list is empty.
        */
-      protected final boolean isPartialWaitersEmpty() {
+      final boolean isPartialWaitersEmpty() {
 
          return partialWaiters == null || partialWaiters.isEmpty();
       }

@@ -75,7 +75,7 @@ public abstract class KeySetRequest extends AggregatingRequest {
    /**
     * Default constructor to support Wireable.
     */
-   protected KeySetRequest() {
+   KeySetRequest() {
 
    }
 
@@ -90,7 +90,7 @@ public abstract class KeySetRequest extends AggregatingRequest {
     *                     for write. Read requests extend the read lease time if the willCacheUntil is set and if there
     *                     are no pending write requests for the bucket.
     */
-   protected KeySetRequest(final int wireableType, final String cacheName, final boolean readRequest) {
+   KeySetRequest(final int wireableType, final String cacheName, final boolean readRequest) {
 
       super(wireableType, cacheName, readRequest);
    }
@@ -127,7 +127,7 @@ public abstract class KeySetRequest extends AggregatingRequest {
     *
     * @return the total number of keys stored in the key set.
     */
-   protected final int getKeysSize() {
+   final int getKeysSize() {
 
       final int[] size = {0};
 
@@ -282,8 +282,8 @@ public abstract class KeySetRequest extends AggregatingRequest {
     * @see #createRequest()
     * @see KeySetRequest
     */
-   protected final Collection<KeySetRequest> splitKeySet(final int storageNumber,
-                                                         final IntObjectHashMap<HashSet<Binary>> keySetToSplit) {
+   private Collection<KeySetRequest> splitKeySet(final int storageNumber,
+           final IntObjectHashMap<HashSet<Binary>> keySetToSplit) {
 
       // Return generated requests
       // Check if there is anything to handle

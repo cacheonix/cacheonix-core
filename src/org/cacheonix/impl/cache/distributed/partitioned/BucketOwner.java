@@ -137,13 +137,13 @@ public final class BucketOwner implements Wireable {
    }
 
 
-   public int inboundBucketCount() {
+   private int inboundBucketCount() {
 
       return inboundBuckets.size();
    }
 
 
-   public int inboundReplicaCount() {
+   private int inboundReplicaCount() {
 
       return inboundReplicas.size();
    }
@@ -737,7 +737,7 @@ public final class BucketOwner implements Wireable {
    /**
     * A class factory.
     */
-   final static class Builder implements WireableBuilder {
+   private final static class Builder implements WireableBuilder {
 
       public Wireable create() {
 

@@ -224,7 +224,7 @@ public final class RemoveEntryModifiedSubscriberRequest extends LocalCacheReques
    /**
     * A class factory.
     */
-   final static class Builder implements WireableBuilder {
+   private final static class Builder implements WireableBuilder {
 
       public Wireable create() {
 

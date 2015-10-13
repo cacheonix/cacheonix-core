@@ -73,7 +73,7 @@ public final class AtomicRemoveRequest extends KeyRequest {
    }
 
 
-   public AtomicRemoveRequest(final String cacheName, final Binary key, final Binary value) {
+   private AtomicRemoveRequest(final String cacheName, final Binary key, final Binary value) {
 
       super(TYPE_CACHE_ATOMIC_REMOVE_REQUEST, cacheName, false, false);
       this.value = value;
@@ -181,7 +181,7 @@ public final class AtomicRemoveRequest extends KeyRequest {
    /**
     * A class factory.
     */
-   final static class Builder implements WireableBuilder {
+   private final static class Builder implements WireableBuilder {
 
       public Wireable create() {
 

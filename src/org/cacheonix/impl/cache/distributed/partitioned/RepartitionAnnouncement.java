@@ -42,7 +42,7 @@ public final class RepartitionAnnouncement extends GroupMessage {
    private static final Logger LOG = Logger.getLogger(RepartitionAnnouncement.class); // NOPMD
 
 
-   public RepartitionAnnouncement() {
+   private RepartitionAnnouncement() {
 
    }
 
@@ -73,7 +73,7 @@ public final class RepartitionAnnouncement extends GroupMessage {
    /**
     * A class factory.
     */
-   final static class Builder implements WireableBuilder {
+   private final static class Builder implements WireableBuilder {
 
       public Wireable create() {
 

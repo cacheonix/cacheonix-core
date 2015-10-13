@@ -91,7 +91,7 @@ public abstract class KeyRequest extends CacheDataRequest implements Prepareable
    /**
     * Required to support <code>Wireable</code>.
     */
-   protected KeyRequest() {
+   KeyRequest() {
 
    }
 
@@ -111,8 +111,8 @@ public abstract class KeyRequest extends CacheDataRequest implements Prepareable
     *                                lease time if the willCacheUntil is set and if there are no pending write requests
     *                                for the bucket.
     */
-   protected KeyRequest(final int wireableType, final String cacheName, final boolean lockReconfiguringBucket,
-                        final boolean readRequest) {
+   KeyRequest(final int wireableType, final String cacheName, final boolean lockReconfiguringBucket,
+           final boolean readRequest) {
 
       super(wireableType, cacheName, readRequest);
       this.lockReconfiguringBucket = lockReconfiguringBucket;
@@ -163,7 +163,7 @@ public abstract class KeyRequest extends CacheDataRequest implements Prepareable
     * @return <code>true</code> if this request is a primary owner request. A primary owner request is the one that is
     *         is sent to a primary owner.
     */
-   protected final boolean isPrimaryRequest() {
+   final boolean isPrimaryRequest() {
 
       return storageNumber == 0;
    }
@@ -175,7 +175,7 @@ public abstract class KeyRequest extends CacheDataRequest implements Prepareable
     * @return <code>true</code> if this request is a replica owner request. A replica owner request is the one that is
     *         is sent to a replica owner.
     */
-   protected final boolean isReplicaRequest() {
+   private boolean isReplicaRequest() {
 
       return storageNumber > 0;
    }
@@ -408,7 +408,7 @@ public abstract class KeyRequest extends CacheDataRequest implements Prepareable
     * @return a Collection of requests, each carrying parts of data per owner.
     * @see #prepare()
     */
-   protected List<KeyRequest> createSubrequests(final CacheResponse response) {
+   private List<KeyRequest> createSubrequests(final CacheResponse response) {
 
       final CacheProcessor cacheProcessor = getCacheProcessor();
       final int replicaCount = cacheProcessor.getReplicaCount();

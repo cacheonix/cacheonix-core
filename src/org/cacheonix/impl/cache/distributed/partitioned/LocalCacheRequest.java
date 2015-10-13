@@ -27,13 +27,13 @@ import org.cacheonix.impl.util.AssertionException;
  */
 public abstract class LocalCacheRequest extends CacheRequest {
 
-   public LocalCacheRequest(final int wireableType, final String cacheName) {
+   LocalCacheRequest(final int wireableType, final String cacheName) {
 
       super(wireableType, cacheName);
    }
 
 
-   public LocalCacheRequest() {
+   LocalCacheRequest() {
 
    }
 

@@ -140,7 +140,7 @@ public final class RemoveAllRequest extends KeySetRequest {
    /**
     * A class factory.
     */
-   final static class Builder implements WireableBuilder {
+   private final static class Builder implements WireableBuilder {
 
       public Wireable create() {
 

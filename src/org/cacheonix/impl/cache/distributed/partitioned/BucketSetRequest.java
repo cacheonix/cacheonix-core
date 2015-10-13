@@ -73,7 +73,7 @@ public abstract class BucketSetRequest extends AggregatingRequest {
    /**
     * Default constructor to support Wireable.
     */
-   protected BucketSetRequest() {
+   BucketSetRequest() {
 
    }
 
@@ -86,7 +86,7 @@ public abstract class BucketSetRequest extends AggregatingRequest {
     *                     for write. Read requests extend the read lease time if the willCacheUntil is set and if there
     *                     are no pending write requests for the bucket.
     */
-   protected BucketSetRequest(final int wireableType, final String cacheName, final boolean readRequest) {
+   BucketSetRequest(final int wireableType, final String cacheName, final boolean readRequest) {
 
       super(wireableType, cacheName, readRequest);
    }
@@ -97,7 +97,7 @@ public abstract class BucketSetRequest extends AggregatingRequest {
     *
     * @return bucket set
     */
-   public final IntHashSet getBucketSet() {
+   private IntHashSet getBucketSet() {
 
       if (bucketSet == null) {
          bucketSet = new IntHashSet();
@@ -294,8 +294,8 @@ public abstract class BucketSetRequest extends AggregatingRequest {
     * @see #createRequest()
     * @see BucketSetRequest
     */
-   protected final Collection<BucketSetRequest> splitBucketSet(final int storageNumber,
-                                                               final IntHashSet bucketSetToSplit) {
+   private Collection<BucketSetRequest> splitBucketSet(final int storageNumber,
+           final IntHashSet bucketSetToSplit) {
 
       // Check if there is anything to handle
       if (bucketSetToSplit == null || bucketSetToSplit.isEmpty()) {

@@ -71,7 +71,7 @@ public abstract class AggregatingRequest extends CacheDataRequest implements Pre
    /**
     * Required to support <code>Wireable</code>.
     */
-   protected AggregatingRequest() {
+   AggregatingRequest() {
 
    }
 
@@ -86,7 +86,7 @@ public abstract class AggregatingRequest extends CacheDataRequest implements Pre
     *                     for write. Read requests extend the read lease time if the willCacheUntil is set and if there
     *                     are no pending write requests for the bucket.
     */
-   protected AggregatingRequest(final int wireableType, final String cacheName, final boolean readRequest) {
+   AggregatingRequest(final int wireableType, final String cacheName, final boolean readRequest) {
 
       super(wireableType, cacheName, readRequest);
    }
@@ -101,7 +101,7 @@ public abstract class AggregatingRequest extends CacheDataRequest implements Pre
     *                      owner.
     * @see #getStorageNumber
     */
-   public final void setStorageNumber(final int storageNumber) {
+   final void setStorageNumber(final int storageNumber) {
 
       this.storageNumber = storageNumber;
    }
@@ -116,7 +116,7 @@ public abstract class AggregatingRequest extends CacheDataRequest implements Pre
     *         zero, which means that this is a requires to a primary bucket owner. It can be between one and the number
     *         of replicas which means that this is a request to a replica owner.
     */
-   public final Integer getStorageNumber() {
+   final Integer getStorageNumber() {
 
       return storageNumber;
    }
@@ -128,7 +128,7 @@ public abstract class AggregatingRequest extends CacheDataRequest implements Pre
     * @return <code>true</code> if this request is a root request. A root request is the one that collects results on
     *         behalf of the client thread.
     */
-   protected final boolean isRootRequest() {
+   final boolean isRootRequest() {
 
       return storageNumber == null;
    }
@@ -140,7 +140,7 @@ public abstract class AggregatingRequest extends CacheDataRequest implements Pre
     * @return <code>true</code> if this request is a primary owner request. A primary owner request is the one that is
     *         is sent to a primary owner.
     */
-   protected final boolean isPrimaryRequest() {
+   final boolean isPrimaryRequest() {
 
       return storageNumber != null && storageNumber == 0;
    }
@@ -152,7 +152,7 @@ public abstract class AggregatingRequest extends CacheDataRequest implements Pre
     * @return <code>true</code> if this request is a replica owner request. A replica owner request is the one that is
     *         is sent to a replica owner.
     */
-   protected final boolean isReplicaRequest() {
+   final boolean isReplicaRequest() {
 
       return storageNumber != null && storageNumber > 0;
    }
@@ -264,8 +264,8 @@ public abstract class AggregatingRequest extends CacheDataRequest implements Pre
     *                      from all sub-requests.
     * @param subRequests   the Collection of sub-requests.
     */
-   protected void postSubrequests(final CacheResponse ownerResponse,
-                                  final Collection<? extends AggregatingRequest> subRequests) {
+   private void postSubrequests(final CacheResponse ownerResponse,
+           final Collection<? extends AggregatingRequest> subRequests) {
 
       // Minor optimization
       if (subRequests == null || subRequests.isEmpty()) {
@@ -285,7 +285,7 @@ public abstract class AggregatingRequest extends CacheDataRequest implements Pre
     *
     * @return <code>true</code> if the list of partial waiters is empty. Otherwise returns <code>false</code>.
     */
-   protected final boolean isWaitingForSubrequests() {
+   final boolean isWaitingForSubrequests() {
 
       return !((CacheDataRequest.Waiter) getWaiter()).isPartialWaitersEmpty();
    }
@@ -347,7 +347,7 @@ public abstract class AggregatingRequest extends CacheDataRequest implements Pre
     * @return RetryException with the exception message set to the response's result if the response carries a String
     *         result.
     */
-   protected static RetryException createRetryException(final Response response) {
+   static RetryException createRetryException(final Response response) {
 
       if (response.getResult() instanceof String) {
 
@@ -361,7 +361,7 @@ public abstract class AggregatingRequest extends CacheDataRequest implements Pre
 
 
    // Posts a response with a debug statement
-   protected final void respond(final AggregatingResponse response) {
+   final void respond(final AggregatingResponse response) {
 
       // This is an end of chain becuase this is storage zero with
       // no replicas or a replica storage
@@ -433,7 +433,7 @@ public abstract class AggregatingRequest extends CacheDataRequest implements Pre
        *
        * @return the list of partial responses.
        */
-      protected final List<Response> getPartialResponses() {
+      final List<Response> getPartialResponses() {
 
          if (partialResponses == null) {
             partialResponses = new LinkedList<Response>();
@@ -761,8 +761,8 @@ public abstract class AggregatingRequest extends CacheDataRequest implements Pre
        * @param problemResponse the problem response.
        * @return the error response.
        */
-      protected final AggregatingResponse createErrorResponse(final String description,
-                                                              final Response problemResponse) {
+      final AggregatingResponse createErrorResponse(final String description,
+              final Response problemResponse) {
 
          final AggregatingResponse result = (AggregatingResponse) (getRequest()).createResponse(Response.RESULT_ERROR);
          final String errorMessage = description + ": " + problemResponse;

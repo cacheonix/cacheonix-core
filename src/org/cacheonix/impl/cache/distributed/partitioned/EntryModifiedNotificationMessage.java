@@ -56,7 +56,7 @@ public final class EntryModifiedNotificationMessage extends CacheMessage {
    /**
     * Required by Wireable.
     */
-   public EntryModifiedNotificationMessage() {
+   private EntryModifiedNotificationMessage() {
 
    }
 
@@ -226,7 +226,7 @@ public final class EntryModifiedNotificationMessage extends CacheMessage {
    /**
     * A class factory.
     */
-   final static class Builder implements WireableBuilder {
+   private final static class Builder implements WireableBuilder {
 
       public Wireable create() {
 

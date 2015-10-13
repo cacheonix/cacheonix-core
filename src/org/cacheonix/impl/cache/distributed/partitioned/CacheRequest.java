@@ -53,7 +53,7 @@ public abstract class CacheRequest extends Request {
     * @param wireableType a request type. See <code>Wireable</code> for cache message types.
     * @param cacheName    cache name.
     */
-   protected CacheRequest(final int wireableType, final String cacheName) {
+   CacheRequest(final int wireableType, final String cacheName) {
 
       super(validateMessageType(wireableType));
       this.cacheName = cacheName;
@@ -63,7 +63,7 @@ public abstract class CacheRequest extends Request {
    /**
     * Default constructor required by <code>Wireable</code>.
     */
-   protected CacheRequest() {
+   CacheRequest() {
 
    }
 
@@ -94,7 +94,7 @@ public abstract class CacheRequest extends Request {
     *
     * @return context cache processor.
     */
-   public final CacheProcessor getCacheProcessor() {
+   final CacheProcessor getCacheProcessor() {
 
       return (CacheProcessor) getProcessor();
    }

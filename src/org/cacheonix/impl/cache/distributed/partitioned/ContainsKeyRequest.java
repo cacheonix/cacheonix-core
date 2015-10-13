@@ -85,7 +85,7 @@ public final class ContainsKeyRequest extends KeyRequest {
    /**
     * A class factory.
     */
-   final static class Builder implements WireableBuilder {
+   private final static class Builder implements WireableBuilder {
 
       public Wireable create() {
 

@@ -45,7 +45,7 @@ public final class UpdateKeyRequest extends KeyRequest {
    /**
     * Required to support <code>Wireable</code>.
     */
-   public UpdateKeyRequest() {
+   private UpdateKeyRequest() {
 
    }
 
@@ -195,7 +195,7 @@ public final class UpdateKeyRequest extends KeyRequest {
    /**
     * A class factory.
     */
-   final static class Builder implements WireableBuilder {
+   private final static class Builder implements WireableBuilder {
 
       public Wireable create() {
 

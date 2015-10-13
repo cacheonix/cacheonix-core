@@ -34,7 +34,7 @@ class BucketCommand {
    private String cacheName = null;
 
 
-   protected BucketCommand(final String cacheName) {
+   BucketCommand(final String cacheName) {
 
       this.cacheName = cacheName;
    }

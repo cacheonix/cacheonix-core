@@ -131,7 +131,7 @@ public final class GetMaxSizeRequest extends CacheRequest {
    /**
     * A class factory.
     */
-   final static class Builder implements WireableBuilder {
+   private final static class Builder implements WireableBuilder {
 
       public Wireable create() {
 

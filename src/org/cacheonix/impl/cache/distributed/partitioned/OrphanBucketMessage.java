@@ -49,7 +49,7 @@ public final class OrphanBucketMessage extends LocalCacheMessage {
    /**
     * Required by Wireable.
     */
-   public OrphanBucketMessage() {
+   private OrphanBucketMessage() {
 
    }
 
@@ -132,7 +132,7 @@ public final class OrphanBucketMessage extends LocalCacheMessage {
    /**
     * A class factory.
     */
-   final static class Builder implements WireableBuilder {
+   private final static class Builder implements WireableBuilder {
 
       public Wireable create() {
 

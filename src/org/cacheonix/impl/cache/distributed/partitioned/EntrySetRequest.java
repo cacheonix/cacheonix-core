@@ -71,7 +71,7 @@ public abstract class EntrySetRequest extends AggregatingRequest {
    /**
     * Default constructor to support Wireable.
     */
-   protected EntrySetRequest() {
+   EntrySetRequest() {
 
    }
 
@@ -87,7 +87,7 @@ public abstract class EntrySetRequest extends AggregatingRequest {
     *                     are no pending write requests for the bucket.
     */
    @SuppressWarnings("SameParameterValue")
-   protected EntrySetRequest(final int wireableType, final String cacheName, final boolean readRequest) {
+   EntrySetRequest(final int wireableType, final String cacheName, final boolean readRequest) {
 
       super(wireableType, cacheName, readRequest);
    }
@@ -99,7 +99,7 @@ public abstract class EntrySetRequest extends AggregatingRequest {
     * @return the key set
     */
    @SuppressWarnings("ReturnOfCollectionOrArrayField")
-   final IntObjectHashMap<HashMap<Binary, Binary>> getEntrySet() {
+   private IntObjectHashMap<HashMap<Binary, Binary>> getEntrySet() {
 
       if (entrySet == null) {
          entrySet = new IntObjectHashMap<HashMap<Binary, Binary>>(1);
@@ -277,8 +277,8 @@ public abstract class EntrySetRequest extends AggregatingRequest {
     * @see #createRequest()
     * @see EntrySetRequest
     */
-   protected final Collection<EntrySetRequest> splitEntrySet(final int storageNumber,
-                                                             final IntObjectHashMap<HashMap<Binary, Binary>> entrySetToSplit) {
+   private Collection<EntrySetRequest> splitEntrySet(final int storageNumber,
+           final IntObjectHashMap<HashMap<Binary, Binary>> entrySetToSplit) {
 
       // Check if there is anything to handle
       if (entrySet == null || entrySet.isEmpty()) {

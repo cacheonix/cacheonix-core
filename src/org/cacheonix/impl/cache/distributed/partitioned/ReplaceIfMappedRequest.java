@@ -75,7 +75,7 @@ public final class ReplaceIfMappedRequest extends KeyRequest {
    }
 
 
-   public ReplaceIfMappedRequest(final String cacheName, final Binary key, final Binary value) {
+   private ReplaceIfMappedRequest(final String cacheName, final Binary key, final Binary value) {
 
       super(TYPE_CACHE_REPLACE_IF_MAPPED_REQUEST, cacheName, false, false);
       this.value = value;
@@ -190,7 +190,7 @@ public final class ReplaceIfMappedRequest extends KeyRequest {
    /**
     * A class factory.
     */
-   final static class Builder implements WireableBuilder {
+   private final static class Builder implements WireableBuilder {
 
       public Wireable create() {
 

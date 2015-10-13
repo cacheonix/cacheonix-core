@@ -41,7 +41,7 @@ public final class RuntimeInvalidObjectException extends CacheonixException {
    }
 
 
-   public RuntimeInvalidObjectException(final String message) {
+   private RuntimeInvalidObjectException(final String message) {
 
       super(message);
    }

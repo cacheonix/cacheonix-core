@@ -37,13 +37,13 @@ public abstract class LocalCacheMessage extends CacheMessage {
    private static final Logger LOG = Logger.getLogger(LocalCacheMessage.class); // NOPMD
 
 
-   public LocalCacheMessage(final int type, final String cacheName) {
+   LocalCacheMessage(final int type, final String cacheName) {
 
       super(type, cacheName);
    }
 
 
-   public LocalCacheMessage() {
+   LocalCacheMessage() {
 
    }
 

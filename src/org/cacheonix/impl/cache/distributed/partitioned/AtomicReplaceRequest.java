@@ -80,7 +80,7 @@ public final class AtomicReplaceRequest extends KeyRequest {
    }
 
 
-   public AtomicReplaceRequest(final String cacheName, final Binary key, final Binary oldValue, final Binary newValue) {
+   private AtomicReplaceRequest(final String cacheName, final Binary key, final Binary oldValue, final Binary newValue) {
 
       super(TYPE_CACHE_ATOMIC_REPLACE_REQUEST, cacheName, false, false);
       this.oldValue = oldValue;
@@ -207,7 +207,7 @@ public final class AtomicReplaceRequest extends KeyRequest {
    /**
     * A class factory.
     */
-   final static class Builder implements WireableBuilder {
+   private final static class Builder implements WireableBuilder {
 
       public Wireable create() {
 

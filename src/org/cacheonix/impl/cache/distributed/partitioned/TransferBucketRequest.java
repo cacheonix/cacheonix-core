@@ -164,7 +164,7 @@ public final class TransferBucketRequest extends CacheRequest {
    }
 
 
-   ClusterNodeAddress getNewOwner() {
+   private ClusterNodeAddress getNewOwner() {
 
       return newOwner;
    }
@@ -176,7 +176,7 @@ public final class TransferBucketRequest extends CacheRequest {
    }
 
 
-   ClusterNodeAddress getCurrentOwner() {
+   private ClusterNodeAddress getCurrentOwner() {
 
       return currentOwner;
    }
@@ -185,7 +185,7 @@ public final class TransferBucketRequest extends CacheRequest {
    /**
     * Executes TransferBucketRequest. Puts the transferred bucket to the local bucket registry.
     */
-   public void executeOperational() {
+   protected void executeOperational() {
 
       Assert.assertTrue(sourceStorageNumber == destinationStorageNumber
               || sourceStorageNumber == 0 && destinationStorageNumber > 0,
@@ -482,7 +482,7 @@ public final class TransferBucketRequest extends CacheRequest {
    /**
     * A class factory.
     */
-   final static class Builder implements WireableBuilder {
+   private final static class Builder implements WireableBuilder {
 
       public Wireable create() {
 

@@ -50,7 +50,7 @@ public class CacheResponse extends Response {
    private String cacheName = null;
 
 
-   public CacheResponse() {
+   CacheResponse() {
 
       super(TYPE_CACHE_RESPONSE);
    }
@@ -62,7 +62,7 @@ public class CacheResponse extends Response {
    }
 
 
-   public CacheResponse(final int wireableType, final String cacheName) {
+   CacheResponse(final int wireableType, final String cacheName) {
 
       super(wireableType);
       this.cacheName = cacheName;
@@ -101,7 +101,7 @@ public class CacheResponse extends Response {
    /**
     * A class factory.
     */
-   final static class Builder implements WireableBuilder {
+   private final static class Builder implements WireableBuilder {
 
       public Wireable create() {
 

@@ -64,7 +64,7 @@ public final class AddEntryModifiedSubscriberRequest extends LocalCacheRequest i
    private ClusterNodeAddress subscriberAddress;
 
 
-   public AddEntryModifiedSubscriberRequest() {
+   private AddEntryModifiedSubscriberRequest() {
 
    }
 
@@ -204,7 +204,7 @@ public final class AddEntryModifiedSubscriberRequest extends LocalCacheRequest i
    /**
     * A class factory.
     */
-   final static class Builder implements WireableBuilder {
+   private final static class Builder implements WireableBuilder {
 
       public Wireable create() {
 

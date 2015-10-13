@@ -35,7 +35,7 @@ public final class ShutdownCacheProcessorMessage extends LocalCacheMessage {
    /**
     * Required by wireable.
     */
-   public ShutdownCacheProcessorMessage() {
+   private ShutdownCacheProcessorMessage() {
 
       gracefulShutdown = true;
    }
@@ -111,7 +111,7 @@ public final class ShutdownCacheProcessorMessage extends LocalCacheMessage {
    /**
     * A class factory.
     */
-   final static class Builder implements WireableBuilder {
+   private final static class Builder implements WireableBuilder {
 
       public Wireable create() {
 

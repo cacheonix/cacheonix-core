@@ -90,7 +90,7 @@ public final class CacheNodeJoinedMessage extends LocalCacheMessage {
    /**
     * A class factory.
     */
-   final static class Builder implements WireableBuilder {
+   private final static class Builder implements WireableBuilder {
 
       public Wireable create() {
 

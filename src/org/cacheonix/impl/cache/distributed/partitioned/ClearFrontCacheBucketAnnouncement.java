@@ -52,7 +52,7 @@ public final class ClearFrontCacheBucketAnnouncement extends Request {
    /**
     * Required by <code>Wireable</code>.
     */
-   public ClearFrontCacheBucketAnnouncement() {
+   private ClearFrontCacheBucketAnnouncement() {
 
    }
 
@@ -207,7 +207,7 @@ public final class ClearFrontCacheBucketAnnouncement extends Request {
    /**
     * A class factory.
     */
-   final static class Builder implements WireableBuilder {
+   private final static class Builder implements WireableBuilder {
 
       public Wireable create() {
 

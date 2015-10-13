@@ -52,14 +52,14 @@ public abstract class CacheMessage extends Message {
     * @param wireableType a request type. See {@link Message} for cache message types.
     * @param cacheName    cache name.
     */
-   protected CacheMessage(final int wireableType, final String cacheName) {
+   CacheMessage(final int wireableType, final String cacheName) {
 
       super(validateMessageType(wireableType));
       this.cacheName = cacheName;
    }
 
 
-   protected CacheMessage() {
+   CacheMessage() {
 
    }
 
@@ -90,7 +90,7 @@ public abstract class CacheMessage extends Message {
     *
     * @return context cache processor.
     */
-   public final CacheProcessor getCacheProcessor() {
+   final CacheProcessor getCacheProcessor() {
 
       return (CacheProcessor) getProcessor();
    }

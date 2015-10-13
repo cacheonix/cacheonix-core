@@ -57,7 +57,7 @@ public final class AddRemoteEntryModifiedSubscriberMessage extends LocalCacheMes
    /**
     * Required by Wireable.
     */
-   public AddRemoteEntryModifiedSubscriberMessage() {
+   private AddRemoteEntryModifiedSubscriberMessage() {
 
    }
 
@@ -194,7 +194,7 @@ public final class AddRemoteEntryModifiedSubscriberMessage extends LocalCacheMes
    /**
     * A class factory.
     */
-   final static class Builder implements WireableBuilder {
+   private final static class Builder implements WireableBuilder {
 
       public Wireable create() {
 

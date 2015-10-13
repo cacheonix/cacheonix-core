@@ -64,7 +64,7 @@ public final class BucketTransferRejectedAnnouncement extends GroupMessage {
    private List<Integer> bucketNumbers = Collections.emptyList();
 
 
-   public BucketTransferRejectedAnnouncement() {
+   private BucketTransferRejectedAnnouncement() {
 
    }
 
@@ -236,7 +236,7 @@ public final class BucketTransferRejectedAnnouncement extends GroupMessage {
    /**
     * A class factory.
     */
-   final static class Builder implements WireableBuilder {
+   private final static class Builder implements WireableBuilder {
 
       public Wireable create() {
 

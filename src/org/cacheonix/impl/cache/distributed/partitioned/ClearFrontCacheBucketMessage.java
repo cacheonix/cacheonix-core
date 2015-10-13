@@ -35,7 +35,7 @@ public final class ClearFrontCacheBucketMessage extends LocalCacheMessage {
    private int[] bucketNumbers;
 
 
-   public ClearFrontCacheBucketMessage() {
+   private ClearFrontCacheBucketMessage() {
 
    }
 
@@ -121,7 +121,7 @@ public final class ClearFrontCacheBucketMessage extends LocalCacheMessage {
    /**
     * A class factory.
     */
-   final static class Builder implements WireableBuilder {
+   private final static class Builder implements WireableBuilder {
 
       public Wireable create() {
 
