@@ -20,6 +20,13 @@ import java.util.List;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Node;
 
+import static org.cacheonix.impl.config.ConfigurationConstants.DEFAULT_LEASE_TIME_MILLIS;
+import static org.cacheonix.impl.config.ConfigurationConstants.DEFAULT_LOCK_TIMEOUT_MILLIS;
+import static org.cacheonix.impl.config.ConfigurationConstants.DEFAULT_SELECTOR_TIMEOUT_MILLIS;
+import static org.cacheonix.impl.config.ConfigurationConstants.DEFAULT_SO_TIMEOUT_MILLIS;
+import static org.cacheonix.impl.config.SystemProperty.CACHEONIX_DEFAULT_LEASE_TIME_MILLIS;
+import static org.cacheonix.impl.config.SystemProperty.CACHEONIX_DEFAULT_LOCK_TIMEOUT_MILLIS;
+import static org.cacheonix.impl.config.SystemProperty.CACHEONIX_DEFAULT_UNLOCK_TIMEOUT_MILLIS;
 import static org.cacheonix.impl.config.SystemProperty.CACHEONIX_GRACEFUL_SHUTDOWN_TIMEOUT_MILLIS;
 import static org.cacheonix.impl.config.SystemProperty.CACHEONIX_SELECTOR_TIMEOUT_MILLIS;
 import static org.cacheonix.impl.config.SystemProperty.CACHEONIX_SOCKET_TIMEOUT_MILLIS;
@@ -774,54 +781,54 @@ public final class ServerConfiguration extends DocumentReader {
 
       // Override the default lease time
 
-      if (SystemProperty.CACHEONIX_DEFAULT_LEASE_TIME_MILLIS != null) {
+      if (CACHEONIX_DEFAULT_LEASE_TIME_MILLIS != null) {
 
-         defaultLeaseTimeMillis = SystemProperty.CACHEONIX_DEFAULT_LEASE_TIME_MILLIS;
+         defaultLeaseTimeMillis = CACHEONIX_DEFAULT_LEASE_TIME_MILLIS;
          hasDefaultLeaseTimeMillis = true;
       }
 
       if (!hasDefaultLeaseTimeMillis) {
 
-         defaultLeaseTimeMillis = ConfigurationConstants.DEFAULT_LEASE_TIME_MILLIS;
+         defaultLeaseTimeMillis = DEFAULT_LEASE_TIME_MILLIS;
          hasDefaultLeaseTimeMillis = true;
       }
 
       // Override the default lock timeout
 
-      if (SystemProperty.CACHEONIX_DEFAULT_LOCK_TIMEOUT_MILLIS != null) {
+      if (CACHEONIX_DEFAULT_LOCK_TIMEOUT_MILLIS != null) {
 
-         defaultLockTimeoutMillis = SystemProperty.CACHEONIX_DEFAULT_LOCK_TIMEOUT_MILLIS;
+         defaultLockTimeoutMillis = CACHEONIX_DEFAULT_LOCK_TIMEOUT_MILLIS;
          hasDefaultLockTimeoutMillis = true;
       }
 
       if (!hasDefaultLockTimeoutMillis) {
 
-         defaultLockTimeoutMillis = ConfigurationConstants.DEFAULT_LOCK_TIMEOUT_MILLIS;
+         defaultLockTimeoutMillis = DEFAULT_LOCK_TIMEOUT_MILLIS;
          hasDefaultLockTimeoutMillis = true;
       }
 
       // Override the default unlock timeout
 
-      if (SystemProperty.CACHEONIX_DEFAULT_UNLOCK_TIMEOUT_MILLIS != null) {
+      if (CACHEONIX_DEFAULT_UNLOCK_TIMEOUT_MILLIS != null) {
 
-         defaultUnlockTimeoutMillis = SystemProperty.CACHEONIX_DEFAULT_UNLOCK_TIMEOUT_MILLIS;
+         defaultUnlockTimeoutMillis = CACHEONIX_DEFAULT_UNLOCK_TIMEOUT_MILLIS;
          hasDefaultUnlockTimeoutMillis = true;
       }
 
       if (!hasDefaultUnlockTimeoutMillis) {
 
-         defaultUnlockTimeoutMillis = ConfigurationConstants.DEFAULT_LOCK_TIMEOUT_MILLIS;
+         defaultUnlockTimeoutMillis = DEFAULT_LOCK_TIMEOUT_MILLIS;
          hasDefaultUnlockTimeoutMillis = true;
       }
 
       if (!hasSocketTimeoutMillis) {
 
-         setSocketTimeoutMillis(ConfigurationConstants.DEFAULT_SO_TIMEOUT_MILLIS);
+         setSocketTimeoutMillis(DEFAULT_SO_TIMEOUT_MILLIS);
       }
 
       if (!hasSelectorTimeoutMillis) {
 
-         setSelectorTimeoutMillis(ConfigurationConstants.DEFAULT_SELECTOR_TIMEOUT_MILLIS);
+         setSelectorTimeoutMillis(DEFAULT_SELECTOR_TIMEOUT_MILLIS);
       }
 
       if (cluster == null) {
