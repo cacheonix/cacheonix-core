@@ -113,8 +113,8 @@ public abstract class MarkerRequest extends ClusterRequest {
 
       // Create message
       final ClusterNodeLeftAnnouncement nodeLeftMessage = new ClusterNodeLeftAnnouncement();
-
       nodeLeftMessage.setClusterUUID(processor.getProcessorState().getClusterView().getClusterUUID());
+      nodeLeftMessage.setTimestamp(processor.getClock().currentTime());
       nodeLeftMessage.setSender(left);
       nodeLeftMessage.setLeave(left);
 
