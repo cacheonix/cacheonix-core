@@ -46,6 +46,14 @@ public abstract class Request extends Message {
    private boolean hasTimeout = false;
 
 
+   /**
+    * Waiter for a response to a request.
+    *
+    * @see #getWaiter()
+    */
+   private Waiter waiter = null;
+
+
    protected Request() {
 
    }
@@ -83,8 +91,7 @@ public abstract class Request extends Message {
 
 
    /**
-    * @return <code>true</code> if the receiver has to acknowledge the receiving by sending responce with a result
-    *         code.
+    * @return <code>true</code> if the receiver has to acknowledge the receiving by sending responce with a result code.
     */
    public final boolean isResponseRequired() {
 
@@ -167,14 +174,6 @@ public abstract class Request extends Message {
       response.setResult(result);
       return response;
    }
-
-
-   /**
-    * Waiter for a response to a request.
-    *
-    * @see #getWaiter()
-    */
-   private Waiter waiter = null;
 
 
    /**
