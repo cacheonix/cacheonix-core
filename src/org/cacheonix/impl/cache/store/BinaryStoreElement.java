@@ -38,9 +38,16 @@ import org.cacheonix.impl.net.serializer.Wireable;
 import org.cacheonix.impl.net.serializer.WireableBuilder;
 import org.cacheonix.impl.util.Assert;
 import org.cacheonix.impl.util.cache.ObjectSizeCalculator;
-import org.cacheonix.impl.util.cache.StandardObjectSizeCalculator;
 import org.cacheonix.impl.util.exception.ExceptionUtils;
 import org.cacheonix.impl.util.logging.Logger;
+
+import static org.cacheonix.cache.subscriber.EntryModifiedEventContentFlag.NEED_ALL;
+import static org.cacheonix.cache.subscriber.EntryModifiedEventContentFlag.NEED_KEY;
+import static org.cacheonix.cache.subscriber.EntryModifiedEventContentFlag.NEED_NEW_VALUE;
+import static org.cacheonix.cache.subscriber.EntryModifiedEventContentFlag.NEED_PREVIOUS_VALUE;
+import static org.cacheonix.cache.subscriber.EntryModifiedEventType.EVICT;
+import static org.cacheonix.cache.subscriber.EntryModifiedEventType.REMOVE;
+import static org.cacheonix.impl.util.cache.StandardObjectSizeCalculator.SIZE_OBJECT_REF;
 
 /**
  * Cache element used in local caches to store cached values. In addition to holding a cache value itself, the cache
@@ -495,7 +502,7 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
          // Replace value
          storedValue = storedObject;
          value = null;
-         setValueSizeBytes(StandardObjectSizeCalculator.SIZE_OBJECT_REF);
+         setValueSizeBytes(SIZE_OBJECT_REF);
          setElementSizeBytes(
                  objectSizeCalculator.sum(SIZE_CACHE_ELEMENT_OVERHEAD, getKeySizeBytes(), getValueSizeBytes()));
       }
@@ -601,7 +608,7 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
 
          if (isStored()) {
 
-            setValueSizeBytes(StandardObjectSizeCalculator.SIZE_OBJECT_REF);
+            setValueSizeBytes(SIZE_OBJECT_REF);
          } else {
 
             setValueSizeBytes(objectSizeCalculator.sizeOf(value));
@@ -642,9 +649,6 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
     */
    public void addEventSubscriber(final BinaryEntryModifiedSubscriber subscriber) {
 
-
-      //noinspection ControlFlowStatementWithoutBraces
-      if (LOG.isDebugEnabled()) LOG.debug("Adding element subscriber: " + subscriber); // NOPMD
 
       entryModifiedSubscribers().add(subscriber);
    }
@@ -739,22 +743,21 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
          Binary eventPreviousValue = null;
          for (final EntryModifiedEventContentFlag eventContentFlag : subscriber.getEventContentFlags()) {
 
-            if (EntryModifiedEventContentFlag.NEED_KEY.equals(eventContentFlag)) {
+            if (NEED_KEY.equals(eventContentFlag)) {
 
                eventKey = key;
-            } else if (EntryModifiedEventContentFlag.NEED_NEW_VALUE.equals(eventContentFlag)) {
+            } else if (NEED_NEW_VALUE.equals(eventContentFlag)) {
 
-               eventValue = updateType.equals(EntryModifiedEventType.REMOVE) || updateType.equals(
-                       EntryModifiedEventType.EVICT) ? null : getValue();
-            } else if (EntryModifiedEventContentFlag.NEED_PREVIOUS_VALUE.equals(eventContentFlag)) {
+               eventValue = updateType.equals(REMOVE) || updateType.equals(EVICT) ? null : getValue();
+            } else if (NEED_PREVIOUS_VALUE.equals(eventContentFlag)) {
 
                eventPreviousValue = previousElement == null ? null : previousElement.getValue();
-            } else if (EntryModifiedEventContentFlag.NEED_ALL.equals(eventContentFlag)) {
+            } else if (NEED_ALL.equals(eventContentFlag)) {
 
                // A superposition of actions taken by individual flags
 
                eventKey = key;
-               eventValue = updateType.equals(EntryModifiedEventType.REMOVE) ? null : getValue();
+               eventValue = updateType.equals(REMOVE) ? null : getValue();
                eventPreviousValue = previousElement == null ? null : previousElement.getValue();
 
                break; // No need to traverse through other flags
