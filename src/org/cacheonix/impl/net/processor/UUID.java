@@ -21,6 +21,8 @@ import java.security.SecureRandom;
 
 import org.cacheonix.impl.util.logging.Logger;
 
+import static java.lang.Long.toHexString;
+
 /**
  * A universally unique identifier (UUID).
  */
@@ -196,7 +198,7 @@ public final class UUID implements Externalizable, Comparable {
     * the same sequence and with the same types as were written by writeExternal.
     *
     * @param in the stream to read data from in order to restore the object
-    * @throws IOException            if I/O errors occur
+    * @throws IOException if I/O errors occur
     */
    public void readExternal(final ObjectInput in) throws IOException {
 
@@ -208,10 +210,8 @@ public final class UUID implements Externalizable, Comparable {
 
    public String toString() {
 
-      return "UUID{" +
-              "mostSigBits=" + mostSignificantBits +
-              ", leastSigBits=" + leastSignificantBits +
-              '}';
+
+      return "UUID{" + toHexString(mostSignificantBits) + toHexString(leastSignificantBits) + '}';
    }
 }
 
