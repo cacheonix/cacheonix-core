@@ -41,7 +41,8 @@ public class Router {
     */
    protected static final NowaitWaiter NOWAIT_WAITER = new NowaitWaiter();
 
-   private final ConcurrentHashMap<ProcessorKey, RequestProcessor> localProcessors = new ConcurrentHashMap<ProcessorKey, RequestProcessor>(73);
+   private final ConcurrentHashMap<ProcessorKey, RequestProcessor> localProcessors = new ConcurrentHashMap<ProcessorKey, RequestProcessor>(
+           73);
 
    private final Serializer serializer = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
 
@@ -130,59 +131,57 @@ public class Router {
                // Node wasn't there, but, because this is a message,
                // not a request, this is silently ignored.
                return NOWAIT_WAITER;
-            } else {
+            }
 
-               // Because the actual process is not present, we notify the waiter without registering it.
-               if (localAddress.equals(request.getSender())) {
+            // Because the actual process is not present, we notify the waiter without registering it.
+            if (localAddress.equals(request.getSender())) {
 
-                  // ---------------------------------------------------------------------
-                  //
-                  // Processor is not found and the sender is *local*. Because the actual
-                  // process is not present, we notify the waiter without registering from
-                  // *all* addresses.
-                  //
-                  // ---------------------------------------------------------------------
+               // ---------------------------------------------------------------------
+               //
+               // Processor is not found and the sender is *local*. Because the actual
+               // process is not present, we notify the waiter without registering from
+               // *all* addresses.
+               //
+               // ---------------------------------------------------------------------
 
-                  final Waiter waiter = request.getWaiter();
-                  if (request.isReceiverSet()) {
+               final Waiter waiter = request.getWaiter();
+               if (request.isReceiverSet()) {
 
-                     try {
+                  try {
 
-                        // Use receiver address as a sender address
-                        final Response response = createProcessNotFoundResponse(request);
+                     // Use receiver address as a sender address
+                     final Response response = createProcessNotFoundResponse(request);
 
-                        // Notify the waiter
-                        waiter.notifyResponseReceived(response);
-                     } catch (final InterruptedException e) {
+                     // Notify the waiter
+                     waiter.notifyResponseReceived(response);
+                  } catch (final InterruptedException e) {
 
-                        // Restore the flag
-                        Thread.currentThread().interrupt();
-                     }
-                  } else {
-
-                     // It is possible when a request was not prepared, so the receiver was not set.
-                     // REVIEWME: simeshev@cacheonix.org - 2011-08-08 -> use direct finish instead ?
-                     waiter.notifyResponseReceived(createProcessNotFoundResponse(request));
+                     // Restore the flag
+                     Thread.currentThread().interrupt();
                   }
-
-                  return waiter;
                } else {
 
-                  // ---------------------------------------------------------------------
-                  //
-                  // Processor is not found and the sender is *remote*. Becuase this is a
-                  // request to this address that has failed, we respond only using our
-                  // address as a sender.
-                  //
-                  // ---------------------------------------------------------------------
-
-                  final Response response = createProcessNotFoundResponse(request);
-
-                  output.enqueue(response);
-
-                  return NOWAIT_WAITER;
+                  // It is possible when a request was not prepared, so the receiver was not set.
+                  // REVIEWME: simeshev@cacheonix.org - 2011-08-08 -> use direct finish instead ?
+                  waiter.notifyResponseReceived(createProcessNotFoundResponse(request));
                }
 
+               return waiter;
+            } else {
+
+               // ---------------------------------------------------------------------
+               //
+               // Processor is not found and the sender is *remote*. Becuase this is a
+               // request to this address that has failed, we respond only using our
+               // address as a sender.
+               //
+               // ---------------------------------------------------------------------
+
+               final Response response = createProcessNotFoundResponse(request);
+
+               output.enqueue(response);
+
+               return NOWAIT_WAITER;
             }
          }
 
@@ -351,7 +350,7 @@ public class Router {
 
 
    private void respondWithError(final Request message, final RequestProcessor processor,
-                                 final String result) throws InterruptedException {
+           final String result) throws InterruptedException {
 
       final Response response = message.createResponse(Response.RESULT_ERROR, result);
       response.setClusterUUID(clusterUUID.get());
