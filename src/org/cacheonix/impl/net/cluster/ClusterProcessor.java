@@ -93,6 +93,8 @@ public interface ClusterProcessor extends RequestProcessor, MulticastServerListe
     */
    void notifyDeliveredToAll(long frameNumbersAllDeliveredUpTo);
 
+   // REVIEWME: 2015-10-16 - simeshev@cacheonix.org - Consider why MulticastMessageListenerList is accessed
+   // outside of the ClusterProcessor. Can the use be incapsulated inside the ClusterProcessor?
    MulticastMessageListenerList getMulticastMessageListeners();
 
    void registerCacheProcessor(CacheProcessor cacheProcessor);
