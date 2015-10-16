@@ -38,7 +38,6 @@ import org.cacheonix.impl.cache.store.BinaryStore;
 import org.cacheonix.impl.cache.store.SharedCounter;
 import org.cacheonix.impl.clock.Clock;
 import org.cacheonix.impl.cluster.node.state.group.Group;
-import org.cacheonix.impl.config.ConfigurationConstants;
 import org.cacheonix.impl.config.DataSourceConfiguration;
 import org.cacheonix.impl.config.DataStoreConfiguration;
 import org.cacheonix.impl.config.FrontCacheConfiguration;
@@ -62,6 +61,10 @@ import org.cacheonix.impl.util.cache.ObjectSizeCalculator;
 import org.cacheonix.impl.util.cache.ObjectSizeCalculatorFactory;
 import org.cacheonix.impl.util.cache.StandardObjectSizeCalculator;
 import org.cacheonix.impl.util.logging.Logger;
+
+import static org.cacheonix.impl.config.ConfigurationConstants.BUCKET_COUNT;
+import static org.cacheonix.impl.config.ConfigurationConstants.STORAGE_FILE_EXTENSION;
+import static org.cacheonix.impl.config.ConfigurationConstants.STORAGE_FILE_PREFIX;
 
 /**
  * CacheProcessor is a specialized request processor that serves cache requests.
@@ -92,8 +95,7 @@ public final class CacheProcessorImpl extends AbstractRequestProcessor implement
    /**
     * Bucket index calculator.
     */
-   private final BucketIndexCalculator bucketCalculator = new BucketIndexCalculator(
-           ConfigurationConstants.BUCKET_COUNT);
+   private final BucketIndexCalculator bucketCalculator = new BucketIndexCalculator(BUCKET_COUNT);
 
    private final ObjectSizeCalculatorFactory objectSizeCalculatorFactory = new ObjectSizeCalculatorFactory();
 
@@ -577,8 +579,8 @@ public final class CacheProcessorImpl extends AbstractRequestProcessor implement
          final OverflowToDiskConfiguration overflowToDiskConfiguration = cacheConfig.getStore().getOverflowToDiskConfiguration();
          final long adjustedOverflowSizeMBytes = overflowToDiskConfiguration == null ? 0L : overflowToDiskConfiguration.getMaxOverflowBytes();
          final String tempDir = cacheConfig.getServerConfiguration().getCacheonixConfiguration().getTempDir().getPath();
-         final String diskStorageName = ConfigurationConstants.STORAGE_FILE_PREFIX + cacheName + '-' + cacheProcessorIdentity + '-' + storageIndex;
-         final String storageFile = tempDir + File.separatorChar + diskStorageName + ConfigurationConstants.STORAGE_FILE_EXTENSION;
+         final String diskStorageName = STORAGE_FILE_PREFIX + cacheName + '-' + cacheProcessorIdentity + '-' + storageIndex;
+         final String storageFile = tempDir + File.separatorChar + diskStorageName + STORAGE_FILE_EXTENSION;
          final DiskStorage diskStorage = StorageFactory.createStorage(diskStorageName, adjustedOverflowSizeMBytes,
                  storageFile);
          result[storageIndex] = diskStorage;
