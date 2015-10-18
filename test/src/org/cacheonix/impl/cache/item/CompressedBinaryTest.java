@@ -81,6 +81,12 @@ public final class CompressedBinaryTest extends TestCase {
    }
 
 
+   public void testNullEquals() throws InvalidObjectException {
+
+      assertEquals(new CompressedBinary(null), new CompressedBinary(null));
+   }
+
+
    protected final void setUp() throws Exception {
 
       super.setUp();

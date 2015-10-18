@@ -89,6 +89,12 @@ public final class PassByCopyBinaryTest extends CacheonixTestCase {
    }
 
 
+   public void testEqualsNull() throws InvalidObjectException {
+
+      assertEquals(new PassByCopyBinary(null), new PassByCopyBinary(null));
+   }
+
+
    protected final void setUp() throws Exception {
 
       super.setUp();

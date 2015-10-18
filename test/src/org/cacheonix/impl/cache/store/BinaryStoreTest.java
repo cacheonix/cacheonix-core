@@ -23,6 +23,8 @@ import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.cache.item.BinaryFactory;
 import org.cacheonix.impl.cache.item.BinaryFactoryBuilder;
 import org.cacheonix.impl.cache.item.BinaryType;
+import org.cacheonix.impl.cache.item.CompressedBinary;
+import org.cacheonix.impl.cache.item.InvalidObjectException;
 import org.cacheonix.impl.cache.storage.disk.DummyDiskStorage;
 import org.cacheonix.impl.clock.Time;
 import org.cacheonix.impl.clock.TimeImpl;
@@ -124,6 +126,15 @@ public final class BinaryStoreTest extends CacheonixTestCase {
       final Time timeToRead = new TimeImpl(10, 0);
       final ReadableElement previousElement = binaryStore.update(key, newValue, timeToRead, 0);
       assertNotNull(previousElement);
+   }
+
+
+   public void testPutGetNullValue() throws InvalidObjectException {
+
+      final Binary key = binaryFactory.createBinary("key");
+      final Binary value = new CompressedBinary(null);
+      binaryStore.put(key, value);
+      assertTrue(binaryStore.containsValue(value));
    }
 
 
