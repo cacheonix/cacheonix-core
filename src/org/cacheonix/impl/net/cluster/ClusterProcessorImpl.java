@@ -504,6 +504,15 @@ public final class ClusterProcessorImpl extends AbstractRequestProcessor impleme
    }
 
 
+   /**
+    * {@inheritDoc}
+    */
+   public void resetMarkerTimeout() {
+
+      markerTimeout.reset();
+   }
+
+
    // -------------------------------------------------------------------------------------
    //
    // Implementing MulticastListener
