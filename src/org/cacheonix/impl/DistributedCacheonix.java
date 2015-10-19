@@ -1015,9 +1015,8 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
 
                // Convert the event to the messages and send it to self.
                final CacheNodeLeftMessage message = new CacheNodeLeftMessage(cacheName);
-
                message.setClusterUUID(clusterProcessor.getProcessorState().getClusterView().getClusterUUID());
-               message.setCacheGroupMember(event.getGroupMember());
+               message.setLeftAddress(event.getGroupMember().getAddress());
                message.setReceiver(address);
                if (LOG.isDebugEnabled()) {
                   LOG.debug("Forwarding to the cache processor : " + event);

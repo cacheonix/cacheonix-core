@@ -13,7 +13,6 @@
  */
 package org.cacheonix.impl.cache.distributed.partitioned;
 
-import org.cacheonix.impl.cluster.node.state.group.GroupMember;
 import org.cacheonix.impl.cluster.node.state.group.GroupMemberLeftEvent;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.serializer.Wireable;
@@ -42,7 +41,8 @@ public final class CacheNodeLeftMessage extends LocalCacheMessage {
     */
    private static final Logger LOG = Logger.getLogger(CacheNodeLeftMessage.class); // NOPMD
 
-   private GroupMember cacheGroupMember = null;
+
+   private ClusterNodeAddress leftAddress = null;
 
 
    public CacheNodeLeftMessage() {
@@ -56,9 +56,9 @@ public final class CacheNodeLeftMessage extends LocalCacheMessage {
    }
 
 
-   public void setCacheGroupMember(final GroupMember cacheGroupMember) {
+   public void setLeftAddress(final ClusterNodeAddress leftAddress) {
 
-      this.cacheGroupMember = cacheGroupMember;
+      this.leftAddress = leftAddress;
    }
 
 
@@ -68,7 +68,6 @@ public final class CacheNodeLeftMessage extends LocalCacheMessage {
    protected void executeOperational() {
 
       // Notify waiter list
-      final ClusterNodeAddress leftAddress = cacheGroupMember.getAddress();
       final CacheProcessor processor = getCacheProcessor();
 
       // Notify waiters
@@ -99,8 +98,8 @@ public final class CacheNodeLeftMessage extends LocalCacheMessage {
    public String toString() {
 
       return "CacheNodeLeftMessage{" +
-              "cacheGroupMember=" + cacheGroupMember +
-              "} " + super.toString();
+              "leftAddress=" + leftAddress +
+              '}';
    }
 
 

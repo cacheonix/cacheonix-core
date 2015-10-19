@@ -21,7 +21,7 @@ import org.cacheonix.impl.config.FrontCacheConfiguration;
 
 /**
  */
-public final class FrontCacheTest extends CacheonixTestCase {
+public final class FrontCacheImplTest extends CacheonixTestCase {
 
    private FrontCache frontCache;
 
@@ -39,7 +39,7 @@ public final class FrontCacheTest extends CacheonixTestCase {
       final ConfigurationReader reader = new ConfigurationReader();
       final CacheonixConfiguration configuration = reader.readConfiguration(TestUtils.getTestFile("cacheonix-config-with-front-cache.xml").toString());
       final FrontCacheConfiguration frontCacheConfiguration = configuration.getServer().enumeratePartitionedCaches().get(0).getFrontCacheConfiguration();
-      frontCache = new FrontCache(getClock(), frontCacheConfiguration);
+      frontCache = new FrontCacheImpl(getClock(), frontCacheConfiguration);
    }
 
 

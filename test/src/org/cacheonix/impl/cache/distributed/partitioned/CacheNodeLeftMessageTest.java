@@ -13,8 +13,12 @@
  */
 package org.cacheonix.impl.cache.distributed.partitioned;
 
-import org.cacheonix.impl.util.logging.Logger;
 import junit.framework.TestCase;
+import org.cacheonix.impl.util.logging.Logger;
+
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  * CacheNodeLeftMessageTest
@@ -31,6 +35,26 @@ public final class CacheNodeLeftMessageTest extends TestCase {
     * @noinspection UNUSED_SYMBOL, UnusedDeclaration
     */
    private static final Logger LOG = Logger.getLogger(CacheNodeLeftMessageTest.class); // NOPMD
+
+
+   public void testClearsFrontCache() throws Exception {
+
+      // Mock front cache
+      final FrontCache frontCache = mock(FrontCache.class);
+
+      // Mock Cache processor
+      final CacheProcessor cacheProcessor = mock(CacheProcessor.class);
+      when(cacheProcessor.getState()).thenReturn(CacheProcessor.STATE_OPERATIONAL);
+      when(cacheProcessor.getFrontCache()).thenReturn(frontCache);
+
+      // Execute
+      final CacheNodeLeftMessage cacheNodeLeftMessage = new CacheNodeLeftMessage();
+      cacheNodeLeftMessage.setProcessor(cacheProcessor);
+      cacheNodeLeftMessage.execute();
+
+      // Verify
+      verify(frontCache).clear();
+   }
 
 
    /**
