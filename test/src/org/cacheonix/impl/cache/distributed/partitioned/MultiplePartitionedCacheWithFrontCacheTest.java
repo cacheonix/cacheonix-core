@@ -16,11 +16,12 @@ package org.cacheonix.impl.cache.distributed.partitioned;
 import java.util.Map;
 import java.util.Set;
 
-import org.cacheonix.ShutdownMode;
 import org.cacheonix.cache.Cache;
 import org.cacheonix.impl.util.array.HashMap;
 import org.cacheonix.impl.util.array.HashSet;
 import org.cacheonix.impl.util.logging.Logger;
+
+import static org.cacheonix.ShutdownMode.GRACEFUL_SHUTDOWN;
 
 /**
  * Tests partitioned cache with a front cache.
@@ -125,7 +126,7 @@ public final class MultiplePartitionedCacheWithFrontCacheTest extends MultiplePa
    }
 
 
-   public void testFrontCacheInvalidatedOnNodeLeaving() {
+   public void testRepartitioningOccursOnNodeLeaving() {
 
       // Put element into cache
       final int keyCount = 5000;
@@ -137,18 +138,19 @@ public final class MultiplePartitionedCacheWithFrontCacheTest extends MultiplePa
       // Put using the last cache
       cache(2).putAll(sourceMap);
 
-      // Populate local cache of node # 0
+      // Populate local cache of node # 2
       for (final Map.Entry<String, String> entry : sourceMap.entrySet()) {
          assertEquals(entry.getValue(), cache(2).get(entry.getKey()));
       }
 
-      // Shutdown node # 2
-      cacheonix().shutdown(ShutdownMode.FORCED_SHUTDOWN, true);
+
+      // Shutdown node # 0
+      cacheonix().shutdown(GRACEFUL_SHUTDOWN, true);
 
       // Assert there is less data left
       final Map<String, String> newMap = cache(2).getAll(sourceMap.keySet());
 
-      assertTrue(!sourceMap.equals(newMap));
+      assertTrue(sourceMap.equals(newMap));
    }
 
 
