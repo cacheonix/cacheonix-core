@@ -26,14 +26,15 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import org.cacheonix.impl.clock.Clock;
 import org.cacheonix.impl.config.SystemProperty;
-import org.cacheonix.impl.util.IOUtils;
 import org.cacheonix.impl.util.Shutdownable;
 import org.cacheonix.impl.util.StringUtils;
-import org.cacheonix.impl.util.exception.ExceptionUtils;
 import org.cacheonix.impl.util.exception.StackTraceAtCreate;
 import org.cacheonix.impl.util.logging.Logger;
-import org.cacheonix.impl.util.thread.ThreadUtils;
 import org.cacheonix.impl.util.thread.UserThreadFactory;
+
+import static org.cacheonix.impl.util.IOUtils.closeHard;
+import static org.cacheonix.impl.util.exception.ExceptionUtils.ignoreException;
+import static org.cacheonix.impl.util.thread.ThreadUtils.interruptAndJoin;
 
 /**
  * TCP server handles incoming TCP requests for cache configurations grouped in a cluster.
@@ -123,7 +124,8 @@ public final class TCPServer implements Shutdownable {
          // Register receiver with the server socket channel
          serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT, receiver);
       } catch (final IOException e) {
-         IOUtils.closeHard(serverSocketChannel);
+
+         closeHard(serverSocketChannel);
          throw e;
       }
    }
@@ -189,26 +191,26 @@ public final class TCPServer implements Shutdownable {
 
       // Close the server socket channel first so that closing socket channels
       // wouldn't allow other nodes to re-establish the connection.
-      IOUtils.closeHard(serverSocketChannel);
+      closeHard(serverSocketChannel);
       try {
          selector.selectNow();
       } catch (final IOException ignored) {
-         ExceptionUtils.ignoreException(ignored, "Shutting down");
+         ignoreException(ignored, "Shutting down");
       }
 
       // Interrupt selector thread. This should unblock any NIO operations.
-      ThreadUtils.interruptAndJoin(selectorThread, 1000L);
+      interruptAndJoin(selectorThread, 1000L);
 
       // NOTE: simeshev@cacheonix.org - 2010-10-27 - I have observed on several
       // occasions that selector.select(); misses the interrupt. So, we try
       // again.
       if (!isShutDown()) {
-         ThreadUtils.interruptAndJoin(selectorThread, 1000L);
+         interruptAndJoin(selectorThread, 1000L);
       }
 
       // Close selector if still alive.
       if (!isShutDown()) {
-         IOUtils.closeHard(selector);
+         closeHard(selector);
       }
 
       LOG.info("TCP server has been shutdown: " + endpoint);
@@ -262,7 +264,7 @@ public final class TCPServer implements Shutdownable {
          try {
             shutdown();
          } catch (final Exception e) {
-            ExceptionUtils.ignoreException(e, "finalizer");
+            ignoreException(e, "finalizer");
          }
       }
       super.finalize();
