@@ -74,7 +74,7 @@ public final class MulticastMarkerTest extends CacheonixTestCase {
       for (int i = 0; i < PROFILING_ITERATION_COUNT; i++) {
          final Serializer ser = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
          final byte[] bytes = ser.serialize(marker);
-         assertEquals(287, bytes.length);
+         assertEquals(271, bytes.length);
       }
    }
 
