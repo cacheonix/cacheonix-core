@@ -339,15 +339,13 @@ final class Receiver extends KeyHandler {
          final SocketChannel socketChannel = serverSocketChannel.accept();
          if (socketChannel != null) {
 
-            // Create receiver
-            final Receiver receiver = new Receiver(selector, requestDispatcher, clock, getNetworkTimeoutMillis());
-
             // Configure channel for non-blocking operation
             socketChannel.configureBlocking(false);
 
-            // Configure the socket
+            // NOTE: simeshev@cacheonix.org - 2015-10-19 - Configure the socket using self
+            // as a key processor because ACCEPT is going to be handled only once.
             socketChannel.socket().setReceiveBufferSize(SystemProperty.BUFFER_SIZE);
-            socketChannel.register(selector, SelectionKey.OP_READ, receiver);
+            socketChannel.register(selector, SelectionKey.OP_READ, this);
          }
       } catch (final IOException e) {
          throw new UnrecoverableAcceptException(e);
