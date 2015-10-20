@@ -13,7 +13,6 @@
  */
 package org.cacheonix.impl.net.tcp.server;
 
-import java.io.IOException;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.util.Iterator;
@@ -92,10 +91,7 @@ public class SelectorWorker implements Runnable {
       } catch (final UnrecoverableAcceptException e) {
 
          LOG.error("Failed to accept a connection, selector thread terminates: " + e.toString(), e);
-      } catch (final RuntimeException e) {
-
-         LOG.error("Unexpected error, selector thread terminates: " + e.toString(), e);
-      } catch (final IOException e) {
+      } catch (final Exception e) {
 
          LOG.error("Unexpected error, selector thread terminates: " + e.toString(), e);
       } finally {
