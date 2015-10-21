@@ -25,7 +25,7 @@ import org.cacheonix.impl.net.processor.ReceiverAddress;
 import org.cacheonix.impl.net.processor.Router;
 import org.cacheonix.impl.util.array.HashMap;
 
-final class MessageSenderWorker extends SelectorWorker {
+final class MessageSenderSelectorWorker extends SelectorWorker {
 
    /**
     * This cluster node's clock. The clock is used to time stamp sent messages.
@@ -65,9 +65,9 @@ final class MessageSenderWorker extends SelectorWorker {
     * @param clock                 the cluster node's clock.
     */
    @SuppressWarnings("AssignmentToCollectionOrArrayFieldFromParameter")
-   MessageSenderWorker(final ClusterNodeAddress localAddress, final Selector selector,
-                       final ConcurrentLinkedQueue<Message> queue, final Router router,
-                       final long networkTimeoutMillis, final long selectorTimeoutMillis, final Clock clock) {
+   MessageSenderSelectorWorker(final ClusterNodeAddress localAddress, final Selector selector,
+           final ConcurrentLinkedQueue<Message> queue, final Router router,
+           final long networkTimeoutMillis, final long selectorTimeoutMillis, final Clock clock) {
 
       super(selector, networkTimeoutMillis, selectorTimeoutMillis);
       this.localAddress = localAddress;

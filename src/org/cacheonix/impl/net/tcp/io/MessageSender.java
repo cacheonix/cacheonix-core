@@ -134,7 +134,7 @@ public final class MessageSender extends AbstractProcessor {
 
    protected Runnable createWorker() {
 
-      return new MessageSenderWorker(localAddress, selector, queue, router, networkTimeoutMillis, selectorTimeoutMillis, clock);
+      return new MessageSenderSelectorWorker(localAddress, selector, queue, router, networkTimeoutMillis, selectorTimeoutMillis, clock);
    }
 
 
