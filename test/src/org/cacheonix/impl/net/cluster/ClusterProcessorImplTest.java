@@ -39,7 +39,7 @@ import org.cacheonix.impl.net.processor.Frame;
 import org.cacheonix.impl.net.processor.Message;
 import org.cacheonix.impl.net.processor.Router;
 import org.cacheonix.impl.net.processor.UUID;
-import org.cacheonix.impl.net.tcp.server.TCPServer;
+import org.cacheonix.impl.net.tcp.io.TCPServer;
 import org.cacheonix.impl.util.IOUtils;
 import org.cacheonix.impl.util.exception.ExceptionUtils;
 import org.cacheonix.impl.util.logging.Logger;

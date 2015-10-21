@@ -35,7 +35,7 @@ import org.cacheonix.impl.net.processor.Response;
 import org.cacheonix.impl.net.processor.Router;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
-import org.cacheonix.impl.net.tcp.server.KeyHandler;
+import org.cacheonix.impl.net.tcp.io.KeyHandler;
 import org.cacheonix.impl.util.IOUtils;
 import org.cacheonix.impl.util.exception.ExceptionUtils;
 import org.cacheonix.impl.util.logging.Logger;

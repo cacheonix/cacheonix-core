@@ -89,7 +89,7 @@ import org.cacheonix.impl.net.processor.ReceiverAddress;
 import org.cacheonix.impl.net.processor.Router;
 import org.cacheonix.impl.net.processor.UUID;
 import org.cacheonix.impl.net.serializer.WireableFactory;
-import org.cacheonix.impl.net.tcp.server.TCPServer;
+import org.cacheonix.impl.net.tcp.io.TCPServer;
 import org.cacheonix.impl.util.Assert;
 import org.cacheonix.impl.util.CollectionUtils;
 import org.cacheonix.impl.util.IOUtils;

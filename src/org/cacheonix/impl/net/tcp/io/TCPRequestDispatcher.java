@@ -11,17 +11,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.impl.net.tcp.server;
+package org.cacheonix.impl.net.tcp.io;
+
+import org.cacheonix.impl.net.processor.Message;
 
 /**
+ * Message handler. Processes TCP messages.
+ * <p/>
+ *
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
+ * @since Mar 27, 2008 11:08:40 AM
  */
-public class FrameFormatException extends Exception {
+public interface TCPRequestDispatcher {
 
-   private static final long serialVersionUID = 5045018977566605641L;
-
-
-   public FrameFormatException(final String message) {
-
-      super(message);
-   }
+   void dispatch(final Message message) throws InterruptedException;
 }

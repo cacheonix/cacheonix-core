@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.impl.net.tcp.server;
+package org.cacheonix.impl.net.tcp.io;
 
 import org.cacheonix.impl.net.processor.Message;
 import org.cacheonix.impl.net.processor.ProcessorKey;

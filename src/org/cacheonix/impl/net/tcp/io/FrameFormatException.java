@@ -11,27 +11,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.impl.net.tcp.server;
-
-import java.io.IOException;
-
-import org.cacheonix.exceptions.CacheonixException;
+package org.cacheonix.impl.net.tcp.io;
 
 /**
- * This exception is thrown when an unrecoverable server socket exception occurs.
  */
-public final class UnrecoverableAcceptException extends CacheonixException {
+public class FrameFormatException extends Exception {
 
-   private static final long serialVersionUID = 7908749977067442371L;
+   private static final long serialVersionUID = 5045018977566605641L;
 
 
-   /**
-    * Creates UnrecoverableAcceptException
-    *
-    * @param cause cause.
-    */
-   public UnrecoverableAcceptException(final IOException cause) {
+   public FrameFormatException(final String message) {
 
-      super(cause);
+      super(message);
    }
 }

@@ -23,7 +23,7 @@ import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.processor.Message;
 import org.cacheonix.impl.net.processor.ReceiverAddress;
 import org.cacheonix.impl.net.processor.Router;
-import org.cacheonix.impl.net.tcp.server.SelectorWorker;
+import org.cacheonix.impl.net.tcp.io.SelectorWorker;
 import org.cacheonix.impl.util.array.HashMap;
 
 final class MessageSenderWorker extends SelectorWorker {
