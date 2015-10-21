@@ -107,7 +107,7 @@ public final class TCPServer implements Shutdownable {
 
       //
       this.selector = Selector.open();
-      this.selectorThread = new UserThreadFactory("Receiver:" + port).newThread(new TCPServerWorker(selector, socketTimeoutMillis, selectorTimeoutMillis));
+      this.selectorThread = new UserThreadFactory("Receiver:" + port).newThread(new TCPServerSelectorWorker(selector, socketTimeoutMillis, selectorTimeoutMillis));
       this.endpoint = createEndpoint(address, port);
 
       // Create ServerSocketChannel
