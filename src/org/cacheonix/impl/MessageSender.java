@@ -92,30 +92,14 @@ public final class MessageSender extends AbstractProcessor {
     * @param clock                 the clock.
     */
    public MessageSender(final ClusterNodeAddress localAddress, final long networkTimeoutMillis,
-                        final long selectorTimeoutMillis, final Clock clock) {
+                        final long selectorTimeoutMillis, final Clock clock) throws IOException {
 
       super("Sender:" + localAddress.getTcpPort());
       this.selectorTimeoutMillis = selectorTimeoutMillis;
       this.networkTimeoutMillis = networkTimeoutMillis;
       this.localAddress = localAddress;
-      this.selector = openSelector();
+      this.selector = Selector.open();
       this.clock = clock;
-   }
-
-
-   /**
-    * Opens a selector.
-    *
-    * @return new Selector.
-    * @throws IllegalStateException if there was an error creating a selector.
-    */
-   private static Selector openSelector() throws IllegalStateException {
-
-      try {
-         return Selector.open();
-      } catch (final IOException e) {
-         throw new IllegalStateException(e);
-      }
    }
 
 
