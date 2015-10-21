@@ -22,7 +22,7 @@ import org.cacheonix.impl.util.time.Timeout;
 /**
  * A handler of key events.
  */
-public abstract class KeyHandler {
+abstract class KeyHandler {
 
 
    /**
@@ -43,7 +43,7 @@ public abstract class KeyHandler {
     *                             classes through {@link #selector}.
     * @param networkTimeoutMillis the network timeout in milliseconds.
     */
-   public KeyHandler(final Selector selector, final long networkTimeoutMillis) {
+   KeyHandler(final Selector selector, final long networkTimeoutMillis) {
 
       this.networkTimeout = new Timeout(networkTimeoutMillis).reset();
       this.selector = selector;
@@ -66,7 +66,7 @@ public abstract class KeyHandler {
     *
     * @param key the key this key handler is associated with.
     */
-   public final void registerInactivity(final SelectionKey key) {
+   final void registerInactivity(final SelectionKey key) {
 
       if (networkTimeout.isExpired()) {
 
@@ -82,7 +82,7 @@ public abstract class KeyHandler {
     *
     * @return a configured network timeout.
     */
-   public final long getNetworkTimeoutMillis() {
+   final long getNetworkTimeoutMillis() {
 
       return networkTimeout.getDuration();
    }
@@ -153,7 +153,7 @@ public abstract class KeyHandler {
     * @param key the key to get the associated socket channel from.
     * @return the socket channel.
     */
-   protected static SocketChannel socketChannel(final SelectionKey key) {
+   static SocketChannel socketChannel(final SelectionKey key) {
 
       return (SocketChannel) key.channel();
    }

@@ -44,7 +44,7 @@ public class SelectorWorker implements Runnable {
    /**
     * Time the NIO selector should block for while waiting for a channel to become ready, must be greater than zero.
     */
-   protected final long selectorTimeoutMillis;
+   private final long selectorTimeoutMillis;
 
    /**
     * Selector.
@@ -60,7 +60,7 @@ public class SelectorWorker implements Runnable {
     * @param selectorTimeoutMillis a time the selector should block for while waiting for a channel to become ready,
     *                              must be greater than zero.
     */
-   public SelectorWorker(final Selector selector, final long networkTimeoutMillis, final long selectorTimeoutMillis) {
+   SelectorWorker(final Selector selector, final long networkTimeoutMillis, final long selectorTimeoutMillis) {
 
       this.selectorTimeoutMillis = selectorTimeoutMillis;
       this.networkTimeoutMillis = networkTimeoutMillis;

@@ -19,7 +19,7 @@ import java.util.LinkedList;
 /**
  * Accumulates and serves ByteBuffer chunks.
  */
-public final class ChunkedBuffer {
+final class ChunkedBuffer {
 
    private final LinkedList<ByteBuffer> chunks = new LinkedList<ByteBuffer>(); // NOPMD
 

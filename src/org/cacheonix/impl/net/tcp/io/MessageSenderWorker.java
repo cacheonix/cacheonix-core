@@ -96,7 +96,7 @@ final class MessageSenderWorker extends SelectorWorker {
    /**
     * Dispatches messages in the input queue to senders.
     */
-   protected final void dispatchToSenders() {
+   private final void dispatchToSenders() {
 
       if (queue.isEmpty()) {
          return;

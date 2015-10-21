@@ -18,7 +18,7 @@ import java.nio.channels.Selector;
 /**
  * A selector worker used by TCPServer.
  */
-public class TCPServerSelectorWorker extends SelectorWorker {
+class TCPServerSelectorWorker extends SelectorWorker {
 
    /**
     * Creates SelectorWorker.
