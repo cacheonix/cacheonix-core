@@ -16,7 +16,6 @@ package org.cacheonix.impl.cache.item;
 import java.io.Serializable;
 import java.util.Set;
 
-import org.cacheonix.exceptions.InvalidParameterException;
 import org.cacheonix.impl.util.array.HashSet;
 
 /**

@@ -1,4 +1,4 @@
-package org.cacheonix.exceptions;
+package org.cacheonix.impl.cache.item;
 
 import junit.framework.TestCase;
 

@@ -11,7 +11,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.exceptions;
+package org.cacheonix.impl.cache.item;
+
+import org.cacheonix.exceptions.CacheonixException;
 
 /**
  * Thrown when an invalid parameter is passes to a method.
