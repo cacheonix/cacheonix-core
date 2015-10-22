@@ -92,7 +92,7 @@ public final class MessageSender extends AbstractProcessor {
     * @param clock                 the clock.
     */
    public MessageSender(final ClusterNodeAddress localAddress, final long networkTimeoutMillis,
-                        final long selectorTimeoutMillis, final Clock clock) throws IOException {
+           final long selectorTimeoutMillis, final Clock clock) throws IOException {
 
       super("Sender:" + localAddress.getTcpPort());
       this.selectorTimeoutMillis = selectorTimeoutMillis;
@@ -134,7 +134,8 @@ public final class MessageSender extends AbstractProcessor {
 
    protected Runnable createWorker() {
 
-      return new MessageSenderSelectorWorker(localAddress, selector, queue, router, networkTimeoutMillis, selectorTimeoutMillis, clock);
+      return new MessageSenderSelectorWorker(localAddress, selector, queue, router, networkTimeoutMillis,
+              selectorTimeoutMillis, clock);
    }
 
 
