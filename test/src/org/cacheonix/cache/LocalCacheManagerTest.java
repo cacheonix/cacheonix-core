@@ -25,6 +25,8 @@ import org.cacheonix.TestUtils;
 import org.cacheonix.impl.config.SystemProperty;
 import org.cacheonix.impl.util.logging.Logger;
 
+import static org.cacheonix.impl.config.SystemProperty.NAME_CACHEONIX_AUTO_CREATE_CACHE;
+
 /**
  * Tests Cacheonix.
  */
@@ -123,9 +125,18 @@ public final class LocalCacheManagerTest extends CacheonixTestCase {
 
    public void testCreateCache() {
 
-      instance.deleteCache(TEST_LOCAL_CACHE);
-      assertNotNull(instance.createCache(TEST_LOCAL_CACHE));
-      assertNull(instance.getCache(TEST_CACHE_DOES_NOT_EXIT));
+      final SavedSystemProperty savedSystemProperty = new SavedSystemProperty(NAME_CACHEONIX_AUTO_CREATE_CACHE);
+      savedSystemProperty.save();
+      try {
+
+         System.setProperty(NAME_CACHEONIX_AUTO_CREATE_CACHE, "false");
+         instance.deleteCache(TEST_LOCAL_CACHE);
+         assertNotNull(instance.createCache(TEST_LOCAL_CACHE));
+         assertNull(instance.getCache(TEST_CACHE_DOES_NOT_EXIT));
+      } finally {
+
+         savedSystemProperty.restore();
+      }
    }
 
 

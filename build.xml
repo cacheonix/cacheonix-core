@@ -327,7 +327,6 @@
          <classpath refid="junit.classpath"/>
          <jvmarg value="-Xms1024m"/>
          <jvmarg value="-Xmx1024m"/>
-         <jvmarg value="-Dcacheonix.auto.create.cache=false"/>
          <jvmarg value="-Dcacheonix.client.request.timeout=120s"/>
          <jvmarg value="-Dcacheonix.home.alone.timeout=5000"/>
          <jvmarg value="-Dcacheonix.logging.level=debug"/>
