@@ -23,7 +23,6 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 
 import org.cacheonix.impl.clock.Clock;
-import org.cacheonix.impl.config.SystemProperty;
 import org.cacheonix.impl.net.Protocol;
 import org.cacheonix.impl.net.processor.Frame;
 import org.cacheonix.impl.net.processor.Message;
@@ -31,6 +30,8 @@ import org.cacheonix.impl.net.processor.SenderInetAddressAware;
 import org.cacheonix.impl.util.IOUtils;
 import org.cacheonix.impl.util.exception.ExceptionUtils;
 import org.cacheonix.impl.util.logging.Logger;
+
+import static org.cacheonix.impl.config.SystemProperty.BUFFER_SIZE;
 
 
 /**
@@ -84,7 +85,7 @@ final class Receiver extends KeyHandler {
    /**
     * Read buffer.
     */
-   private final ByteBuffer byteBuffer = ByteBuffer.allocateDirect(SystemProperty.BUFFER_SIZE);
+   private final ByteBuffer byteBuffer = ByteBuffer.allocateDirect(BUFFER_SIZE);
 
    /**
     * Buffer accumulating chunks.
@@ -339,13 +340,15 @@ final class Receiver extends KeyHandler {
          final SocketChannel socketChannel = serverSocketChannel.accept();
          if (socketChannel != null) {
 
+            // Create receiver
+            final Receiver receiver = new Receiver(selector, requestDispatcher, clock, getNetworkTimeoutMillis());
+
             // Configure channel for non-blocking operation
             socketChannel.configureBlocking(false);
 
-            // NOTE: simeshev@cacheonix.org - 2015-10-19 - Configure the socket using self
-            // as a key processor because ACCEPT is going to be handled only once.
-            socketChannel.socket().setReceiveBufferSize(SystemProperty.BUFFER_SIZE);
-            socketChannel.register(selector, SelectionKey.OP_READ, this);
+            // Configure the socket
+            socketChannel.socket().setReceiveBufferSize(BUFFER_SIZE);
+            socketChannel.register(selector, SelectionKey.OP_READ, receiver);
          }
       } catch (final IOException e) {
          throw new UnrecoverableAcceptException(e);
