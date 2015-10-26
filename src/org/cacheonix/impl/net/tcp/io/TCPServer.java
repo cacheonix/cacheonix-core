@@ -194,8 +194,8 @@ public final class TCPServer implements Shutdownable {
       closeHard(serverSocketChannel);
       try {
          selector.selectNow();
-      } catch (final IOException ignored) {
-         ignoreException(ignored, "Shutting down");
+      } catch (final IOException e) {
+         ignoreException(e, "Shutting down");
       }
 
       // Interrupt selector thread. This should unblock any NIO operations.
@@ -232,15 +232,6 @@ public final class TCPServer implements Shutdownable {
    final String getAddress() {
 
       return endpoint.getHostName();
-   }
-
-
-   /**
-    * @return TCP tcpPort this server accepts requests at
-    */
-   final int getTcpPort() {
-
-      return endpoint.getPort();
    }
 
 
