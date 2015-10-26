@@ -26,7 +26,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 import org.cacheonix.impl.clock.Clock;
-import org.cacheonix.impl.config.SystemProperty;
 import org.cacheonix.impl.net.processor.Frame;
 import org.cacheonix.impl.net.processor.Message;
 import org.cacheonix.impl.net.processor.ReceiverAddress;
@@ -38,6 +37,12 @@ import org.cacheonix.impl.net.serializer.SerializerFactory;
 import org.cacheonix.impl.util.IOUtils;
 import org.cacheonix.impl.util.exception.ExceptionUtils;
 import org.cacheonix.impl.util.logging.Logger;
+
+import static java.nio.channels.SelectionKey.OP_CONNECT;
+import static java.nio.channels.SelectionKey.OP_READ;
+import static java.nio.channels.SelectionKey.OP_WRITE;
+import static org.cacheonix.impl.config.SystemProperty.BUFFER_SIZE;
+import static org.cacheonix.impl.net.processor.Response.RESULT_INACCESSIBLE;
 
 /**
  * A message sender associated with a particular ClusterNodeAddress. The sender lives until the server is shutdown.
@@ -167,12 +172,12 @@ final class Sender extends KeyHandler {
 
                // Finish channel connect
                channel.finishConnect();
-               channel.socket().setSendBufferSize(SystemProperty.BUFFER_SIZE);
-               channel.socket().setReceiveBufferSize(SystemProperty.BUFFER_SIZE);
+               channel.socket().setSendBufferSize(BUFFER_SIZE);
+               channel.socket().setReceiveBufferSize(BUFFER_SIZE);
 
                // Unregister interest in OP_CONNECT and register in OP_READ. OP_READ provides
                // information about the other side closing the channel
-               key.interestOps(SelectionKey.OP_READ);
+               key.interestOps(OP_READ);
 
                //
                //noinspection ControlFlowStatementWithoutBraces
@@ -467,7 +472,7 @@ final class Sender extends KeyHandler {
          leftover = null;
 
          // Unregister interest in write
-         key.interestOps(SelectionKey.OP_READ);
+         key.interestOps(OP_READ);
 
          // Call self again just in case there is more space in the output socket buffer
          handleWrite(key);
@@ -512,7 +517,7 @@ final class Sender extends KeyHandler {
          if (bytesWritten < bytesToWrite) {
 
             // Did not finish writing, register interest in write
-            key.interestOps(SelectionKey.OP_WRITE | SelectionKey.OP_READ);
+            key.interestOps(OP_WRITE | OP_READ);
 
             // Register leftover buffer
             leftover = buffer;
@@ -562,7 +567,7 @@ final class Sender extends KeyHandler {
       final Request request = Request.toRequest(message);
       if (request != null) {
 
-         final Response errorResponse = request.createResponse(Response.RESULT_INACCESSIBLE, errorDescription);
+         final Response errorResponse = request.createResponse(RESULT_INACCESSIBLE, errorDescription);
          errorResponse.setClusterUUID(request.getClusterUUID());
          router.route(errorResponse);
       }
@@ -601,7 +606,7 @@ final class Sender extends KeyHandler {
             final InetSocketAddress inetSocketAddress = new InetSocketAddress(address, tcpPort);
             socketChannel = SocketChannel.open();
             socketChannel.configureBlocking(false);
-            socketChannel.register(selector(), SelectionKey.OP_CONNECT, this);
+            socketChannel.register(selector(), OP_CONNECT, this);
             socketChannel.connect(inetSocketAddress);
 
             // Register activity because it is possible that the request to begin
