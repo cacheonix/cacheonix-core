@@ -57,6 +57,8 @@ import java.util.zip.ZipOutputStream;
 import org.cacheonix.impl.util.exception.ExceptionUtils;
 import org.cacheonix.impl.util.logging.Logger;
 
+import static org.cacheonix.impl.util.exception.ExceptionUtils.ignoreException;
+
 /**
  */
 public final class IOUtils {
@@ -1011,7 +1013,7 @@ public final class IOUtils {
             // Close channel
             channel.close();
          } catch (final Exception e) {
-            ExceptionUtils.ignoreException(e, "closing hard");
+            ignoreException(e, "closing hard");
          }
       }
    }
@@ -1032,7 +1034,7 @@ public final class IOUtils {
          selector.selectNow();
          selector.close();
       } catch (final Exception e) {
-         ExceptionUtils.ignoreException(e, "closing hard");
+         ignoreException(e, "closing hard");
       }
    }
 
@@ -1049,7 +1051,7 @@ public final class IOUtils {
       try {
          selector.selectNow();
       } catch (final IOException ignored) {
-         ExceptionUtils.ignoreException(ignored, "closing hard");
+         ignoreException(ignored, "closing hard");
       }
    }
 
