@@ -97,7 +97,7 @@ final class Receiver extends KeyHandler {
 
 
    public Receiver(final Selector selector, final TCPRequestDispatcher requestDispatcher, final Clock clock,
-                   final long socketTimeoutMillis) {
+           final long socketTimeoutMillis) {
 
       super(selector, socketTimeoutMillis);
       this.requestDispatcher = requestDispatcher;
@@ -105,34 +105,55 @@ final class Receiver extends KeyHandler {
    }
 
 
-   /**
-    * Receiver is not handling connects.
-    *
-    * @param key key to process
-    * @throws IllegalStateException
-    */
-   public void handleFinishConnect(final SelectionKey key) throws IllegalStateException {
+   public void handleKey(final SelectionKey key) throws InterruptedException {
 
-      throw new IllegalStateException("Receiver is not handling connects");
+      if (key.isAcceptable()) {
+
+         handleAccept(key);
+      } else if (key.isReadable()) {
+
+         // Socket is ready for read
+         handleRead(key);
+
+      }
    }
 
 
    /**
-    * Receiver is not handling writes.
+    * {@inheritDoc}
+    * <p/>
+    * This implementation accepts the connection request and registers and new Reader with the selector.
     *
-    * @param key key to process
-    * @throws IllegalStateException
+    * @see #selector()
     */
-   public void handleWrite(final SelectionKey key) {
+   private void handleAccept(final SelectionKey key) throws UnrecoverableAcceptException {
+      // Server channel is ready to accept
 
-      throw new IllegalStateException("Receiver is not handling writes");
+      final ServerSocketChannel serverSocketChannel = (ServerSocketChannel) key.channel();
+      try {
+         final SocketChannel socketChannel = serverSocketChannel.accept();
+         if (socketChannel != null) {
+
+            // Create receiver
+            final Receiver receiver = new Receiver(selector, requestDispatcher, clock, getNetworkTimeoutMillis());
+
+            // Configure channel for non-blocking operation
+            socketChannel.configureBlocking(false);
+
+            // Configure the socket
+            socketChannel.socket().setReceiveBufferSize(BUFFER_SIZE);
+            socketChannel.register(selector, SelectionKey.OP_READ, receiver);
+         }
+      } catch (final IOException e) {
+         throw new UnrecoverableAcceptException(e);
+      }
    }
 
 
    /**
     * {@inheritDoc}
     */
-   public void handleRead(final SelectionKey key) throws InterruptedException {
+   private void handleRead(final SelectionKey key) throws InterruptedException {
 
       final SocketChannel channel = (SocketChannel) key.channel();
 
@@ -321,37 +342,6 @@ final class Receiver extends KeyHandler {
          // Should not be necessary because the chanel and the key
          // are discarded, but for the symmetry sake we have it.
          state = READING_SIGNATURE;
-      }
-   }
-
-
-   /**
-    * {@inheritDoc}
-    * <p/>
-    * This implementation accepts the connection request and registers and new Reader with the selector.
-    *
-    * @see #selector()
-    */
-   public void handleAccept(final SelectionKey key) throws UnrecoverableAcceptException {
-      // Server channel is ready to accept
-
-      final ServerSocketChannel serverSocketChannel = (ServerSocketChannel) key.channel();
-      try {
-         final SocketChannel socketChannel = serverSocketChannel.accept();
-         if (socketChannel != null) {
-
-            // Create receiver
-            final Receiver receiver = new Receiver(selector, requestDispatcher, clock, getNetworkTimeoutMillis());
-
-            // Configure channel for non-blocking operation
-            socketChannel.configureBlocking(false);
-
-            // Configure the socket
-            socketChannel.socket().setReceiveBufferSize(BUFFER_SIZE);
-            socketChannel.register(selector, SelectionKey.OP_READ, receiver);
-         }
-      } catch (final IOException e) {
-         throw new UnrecoverableAcceptException(e);
       }
    }
 

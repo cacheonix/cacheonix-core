@@ -50,6 +50,18 @@ abstract class KeyHandler {
    }
 
 
+   public abstract void handleKey(final SelectionKey key) throws InterruptedException;
+
+
+   /**
+    * Processes a key being idle
+    *
+    * @param idleKey key to process
+    * @throws InterruptedException if this thread was interrupted.
+    */
+   public abstract void handleIdle(SelectionKey idleKey) throws InterruptedException;
+
+
    /**
     * Registers the fact that there was an activity on this channel by resetting the timeout.
     */
@@ -89,50 +101,11 @@ abstract class KeyHandler {
 
 
    /**
-    * Processes readiness for OP_CONNECT.
-    *
-    * @param key key to process
-    * @throws InterruptedException if this thread was interrupted.
-    */
-   public abstract void handleFinishConnect(SelectionKey key) throws InterruptedException;
-
-
-   /**
-    * Processes readiness for OP_WRITE.
-    *
-    * @param key key to process
-    * @throws InterruptedException if this thread was interrupted.
-    */
-   public abstract void handleWrite(SelectionKey key) throws InterruptedException;
-
-
-   /**
-    * Processes readiness for OP_READ
-    *
-    * @param key key to process
-    * @throws InterruptedException if this thread was interrupted.
-    */
-   public abstract void handleRead(SelectionKey key) throws InterruptedException;
-
-
-   /**
-    * Processes a key being idle
-    *
-    * @param idleKey key to process
-    * @throws InterruptedException if this thread was interrupted.
-    */
-   public abstract void handleIdle(SelectionKey idleKey) throws InterruptedException;
-
-
-   /**
     * Processes timeout.
     *
     * @param key a key to process.
     */
    protected abstract void handleTimeout(final SelectionKey key);
-
-
-   public abstract void handleAccept(final SelectionKey key) throws UnrecoverableAcceptException;
 
 
    /**

@@ -129,7 +129,7 @@ final class Sender extends KeyHandler {
     * @param clock                this cluster node's clock.
     */
    public Sender(final Selector selector, final ReceiverAddress receiverAddress,
-                 final Router router, final long networkTimeoutMillis, final Clock clock) {
+           final Router router, final long networkTimeoutMillis, final Clock clock) {
 
       super(selector, networkTimeoutMillis);
       this.receiverAddress = receiverAddress;
@@ -139,23 +139,12 @@ final class Sender extends KeyHandler {
 
 
    /**
-    * Sender does not handle accept.
-    *
-    * @param key a key.
-    */
-   public void handleAccept(final SelectionKey key) {
-
-      throw new IllegalStateException("Sender doesn't handle accept");
-   }
-
-
-   /**
     * Processes readiness for OP_CONNECT
     *
     * @param key key to process
     * @throws InterruptedException if this thread was interrupted.
     */
-   public void handleFinishConnect(final SelectionKey key) throws InterruptedException {
+   private void handleFinishConnect(final SelectionKey key) throws InterruptedException {
 
       final SocketChannel channel = socketChannel(key);
 
@@ -450,6 +439,29 @@ final class Sender extends KeyHandler {
 
          // Create a non-blocking socket channel and register the channel and the sender
          beginConnecting(true);
+      }
+   }
+
+
+   public void handleKey(final SelectionKey key) throws InterruptedException {
+
+      if (key.isConnectable()) {
+
+         // Channel is ready to finish connection
+         handleFinishConnect(key);
+
+      } else if (key.isWritable()) { // NOPMD
+
+         // Socket channel is ready for write
+         handleWrite(key);
+
+      } else if (key.isReadable()) { // NOPMD
+
+         // Socket channel is ready for write
+         handleRead(key);
+
+      } else {
+         throw new IllegalArgumentException("Key is not supported: " + key);
       }
    }
 

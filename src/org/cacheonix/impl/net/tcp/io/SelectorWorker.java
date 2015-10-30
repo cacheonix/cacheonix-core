@@ -147,29 +147,8 @@ public class SelectorWorker implements Runnable {
             // Handle key state
 
             final KeyHandler keyHandler = (KeyHandler) key.attachment();
-            if (key.isConnectable()) {
-
-               // Channel is ready to finish connection
-               keyHandler.registerActivity();
-               keyHandler.handleFinishConnect(key);
-
-            } else if (key.isWritable()) { // NOPMD
-
-               // Socket channel is ready for write
-               keyHandler.registerActivity();
-               keyHandler.handleWrite(key);
-
-            } else if (key.isReadable()) {
-
-               // Socket is ready for read
-               keyHandler.registerActivity();
-               keyHandler.handleRead(key);
-
-            } else if (key.isAcceptable()) {
-
-               keyHandler.registerActivity();
-               keyHandler.handleAccept(key);
-            }
+            keyHandler.registerActivity();
+            keyHandler.handleKey(key);
          }
       }
 
