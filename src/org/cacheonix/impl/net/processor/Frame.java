@@ -44,7 +44,7 @@ public final class Frame {
    /**
     * This is a calculated header length. Do not change it!
     */
-   public static final int HEADER_LENGTH = 82;
+   public static final int HEADER_LENGTH = 78;
 
    /**
     * Maximum multicast datagram size.
@@ -94,12 +94,6 @@ public final class Frame {
     * Maximum length
     */
    private int maximumMessageLength = 0;
-
-   /**
-    * A quick message type look up handler. Message type can be used for custom serialization to avoid writing class
-    * names produced by an ObjectOutputStream when writing an Externalizable messages.
-    */
-   private int messageType = -1;
 
    /**
     * An IP address of the machine that sent this frame. This field is set only if this is a received frame and it was
@@ -168,12 +162,10 @@ public final class Frame {
    }
 
 
-   public Frame(final int maximumMessageLength, final int messageType, final Serializer serializer,
-                final byte compressionType, final long sequenceNumber, final Object payloadObject) throws
-           IOException {
+   public Frame(final int maximumMessageLength, final Serializer serializer, final byte compressionType,
+           final long sequenceNumber, final Object payloadObject) throws IOException {
 
       this.maximumMessageLength = maximumMessageLength;
-      this.messageType = messageType;
       this.serializerType = serializer.getType();
       this.compressionType = compressionType;
       this.sequenceNumber = sequenceNumber;
@@ -201,17 +193,6 @@ public final class Frame {
       this.partCount = partCount;
       this.partIndex = partIndex;
       this.setPayload(part);
-   }
-
-
-   /**
-    * Returns packet type.
-    *
-    * @return packet type.
-    */
-   public int getMessageType() {
-
-      return messageType;
    }
 
 
@@ -370,7 +351,6 @@ public final class Frame {
 
       dos.writeByte(serializerType);
       dos.writeInt(maximumMessageLength);
-      dos.writeInt(messageType);
       SerializerUtils.writeInetAddress(senderInetAddress, dos, true);
       dos.writeByte(compressionType);
       dos.writeLong(sequenceNumber);
@@ -433,7 +413,6 @@ public final class Frame {
 
       serializerType = dis.readByte();
       maximumMessageLength = dis.readInt();
-      messageType = dis.readInt();
       senderInetAddress = SerializerUtils.readInetAddress(dis, true);
       compressionType = dis.readByte();
       sequenceNumber = dis.readLong();
@@ -503,9 +482,6 @@ public final class Frame {
       if (maximumMessageLength != frame.maximumMessageLength) {
          return false;
       }
-      if (messageType != frame.messageType) {
-         return false;
-      }
       if (partCount != frame.partCount) {
          return false;
       }
@@ -538,7 +514,6 @@ public final class Frame {
    public int hashCode() {
 
       int result = maximumMessageLength;
-      result = 31 * result + messageType;
       result = 31 * result + (senderInetAddress != null ? senderInetAddress.hashCode() : 0);
       result = 31 * result + (int) serializerType;
       result = 31 * result + (int) compressionType;
@@ -585,7 +560,6 @@ public final class Frame {
 
       return "Frame{" +
               "clusterUUID=" + clusterUUID +
-              ", messageType=" + messageType +
               ", senderInetAddress=" + senderInetAddress +
               ", sequenceNumber=" + sequenceNumber +
               ", partCount=" + partCount +

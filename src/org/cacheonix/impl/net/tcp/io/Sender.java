@@ -513,7 +513,7 @@ final class Sender extends KeyHandler {
 
          // Convert the message to a byte array
          final ByteArrayOutputStream baos = new ByteArrayOutputStream(512);
-         final Frame requestFrame = new Frame(Integer.MAX_VALUE, message.getWireableType(),
+         final Frame requestFrame = new Frame(Integer.MAX_VALUE,
                  serializer, Frame.NO_COMPRESSION, 0L, message);
          requestFrame.write(baos);
          baos.flush();

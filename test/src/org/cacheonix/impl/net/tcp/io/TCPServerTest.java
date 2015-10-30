@@ -102,7 +102,7 @@ public final class TCPServerTest extends CacheonixTestCase {
    private void writeFrame() throws IOException, InterruptedException {
       // Create frame
       final JoinRequest joinRequest = new JoinRequest(TestUtils.createTestAddress(1));
-      final Frame frame = new Frame(Integer.MAX_VALUE, joinRequest.getWireableType(), serializer,
+      final Frame frame = new Frame(Integer.MAX_VALUE, serializer,
               Frame.NO_COMPRESSION, 0L, joinRequest);
 
       // Send frame
