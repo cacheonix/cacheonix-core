@@ -85,13 +85,13 @@ public final class ClusterAnnouncementTest extends TestCase {
    }
 
 
-   public void getClusterUUID() {
+   public void testGetClusterUUID() {
 
       assertNotNull(clusterAnnouncement.getClusterUUID());
    }
 
 
-   public void testSerialize() throws IOException, ClassNotFoundException {
+   public void testSerialize() throws IOException {
 
       final Serializer serializer = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
       final byte[] bytes = serializer.serialize(clusterAnnouncement);
