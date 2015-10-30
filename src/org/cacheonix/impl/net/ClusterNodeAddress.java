@@ -65,11 +65,6 @@ public final class ClusterNodeAddress implements Comparable, Wireable {
    private int tcpPort = 0;
 
    /**
-    * Resolved host name or string representation of the
-    */
-   private String hostName = null;
-
-   /**
     * List of InetAddresses.
     *
     * @see InetAddress
@@ -90,10 +85,9 @@ public final class ClusterNodeAddress implements Comparable, Wireable {
    /**
     * @noinspection UnnecessaryThis, JavaDoc
     */
-   public ClusterNodeAddress(final int port, final String hostName, final InetAddress[] addresses) {
+   public ClusterNodeAddress(final int port, final InetAddress[] addresses) {
 
       this.tcpPort = port;
-      this.hostName = hostName;
       this.addresses = ArrayUtils.copy(addresses);
       this.precalculatedHashCode = calculateHashCode();
       this.coreCount = Runtime.getRuntime().availableProcessors();
@@ -122,15 +116,6 @@ public final class ClusterNodeAddress implements Comparable, Wireable {
    public InetAddress[] getAddresses() {
 
       return ArrayUtils.copy(addresses);
-   }
-
-
-   /**
-    * @return resolved host name or string representation of the IP address.
-    */
-   public String getHostName() {
-
-      return hostName;
    }
 
 
@@ -197,9 +182,6 @@ public final class ClusterNodeAddress implements Comparable, Wireable {
       if (coreCount != other.coreCount) {
          return false;
       }
-      if (!hostName.equals(other.hostName)) {
-         return false;
-      }
       return true;
    }
 
@@ -209,7 +191,6 @@ public final class ClusterNodeAddress implements Comparable, Wireable {
       final HashCode hashCode = new HashCode(HashCodeType.STRONG);
       hashCode.add(tcpPort);
       hashCode.add(coreCount);
-      hashCode.add(hostName);
       hashCode.add(IOUtils.inetAddressesHashCode(addresses));
       return hashCode.getValue();
    }
@@ -276,14 +257,6 @@ public final class ClusterNodeAddress implements Comparable, Wireable {
          return -1;
       }
 
-      final int hostNameCompare = hostName.compareTo(other.hostName);
-      if (hostNameCompare > 0) {
-         return 1;
-      }
-      if (hostNameCompare < 0) {
-         return -1;
-      }
-
       return 0;
    }
 
@@ -299,21 +272,18 @@ public final class ClusterNodeAddress implements Comparable, Wireable {
    public static ClusterNodeAddress createAddress(final String address, final int port) throws IOException {
 
       final List<InetAddress> inetAddressList = new ArrayList<InetAddress>(3);
-      final String hostName;
       if (StringUtils.isBlank(address)) {
 
          inetAddressList.addAll(NetUtils.getLocalInetAddresses());
-         hostName = InetAddress.getLocalHost().getHostName();
       } else {
 
          final InetAddress inetAddress = InetAddress.getByName(address);
-         hostName = inetAddress.getHostName();
          inetAddressList.add(inetAddress);
       }
 
       final InetAddress[] inetAddresses = inetAddressList.toArray(new InetAddress[inetAddressList.size()]);
 
-      return new ClusterNodeAddress(port, hostName, inetAddresses);
+      return new ClusterNodeAddress(port, inetAddresses);
    }
 
 
@@ -389,7 +359,6 @@ public final class ClusterNodeAddress implements Comparable, Wireable {
       out.writeInt(tcpPort);
       out.writeShort(coreCount);
       out.writeInt(precalculatedHashCode);
-      SerializerUtils.writeString(hostName, out);
    }
 
 
@@ -407,13 +376,12 @@ public final class ClusterNodeAddress implements Comparable, Wireable {
       tcpPort = in.readInt();
       coreCount = in.readShort();
       precalculatedHashCode = in.readInt();
-      hostName = SerializerUtils.readString(in);
    }
 
 
    public String toString() {
 
-      return hostName + ':' + tcpPort;
+      return Arrays.toString(addresses) + ':' + tcpPort;
    }
 
 

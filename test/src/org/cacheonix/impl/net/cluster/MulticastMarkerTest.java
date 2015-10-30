@@ -54,15 +54,13 @@ public final class MulticastMarkerTest extends CacheonixTestCase {
 
    private static final int NUMBER_7 = 7;
 
-   private static final String TEST_HOST_NAME = "test_host_name";
+   private static final ClusterNodeAddress JOIN = new ClusterNodeAddress(TCP_PORT, new InetAddress[]{IP_ADDRESS});
 
-   private static final ClusterNodeAddress JOIN = new ClusterNodeAddress(TCP_PORT, TEST_HOST_NAME, new InetAddress[]{IP_ADDRESS});
+   private static final ClusterNodeAddress LEAVE = new ClusterNodeAddress(TCP_PORT, new InetAddress[]{IP_ADDRESS});
 
-   private static final ClusterNodeAddress LEAVE = new ClusterNodeAddress(TCP_PORT, TEST_HOST_NAME, new InetAddress[]{IP_ADDRESS});
+   private static final ClusterNodeAddress ORIGINATOR = new ClusterNodeAddress(TCP_PORT, new InetAddress[]{IP_ADDRESS});
 
-   private static final ClusterNodeAddress ORIGINATOR = new ClusterNodeAddress(TCP_PORT, TEST_HOST_NAME, new InetAddress[]{IP_ADDRESS});
-
-   private static final ClusterNodeAddress PREDECESSOR = new ClusterNodeAddress(TCP_PORT, TEST_HOST_NAME, new InetAddress[]{IP_ADDRESS});
+   private static final ClusterNodeAddress PREDECESSOR = new ClusterNodeAddress(TCP_PORT, new InetAddress[]{IP_ADDRESS});
 
    private static final int PROFILING_ITERATION_COUNT = 10000;
 
