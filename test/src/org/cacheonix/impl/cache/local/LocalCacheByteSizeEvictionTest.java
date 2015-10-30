@@ -85,7 +85,7 @@ public final class LocalCacheByteSizeEvictionTest extends CacheonixTestCase {
 
    private static final int ZERO_IDLE_TIME_MILLIS = 0;
 
-   private static final int EXPECTED_SIZE_1344 = 1344;
+   private static final int EXPECTED_SIZE_1201 = 1201;
 
    private LocalCache cache = null;
 
@@ -103,7 +103,7 @@ public final class LocalCacheByteSizeEvictionTest extends CacheonixTestCase {
          assertTrue(cache.getSizeBytes() > 0);
          assertTrue(cache.getSizeBytes() <= MAX_SIZE_BYTES);
       }
-      assertEquals(1329, cache.size());
+      assertEquals(1190, cache.size());
 
       // Check how clear behaves
       cache.clear();
@@ -131,7 +131,7 @@ public final class LocalCacheByteSizeEvictionTest extends CacheonixTestCase {
    public void testClear() {
 
       populate(PUT_SIZE);
-      assertEquals(EXPECTED_SIZE_1344, cache.size());
+      assertEquals(EXPECTED_SIZE_1201, cache.size());
       cache.clear();
       assertEquals(0, cache.size());
       assertEquals(0, cache.getSizeBytes());
@@ -160,7 +160,7 @@ public final class LocalCacheByteSizeEvictionTest extends CacheonixTestCase {
    public void testEntrySet() {
 
       populate(PUT_SIZE);
-      assertEquals(EXPECTED_SIZE_1344, cache.entrySet().size());
+      assertEquals(EXPECTED_SIZE_1201, cache.entrySet().size());
    }
 
 
@@ -175,7 +175,7 @@ public final class LocalCacheByteSizeEvictionTest extends CacheonixTestCase {
    public void testKeySet() {
 
       populate(PUT_SIZE);
-      assertEquals(EXPECTED_SIZE_1344, cache.keySet().size());
+      assertEquals(EXPECTED_SIZE_1201, cache.keySet().size());
    }
 
 
@@ -187,7 +187,7 @@ public final class LocalCacheByteSizeEvictionTest extends CacheonixTestCase {
          entries.put(makeKey(i), makeValue(i));
       }
       cache.putAll(entries);
-      assertEquals(1344, cache.size());
+      assertEquals(1202, cache.size());
    }
 
 
@@ -197,7 +197,7 @@ public final class LocalCacheByteSizeEvictionTest extends CacheonixTestCase {
       final String key = makeKey(0);
       final String value = makeValue(0);
       assertEquals(value, cache.remove(key));
-      assertEquals(843, cache.size());
+      assertEquals(821, cache.size());
       assertNull(cache.get(key));
    }
 
@@ -205,18 +205,18 @@ public final class LocalCacheByteSizeEvictionTest extends CacheonixTestCase {
    public void testSize() {
 
       populate(PUT_SIZE);
-      assertEquals(EXPECTED_SIZE_1344, cache.size());
+      assertEquals(EXPECTED_SIZE_1201, cache.size());
       cache.put(makeKey(PUT_SIZE + 1), makeValue(PUT_SIZE + 1));
-      assertEquals(EXPECTED_SIZE_1344, cache.size());
+      assertEquals(EXPECTED_SIZE_1201, cache.size());
    }
 
 
    public void testValues() {
 
       populate(PUT_SIZE);
-      assertEquals(EXPECTED_SIZE_1344, cache.values().size());
+      assertEquals(EXPECTED_SIZE_1201, cache.values().size());
       cache.put(makeKey(PUT_SIZE + 1), makeValue(PUT_SIZE + 1));
-      assertEquals(EXPECTED_SIZE_1344, cache.values().size());
+      assertEquals(EXPECTED_SIZE_1201, cache.values().size());
    }
 
 
