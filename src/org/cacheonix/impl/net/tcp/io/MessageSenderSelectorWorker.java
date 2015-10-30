@@ -132,21 +132,17 @@ final class MessageSenderSelectorWorker extends SelectorWorker {
       }
 
 
-      final Sender existingSender = senders.get(receiverAddress);
-      if (existingSender == null) {
+      Sender sender = senders.get(receiverAddress);
+      if (sender == null) {
 
          // Sender does not exist - create
-         final Sender newSender = new Sender(selector, receiverAddress, router, networkTimeoutMillis, clock);
-
-         // Enqueue message
-         newSender.enqueue(message);
+         sender = new Sender(selector, receiverAddress, router, networkTimeoutMillis, clock);
 
          // Register the sender
-         senders.put(receiverAddress, newSender);
-      } else {
+         senders.put(receiverAddress, sender);
 
-         // Existing sender - just enqueue
-         existingSender.enqueue(message);
+         // Enqueue message
+         sender.enqueue(message);
       }
    }
 }
