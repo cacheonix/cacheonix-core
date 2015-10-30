@@ -33,7 +33,7 @@ import org.cacheonix.impl.util.ArrayUtils;
 public final class ReceiverAddress implements Wireable, Immutable {
 
    /**
-    * Maker used by WireableFactory.
+    * Builder used by WireableFactory.
     */
    public static final WireableBuilder BUILDER = new Builder();
 

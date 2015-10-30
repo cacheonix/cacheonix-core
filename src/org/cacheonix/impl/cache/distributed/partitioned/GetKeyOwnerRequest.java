@@ -34,7 +34,7 @@ import org.cacheonix.impl.net.serializer.WireableBuilder;
 public class GetKeyOwnerRequest extends ClusterRequest {
 
    /**
-    * Maker used by WireableFactory.
+    * Builder used by WireableFactory.
     */
    public static final WireableBuilder BUILDER = new Builder();
 

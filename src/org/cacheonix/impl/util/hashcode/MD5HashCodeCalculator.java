@@ -34,7 +34,7 @@ import org.cacheonix.impl.util.logging.Logger;
 public final class MD5HashCodeCalculator implements HashCodeCalculator, Wireable {
 
    /**
-    * Maker used by WireableFactory.
+    * Builder used by WireableFactory.
     */
    public static final WireableBuilder BUILDER = new Builder();
 

@@ -38,7 +38,7 @@ import org.cacheonix.impl.util.array.ObjectProcedure;
 public final class EntryModifiedSubscription implements Wireable {
 
    /**
-    * Maker used by WireableFactory.
+    * Builder used by WireableFactory.
     */
    public static final WireableBuilder BUILDER = new Builder();
 

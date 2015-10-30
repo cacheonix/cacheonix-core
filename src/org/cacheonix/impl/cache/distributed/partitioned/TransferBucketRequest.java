@@ -42,7 +42,7 @@ import org.cacheonix.impl.util.logging.Logger;
 public final class TransferBucketRequest extends CacheRequest {
 
    /**
-    * Maker used by WireableFactory.
+    * Builder used by WireableFactory.
     */
    public static final WireableBuilder BUILDER = new Builder();
 

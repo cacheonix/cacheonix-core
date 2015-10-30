@@ -25,7 +25,7 @@ import org.cacheonix.impl.net.serializer.WireableBuilder;
 public final class ShutdownCacheProcessorMessage extends LocalCacheMessage {
 
    /**
-    * Maker used by WireableFactory.
+    * Builder used by WireableFactory.
     */
    public static final WireableBuilder BUILDER = new Builder();
 

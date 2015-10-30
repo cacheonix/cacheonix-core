@@ -31,7 +31,7 @@ import org.cacheonix.impl.util.Assert;
 public final class LockQueue implements Wireable {
 
    /**
-    * Maker used by WireableFactory.
+    * Builder used by WireableFactory.
     */
    public static final WireableBuilder BUILDER = new Builder();
 

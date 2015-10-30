@@ -37,7 +37,7 @@ import org.cacheonix.impl.util.logging.Logger;
 public final class MulticastFrameMessage extends Message implements SenderInetAddressAware {
 
    /**
-    * Maker used by WireableFactory.
+    * Builder used by WireableFactory.
     */
    public static final WireableBuilder BUILDER = new Builder();
 

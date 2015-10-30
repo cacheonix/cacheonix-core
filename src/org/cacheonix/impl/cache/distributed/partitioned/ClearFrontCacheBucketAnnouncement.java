@@ -40,7 +40,7 @@ import org.cacheonix.impl.util.array.IntArrayList;
 public final class ClearFrontCacheBucketAnnouncement extends Request {
 
    /**
-    * Maker used by WireableFactory.
+    * Builder used by WireableFactory.
     */
    public static final WireableBuilder BUILDER = new Builder();
 

@@ -42,7 +42,7 @@ import org.cacheonix.util.HashCodeType;
 public final class ClusterNodeAddress implements Comparable, Wireable {
 
    /**
-    * Maker used by WireableFactory.
+    * Builder used by WireableFactory.
     */
    public static final WireableBuilder BUILDER = new Builder();
 

@@ -42,7 +42,7 @@ import org.cacheonix.impl.util.logging.Logger;
 public final class ClusterViewImpl implements ClusterView {
 
    /**
-    * Maker used by WireableFactory.
+    * Builder used by WireableFactory.
     */
    public static final WireableBuilder BUILDER = new Builder();
 

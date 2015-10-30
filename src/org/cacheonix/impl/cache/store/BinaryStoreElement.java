@@ -64,7 +64,7 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
    private static final Logger LOG = Logger.getLogger(BinaryStoreElement.class); // NOPMD
 
    /**
-    * Maker used by WireableFactory.
+    * Builder used by WireableFactory.
     */
    public static final WireableBuilder BUILDER = new Builder();
 
