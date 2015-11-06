@@ -19,10 +19,10 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.util.Arrays;
 
+import junit.framework.TestCase;
 import org.cacheonix.impl.net.Protocol;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.util.logging.Logger;
-import junit.framework.TestCase;
 
 /**
  * Frame Tester.
@@ -85,6 +85,22 @@ public final class FrameTest extends TestCase {
       final Frame newFrame = new Frame();
       newFrame.read(bais);
       assertEquals(emptyFrame, newFrame);
+   }
+
+
+   public void testReadWriteNonEmptyFrame() throws IOException {
+
+      final Frame frame = new Frame(Integer.MAX_VALUE, Serializer.TYPE_JAVA, 0, 1, 0, "Test".getBytes());
+      frame.setSenderInetAddress(InetAddress.getByAddress(new byte[16]));
+
+      final ByteArrayOutputStream baos = new ByteArrayOutputStream(100);
+      frame.write(baos);
+      baos.flush();
+
+      final ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+      final Frame newFrame = new Frame();
+      newFrame.read(bais);
+      assertEquals(frame, newFrame);
    }
 
 
