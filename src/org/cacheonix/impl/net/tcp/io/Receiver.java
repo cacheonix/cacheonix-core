@@ -105,10 +105,11 @@ public final class Receiver implements Shutdownable {
            final RequestDispatcher requestDispatcher, final long socketTimeoutMillis,
            final long selectorTimeoutMillis) throws IOException {
 
-      //
-      this.selector = Selector.open();
-      this.selectorThread = new UserThreadFactory("Receiver:" + port).newThread(new ReceiverSelectorWorker(selector, socketTimeoutMillis, selectorTimeoutMillis));
       this.endpoint = createEndpoint(address, port);
+
+      this.selector = Selector.open();
+      this.selectorThread = new UserThreadFactory("Receiver:" + port).newThread(
+              new ReceiverSelectorWorker(selector, socketTimeoutMillis, selectorTimeoutMillis));
 
       // Create ServerSocketChannel
       serverSocketChannel = ServerSocketChannel.open();
@@ -116,7 +117,8 @@ public final class Receiver implements Shutdownable {
       try {
 
          // Create receiver key handler
-         final ReceiverKeyHandler receiverKeyHandler = new ReceiverKeyHandler(selector, requestDispatcher, clock, socketTimeoutMillis);
+         final ReceiverKeyHandler receiverKeyHandler = new ReceiverKeyHandler(selector, requestDispatcher, clock,
+                 socketTimeoutMillis);
 
          // Configure it as non-locking
          serverSocketChannel.configureBlocking(false);
@@ -138,21 +140,11 @@ public final class Receiver implements Shutdownable {
     */
    public void startup() throws IOException {
 
-      // Check preconditions
-      if (operationalStatus.get() == OPERATIONAL_STATUS_SHUTDOWN) {
-         throw new IllegalStateException("Cannot start the server that has been shutdown");
-      }
-
-      if (operationalStatus.get() == OPERATIONAL_STATUS_STARTED) {
-         throw new IllegalStateException("Cannot start the server that has already been started");
-      }
-
-      if (!operationalStatus.compareAndSet(OPERATIONAL_STATUS_NOT_STARTED, OPERATIONAL_STATUS_STARTED)) {
-         throw new IllegalStateException("Cannot start the server, operational status: " + operationalStatus.get());
-      }
-
       // Create endpoint and inform about starting
       LOG.info("Starting TCP server bound to " + StringUtils.toString(endpoint));
+
+      // Check preconditions
+      verifyStartable();
 
       // Bind sockets
       for (final SelectionKey selectionKey : selector.keys()) {
@@ -235,6 +227,22 @@ public final class Receiver implements Shutdownable {
    }
 
 
+   private void verifyStartable() {
+
+      if (operationalStatus.get() == OPERATIONAL_STATUS_SHUTDOWN) {
+         throw new IllegalStateException("Cannot start the server that has been shutdown");
+      }
+
+      if (operationalStatus.get() == OPERATIONAL_STATUS_STARTED) {
+         throw new IllegalStateException("Cannot start the server that has already been started");
+      }
+
+      if (!operationalStatus.compareAndSet(OPERATIONAL_STATUS_NOT_STARTED, OPERATIONAL_STATUS_STARTED)) {
+         throw new IllegalStateException("Cannot start the server, operational status: " + operationalStatus.get());
+      }
+   }
+
+
    private static InetSocketAddress createEndpoint(final String host, final int tcpPort) throws UnknownHostException {
 
       final InetSocketAddress endpoint;
@@ -271,7 +279,7 @@ public final class Receiver implements Shutdownable {
     * @return BindException with added information on the address for that the exception occurred.
     */
    private static BindException createDetailedBindException(final BindException originalException,
-                                                            final InetSocketAddress endpoint) {
+           final InetSocketAddress endpoint) {
 
       final String newMessage = originalException.getMessage() + ". Address: " + endpoint;
       final BindException newBindException = new BindException(newMessage);
