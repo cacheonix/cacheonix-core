@@ -28,7 +28,6 @@ import org.cacheonix.impl.net.processor.Frame;
 import org.cacheonix.impl.net.processor.Message;
 import org.cacheonix.impl.net.processor.SenderInetAddressAware;
 import org.cacheonix.impl.util.IOUtils;
-import org.cacheonix.impl.util.exception.ExceptionUtils;
 import org.cacheonix.impl.util.logging.Logger;
 
 import static org.cacheonix.impl.config.SystemProperty.BUFFER_SIZE;
@@ -135,7 +134,8 @@ final class ReceiverKeyHandler extends KeyHandler {
          if (socketChannel != null) {
 
             // Create receiverKeyHandler
-            final ReceiverKeyHandler receiverKeyHandler = new ReceiverKeyHandler(selector, requestDispatcher, clock, getNetworkTimeoutMillis());
+            final ReceiverKeyHandler receiverKeyHandler = new ReceiverKeyHandler(selector, requestDispatcher, clock,
+                    getNetworkTimeoutMillis());
 
             // Configure channel for non-blocking operation
             socketChannel.configureBlocking(false);
@@ -188,7 +188,11 @@ final class ReceiverKeyHandler extends KeyHandler {
                         for (int i = 0; i < Protocol.getProtocolSignatureLength(); i++) {
 
                            if (PROTOCOL_SIGNATURE_BYTES[i] != chunkedBuffer.get()) {
-                              throw new FrameFormatException("Invalid frame signature");
+
+                              // Throw en exception to exit the while loop
+
+                              //noinspection ThrowCaughtLocally
+                              throw new IOException("Invalid frame signature");
                            }
                         }
 
@@ -205,7 +209,11 @@ final class ReceiverKeyHandler extends KeyHandler {
                         // Consume magic number
                         final int magicNumber = chunkedBuffer.getInt();
                         if (magicNumber != Protocol.getProtocolMagicNumber()) {
-                           throw new FrameFormatException("Invalid magic number: " + magicNumber);
+
+                           // Throw en exception to exit the while loop
+
+                           //noinspection ThrowCaughtLocally
+                           throw new IOException("Invalid magic number: " + magicNumber);
                         }
 
 
@@ -222,7 +230,11 @@ final class ReceiverKeyHandler extends KeyHandler {
                         // Consume protocol version
                         final int protocolVersion = chunkedBuffer.getInt();
                         if (protocolVersion != Protocol.getProtocolVersion()) {
-                           throw new FrameFormatException("Invalid protocol version: " + protocolVersion);
+
+                           // Throw en exception to exit the while loop
+
+                           //noinspection ThrowCaughtLocally
+                           throw new IOException("Invalid protocol version: " + protocolVersion);
                         }
 
                         // Successfully have read the signature, switch to reading the magic number
@@ -259,12 +271,7 @@ final class ReceiverKeyHandler extends KeyHandler {
                         frame.readFrame(dis);
 
                         // Get message
-                        final Message message;
-                        try {
-                           message = (Message) Frame.getPayload(frame);
-                        } catch (final ClassNotFoundException e) {
-                           throw ExceptionUtils.createIOException(e);
-                        }
+                        final Message message = (Message) Frame.getPayload(frame);
 
                         // Set sender's inet address
                         if (message instanceof SenderInetAddressAware) {
@@ -289,7 +296,9 @@ final class ReceiverKeyHandler extends KeyHandler {
                      break;
                   default:
 
-                     // Unknown state
+                     // Unknown state, throw en exception to exit the while loop
+
+                     //noinspection ThrowCaughtLocally
                      throw new IOException("Unknown receiver state: " + state);
                }
             }
@@ -303,11 +312,7 @@ final class ReceiverKeyHandler extends KeyHandler {
             IOUtils.closeHard(channel);
          }
 
-      } catch (final IOException e) {
-
-         // Closing channel will cancel the key
-         IOUtils.closeHard(key);
-      } catch (final FrameFormatException e) {
+      } catch (final IOException ignored) {
 
          // Closing channel will cancel the key
          IOUtils.closeHard(key);

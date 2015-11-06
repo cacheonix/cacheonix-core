@@ -527,8 +527,7 @@ public final class Frame {
    }
 
 
-   public static Object getPayload(final Frame frame)
-           throws IOException, ClassNotFoundException {
+   public static Object getPayload(final Frame frame) throws IOException {
 
       if (frame.partCount == 1) {
          final SerializerFactory factory = SerializerFactory.getInstance();
