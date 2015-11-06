@@ -102,7 +102,7 @@ public final class Receiver implements Shutdownable {
     * @noinspection SocketOpenedButNotSafelyClosed, OverlyBroadCatchBlock
     */
    public Receiver(final Clock clock, final String address, final int port,
-           final TCPRequestDispatcher requestDispatcher, final long socketTimeoutMillis,
+           final RequestDispatcher requestDispatcher, final long socketTimeoutMillis,
            final long selectorTimeoutMillis) throws IOException {
 
       //

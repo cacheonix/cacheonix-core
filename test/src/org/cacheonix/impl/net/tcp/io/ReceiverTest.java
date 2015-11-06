@@ -137,7 +137,7 @@ public final class ReceiverTest extends CacheonixTestCase {
       serializer = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
 
       // Initialize server
-      final TCPRequestDispatcher requestDispatcher = new TCPRequestDispatcher() {
+      final RequestDispatcher requestDispatcher = new RequestDispatcher() {
 
          public void dispatch(final Message message) {
 

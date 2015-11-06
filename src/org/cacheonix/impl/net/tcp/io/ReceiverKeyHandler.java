@@ -93,10 +93,10 @@ final class ReceiverKeyHandler extends KeyHandler {
    private final ChunkedBuffer chunkedBuffer = new ChunkedBuffer();
 
 
-   private final TCPRequestDispatcher requestDispatcher;
+   private final RequestDispatcher requestDispatcher;
 
 
-   public ReceiverKeyHandler(final Selector selector, final TCPRequestDispatcher requestDispatcher, final Clock clock,
+   public ReceiverKeyHandler(final Selector selector, final RequestDispatcher requestDispatcher, final Clock clock,
            final long socketTimeoutMillis) {
 
       super(selector, socketTimeoutMillis);
