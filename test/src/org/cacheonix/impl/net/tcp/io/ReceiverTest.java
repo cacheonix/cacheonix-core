@@ -73,20 +73,7 @@ public final class ReceiverTest extends CacheonixTestCase {
    public void testReceivesOneMessage() throws Exception {
 
       writeFrame();
-
-      lock.lock();
-      try {
-
-         boolean receivedAll = !received.isEmpty();
-         while (!receivedAll) {
-
-            condition.await(10, TimeUnit.MILLISECONDS);
-            receivedAll = !received.isEmpty(); // NOPMD
-         }
-      } finally {
-
-         lock.unlock();
-      }
+      waitForReceivedQueueSize(1);
       assertEquals(1, received.size());
    }
 
@@ -95,11 +82,30 @@ public final class ReceiverTest extends CacheonixTestCase {
 
       writeFrame();
       writeFrame();
+      waitForReceivedQueueSize(2);
       assertEquals(2, received.size());
    }
 
 
-   private void writeFrame() throws IOException, InterruptedException {
+   private void waitForReceivedQueueSize(final int expectedSize) throws InterruptedException {
+
+      lock.lock();
+      try {
+
+         boolean receivedAll = received.size() >= expectedSize;
+         while (!receivedAll) {
+
+            condition.await(10, TimeUnit.MILLISECONDS);
+            receivedAll = received.size() >= expectedSize; // NOPMD
+         }
+      } finally {
+
+         lock.unlock();
+      }
+   }
+
+
+   private void writeFrame() throws IOException {
       // Create frame
       final JoinRequest joinRequest = new JoinRequest(TestUtils.createTestAddress(1));
       final Frame frame = new Frame(Integer.MAX_VALUE, serializer,
@@ -112,7 +118,6 @@ public final class ReceiverTest extends CacheonixTestCase {
       os.flush();
       os.close();
       socket.close();
-      Thread.sleep(100);
    }
 
 
