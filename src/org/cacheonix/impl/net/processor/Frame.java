@@ -311,7 +311,7 @@ public final class Frame {
 
    private int getFrameSize() {
 
-      return 1 + 4 + 4 + 1 + 8 + 4 + 4 + 17 + 4 + 18 + payloadLength;
+      return 1 + 4 + 1 + 8 + 4 + 4 + 17 + 4 + 18 + payloadLength;
    }
 
 
