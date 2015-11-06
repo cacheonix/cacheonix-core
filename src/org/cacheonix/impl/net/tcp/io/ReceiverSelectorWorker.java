@@ -18,7 +18,7 @@ import java.nio.channels.Selector;
 /**
  * A selector worker used by TCPServer.
  */
-class TCPServerSelectorWorker extends SelectorWorker {
+class ReceiverSelectorWorker extends SelectorWorker {
 
    /**
     * Creates SelectorWorker.
@@ -28,7 +28,7 @@ class TCPServerSelectorWorker extends SelectorWorker {
     * @param selectorTimeoutMillis a time the selector should block for while waiting for a channel to become ready,
     *                              must be greater than zero.
     */
-   public TCPServerSelectorWorker(final Selector selector, final long socketTimeoutMillis,
+   public ReceiverSelectorWorker(final Selector selector, final long socketTimeoutMillis,
            final long selectorTimeoutMillis) {
 
       super(selector, socketTimeoutMillis, selectorTimeoutMillis);
