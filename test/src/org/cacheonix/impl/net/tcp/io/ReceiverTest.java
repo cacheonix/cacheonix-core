@@ -36,12 +36,12 @@ import org.cacheonix.impl.util.logging.Logger;
 /**
  * Tester for TCPServer.
  */
-public final class TCPServerTest extends CacheonixTestCase {
+public final class ReceiverTest extends CacheonixTestCase {
 
    /**
     * @noinspection UNUSED_SYMBOL, UnusedDeclaration
     */
-   private static final Logger LOG = Logger.getLogger(TCPServerTest.class); // NOPMD
+   private static final Logger LOG = Logger.getLogger(ReceiverTest.class); // NOPMD
 
    private static final int PORT = TestConstants.PORT_7676;
 
@@ -51,7 +51,7 @@ public final class TCPServerTest extends CacheonixTestCase {
 
    private static final long SELECTOR_TIMEOUT_MILLIS = ConfigurationConstants.DEFAULT_SELECTOR_TIMEOUT_MILLIS;
 
-   private TCPServer server = null;
+   private Receiver server = null;
 
    private Serializer serializer = null;
 
@@ -155,7 +155,7 @@ public final class TCPServerTest extends CacheonixTestCase {
             }
          }
       };
-      server = new TCPServer(getClock(), LOCALHOST, PORT, requestDispatcher, SOCKET_TIMEOUT_MILLIS, SELECTOR_TIMEOUT_MILLIS);
+      server = new Receiver(getClock(), LOCALHOST, PORT, requestDispatcher, SOCKET_TIMEOUT_MILLIS, SELECTOR_TIMEOUT_MILLIS);
       server.startup();
    }
 

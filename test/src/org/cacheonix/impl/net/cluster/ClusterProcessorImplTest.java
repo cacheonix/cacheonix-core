@@ -38,8 +38,8 @@ import org.cacheonix.impl.net.processor.Frame;
 import org.cacheonix.impl.net.processor.Message;
 import org.cacheonix.impl.net.processor.Router;
 import org.cacheonix.impl.net.processor.UUID;
+import org.cacheonix.impl.net.tcp.io.Receiver;
 import org.cacheonix.impl.net.tcp.io.Sender;
-import org.cacheonix.impl.net.tcp.io.TCPServer;
 import org.cacheonix.impl.util.IOUtils;
 import org.cacheonix.impl.util.exception.ExceptionUtils;
 import org.cacheonix.impl.util.logging.Logger;
@@ -95,7 +95,7 @@ public final class ClusterProcessorImplTest extends CacheonixTestCase {
 
    private final List<ClusterNodeAddress> processes = createProcesses();
 
-   private final List<TCPServer> servers = new ArrayList<TCPServer>(PROCESS_COUNT);
+   private final List<Receiver> servers = new ArrayList<Receiver>(PROCESS_COUNT);
 
    private final List<TestMarkerCountingTCPRequestDispatcher> messageHandlers = new ArrayList<TestMarkerCountingTCPRequestDispatcher>(
            PROCESS_COUNT);
@@ -191,10 +191,10 @@ public final class ClusterProcessorImplTest extends CacheonixTestCase {
       final Clock clock = new ClockImpl(1000L).attachTo(timer);
 
       // Create TCP Server
-      final TCPServer tcpServer = new TCPServer(clock, LOCALHOST, getAddress(joinProcessIndex).getTcpPort(),
+      final Receiver receiver = new Receiver(clock, LOCALHOST, getAddress(joinProcessIndex).getTcpPort(),
               messageHandler, NETWORK_TIMEOUT_MILLIS, SELECTOR_TIMEOUT_MILLIS);
-      tcpServer.startup();
-      servers.add(tcpServer);
+      receiver.startup();
+      servers.add(receiver);
 
 
       // Create listener
@@ -382,10 +382,10 @@ public final class ClusterProcessorImplTest extends CacheonixTestCase {
          final TestMarkerCountingTCPRequestDispatcher messageHandler = new TestMarkerCountingTCPRequestDispatcher(i,
                  clusterProcessors.get(i));
          messageHandlers.add(messageHandler);
-         final TCPServer tcpServer = new TCPServer(clock, LOCALHOST, nodeAddress.getTcpPort(), messageHandler,
+         final Receiver receiver = new Receiver(clock, LOCALHOST, nodeAddress.getTcpPort(), messageHandler,
                  NETWORK_TIMEOUT_MILLIS, SELECTOR_TIMEOUT_MILLIS);
-         servers.add(tcpServer);
-         tcpServer.startup();
+         servers.add(receiver);
+         receiver.startup();
 
          getClusterProcessor(i).startup();
 
@@ -401,7 +401,7 @@ public final class ClusterProcessorImplTest extends CacheonixTestCase {
    }
 
 
-   private TCPServer getTCPServer(final int i) {
+   private Receiver getTCPServer(final int i) {
 
       return servers.get(i);
    }
@@ -437,7 +437,7 @@ public final class ClusterProcessorImplTest extends CacheonixTestCase {
    private void shutdownTCPServers() {
 
       for (int i = 0; i < servers.size(); i++) {
-         final TCPServer server = getTCPServer(i);
+         final Receiver server = getTCPServer(i);
          if (!server.isShutDown()) {
             server.shutdown();
          }

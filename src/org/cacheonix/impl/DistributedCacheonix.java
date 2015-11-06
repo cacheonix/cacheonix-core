@@ -89,8 +89,8 @@ import org.cacheonix.impl.net.processor.ReceiverAddress;
 import org.cacheonix.impl.net.processor.Router;
 import org.cacheonix.impl.net.processor.UUID;
 import org.cacheonix.impl.net.serializer.WireableFactory;
+import org.cacheonix.impl.net.tcp.io.Receiver;
 import org.cacheonix.impl.net.tcp.io.Sender;
-import org.cacheonix.impl.net.tcp.io.TCPServer;
 import org.cacheonix.impl.util.Assert;
 import org.cacheonix.impl.util.CollectionUtils;
 import org.cacheonix.impl.util.IOUtils;
@@ -128,7 +128,7 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
    /**
     * TCP Server.
     */
-   private TCPServer tcpServer = null;
+   private Receiver receiver = null;
 
    /**
     * Configuration for this cluster member.
@@ -320,9 +320,9 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
          final int tcpPort = tcpListenerConfiguration.getPort();
 
          final TCPRequestDispatcherImpl requestDispatcher = new TCPRequestDispatcherImpl(router);
-         tcpServer = new TCPServer(getClock(), tcpAddress, tcpPort, requestDispatcher, socketTimeoutMillis,
+         receiver = new Receiver(getClock(), tcpAddress, tcpPort, requestDispatcher, socketTimeoutMillis,
                  selectorTimeoutMillis);
-         tcpServer.startup();
+         receiver.startup();
 
          // Startup cluster service
          clusterProcessor.startup();
@@ -1080,7 +1080,7 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
             }
 
             IOUtils.shutdownHard(multicastServer);
-            IOUtils.shutdownHard(tcpServer);
+            IOUtils.shutdownHard(receiver);
             IOUtils.shutdownHard(sender);
 
          } else if (ShutdownMode.FORCED_SHUTDOWN.equals(shutdownMode)) {
@@ -1088,7 +1088,7 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
 
             // Immediately shutdown the receivers
             IOUtils.shutdownHard(multicastServer);
-            IOUtils.shutdownHard(tcpServer);
+            IOUtils.shutdownHard(receiver);
 
             // Shutdown cluster processor
             try {
@@ -1189,7 +1189,7 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
       return "DistributedCacheonix{" +
               "started=" + started +
               ", clusterProcessor=" + clusterProcessor +
-              ", tcpServer=" + tcpServer +
+              ", tcpServer=" + receiver +
               ", serverConfig=" + serverConfig +
               ", messageSender=" + sender +
               ", address=" + address +

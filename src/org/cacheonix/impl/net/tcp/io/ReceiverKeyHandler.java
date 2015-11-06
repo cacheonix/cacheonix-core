@@ -42,7 +42,7 @@ final class ReceiverKeyHandler extends KeyHandler {
    /**
     * @noinspection UNUSED_SYMBOL, UnusedDeclaration
     */
-   private static final Logger LOG = Logger.getLogger(TCPServer.class); // NOPMD
+   private static final Logger LOG = Logger.getLogger(Receiver.class); // NOPMD
 
    /**
     * Protocol signature as a byte array.

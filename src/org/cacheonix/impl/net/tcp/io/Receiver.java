@@ -41,12 +41,12 @@ import static org.cacheonix.impl.util.thread.ThreadUtils.interruptAndJoin;
  *
  * @noinspection ConstantConditions, ProhibitedExceptionDeclared
  */
-public final class TCPServer implements Shutdownable {
+public final class Receiver implements Shutdownable {
 
    /**
     * @noinspection UNUSED_SYMBOL, UnusedDeclaration
     */
-   private static final Logger LOG = Logger.getLogger(TCPServer.class); // NOPMD
+   private static final Logger LOG = Logger.getLogger(Receiver.class); // NOPMD
 
    /**
     * Stack trace at create.
@@ -101,9 +101,9 @@ public final class TCPServer implements Shutdownable {
     * @throws IOException IO error when opening the socket.
     * @noinspection SocketOpenedButNotSafelyClosed, OverlyBroadCatchBlock
     */
-   public TCPServer(final Clock clock, final String address, final int port,
-                    final TCPRequestDispatcher requestDispatcher, final long socketTimeoutMillis,
-                    final long selectorTimeoutMillis) throws IOException {
+   public Receiver(final Clock clock, final String address, final int port,
+           final TCPRequestDispatcher requestDispatcher, final long socketTimeoutMillis,
+           final long selectorTimeoutMillis) throws IOException {
 
       //
       this.selector = Selector.open();
