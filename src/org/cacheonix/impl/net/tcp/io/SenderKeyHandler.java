@@ -47,14 +47,14 @@ import static org.cacheonix.impl.net.processor.Response.RESULT_INACCESSIBLE;
 /**
  * A message sender associated with a particular ClusterNodeAddress. The sender lives until the server is shutdown.
  */
-final class Sender extends KeyHandler {
+final class SenderKeyHandler extends KeyHandler {
 
    /**
     * Logger.
     *
     * @noinspection UNUSED_SYMBOL, UnusedDeclaration
     */
-   private static final Logger LOG = Logger.getLogger(Sender.class); // NOPMD
+   private static final Logger LOG = Logger.getLogger(SenderKeyHandler.class); // NOPMD
 
    /**
     * In the initial state the sender is unconnected with no unfinished messages.
@@ -128,7 +128,7 @@ final class Sender extends KeyHandler {
     * @param networkTimeoutMillis network timeout in milliseconds.
     * @param clock                this cluster node's clock.
     */
-   public Sender(final Selector selector, final ReceiverAddress receiverAddress,
+   public SenderKeyHandler(final Selector selector, final ReceiverAddress receiverAddress,
            final Router router, final long networkTimeoutMillis, final Clock clock) {
 
       super(selector, networkTimeoutMillis);
@@ -286,7 +286,7 @@ final class Sender extends KeyHandler {
    /**
     * {@inheritDoc}
     * <p/>
-    * 1. Connection timeout occurs after the connection was initiated but before OP_CONNECT is ready, (Sender is in the
+    * 1. Connection timeout occurs after the connection was initiated but before OP_CONNECT is ready, (SenderKeyHandler is in the
     * CONNECTING state) but did not complete in time. Actions on the connection timeout:
     * <p/>
     * a) Close the channel
@@ -295,7 +295,7 @@ final class Sender extends KeyHandler {
     * <p/>
     * c) Respond to requests in the queue with an error
     * <p/>
-    * 2. Write timeout occurs when the Sender is in the Writing state and there are messages in the send queue. The
+    * 2. Write timeout occurs when the SenderKeyHandler is in the Writing state and there are messages in the send queue. The
     * write timeout means that the write channel, that should be ready for write almost always, has slowed down to a
     * halt. The slow down is indistinguishable from a failure of the receiving host. In general, the write timeout
     * defines a minimum acceptable write throughput. For instance, if there wasn't write activity for 1 second, it means
@@ -331,14 +331,14 @@ final class Sender extends KeyHandler {
 //               LOG.debug("TTTTTTTTTTTTTTTT There are no more messages, won't reconnect to " + receiverNodeAddress + " : " + key + ", channel: " + key.channel()); // NOPMD
 //            }
 
-            // Setting state to init will cause the Sender to begin to reconnect
+            // Setting state to init will cause the SenderKeyHandler to begin to reconnect
             // when the selector worker thread enqueues the message to this sender.
             state = INIT;
 
          } else {
 
-            // The fact that Sender timed out usually means that the Receiver on the other side
-            // has just closed the channel due to Sender's inactivity which manifest itself as
+            // The fact that SenderKeyHandler timed out usually means that the Receiver on the other side
+            // has just closed the channel due to SenderKeyHandler's inactivity which manifest itself as
             // inability to write (channel.write() returns zero bytes written. Usually it is
             // enough to re-connect. Begin connecting from the beginning of the address list.
 
@@ -680,7 +680,7 @@ final class Sender extends KeyHandler {
 
    public String toString() {
 
-      return "Sender{" +
+      return "SenderKeyHandler{" +
               "receiverNodeAddress=" + receiverAddress +
               ", messages=" + messages.size() +
               ", addressesToTry=" + addressesToTry +

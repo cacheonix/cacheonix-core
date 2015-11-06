@@ -36,7 +36,7 @@ final class MessageSenderSelectorWorker extends SelectorWorker {
    /**
     * Map of addresses to senders.
     */
-   private final Map<ReceiverAddress, Sender> senders = new HashMap<ReceiverAddress, Sender>(111);
+   private final Map<ReceiverAddress, SenderKeyHandler> senders = new HashMap<ReceiverAddress, SenderKeyHandler>(111);
 
    /**
     * Local address.
@@ -132,17 +132,17 @@ final class MessageSenderSelectorWorker extends SelectorWorker {
       }
 
 
-      Sender sender = senders.get(receiverAddress);
-      if (sender == null) {
+      SenderKeyHandler senderKeyHandler = senders.get(receiverAddress);
+      if (senderKeyHandler == null) {
 
-         // Sender does not exist - create
-         sender = new Sender(selector, receiverAddress, router, networkTimeoutMillis, clock);
+         // SenderKeyHandler does not exist - create
+         senderKeyHandler = new SenderKeyHandler(selector, receiverAddress, router, networkTimeoutMillis, clock);
 
-         // Register the sender
-         senders.put(receiverAddress, sender);
+         // Register the senderKeyHandler
+         senders.put(receiverAddress, senderKeyHandler);
 
          // Enqueue message
-         sender.enqueue(message);
+         senderKeyHandler.enqueue(message);
       }
    }
 }
