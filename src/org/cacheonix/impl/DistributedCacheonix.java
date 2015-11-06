@@ -89,7 +89,7 @@ import org.cacheonix.impl.net.processor.ReceiverAddress;
 import org.cacheonix.impl.net.processor.Router;
 import org.cacheonix.impl.net.processor.UUID;
 import org.cacheonix.impl.net.serializer.WireableFactory;
-import org.cacheonix.impl.net.tcp.io.MessageSender;
+import org.cacheonix.impl.net.tcp.io.Sender;
 import org.cacheonix.impl.net.tcp.io.TCPServer;
 import org.cacheonix.impl.util.Assert;
 import org.cacheonix.impl.util.CollectionUtils;
@@ -139,7 +139,7 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
    /**
     * Message sender is responsible for sending outbound messages to the network
     */
-   private final MessageSender messageSender;
+   private final Sender sender;
 
    /**
     * Address.
@@ -201,10 +201,10 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
       this.router.setClusterUUID(initialClusterUUID);
       this.clusterProcessor = createClusterProcessor(clock, timer, router, multicastSender, serverConfig, address,
               initialClusterUUID);
-      this.messageSender = new MessageSender(address, serverConfig.getSocketTimeoutMillis(),
+      this.sender = new Sender(address, serverConfig.getSocketTimeoutMillis(),
               serverConfig.getSelectorTimeoutMillis(), getClock());
-      this.router.setOutput(messageSender);
-      this.messageSender.setRouter(router);
+      this.router.setOutput(sender);
+      this.sender.setRouter(router);
       this.multicastSender.setRouter(router);
    }
 
@@ -309,7 +309,7 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
          router.register(ClusterProcessorKey.getInstance(), clusterProcessor);
 
          // Set up and start the message sender
-         messageSender.startup();
+         sender.startup();
 
          // Startup TCP server.
          final long socketTimeoutMillis = serverConfig.getSocketTimeoutMillis();
@@ -1081,7 +1081,7 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
 
             IOUtils.shutdownHard(multicastServer);
             IOUtils.shutdownHard(tcpServer);
-            IOUtils.shutdownHard(messageSender);
+            IOUtils.shutdownHard(sender);
 
          } else if (ShutdownMode.FORCED_SHUTDOWN.equals(shutdownMode)) {
 
@@ -1099,7 +1099,7 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
             }
 
             // Finally, the message sender
-            IOUtils.shutdownHard(messageSender);
+            IOUtils.shutdownHard(sender);
 
          } else {
             throw new IllegalArgumentException("Unknown shutdown mode: " + shutdownMode);
@@ -1191,7 +1191,7 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
               ", clusterProcessor=" + clusterProcessor +
               ", tcpServer=" + tcpServer +
               ", serverConfig=" + serverConfig +
-              ", messageSender=" + messageSender +
+              ", messageSender=" + sender +
               ", address=" + address +
               ", replicatedState=" + replicatedState +
               ", router=" + router +

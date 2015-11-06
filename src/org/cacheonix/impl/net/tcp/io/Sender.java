@@ -34,14 +34,14 @@ import org.cacheonix.impl.util.logging.Logger;
  * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Jul 18, 2009 3:24:31 PM
  */
-public final class MessageSender extends AbstractProcessor {
+public final class Sender extends AbstractProcessor {
 
    /**
     * Logger.
     *
     * @noinspection UNUSED_SYMBOL, UnusedDeclaration
     */
-   private static final Logger LOG = Logger.getLogger(MessageSender.class); // NOPMD
+   private static final Logger LOG = Logger.getLogger(Sender.class); // NOPMD
 
    /**
     * This cluster node's clock. The clock is used to time stamp sent messages.
@@ -91,7 +91,7 @@ public final class MessageSender extends AbstractProcessor {
     *                              must be greater than zero.
     * @param clock                 the clock.
     */
-   public MessageSender(final ClusterNodeAddress localAddress, final long networkTimeoutMillis,
+   public Sender(final ClusterNodeAddress localAddress, final long networkTimeoutMillis,
            final long selectorTimeoutMillis, final Clock clock) throws IOException {
 
       super("Sender:" + localAddress.getTcpPort());
@@ -134,7 +134,7 @@ public final class MessageSender extends AbstractProcessor {
 
    protected Runnable createWorker() {
 
-      return new MessageSenderSelectorWorker(localAddress, selector, queue, router, networkTimeoutMillis,
+      return new SenderSelectorWorker(localAddress, selector, queue, router, networkTimeoutMillis,
               selectorTimeoutMillis, clock);
    }
 

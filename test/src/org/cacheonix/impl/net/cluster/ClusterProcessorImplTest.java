@@ -38,7 +38,7 @@ import org.cacheonix.impl.net.processor.Frame;
 import org.cacheonix.impl.net.processor.Message;
 import org.cacheonix.impl.net.processor.Router;
 import org.cacheonix.impl.net.processor.UUID;
-import org.cacheonix.impl.net.tcp.io.MessageSender;
+import org.cacheonix.impl.net.tcp.io.Sender;
 import org.cacheonix.impl.net.tcp.io.TCPServer;
 import org.cacheonix.impl.util.IOUtils;
 import org.cacheonix.impl.util.exception.ExceptionUtils;
@@ -103,7 +103,7 @@ public final class ClusterProcessorImplTest extends CacheonixTestCase {
    private final List<TestMulticastMessageListener> mcastMessageListeners = new ArrayList<TestMulticastMessageListener>(
            PROCESS_COUNT);
 
-   private final List<MessageSender> messageSenders = new ArrayList<MessageSender>(PROCESS_COUNT);
+   private final List<Sender> senders = new ArrayList<Sender>(PROCESS_COUNT);
 
    private final List<Clock> clocks = new ArrayList<Clock>(PROCESS_COUNT);
 
@@ -204,12 +204,12 @@ public final class ClusterProcessorImplTest extends CacheonixTestCase {
 
       // Create
       final ClusterNodeAddress nodeAddress = getClusterProcessor(joinProcessIndex).getAddress();
-      final MessageSender messageSender = new MessageSender(nodeAddress, NETWORK_TIMEOUT_MILLIS,
+      final Sender sender = new Sender(nodeAddress, NETWORK_TIMEOUT_MILLIS,
               SELECTOR_TIMEOUT_MILLIS, clock);
-      messageSenders.add(messageSender);
-      router.setOutput(messageSender);
-      messageSender.setRouter(router);
-      messageSender.startup();
+      senders.add(sender);
+      router.setOutput(sender);
+      sender.setRouter(router);
+      sender.startup();
 
       // Join
       if (LOG.isDebugEnabled()) {
@@ -259,7 +259,7 @@ public final class ClusterProcessorImplTest extends CacheonixTestCase {
       Thread.sleep(100L);
       getMulticastServer(1).shutdown();
       getTCPServer(1).shutdown();
-      messageSenders.get(1).shutdown();
+      senders.get(1).shutdown();
       getClusterProcessor(1).shutdown(ShutdownMode.FORCED_SHUTDOWN);
 
       final long timeoutToStabilize = 3000L;
@@ -371,12 +371,12 @@ public final class ClusterProcessorImplTest extends CacheonixTestCase {
          final Clock clock = new ClockImpl(1000L).attachTo(timer);
          clocks.add(clock);
 
-         final MessageSender messageSender = new MessageSender(nodeAddress, NETWORK_TIMEOUT_MILLIS,
+         final Sender sender = new Sender(nodeAddress, NETWORK_TIMEOUT_MILLIS,
                  SELECTOR_TIMEOUT_MILLIS, clock);
-         messageSender.setRouter(router);
-         router.setOutput(messageSender);
-         messageSenders.add(messageSender);
-         messageSender.startup();
+         sender.setRouter(router);
+         router.setOutput(sender);
+         senders.add(sender);
+         sender.startup();
 
          // Create TCP server that handle TCP communications
          final TestMarkerCountingTCPRequestDispatcher messageHandler = new TestMarkerCountingTCPRequestDispatcher(i,
@@ -427,8 +427,8 @@ public final class ClusterProcessorImplTest extends CacheonixTestCase {
       shutdownClusterServices();
       shutdownMulticastServers();
       shutdownTCPServers();
-      for (final MessageSender messageSender : messageSenders) {
-         messageSender.shutdown();
+      for (final Sender sender : senders) {
+         sender.shutdown();
       }
       super.tearDown();
    }
