@@ -116,13 +116,13 @@ public final class TCPServer implements Shutdownable {
       try {
 
          // Create receiver key handler
-         final Receiver receiver = new Receiver(selector, requestDispatcher, clock, socketTimeoutMillis);
+         final ReceiverKeyHandler receiverKeyHandler = new ReceiverKeyHandler(selector, requestDispatcher, clock, socketTimeoutMillis);
 
          // Configure it as non-locking
          serverSocketChannel.configureBlocking(false);
 
-         // Register receiver with the server socket channel
-         serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT, receiver);
+         // Register receiver key handler with the server socket channel
+         serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT, receiverKeyHandler);
       } catch (final IOException e) {
 
          closeHard(serverSocketChannel);

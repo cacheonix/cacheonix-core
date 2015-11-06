@@ -37,7 +37,7 @@ import static org.cacheonix.impl.config.SystemProperty.BUFFER_SIZE;
 /**
  * Handles a readable channel by reading Messages from it.
  */
-final class Receiver extends KeyHandler {
+final class ReceiverKeyHandler extends KeyHandler {
 
    /**
     * @noinspection UNUSED_SYMBOL, UnusedDeclaration
@@ -96,7 +96,7 @@ final class Receiver extends KeyHandler {
    private final TCPRequestDispatcher requestDispatcher;
 
 
-   public Receiver(final Selector selector, final TCPRequestDispatcher requestDispatcher, final Clock clock,
+   public ReceiverKeyHandler(final Selector selector, final TCPRequestDispatcher requestDispatcher, final Clock clock,
            final long socketTimeoutMillis) {
 
       super(selector, socketTimeoutMillis);
@@ -134,15 +134,15 @@ final class Receiver extends KeyHandler {
          final SocketChannel socketChannel = serverSocketChannel.accept();
          if (socketChannel != null) {
 
-            // Create receiver
-            final Receiver receiver = new Receiver(selector, requestDispatcher, clock, getNetworkTimeoutMillis());
+            // Create receiverKeyHandler
+            final ReceiverKeyHandler receiverKeyHandler = new ReceiverKeyHandler(selector, requestDispatcher, clock, getNetworkTimeoutMillis());
 
             // Configure channel for non-blocking operation
             socketChannel.configureBlocking(false);
 
             // Configure the socket
             socketChannel.socket().setReceiveBufferSize(BUFFER_SIZE);
-            socketChannel.register(selector, SelectionKey.OP_READ, receiver);
+            socketChannel.register(selector, SelectionKey.OP_READ, receiverKeyHandler);
          }
       } catch (final IOException e) {
          throw new UnrecoverableAcceptException(e);
@@ -348,7 +348,7 @@ final class Receiver extends KeyHandler {
 
    public String toString() {
 
-      return "Receiver{" +
+      return "ReceiverKeyHandler{" +
               "state=" + state +
               ", frameSize=" + frameSize +
               ", byteBuffer=" + byteBuffer +
