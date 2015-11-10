@@ -131,8 +131,8 @@ public final class BucketOwnershipAssignmentWithoutReplicasTest extends TestCase
 
       // Assert - both existing owners must begin to move
       assertEquals(2, eventListener.getBeginTransferCommands().size());
-      assertEquals((BUCKET_COUNT / 2) - (BUCKET_COUNT / 3) - 2, eventListener.getBeginTransferCommands().get(0).getBucketNumbers().size());
-      assertEquals((BUCKET_COUNT / 2) - (BUCKET_COUNT / 3) - 1, eventListener.getBeginTransferCommands().get(1).getBucketNumbers().size());
+      assertEquals((BUCKET_COUNT / 2) - (BUCKET_COUNT / 3) - 1, eventListener.getBeginTransferCommands().get(0).getBucketNumbers().size());
+      assertEquals((BUCKET_COUNT / 2) - (BUCKET_COUNT / 3) - 2, eventListener.getBeginTransferCommands().get(1).getBucketNumbers().size());
 
       // Assert there were not other commands issued
       assertEquals(0, eventListener.getCancelTransferCommands().size());
