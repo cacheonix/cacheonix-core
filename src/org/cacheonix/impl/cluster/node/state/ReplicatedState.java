@@ -20,7 +20,6 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.cacheonix.exceptions.RuntimeClassNotFoundException;
 import org.cacheonix.exceptions.RuntimeIOException;
 import org.cacheonix.impl.cache.distributed.partitioned.BucketEventListener;
 import org.cacheonix.impl.cache.distributed.partitioned.BucketEventListenerList;
@@ -112,7 +111,7 @@ public final class ReplicatedState implements Wireable {
    /**
     * {@inheritDoc}
     */
-   public ReplicatedState copy() throws RuntimeIOException, RuntimeClassNotFoundException {
+   public ReplicatedState copy() throws RuntimeIOException {
 
       final Serializer ser = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
       try {
