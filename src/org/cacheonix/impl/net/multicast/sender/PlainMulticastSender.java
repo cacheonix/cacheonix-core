@@ -23,7 +23,6 @@ import java.util.Enumeration;
 import java.util.List;
 
 import org.cacheonix.impl.net.processor.Frame;
-import org.cacheonix.impl.net.processor.Router;
 import org.cacheonix.impl.util.exception.ExceptionUtils;
 import org.cacheonix.impl.util.logging.Logger;
 
@@ -68,13 +67,15 @@ public final class PlainMulticastSender implements MulticastSender {
    /**
     * Constructs multicast message sender.
     *
+    *
+    * @param router
     * @param mcastAddress multicast address
     * @param mcastPort    multicast port
     * @param mcastTTL     multicast TTL
     * @throws IOException if I/O error occurred while creating a multicast socket.
     */
    public PlainMulticastSender(final InetAddress mcastAddress, final int mcastPort,
-                               final int mcastTTL) throws IOException {
+           final int mcastTTL) throws IOException {
 
       this.mcastAddress = mcastAddress;
       this.mcastPort = mcastPort;
@@ -122,17 +123,6 @@ public final class PlainMulticastSender implements MulticastSender {
       for (final MulticastSocket mcastSocket : mcastSockets) {
          mcastSocket.send(packet);
       }
-   }
-
-
-   /**
-    * {@inheritDoc}
-    * <p/>
-    * PlainMulticastSender doesn't use the router, so this implementation does nothing.
-    */
-   public void setRouter(final Router router) {
-
-      //  Do nothing
    }
 
 

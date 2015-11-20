@@ -194,18 +194,17 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
       this.address = createNodeAddress(serverConfig);
       this.replicatedState = new ReplicatedState();
       this.serverConfig = serverConfig;
-      this.multicastSender = createMulticastSender(address, serverConfig);
-      this.multicastServer = createMulticastServer(serverConfig);
       final UUID initialClusterUUID = UUID.randomUUID();
       this.router = new Router(address);
       this.router.setClusterUUID(initialClusterUUID);
+      this.multicastSender = createMulticastSender(address, serverConfig);
+      this.multicastServer = createMulticastServer(serverConfig);
       this.clusterProcessor = createClusterProcessor(clock, timer, router, multicastSender, serverConfig, address,
               initialClusterUUID);
       this.sender = new Sender(address, serverConfig.getSocketTimeoutMillis(),
               serverConfig.getSelectorTimeoutMillis(), getClock());
       this.router.setOutput(sender);
       this.sender.setRouter(router);
-      this.multicastSender.setRouter(router);
    }
 
 
@@ -229,8 +228,7 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
     * Creates a multicast sender based on the server configuration.
     *
     * @param localAddress the local node address.
-    * @param serverConfig the server configuration.
-    * @return a new multicast sender.
+    * @param serverConfig the server configuration.  @return a new multicast sender.
     * @throws IOException if an I/O error occured.
     */
    private static MulticastSender createMulticastSender(final ClusterNodeAddress localAddress,
@@ -623,8 +621,10 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
       final long gracefulShutdownTimeoutMillis = serverConfig.getGracefulShutdownTimeoutMillis();
       final String clusterName = clusterConfiguration.getName();
 
-      return new ClusterProcessorImpl(clusterName, clock, timer, router, multicastSender, address, homeAloneTimeoutMillis,
-              worstCaseLatencyMillis, gracefulShutdownTimeoutMillis, clusterSurveyTimeoutMillis, clusterAnnouncementTimeoutMillis,
+      return new ClusterProcessorImpl(clusterName, clock, timer, router, multicastSender, address,
+              homeAloneTimeoutMillis,
+              worstCaseLatencyMillis, gracefulShutdownTimeoutMillis, clusterSurveyTimeoutMillis,
+              clusterAnnouncementTimeoutMillis,
               initialClusterUUID);
    }
 
@@ -878,7 +878,8 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
                final PartitionedCacheConfiguration cacheConfig = serverConfig.getPartitionedCacheType(cacheConfigName);
 
                // Create cache processor
-               final CacheProcessor newCacheProcessor = new CacheProcessorImpl(timer, clock, getPrefetchScheduler(), router,
+               final CacheProcessor newCacheProcessor = new CacheProcessorImpl(timer, clock, getPrefetchScheduler(),
+                       router,
                        getEventNotificationExecutor(), group, cacheName, address, cacheConfig);
                newCacheProcessor.startup();
 
