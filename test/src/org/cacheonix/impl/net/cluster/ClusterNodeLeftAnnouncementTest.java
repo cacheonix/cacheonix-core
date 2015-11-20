@@ -41,7 +41,7 @@ public final class ClusterNodeLeftAnnouncementTest extends CacheonixTestCase {
 
       final Serializer ser = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
       final byte[] serialized = ser.serialize(message);
-      assertEquals(111, serialized.length);
+      assertEquals(87, serialized.length);
       assertEquals(message, ser.deserialize(serialized));
    }
 
