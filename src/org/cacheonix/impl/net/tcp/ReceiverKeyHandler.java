@@ -61,12 +61,6 @@ final class ReceiverKeyHandler extends KeyHandler {
 
 
    /**
-    * This cluster node's clock. The clock is synchronized using time stamps of received messages.
-    */
-   private final Clock clock;
-
-
-   /**
     * State.
     */
    private int state = READING_SIGNATURE;
@@ -98,9 +92,8 @@ final class ReceiverKeyHandler extends KeyHandler {
    public ReceiverKeyHandler(final Selector selector, final RequestDispatcher requestDispatcher, final Clock clock,
            final long socketTimeoutMillis) {
 
-      super(selector, socketTimeoutMillis);
+      super(selector, socketTimeoutMillis, clock);
       this.requestDispatcher = requestDispatcher;
-      this.clock = clock;
    }
 
 

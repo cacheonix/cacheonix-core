@@ -17,6 +17,7 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
 
+import org.cacheonix.impl.clock.Clock;
 import org.cacheonix.impl.util.time.Timeout;
 
 /**
@@ -37,16 +38,28 @@ abstract class KeyHandler {
 
 
    /**
+    * This cluster node's clock. The clock is used to synchronise cluster time by timestamping sent messages and
+    * adjusting the clock based on the time stamps of received messages.
+    */
+   protected final Clock clock;
+
+
+   /**
     * Creates a Key handler.
     *
     * @param selector             a selector this key is associated with. The selector is available to implementing
     *                             classes through {@link #selector}.
     * @param networkTimeoutMillis the network timeout in milliseconds.
+    * @param clock                This cluster node's clock. The clock is used to synchronise cluster time by
+    *                             timestamping sent messages and adjusting the clock based on the time stamps of
+    *                             received messages.
     */
-   KeyHandler(final Selector selector, final long networkTimeoutMillis) {
+   KeyHandler(final Selector selector, final long networkTimeoutMillis, final Clock clock) {
+
 
       this.networkTimeout = new Timeout(networkTimeoutMillis).reset();
       this.selector = selector;
+      this.clock = clock;
    }
 
 
@@ -112,7 +125,7 @@ abstract class KeyHandler {
     * Returns a selector this handler is associated with.
     *
     * @return the selector this handler is associated with.
-    * @see #KeyHandler(Selector, long)
+    * @see #KeyHandler(Selector, long, Clock)
     */
    protected final Selector selector() {
 

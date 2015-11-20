@@ -81,12 +81,6 @@ final class SenderKeyHandler extends KeyHandler {
    private final Serializer serializer = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
 
    /**
-    * This cluster node's clock. The clock is used to time stamp sent messages.
-    */
-   private final Clock clock;
-
-
-   /**
     * A list of InetAddresses to try to connect to.
     *
     * @see #beginConnecting(boolean)
@@ -131,10 +125,9 @@ final class SenderKeyHandler extends KeyHandler {
    public SenderKeyHandler(final Selector selector, final ReceiverAddress receiverAddress,
            final Router router, final long networkTimeoutMillis, final Clock clock) {
 
-      super(selector, networkTimeoutMillis);
+      super(selector, networkTimeoutMillis, clock);
       this.receiverAddress = receiverAddress;
       this.router = router;
-      this.clock = clock;
    }
 
 
