@@ -30,7 +30,7 @@ public interface MulticastSender {
    /**
     * Sends message.
     *
-    * @param frame
+    * @param frame a frame to send.
     * @throws IOException
     */
    void sendFrame(final Frame frame) throws IOException;
