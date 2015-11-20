@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.impl.net.tcp.io;
+package org.cacheonix.impl.net.tcp;
 
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;

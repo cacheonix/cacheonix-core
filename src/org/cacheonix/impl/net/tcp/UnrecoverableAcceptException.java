@@ -11,18 +11,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.impl.net.tcp.io;
+package org.cacheonix.impl.net.tcp;
 
-import org.cacheonix.impl.net.processor.Message;
+import java.io.IOException;
+
+import org.cacheonix.exceptions.CacheonixException;
 
 /**
- * Message handler. Processes TCP messages.
- * <p/>
- *
- * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
- * @since Mar 27, 2008 11:08:40 AM
+ * This exception is thrown when an unrecoverable server socket exception occurs.
  */
-public interface RequestDispatcher {
+public final class UnrecoverableAcceptException extends CacheonixException {
 
-   void dispatch(final Message message) throws InterruptedException;
+   private static final long serialVersionUID = 7908749977067442371L;
+
+
+   /**
+    * Creates UnrecoverableAcceptException
+    *
+    * @param cause cause.
+    */
+   public UnrecoverableAcceptException(final IOException cause) {
+
+      super(cause);
+   }
 }

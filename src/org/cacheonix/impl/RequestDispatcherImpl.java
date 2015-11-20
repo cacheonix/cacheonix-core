@@ -16,7 +16,7 @@ package org.cacheonix.impl;
 import org.cacheonix.ShutdownException;
 import org.cacheonix.impl.net.processor.Message;
 import org.cacheonix.impl.net.processor.Router;
-import org.cacheonix.impl.net.tcp.io.RequestDispatcher;
+import org.cacheonix.impl.net.tcp.RequestDispatcher;
 import org.cacheonix.impl.util.exception.ExceptionUtils;
 import org.cacheonix.impl.util.logging.Logger;
 
