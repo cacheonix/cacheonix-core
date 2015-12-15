@@ -217,7 +217,9 @@
          </bool>
          <property name="release.version" value="${release.major}.${release.minor}-${release.patch}"/>
          <break/>
-         <property name="release.version" value="${release.major}.${release.minor}.${release.patch}"/>
+         <else>
+            <property name="release.version" value="${release.major}.${release.minor}.${release.patch}"/>
+         </else>
       </if>
 
       <!-- Generate version file -->
