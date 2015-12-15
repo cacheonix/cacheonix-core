@@ -1,8 +1,15 @@
-<project name="cacheonix" default="usage">
+<project name="cacheonix" default="usage" xmlns:artifact="antlib:org.apache.maven.artifact.ant">
+
+   <typedef resource="org/apache/maven/artifact/ant/antlib.xml" uri="antlib:org.apache.maven.artifact.ant"
+            classpath="3rdparty/maven-ant-tasks-2.1.3/maven-ant-tasks-2.1.3.jar"/>
 
    <!-- Environment variables -->
    <property environment="env"/>
    <property file="core.properties"/>
+
+   <!-- Version -->
+   <property name="release.major" value="2"/>
+   <property name="release.minor" value="0"/>
 
    <!-- Location of source files -->
    <property name="config.dir" value="conf"/>
@@ -41,6 +48,10 @@
    <property name="spring.jar" value="3rdparty/spring-framework-2.5.1/dist/spring.jar"/>
    <property name="activation.jar" value="3rdparty/jaf-1.0.2/activation.jar"/>
    <property name="catalina-7.0.30.jar" value="3rdparty/apache-tomcat-7.0.30/catalina.jar"/>
+
+   <!-- Maven snapshots and staging repository id and url -->
+   <property name="ossrh-snapshots-repository-url" value="https://oss.sonatype.org/content/repositories/snapshots/"/>
+   <property name="ossrh-staging-repository-url" value="https://oss.sonatype.org/service/local/staging/deploy/maven2/"/>
 
    <!-- Tasks -->
    <taskdef resource="com/cenqua/ant/antlib.xml" classpath="${cenquatasks.jar}"/>
@@ -185,24 +196,31 @@
             <property name="release.patch" value="${env.CACHEONIX_VERSION}"/>
             <break/>
             <else>
-               <property name="release.patch" value="i"/>
+               <property name="release.patch" value="SNAPSHOT"/>
             </else>
          </if>
          <break/>
          <else>
-            <property name="release.build" value="i"/>
-            <property name="release.change" value="i"/>
-            <property name="release.patch" value="i"/>
+            <property name="release.build" value="0"/>
+            <property name="release.change" value="0"/>
+            <property name="release.patch" value="SNAPSHOT"/>
             <tstamp>
                <format property="release.date" pattern="yyyyMMddHHmmss" locale="en"/>
             </tstamp>
          </else>
       </if>
 
+      <!-- Generate release version -->
+      <if>
+         <bool>
+            <contains string="${release.patch}" substring="SNAPSHOT" casesensitive="false"/>
+         </bool>
+         <property name="release.version" value="${release.major}.${release.minor}-${release.patch}"/>
+         <break/>
+         <property name="release.version" value="${release.major}.${release.minor}.${release.patch}"/>
+      </if>
+
       <!-- Generate version file -->
-      <property name="release.major" value="2"/>
-      <property name="release.minor" value="0"/>
-      <property name="release.version" value="${release.major}.${release.minor}.${release.patch}"/>
       <property name="release.suffix" value="-${release.build}"/>
       <property name="release.media" value="cacheonix-${release.version}-${release.suffix}"/>
       <echo message="  Release version : ${release.version}"/>
@@ -435,7 +453,8 @@
    -->
    <target name="javadoc.annotations" depends="javac">
       <mkdir dir="${dist.javadoc.annotations.dir}"/>
-      <javadoc destdir="${dist.javadoc.annotations.dir}" sourcepath="${annotations.src.dir}" packagenames="org.cacheonix.*"
+      <javadoc destdir="${dist.javadoc.annotations.dir}" sourcepath="${annotations.src.dir}"
+               packagenames="org.cacheonix.*"
                windowtitle="Cacheonix Annotations ${release.version}" package="true" author="true" version="true"
                noindex="true" use="true">
          <classpath refid="cacheonix-agent.build.classpath"/>
@@ -453,7 +472,6 @@
    Builds all Javadoc
    -->
    <target name="javadoc" depends="javadoc.core, javadoc.annotations"/>
-
 
    <!--
    Generates core Jar
@@ -520,9 +538,18 @@
 
 
    <!--
+   Generates core source
+   -->
+   <target name="src.core">
+      <mkdir dir="${dist.lib.dir}"/>
+      <jar basedir="${src.dir}" destfile="${dist.cacheonix.src}"/>
+   </target>
+
+
+   <!--
    Builds source
    -->
-   <target name="src">
+   <target name="src" depends="src.core">
       <mkdir dir="${dist.src.staging.dir}"/>
       <copy todir="${dist.src.staging.dir}">
          <fileset dir=".">
@@ -588,5 +615,68 @@
    -->
    <target name="all.clean" depends="clean, all"/>
 
+   <property name="pom.file" value="temp/pom.xml"/>
+
+   <!-- There server id in the Maven settings.xml -->
+   <property name="ossrh-server-id" value="ossrh"/>
+
+   <!-- Installs Cacheonix to local repo -->
+   <target name="maven.pom" depends="all">
+      <artifact:pom id="cacheonix-core-in-memory" groupId="org.cacheonix" artifactId="cacheonix-core"
+                    version="2.0-SNAPSHOT" name="Cacheonix Core" url="http://www.cacheoix.org"/>
+      <artifact:writepom pomrefid="cacheonix-core-in-memory" file="temp/pom.xml"/>
+      <artifact:pom id="cacheonix-core-on-disk" file="${pom.file}"/>
+   </target>
+
+
+   <!-- Installs Cacheonix to local repo -->
+   <target name="maven.install" depends="maven.pom">
+      <artifact:install pomrefid="cacheonix-core-on-disk" file="${dist.cacheonix.jar}">
+      </artifact:install>
+   </target>
+
+
+   <!-- Before this, update project version (both build.xml and pom.xml) from SNAPSHOT to RELEASE -->
+   <target name="maven.stage" depends="all" description="Deploy release version to Maven staging repository">
+
+      <!-- Verify that this is a release version -->
+      <fail message="Snapshot build should not be deployed to the release repository: ${release.version}">
+         <condition>
+            <contains string="${release.version}" substring="SNAPSHOT" casesensitive="false"/>
+         </condition>
+      </fail>
+
+      <!-- Sign and deploy the main artifact -->
+      <artifact:mvn failonerror="true">
+         <artifact:arg value="org.apache.maven.plugins:maven-gpg-plugin:1.5:sign-and-deploy-file"/>
+         <artifact:arg value="-Durl=${ossrh-staging-repository-url}"/>
+         <artifact:arg value="-DrepositoryId=${ossrh-server-id}"/>
+         <artifact:arg value="-DpomFile=${pom.file}"/>
+         <artifact:arg value="-Dfile=${dist.cacheonix.jar}"/>
+         <artifact:arg value="-Pgpg"/>
+      </artifact:mvn>
+
+      <!-- Sign and deploy the sources artifact -->
+      <artifact:mvn failonerror="true">
+         <artifact:arg value="org.apache.maven.plugins:maven-gpg-plugin:1.5:sign-and-deploy-file"/>
+         <artifact:arg value="-Durl=${ossrh-staging-repository-url}"/>
+         <artifact:arg value="-DrepositoryId=${ossrh-server-id}"/>
+         <artifact:arg value="-DpomFile=${pom.file}"/>
+         <artifact:arg value="-Dfile=${dist.cacheonix.src}"/>
+         <artifact:arg value="-Dclassifier=sources"/>
+         <artifact:arg value="-Pgpg"/>
+      </artifact:mvn>
+
+      <!-- Sign and deploy the javadoc artifact -->
+      <artifact:mvn failonerror="true">
+         <artifact:arg value="org.apache.maven.plugins:maven-gpg-plugin:1.5:sign-and-deploy-file"/>
+         <artifact:arg value="-Durl=${ossrh-staging-repository-url}"/>
+         <artifact:arg value="-DrepositoryId=${ossrh-server-id}"/>
+         <artifact:arg value="-DpomFile=${pom.file}"/>
+         <artifact:arg value="-Dfile=${dist.cacheonix-javadoc.zip}"/>
+         <artifact:arg value="-Dclassifier=javadoc"/>
+         <artifact:arg value="-Pgpg"/>
+      </artifact:mvn>
+   </target>
 
 </project>
