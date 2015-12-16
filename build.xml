@@ -624,9 +624,22 @@
 
    <!-- Installs Cacheonix to local repo -->
    <target name="maven.pom" depends="all">
+
+      <!-- Define POM in memory -->
       <artifact:pom id="cacheonix-core-in-memory" groupId="org.cacheonix" artifactId="cacheonix-core"
-                    version="2.0-SNAPSHOT" name="Cacheonix Core" url="http://www.cacheoix.org"/>
-      <artifact:writepom pomrefid="cacheonix-core-in-memory" file="temp/pom.xml"/>
+                    version="${release.version}" name="Cacheonix Core" url="http://www.cacheoix.org"
+                    description="Cacheonix is an open source distributed cache for Java that allows its users to scale Java applications in a cluster while preserving the simplicity of design and coding in a single Java VM.">
+         <artifact:developer name="Slava Imeshev" email="simeshev@cacheonix.org" organization="Cacheonix"
+                             organizationUrl="http://www.cacheonix.org"/>
+         <artifact:license name="lgpl" url="http://www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html"/>
+         <artifact:scm connection="scm:git:git@github.com:cacheonix/cacheonix-core.git"
+                       developerConnection="scm:git:git@github.com:cacheonix/cacheonix-core.git"
+                       url="git@github.com:cacheonix/cacheonix-core.git"/>
+      </artifact:pom>
+
+      <!-- Write to disk -->
+      <artifact:writepom pomrefid="cacheonix-core-in-memory" file="${pom.file}"/>
+
       <artifact:pom id="cacheonix-core-on-disk" file="${pom.file}"/>
    </target>
 
@@ -639,7 +652,7 @@
 
 
    <!-- Before this, update project version (both build.xml and pom.xml) from SNAPSHOT to RELEASE -->
-   <target name="maven.stage" depends="all" description="Deploy release version to Maven staging repository">
+   <target name="maven.stage" depends="maven.pom" description="Deploy release version to Maven staging repository">
 
       <!-- Verify that this is a release version -->
       <fail message="Snapshot build should not be deployed to the release repository: ${release.version}">
