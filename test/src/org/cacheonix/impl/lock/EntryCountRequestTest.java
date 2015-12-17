@@ -39,7 +39,6 @@ public class EntryCountRequestTest extends CacheonixTestCase {
 
    private static final ClusterNodeAddress OWNER_ADDRESS = TestUtils.createTestAddress(1);
 
-
    public void testToString() throws Exception {
 
       assertNotNull(request.toString());
@@ -51,7 +50,7 @@ public class EntryCountRequestTest extends CacheonixTestCase {
     */
    public void testDefaultConstructor() {
 
-      assertNotNull(new ReleaseLockRequest().toString());
+      assertNotNull(new EntryCountRequest().toString());
    }
 
 
@@ -111,7 +110,8 @@ public class EntryCountRequestTest extends CacheonixTestCase {
       final Thread currentThread = Thread.currentThread();
       threadID = System.identityHashCode(currentThread);
       threadName = currentThread.getName();
-      request = new EntryCountRequest("test.lock.region", toBinary(TEST_LOCK), OWNER_ADDRESS, threadID, threadName, READ_LOCK);
+      request = new EntryCountRequest("test.lock.region", toBinary(TEST_LOCK), OWNER_ADDRESS, threadID, threadName,
+              READ_LOCK);
       request.setSender(OWNER_ADDRESS);
    }
 }

@@ -154,7 +154,7 @@ public final class LockQueueKey implements Wireable {
    /**
     * A class factory.
     */
-   final static class Builder implements WireableBuilder {
+   private final static class Builder implements WireableBuilder {
 
       public Wireable create() {
 
