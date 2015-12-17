@@ -15,10 +15,10 @@ package org.cacheonix.impl.lock;
 
 import java.io.Serializable;
 
-import org.cacheonix.locks.Lock;
-import org.cacheonix.locks.ReadWriteLock;
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.net.cluster.ClusterProcessor;
+import org.cacheonix.locks.Lock;
+import org.cacheonix.locks.ReadWriteLock;
 
 /**
  * A distributed implementation of a read-write lock.
@@ -49,7 +49,7 @@ public final class DistributedReadWriteLock implements ReadWriteLock {
     * @param lockRegionName             a name of the region where this lock is going to be placed. The region name is
     *                                   used to separate cluster-wide and cache-specific locks.
     * @param lockKey                    a lock identifier.
-    * @param defaultUnlockTimeoutMillis
+    * @param defaultUnlockTimeoutMillis a default timeout to release the lock.
     */
    public DistributedReadWriteLock(final ClusterProcessor clusterProcessor, final String lockRegionName,
                                    final Binary lockKey, final long defaultUnlockTimeoutMillis) {
