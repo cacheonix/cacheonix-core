@@ -25,7 +25,7 @@ import org.cacheonix.impl.net.serializer.WireableBuilder;
 import org.cacheonix.impl.util.Assert;
 
 /**
- * A queue contaning pending lock requests.
+ * A queue containing pending lock requests.
  */
 @SuppressWarnings("RedundantIfStatement")
 public final class LockQueue implements Wireable {
