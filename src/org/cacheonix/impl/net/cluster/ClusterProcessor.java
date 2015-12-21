@@ -82,6 +82,11 @@ public interface ClusterProcessor extends RequestProcessor, MulticastServerListe
    void cancelMarkerTimeout();
 
    /**
+    * Starts waiting for a marker.
+    */
+   void resetMarkerTimeout();
+
+   /**
     * Delivers assembled requests accumulated in the request assembler.
     */
    void deliverAssembledMulticastMessages() throws IOException;

@@ -36,7 +36,7 @@ import org.cacheonix.impl.net.serializer.WireableBuilder;
 public final class PassByReferenceBinary implements Binary {
 
    /**
-    * Maker used by WireableFactory.
+    * Builder used by WireableFactory.
     */
    public static final WireableBuilder BUILDER = new Builder();
 
@@ -132,6 +132,10 @@ public final class PassByReferenceBinary implements Binary {
 
       final PassByReferenceBinary that = (PassByReferenceBinary) obj;
 
+
+      if (reference == null && that.reference == null) {
+         return true;
+      }
 
       if (reference == null || that.reference == null) {
          return false;

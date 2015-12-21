@@ -38,7 +38,7 @@ import org.cacheonix.impl.util.exception.ExceptionUtils;
 public final class CompressedBinary implements Binary {
 
    /**
-    * Maker used by WireableFactory.
+    * Builder used by WireableFactory.
     */
    public static final WireableBuilder BUILDER = new Builder();
 
@@ -48,6 +48,8 @@ public final class CompressedBinary implements Binary {
     * Service compressor.
     */
    private final Compressor compressor = Compressor.getInstance();
+
+   private String valueClassName;
 
    /**
     * REVIEWME: slava@cacheonix.org - this should be made a configuration parameter.
@@ -70,13 +72,18 @@ public final class CompressedBinary implements Binary {
    public CompressedBinary(final Object value) throws InvalidObjectException {
 
       if (value == null) {
+
          compressedCopy = null;
-      }
-      try {
-         final byte[] uncompressedCopy = serializer.serialize(value);
-         compressedCopy = compressor.compress(uncompressedCopy);
-      } catch (final IOException e) {
-         throw new InvalidObjectException(e);
+      } else {
+
+         valueClassName = value.getClass().getName();
+
+         try {
+            final byte[] uncompressedCopy = serializer.serialize(value);
+            compressedCopy = compressor.compress(uncompressedCopy);
+         } catch (final IOException e) {
+            throw new InvalidObjectException(e);
+         }
       }
    }
 
@@ -122,6 +129,7 @@ public final class CompressedBinary implements Binary {
    public void writeWire(final DataOutputStream out) throws IOException {
 
       out.write((int) serializer.getType());
+      SerializerUtils.writeString(valueClassName, out);
       SerializerUtils.writeByteArray(out, compressedCopy);
    }
 
@@ -130,6 +138,7 @@ public final class CompressedBinary implements Binary {
 
       final byte serializerType = in.readByte();
       serializer = SerializerFactory.getInstance().getSerializer(serializerType);
+      valueClassName = SerializerUtils.readString(in);
       compressedCopy = SerializerUtils.readByteArray(in);
    }
 
@@ -140,6 +149,7 @@ public final class CompressedBinary implements Binary {
    public void writeExternal(final ObjectOutput out) throws IOException {
 
       out.write((int) serializer.getType());
+      SerializerUtils.writeString(valueClassName, out);
       SerializerUtils.writeByteArray(out, compressedCopy);
    }
 
@@ -151,6 +161,7 @@ public final class CompressedBinary implements Binary {
 
       final byte serializerType = in.readByte();
       serializer = SerializerFactory.getInstance().getSerializer(serializerType);
+      valueClassName = SerializerUtils.readString(in);
       compressedCopy = SerializerUtils.readByteArray(in);
    }
 
@@ -168,21 +179,16 @@ public final class CompressedBinary implements Binary {
       if (this.compressedCopy == null && that.compressedCopy == null) {
          return true;
       }
+
       if (this.compressedCopy == null || that.compressedCopy == null) {
          return false;
       }
 
-      if (Arrays.equals(this.compressedCopy, that.compressedCopy)) {
-         return true;
-      }
-
-      final Object thisValue = getValue();
-      final Object thatValue = that.getValue();
-      if (thisValue == null || thatValue == null) {
+      if (!this.valueClassName.equals(that.valueClassName)) {
          return false;
       }
 
-      return thisValue.equals(thatValue);
+      return Arrays.equals(this.compressedCopy, that.compressedCopy);
    }
 
 

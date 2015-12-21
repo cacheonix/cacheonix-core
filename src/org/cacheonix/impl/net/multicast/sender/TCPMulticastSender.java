@@ -53,18 +53,7 @@ public final class TCPMulticastSender implements MulticastSender {
       this.localAddress = localAddress;
    }
 
-
-   /**
-    * {@inheritDoc}
-    */
-   public void setRouter(final Router router) {
-
-      // REVIEWME: simeshev@cacheonix.org - 2011-08-30 - Consider setting router in a constructor instead
-      this.router = router;
-   }
-
-
-   /**
+  /**
     * {@inheritDoc}
     * <p/>
     * This implementation wraps the frame into a MulticastFrameMessage and sends the MulticastFrameMessage to the known

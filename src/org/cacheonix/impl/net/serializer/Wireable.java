@@ -121,11 +121,6 @@ public interface Wireable {
    int TYPE_CONNECTION_CLOSE = DESTINATION_CONNECTION << 8 | 3;
 
    /**
-    * Application level ping.
-    */
-   int TYPE_CONNECTION_PING = DESTINATION_CONNECTION << 8 | 4;
-
-   /**
     * ++++++++++++++++++++++++++++++++++++++ Cluster processor messages  ++++++++++++++++++++++++++++++++++++++
     */
 

@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.impl.net.tcp.server;
+package org.cacheonix.impl.net.tcp;
 
 import java.nio.ByteBuffer;
 import java.util.LinkedList;
@@ -19,7 +19,7 @@ import java.util.LinkedList;
 /**
  * Accumulates and serves ByteBuffer chunks.
  */
-public final class ChunkedBuffer {
+final class ChunkedBuffer {
 
    private final LinkedList<ByteBuffer> chunks = new LinkedList<ByteBuffer>(); // NOPMD
 

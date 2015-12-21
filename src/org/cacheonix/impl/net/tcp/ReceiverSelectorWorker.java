@@ -11,14 +11,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.impl.net.tcp.server;
+package org.cacheonix.impl.net.tcp;
 
 import java.nio.channels.Selector;
 
 /**
  * A selector worker used by TCPServer.
  */
-public class TCPServerWorker extends SelectorWorker {
+class ReceiverSelectorWorker extends SelectorWorker {
 
    /**
     * Creates SelectorWorker.
@@ -28,7 +28,8 @@ public class TCPServerWorker extends SelectorWorker {
     * @param selectorTimeoutMillis a time the selector should block for while waiting for a channel to become ready,
     *                              must be greater than zero.
     */
-   public TCPServerWorker(final Selector selector, final long socketTimeoutMillis, final long selectorTimeoutMillis) {
+   public ReceiverSelectorWorker(final Selector selector, final long socketTimeoutMillis,
+           final long selectorTimeoutMillis) {
 
       super(selector, socketTimeoutMillis, selectorTimeoutMillis);
    }

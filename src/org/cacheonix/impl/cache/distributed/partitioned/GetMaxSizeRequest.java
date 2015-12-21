@@ -26,7 +26,7 @@ import org.cacheonix.impl.net.serializer.WireableBuilder;
 public final class GetMaxSizeRequest extends CacheRequest {
 
    /**
-    * Maker used by WireableFactory.
+    * Builder used by WireableFactory.
     */
    public static final WireableBuilder BUILDER = new Builder();
 

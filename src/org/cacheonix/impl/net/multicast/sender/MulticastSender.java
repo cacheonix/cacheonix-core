@@ -16,7 +16,6 @@ package org.cacheonix.impl.net.multicast.sender;
 import java.io.IOException;
 
 import org.cacheonix.impl.net.processor.Frame;
-import org.cacheonix.impl.net.processor.Router;
 
 /**
  * Low-level multicast message sender that takes in account multiple interfaces.
@@ -30,15 +29,8 @@ public interface MulticastSender {
    /**
     * Sends message.
     *
-    * @param frame
+    * @param frame a frame to send.
     * @throws IOException
     */
    void sendFrame(final Frame frame) throws IOException;
-
-   /**
-    * Sets the router. The router must be set before the sender can be used.
-    *
-    * @param router the router to set.
-    */
-   void setRouter(final Router router);
 }

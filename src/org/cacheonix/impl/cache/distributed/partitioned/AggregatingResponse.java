@@ -34,7 +34,7 @@ import org.cacheonix.impl.util.logging.Logger;
 public final class AggregatingResponse extends CacheResponse {
 
    /**
-    * Maker used by WireableFactory.
+    * Builder used by WireableFactory.
     */
    public static final WireableBuilder AGGREGATING_RESPONSE_BUILDER = new Builder();
 

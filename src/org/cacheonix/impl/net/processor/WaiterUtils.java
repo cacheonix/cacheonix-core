@@ -13,7 +13,11 @@
  */
 package org.cacheonix.impl.net.processor;
 
+import java.net.InetAddress;
+import java.util.Arrays;
+
 import org.cacheonix.exceptions.CacheonixException;
+import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.util.logging.Logger;
 
 /**
@@ -73,7 +77,11 @@ public final class WaiterUtils {
       if (result instanceof Throwable) {
          return (Throwable) result;
       }
-      return new CacheonixException("Node " + response.getSender().getHostName() + ':' + response.getSender().getTcpPort() + " returned error: " + (result == null ? "null" : result.toString()));
+      final ClusterNodeAddress senderAddress = response.getSender();
+      final InetAddress[] addresses = senderAddress.getAddresses();
+      final String addressesAsString = addresses == null? "null" : Arrays.toString(addresses);
+      return new CacheonixException("Node " + addressesAsString + ':' + senderAddress.getTcpPort()
+              + " returned error: " + (result == null ? "null" : result.toString()));
    }
 
 
@@ -86,6 +94,7 @@ public final class WaiterUtils {
     */
    public static CacheonixException unknownResultToThrowable(final int resultCode, final Object result) {
 
-      return new CacheonixException("Received unknown result: " + resultToString(result, 100) + ", code: " + resultCode);
+      return new CacheonixException(
+              "Received unknown result: " + resultToString(result, 100) + ", code: " + resultCode);
    }
 }

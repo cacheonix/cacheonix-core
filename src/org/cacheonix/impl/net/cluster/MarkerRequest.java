@@ -77,7 +77,7 @@ public abstract class MarkerRequest extends ClusterRequest {
          super.execute();
       } finally {
 
-         processor.cancelMarkerTimeout();
+         processor.resetMarkerTimeout();
       }
    }
 

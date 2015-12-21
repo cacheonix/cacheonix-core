@@ -36,7 +36,7 @@ import org.cacheonix.impl.util.exception.ExceptionUtils;
 public final class PassByCopyBinary implements Binary {
 
    /**
-    * Maker used by WireableFactory.
+    * Builder used by WireableFactory.
     */
    public static final WireableBuilder BUILDER = new Builder();
 
@@ -148,6 +148,10 @@ public final class PassByCopyBinary implements Binary {
       }
 
       final PassByCopyBinary that = (PassByCopyBinary) obj;
+
+      if (copy == null && that.copy == null) {
+         return true;
+      }
 
       if (copy == null || that.copy == null) {
          return false;

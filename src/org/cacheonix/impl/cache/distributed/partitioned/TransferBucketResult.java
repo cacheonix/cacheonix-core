@@ -31,7 +31,7 @@ import org.cacheonix.impl.util.StringUtils;
 public final class TransferBucketResult implements Wireable {
 
    /**
-    * Maker used by WireableFactory.
+    * Builder used by WireableFactory.
     */
    public static final WireableBuilder BUILDER = new Builder();
 

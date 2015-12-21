@@ -30,7 +30,7 @@ import org.cacheonix.impl.util.logging.Logger;
 public final class RepartitionAnnouncement extends GroupMessage {
 
    /**
-    * Maker used by WireableFactory.
+    * Builder used by WireableFactory.
     */
    public static final WireableBuilder BUILDER = new Builder();
 

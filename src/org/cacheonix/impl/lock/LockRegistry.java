@@ -30,7 +30,7 @@ import org.cacheonix.impl.util.array.ObjectObjectProcedure;
 public final class LockRegistry implements Wireable {
 
    /**
-    * Maker used by WireableFactory.
+    * Builder used by WireableFactory.
     */
    public static final WireableBuilder BUILDER = new Builder();
 
@@ -176,7 +176,7 @@ public final class LockRegistry implements Wireable {
    /**
     * A class factory.
     */
-   final static class Builder implements WireableBuilder {
+   private final static class Builder implements WireableBuilder {
 
       public Wireable create() {
 

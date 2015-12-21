@@ -38,7 +38,7 @@ public class StandardObjectSizeCalculatorTest extends TestCase {
    @SuppressWarnings("RedundantStringConstructorCall")
    public void testString() {
 
-      assertEquals(64, CALCULATOR.sizeOf(new String("Hello World!"))); // NOPMD Avoid instantiating String objects; this is usually unnecessary.
+      assertEquals(72, CALCULATOR.sizeOf(new String("Hello World!"))); // NOPMD Avoid instantiating String objects; this is usually unnecessary.
    }
 
 
@@ -46,7 +46,7 @@ public class StandardObjectSizeCalculatorTest extends TestCase {
    public void testIntegerToString() {
 
       for (int i = 0; i < 1; i++) {
-         assertEquals(42, CALCULATOR.sizeOf("" + i)); // NOPMD Do not add empty strings
+         assertEquals(50, CALCULATOR.sizeOf("" + i)); // NOPMD Do not add empty strings
       }
    }
 
@@ -93,7 +93,7 @@ public class StandardObjectSizeCalculatorTest extends TestCase {
    @SuppressWarnings({"unchecked", "CachedNumberConstructorCall"})
    public void testHashMap() {
 
-      assertEquals(120, CALCULATOR.sizeOf(new HashMap(16)));
+      assertEquals(200, CALCULATOR.sizeOf(new HashMap(16)));
 
       final Byte[] all = new Byte[256];
       for (int i = -128; i < 128; i++) {
@@ -111,13 +111,13 @@ public class StandardObjectSizeCalculatorTest extends TestCase {
 
    public void testVector() {
 
-      assertEquals(80, CALCULATOR.sizeOf(new Vector(10))); // NOPMD Use ArrayList instead of Vector
+      assertEquals(120, CALCULATOR.sizeOf(new Vector(10))); // NOPMD Use ArrayList instead of Vector
    }
 
 
    public void testArrayList() {
 
-      assertEquals(80, CALCULATOR.sizeOf(new ArrayList(10)));
+      assertEquals(120, CALCULATOR.sizeOf(new ArrayList(10)));
    }
 
 
@@ -166,7 +166,7 @@ public class StandardObjectSizeCalculatorTest extends TestCase {
          booleanArray[i] = new Boolean(true); // NOPMD
       }
 
-      assertEquals(20016, CALCULATOR.sizeOf(booleanArray));
+      assertEquals(24016, CALCULATOR.sizeOf(booleanArray));
    }
 
 
@@ -179,7 +179,7 @@ public class StandardObjectSizeCalculatorTest extends TestCase {
    @SuppressWarnings("CollectionWithoutInitialCapacity")
    public void testEmptyArrayList() {
 
-      assertEquals(80, CALCULATOR.sizeOf(new ArrayList()));
+      assertEquals(120, CALCULATOR.sizeOf(new ArrayList()));
    }
 
 
@@ -192,7 +192,7 @@ public class StandardObjectSizeCalculatorTest extends TestCase {
          arrayList.add(new Object());
       }
 
-      assertEquals(120040, CALCULATOR.sizeOf(arrayList));
+      assertEquals(160040, CALCULATOR.sizeOf(arrayList));
    }
 
 
@@ -205,7 +205,7 @@ public class StandardObjectSizeCalculatorTest extends TestCase {
          linkedList.add(new Object());
       }
 
-      assertEquals(320048, CALCULATOR.sizeOf(linkedList));
+      assertEquals(400056, CALCULATOR.sizeOf(linkedList));
    }
 
 
@@ -257,7 +257,7 @@ public class StandardObjectSizeCalculatorTest extends TestCase {
       try {
          final ConfigurationReader reader = new ConfigurationReader();
          final CacheonixConfiguration config = reader.readConfiguration(testFileInputStream);
-         assertEquals(1326, CALCULATOR.sizeOf(config));
+         assertEquals(1656, CALCULATOR.sizeOf(config));
       } finally {
          IOUtils.closeHard(testFileInputStream);
       }

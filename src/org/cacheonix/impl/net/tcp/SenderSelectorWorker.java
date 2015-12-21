@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.impl;
+package org.cacheonix.impl.net.tcp;
 
 import java.nio.channels.Selector;
 import java.util.Iterator;
@@ -23,10 +23,9 @@ import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.processor.Message;
 import org.cacheonix.impl.net.processor.ReceiverAddress;
 import org.cacheonix.impl.net.processor.Router;
-import org.cacheonix.impl.net.tcp.server.SelectorWorker;
 import org.cacheonix.impl.util.array.HashMap;
 
-final class MessageSenderWorker extends SelectorWorker {
+final class SenderSelectorWorker extends SelectorWorker {
 
    /**
     * This cluster node's clock. The clock is used to time stamp sent messages.
@@ -37,7 +36,7 @@ final class MessageSenderWorker extends SelectorWorker {
    /**
     * Map of addresses to senders.
     */
-   private final Map<ReceiverAddress, Sender> senders = new HashMap<ReceiverAddress, Sender>(111);
+   private final Map<ReceiverAddress, SenderKeyHandler> senders = new HashMap<ReceiverAddress, SenderKeyHandler>(111);
 
    /**
     * Local address.
@@ -66,9 +65,9 @@ final class MessageSenderWorker extends SelectorWorker {
     * @param clock                 the cluster node's clock.
     */
    @SuppressWarnings("AssignmentToCollectionOrArrayFieldFromParameter")
-   MessageSenderWorker(final ClusterNodeAddress localAddress, final Selector selector,
-                       final ConcurrentLinkedQueue<Message> queue, final Router router,
-                       final long networkTimeoutMillis, final long selectorTimeoutMillis, final Clock clock) {
+   SenderSelectorWorker(final ClusterNodeAddress localAddress, final Selector selector,
+           final ConcurrentLinkedQueue<Message> queue, final Router router,
+           final long networkTimeoutMillis, final long selectorTimeoutMillis, final Clock clock) {
 
       super(selector, networkTimeoutMillis, selectorTimeoutMillis);
       this.localAddress = localAddress;
@@ -97,7 +96,7 @@ final class MessageSenderWorker extends SelectorWorker {
    /**
     * Dispatches messages in the input queue to senders.
     */
-   protected final void dispatchToSenders() {
+   private final void dispatchToSenders() {
 
       if (queue.isEmpty()) {
          return;
@@ -133,21 +132,17 @@ final class MessageSenderWorker extends SelectorWorker {
       }
 
 
-      final Sender existingSender = senders.get(receiverAddress);
-      if (existingSender == null) {
+      SenderKeyHandler senderKeyHandler = senders.get(receiverAddress);
+      if (senderKeyHandler == null) {
 
-         // Sender does not exist - create
-         final Sender newSender = new Sender(selector, receiverAddress, router, networkTimeoutMillis, clock);
+         // SenderKeyHandler does not exist - create
+         senderKeyHandler = new SenderKeyHandler(selector, receiverAddress, router, networkTimeoutMillis, clock);
+
+         // Register the senderKeyHandler
+         senders.put(receiverAddress, senderKeyHandler);
 
          // Enqueue message
-         newSender.enqueue(message);
-
-         // Register the sender
-         senders.put(receiverAddress, newSender);
-      } else {
-
-         // Existing sender - just enqueue
-         existingSender.enqueue(message);
+         senderKeyHandler.enqueue(message);
       }
    }
 }

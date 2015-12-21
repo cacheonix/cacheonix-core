@@ -18,11 +18,14 @@ import java.util.Collection;
 
 import org.cacheonix.Cacheonix;
 import org.cacheonix.CacheonixTestCase;
+import org.cacheonix.SavedSystemProperty;
 import org.cacheonix.ShutdownMode;
 import org.cacheonix.TestConstants;
 import org.cacheonix.TestUtils;
 import org.cacheonix.impl.cache.local.LocalCache;
 import org.cacheonix.impl.util.logging.Logger;
+
+import static org.cacheonix.impl.config.SystemProperty.NAME_CACHEONIX_AUTO_CREATE_CACHE;
 
 /**
  * Tests Cacheonix.
@@ -73,7 +76,16 @@ public final class ClusteredCacheManagerTest extends CacheonixTestCase {
     */
    public void testGetNonExistingCache() {
 
-      assertNull(instance.getCache(TEST_CACHE_DOES_NOT_EXIT));
+      final SavedSystemProperty savedSystemProperty = new SavedSystemProperty(NAME_CACHEONIX_AUTO_CREATE_CACHE);
+      savedSystemProperty.save();
+      try {
+
+         System.setProperty(NAME_CACHEONIX_AUTO_CREATE_CACHE, "false");
+         assertNull(instance.getCache(TEST_CACHE_DOES_NOT_EXIT));
+      } finally {
+
+         savedSystemProperty.restore();
+      }
    }
 
 

@@ -11,9 +11,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.impl.net.tcp.server;
+package org.cacheonix.impl.net.tcp;
 
-import java.io.IOException;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.util.Iterator;
@@ -45,7 +44,7 @@ public class SelectorWorker implements Runnable {
    /**
     * Time the NIO selector should block for while waiting for a channel to become ready, must be greater than zero.
     */
-   protected final long selectorTimeoutMillis;
+   private final long selectorTimeoutMillis;
 
    /**
     * Selector.
@@ -61,7 +60,7 @@ public class SelectorWorker implements Runnable {
     * @param selectorTimeoutMillis a time the selector should block for while waiting for a channel to become ready,
     *                              must be greater than zero.
     */
-   public SelectorWorker(final Selector selector, final long networkTimeoutMillis, final long selectorTimeoutMillis) {
+   SelectorWorker(final Selector selector, final long networkTimeoutMillis, final long selectorTimeoutMillis) {
 
       this.selectorTimeoutMillis = selectorTimeoutMillis;
       this.networkTimeoutMillis = networkTimeoutMillis;
@@ -92,10 +91,7 @@ public class SelectorWorker implements Runnable {
       } catch (final UnrecoverableAcceptException e) {
 
          LOG.error("Failed to accept a connection, selector thread terminates: " + e.toString(), e);
-      } catch (final RuntimeException e) {
-
-         LOG.error("Unexpected error, selector thread terminates: " + e.toString(), e);
-      } catch (final IOException e) {
+      } catch (final Exception e) {
 
          LOG.error("Unexpected error, selector thread terminates: " + e.toString(), e);
       } finally {
@@ -151,29 +147,8 @@ public class SelectorWorker implements Runnable {
             // Handle key state
 
             final KeyHandler keyHandler = (KeyHandler) key.attachment();
-            if (key.isConnectable()) {
-
-               // Channel is ready to finish connection
-               keyHandler.registerActivity();
-               keyHandler.handleFinishConnect(key);
-
-            } else if (key.isWritable()) { // NOPMD
-
-               // Socket channel is ready for write
-               keyHandler.registerActivity();
-               keyHandler.handleWrite(key);
-
-            } else if (key.isReadable()) {
-
-               // Socket is ready for read
-               keyHandler.registerActivity();
-               keyHandler.handleRead(key);
-
-            } else if (key.isAcceptable()) {
-
-               keyHandler.registerActivity();
-               keyHandler.handleAccept(key);
-            }
+            keyHandler.registerActivity();
+            keyHandler.handleKey(key);
          }
       }
 

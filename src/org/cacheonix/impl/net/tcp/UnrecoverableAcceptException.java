@@ -11,26 +11,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.impl.util.exception;
+package org.cacheonix.impl.net.tcp;
+
+import java.io.IOException;
 
 import org.cacheonix.exceptions.CacheonixException;
 
 /**
- * This runtime exception is thrown when a call is made to a method that has not been implemented yet.
+ * This exception is thrown when an unrecoverable server socket exception occurs.
  */
-public final class MethodNotImplementedException extends CacheonixException {
+public final class UnrecoverableAcceptException extends CacheonixException {
 
-   private static final String THIS_METHOD_IS_NOT_IMPLEMENTED_YET = "This method is not implemented yet";
-
-   private static final long serialVersionUID = 0L;
+   private static final long serialVersionUID = 7908749977067442371L;
 
 
    /**
-    * Constructs a new runtime exception with <code>null</code> as its detail message.  The cause is not initialized,
-    * and may subsequently be initialized by a call to {@link #initCause}.
+    * Creates UnrecoverableAcceptException
+    *
+    * @param cause cause.
     */
-   public MethodNotImplementedException() {
+   public UnrecoverableAcceptException(final IOException cause) {
 
-      super(THIS_METHOD_IS_NOT_IMPLEMENTED_YET);
+      super(cause);
    }
 }

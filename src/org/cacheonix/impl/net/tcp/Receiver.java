@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.impl.net.tcp.server;
+package org.cacheonix.impl.net.tcp;
 
 import java.io.IOException;
 import java.net.BindException;
@@ -26,26 +26,27 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import org.cacheonix.impl.clock.Clock;
 import org.cacheonix.impl.config.SystemProperty;
-import org.cacheonix.impl.util.IOUtils;
 import org.cacheonix.impl.util.Shutdownable;
 import org.cacheonix.impl.util.StringUtils;
-import org.cacheonix.impl.util.exception.ExceptionUtils;
 import org.cacheonix.impl.util.exception.StackTraceAtCreate;
 import org.cacheonix.impl.util.logging.Logger;
-import org.cacheonix.impl.util.thread.ThreadUtils;
 import org.cacheonix.impl.util.thread.UserThreadFactory;
+
+import static org.cacheonix.impl.util.IOUtils.closeHard;
+import static org.cacheonix.impl.util.exception.ExceptionUtils.ignoreException;
+import static org.cacheonix.impl.util.thread.ThreadUtils.interruptAndJoin;
 
 /**
  * TCP server handles incoming TCP requests for cache configurations grouped in a cluster.
  *
  * @noinspection ConstantConditions, ProhibitedExceptionDeclared
  */
-public final class TCPServer implements Shutdownable {
+public final class Receiver implements Shutdownable {
 
    /**
     * @noinspection UNUSED_SYMBOL, UnusedDeclaration
     */
-   private static final Logger LOG = Logger.getLogger(TCPServer.class); // NOPMD
+   private static final Logger LOG = Logger.getLogger(Receiver.class); // NOPMD
 
    /**
     * Stack trace at create.
@@ -100,14 +101,15 @@ public final class TCPServer implements Shutdownable {
     * @throws IOException IO error when opening the socket.
     * @noinspection SocketOpenedButNotSafelyClosed, OverlyBroadCatchBlock
     */
-   public TCPServer(final Clock clock, final String address, final int port,
-                    final TCPRequestDispatcher requestDispatcher, final long socketTimeoutMillis,
-                    final long selectorTimeoutMillis) throws IOException {
+   public Receiver(final Clock clock, final String address, final int port,
+           final RequestDispatcher requestDispatcher, final long socketTimeoutMillis,
+           final long selectorTimeoutMillis) throws IOException {
 
-      //
-      this.selector = Selector.open();
-      this.selectorThread = new UserThreadFactory("Receiver:" + port).newThread(new TCPServerWorker(selector, socketTimeoutMillis, selectorTimeoutMillis));
       this.endpoint = createEndpoint(address, port);
+
+      this.selector = Selector.open();
+      this.selectorThread = new UserThreadFactory("Receiver:" + port).newThread(
+              new ReceiverSelectorWorker(selector, socketTimeoutMillis, selectorTimeoutMillis));
 
       // Create ServerSocketChannel
       serverSocketChannel = ServerSocketChannel.open();
@@ -115,15 +117,17 @@ public final class TCPServer implements Shutdownable {
       try {
 
          // Create receiver key handler
-         final Receiver receiver = new Receiver(selector, requestDispatcher, clock, socketTimeoutMillis);
+         final ReceiverKeyHandler receiverKeyHandler = new ReceiverKeyHandler(selector, requestDispatcher, clock,
+                 socketTimeoutMillis);
 
          // Configure it as non-locking
          serverSocketChannel.configureBlocking(false);
 
-         // Register receiver with the server socket channel
-         serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT, receiver);
+         // Register receiver key handler with the server socket channel
+         serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT, receiverKeyHandler);
       } catch (final IOException e) {
-         IOUtils.closeHard(serverSocketChannel);
+
+         closeHard(serverSocketChannel);
          throw e;
       }
    }
@@ -136,21 +140,11 @@ public final class TCPServer implements Shutdownable {
     */
    public void startup() throws IOException {
 
-      // Check preconditions
-      if (operationalStatus.get() == OPERATIONAL_STATUS_SHUTDOWN) {
-         throw new IllegalStateException("Cannot start the server that has been shutdown");
-      }
-
-      if (operationalStatus.get() == OPERATIONAL_STATUS_STARTED) {
-         throw new IllegalStateException("Cannot start the server that has already been started");
-      }
-
-      if (!operationalStatus.compareAndSet(OPERATIONAL_STATUS_NOT_STARTED, OPERATIONAL_STATUS_STARTED)) {
-         throw new IllegalStateException("Cannot start the server, operational status: " + operationalStatus.get());
-      }
-
       // Create endpoint and inform about starting
       LOG.info("Starting TCP server bound to " + StringUtils.toString(endpoint));
+
+      // Check preconditions
+      verifyStartable();
 
       // Bind sockets
       for (final SelectionKey selectionKey : selector.keys()) {
@@ -189,26 +183,26 @@ public final class TCPServer implements Shutdownable {
 
       // Close the server socket channel first so that closing socket channels
       // wouldn't allow other nodes to re-establish the connection.
-      IOUtils.closeHard(serverSocketChannel);
+      closeHard(serverSocketChannel);
       try {
          selector.selectNow();
-      } catch (final IOException ignored) {
-         ExceptionUtils.ignoreException(ignored, "Shutting down");
+      } catch (final IOException e) {
+         ignoreException(e, "Shutting down");
       }
 
       // Interrupt selector thread. This should unblock any NIO operations.
-      ThreadUtils.interruptAndJoin(selectorThread, 1000L);
+      interruptAndJoin(selectorThread, 1000L);
 
       // NOTE: simeshev@cacheonix.org - 2010-10-27 - I have observed on several
       // occasions that selector.select(); misses the interrupt. So, we try
       // again.
       if (!isShutDown()) {
-         ThreadUtils.interruptAndJoin(selectorThread, 1000L);
+         interruptAndJoin(selectorThread, 1000L);
       }
 
       // Close selector if still alive.
       if (!isShutDown()) {
-         IOUtils.closeHard(selector);
+         closeHard(selector);
       }
 
       LOG.info("TCP server has been shutdown: " + endpoint);
@@ -233,12 +227,19 @@ public final class TCPServer implements Shutdownable {
    }
 
 
-   /**
-    * @return TCP tcpPort this server accepts requests at
-    */
-   final int getTcpPort() {
+   private void verifyStartable() {
 
-      return endpoint.getPort();
+      if (operationalStatus.get() == OPERATIONAL_STATUS_SHUTDOWN) {
+         throw new IllegalStateException("Cannot start the server that has been shutdown");
+      }
+
+      if (operationalStatus.get() == OPERATIONAL_STATUS_STARTED) {
+         throw new IllegalStateException("Cannot start the server that has already been started");
+      }
+
+      if (!operationalStatus.compareAndSet(OPERATIONAL_STATUS_NOT_STARTED, OPERATIONAL_STATUS_STARTED)) {
+         throw new IllegalStateException("Cannot start the server, operational status: " + operationalStatus.get());
+      }
    }
 
 
@@ -262,7 +263,7 @@ public final class TCPServer implements Shutdownable {
          try {
             shutdown();
          } catch (final Exception e) {
-            ExceptionUtils.ignoreException(e, "finalizer");
+            ignoreException(e, "finalizer");
          }
       }
       super.finalize();
@@ -278,7 +279,7 @@ public final class TCPServer implements Shutdownable {
     * @return BindException with added information on the address for that the exception occurred.
     */
    private static BindException createDetailedBindException(final BindException originalException,
-                                                            final InetSocketAddress endpoint) {
+           final InetSocketAddress endpoint) {
 
       final String newMessage = originalException.getMessage() + ". Address: " + endpoint;
       final BindException newBindException = new BindException(newMessage);

@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.impl.net.tcp.server;
+package org.cacheonix.impl.net.tcp;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -36,12 +36,12 @@ import org.cacheonix.impl.util.logging.Logger;
 /**
  * Tester for TCPServer.
  */
-public final class TCPServerTest extends CacheonixTestCase {
+public final class ReceiverTest extends CacheonixTestCase {
 
    /**
     * @noinspection UNUSED_SYMBOL, UnusedDeclaration
     */
-   private static final Logger LOG = Logger.getLogger(TCPServerTest.class); // NOPMD
+   private static final Logger LOG = Logger.getLogger(ReceiverTest.class); // NOPMD
 
    private static final int PORT = TestConstants.PORT_7676;
 
@@ -51,7 +51,7 @@ public final class TCPServerTest extends CacheonixTestCase {
 
    private static final long SELECTOR_TIMEOUT_MILLIS = ConfigurationConstants.DEFAULT_SELECTOR_TIMEOUT_MILLIS;
 
-   private TCPServer server = null;
+   private Receiver server = null;
 
    private Serializer serializer = null;
 
@@ -73,20 +73,7 @@ public final class TCPServerTest extends CacheonixTestCase {
    public void testReceivesOneMessage() throws Exception {
 
       writeFrame();
-
-      lock.lock();
-      try {
-
-         boolean receivedAll = !received.isEmpty();
-         while (!receivedAll) {
-
-            condition.await(10, TimeUnit.MILLISECONDS);
-            receivedAll = !received.isEmpty(); // NOPMD
-         }
-      } finally {
-
-         lock.unlock();
-      }
+      waitForReceivedQueueSize(1);
       assertEquals(1, received.size());
    }
 
@@ -95,14 +82,33 @@ public final class TCPServerTest extends CacheonixTestCase {
 
       writeFrame();
       writeFrame();
+      waitForReceivedQueueSize(2);
       assertEquals(2, received.size());
    }
 
 
-   private void writeFrame() throws IOException, InterruptedException {
+   private void waitForReceivedQueueSize(final int expectedSize) throws InterruptedException {
+
+      lock.lock();
+      try {
+
+         boolean receivedAll = received.size() >= expectedSize;
+         while (!receivedAll) {
+
+            condition.await(10, TimeUnit.MILLISECONDS);
+            receivedAll = received.size() >= expectedSize; // NOPMD
+         }
+      } finally {
+
+         lock.unlock();
+      }
+   }
+
+
+   private void writeFrame() throws IOException {
       // Create frame
       final JoinRequest joinRequest = new JoinRequest(TestUtils.createTestAddress(1));
-      final Frame frame = new Frame(Integer.MAX_VALUE, joinRequest.getWireableType(), serializer,
+      final Frame frame = new Frame(Integer.MAX_VALUE, serializer,
               Frame.NO_COMPRESSION, 0L, joinRequest);
 
       // Send frame
@@ -112,7 +118,6 @@ public final class TCPServerTest extends CacheonixTestCase {
       os.flush();
       os.close();
       socket.close();
-      Thread.sleep(100);
    }
 
 
@@ -137,7 +142,7 @@ public final class TCPServerTest extends CacheonixTestCase {
       serializer = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
 
       // Initialize server
-      final TCPRequestDispatcher requestDispatcher = new TCPRequestDispatcher() {
+      final RequestDispatcher requestDispatcher = new RequestDispatcher() {
 
          public void dispatch(final Message message) {
 
@@ -155,7 +160,7 @@ public final class TCPServerTest extends CacheonixTestCase {
             }
          }
       };
-      server = new TCPServer(getClock(), LOCALHOST, PORT, requestDispatcher, SOCKET_TIMEOUT_MILLIS, SELECTOR_TIMEOUT_MILLIS);
+      server = new Receiver(getClock(), LOCALHOST, PORT, requestDispatcher, SOCKET_TIMEOUT_MILLIS, SELECTOR_TIMEOUT_MILLIS);
       server.startup();
    }
 

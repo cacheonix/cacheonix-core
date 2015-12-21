@@ -29,7 +29,7 @@ import org.cacheonix.impl.net.serializer.WireableBuilder;
 public final class ReleaseLockRequest extends LockRequest {
 
    /**
-    * Maker used by WireableFactory.
+    * Builder used by WireableFactory.
     */
    public static final WireableBuilder BUILDER = new Builder();
 
@@ -153,7 +153,7 @@ public final class ReleaseLockRequest extends LockRequest {
    /**
     * A class factory.
     */
-   final static class Builder implements WireableBuilder {
+   private final static class Builder implements WireableBuilder {
 
       public Wireable create() {
 

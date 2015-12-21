@@ -22,6 +22,8 @@ import org.cacheonix.cluster.Cluster;
 import org.cacheonix.impl.config.SystemProperty;
 import org.cacheonix.locks.ReadWriteLock;
 
+import static org.cacheonix.impl.config.SystemProperty.NAME_CACHEONIX_AUTO_CREATE_CACHE;
+
 /**
  * Tests CacheManager using local cahce configurations only.
  */
@@ -74,8 +76,17 @@ public final class LocalCacheonixTest extends CacheonixTestCase {
 
    public void testDeleteCache() {
 
-      instance.deleteCache(TEST_LOCAL_CACHE);
-      assertNull(instance.getCache(TEST_LOCAL_CACHE));
+      final SavedSystemProperty savedSystemProperty = new SavedSystemProperty(NAME_CACHEONIX_AUTO_CREATE_CACHE);
+      savedSystemProperty.save();
+      try {
+
+         System.setProperty(NAME_CACHEONIX_AUTO_CREATE_CACHE, "false");
+         instance.deleteCache(TEST_LOCAL_CACHE);
+         assertNull(instance.getCache(TEST_LOCAL_CACHE));
+      } finally {
+
+         savedSystemProperty.restore();
+      }
    }
 
 

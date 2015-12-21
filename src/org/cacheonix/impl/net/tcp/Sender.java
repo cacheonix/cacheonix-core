@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.impl;
+package org.cacheonix.impl.net.tcp;
 
 import java.io.IOException;
 import java.nio.channels.Selector;
@@ -34,14 +34,14 @@ import org.cacheonix.impl.util.logging.Logger;
  * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Jul 18, 2009 3:24:31 PM
  */
-public final class MessageSender extends AbstractProcessor {
+public final class Sender extends AbstractProcessor {
 
    /**
     * Logger.
     *
     * @noinspection UNUSED_SYMBOL, UnusedDeclaration
     */
-   private static final Logger LOG = Logger.getLogger(MessageSender.class); // NOPMD
+   private static final Logger LOG = Logger.getLogger(Sender.class); // NOPMD
 
    /**
     * This cluster node's clock. The clock is used to time stamp sent messages.
@@ -91,31 +91,15 @@ public final class MessageSender extends AbstractProcessor {
     *                              must be greater than zero.
     * @param clock                 the clock.
     */
-   public MessageSender(final ClusterNodeAddress localAddress, final long networkTimeoutMillis,
-                        final long selectorTimeoutMillis, final Clock clock) {
+   public Sender(final ClusterNodeAddress localAddress, final long networkTimeoutMillis,
+           final long selectorTimeoutMillis, final Clock clock) throws IOException {
 
       super("Sender:" + localAddress.getTcpPort());
       this.selectorTimeoutMillis = selectorTimeoutMillis;
       this.networkTimeoutMillis = networkTimeoutMillis;
       this.localAddress = localAddress;
-      this.selector = openSelector();
+      this.selector = Selector.open();
       this.clock = clock;
-   }
-
-
-   /**
-    * Opens a selector.
-    *
-    * @return new Selector.
-    * @throws IllegalStateException if there was an error creating a selector.
-    */
-   private static Selector openSelector() throws IllegalStateException {
-
-      try {
-         return Selector.open();
-      } catch (final IOException e) {
-         throw new IllegalStateException(e);
-      }
    }
 
 
@@ -150,7 +134,8 @@ public final class MessageSender extends AbstractProcessor {
 
    protected Runnable createWorker() {
 
-      return new MessageSenderWorker(localAddress, selector, queue, router, networkTimeoutMillis, selectorTimeoutMillis, clock);
+      return new SenderSelectorWorker(localAddress, selector, queue, router, networkTimeoutMillis,
+              selectorTimeoutMillis, clock);
    }
 
 

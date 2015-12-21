@@ -45,7 +45,7 @@ import org.cacheonix.impl.util.logging.Logger;
 public final class GetAllRequest extends KeySetRequest {
 
    /**
-    * Maker used by WireableFactory.
+    * Builder used by WireableFactory.
     */
    public static final WireableBuilder BUILDER = new Builder();
 

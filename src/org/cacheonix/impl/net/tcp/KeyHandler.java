@@ -11,18 +11,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.impl.net.tcp.server;
+package org.cacheonix.impl.net.tcp;
 
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
 
+import org.cacheonix.impl.clock.Clock;
 import org.cacheonix.impl.util.time.Timeout;
 
 /**
  * A handler of key events.
  */
-public abstract class KeyHandler {
+abstract class KeyHandler {
 
 
    /**
@@ -37,17 +38,41 @@ public abstract class KeyHandler {
 
 
    /**
+    * This cluster node's clock. The clock is used to synchronise cluster time by timestamping sent messages and
+    * adjusting the clock based on the time stamps of received messages.
+    */
+   protected final Clock clock;
+
+
+   /**
     * Creates a Key handler.
     *
     * @param selector             a selector this key is associated with. The selector is available to implementing
     *                             classes through {@link #selector}.
     * @param networkTimeoutMillis the network timeout in milliseconds.
+    * @param clock                This cluster node's clock. The clock is used to synchronise cluster time by
+    *                             timestamping sent messages and adjusting the clock based on the time stamps of
+    *                             received messages.
     */
-   public KeyHandler(final Selector selector, final long networkTimeoutMillis) {
+   KeyHandler(final Selector selector, final long networkTimeoutMillis, final Clock clock) {
+
 
       this.networkTimeout = new Timeout(networkTimeoutMillis).reset();
       this.selector = selector;
+      this.clock = clock;
    }
+
+
+   public abstract void handleKey(final SelectionKey key) throws InterruptedException;
+
+
+   /**
+    * Processes a key being idle
+    *
+    * @param idleKey key to process
+    * @throws InterruptedException if this thread was interrupted.
+    */
+   public abstract void handleIdle(SelectionKey idleKey) throws InterruptedException;
 
 
    /**
@@ -66,7 +91,7 @@ public abstract class KeyHandler {
     *
     * @param key the key this key handler is associated with.
     */
-   public final void registerInactivity(final SelectionKey key) {
+   final void registerInactivity(final SelectionKey key) {
 
       if (networkTimeout.isExpired()) {
 
@@ -82,46 +107,10 @@ public abstract class KeyHandler {
     *
     * @return a configured network timeout.
     */
-   public final long getNetworkTimeoutMillis() {
+   final long getNetworkTimeoutMillis() {
 
       return networkTimeout.getDuration();
    }
-
-
-   /**
-    * Processes readiness for OP_CONNECT.
-    *
-    * @param key key to process
-    * @throws InterruptedException if this thread was interrupted.
-    */
-   public abstract void handleFinishConnect(SelectionKey key) throws InterruptedException;
-
-
-   /**
-    * Processes readiness for OP_WRITE.
-    *
-    * @param key key to process
-    * @throws InterruptedException if this thread was interrupted.
-    */
-   public abstract void handleWrite(SelectionKey key) throws InterruptedException;
-
-
-   /**
-    * Processes readiness for OP_READ
-    *
-    * @param key key to process
-    * @throws InterruptedException if this thread was interrupted.
-    */
-   public abstract void handleRead(SelectionKey key) throws InterruptedException;
-
-
-   /**
-    * Processes a key being idle
-    *
-    * @param idleKey key to process
-    * @throws InterruptedException if this thread was interrupted.
-    */
-   public abstract void handleIdle(SelectionKey idleKey) throws InterruptedException;
 
 
    /**
@@ -132,14 +121,11 @@ public abstract class KeyHandler {
    protected abstract void handleTimeout(final SelectionKey key);
 
 
-   public abstract void handleAccept(final SelectionKey key) throws UnrecoverableAcceptException;
-
-
    /**
     * Returns a selector this handler is associated with.
     *
     * @return the selector this handler is associated with.
-    * @see #KeyHandler(Selector, long)
+    * @see #KeyHandler(Selector, long, Clock)
     */
    protected final Selector selector() {
 
@@ -153,7 +139,7 @@ public abstract class KeyHandler {
     * @param key the key to get the associated socket channel from.
     * @return the socket channel.
     */
-   protected static SocketChannel socketChannel(final SelectionKey key) {
+   static SocketChannel socketChannel(final SelectionKey key) {
 
       return (SocketChannel) key.channel();
    }

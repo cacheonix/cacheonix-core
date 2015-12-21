@@ -20,13 +20,13 @@ public interface CacheProcessor extends RequestProcessor {
     * Operational state. It means that the cluster node is operating normally and that cache requests may operate on the
     * cache processor's state normally.
     */
-   int STATE_OPERATIONAL = 0;
+   int STATE_OPERATIONAL = 1;
 
    /**
     * Blocked state. It means that the cluster node is undergoing re-configuration and that cache requests should return
     * retry instead of trying to operate on the cache state.
     */
-   int STATE_BLOCKED = 1;
+   int STATE_BLOCKED = 2;
 
    /**
     * Sets this cache processor's state.

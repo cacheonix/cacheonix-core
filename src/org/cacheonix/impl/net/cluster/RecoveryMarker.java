@@ -49,7 +49,7 @@ import static org.cacheonix.impl.net.processor.Response.RESULT_SUCCESS;
 public final class RecoveryMarker extends MarkerRequest {
 
    /**
-    * Maker used by WireableFactory.
+    * Builder used by WireableFactory.
     */
    public static final WireableBuilder BUILDER = new Builder();
 

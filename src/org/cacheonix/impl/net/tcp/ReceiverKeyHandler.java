@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.impl.net.tcp.server;
+package org.cacheonix.impl.net.tcp;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
@@ -23,25 +23,25 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 
 import org.cacheonix.impl.clock.Clock;
-import org.cacheonix.impl.config.SystemProperty;
 import org.cacheonix.impl.net.Protocol;
 import org.cacheonix.impl.net.processor.Frame;
 import org.cacheonix.impl.net.processor.Message;
 import org.cacheonix.impl.net.processor.SenderInetAddressAware;
 import org.cacheonix.impl.util.IOUtils;
-import org.cacheonix.impl.util.exception.ExceptionUtils;
 import org.cacheonix.impl.util.logging.Logger;
+
+import static org.cacheonix.impl.config.SystemProperty.BUFFER_SIZE;
 
 
 /**
  * Handles a readable channel by reading Messages from it.
  */
-final class Receiver extends KeyHandler {
+final class ReceiverKeyHandler extends KeyHandler {
 
    /**
     * @noinspection UNUSED_SYMBOL, UnusedDeclaration
     */
-   private static final Logger LOG = Logger.getLogger(TCPServer.class); // NOPMD
+   private static final Logger LOG = Logger.getLogger(Receiver.class); // NOPMD
 
    /**
     * Protocol signature as a byte array.
@@ -58,12 +58,6 @@ final class Receiver extends KeyHandler {
    private static final int READING_FRAME_SIZE = 3;
 
    private static final int READING_FRAME = 4;
-
-
-   /**
-    * This cluster node's clock. The clock is synchronized using time stamps of received messages.
-    */
-   private final Clock clock;
 
 
    /**
@@ -84,7 +78,7 @@ final class Receiver extends KeyHandler {
    /**
     * Read buffer.
     */
-   private final ByteBuffer byteBuffer = ByteBuffer.allocateDirect(SystemProperty.BUFFER_SIZE);
+   private final ByteBuffer byteBuffer = ByteBuffer.allocateDirect(BUFFER_SIZE);
 
    /**
     * Buffer accumulating chunks.
@@ -92,46 +86,67 @@ final class Receiver extends KeyHandler {
    private final ChunkedBuffer chunkedBuffer = new ChunkedBuffer();
 
 
-   private final TCPRequestDispatcher requestDispatcher;
+   private final RequestDispatcher requestDispatcher;
 
 
-   public Receiver(final Selector selector, final TCPRequestDispatcher requestDispatcher, final Clock clock,
-                   final long socketTimeoutMillis) {
+   public ReceiverKeyHandler(final Selector selector, final RequestDispatcher requestDispatcher, final Clock clock,
+           final long socketTimeoutMillis) {
 
-      super(selector, socketTimeoutMillis);
+      super(selector, socketTimeoutMillis, clock);
       this.requestDispatcher = requestDispatcher;
-      this.clock = clock;
+   }
+
+
+   public void handleKey(final SelectionKey key) throws InterruptedException {
+
+      if (key.isAcceptable()) {
+
+         handleAccept(key);
+      } else if (key.isReadable()) {
+
+         // Socket is ready for read
+         handleRead(key);
+
+      }
    }
 
 
    /**
-    * Receiver is not handling connects.
+    * {@inheritDoc}
+    * <p/>
+    * This implementation accepts the connection request and registers and new Reader with the selector.
     *
-    * @param key key to process
-    * @throws IllegalStateException
+    * @see #selector()
     */
-   public void handleFinishConnect(final SelectionKey key) throws IllegalStateException {
+   private void handleAccept(final SelectionKey key) throws UnrecoverableAcceptException {
+      // Server channel is ready to accept
 
-      throw new IllegalStateException("Receiver is not handling connects");
-   }
+      final ServerSocketChannel serverSocketChannel = (ServerSocketChannel) key.channel();
+      try {
+         final SocketChannel socketChannel = serverSocketChannel.accept();
+         if (socketChannel != null) {
 
+            // Create receiverKeyHandler
+            final ReceiverKeyHandler receiverKeyHandler = new ReceiverKeyHandler(selector, requestDispatcher, clock,
+                    getNetworkTimeoutMillis());
 
-   /**
-    * Receiver is not handling writes.
-    *
-    * @param key key to process
-    * @throws IllegalStateException
-    */
-   public void handleWrite(final SelectionKey key) {
+            // Configure channel for non-blocking operation
+            socketChannel.configureBlocking(false);
 
-      throw new IllegalStateException("Receiver is not handling writes");
+            // Configure the socket
+            socketChannel.socket().setReceiveBufferSize(BUFFER_SIZE);
+            socketChannel.register(selector, SelectionKey.OP_READ, receiverKeyHandler);
+         }
+      } catch (final IOException e) {
+         throw new UnrecoverableAcceptException(e);
+      }
    }
 
 
    /**
     * {@inheritDoc}
     */
-   public void handleRead(final SelectionKey key) throws InterruptedException {
+   private void handleRead(final SelectionKey key) throws InterruptedException {
 
       final SocketChannel channel = (SocketChannel) key.channel();
 
@@ -166,7 +181,11 @@ final class Receiver extends KeyHandler {
                         for (int i = 0; i < Protocol.getProtocolSignatureLength(); i++) {
 
                            if (PROTOCOL_SIGNATURE_BYTES[i] != chunkedBuffer.get()) {
-                              throw new FrameFormatException("Invalid frame signature");
+
+                              // Throw en exception to exit the while loop
+
+                              //noinspection ThrowCaughtLocally
+                              throw new IOException("Invalid frame signature");
                            }
                         }
 
@@ -183,7 +202,11 @@ final class Receiver extends KeyHandler {
                         // Consume magic number
                         final int magicNumber = chunkedBuffer.getInt();
                         if (magicNumber != Protocol.getProtocolMagicNumber()) {
-                           throw new FrameFormatException("Invalid magic number: " + magicNumber);
+
+                           // Throw en exception to exit the while loop
+
+                           //noinspection ThrowCaughtLocally
+                           throw new IOException("Invalid magic number: " + magicNumber);
                         }
 
 
@@ -200,7 +223,11 @@ final class Receiver extends KeyHandler {
                         // Consume protocol version
                         final int protocolVersion = chunkedBuffer.getInt();
                         if (protocolVersion != Protocol.getProtocolVersion()) {
-                           throw new FrameFormatException("Invalid protocol version: " + protocolVersion);
+
+                           // Throw en exception to exit the while loop
+
+                           //noinspection ThrowCaughtLocally
+                           throw new IOException("Invalid protocol version: " + protocolVersion);
                         }
 
                         // Successfully have read the signature, switch to reading the magic number
@@ -237,12 +264,7 @@ final class Receiver extends KeyHandler {
                         frame.readFrame(dis);
 
                         // Get message
-                        final Message message;
-                        try {
-                           message = (Message) Frame.getPayload(frame);
-                        } catch (final ClassNotFoundException e) {
-                           throw ExceptionUtils.createIOException(e);
-                        }
+                        final Message message = (Message) Frame.getPayload(frame);
 
                         // Set sender's inet address
                         if (message instanceof SenderInetAddressAware) {
@@ -267,7 +289,9 @@ final class Receiver extends KeyHandler {
                      break;
                   default:
 
-                     // Unknown state
+                     // Unknown state, throw en exception to exit the while loop
+
+                     //noinspection ThrowCaughtLocally
                      throw new IOException("Unknown receiver state: " + state);
                }
             }
@@ -281,11 +305,7 @@ final class Receiver extends KeyHandler {
             IOUtils.closeHard(channel);
          }
 
-      } catch (final IOException e) {
-
-         // Closing channel will cancel the key
-         IOUtils.closeHard(key);
-      } catch (final FrameFormatException e) {
+      } catch (final IOException ignored) {
 
          // Closing channel will cancel the key
          IOUtils.closeHard(key);
@@ -324,40 +344,9 @@ final class Receiver extends KeyHandler {
    }
 
 
-   /**
-    * {@inheritDoc}
-    * <p/>
-    * This implementation accepts the connection request and registers and new Reader with the selector.
-    *
-    * @see #selector()
-    */
-   public void handleAccept(final SelectionKey key) throws UnrecoverableAcceptException {
-      // Server channel is ready to accept
-
-      final ServerSocketChannel serverSocketChannel = (ServerSocketChannel) key.channel();
-      try {
-         final SocketChannel socketChannel = serverSocketChannel.accept();
-         if (socketChannel != null) {
-
-            // Create receiver
-            final Receiver receiver = new Receiver(selector, requestDispatcher, clock, getNetworkTimeoutMillis());
-
-            // Configure channel for non-blocking operation
-            socketChannel.configureBlocking(false);
-
-            // Configure the socket
-            socketChannel.socket().setReceiveBufferSize(SystemProperty.BUFFER_SIZE);
-            socketChannel.register(selector, SelectionKey.OP_READ, receiver);
-         }
-      } catch (final IOException e) {
-         throw new UnrecoverableAcceptException(e);
-      }
-   }
-
-
    public String toString() {
 
-      return "Receiver{" +
+      return "ReceiverKeyHandler{" +
               "state=" + state +
               ", frameSize=" + frameSize +
               ", byteBuffer=" + byteBuffer +

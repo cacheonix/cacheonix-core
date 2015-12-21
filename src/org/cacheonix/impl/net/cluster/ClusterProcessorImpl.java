@@ -329,7 +329,7 @@ public final class ClusterProcessorImpl extends AbstractRequestProcessor impleme
       }
 
       // Post shutdown messages to cache processors
-      beginCacheProcessorShutdown(shutdownCacheProcessorsGracefully);
+      beginCacheProcessorsShutdown(shutdownCacheProcessorsGracefully);
 
       // Wait for cache processors to stop
       waitForCacheProcessorsToShutdown();
@@ -398,7 +398,7 @@ public final class ClusterProcessorImpl extends AbstractRequestProcessor impleme
       this.shutdownCause = shutdownCause;
 
       // Post shutdown messages to cache processors requesting them to shutdown now
-      beginCacheProcessorShutdown(false);
+      beginCacheProcessorsShutdown(false);
 
       // Wait for cache processors to stop
       waitForCacheProcessorsToShutdown();
@@ -425,7 +425,7 @@ public final class ClusterProcessorImpl extends AbstractRequestProcessor impleme
     * @param shutdownCacheProcessorsGracefully true if the CacheProcessor should announce leaving. false if the
     *                                          CacheProcessor should die now.
     */
-   private void beginCacheProcessorShutdown(final boolean shutdownCacheProcessorsGracefully) {
+   private void beginCacheProcessorsShutdown(final boolean shutdownCacheProcessorsGracefully) {
 
       for (final Map.Entry<String, CacheProcessor> entry : cacheProcessors.entrySet()) {
 
@@ -501,6 +501,15 @@ public final class ClusterProcessorImpl extends AbstractRequestProcessor impleme
    public void cancelMarkerTimeout() {
 
       markerTimeout.cancel();
+   }
+
+
+   /**
+    * {@inheritDoc}
+    */
+   public void resetMarkerTimeout() {
+
+      markerTimeout.reset();
    }
 
 

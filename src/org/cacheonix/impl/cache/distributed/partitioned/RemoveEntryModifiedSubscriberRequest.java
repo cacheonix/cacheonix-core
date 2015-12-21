@@ -44,7 +44,7 @@ import org.cacheonix.impl.util.array.HashSet;
 public final class RemoveEntryModifiedSubscriberRequest extends LocalCacheRequest implements RouteByReferenceRequest {
 
    /**
-    * Maker used by WireableFactory.
+    * Builder used by WireableFactory.
     */
    public static final WireableBuilder BUILDER = new Builder();
 

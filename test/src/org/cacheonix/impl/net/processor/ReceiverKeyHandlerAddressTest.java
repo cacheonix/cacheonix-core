@@ -25,7 +25,7 @@ import org.cacheonix.impl.net.serializer.Wireable;
 /**
  * A tester for ReceiverAddress.
  */
-public class ReceiverAddressTest extends CacheonixTestCase {
+public class ReceiverKeyHandlerAddressTest extends CacheonixTestCase {
 
 
    private ClusterNodeAddress clusterNodeAddress;

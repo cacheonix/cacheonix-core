@@ -111,6 +111,13 @@ public final class PassByReferenceBinaryTest extends TestCase {
 
 
 
+   public void testEqualsNulls() {
+
+      assertEquals(new PassByReferenceBinary(null), new PassByReferenceBinary(null));
+   }
+
+
+
    protected final void setUp() throws Exception {
 
       super.setUp();

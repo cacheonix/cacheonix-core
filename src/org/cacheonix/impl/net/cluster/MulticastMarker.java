@@ -51,7 +51,7 @@ import static org.cacheonix.impl.net.cluster.ClusterProcessorState.STATE_NORMAL;
 public final class MulticastMarker extends OperationalMarker {
 
    /**
-    * Maker used by WireableFactory.
+    * Builder used by WireableFactory.
     */
    public static final WireableBuilder BUILDER = new Builder();
 

@@ -89,7 +89,8 @@ import org.cacheonix.impl.net.processor.ReceiverAddress;
 import org.cacheonix.impl.net.processor.Router;
 import org.cacheonix.impl.net.processor.UUID;
 import org.cacheonix.impl.net.serializer.WireableFactory;
-import org.cacheonix.impl.net.tcp.server.TCPServer;
+import org.cacheonix.impl.net.tcp.Receiver;
+import org.cacheonix.impl.net.tcp.Sender;
 import org.cacheonix.impl.util.Assert;
 import org.cacheonix.impl.util.CollectionUtils;
 import org.cacheonix.impl.util.IOUtils;
@@ -127,7 +128,7 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
    /**
     * TCP Server.
     */
-   private TCPServer tcpServer = null;
+   private Receiver receiver = null;
 
    /**
     * Configuration for this cluster member.
@@ -138,7 +139,7 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
    /**
     * Message sender is responsible for sending outbound messages to the network
     */
-   private final MessageSender messageSender;
+   private final Sender sender;
 
    /**
     * Address.
@@ -193,18 +194,17 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
       this.address = createNodeAddress(serverConfig);
       this.replicatedState = new ReplicatedState();
       this.serverConfig = serverConfig;
-      this.multicastSender = createMulticastSender(address, serverConfig);
-      this.multicastServer = createMulticastServer(serverConfig);
       final UUID initialClusterUUID = UUID.randomUUID();
       this.router = new Router(address);
       this.router.setClusterUUID(initialClusterUUID);
+      this.multicastSender = createMulticastSender(address, serverConfig);
+      this.multicastServer = createMulticastServer(serverConfig);
       this.clusterProcessor = createClusterProcessor(clock, timer, router, multicastSender, serverConfig, address,
               initialClusterUUID);
-      this.messageSender = new MessageSender(address, serverConfig.getSocketTimeoutMillis(),
+      this.sender = new Sender(address, serverConfig.getSocketTimeoutMillis(),
               serverConfig.getSelectorTimeoutMillis(), getClock());
-      this.router.setOutput(messageSender);
-      this.messageSender.setRouter(router);
-      this.multicastSender.setRouter(router);
+      this.router.setOutput(sender);
+      this.sender.setRouter(router);
    }
 
 
@@ -228,8 +228,7 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
     * Creates a multicast sender based on the server configuration.
     *
     * @param localAddress the local node address.
-    * @param serverConfig the server configuration.
-    * @return a new multicast sender.
+    * @param serverConfig the server configuration.  @return a new multicast sender.
     * @throws IOException if an I/O error occured.
     */
    private static MulticastSender createMulticastSender(final ClusterNodeAddress localAddress,
@@ -308,7 +307,7 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
          router.register(ClusterProcessorKey.getInstance(), clusterProcessor);
 
          // Set up and start the message sender
-         messageSender.startup();
+         sender.startup();
 
          // Startup TCP server.
          final long socketTimeoutMillis = serverConfig.getSocketTimeoutMillis();
@@ -318,10 +317,10 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
          final String tcpAddress = tcpInetAddress == null ? "" : StringUtils.toString(tcpInetAddress);
          final int tcpPort = tcpListenerConfiguration.getPort();
 
-         final TCPRequestDispatcherImpl requestDispatcher = new TCPRequestDispatcherImpl(router);
-         tcpServer = new TCPServer(getClock(), tcpAddress, tcpPort, requestDispatcher, socketTimeoutMillis,
+         final RequestDispatcherImpl requestDispatcher = new RequestDispatcherImpl(router);
+         receiver = new Receiver(getClock(), tcpAddress, tcpPort, requestDispatcher, socketTimeoutMillis,
                  selectorTimeoutMillis);
-         tcpServer.startup();
+         receiver.startup();
 
          // Startup cluster service
          clusterProcessor.startup();
@@ -622,8 +621,10 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
       final long gracefulShutdownTimeoutMillis = serverConfig.getGracefulShutdownTimeoutMillis();
       final String clusterName = clusterConfiguration.getName();
 
-      return new ClusterProcessorImpl(clusterName, clock, timer, router, multicastSender, address, homeAloneTimeoutMillis,
-              worstCaseLatencyMillis, gracefulShutdownTimeoutMillis, clusterSurveyTimeoutMillis, clusterAnnouncementTimeoutMillis,
+      return new ClusterProcessorImpl(clusterName, clock, timer, router, multicastSender, address,
+              homeAloneTimeoutMillis,
+              worstCaseLatencyMillis, gracefulShutdownTimeoutMillis, clusterSurveyTimeoutMillis,
+              clusterAnnouncementTimeoutMillis,
               initialClusterUUID);
    }
 
@@ -877,7 +878,8 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
                final PartitionedCacheConfiguration cacheConfig = serverConfig.getPartitionedCacheType(cacheConfigName);
 
                // Create cache processor
-               final CacheProcessor newCacheProcessor = new CacheProcessorImpl(timer, clock, getPrefetchScheduler(), router,
+               final CacheProcessor newCacheProcessor = new CacheProcessorImpl(timer, clock, getPrefetchScheduler(),
+                       router,
                        getEventNotificationExecutor(), group, cacheName, address, cacheConfig);
                newCacheProcessor.startup();
 
@@ -1015,9 +1017,8 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
 
                // Convert the event to the messages and send it to self.
                final CacheNodeLeftMessage message = new CacheNodeLeftMessage(cacheName);
-
                message.setClusterUUID(clusterProcessor.getProcessorState().getClusterView().getClusterUUID());
-               message.setCacheGroupMember(event.getGroupMember());
+               message.setLeftAddress(event.getGroupMember().getAddress());
                message.setReceiver(address);
                if (LOG.isDebugEnabled()) {
                   LOG.debug("Forwarding to the cache processor : " + event);
@@ -1080,15 +1081,15 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
             }
 
             IOUtils.shutdownHard(multicastServer);
-            IOUtils.shutdownHard(tcpServer);
-            IOUtils.shutdownHard(messageSender);
+            IOUtils.shutdownHard(receiver);
+            IOUtils.shutdownHard(sender);
 
          } else if (ShutdownMode.FORCED_SHUTDOWN.equals(shutdownMode)) {
 
 
             // Immediately shutdown the receivers
             IOUtils.shutdownHard(multicastServer);
-            IOUtils.shutdownHard(tcpServer);
+            IOUtils.shutdownHard(receiver);
 
             // Shutdown cluster processor
             try {
@@ -1099,7 +1100,7 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
             }
 
             // Finally, the message sender
-            IOUtils.shutdownHard(messageSender);
+            IOUtils.shutdownHard(sender);
 
          } else {
             throw new IllegalArgumentException("Unknown shutdown mode: " + shutdownMode);
@@ -1189,9 +1190,9 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
       return "DistributedCacheonix{" +
               "started=" + started +
               ", clusterProcessor=" + clusterProcessor +
-              ", tcpServer=" + tcpServer +
+              ", tcpServer=" + receiver +
               ", serverConfig=" + serverConfig +
-              ", messageSender=" + messageSender +
+              ", messageSender=" + sender +
               ", address=" + address +
               ", replicatedState=" + replicatedState +
               ", router=" + router +

@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.impl;
+package org.cacheonix.impl.net.tcp;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -26,7 +26,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 import org.cacheonix.impl.clock.Clock;
-import org.cacheonix.impl.config.SystemProperty;
 import org.cacheonix.impl.net.processor.Frame;
 import org.cacheonix.impl.net.processor.Message;
 import org.cacheonix.impl.net.processor.ReceiverAddress;
@@ -35,22 +34,27 @@ import org.cacheonix.impl.net.processor.Response;
 import org.cacheonix.impl.net.processor.Router;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
-import org.cacheonix.impl.net.tcp.server.KeyHandler;
 import org.cacheonix.impl.util.IOUtils;
 import org.cacheonix.impl.util.exception.ExceptionUtils;
 import org.cacheonix.impl.util.logging.Logger;
 
+import static java.nio.channels.SelectionKey.OP_CONNECT;
+import static java.nio.channels.SelectionKey.OP_READ;
+import static java.nio.channels.SelectionKey.OP_WRITE;
+import static org.cacheonix.impl.config.SystemProperty.BUFFER_SIZE;
+import static org.cacheonix.impl.net.processor.Response.RESULT_INACCESSIBLE;
+
 /**
  * A message sender associated with a particular ClusterNodeAddress. The sender lives until the server is shutdown.
  */
-final class Sender extends KeyHandler {
+final class SenderKeyHandler extends KeyHandler {
 
    /**
     * Logger.
     *
     * @noinspection UNUSED_SYMBOL, UnusedDeclaration
     */
-   private static final Logger LOG = Logger.getLogger(Sender.class); // NOPMD
+   private static final Logger LOG = Logger.getLogger(SenderKeyHandler.class); // NOPMD
 
    /**
     * In the initial state the sender is unconnected with no unfinished messages.
@@ -75,12 +79,6 @@ final class Sender extends KeyHandler {
     * Serializer.
     */
    private final Serializer serializer = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
-
-   /**
-    * This cluster node's clock. The clock is used to time stamp sent messages.
-    */
-   private final Clock clock;
-
 
    /**
     * A list of InetAddresses to try to connect to.
@@ -124,24 +122,12 @@ final class Sender extends KeyHandler {
     * @param networkTimeoutMillis network timeout in milliseconds.
     * @param clock                this cluster node's clock.
     */
-   public Sender(final Selector selector, final ReceiverAddress receiverAddress,
-                 final Router router, final long networkTimeoutMillis, final Clock clock) {
+   public SenderKeyHandler(final Selector selector, final ReceiverAddress receiverAddress,
+           final Router router, final long networkTimeoutMillis, final Clock clock) {
 
-      super(selector, networkTimeoutMillis);
+      super(selector, networkTimeoutMillis, clock);
       this.receiverAddress = receiverAddress;
       this.router = router;
-      this.clock = clock;
-   }
-
-
-   /**
-    * Sender does not handle accept.
-    *
-    * @param key a key.
-    */
-   public void handleAccept(final SelectionKey key) {
-
-      throw new IllegalStateException("Sender doesn't handle accept");
    }
 
 
@@ -151,7 +137,7 @@ final class Sender extends KeyHandler {
     * @param key key to process
     * @throws InterruptedException if this thread was interrupted.
     */
-   public void handleFinishConnect(final SelectionKey key) throws InterruptedException {
+   private void handleFinishConnect(final SelectionKey key) throws InterruptedException {
 
       final SocketChannel channel = socketChannel(key);
 
@@ -168,12 +154,12 @@ final class Sender extends KeyHandler {
 
                // Finish channel connect
                channel.finishConnect();
-               channel.socket().setSendBufferSize(SystemProperty.BUFFER_SIZE);
-               channel.socket().setReceiveBufferSize(SystemProperty.BUFFER_SIZE);
+               channel.socket().setSendBufferSize(BUFFER_SIZE);
+               channel.socket().setReceiveBufferSize(BUFFER_SIZE);
 
                // Unregister interest in OP_CONNECT and register in OP_READ. OP_READ provides
                // information about the other side closing the channel
-               key.interestOps(SelectionKey.OP_READ);
+               key.interestOps(OP_READ);
 
                //
                //noinspection ControlFlowStatementWithoutBraces
@@ -293,7 +279,7 @@ final class Sender extends KeyHandler {
    /**
     * {@inheritDoc}
     * <p/>
-    * 1. Connection timeout occurs after the connection was initiated but before OP_CONNECT is ready, (Sender is in the
+    * 1. Connection timeout occurs after the connection was initiated but before OP_CONNECT is ready, (SenderKeyHandler is in the
     * CONNECTING state) but did not complete in time. Actions on the connection timeout:
     * <p/>
     * a) Close the channel
@@ -302,7 +288,7 @@ final class Sender extends KeyHandler {
     * <p/>
     * c) Respond to requests in the queue with an error
     * <p/>
-    * 2. Write timeout occurs when the Sender is in the Writing state and there are messages in the send queue. The
+    * 2. Write timeout occurs when the SenderKeyHandler is in the Writing state and there are messages in the send queue. The
     * write timeout means that the write channel, that should be ready for write almost always, has slowed down to a
     * halt. The slow down is indistinguishable from a failure of the receiving host. In general, the write timeout
     * defines a minimum acceptable write throughput. For instance, if there wasn't write activity for 1 second, it means
@@ -338,14 +324,14 @@ final class Sender extends KeyHandler {
 //               LOG.debug("TTTTTTTTTTTTTTTT There are no more messages, won't reconnect to " + receiverNodeAddress + " : " + key + ", channel: " + key.channel()); // NOPMD
 //            }
 
-            // Setting state to init will cause the Sender to begin to reconnect
+            // Setting state to init will cause the SenderKeyHandler to begin to reconnect
             // when the selector worker thread enqueues the message to this sender.
             state = INIT;
 
          } else {
 
-            // The fact that Sender timed out usually means that the Receiver on the other side
-            // has just closed the channel due to Sender's inactivity which manifest itself as
+            // The fact that SenderKeyHandler timed out usually means that the Receiver on the other side
+            // has just closed the channel due to SenderKeyHandler's inactivity which manifest itself as
             // inability to write (channel.write() returns zero bytes written. Usually it is
             // enough to re-connect. Begin connecting from the beginning of the address list.
 
@@ -450,6 +436,29 @@ final class Sender extends KeyHandler {
    }
 
 
+   public void handleKey(final SelectionKey key) throws InterruptedException {
+
+      if (key.isConnectable()) {
+
+         // Channel is ready to finish connection
+         handleFinishConnect(key);
+
+      } else if (key.isWritable()) { // NOPMD
+
+         // Socket channel is ready for write
+         handleWrite(key);
+
+      } else if (key.isReadable()) { // NOPMD
+
+         // Socket channel is ready for write
+         handleRead(key);
+
+      } else {
+         throw new IllegalArgumentException("Key is not supported: " + key);
+      }
+   }
+
+
    private void writeLeftover(final SelectionKey key) throws IOException, InterruptedException {
 
       final SocketChannel channel = socketChannel(key);
@@ -468,7 +477,7 @@ final class Sender extends KeyHandler {
          leftover = null;
 
          // Unregister interest in write
-         key.interestOps(SelectionKey.OP_READ);
+         key.interestOps(OP_READ);
 
          // Call self again just in case there is more space in the output socket buffer
          handleWrite(key);
@@ -497,7 +506,7 @@ final class Sender extends KeyHandler {
 
          // Convert the message to a byte array
          final ByteArrayOutputStream baos = new ByteArrayOutputStream(512);
-         final Frame requestFrame = new Frame(Integer.MAX_VALUE, message.getWireableType(),
+         final Frame requestFrame = new Frame(Integer.MAX_VALUE,
                  serializer, Frame.NO_COMPRESSION, 0L, message);
          requestFrame.write(baos);
          baos.flush();
@@ -513,7 +522,7 @@ final class Sender extends KeyHandler {
          if (bytesWritten < bytesToWrite) {
 
             // Did not finish writing, register interest in write
-            key.interestOps(SelectionKey.OP_WRITE | SelectionKey.OP_READ);
+            key.interestOps(OP_WRITE | OP_READ);
 
             // Register leftover buffer
             leftover = buffer;
@@ -563,7 +572,7 @@ final class Sender extends KeyHandler {
       final Request request = Request.toRequest(message);
       if (request != null) {
 
-         final Response errorResponse = request.createResponse(Response.RESULT_INACCESSIBLE, errorDescription);
+         final Response errorResponse = request.createResponse(RESULT_INACCESSIBLE, errorDescription);
          errorResponse.setClusterUUID(request.getClusterUUID());
          router.route(errorResponse);
       }
@@ -602,7 +611,7 @@ final class Sender extends KeyHandler {
             final InetSocketAddress inetSocketAddress = new InetSocketAddress(address, tcpPort);
             socketChannel = SocketChannel.open();
             socketChannel.configureBlocking(false);
-            socketChannel.register(selector(), SelectionKey.OP_CONNECT, this);
+            socketChannel.register(selector(), OP_CONNECT, this);
             socketChannel.connect(inetSocketAddress);
 
             // Register activity because it is possible that the request to begin
@@ -664,7 +673,7 @@ final class Sender extends KeyHandler {
 
    public String toString() {
 
-      return "Sender{" +
+      return "SenderKeyHandler{" +
               "receiverNodeAddress=" + receiverAddress +
               ", messages=" + messages.size() +
               ", addressesToTry=" + addressesToTry +

@@ -34,7 +34,7 @@ import org.cacheonix.impl.util.array.IntObjectHashMap;
 public final class AddRemoteEntryModifiedSubscriberMessage extends LocalCacheMessage {
 
    /**
-    * Maker used by WireableFactory.
+    * Builder used by WireableFactory.
     */
    public static final WireableBuilder BUILDER = new Builder();
 

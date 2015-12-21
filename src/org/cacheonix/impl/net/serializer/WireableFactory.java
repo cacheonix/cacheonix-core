@@ -111,9 +111,6 @@ import org.cacheonix.impl.net.cluster.RevivalMarker;
 import org.cacheonix.impl.net.cluster.TestMessage;
 import org.cacheonix.impl.net.processor.Message;
 import org.cacheonix.impl.net.processor.ReceiverAddress;
-import org.cacheonix.impl.net.tcp.server.CloseConnectionMessage;
-import org.cacheonix.impl.net.tcp.server.OpenConnectionMessage;
-import org.cacheonix.impl.net.tcp.server.PingConnectionMessage;
 import org.cacheonix.impl.util.Assert;
 import org.cacheonix.impl.util.array.IntObjectHashMap;
 import org.cacheonix.impl.util.hashcode.MD5HashCodeCalculator;
@@ -170,10 +167,6 @@ public final class WireableFactory {
       addMaker(Wireable.TYPE_CACHEABLE_ENTRY, CacheableEntry.BUILDER);
       addMaker(Wireable.TYPE_JOINING_NODE, JoiningNode.BUILDER);
       addMaker(Wireable.TYPE_RECEIVER_ADDRESS, ReceiverAddress.BUILDER);
-
-      addMaker(Wireable.TYPE_OPEN_CONNECTION, OpenConnectionMessage.BUILDER);
-      addMaker(Wireable.TYPE_CONNECTION_CLOSE, CloseConnectionMessage.BUILDER);
-      addMaker(Wireable.TYPE_CONNECTION_PING, PingConnectionMessage.BUILDER);
 
       addMaker(Wireable.TYPE_CLUSTER_MULTICAST_MARKER, MulticastMarker.BUILDER);
       addMaker(Wireable.TYPE_CLUSTER_JOIN_REQUEST, JoinRequest.BUILDER);

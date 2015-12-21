@@ -43,15 +43,21 @@ public final class ClusterNodeAddressTest extends TestCase {
     */
    private static final Logger LOG = Logger.getLogger(ClusterNodeAddressTest.class); // NOPMD
 
-   private static final String TEST_HOST_NAME = "test_host_name";
-
-   private static final ClusterNodeAddress DIFFERENT_1 = new ClusterNodeAddress(TCP_PORT_2, TEST_HOST_NAME,
+   private static final ClusterNodeAddress DIFFERENT_1 = new ClusterNodeAddress(TCP_PORT_2,
            new InetAddress[]{IP_ADDRESS});
 
-   private static final ClusterNodeAddress SAME_1 = new ClusterNodeAddress(TCP_PORT_1, TEST_HOST_NAME,
+
+   public void testCreateAddress() throws Exception {
+
+      final ClusterNodeAddress address = ClusterNodeAddress.createAddress(null, TCP_PORT_1);
+      assertTrue(address.getAddresses().length > 0);
+   }
+
+
+   private static final ClusterNodeAddress SAME_1 = new ClusterNodeAddress(TCP_PORT_1,
            new InetAddress[]{IP_ADDRESS});
 
-   private static final ClusterNodeAddress SAME_2 = new ClusterNodeAddress(TCP_PORT_1, TEST_HOST_NAME,
+   private static final ClusterNodeAddress SAME_2 = new ClusterNodeAddress(TCP_PORT_1,
            new InetAddress[]{IP_ADDRESS});
 
 
@@ -92,11 +98,6 @@ public final class ClusterNodeAddressTest extends TestCase {
       assertEquals(SAME_1, SAME_2);
    }
 
-
-   public void testHostName() {
-
-      assertEquals(TEST_HOST_NAME, SAME_1.getHostName());
-   }
 
 
    public void testToString() {

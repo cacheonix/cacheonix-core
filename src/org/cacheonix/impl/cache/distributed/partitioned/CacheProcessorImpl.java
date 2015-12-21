@@ -630,7 +630,7 @@ public final class CacheProcessorImpl extends AbstractRequestProcessor implement
     */
    private FrontCache createFrontCache(final FrontCacheConfiguration frontCacheConfiguration) {
 
-      return frontCacheConfiguration == null ? null : new FrontCache(getClock(), frontCacheConfiguration);
+      return frontCacheConfiguration == null ? null : new FrontCacheImpl(getClock(), frontCacheConfiguration);
    }
 
 

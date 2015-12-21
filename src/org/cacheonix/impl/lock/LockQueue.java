@@ -25,13 +25,13 @@ import org.cacheonix.impl.net.serializer.WireableBuilder;
 import org.cacheonix.impl.util.Assert;
 
 /**
- * A queue contaning pending lock requests.
+ * A queue containing pending lock requests.
  */
 @SuppressWarnings("RedundantIfStatement")
 public final class LockQueue implements Wireable {
 
    /**
-    * Maker used by WireableFactory.
+    * Builder used by WireableFactory.
     */
    public static final WireableBuilder BUILDER = new Builder();
 
@@ -362,7 +362,7 @@ public final class LockQueue implements Wireable {
    /**
     * A class factory.
     */
-   final static class Builder implements WireableBuilder {
+   private final static class Builder implements WireableBuilder {
 
       public Wireable create() {
 
