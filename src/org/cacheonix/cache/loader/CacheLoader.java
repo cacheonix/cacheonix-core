@@ -36,6 +36,7 @@ import java.io.Serializable;
  *
  * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  */
+@SuppressWarnings("EmptyMethod")
 public interface CacheLoader {
 
    /**
