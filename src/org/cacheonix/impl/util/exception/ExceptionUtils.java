@@ -34,7 +34,7 @@ public final class ExceptionUtils {
    /**
     * A prefix added to all messages that contains version of the system that have thrown the exception.
     */
-   public static final String VERSION_PREFIX = Version.getVersion().fullProductVersion(true) + ": ";
+   private static final String VERSION_PREFIX = Version.getVersion().fullProductVersion(true) + ": ";
 
 
    /**
@@ -57,18 +57,6 @@ public final class ExceptionUtils {
     */
    private ExceptionUtils() {
 
-   }
-
-
-   /**
-    * Helper method.
-    *
-    * @param e
-    * @return
-    */
-   public static RuntimeException createRuntimeException(final Throwable e) {
-
-      return new RuntimeException(e);
    }
 
 
