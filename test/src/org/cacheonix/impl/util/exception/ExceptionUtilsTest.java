@@ -21,6 +21,7 @@ import static org.cacheonix.impl.util.exception.ExceptionUtils.createIOException
 import static org.cacheonix.impl.util.exception.ExceptionUtils.createIllegalArgumentException;
 import static org.cacheonix.impl.util.exception.ExceptionUtils.createIllegalStateException;
 import static org.cacheonix.impl.util.exception.ExceptionUtils.enhanceExceptionWithAddress;
+import static org.cacheonix.impl.util.exception.ExceptionUtils.toStackTrace;
 
 /**
  * Tests ExceptionUtils
@@ -68,5 +69,11 @@ public final class ExceptionUtilsTest extends TestCase {
 
       final IOException ioException = new IOException();
       assertEquals(ioException, enhanceExceptionWithAddress(null, ioException));
+   }
+
+   public void testToStackTrace() {
+
+      assertTrue(toStackTrace(EXCEPTION).startsWith("java.lang.Throwable: test_message\n" +
+              "\tat org.cacheonix.impl.util.exception.ExceptionUtilsTest.<clinit>(ExceptionUtilsTest.java:36)\n"));
    }
 }
