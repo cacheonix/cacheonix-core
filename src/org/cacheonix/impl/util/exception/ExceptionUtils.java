@@ -34,7 +34,7 @@ public final class ExceptionUtils {
    /**
     * A prefix added to all messages that contains version of the system that have thrown the exception.
     */
-   public static final String VERSION_PREFIX = Version.getVersion().fullProductVersion(true) + ": ";
+   private static final String VERSION_PREFIX = Version.getVersion().fullProductVersion(true) + ": ";
 
 
    /**
