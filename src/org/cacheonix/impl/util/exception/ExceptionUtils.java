@@ -66,18 +66,6 @@ public final class ExceptionUtils {
     * @param e
     * @return
     */
-   public static RuntimeException createRuntimeException(final Throwable e) {
-
-      return new RuntimeException(e);
-   }
-
-
-   /**
-    * Helper method.
-    *
-    * @param e
-    * @return
-    */
    public static IllegalStateException createIllegalStateException(final Throwable e) {
 
       final IllegalStateException ise = new IllegalStateException(StringUtils.toString(e));
