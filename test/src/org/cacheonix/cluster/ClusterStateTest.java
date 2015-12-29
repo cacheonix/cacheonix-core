@@ -24,7 +24,7 @@ public final class ClusterStateTest extends TestCase {
     *
     * @param clusterState the ClusterState to process
     */
-   private static void writeReadCompare(final ClusterState clusterState) throws IOException, ClassNotFoundException {
+   private static void writeReadCompare(final ClusterState clusterState) throws IOException {
 
       final Serializer ser = SerializerFactory.getInstance().getSerializer(TYPE_JAVA);
       assertEquals(clusterState, ser.deserialize(ser.serialize(clusterState)));

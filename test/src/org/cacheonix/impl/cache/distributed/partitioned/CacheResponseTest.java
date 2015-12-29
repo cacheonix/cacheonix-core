@@ -117,7 +117,7 @@ public final class CacheResponseTest extends TestCase {
    }
 
 
-   private void assertSerializedEquals(final Message response) throws IOException, ClassNotFoundException {
+   private void assertSerializedEquals(final Message response) throws IOException {
 
       assertEquals(response, serializer.deserialize(serializer.serialize(response)));
    }

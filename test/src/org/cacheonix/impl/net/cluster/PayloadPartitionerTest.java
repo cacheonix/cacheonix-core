@@ -64,7 +64,7 @@ public final class PayloadPartitionerTest extends TestCase {
 
 
    void runPartitionTest(final int objectSize, final int expectedPartCount)
-           throws IOException, ClassNotFoundException {
+           throws IOException {
 
       final TestMessage objectToPartition = makeObject(objectSize);
       final List parts = partitioner.partition(objectToPartition);

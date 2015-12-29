@@ -112,7 +112,7 @@ public class ClusterResponseTest extends TestCase {
    }
 
 
-   private static void assertSerializedEquals(final Message response) throws IOException, ClassNotFoundException {
+   private static void assertSerializedEquals(final Message response) throws IOException {
 
       final Serializer ser = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
       assertEquals(response, ser.deserialize(ser.serialize(response)));
