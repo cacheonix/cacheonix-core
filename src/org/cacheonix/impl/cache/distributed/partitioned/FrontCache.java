@@ -7,7 +7,7 @@ import org.cacheonix.impl.clock.Time;
 import org.cacheonix.impl.config.FrontCacheConfiguration;
 
 /**
- * Created by simeshev on 10/19/15.
+ * A front cache is a cache used by the partitioned cache to keep frequently used remote keys locally.
  */
 public interface FrontCache {
 

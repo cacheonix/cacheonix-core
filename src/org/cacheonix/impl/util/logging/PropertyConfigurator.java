@@ -589,7 +589,7 @@ public final class PropertyConfigurator implements Configurator {
 
       while (st.hasMoreTokens()) {
          final String appenderName = st.nextToken().trim();
-         if (appenderName == null || ",".equals(appenderName)) {
+         if (",".equals(appenderName)) {
             continue;
          }
          LogLog.debug("Parsing appender named \"" + appenderName + "\".");

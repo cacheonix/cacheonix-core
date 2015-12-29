@@ -17,6 +17,11 @@ import java.io.IOException;
 
 import junit.framework.TestCase;
 
+import static org.cacheonix.impl.util.exception.ExceptionUtils.createIOException;
+import static org.cacheonix.impl.util.exception.ExceptionUtils.createIllegalArgumentException;
+import static org.cacheonix.impl.util.exception.ExceptionUtils.createIllegalStateException;
+import static org.cacheonix.impl.util.exception.ExceptionUtils.enhanceExceptionWithAddress;
+
 /**
  * Tests ExceptionUtils
  */
@@ -32,7 +37,7 @@ public final class ExceptionUtilsTest extends TestCase {
 
    public void testMakeIllegalStateException() {
 
-      final IllegalStateException actual = ExceptionUtils.createIllegalStateException(EXCEPTION);
+      final IllegalStateException actual = createIllegalStateException(EXCEPTION);
       assertEquals(EXCEPTION, actual.getCause());
       assertTrue(actual.toString().contains(EXCEPTION_MESSAGE));
    }
@@ -40,7 +45,7 @@ public final class ExceptionUtilsTest extends TestCase {
 
    public void testCreateIOException() {
 
-      final IOException actual = ExceptionUtils.createIOException(EXCEPTION);
+      final IOException actual = createIOException(EXCEPTION);
       assertEquals(EXCEPTION, actual.getCause());
       assertTrue(actual.toString().contains(EXCEPTION_MESSAGE));
    }
@@ -48,11 +53,12 @@ public final class ExceptionUtilsTest extends TestCase {
 
    public void testCreateIllegalArgumentException() {
 
-      final IllegalArgumentException actual1 = ExceptionUtils.createIllegalArgumentException(EXCEPTION);
+      final IllegalArgumentException actual1 = createIllegalArgumentException(EXCEPTION);
       assertEquals(EXCEPTION, actual1.getCause());
       assertTrue(actual1.toString().contains(EXCEPTION_MESSAGE));
 
-      final IllegalArgumentException actual2 = ExceptionUtils.createIllegalArgumentException(ADDITIONAL_MESSAGE, EXCEPTION);
+      final IllegalArgumentException actual2 = createIllegalArgumentException(ADDITIONAL_MESSAGE,
+              EXCEPTION);
       assertEquals(EXCEPTION, actual2.getCause());
       assertTrue(actual2.toString().contains(ADDITIONAL_MESSAGE));
    }
@@ -61,6 +67,6 @@ public final class ExceptionUtilsTest extends TestCase {
    public void testEnhanceExceptionWithAddressCanHandleNullChannel() {
 
       final IOException ioException = new IOException();
-      assertEquals(ioException, ExceptionUtils.enhanceExceptionWithAddress(null, ioException));
+      assertEquals(ioException, enhanceExceptionWithAddress(null, ioException));
    }
 }
