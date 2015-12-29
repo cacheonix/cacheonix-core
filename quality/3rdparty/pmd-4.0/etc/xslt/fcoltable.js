@@ -26,8 +26,8 @@ function tablecollapse()
 			}			
 			// change the image accordingly
 			var li=this.getElementsByTagName('img')[0];
-			li.src=li.src.indexOf(collapsePic)==-1?collapsePic:expandPic;	
-		}
+			li.src=li.src.indexOf(collapsePic)==-1?collapsePic:expandPic;
+		};
 		// if the bodies should be collapsed initially, do so
 		if(initialCollapse)
 		{
@@ -41,7 +41,9 @@ function tablecollapse()
 		// access to the last cell in the footer
 		var newa=document.createElement('a');
 		newa.href='#';
-		newa.onclick=function(){return false;}
+		newa.onclick = function () {
+			return false;
+		};
 		var newimg=document.createElement('img');
 		newimg.src=initialCollapse?expandPic:collapsePic;
 		var tf=t[i].getElementsByTagName('tfoot')[0];
