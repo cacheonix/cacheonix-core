@@ -45,7 +45,7 @@ public final class RepartitionAnnouncementTest extends TestCase {
    private RepartitionAnnouncement announcement;
 
 
-   public void testSerialze() throws IOException, ClassNotFoundException {
+   public void testSerialze() throws IOException {
 
       final Serializer serializer = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
       assertEquals(announcement, serializer.deserialize(serializer.serialize(announcement)));

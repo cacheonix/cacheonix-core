@@ -60,14 +60,14 @@ public final class PassByReferenceBinaryTest extends TestCase {
    }
 
 
-   public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+   public void testSerializeDeserialize() throws IOException {
 
       final Serializer ser = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
       assertEquals(binary, ser.deserialize(ser.serialize(binary)));
    }
 
 
-   public void testSerializeDeserializeInteger() throws IOException, ClassNotFoundException {
+   public void testSerializeDeserializeInteger() throws IOException {
 
       final PassByReferenceBinary intBinary = new PassByReferenceBinary(Integer.valueOf(5000));
       final Serializer ser = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);

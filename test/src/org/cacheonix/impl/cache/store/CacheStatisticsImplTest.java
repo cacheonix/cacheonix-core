@@ -107,7 +107,7 @@ public final class CacheStatisticsImplTest extends CacheonixTestCase {
    }
 
 
-   public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+   public void testSerializeDeserialize() throws IOException {
 
       statistics.incrementReadHitCount();
 

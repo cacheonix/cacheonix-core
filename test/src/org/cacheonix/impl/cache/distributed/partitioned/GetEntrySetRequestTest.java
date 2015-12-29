@@ -49,7 +49,7 @@ public final class GetEntrySetRequestTest extends CacheonixTestCase {
    }
 
 
-   public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+   public void testSerializeDeserialize() throws IOException {
 
       request.setSender(TestUtils.createTestAddress());
       request.setBucketSet(createBucketSet());

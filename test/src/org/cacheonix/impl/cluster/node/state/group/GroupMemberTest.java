@@ -71,7 +71,7 @@ public final class GroupMemberTest extends TestCase {
    }
 
 
-   public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+   public void testSerializeDeserialize() throws IOException {
 
       final Serializer ser = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
       assertEquals(member, ser.deserialize(ser.serialize(member)));

@@ -319,7 +319,7 @@ public final class BucketOwnershipAssignmentWithReplicasTest extends TestCase {
    }
 
 
-   public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+   public void testSerializeDeserialize() throws IOException {
 
       addBucketOwners(BUCKET_OWNER_COUNT);
       final Serializer ser = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);

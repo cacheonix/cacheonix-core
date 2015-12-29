@@ -69,7 +69,7 @@ public final class RevivalMarkerTest extends TestCase {
    }
 
 
-   public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+   public void testSerializeDeserialize() throws IOException {
 
       marker.setOriginator(TestUtils.createTestAddress());
       marker.setNewList(new ArrayList(1));

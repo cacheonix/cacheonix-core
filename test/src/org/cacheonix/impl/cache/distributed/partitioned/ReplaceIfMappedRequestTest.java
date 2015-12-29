@@ -81,7 +81,7 @@ public final class ReplaceIfMappedRequestTest extends CacheonixTestCase {
    }
 
 
-   public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+   public void testSerializeDeserialize() throws IOException {
 
       final Serializer ser = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
       final ReplaceIfMappedRequest deserializedRequest = (ReplaceIfMappedRequest) ser.deserialize(ser.serialize(request));

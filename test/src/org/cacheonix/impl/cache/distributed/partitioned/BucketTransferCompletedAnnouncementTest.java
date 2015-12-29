@@ -49,7 +49,7 @@ public final class BucketTransferCompletedAnnouncementTest extends TestCase {
    private BucketTransferCompletedAnnouncement announcement;
 
 
-   public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+   public void testSerializeDeserialize() throws IOException {
 
       announcement.setSender(ADDR_1);
       announcement.setNewOwnerAddress(ADDR_2);

@@ -92,7 +92,7 @@ public final class PutRequestTest extends CacheonixTestCase {
    }
 
 
-   public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+   public void testSerializeDeserialize() throws IOException {
 
       request.setKey(KEY);
       request.setValue(VALUE);

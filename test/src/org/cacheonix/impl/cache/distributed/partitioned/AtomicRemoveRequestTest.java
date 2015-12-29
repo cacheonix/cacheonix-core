@@ -81,7 +81,7 @@ public final class AtomicRemoveRequestTest extends CacheonixTestCase {
    }
 
 
-   public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+   public void testSerializeDeserialize() throws IOException {
 
       final Serializer ser = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
       final AtomicRemoveRequest deserializedRequest = (AtomicRemoveRequest) ser.deserialize(ser.serialize(request));

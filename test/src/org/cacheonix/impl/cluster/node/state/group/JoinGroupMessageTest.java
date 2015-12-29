@@ -62,7 +62,7 @@ public final class JoinGroupMessageTest extends TestCase {
    }
 
 
-   public void testSerialize() throws IOException, ClassNotFoundException {
+   public void testSerialize() throws IOException {
 
       final Serializer serializer = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
       assertEquals(message, serializer.deserialize(serializer.serialize(message)));

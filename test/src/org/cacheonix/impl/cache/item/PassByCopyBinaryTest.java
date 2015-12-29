@@ -63,7 +63,7 @@ public final class PassByCopyBinaryTest extends CacheonixTestCase {
    }
 
 
-   public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+   public void testSerializeDeserialize() throws IOException {
 
       final Serializer ser = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
       assertEquals((byte[]) binary.getValue(), (byte[]) ((Binary) ser.deserialize(ser.serialize(binary))).getValue());

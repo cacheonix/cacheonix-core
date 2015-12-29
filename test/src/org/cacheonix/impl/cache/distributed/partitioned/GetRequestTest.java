@@ -74,7 +74,7 @@ public final class GetRequestTest extends CacheonixTestCase {
    }
 
 
-   public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+   public void testSerializeDeserialize() throws IOException {
 
       request.setKey(KEY);
       request.setSender(TestUtils.createTestAddress());

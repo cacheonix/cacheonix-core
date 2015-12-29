@@ -51,7 +51,7 @@ public final class BucketTransferTest extends CacheonixTestCase {
    }
 
 
-   public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+   public void testSerializeDeserialize() throws IOException {
 
       final Serializer ser = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
       assertEquals(bucketTransfer, ser.deserialize(ser.serialize(bucketTransfer)));

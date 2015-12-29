@@ -56,7 +56,7 @@ public final class CompressedBinaryTest extends TestCase {
    }
 
 
-   public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+   public void testSerializeDeserialize() throws IOException {
 
       final Serializer ser = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
       assertEquals(binary, ser.deserialize(ser.serialize(binary)));

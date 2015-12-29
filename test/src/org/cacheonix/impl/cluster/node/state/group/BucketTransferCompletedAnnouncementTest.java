@@ -87,7 +87,7 @@ public final class BucketTransferCompletedAnnouncementTest extends CacheonixTest
    }
 
 
-   public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+   public void testSerializeDeserialize() throws IOException {
 
       message.addTransferredBucketNumbers(Collections.singletonList(BUCKET_NUMBER));
       message.setSourceStorageNumber(SOURCE_STORAGE_NUMBER);

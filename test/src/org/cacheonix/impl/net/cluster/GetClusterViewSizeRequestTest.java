@@ -62,7 +62,7 @@ public final class GetClusterViewSizeRequestTest extends TestCase {
    }
 
 
-   public void testSerialise() throws IOException, ClassNotFoundException {
+   public void testSerialise() throws IOException {
 
       final Serializer serializer = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
       final byte[] bytes = serializer.serialize(message);

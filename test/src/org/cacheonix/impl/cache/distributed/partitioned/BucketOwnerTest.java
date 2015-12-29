@@ -44,7 +44,7 @@ public final class BucketOwnerTest extends CacheonixTestCase {
    private static final byte REPLICA_COUNT = (byte) 1;
 
 
-   public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+   public void testSerializeDeserialize() throws IOException {
 
       bucketOwner.markLeaving();
 

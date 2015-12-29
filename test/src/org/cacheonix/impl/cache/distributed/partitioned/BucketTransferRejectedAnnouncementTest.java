@@ -48,7 +48,7 @@ public final class BucketTransferRejectedAnnouncementTest extends TestCase {
    private BucketTransferRejectedAnnouncement announcement;
 
 
-   public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+   public void testSerializeDeserialize() throws IOException {
 
       announcement.setSender(ADDR_1);
       announcement.setNewOwner(ADDR_2);

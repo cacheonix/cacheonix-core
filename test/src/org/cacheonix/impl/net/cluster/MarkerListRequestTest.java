@@ -66,7 +66,7 @@ public final class MarkerListRequestTest extends CacheonixTestCase {
    }
 
 
-   public void testSerialise() throws IOException, ClassNotFoundException {
+   public void testSerialise() throws IOException {
 
       final Serializer serializer = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
       final byte[] bytes = serializer.serialize(message);

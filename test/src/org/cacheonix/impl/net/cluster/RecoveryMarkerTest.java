@@ -70,7 +70,7 @@ public final class RecoveryMarkerTest extends TestCase {
    }
 
 
-   public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+   public void testSerializeDeserialize() throws IOException {
 
       final Serializer serializer = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
       final byte[] bytes = serializer.serialize(recoveryMarker);

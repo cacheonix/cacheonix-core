@@ -51,7 +51,7 @@ public final class ClusterAnnouncerTest extends CacheonixTestCase {
    }
 
 
-   public void testAnnounce() throws IOException, ClassNotFoundException {
+   public void testAnnounce() throws IOException {
 
       announcer.announce(UUID.randomUUID(), TestUtils.createTestAddress(TestConstants.PORT_7676 + 1), 2, true);
 

@@ -104,7 +104,7 @@ public final class BinaryEntryModifiedEventTest extends CacheonixTestCase {
    }
 
 
-   public void testWriteReadExternal() throws IOException, ClassNotFoundException {
+   public void testWriteReadExternal() throws IOException {
 
       final Serializer serializer = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
       final byte[] bytes = serializer.serialize(event);

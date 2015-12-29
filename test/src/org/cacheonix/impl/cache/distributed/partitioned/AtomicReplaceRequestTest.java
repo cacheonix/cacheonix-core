@@ -89,7 +89,7 @@ public final class AtomicReplaceRequestTest extends CacheonixTestCase {
    }
 
 
-   public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+   public void testSerializeDeserialize() throws IOException {
 
       final Serializer ser = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
       final AtomicReplaceRequest deserializedRequest = (AtomicReplaceRequest) ser.deserialize(ser.serialize(request));

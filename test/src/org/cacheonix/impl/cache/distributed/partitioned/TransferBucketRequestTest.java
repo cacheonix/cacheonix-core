@@ -118,7 +118,7 @@ public final class TransferBucketRequestTest extends CacheonixTestCase {
    }
 
 
-   public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+   public void testSerializeDeserialize() throws IOException {
 
       final BinaryStore keyStore = createKeyStore();
       request.addBucket(new Bucket(BUCKET_NUMBER, keyStore, LEASE_DURATION_MILLIS));

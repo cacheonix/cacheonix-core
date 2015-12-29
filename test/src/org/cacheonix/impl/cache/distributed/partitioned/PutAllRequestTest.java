@@ -68,7 +68,7 @@ public final class PutAllRequestTest extends CacheonixTestCase {
    }
 
 
-   public void testSerializeDeserialize() throws IOException, ClassNotFoundException, InvalidObjectException {
+   public void testSerializeDeserialize() throws IOException, InvalidObjectException {
 
       final BinaryFactory binaryFactory = BINARY_FACTORY_BUILDER.createFactory(BinaryType.BY_COPY);
       final HashMap<Binary, Binary> map = new HashMap<Binary, Binary>(1);

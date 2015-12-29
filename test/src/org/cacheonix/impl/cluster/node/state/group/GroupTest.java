@@ -60,7 +60,7 @@ public final class GroupTest extends CacheonixTestCase {
    }
 
 
-   public void testSerialze() throws IOException, ClassNotFoundException {
+   public void testSerialze() throws IOException {
 
       final Serializer serializer = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
       final Group actual = (Group) serializer.deserialize(serializer.serialize(group));
@@ -97,7 +97,7 @@ public final class GroupTest extends CacheonixTestCase {
    }
 
 
-   public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+   public void testSerializeDeserialize() throws IOException {
 
       final Serializer ser = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
       assertEquals(group, ser.deserialize(ser.serialize(group)));
