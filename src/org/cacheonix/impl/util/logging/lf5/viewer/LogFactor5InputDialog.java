@@ -34,6 +34,7 @@ import javax.swing.*;
 
 // Contributed by ThoughtWorks Inc.
 
+@SuppressWarnings("deprecation")
 public final class LogFactor5InputDialog extends LogFactor5Dialog {
 
    private static final long serialVersionUID = -6388919243313911235L;

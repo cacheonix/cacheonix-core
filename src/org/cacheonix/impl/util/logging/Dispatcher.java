@@ -27,6 +27,7 @@ import org.cacheonix.impl.util.logging.spi.LoggingEvent;
  *
  * @deprecated Since 1.3.
  */
+@SuppressWarnings("deprecation")
 final class Dispatcher extends Thread {
 
    /**

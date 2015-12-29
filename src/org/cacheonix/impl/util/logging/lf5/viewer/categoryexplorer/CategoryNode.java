@@ -29,6 +29,7 @@ import javax.swing.tree.TreeNode;
 
 // Contributed by ThoughtWorks Inc.
 
+@SuppressWarnings("deprecation")
 public final class CategoryNode extends DefaultMutableTreeNode {
 
    private static final long serialVersionUID = 5958994817693177319L;

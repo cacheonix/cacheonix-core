@@ -43,6 +43,7 @@ import org.cacheonix.impl.util.logging.lf5.viewer.LogFactor5LoadingDialog;
 
 // Contributed by ThoughtWorks Inc.
 
+@SuppressWarnings("deprecation")
 public final class LogFileParser implements Runnable {
 
    //--------------------------------------------------------------------------

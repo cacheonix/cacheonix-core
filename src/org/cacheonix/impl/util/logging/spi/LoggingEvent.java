@@ -50,6 +50,7 @@ import org.cacheonix.impl.util.logging.helpers.LogLog;
  * @author James P. Cakalic
  * @since 0.8.2
  */
+@SuppressWarnings("deprecation")
 public final class LoggingEvent implements Serializable {
 
    private static final long startTime = System.currentTimeMillis();

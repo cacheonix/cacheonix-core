@@ -35,6 +35,7 @@ import org.cacheonix.impl.util.logging.Priority;
  *
  * @author <a href="mailto:oliver@puppycrawl.com">Oliver Burn</a>
  */
+@SuppressWarnings("deprecation")
 final class MyTableModel
         extends AbstractTableModel {
 

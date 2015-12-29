@@ -25,6 +25,7 @@ import java.util.Vector;
  *
  * @deprecated
  */
+@SuppressWarnings("deprecation")
 final class VectorWriter extends PrintWriter {
 
    private final Vector v;

@@ -32,6 +32,7 @@ import org.cacheonix.impl.util.logging.spi.LoggingEvent;
  *
  * @author Ceki G&uuml;lc&uuml;
  */
+@SuppressWarnings("deprecation")
 public abstract class DateLayout extends Layout {
 
    /**

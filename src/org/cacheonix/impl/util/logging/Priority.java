@@ -24,6 +24,7 @@ package org.cacheonix.impl.util.logging;
  *
  * @author Ceki G&uuml;lc&uuml;
  */
+@SuppressWarnings("deprecation")
 public class Priority {
 
    transient int level;

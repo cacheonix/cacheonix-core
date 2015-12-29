@@ -58,6 +58,7 @@ import org.cacheonix.impl.util.logging.lf5.viewer.configure.MRUFileManager;
 
 // Contributed by ThoughtWorks Inc.
 
+@SuppressWarnings("deprecation")
 public final class LogBrokerMonitor {
    //--------------------------------------------------------------------------
    //   Constants:

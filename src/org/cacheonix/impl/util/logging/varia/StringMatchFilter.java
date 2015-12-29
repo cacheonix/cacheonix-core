@@ -32,6 +32,7 @@ import org.cacheonix.impl.util.logging.spi.LoggingEvent;
  * @author Ceki G&uuml;lc&uuml;
  * @since 0.9.0
  */
+@SuppressWarnings("deprecation")
 public final class StringMatchFilter extends Filter {
 
    /**

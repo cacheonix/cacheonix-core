@@ -30,6 +30,7 @@ import org.cacheonix.impl.util.logging.Priority;
  *
  * @since 1.2.15
  */
+@SuppressWarnings("deprecation")
 public final class NOPLogger extends Logger {
 
    /**
