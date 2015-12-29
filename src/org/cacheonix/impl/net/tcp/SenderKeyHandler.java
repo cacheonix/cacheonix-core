@@ -165,7 +165,7 @@ final class SenderKeyHandler extends KeyHandler {
                //noinspection ControlFlowStatementWithoutBraces
 //               if (LOG.isDebugEnabled()) LOG.debug("Connected to: " + channel.socket().getRemoteSocketAddress()); // NOPMD
 
-            } catch (final IOException e) {
+            } catch (final IOException ignored) {
 
 //               //noinspection ControlFlowStatementWithoutBraces
                //noinspection ControlFlowStatementWithoutBraces
@@ -233,7 +233,7 @@ final class SenderKeyHandler extends KeyHandler {
 
                   writeLeftover(key);
                }
-            } catch (final IOException e) {
+            } catch (final IOException ignored) {
 
                // Write failed. It may fail because there was an intermittent
                // connection failure, or because the host went down. In either
@@ -557,13 +557,15 @@ final class SenderKeyHandler extends KeyHandler {
 //         LOG.debug("Responding to all messages with failure, message count: " + messages.size()); // NOPMD
 //      }
 
-      for (final Message message : messages) {
+      for (final Iterator<Message> iterator = messages.iterator(); iterator.hasNext(); ) {
 
+         // Respond
+         final Message message = iterator.next();
          respondWithFailure(message, errorDescription);
-      }
 
-      // Clear all messages
-      messages.clear();
+         // Delete from the queue
+         iterator.remove();
+      }
    }
 
 
