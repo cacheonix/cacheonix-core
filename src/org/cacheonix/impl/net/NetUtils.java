@@ -16,9 +16,16 @@ package org.cacheonix.impl.net;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Set;
+
+import org.cacheonix.exceptions.CacheonixException;
+import org.cacheonix.impl.util.array.HashSet;
+
+import static java.util.Collections.unmodifiableSet;
 
 /**
  * Utility methods to support network operations.
@@ -37,18 +44,24 @@ public final class NetUtils {
     * @throws IOException if there is problem geting local address
     * @see InetAddress
     */
-   public static List<InetAddress> getLocalInetAddresses() throws IOException {
+   public static Set<InetAddress> getLocalInetAddresses() {
 
-      final Enumeration<NetworkInterface> netIfs = NetworkInterface.getNetworkInterfaces();
-      final List<InetAddress> result = new ArrayList<InetAddress>(3);
-      while (netIfs.hasMoreElements()) {
-         final NetworkInterface netIf = netIfs.nextElement();
-         final Enumeration<InetAddress> address = netIf.getInetAddresses();
-         while (address.hasMoreElements()) {
-            result.add(address.nextElement());
+      try {
+
+         final Enumeration<NetworkInterface> netIfs = NetworkInterface.getNetworkInterfaces();
+         final Set<InetAddress> result = new HashSet<InetAddress>(11);
+         while (netIfs.hasMoreElements()) {
+            final NetworkInterface netIf = netIfs.nextElement();
+            final Enumeration<InetAddress> address = netIf.getInetAddresses();
+            while (address.hasMoreElements()) {
+               result.add(address.nextElement());
+            }
          }
+         return unmodifiableSet(result);
+      } catch (final SocketException e) {
+
+         throw new CacheonixException("Failed to obtain a list of local InetAddresses: " + e.toString(), e);
       }
-      return result;
    }
 
 

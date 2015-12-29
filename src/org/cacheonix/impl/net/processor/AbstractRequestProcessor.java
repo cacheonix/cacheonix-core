@@ -15,20 +15,15 @@ package org.cacheonix.impl.net.processor;
 
 import java.io.IOException;
 import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Enumeration;
 import java.util.Set;
 import java.util.Timer;
 
 import org.cacheonix.exceptions.CacheonixException;
 import org.cacheonix.impl.clock.Clock;
 import org.cacheonix.impl.net.ClusterNodeAddress;
+import org.cacheonix.impl.net.NetUtils;
 import org.cacheonix.impl.util.Assert;
-import org.cacheonix.impl.util.array.HashSet;
-import org.cacheonix.impl.util.exception.ExceptionUtils;
 import org.cacheonix.impl.util.logging.Logger;
 
 /**
@@ -85,11 +80,10 @@ public abstract class AbstractRequestProcessor extends SimpleProcessor implement
 
 
    protected AbstractRequestProcessor(final Clock clock, final Timer timer, final String name,
-           final ClusterNodeAddress address,
-           final Router router) {
+           final ClusterNodeAddress address, final Router router) {
 
       super(name);
-      this.localInetAddresses = createLocalInetAddresses();
+      this.localInetAddresses = NetUtils.getLocalInetAddresses();
       this.waiterList = new WaiterList(timer);
       this.address = address;
       this.router = router;
@@ -285,35 +279,6 @@ public abstract class AbstractRequestProcessor extends SimpleProcessor implement
       return clock;
    }
 
-
-   /**
-    * Creates an unmodifiable local IP address set.
-    *
-    * @return an unmodifiable local IP address set.
-    */
-   private static Set<InetAddress> createLocalInetAddresses() {
-
-      final Set<InetAddress> result = new HashSet<InetAddress>(11);
-
-      try {
-
-         final Enumeration<NetworkInterface> enumeration = NetworkInterface.getNetworkInterfaces();
-         while (enumeration.hasMoreElements()) {
-
-            final NetworkInterface networkInterface = enumeration.nextElement();
-            final Enumeration<InetAddress> inetAddresses = networkInterface.getInetAddresses();
-            while (inetAddresses.hasMoreElements()) {
-
-               result.add(inetAddresses.nextElement());
-            }
-         }
-      } catch (final SocketException ignored) {
-
-         ExceptionUtils.ignoreException(ignored, "Couldn't obtain local addresses");
-      }
-
-      return Collections.unmodifiableSet(result);
-   }
 
 
    public String toString() {
