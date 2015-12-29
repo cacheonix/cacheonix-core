@@ -154,7 +154,7 @@ public class Router {
 
                      // Notify the waiter
                      waiter.notifyResponseReceived(response);
-                  } catch (final InterruptedException e) {
+                  } catch (final InterruptedException ignored) {
 
                      // Restore the flag
                      Thread.currentThread().interrupt();
@@ -370,14 +370,14 @@ public class Router {
       try {
 
          processor.enqueue(message);
-      } catch (final InterruptedException e) {
+      } catch (final InterruptedException ignored) {
 
          // Respond if possible
          respondWithShutdownError(message);
 
          // Restore interrupt status
          Thread.currentThread().interrupt();
-      } catch (final ShutdownException e) {
+      } catch (final ShutdownException ignored) {
 
          respondWithShutdownError(message);
       }
@@ -414,7 +414,7 @@ public class Router {
          // Do nothing - our attempt to respond failed
          // noinspection ControlFlowStatementWithoutBraces
          if (LOG.isDebugEnabled()) LOG.debug("Could not respond with an error: " + e, e); // NOPMD
-      } catch (final InterruptedException e) {
+      } catch (final InterruptedException ignored) {
 
          // Restore interrupt status
          Thread.currentThread().interrupt();

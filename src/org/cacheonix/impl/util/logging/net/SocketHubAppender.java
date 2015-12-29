@@ -181,8 +181,7 @@ public final class SocketHubAppender extends AppenderSkeleton {
          ObjectOutputStream oos = null;
          try {
             oos = (ObjectOutputStream) oosList.elementAt(streamCount);
-         }
-         catch (final ArrayIndexOutOfBoundsException e) {
+         } catch (final ArrayIndexOutOfBoundsException ignored) {
             // catch this, but just don't assign a value
             // this should not really occur as this method is
             // the only one that can remove oos's (besides cleanUp).
@@ -200,8 +199,7 @@ public final class SocketHubAppender extends AppenderSkeleton {
             // then creates a serious memory leak.
             // right now we always reset. TODO - set up frequency counter per oos?
             oos.reset();
-         }
-         catch (final IOException e) {
+         } catch (final IOException ignored) {
             // there was an io exception so just drop the connection
             oosList.removeElementAt(streamCount);
             LogLog.debug("dropped connection");
@@ -299,8 +297,7 @@ public final class SocketHubAppender extends AppenderSkeleton {
             keepRunning = false;
             try {
                monitorThread.join();
-            }
-            catch (final InterruptedException e) {
+            } catch (final InterruptedException ignored) {
                // do nothing?
             }
 
@@ -339,8 +336,7 @@ public final class SocketHubAppender extends AppenderSkeleton {
                Socket socket = null;
                try {
                   socket = serverSocket.accept();
-               }
-               catch (final InterruptedIOException e) {
+               } catch (final InterruptedIOException ignored) {
                   // timeout occurred, so just loop
                }
                catch (final SocketException e) {
@@ -374,8 +370,7 @@ public final class SocketHubAppender extends AppenderSkeleton {
             // close the socket
             try {
                serverSocket.close();
-            }
-            catch (final IOException e) {
+            } catch (final IOException ignored) {
                // do nothing with it?
             }
          }

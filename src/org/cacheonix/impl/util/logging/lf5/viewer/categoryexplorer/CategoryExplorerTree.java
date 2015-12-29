@@ -93,7 +93,7 @@ public final class CategoryExplorerTree extends JTree {
 
       try {
          return super.getToolTipText(e);
-      } catch (final Exception ex) {
+      } catch (final Exception ignored) {
          return "";
       }
 

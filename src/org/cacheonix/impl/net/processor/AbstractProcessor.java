@@ -154,7 +154,7 @@ public abstract class AbstractProcessor implements Processor {
 
          Assert.assertFalse(isProcessorThread(), "This method cannot be called from the processor thread because it blocks");
          thread.join(timeoutMillis);
-      } catch (final InterruptedException e) {
+      } catch (final InterruptedException ignored) {
          Thread.currentThread().interrupt();
       }
       return isShutdown();

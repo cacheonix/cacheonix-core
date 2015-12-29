@@ -181,7 +181,7 @@ public final class SMTPAppender extends AppenderSkeleton
       Properties props = null;
       try {
          props = new Properties(System.getProperties());
-      } catch (final SecurityException ex) {
+      } catch (final SecurityException ignored) {
          props = new Properties();
       }
       if (smtpHost != null) {

@@ -80,7 +80,7 @@ public final class LocationInfo implements Serializable {
 
          inVisualAge = Class.forName("com.ibm.uvm.tools.DebugSupport") != null;
          LogLog.debug("Detected IBM VisualAge environment.");
-      } catch (final Throwable e) {
+      } catch (final Throwable ignored) {
          // nothing to do
       }
    }

@@ -91,7 +91,7 @@ public final class SafeEntryUpdateSubscriber implements IdentityEntryModifiedSub
       try {
          return delegate.getModificationTypes();
 
-      } catch (final Exception e) {
+      } catch (final Exception ignored) {
 
          final HashSet<EntryModifiedEventType> eventTypes = new HashSet<EntryModifiedEventType>(3, 0.75f);
          eventTypes.add(EntryModifiedEventType.ADD);

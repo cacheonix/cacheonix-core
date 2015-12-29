@@ -154,7 +154,7 @@ public final class Loader {
       Method method = null;
       try {
          method = Thread.class.getMethod("getContextClassLoader", (Class[]) null);
-      } catch (final NoSuchMethodException e) {
+      } catch (final NoSuchMethodException ignored) {
          // We are running on JDK 1.1
          return null;
       }
@@ -175,7 +175,7 @@ public final class Loader {
       } else {
          try {
             return getTCL().loadClass(clazz);
-         } catch (final Throwable e) {
+         } catch (final Throwable ignored) {
             // we reached here because tcl was null or because of a
             // security exception, or because clazz could not be loaded...
             // In any case we now try one more time

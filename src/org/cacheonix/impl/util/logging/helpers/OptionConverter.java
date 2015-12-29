@@ -136,7 +136,7 @@ public final class OptionConverter {
 
       try {
          return System.getProperty(key, def);
-      } catch (final Throwable e) { // MS-Java throws com.ms.security.SecurityExceptionEx
+      } catch (final Throwable ignored) { // MS-Java throws com.ms.security.SecurityExceptionEx
          LogLog.debug("Was not allowed to read system property \"" + key + "\".");
          return def;
       }
@@ -260,7 +260,7 @@ public final class OptionConverter {
          final Object o = toLevelMethod.invoke(null, params);
 
          result = (Level) o;
-      } catch (final ClassNotFoundException e) {
+      } catch (final ClassNotFoundException ignored) {
          LogLog.warn("custom level class [" + clazz + "] not found.");
       } catch (final NoSuchMethodException e) {
          LogLog.warn("custom level class [" + clazz + ']'

@@ -252,7 +252,7 @@ public final class StringUtils {
       try {
          Integer.parseInt(s);
          return true;
-      } catch (final Exception e) {
+      } catch (final Exception ignored) {
          return false;
       }
    }
@@ -269,7 +269,7 @@ public final class StringUtils {
       try {
          Long.parseLong(s);
          return true;
-      } catch (final Exception e) {
+      } catch (final Exception ignored) {
          return false;
       }
    }

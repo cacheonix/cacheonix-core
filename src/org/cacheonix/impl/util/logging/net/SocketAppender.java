@@ -429,10 +429,10 @@ public final class SocketAppender extends AppenderSkeleton {
                   LogLog.debug("Connection established. Exiting connector thread.");
                   break;
                }
-            } catch (final InterruptedException e) {
+            } catch (final InterruptedException ignored) {
                LogLog.debug("Connector interrupted. Leaving loop.");
                return;
-            } catch (final ConnectException e) {
+            } catch (final ConnectException ignored) {
                LogLog.debug("Remote host " + address.getHostName()
                        + " refused connection.");
             } catch (final IOException e) {

@@ -625,7 +625,7 @@ public class Category implements AppenderAttachable {
       } else {
          try {
             return rb.getString(key);
-         } catch (final MissingResourceException mre) {
+         } catch (final MissingResourceException ignored) {
             error("No resource is associated with key \"" + key + "\".");
             return null;
          }

@@ -122,7 +122,7 @@ public final class LF5Appender extends AppenderSkeleton {
 
       try {
          record.setLevel(LogLevel.valueOf(level));
-      } catch (final LogLevelFormatException e) {
+      } catch (final LogLevelFormatException ignored) {
          // If the priority level doesn't match one of the predefined
          // log levels, then set the level to warning.
          record.setLevel(LogLevel.WARN);
@@ -238,7 +238,7 @@ public final class LF5Appender extends AppenderSkeleton {
             _defaultLogMonitor.setFontSize(12);
             _defaultLogMonitor.show();
 
-         } catch (final SecurityException e) {
+         } catch (final SecurityException ignored) {
             _defaultLogMonitor = null;
          }
       }
@@ -255,7 +255,7 @@ public final class LF5Appender extends AppenderSkeleton {
 
       try {
          return Toolkit.getDefaultToolkit().getScreenSize().width;
-      } catch (final Throwable t) {
+      } catch (final Throwable ignored) {
          return 800;
       }
    }
@@ -269,7 +269,7 @@ public final class LF5Appender extends AppenderSkeleton {
 
       try {
          return Toolkit.getDefaultToolkit().getScreenSize().height;
-      } catch (final Throwable t) {
+      } catch (final Throwable ignored) {
          return 600;
       }
    }

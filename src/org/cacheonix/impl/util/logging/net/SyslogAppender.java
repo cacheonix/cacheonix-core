@@ -228,7 +228,7 @@ public final class SyslogAppender extends AppenderSkeleton {
             }
             sqw.close();
             sqw = null;
-         } catch (final IOException ex) {
+         } catch (final IOException ignored) {
             sqw = null;
          }
       }
@@ -583,7 +583,7 @@ public final class SyslogAppender extends AppenderSkeleton {
          try {
             final InetAddress addr = InetAddress.getLocalHost();
             localHostname = addr.getHostName();
-         } catch (final UnknownHostException uhe) {
+         } catch (final UnknownHostException ignored) {
             localHostname = "UNKNOWN_HOST";
          }
       }

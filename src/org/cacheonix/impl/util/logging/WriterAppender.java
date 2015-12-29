@@ -211,7 +211,7 @@ public class WriterAppender extends AppenderSkeleton {
       if (enc != null) {
          try {
             retval = new OutputStreamWriter(os, enc);
-         } catch (final IOException e) {
+         } catch (final IOException ignored) {
             LogLog.warn("Error initializing output writer.");
             LogLog.warn("Unsupported encoding?");
          }

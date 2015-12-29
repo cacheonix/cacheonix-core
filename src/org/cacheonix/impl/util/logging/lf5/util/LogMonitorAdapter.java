@@ -266,7 +266,7 @@ public final class LogMonitorAdapter {
    protected static int getScreenWidth() {
       try {
          return Toolkit.getDefaultToolkit().getScreenSize().width;
-      } catch (final Throwable t) {
+      } catch (final Throwable ignored) {
          return 800;
       }
    }
@@ -279,7 +279,7 @@ public final class LogMonitorAdapter {
    protected static int getScreenHeight() {
       try {
          return Toolkit.getDefaultToolkit().getScreenSize().height;
-      } catch (final Throwable t) {
+      } catch (final Throwable ignored) {
          return 600;
       }
    }

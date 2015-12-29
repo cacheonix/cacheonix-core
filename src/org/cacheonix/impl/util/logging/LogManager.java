@@ -108,7 +108,7 @@ public final class LogManager {
          } else {
             try {
                url = new URL(configurationOptionStr);
-            } catch (final MalformedURLException ex) {
+            } catch (final MalformedURLException ignored) {
                // so, resource is not a URL:
                // attempt to get the resource from the class path
                url = Loader.getResource(configurationOptionStr);

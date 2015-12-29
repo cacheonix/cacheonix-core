@@ -192,7 +192,7 @@ public final class AsyncAppender extends AppenderSkeleton
                try {
                   buffer.wait();
                   discard = false;
-               } catch (final InterruptedException e) {
+               } catch (final InterruptedException ignored) {
                   //
                   //  reset interrupt status so
                   //    calling code can see interrupt on
@@ -617,7 +617,7 @@ public final class AsyncAppender extends AppenderSkeleton
                   }
                }
             }
-         } catch (final InterruptedException ex) {
+         } catch (final InterruptedException ignored) {
             Thread.currentThread().interrupt();
          }
       }

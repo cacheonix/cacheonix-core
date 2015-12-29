@@ -74,9 +74,9 @@ final class LoggingReceiver extends Thread {
                final LoggingEvent event = (LoggingEvent) ois.readObject();
                mModel.addEvent(new EventDetails(event));
             }
-         } catch (final EOFException e) {
+         } catch (final EOFException ignored) {
             LOG.info("Reached EOF, closing connection");
-         } catch (final SocketException e) {
+         } catch (final SocketException ignored) {
             LOG.info("Caught SocketException, closing connection");
          } catch (final IOException e) {
             LOG.warn("Got IOException, closing connection", e);

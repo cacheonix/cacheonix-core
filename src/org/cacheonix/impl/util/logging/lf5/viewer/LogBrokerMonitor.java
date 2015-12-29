@@ -1258,7 +1258,7 @@ public final class LogBrokerMonitor {
       if (temp != null) {
          try {
             setMaxNumberOfLogRecords(Integer.parseInt(temp));
-         } catch (final NumberFormatException e) {
+         } catch (final NumberFormatException ignored) {
             new LogFactor5ErrorDialog(_logMonitorFrame,
                     '\'' + temp + "' is an invalid parameter.\nPlease try again.");
             setMaxRecordConfiguration();
@@ -1664,7 +1664,7 @@ public final class LogBrokerMonitor {
                _mruFileManager.set(url);
                updateMRUList();
             }
-         } catch (final MalformedURLException e) {
+         } catch (final MalformedURLException ignored) {
             new LogFactor5ErrorDialog(_logMonitorFrame, "Error reading URL.");
          }
       }
@@ -1715,7 +1715,7 @@ public final class LogBrokerMonitor {
          _mruFileManager.moveToTop(index);
          updateMRUList();
 
-      } catch (final Exception me) {
+      } catch (final Exception ignored) {
          new LogFactor5ErrorDialog(_logMonitorFrame, "Unable to load file " + file);
       }
 
@@ -1787,7 +1787,7 @@ public final class LogBrokerMonitor {
          final LogFileParser lfp = new LogFileParser(file);
          lfp.parse(this);
          ok = true;
-      } catch (final IOException e) {
+      } catch (final IOException ignored) {
          new LogFactor5ErrorDialog(_logMonitorFrame, "Error reading " + file.getName());
       }
 
@@ -1805,7 +1805,7 @@ public final class LogBrokerMonitor {
          final LogFileParser lfp = new LogFileParser(url.openStream());
          lfp.parse(this);
          ok = true;
-      } catch (final IOException e) {
+      } catch (final IOException ignored) {
          new LogFactor5ErrorDialog(_logMonitorFrame, "Error reading URL:" + url.getFile());
       }
       return ok;

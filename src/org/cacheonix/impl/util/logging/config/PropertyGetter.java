@@ -90,7 +90,7 @@ public final class PropertyGetter {
             if (result != null) {
                callback.foundProperty(obj, prefix, name, result);
             }
-         } catch (final Exception ex) {
+         } catch (final Exception ignored) {
             LogLog.warn("Failed to get value of property " + name);
          }
       }

@@ -94,7 +94,7 @@ final class MyTableModel
          while (true) {
             try {
                Thread.sleep(1000L);
-            } catch (final InterruptedException e) {
+            } catch (final InterruptedException ignored) {
                // ignore
             }
 

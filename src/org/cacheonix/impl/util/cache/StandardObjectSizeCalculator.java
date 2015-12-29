@@ -120,7 +120,7 @@ public final class StandardObjectSizeCalculator implements ObjectSizeCalculator 
 
       try {
          return Integer.parseInt(System.getProperty(SUN_ARCH_DATA_MODEL));
-      } catch (final Exception e) {
+      } catch (final Exception ignored) {
          return 32;
       }
    }
@@ -240,7 +240,7 @@ public final class StandardObjectSizeCalculator implements ObjectSizeCalculator 
 
                         stack.add(toBeDone);
                      }
-                  } catch (final IllegalAccessException ex) {
+                  } catch (final IllegalAccessException ignored) {
 
                      assert false;
                   }

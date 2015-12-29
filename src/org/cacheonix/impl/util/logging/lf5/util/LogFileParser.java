@@ -144,11 +144,11 @@ public final class LogFileParser implements Runnable {
             }
          });
 
-      } catch (final RuntimeException e) {
+      } catch (final RuntimeException ignored) {
          destroyDialog();
          displayError("Error - Invalid log file format.\nPlease see documentation"
                  + " on how to load log files.");
-      } catch (final IOException e) {
+      } catch (final IOException ignored) {
          destroyDialog();
          displayError("Error - Unable to load log file!");
       }
@@ -225,7 +225,7 @@ public final class LogFileParser implements Runnable {
          final Date d = _sdf.parse(s);
 
          return d.getTime();
-      } catch (final ParseException e) {
+      } catch (final ParseException ignored) {
          return 0L;
       }
    }
@@ -237,7 +237,7 @@ public final class LogFileParser implements Runnable {
       if (temp != null) {
          try {
             return LogLevel.valueOf(temp);
-         } catch (final LogLevelFormatException e) {
+         } catch (final LogLevelFormatException ignored) {
             return LogLevel.DEBUG;
          }
 

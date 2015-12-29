@@ -81,8 +81,7 @@ public final class Roller {
       host = hostArg;
       try {
          port = Integer.parseInt(portArg);
-      }
-      catch (final NumberFormatException e) {
+      } catch (final NumberFormatException ignored) {
          usage("Second argument " + portArg + " is not a valid integer.");
       }
    }

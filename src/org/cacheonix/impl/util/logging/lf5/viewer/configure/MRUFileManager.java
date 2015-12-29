@@ -262,7 +262,7 @@ public final class MRUFileManager {
                   it.remove();
                }
             }
-         } catch (final Exception e) {
+         } catch (final Exception ignored) {
             _mruFileList = new LinkedList();
          }
       } else {

@@ -79,7 +79,7 @@ public abstract class FileWatchdog extends Thread {
       final boolean fileExists;
       try {
          fileExists = file.exists();
-      } catch (final SecurityException e) {
+      } catch (final SecurityException ignored) {
          LogLog.warn("Was not allowed to read check file existance, file:[" +
                  filename + "].");
          interrupted = true; // there is no point in continuing
@@ -107,7 +107,7 @@ public abstract class FileWatchdog extends Thread {
       while (!interrupted) {
          try {
             Thread.sleep(delay);
-         } catch (final InterruptedException e) {
+         } catch (final InterruptedException ignored) {
             // no interruption expected
          }
          checkAndConfigure();

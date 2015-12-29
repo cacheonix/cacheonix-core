@@ -98,7 +98,7 @@ final class Dispatcher extends Thread {
                try {
                   //LogLog.debug("Waiting for new event to dispatch.");
                   bf.wait();
-               } catch (final InterruptedException e) {
+               } catch (final InterruptedException ignored) {
                   break;
                }
             }

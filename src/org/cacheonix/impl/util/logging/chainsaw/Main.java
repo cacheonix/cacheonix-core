@@ -135,7 +135,7 @@ public final class Main
       if (strRep != null) {
          try {
             port = Integer.parseInt(strRep);
-         } catch (final NumberFormatException nfe) {
+         } catch (final NumberFormatException ignored) {
             LOG.fatal("Unable to parse " + PORT_PROP_NAME +
                     " property with value " + strRep + '.');
             JOptionPane.showMessageDialog(

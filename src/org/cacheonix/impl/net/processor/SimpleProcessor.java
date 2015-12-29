@@ -187,7 +187,7 @@ public class SimpleProcessor extends AbstractProcessor {
                      }
                   }
 
-               } catch (final InterruptedException e) {
+               } catch (final InterruptedException ignored) {
 
                   // Current thread hit a blocking interrupt-aware
                   // method. Terminate this processor.

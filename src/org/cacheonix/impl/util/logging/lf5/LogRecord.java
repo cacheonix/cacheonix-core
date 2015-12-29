@@ -342,7 +342,7 @@ public abstract class LogRecord implements Serializable {
       try {
          out.close();
          sw.close();
-      } catch (final IOException e) {
+      } catch (final IOException ignored) {
          // Do nothing, this should not happen as it is StringWriter.
       }
    }
