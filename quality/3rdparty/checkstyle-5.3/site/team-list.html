@@ -405,9 +405,8 @@ function offsetDate(id, offset) {
     var nowTime = now.getTime();
     var localOffset = now.getTimezoneOffset();
     var developerTime = nowTime + ( offset * 60 * 60 * 1000 )+ ( localOffset * 60 * 1000 );
-    var developerDate = new Date(developerTime);
 
-    document.getElementById(id).innerHTML = developerDate;
+    document.getElementById(id).innerHTML = new Date(developerTime);
 }
 
 function init(){

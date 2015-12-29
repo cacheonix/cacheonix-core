@@ -68,7 +68,7 @@ function ts_resortTable(lnk) {
     sortfn = ts_sort_caseinsensitive;
     if (itm.match(/^\d\d[\/-]\d\d[\/-]\d\d\d\d$/)) sortfn = ts_sort_date;
     if (itm.match(/^\d\d[\/-]\d\d[\/-]\d\d$/)) sortfn = ts_sort_date;
-    if (itm.match(/^[£$]/)) sortfn = ts_sort_currency;
+    if (itm.match(/^[ï¿½$]/)) sortfn = ts_sort_currency;
     if (itm.match(/^[\d\.]+$/)) sortfn = ts_sort_numeric;
     SORT_COLUMN_INDEX = column;
     var firstRow = new Array();
@@ -176,8 +176,7 @@ function addEvent(elm, evType, fn, useCapture)
     elm.addEventListener(evType, fn, useCapture);
     return true;
   } else if (elm.attachEvent){
-    var r = elm.attachEvent("on"+evType, fn);
-    return r;
+      return elm.attachEvent("on" + evType, fn);
   } else {
     alert("Handler could not be removed");
   }
