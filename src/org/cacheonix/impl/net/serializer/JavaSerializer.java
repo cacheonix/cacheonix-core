@@ -239,25 +239,25 @@ final class JavaSerializer implements Serializer {
          SerializerUtils.writeString((String) obj, dos);
       } else if (obj instanceof Integer) {
          dos.writeByte(OBJECT_TYPE_INTEGER);
-         dos.writeInt(((Integer) obj).intValue());
+         dos.writeInt((Integer) obj);
       } else if (obj instanceof Long) {
          dos.writeByte(OBJECT_TYPE_LONG);
-         dos.writeLong(((Long) obj).longValue());
+         dos.writeLong((Long) obj);
       } else if (obj instanceof Boolean) {
          dos.writeByte(OBJECT_TYPE_BOOLEAN);
-         dos.writeBoolean(((Boolean) obj).booleanValue());
+         dos.writeBoolean((Boolean) obj);
       } else if (obj instanceof Short) {
          dos.writeByte(OBJECT_TYPE_SHORT);
-         dos.writeShort(((Short) obj).shortValue());
+         dos.writeShort((Short) obj);
       } else if (obj instanceof Float) {
          dos.writeByte(OBJECT_TYPE_FLOAT);
-         dos.writeFloat(((Float) obj).floatValue());
+         dos.writeFloat((Float) obj);
       } else if (obj instanceof Double) {
          dos.writeByte(OBJECT_TYPE_DOUBLE);
-         dos.writeDouble(((Double) obj).doubleValue());
+         dos.writeDouble((Double) obj);
       } else if (obj instanceof Byte) {
          dos.writeByte(OBJECT_TYPE_BYTE);
-         dos.writeByte(((Byte) obj).byteValue());
+         dos.writeByte((Byte) obj);
       } else if (obj instanceof Map.Entry) {
          dos.writeByte(OBJECT_TYPE_MAP_ENTRY);
          final Map.Entry entry = (Map.Entry) obj;

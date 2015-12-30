@@ -574,7 +574,7 @@ public final class BucketOwner implements Wireable {
       final int ownedBucketSize = ownedBuckets.size();
       out.writeInt(ownedBucketSize);
       for (final Integer ownedBucket : ownedBuckets) {
-         out.writeShort(ownedBucket.intValue());
+         out.writeShort(ownedBucket);
       }
 
       //
