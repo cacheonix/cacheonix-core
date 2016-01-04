@@ -217,6 +217,7 @@ public final class Assert {
    }
 
 
+   @SuppressWarnings("ObjectEquality")
    public static void assertEquals(final Object o1, final Object o2, final String description, final Object param1,
            final Object param2) {
 
