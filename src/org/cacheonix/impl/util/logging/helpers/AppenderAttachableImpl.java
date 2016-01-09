@@ -35,7 +35,7 @@ public final class AppenderAttachableImpl implements AppenderAttachable {
    /**
     * Array of appenders.
     */
-   protected Vector appenderList = null;
+   protected Vector<Appender> appenderList = null;
 
 
    /**
@@ -48,7 +48,7 @@ public final class AppenderAttachableImpl implements AppenderAttachable {
       }
 
       if (appenderList == null) {
-         appenderList = new Vector(1);
+         appenderList = new Vector<Appender>(1);
       }
       if (!appenderList.contains(newAppender)) {
          appenderList.addElement(newAppender);
@@ -66,7 +66,7 @@ public final class AppenderAttachableImpl implements AppenderAttachable {
       if (appenderList != null) {
          size = appenderList.size();
          for (int i = 0; i < size; i++) {
-            final Appender appender = (Appender) appenderList.elementAt(i);
+            final Appender appender = appenderList.elementAt(i);
             appender.doAppend(event);
          }
       }
@@ -102,7 +102,7 @@ public final class AppenderAttachableImpl implements AppenderAttachable {
 
       final int size = appenderList.size();
       for (int i = 0; i < size; i++) {
-         final Appender appender = (Appender) appenderList.elementAt(i);
+         final Appender appender = appenderList.elementAt(i);
          if (name.equals(appender.getName())) {
             return appender;
          }
@@ -125,7 +125,7 @@ public final class AppenderAttachableImpl implements AppenderAttachable {
 
       final int size = appenderList.size();
       for (int i = 0; i < size; i++) {
-         final Appender a = (Appender) appenderList.elementAt(i);
+         final Appender a = appenderList.elementAt(i);
          if (appender.equals(a)) {
             return true;
          }
@@ -142,7 +142,7 @@ public final class AppenderAttachableImpl implements AppenderAttachable {
       if (appenderList != null) {
          final int len = appenderList.size();
          for (int i = 0; i < len; i++) {
-            final Appender a = (Appender) appenderList.elementAt(i);
+            final Appender a = appenderList.elementAt(i);
             a.close();
          }
          appenderList.removeAllElements();
@@ -173,7 +173,7 @@ public final class AppenderAttachableImpl implements AppenderAttachable {
       }
       final int size = appenderList.size();
       for (int i = 0; i < size; i++) {
-         if (name.equals(((Appender) appenderList.elementAt(i)).getName())) {
+         if (name.equals((appenderList.elementAt(i)).getName())) {
             appenderList.removeElementAt(i);
             break;
          }
