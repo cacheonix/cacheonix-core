@@ -121,8 +121,8 @@ public final class IOUtils {
       if (is != null) {
          try {
             is.close();
-         } catch (final IOException ignore) {
-            logCloseWarning(ignore);
+         } catch (final IOException e) {
+            logCloseWarning(e);
          }
       }
    }
@@ -136,8 +136,8 @@ public final class IOUtils {
       if (reader != null) {
          try {
             reader.close();
-         } catch (final IOException ignore) {
-            logCloseWarning(ignore);
+         } catch (final IOException e) {
+            logCloseWarning(e);
          }
       }
    }
@@ -151,8 +151,8 @@ public final class IOUtils {
       if (isr != null) {
          try {
             isr.close();
-         } catch (final IOException ignore) {
-            logCloseWarning(ignore);
+         } catch (final IOException e) {
+            logCloseWarning(e);
          }
       }
    }
@@ -205,8 +205,8 @@ public final class IOUtils {
          try {
             w.flush();
             w.close();
-         } catch (final IOException ignore) {
-            logCloseWarning(ignore);
+         } catch (final IOException e) {
+            logCloseWarning(e);
          }
       }
    }
@@ -221,8 +221,8 @@ public final class IOUtils {
          try {
             os.flush();
             os.close();
-         } catch (final IOException ignore) {
-            logCloseWarning(ignore);
+         } catch (final IOException e) {
+            logCloseWarning(e);
          }
       }
    }
@@ -236,8 +236,8 @@ public final class IOUtils {
       if (connection != null) {
          try {
             connection.close();
-         } catch (final SQLException ignore) {
-            ignoreExpectedException(ignore);
+         } catch (final SQLException e) {
+            ignoreExpectedException(e);
          }
       }
    }
@@ -251,8 +251,8 @@ public final class IOUtils {
       if (stmt != null) {
          try {
             stmt.close();
-         } catch (final SQLException ignore) {
-            ignoreExpectedException(ignore);
+         } catch (final SQLException e) {
+            ignoreExpectedException(e);
          }
       }
    }
@@ -266,8 +266,8 @@ public final class IOUtils {
       if (rs != null) {
          try {
             rs.close();
-         } catch (final SQLException ignore) {
-            ignoreExpectedException(ignore);
+         } catch (final SQLException e) {
+            ignoreExpectedException(e);
          }
       }
    }
@@ -281,8 +281,8 @@ public final class IOUtils {
       if (conn != null) {
          try {
             conn.commit();
-         } catch (final SQLException ignore) {
-            ignoreExpectedException(ignore);
+         } catch (final SQLException e) {
+            ignoreExpectedException(e);
          }
       }
    }
@@ -722,8 +722,8 @@ public final class IOUtils {
       }
       try {
          zipFile.close();
-      } catch (final IOException ignore) {
-         logCloseWarning(ignore);
+      } catch (final IOException e) {
+         logCloseWarning(e);
       }
    }
 
@@ -1050,8 +1050,8 @@ public final class IOUtils {
       closeHard(key.channel());
       try {
          selector.selectNow();
-      } catch (final IOException ignored) {
-         ignoreException(ignored, "closing hard");
+      } catch (final IOException e) {
+         ignoreException(e, "closing hard");
       }
    }
 
