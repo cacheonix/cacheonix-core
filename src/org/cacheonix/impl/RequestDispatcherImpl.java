@@ -46,12 +46,12 @@ final class RequestDispatcherImpl implements RequestDispatcher {
       try {
 
          router.route(message);
-      } catch (final ShutdownException ignored) {
+      } catch (final ShutdownException e) {
 
          // Cluster processor has already been shutdown. Ignore the request
          // to dispatch the message because our shutdown will follow shortly.
          // The message is usually a response to our last marker.
-         ExceptionUtils.ignoreException(ignored, "Shutdown in progress");
+         ExceptionUtils.ignoreException(e, "Shutdown in progress");
       }
    }
 
