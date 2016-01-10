@@ -107,7 +107,6 @@ import org.cacheonix.impl.net.cluster.MarkerTimeoutMessage;
 import org.cacheonix.impl.net.cluster.MulticastFrameMessage;
 import org.cacheonix.impl.net.cluster.MulticastMarker;
 import org.cacheonix.impl.net.cluster.RecoveryMarker;
-import org.cacheonix.impl.net.cluster.RevivalMarker;
 import org.cacheonix.impl.net.cluster.TestMessage;
 import org.cacheonix.impl.net.processor.Message;
 import org.cacheonix.impl.net.processor.ReceiverAddress;
@@ -151,7 +150,6 @@ public final class WireableFactory {
       addMaker(Wireable.TYPE_CLUSTER_VIEW, ClusterViewImpl.BUILDER);
       addMaker(Wireable.TYPE_GROUP, Group.BUILDER);
       addMaker(Wireable.TYPE_NODE_ADDRESS, ClusterNodeAddress.BUILDER);
-      addMaker(Wireable.TYPE_REVIVAL_MARKER, RevivalMarker.BUILDER);
       addMaker(Wireable.TYPE_BUCKET_TRANSFER, BucketTransfer.BUILDER);
       addMaker(Wireable.TYPE_TEST_MESSAGE, TestMessage.BUILDER);
       addMaker(Wireable.TYPE_LOCK_REGISTRY, LockRegistry.BUILDER);
