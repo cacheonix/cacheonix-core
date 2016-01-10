@@ -99,8 +99,8 @@ public final class StorageCellsManager {
     */
    public/* synchronized */boolean initialize(final Object startupObject) throws StorageException {
 
+      lock.lock();
       try {
-         lock.lock();
          if (!initialized) {
             final Object[] startItems = (Object[]) startupObject;
             storageName = (String) startItems[0];
@@ -331,8 +331,8 @@ public final class StorageCellsManager {
       }
 
       long positionRes = -1L;
+      lock.lock();
       try {
-         lock.lock();
          if (key != null && value != null) {
             final byte[] tempBytes = StorageUtilities.objectPacker(key, value);
 
@@ -368,8 +368,8 @@ public final class StorageCellsManager {
          throw new StorageException("StorageCellManager is not initialized yet");
       }
 
+      lock.lock();
       try {
-         lock.lock();
 
          final byte[] buffer = new byte[(int) storageCellSize]; // Long size
 
@@ -470,8 +470,8 @@ public final class StorageCellsManager {
          throw new StorageException("StorageCellManager is not initialized yet");
       }
 
+      lock.lock();
       try {
-         lock.lock();
          clearAll();
       } catch (final IOException ioe) {
          throw new StorageException(ioe);
@@ -520,8 +520,8 @@ public final class StorageCellsManager {
          throw new StorageException("StorageCellManager is not initialized yet");
       }
 
+      lock.lock();
       try {
-         lock.lock();
          Object oRes = null;
 
          try {
@@ -559,8 +559,8 @@ public final class StorageCellsManager {
          throw new StorageException("StorageCellManager is not initialized yet");
       }
 
+      lock.lock();
       try {
-         lock.lock();
 
          final byte[] buffer = new byte[(int) storageCellSize - 1]; // Long
          // size -
