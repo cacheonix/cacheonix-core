@@ -11,34 +11,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.util;
+package org.cacheonix.impl;
 
 import org.cacheonix.CacheonixException;
+import org.cacheonix.impl.cache.storage.disk.StorageException;
+import org.cacheonix.impl.util.StringUtils;
 import org.cacheonix.impl.util.logging.Logger;
 
 /**
- * This exception is thrown by <code>add()</code> methods of the {@link HashCode} class if the hash code has been
- * already calculated.
+ * Thrown when a storage error occurs.
  * <p/>
- *
- * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
- * @noinspection SameParameterValue
- * @since Apr 13, 2008 6:07:26 PM
+ * RuntimeStorageException is used to wrap {@link StorageException} when a signature of an implemented API does not
+ * declare Exception.
  */
-public final class HashCodeLockedException extends CacheonixException {
+public final class RuntimeStorageException extends CacheonixException {
 
    /**
     * Logger.
     *
     * @noinspection UNUSED_SYMBOL, UnusedDeclaration
     */
-   private static final Logger LOG = Logger.getLogger(HashCodeLockedException.class); // NOPMD
+   private static final Logger LOG = Logger.getLogger(RuntimeStorageException.class); // NOPMD
 
    private static final long serialVersionUID = 0L;
 
 
-   public HashCodeLockedException(final String message) {
+   /**
+    * Constructs a new runtime exception with the specified cause.
+    *
+    * @param cause the cause (which is saved for later retrieval by the {@link #getCause()} method).
+    */
+   public RuntimeStorageException(final StorageException cause) {
 
-      super(message);
+      super(StringUtils.toString(cause), cause);
    }
 }

@@ -26,7 +26,7 @@
  */
 package org.cacheonix.cache.datasource;
 
-import org.cacheonix.exceptions.CacheonixException;
+import org.cacheonix.CacheonixException;
 
 /**
  * A runtime exception that a <tt>DataSource</tt> implementation may throw if an error occured while retrieving data.

@@ -23,9 +23,9 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicReference;
 
+import org.cacheonix.CacheonixException;
 import org.cacheonix.ShutdownException;
 import org.cacheonix.ShutdownMode;
-import org.cacheonix.exceptions.CacheonixException;
 import org.cacheonix.impl.cache.distributed.partitioned.CacheProcessor;
 import org.cacheonix.impl.cache.distributed.partitioned.ShutdownCacheProcessorMessage;
 import org.cacheonix.impl.clock.Clock;

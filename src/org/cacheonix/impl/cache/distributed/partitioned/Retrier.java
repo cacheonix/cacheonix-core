@@ -13,7 +13,7 @@
  */
 package org.cacheonix.impl.cache.distributed.partitioned;
 
-import org.cacheonix.exceptions.RuntimeTimeoutException;
+import org.cacheonix.impl.RuntimeTimeoutException;
 import org.cacheonix.impl.config.SystemProperty;
 import org.cacheonix.impl.net.processor.RetryException;
 import org.cacheonix.impl.util.logging.Logger;

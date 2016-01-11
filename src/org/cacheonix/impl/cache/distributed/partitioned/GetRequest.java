@@ -13,7 +13,7 @@
  */
 package org.cacheonix.impl.cache.distributed.partitioned;
 
-import org.cacheonix.exceptions.CacheonixException;
+import org.cacheonix.CacheonixException;
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.cache.item.InvalidObjectException;
 import org.cacheonix.impl.cache.storage.disk.StorageException;

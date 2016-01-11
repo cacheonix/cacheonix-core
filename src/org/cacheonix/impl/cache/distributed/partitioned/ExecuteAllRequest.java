@@ -25,10 +25,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import org.cacheonix.CacheonixException;
 import org.cacheonix.cache.entry.CacheEntry;
 import org.cacheonix.cache.executor.Aggregator;
 import org.cacheonix.cache.executor.Executable;
-import org.cacheonix.exceptions.CacheonixException;
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.cache.item.InvalidObjectException;
 import org.cacheonix.impl.cache.store.BinaryStoreUtils;

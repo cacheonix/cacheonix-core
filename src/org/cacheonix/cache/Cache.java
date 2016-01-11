@@ -21,13 +21,13 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentMap;
 
 import org.cacheonix.Cacheonix;
+import org.cacheonix.NotSubscribedException;
 import org.cacheonix.cache.entry.EntryFilter;
 import org.cacheonix.cache.executor.Aggregator;
 import org.cacheonix.cache.executor.Executable;
 import org.cacheonix.cache.subscriber.EntryModifiedEvent;
 import org.cacheonix.cache.subscriber.EntryModifiedSubscriber;
 import org.cacheonix.cluster.CacheMember;
-import org.cacheonix.exceptions.NotSubscribedException;
 import org.cacheonix.locks.ReadWriteLock;
 
 /**

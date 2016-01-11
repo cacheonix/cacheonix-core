@@ -23,7 +23,7 @@ import org.cacheonix.SavedSystemProperty;
 import org.cacheonix.ShutdownMode;
 import org.cacheonix.TestUtils;
 import org.cacheonix.cache.Cache;
-import org.cacheonix.exceptions.RuntimeTimeoutException;
+import org.cacheonix.impl.RuntimeTimeoutException;
 import org.cacheonix.impl.config.SystemProperty;
 import org.cacheonix.impl.util.array.HashMap;
 import org.cacheonix.impl.util.array.HashSet;

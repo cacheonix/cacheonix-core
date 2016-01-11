@@ -13,7 +13,7 @@
  */
 package org.cacheonix.impl.cache.distributed.partitioned;
 
-import org.cacheonix.exceptions.CacheonixException;
+import org.cacheonix.CacheonixException;
 import org.cacheonix.impl.util.logging.Logger;
 
 /**

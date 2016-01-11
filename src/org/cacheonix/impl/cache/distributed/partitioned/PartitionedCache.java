@@ -23,14 +23,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.cacheonix.CacheonixException;
+import org.cacheonix.NotSubscribedException;
 import org.cacheonix.cache.CacheStatistics;
 import org.cacheonix.cache.entry.EntryFilter;
 import org.cacheonix.cache.executor.Aggregator;
 import org.cacheonix.cache.executor.Executable;
 import org.cacheonix.cache.subscriber.EntryModifiedSubscriber;
 import org.cacheonix.cluster.CacheMember;
-import org.cacheonix.exceptions.CacheonixException;
-import org.cacheonix.exceptions.NotSubscribedException;
 import org.cacheonix.impl.cache.CacheonixCache;
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.cache.item.BinaryFactory;

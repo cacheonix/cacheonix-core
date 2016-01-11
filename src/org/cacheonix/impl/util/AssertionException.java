@@ -13,7 +13,7 @@
  */
 package org.cacheonix.impl.util;
 
-import org.cacheonix.exceptions.CacheonixException;
+import org.cacheonix.CacheonixException;
 
 /**
  * A runtime exception thrown by Assert's methods.

@@ -15,8 +15,8 @@ package org.cacheonix.impl.net.processor;
 
 import org.cacheonix.ReconfigurationException;
 import org.cacheonix.ShutdownException;
-import org.cacheonix.exceptions.RuntimeInterruptedException;
-import org.cacheonix.exceptions.RuntimeTimeoutException;
+import org.cacheonix.impl.RuntimeInterruptedException;
+import org.cacheonix.impl.RuntimeTimeoutException;
 import org.cacheonix.impl.config.SystemProperty;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.util.logging.Logger;

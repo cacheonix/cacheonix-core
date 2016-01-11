@@ -13,7 +13,7 @@
  */
 package org.cacheonix.impl.net.processor;
 
-import org.cacheonix.exceptions.OperationNotSupportedException;
+import org.cacheonix.impl.OperationNotSupportedException;
 import org.cacheonix.impl.util.StringUtils;
 import org.cacheonix.impl.util.logging.Logger;
 

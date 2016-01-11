@@ -22,12 +22,12 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Properties;
 
+import com.impl.examples.util.JDBCUtils;
+import org.cacheonix.CacheonixException;
 import org.cacheonix.cache.datasource.DataSource;
 import org.cacheonix.cache.datasource.DataSourceContext;
 import org.cacheonix.cache.datasource.DataSourceObject;
 import org.cacheonix.cache.datasource.SimpleDataSourceObject;
-import org.cacheonix.exceptions.CacheonixException;
-import com.impl.examples.util.JDBCUtils;
 
 /**
  * An object that implements <code>DataSource</code> by executing queries to the database on the backend.

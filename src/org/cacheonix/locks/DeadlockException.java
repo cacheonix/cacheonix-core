@@ -13,7 +13,7 @@
  */
 package org.cacheonix.locks;
 
-import org.cacheonix.exceptions.CacheonixException;
+import org.cacheonix.CacheonixException;
 
 /**
  * A runtime exception thrown when Cacheonix detects a deadlock.

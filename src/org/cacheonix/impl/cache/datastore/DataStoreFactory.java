@@ -15,8 +15,8 @@ package org.cacheonix.impl.cache.datastore;
 
 import java.util.Properties;
 
+import org.cacheonix.CacheonixException;
 import org.cacheonix.cache.datastore.DataStore;
-import org.cacheonix.exceptions.CacheonixException;
 import org.cacheonix.impl.util.StringUtils;
 import org.cacheonix.impl.util.logging.Logger;
 

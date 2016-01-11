@@ -19,19 +19,19 @@ import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CountDownLatch;
 
+import junit.framework.AssertionFailedError;
 import org.cacheonix.Cacheonix;
 import org.cacheonix.CacheonixTestCase;
 import org.cacheonix.ShutdownException;
 import org.cacheonix.ShutdownMode;
 import org.cacheonix.TestUtils;
-import org.cacheonix.exceptions.RuntimeInterruptedException;
+import org.cacheonix.impl.RuntimeInterruptedException;
+import org.cacheonix.impl.util.MutableBoolean;
+import org.cacheonix.impl.util.logging.Logger;
 import org.cacheonix.locks.BrokenLockException;
 import org.cacheonix.locks.DeadlockException;
 import org.cacheonix.locks.Lock;
 import org.cacheonix.locks.ReadWriteLock;
-import org.cacheonix.impl.util.MutableBoolean;
-import org.cacheonix.impl.util.logging.Logger;
-import junit.framework.AssertionFailedError;
 
 /**
  * Tester for cacheonix.cluster.Cluster

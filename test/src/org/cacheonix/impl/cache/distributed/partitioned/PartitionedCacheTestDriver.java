@@ -35,7 +35,7 @@ import org.cacheonix.cache.CacheStatistics;
 import org.cacheonix.cache.entry.CacheEntry;
 import org.cacheonix.cache.entry.EntryFilter;
 import org.cacheonix.cluster.CacheMember;
-import org.cacheonix.exceptions.RuntimeInterruptedException;
+import org.cacheonix.impl.RuntimeInterruptedException;
 import org.cacheonix.impl.config.SystemProperty;
 import org.cacheonix.impl.lock.DistributedLock;
 import org.cacheonix.impl.util.ArgumentValidator;

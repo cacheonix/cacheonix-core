@@ -13,8 +13,6 @@
  */
 package org.cacheonix;
 
-import org.cacheonix.exceptions.CacheonixException;
-
 /**
  * An exception that Cacheonix throws if Cacheonix was shutdown.
  */

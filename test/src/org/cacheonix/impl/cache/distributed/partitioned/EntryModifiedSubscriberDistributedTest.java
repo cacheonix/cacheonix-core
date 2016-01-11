@@ -20,6 +20,7 @@ import java.util.concurrent.CountDownLatch;
 
 import org.cacheonix.Cacheonix;
 import org.cacheonix.CacheonixTestCase;
+import org.cacheonix.NotSubscribedException;
 import org.cacheonix.ShutdownMode;
 import org.cacheonix.TestUtils;
 import org.cacheonix.cache.Cache;
@@ -28,7 +29,6 @@ import org.cacheonix.cache.subscriber.EntryModifiedEventContentFlag;
 import org.cacheonix.cache.subscriber.EntryModifiedEventType;
 import org.cacheonix.cache.subscriber.EntryModifiedNotificationMode;
 import org.cacheonix.cache.subscriber.EntryModifiedSubscriber;
-import org.cacheonix.exceptions.NotSubscribedException;
 import org.cacheonix.impl.util.array.HashMap;
 import org.cacheonix.impl.util.array.HashSet;
 import org.cacheonix.impl.util.logging.Logger;

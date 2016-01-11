@@ -24,14 +24,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.cacheonix.CacheonixException;
+import org.cacheonix.NotSubscribedException;
 import org.cacheonix.cache.CacheStatistics;
 import org.cacheonix.cache.datastore.DataStore;
 import org.cacheonix.cache.invalidator.CacheInvalidator;
 import org.cacheonix.cache.subscriber.EntryModifiedEventType;
-import org.cacheonix.exceptions.CacheonixException;
-import org.cacheonix.exceptions.NotSubscribedException;
-import org.cacheonix.exceptions.RuntimeIOException;
-import org.cacheonix.exceptions.RuntimeStorageException;
+import org.cacheonix.impl.RuntimeIOException;
+import org.cacheonix.impl.RuntimeStorageException;
 import org.cacheonix.impl.cache.datasource.BinaryStoreDataSource;
 import org.cacheonix.impl.cache.datasource.BinaryStoreDataSourceObject;
 import org.cacheonix.impl.cache.datastore.StorableImpl;

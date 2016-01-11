@@ -19,7 +19,7 @@ import java.util.Collection;
 import java.util.Set;
 import java.util.Timer;
 
-import org.cacheonix.exceptions.CacheonixException;
+import org.cacheonix.CacheonixException;
 import org.cacheonix.impl.clock.Clock;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.NetUtils;

@@ -13,7 +13,7 @@
  */
 package org.cacheonix.impl.util.thread;
 
-import org.cacheonix.exceptions.RuntimeInterruptedException;
+import org.cacheonix.impl.RuntimeInterruptedException;
 import org.cacheonix.impl.util.logging.Logger;
 
 /**

@@ -17,7 +17,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import org.cacheonix.exceptions.CacheonixException;
+import org.cacheonix.CacheonixException;
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.cache.item.InvalidObjectException;
 import org.cacheonix.impl.cache.storage.disk.StorageException;

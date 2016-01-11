@@ -24,11 +24,11 @@ import java.util.Set;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
+import org.cacheonix.CacheonixException;
 import org.cacheonix.cache.CacheStatistics;
 import org.cacheonix.cache.datastore.DataStore;
 import org.cacheonix.cache.invalidator.CacheInvalidator;
-import org.cacheonix.exceptions.CacheonixException;
-import org.cacheonix.exceptions.RuntimeIOException;
+import org.cacheonix.impl.RuntimeIOException;
 import org.cacheonix.impl.cache.datasource.BinaryStoreDataSource;
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.cache.item.InvalidObjectException;

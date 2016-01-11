@@ -32,8 +32,6 @@ import org.cacheonix.ShutdownMode;
 import org.cacheonix.cache.Cache;
 import org.cacheonix.cache.CacheExistsException;
 import org.cacheonix.cluster.Cluster;
-import org.cacheonix.exceptions.RuntimeInterruptedException;
-import org.cacheonix.exceptions.RuntimeTimeoutException;
 import org.cacheonix.impl.cache.CacheonixCache;
 import org.cacheonix.impl.cache.distributed.partitioned.CacheNodeJoinedMessage;
 import org.cacheonix.impl.cache.distributed.partitioned.CacheNodeLeftMessage;

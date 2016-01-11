@@ -15,8 +15,8 @@ package org.cacheonix.impl.cache.invalidator;
 
 import java.util.Properties;
 
+import org.cacheonix.CacheonixException;
 import org.cacheonix.cache.invalidator.CacheInvalidator;
-import org.cacheonix.exceptions.CacheonixException;
 import org.cacheonix.impl.util.StringUtils;
 import org.cacheonix.impl.util.logging.Logger;
 

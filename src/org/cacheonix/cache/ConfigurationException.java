@@ -13,7 +13,7 @@
  */
 package org.cacheonix.cache;
 
-import org.cacheonix.exceptions.CacheonixException;
+import org.cacheonix.CacheonixException;
 
 /**
  * An exception that is thrown when there are runtime problems with Cacheonix configuration.

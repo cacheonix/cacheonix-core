@@ -11,37 +11,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.exceptions;
+package org.cacheonix.impl;
 
+import junit.framework.TestCase;
 import org.cacheonix.impl.util.logging.Logger;
 
 /**
- * RuntimeTimeoutException
+ * RuntimeInterruptedException Tester
  * <p/>
  *
  * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
- * @since Aug 26, 2009 10:21:20 PM
+ * @since Mar 21, 2008 12:40:38 AM
  */
-public final class RuntimeTimeoutException extends CacheonixException {
+public final class RuntimeInterruptedExceptionTest extends TestCase {
 
    /**
     * Logger.
     *
     * @noinspection UNUSED_SYMBOL, UnusedDeclaration
     */
-   private static final Logger LOG = Logger.getLogger(RuntimeTimeoutException.class); // NOPMD
+   private static final Logger LOG = Logger.getLogger(RuntimeInterruptedExceptionTest.class); // NOPMD
 
-   private static final long serialVersionUID = 0L;
-
-
-   public RuntimeTimeoutException(final String message) {
-
-      super(message);
-   }
+   private static final String MESSAGE = "message";
 
 
-   public RuntimeTimeoutException(final StringBuilder message) {
+   public void testCreate() {
 
-      this(message.toString());
+      final InterruptedException cause = new InterruptedException();
+      assertEquals(cause, new RuntimeInterruptedException(cause).getCause());
+      assertEquals(cause, new RuntimeInterruptedException(MESSAGE, cause).getCause());
+      assertTrue(new RuntimeInterruptedException(MESSAGE, cause).getMessage().contains(MESSAGE));
    }
 }
