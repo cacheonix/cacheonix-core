@@ -89,9 +89,9 @@ public abstract class Cacheonix {
 
 
    /**
-    * Returns a cache with the given name. This method will create a cache using a default cache configuration template
-    * if system property <code>cacheonix.auto.create.cache</code> is set to <code>true</code> (default is
-    * <code>true</code>).
+    * Returns a cache with the given name. If a cache configuration is not defined in the configuration file, this
+    * method will create a cache using a default cache configuration template if system property
+    * <code>cacheonix.auto.create.cache</code> is set to <code>true</code> (default is <code>true</code>).
     * <p/>
     * Named caches are defined in the Cacheonix configuration file <code>cacheonix-config.xml</code>.
     *
@@ -354,7 +354,7 @@ public abstract class Cacheonix {
     * <li>Use the configuration defined by the URL in the system property <code>cacheonix.configuration</code>. The
     * property is passed to JVM by using command line parameter <code>-Dcacheonix.configuration=&lt;path to
     * configuration&gt;</code></li> <li>Use <code>cacheonix-config.xml</code> from the classpath</li> <li>Use
-    * <code>cacheonix-config.xml</code> from the local directory</li> <li>Use fall-back
+    * <code>cacheonix-config.xml</code> from the local directory</li> <li>Use the fall-back
     * <code>META-INF/cacheonix-config.xml</code> in the cacheonix.jar</li> </ol>
     * <p/>
     * To disable the fall-back configuration, use JVM's command line parameter <code>-Dcacheonix.fallback.configuration=false</code>.
@@ -394,15 +394,15 @@ public abstract class Cacheonix {
          final String fallbackProperty = System.getProperty(NAME_CACHEONIX_FALLBACK_CONFIGURATION, "true");
          if ("false".equalsIgnoreCase(fallbackProperty)) {
             throw new IllegalStateException("Cacheonix configuration cannot be found");
-         } else {
-            // Fallback to the packaged configuration
-            final URL fallbackCacheonixXmlResource = Cacheonix.class.getResource(FALLBACK_CACHEONIX_XML_RESOURCE);
-            if (fallbackCacheonixXmlResource == null) {
-               throw new IllegalStateException("Cacheonix configuration cannot be found");
-            } else {
-               return getInstanceFromExternalPath(fallbackCacheonixXmlResource.toExternalForm());
-            }
          }
+
+         // Fallback to the packaged configuration
+         final URL fallbackCacheonixXmlResource = Cacheonix.class.getResource(FALLBACK_CACHEONIX_XML_RESOURCE);
+         if (fallbackCacheonixXmlResource == null) {
+            throw new IllegalStateException("Cacheonix configuration cannot be found");
+         }
+
+         return getInstanceFromExternalPath(fallbackCacheonixXmlResource.toExternalForm());
       } catch (final IOException e) {
          throw new ConfigurationException("Unexpected error while getting Cacheonix instance: " + e.toString(), e);
       }

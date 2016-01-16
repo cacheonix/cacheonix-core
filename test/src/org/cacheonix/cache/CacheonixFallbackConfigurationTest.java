@@ -13,6 +13,7 @@
  */
 package org.cacheonix.cache;
 
+import java.io.Serializable;
 import java.net.URL;
 
 import com.gargoylesoftware.base.testing.OrderedTestSuite;
@@ -21,12 +22,13 @@ import org.cacheonix.Cacheonix;
 import org.cacheonix.CacheonixTestCase;
 import org.cacheonix.SavedSystemProperty;
 import org.cacheonix.ShutdownMode;
-import org.cacheonix.impl.config.ConfigurationConstants;
-import org.cacheonix.impl.config.SystemProperty;
 import org.cacheonix.impl.util.logging.Logger;
 
+import static org.cacheonix.impl.config.ConfigurationConstants.FALLBACK_CACHEONIX_XML_RESOURCE;
+import static org.cacheonix.impl.config.SystemProperty.NAME_CACHEONIX_AUTO_CREATE_CACHE;
+
 /**
- * Tests Cacheonix.
+ * Tests Cacheonix using the fallback configuration under <code>META-INF/cacheonix-config.xml</code>.
  */
 public final class CacheonixFallbackConfigurationTest extends CacheonixTestCase {
 
@@ -54,11 +56,14 @@ public final class CacheonixFallbackConfigurationTest extends CacheonixTestCase 
 
    public void testGetCache() {
 
-      final SavedSystemProperty savedSystemProperty = new SavedSystemProperty(SystemProperty.NAME_CACHEONIX_AUTO_CREATE_CACHE);
+      final SavedSystemProperty savedSystemProperty = new SavedSystemProperty(NAME_CACHEONIX_AUTO_CREATE_CACHE);
       savedSystemProperty.save();
       try {
-         System.setProperty(SystemProperty.NAME_CACHEONIX_AUTO_CREATE_CACHE, "true");
-         assertNotNull(instance.getCache("cache-name"));
+         System.setProperty(NAME_CACHEONIX_AUTO_CREATE_CACHE, "true");
+         final Cache<Serializable, Serializable> cache = instance.getCache("test-cache");
+         assertNotNull(cache);
+         assertEquals(10000L, cache.getMaxSize());
+         assertEquals(10485760L, cache.getMaxSizeBytes());
       } finally {
          savedSystemProperty.restore();
       }
@@ -68,9 +73,7 @@ public final class CacheonixFallbackConfigurationTest extends CacheonixTestCase 
    protected void setUp() throws Exception {
 
       super.setUp();
-      final URL resource = Cacheonix.class.getResource(ConfigurationConstants.FALLBACK_CACHEONIX_XML_RESOURCE);
-      //noinspection ControlFlowStatementWithoutBraces
-      if (LOG.isDebugEnabled()) LOG.debug("resource: " + resource);
+      final URL resource = Cacheonix.class.getResource(FALLBACK_CACHEONIX_XML_RESOURCE);
       instance = Cacheonix.getInstance(resource.toExternalForm());
    }
 
@@ -92,9 +95,7 @@ public final class CacheonixFallbackConfigurationTest extends CacheonixTestCase 
     */
    public static TestSuite suite() {
 
-      return new OrderedTestSuite(CacheonixFallbackConfigurationTest.class, new String[]{
-              "testGetCache",
-      });
+      return new OrderedTestSuite(CacheonixFallbackConfigurationTest.class, new String[]{"testGetCache"});
    }
 
 

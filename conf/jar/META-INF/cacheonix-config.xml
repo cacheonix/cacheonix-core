@@ -1,6 +1,6 @@
 <?xml version ="1.0"?>
 <!--
-   Fall-back Cacheonix configuration. Defines a default template for a clustered partitioned cache.
+   Fall-back Cacheonix configuration. Defines a default template for a local cache.
 -->
 <cacheonix xmlns="http://www.cacheonix.org/schema/configuration"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -8,22 +8,16 @@
 
    <tempDir path="${java.io.temp}"/>
 
-   <server>
+   <local>
 
-      <cluster homeAloneTimeout="10s"/>
-
-      <listener>
-         <tcp port="9879"/>
-      </listener>
-
-      <broadcast>
-         <multicast multicastAddress="225.0.1.2" multicastPort="9998" multicastTTL="0"/>
-      </broadcast>
-
-      <partitionedCache name="default">
+      <!--
+           Local cache template. Any request to create a cache without providing
+           a path to a configuration file will use this configuration.
+      -->
+      <localCache name="default" template="true">
          <store>
-            <lru maxElements="1000" maxBytes="1m"/>
+            <lru maxElements="10000" maxBytes="10mb"/>
          </store>
-      </partitionedCache>
-   </server>
+      </localCache>
+   </local>
 </cacheonix>
