@@ -140,7 +140,7 @@ public final class TransferBucketRequest extends CacheRequest {
    }
 
 
-   public void setSourceStorageNumber(final byte sourceStorageNumber) {
+   public synchronized void setSourceStorageNumber(final byte sourceStorageNumber) {
 
       this.sourceStorageNumber = sourceStorageNumber;
    }
@@ -164,7 +164,7 @@ public final class TransferBucketRequest extends CacheRequest {
    }
 
 
-   private ClusterNodeAddress getNewOwner() {
+   private synchronized ClusterNodeAddress getNewOwner() {
 
       return newOwner;
    }

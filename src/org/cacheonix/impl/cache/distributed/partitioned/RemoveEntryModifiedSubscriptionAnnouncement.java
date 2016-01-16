@@ -272,7 +272,7 @@ public final class RemoveEntryModifiedSubscriptionAnnouncement extends KeySetAnn
        *
        * @param parentRequest the originator request that should be responded to after this announcement finishes.
        */
-      public void setParentRequest(final Request parentRequest) {
+      public synchronized void setParentRequest(final Request parentRequest) {
 
          this.parentRequest = parentRequest;
       }
