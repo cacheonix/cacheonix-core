@@ -17,7 +17,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicReference;
 
 import org.cacheonix.ShutdownException;
-import org.cacheonix.exceptions.RuntimeInterruptedException;
+import org.cacheonix.impl.RuntimeInterruptedException;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;

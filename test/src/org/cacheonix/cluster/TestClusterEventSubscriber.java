@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.cacheonix.exceptions.CacheonixExceptionTest;
+import org.cacheonix.CacheonixExceptionTest;
 import org.cacheonix.impl.util.logging.Logger;
 
 final class TestClusterEventSubscriber implements ClusterEventSubscriber {

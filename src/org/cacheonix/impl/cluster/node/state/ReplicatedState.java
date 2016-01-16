@@ -20,7 +20,7 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.cacheonix.exceptions.RuntimeIOException;
+import org.cacheonix.impl.RuntimeIOException;
 import org.cacheonix.impl.cache.distributed.partitioned.BucketEventListener;
 import org.cacheonix.impl.cache.distributed.partitioned.BucketEventListenerList;
 import org.cacheonix.impl.cluster.node.state.group.Group;

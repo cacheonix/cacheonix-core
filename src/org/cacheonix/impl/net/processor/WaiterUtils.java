@@ -16,7 +16,7 @@ package org.cacheonix.impl.net.processor;
 import java.net.InetAddress;
 import java.util.Arrays;
 
-import org.cacheonix.exceptions.CacheonixException;
+import org.cacheonix.CacheonixException;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.util.logging.Logger;
 

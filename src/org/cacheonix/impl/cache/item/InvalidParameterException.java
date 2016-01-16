@@ -13,7 +13,7 @@
  */
 package org.cacheonix.impl.cache.item;
 
-import org.cacheonix.exceptions.CacheonixException;
+import org.cacheonix.CacheonixException;
 
 /**
  * Thrown when an invalid parameter is passes to a method.

@@ -13,7 +13,7 @@
  */
 package org.cacheonix.impl.net.processor;
 
-import org.cacheonix.exceptions.RuntimeTimeoutException;
+import org.cacheonix.impl.RuntimeTimeoutException;
 
 /**
  * Waiter for result returned by a response.

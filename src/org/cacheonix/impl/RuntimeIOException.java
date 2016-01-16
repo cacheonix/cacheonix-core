@@ -11,10 +11,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.exceptions;
+package org.cacheonix.impl;
 
 import java.io.IOException;
 
+import org.cacheonix.CacheonixException;
 import org.cacheonix.impl.util.StringUtils;
 import org.cacheonix.impl.util.logging.Logger;
 

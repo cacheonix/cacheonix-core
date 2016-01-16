@@ -22,11 +22,11 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Properties;
 
+import org.cacheonix.CacheonixException;
 import org.cacheonix.cache.datasource.DataSource;
 import org.cacheonix.cache.datasource.DataSourceContext;
 import org.cacheonix.cache.datasource.DataSourceObject;
 import org.cacheonix.cache.datasource.SimpleDataSourceObject;
-import org.cacheonix.exceptions.CacheonixException;
 import org.cacheonix.examples.util.JDBCUtils;
 
 /**

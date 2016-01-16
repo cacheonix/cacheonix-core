@@ -37,6 +37,8 @@ import org.cacheonix.impl.util.array.HashSet;
 import org.cacheonix.impl.util.array.IntArrayList;
 import org.cacheonix.impl.util.logging.Logger;
 
+import static org.cacheonix.impl.util.exception.ExceptionUtils.ignoreException;
+
 /**
  * Common string utilities
  */
@@ -300,21 +302,10 @@ public final class StringUtils {
             try {
                baos.flush();
                baos.close();
-            } catch (final IOException ignore) {
-               ignoreException(ignore);
+            } catch (final IOException e) {
+               ignoreException(e, "doesn't make sense to report at close");
             }
          }
-      }
-   }
-
-
-   /**
-    * Empty exception ingnorer.
-    */
-   private static void ignoreException(final Exception ignore) {
-
-      if (LOG.isDebugEnabled()) {
-         LOG.debug("Ignored exception", ignore);
       }
    }
 

@@ -11,37 +11,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.exceptions;
+package org.cacheonix.impl;
 
-import org.cacheonix.impl.cache.storage.disk.StorageException;
-import org.cacheonix.impl.util.StringUtils;
+import org.cacheonix.CacheonixException;
 import org.cacheonix.impl.util.logging.Logger;
 
 /**
- * Thrown when a storage error occurs.
+ * RuntimeTimeoutException
  * <p/>
- * RuntimeStorageException is used to wrap {@link StorageException} when a signature of an implemented API does not
- * declare Exception.
+ *
+ * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
+ * @since Aug 26, 2009 10:21:20 PM
  */
-public final class RuntimeStorageException extends CacheonixException {
+public final class RuntimeTimeoutException extends CacheonixException {
 
    /**
     * Logger.
     *
     * @noinspection UNUSED_SYMBOL, UnusedDeclaration
     */
-   private static final Logger LOG = Logger.getLogger(RuntimeStorageException.class); // NOPMD
+   private static final Logger LOG = Logger.getLogger(RuntimeTimeoutException.class); // NOPMD
 
    private static final long serialVersionUID = 0L;
 
 
-   /**
-    * Constructs a new runtime exception with the specified cause.
-    *
-    * @param cause the cause (which is saved for later retrieval by the {@link #getCause()} method).
-    */
-   public RuntimeStorageException(final StorageException cause) {
+   public RuntimeTimeoutException(final String message) {
 
-      super(StringUtils.toString(cause), cause);
+      super(message);
+   }
+
+
+   public RuntimeTimeoutException(final StringBuilder message) {
+
+      this(message.toString());
    }
 }

@@ -16,7 +16,7 @@ package org.cacheonix.impl.cache.local;
 import java.io.Serializable;
 
 import org.cacheonix.cache.Cache;
-import org.cacheonix.exceptions.OperationNotSupportedException;
+import org.cacheonix.impl.OperationNotSupportedException;
 
 /**
  * Serializable map entry.

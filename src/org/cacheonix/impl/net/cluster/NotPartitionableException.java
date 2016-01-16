@@ -13,7 +13,7 @@
  */
 package org.cacheonix.impl.net.cluster;
 
-import org.cacheonix.exceptions.CacheonixException;
+import org.cacheonix.CacheonixException;
 import org.cacheonix.impl.net.processor.Message;
 
 /**

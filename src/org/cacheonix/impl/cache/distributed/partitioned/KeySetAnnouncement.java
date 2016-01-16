@@ -21,7 +21,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import org.cacheonix.exceptions.RuntimeIOException;
+import org.cacheonix.impl.RuntimeIOException;
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.cluster.node.state.ReplicatedState;
 import org.cacheonix.impl.cluster.node.state.group.Group;

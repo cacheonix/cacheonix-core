@@ -13,8 +13,6 @@
  */
 package org.cacheonix;
 
-import org.cacheonix.exceptions.CacheonixException;
-
 /**
  * ReconfigurationException is thrown if Cacheonix configuration has changed in way that is not compatible with
  * continued waiting for a response from the method call.

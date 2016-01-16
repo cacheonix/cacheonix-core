@@ -15,8 +15,8 @@ package org.cacheonix.impl.cache.loader;
 
 import java.util.Properties;
 
+import org.cacheonix.CacheonixException;
 import org.cacheonix.cache.loader.CacheLoader;
-import org.cacheonix.exceptions.CacheonixException;
 import org.cacheonix.impl.util.StringUtils;
 import org.cacheonix.impl.util.logging.Logger;
 

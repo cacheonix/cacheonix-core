@@ -27,6 +27,8 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
+import org.cacheonix.CacheonixException;
+import org.cacheonix.NotSubscribedException;
 import org.cacheonix.ShutdownException;
 import org.cacheonix.cache.CacheStatistics;
 import org.cacheonix.cache.datastore.DataStore;
@@ -38,8 +40,6 @@ import org.cacheonix.cache.invalidator.CacheInvalidator;
 import org.cacheonix.cache.loader.CacheLoader;
 import org.cacheonix.cache.subscriber.EntryModifiedSubscriber;
 import org.cacheonix.cluster.CacheMember;
-import org.cacheonix.exceptions.CacheonixException;
-import org.cacheonix.exceptions.NotSubscribedException;
 import org.cacheonix.impl.cache.CacheonixCache;
 import org.cacheonix.impl.cache.datasource.BinaryStoreDataSource;
 import org.cacheonix.impl.cache.datasource.DummyBinaryStoreDataSource;

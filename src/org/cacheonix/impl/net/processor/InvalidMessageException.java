@@ -13,7 +13,7 @@
  */
 package org.cacheonix.impl.net.processor;
 
-import org.cacheonix.exceptions.CacheonixException;
+import org.cacheonix.CacheonixException;
 
 /**
  * This exception can be thrown if an invalid message is posted to the <code>RequestProcessor<code>.

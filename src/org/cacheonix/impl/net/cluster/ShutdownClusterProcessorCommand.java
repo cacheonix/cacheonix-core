@@ -15,7 +15,7 @@ package org.cacheonix.impl.net.cluster;
 
 import java.util.Collections;
 
-import org.cacheonix.exceptions.CacheonixException;
+import org.cacheonix.CacheonixException;
 import org.cacheonix.impl.net.processor.Command;
 
 /**

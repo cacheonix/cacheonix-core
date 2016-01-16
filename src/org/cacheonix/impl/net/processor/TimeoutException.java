@@ -13,7 +13,7 @@
  */
 package org.cacheonix.impl.net.processor;
 
-import org.cacheonix.exceptions.CacheonixException;
+import org.cacheonix.CacheonixException;
 
 /**
  * A timeout exception is thrown when wait time exceeds a certain limit.

@@ -16,8 +16,8 @@ package org.cacheonix.impl.net.cluster;
 import java.io.IOException;
 import java.util.Queue;
 
+import org.cacheonix.CacheonixException;
 import org.cacheonix.ShutdownMode;
-import org.cacheonix.exceptions.CacheonixException;
 import org.cacheonix.impl.cache.distributed.partitioned.CacheProcessor;
 import org.cacheonix.impl.net.multicast.server.MulticastServerListener;
 import org.cacheonix.impl.net.processor.Frame;

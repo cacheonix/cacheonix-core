@@ -15,7 +15,7 @@ package org.cacheonix.impl.net.tcp;
 
 import java.io.IOException;
 
-import org.cacheonix.exceptions.CacheonixException;
+import org.cacheonix.CacheonixException;
 
 /**
  * This exception is thrown when an unrecoverable server socket exception occurs.

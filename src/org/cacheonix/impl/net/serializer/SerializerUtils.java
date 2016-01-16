@@ -29,7 +29,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import org.cacheonix.exceptions.RuntimeIOException;
+import org.cacheonix.impl.RuntimeIOException;
 import org.cacheonix.impl.cache.distributed.partitioned.Bucket;
 import org.cacheonix.impl.cache.distributed.partitioned.CacheableValue;
 import org.cacheonix.impl.cache.item.Binary;

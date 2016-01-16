@@ -23,7 +23,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import org.cacheonix.exceptions.RuntimeIOException;
+import org.cacheonix.impl.RuntimeIOException;
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.processor.Message;

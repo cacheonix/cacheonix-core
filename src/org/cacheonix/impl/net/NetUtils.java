@@ -22,7 +22,7 @@ import java.util.Enumeration;
 import java.util.List;
 import java.util.Set;
 
-import org.cacheonix.exceptions.CacheonixException;
+import org.cacheonix.CacheonixException;
 import org.cacheonix.impl.util.array.HashSet;
 
 import static java.util.Collections.unmodifiableSet;

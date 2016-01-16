@@ -19,7 +19,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import org.cacheonix.exceptions.CacheonixException;
+import org.cacheonix.CacheonixException;
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.cache.store.BinaryStoreUtils;
 import org.cacheonix.impl.cache.store.ReadableElement;

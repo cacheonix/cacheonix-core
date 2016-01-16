@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.exceptions;
+package org.cacheonix;
 
 import java.util.Set;
 

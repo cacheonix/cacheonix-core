@@ -16,8 +16,8 @@ package org.cacheonix.impl.cache.datasource;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Properties;
 
+import org.cacheonix.CacheonixException;
 import org.cacheonix.cache.datasource.DataSource;
-import org.cacheonix.exceptions.CacheonixException;
 import org.cacheonix.impl.clock.Clock;
 import org.cacheonix.impl.util.StringUtils;
 import org.cacheonix.impl.util.logging.Logger;

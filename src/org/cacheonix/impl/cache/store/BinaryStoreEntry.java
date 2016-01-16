@@ -15,7 +15,7 @@ package org.cacheonix.impl.cache.store;
 
 import java.util.Map;
 
-import org.cacheonix.exceptions.OperationNotSupportedException;
+import org.cacheonix.impl.OperationNotSupportedException;
 import org.cacheonix.impl.cache.item.Binary;
 
 /**
