@@ -32,13 +32,15 @@ import org.cacheonix.impl.DistributedCacheonix;
 import org.cacheonix.impl.cache.local.LocalCacheonix;
 import org.cacheonix.impl.config.BroadcastConfiguration;
 import org.cacheonix.impl.config.CacheonixConfiguration;
-import org.cacheonix.impl.config.ConfigurationConstants;
 import org.cacheonix.impl.config.ConfigurationReader;
 import org.cacheonix.impl.config.MulticastBroadcastConfiguration;
-import org.cacheonix.impl.config.SystemProperty;
 import org.cacheonix.impl.util.StringUtils;
 import org.cacheonix.impl.util.array.HashMap;
 import org.cacheonix.impl.util.logging.Logger;
+
+import static org.cacheonix.impl.config.ConfigurationConstants.FALLBACK_CACHEONIX_XML_RESOURCE;
+import static org.cacheonix.impl.config.SystemProperty.NAME_CACHEONIX_CONFIGURATION;
+import static org.cacheonix.impl.config.SystemProperty.NAME_CACHEONIX_FALLBACK_CONFIGURATION;
 
 /**
  * A singleton that creates and provides access to various Cacheonix features such as caching, parallel computing and
@@ -362,8 +364,8 @@ public abstract class Cacheonix {
     * fast thus allowing to discover the fact that the production configuration is missing.
     *
     * @return a singleton instance of Cacheonix.
-    * @throws IllegalStateException if a cache with a duplicate name is found in the Cacheonix configuration.
-    * @throws IllegalStateException if the cache configuration cannot be found.
+    * @throws IllegalStateException if a cache with a duplicate name is found in the Cacheonix configuration; if the
+    *                               cache configuration cannot be found.
     * @noinspection MethodReturnOfConcreteClass, JavaDoc, deprecation
     */
    public static Cacheonix getInstance() throws ConfigurationException {
@@ -371,7 +373,7 @@ public abstract class Cacheonix {
       try {
 
          // Find configuration at the system property cacheonix.configuration
-         final String systemProperty = System.getProperty(SystemProperty.NAME_CACHEONIX_CONFIGURATION);
+         final String systemProperty = System.getProperty(NAME_CACHEONIX_CONFIGURATION);
          if (!StringUtils.isBlank(systemProperty)) {
             return getInstance(systemProperty);
          }
@@ -389,14 +391,12 @@ public abstract class Cacheonix {
 
          }
 
-         final String fallbackProperty = System.getProperty(SystemProperty.NAME_CACHEONIX_FALLBACK_CONFIGURATION,
-                 "true");
+         final String fallbackProperty = System.getProperty(NAME_CACHEONIX_FALLBACK_CONFIGURATION, "true");
          if ("false".equalsIgnoreCase(fallbackProperty)) {
             throw new IllegalStateException("Cacheonix configuration cannot be found");
          } else {
             // Fallback to the packaged configuration
-            final URL fallbackCacheonixXmlResource = Cacheonix.class
-                    .getResource(ConfigurationConstants.FALLBACK_CACHEONIX_XML_RESOURCE);
+            final URL fallbackCacheonixXmlResource = Cacheonix.class.getResource(FALLBACK_CACHEONIX_XML_RESOURCE);
             if (fallbackCacheonixXmlResource == null) {
                throw new IllegalStateException("Cacheonix configuration cannot be found");
             } else {
