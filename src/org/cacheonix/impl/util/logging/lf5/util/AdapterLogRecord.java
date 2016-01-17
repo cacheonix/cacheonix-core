@@ -61,10 +61,7 @@ public final class AdapterLogRecord extends LogRecord {
 
    public boolean isSevereLevel() {
 
-      if (severeLevel == null) {
-         return false;
-      }
-      return severeLevel.equals(getLevel());
+      return severeLevel != null && severeLevel.equals(getLevel());
    }
 
 

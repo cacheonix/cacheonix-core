@@ -40,14 +40,11 @@ final class CategoryKey {
 
 
    public final boolean equals(final Object rArg) {
+
       if (this == rArg) {
          return true;
       }
 
-      if (rArg != null && rArg.getClass() == CategoryKey.class) {
-         return name.equals(((CategoryKey) rArg).name);
-      } else {
-         return false;
-      }
+      return rArg != null && rArg.getClass() == CategoryKey.class && name.equals(((CategoryKey) rArg).name);
    }
 }

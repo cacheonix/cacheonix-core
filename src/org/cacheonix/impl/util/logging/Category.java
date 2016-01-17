@@ -689,11 +689,7 @@ public class Category implements AppenderAttachable {
 
       // Protect access to aai
       synchronized (this) {
-         if (aai == null) {
-            return false;
-         } else {
-            return aai.isAttached(appender);
-         }
+         return aai != null && aai.isAttached(appender);
       }
    }
 
@@ -727,10 +723,7 @@ public class Category implements AppenderAttachable {
     */
    public boolean isDebugEnabled() {
 
-      if (repository.isDisabled(Level.DEBUG_INT)) {
-         return false;
-      }
-      return Level.DEBUG.isGreaterOrEqual(this.getEffectiveLevel());
+      return !repository.isDisabled(Level.DEBUG_INT) && Level.DEBUG.isGreaterOrEqual(this.getEffectiveLevel());
    }
 
 
@@ -743,10 +736,7 @@ public class Category implements AppenderAttachable {
     */
    public boolean isEnabledFor(final Priority level) {
 
-      if (repository.isDisabled(level.level)) {
-         return false;
-      }
-      return level.isGreaterOrEqual(this.getEffectiveLevel());
+      return !repository.isDisabled(level.level) && level.isGreaterOrEqual(this.getEffectiveLevel());
    }
 
 
@@ -757,10 +747,7 @@ public class Category implements AppenderAttachable {
     */
    public boolean isInfoEnabled() {
 
-      if (repository.isDisabled(Level.INFO_INT)) {
-         return false;
-      }
-      return Level.INFO.isGreaterOrEqual(this.getEffectiveLevel());
+      return !repository.isDisabled(Level.INFO_INT) && Level.INFO.isGreaterOrEqual(this.getEffectiveLevel());
    }
 
 

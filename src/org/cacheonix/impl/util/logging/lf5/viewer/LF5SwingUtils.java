@@ -105,13 +105,11 @@ public final class LF5SwingUtils {
    //   Protected Methods:
    //--------------------------------------------------------------------------
    protected static boolean contains(final int row, final TableModel model) {
+
       if (model == null) {
          return false;
       }
-      if (row < 0) {
-         return false;
-      }
-      return row < model.getRowCount();
+      return row >= 0 && row < model.getRowCount();
    }
 
 

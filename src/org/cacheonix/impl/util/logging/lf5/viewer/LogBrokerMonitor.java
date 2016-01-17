@@ -480,11 +480,8 @@ public final class LogBrokerMonitor {
       final String message = record.getMessage();
       final String NDC = record.getNDC();
 
-      if (message == null && NDC == null || text == null) {
-         return false;
-      }
-      return !(!message.toLowerCase().contains(text.toLowerCase()) &&
-              !NDC.toLowerCase().contains(text.toLowerCase()));
+      return !(message == null && NDC == null || text == null) && !(!message.toLowerCase().contains(
+              text.toLowerCase()) && !NDC.toLowerCase().contains(text.toLowerCase()));
 
    }
 
@@ -700,12 +697,10 @@ public final class LogBrokerMonitor {
             final CategoryPath path = new CategoryPath(record.getCategory());
             if (NDC == null || _NDCTextFilter == null) {
                return false;
-            } else if (!NDC.toLowerCase().contains(_NDCTextFilter.toLowerCase())) {
-               return false;
-            } else {
-               return getMenuItem(record.getLevel()).isSelected() &&
-                       _categoryExplorerTree.getExplorerModel().isCategoryPathActive(path);
-            }
+            } else
+               return NDC.toLowerCase().contains(_NDCTextFilter.toLowerCase()) && getMenuItem(
+                       record.getLevel()).isSelected() && _categoryExplorerTree.getExplorerModel().isCategoryPathActive(
+                       path);
          }
       };
    }

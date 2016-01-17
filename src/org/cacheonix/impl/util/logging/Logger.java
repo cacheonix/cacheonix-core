@@ -197,11 +197,9 @@ public class Logger extends Category {
     * @since 1.2.12
     */
    public boolean isTraceEnabled() {
-      if (repository.isDisabled(Level.TRACE_INT)) {
-         return false;
-      }
 
-      return Level.TRACE.isGreaterOrEqual(this.getEffectiveLevel());
+      return !repository.isDisabled(Level.TRACE_INT) && Level.TRACE.isGreaterOrEqual(this.getEffectiveLevel());
+
    }
 
 }

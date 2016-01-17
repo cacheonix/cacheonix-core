@@ -184,11 +184,8 @@ public final class CompressedBinary implements Binary {
          return false;
       }
 
-      if (!this.valueClassName.equals(that.valueClassName)) {
-         return false;
-      }
+      return this.valueClassName.equals(that.valueClassName) && Arrays.equals(this.compressedCopy, that.compressedCopy);
 
-      return Arrays.equals(this.compressedCopy, that.compressedCopy);
    }
 
 

@@ -154,12 +154,8 @@ public final class ReceiverAddress implements Wireable, Immutable {
          return false;
       }
 
-      if (tcpPort != clusterNodeAddress.getTcpPort()) {
+      return tcpPort == clusterNodeAddress.getTcpPort() && clusterNodeAddress.hasAnyOf(addresses);
 
-         return false;
-      }
-
-      return clusterNodeAddress.hasAnyOf(addresses);
    }
 
 

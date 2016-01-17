@@ -175,10 +175,7 @@ public final class OptionConverter {
       if ("true".equalsIgnoreCase(trimmedVal)) {
          return true;
       }
-      if ("false".equalsIgnoreCase(trimmedVal)) {
-         return false;
-      }
-      return dEfault;
+      return !"false".equalsIgnoreCase(trimmedVal) && dEfault;
    }
 
 
