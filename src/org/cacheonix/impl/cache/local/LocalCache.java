@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Executor;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
@@ -68,6 +69,7 @@ import org.cacheonix.impl.util.array.HashSet;
 import org.cacheonix.impl.util.cache.ObjectSizeCalculator;
 import org.cacheonix.impl.util.logging.Logger;
 
+import static org.cacheonix.impl.cache.CacheUtils.createExpirationTime;
 import static org.cacheonix.impl.config.ElementEventNotification.ASYNCHRONOUS;
 import static org.cacheonix.impl.config.ElementEventNotification.SYNCHRONOUS;
 
@@ -625,19 +627,16 @@ public final class LocalCache<K extends Serializable, V extends Serializable> im
 
    /**
     * {@inheritDoc}
-    *
-    * @noinspection ParameterHidesMemberVariable
     */
-   public V put(final K key, final V value, final long expirationTimeMillis) {
+   public V put(final K key, final V value, final long delay, final TimeUnit timeUnit) {
 
       final Binary binaryPreviousValue;
       final Binary binaryKey = BinaryUtils.toBinary(key);
       final Binary binaryValue = BinaryUtils.toBinary(value);
+      final Time expirationTime = createExpirationTime(clock, delay, timeUnit);
 
       writeLock.lock();
       try {
-
-         final Time expirationTime = expirationTimeMillis > 0 ? clock.currentTime().add(expirationTimeMillis) : null;
          binaryPreviousValue = validStorage().put(binaryKey, binaryValue, expirationTime);
       } finally {
          writeLock.unlock();

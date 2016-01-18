@@ -22,6 +22,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import org.cacheonix.CacheonixException;
 import org.cacheonix.NotSubscribedException;
@@ -55,6 +56,8 @@ import org.cacheonix.impl.util.array.IntObjectHashMap;
 import org.cacheonix.impl.util.cache.EntryImpl;
 import org.cacheonix.impl.util.logging.Logger;
 import org.cacheonix.locks.ReadWriteLock;
+
+import static org.cacheonix.impl.cache.CacheUtils.createExpirationTime;
 
 /**
  * PartitionedCache implements CacheonixCache by converting method calls to requests and sending them to an associated
@@ -744,11 +747,11 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
 
    public V put(final K key, final V value) {
 
-      return put(key, value, -1L);
+      return put(key, value, -1L, TimeUnit.MILLISECONDS);
    }
 
 
-   public V put(final K key, final V value, final long expirationTimeMillis) {
+   public V put(final K key, final V value, final long delay, final TimeUnit timeUnit) {
 
       //noinspection unchecked
       return (V) retrier.retryUntilDone(new Retryable() {
@@ -757,7 +760,7 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
 
             final Binary binaryKey = createBinary(key);
             final Binary binaryValue = createBinary(value);
-            final Time expirationTime = expirationTimeMillis > 0 ? clock.currentTime().add(expirationTimeMillis) : null;
+            final Time expirationTime = createExpirationTime(clock, delay, timeUnit);
             final PutRequest request = new PutRequest(address, cacheName, binaryKey, binaryValue, expirationTime,
                     false);
 

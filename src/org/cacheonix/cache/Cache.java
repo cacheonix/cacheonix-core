@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.TimeUnit;
 
 import org.cacheonix.Cacheonix;
 import org.cacheonix.NotSubscribedException;
@@ -185,7 +186,7 @@ public interface Cache<K extends Serializable, V extends Serializable> extends C
     *
     * @param key key whose associated value is to be returned. The key must implement <code>java.io.Serializable</code>.
     * @return the value to which this map maps the specified key, or <tt>null</tt> if the map contains no mapping for
-    *         this key.
+    * this key.
     * @throws ClassCastException   if the key is of an inappropriate type for this map (optional).
     * @throws NullPointerException key is <tt>null</tt> and this map does not permit <tt>null</tt> keys (optional).
     * @see #containsKey(Object)
@@ -266,8 +267,8 @@ public interface Cache<K extends Serializable, V extends Serializable> extends C
     * @param key   a key with which the specified value is associated with.
     * @param value a value to be associated with the specified key.
     * @return a previous value associated with the specified key, or null if there was no mapping for the key. A null
-    *         can also indicate that the map previously associated null with the specified key, if the implementation
-    *         supports null values.
+    * can also indicate that the map previously associated null with the specified key, if the implementation supports
+    * null values.
     */
    V replace(K key, V value);
 
@@ -280,8 +281,8 @@ public interface Cache<K extends Serializable, V extends Serializable> extends C
     * @param key   key with which the specified value is to be associated.
     * @param value value to be associated with the specified key.
     * @return previous value associated with specified key, or <tt>null</tt> if there was no mapping for key.  A
-    *         <tt>null</tt> return can also indicate that the map previously associated <tt>null</tt> with the specified
-    *         key, if the implementation supports <tt>null</tt> values.
+    * <tt>null</tt> return can also indicate that the map previously associated <tt>null</tt> with the specified key, if
+    * the implementation supports <tt>null</tt> values.
     * @throws UnsupportedOperationException if the <tt>put</tt> operation is not supported by this map.
     * @throws ClassCastException            if the class of the specified key or value prevents it from being stored in
     *                                       this map.
@@ -297,14 +298,16 @@ public interface Cache<K extends Serializable, V extends Serializable> extends C
     * this key, the old value is replaced by the specified value.  (A map <tt>m</tt> is said to contain a mapping for a
     * key <tt>k</tt> if and only if {@link #containsKey(Object) m.containsKey(k)} would return <tt>true</tt>.))
     *
-    * @param key                  key with which the specified value is to be associated.
-    * @param value                value to be associated with the specified key.
-    * @param expirationTimeMillis time after the cache element expires. This time overrides the expiration time set in
-    *                             the cache configuration. Setting <code>expirationTimeMillis</code> to zero disables
-    *                             expiration for the cache element.
+    * @param key      key with which the specified value is to be associated.
+    * @param value    value to be associated with the specified key.
+    * @param delay    a delay after the cache element expires. This time overrides the expiration time set in the cache
+    *                 configuration. Setting <code>delay</code> to zero disables expiration for the cache element.
+    *                 <code>delay</code> is measured in time units measured by the following <code>timeUnit</code>
+    *                 parameter.
+    * @param timeUnit the time unit of the <code>delay</code> parameter.
     * @return previous value associated with specified key, or <tt>null</tt> if there was no mapping for key.  A
-    *         <tt>null</tt> return can also indicate that the map previously associated <tt>null</tt> with the specified
-    *         key, if the implementation supports <tt>null</tt> values.
+    * <tt>null</tt> return can also indicate that the map previously associated <tt>null</tt> with the specified key, if
+    * the implementation supports <tt>null</tt> values.
     * @throws UnsupportedOperationException if the <tt>put</tt> operation is not supported by this map.
     * @throws ClassCastException            if the class of the specified key or value prevents it from being stored in
     *                                       this map.
@@ -313,7 +316,7 @@ public interface Cache<K extends Serializable, V extends Serializable> extends C
     * @throws NullPointerException          this map does not permit <tt>null</tt> keys or values, and the specified key
     *                                       or value is <tt>null</tt>.
     */
-   V put(K key, V value, long expirationTimeMillis);
+   V put(K key, V value, long delay, TimeUnit timeUnit);
 
 
    /**
@@ -439,7 +442,7 @@ public interface Cache<K extends Serializable, V extends Serializable> extends C
     * @see #addEventSubscriber(Set, EntryModifiedSubscriber)
     */
    void removeEventSubscriber(final Set<K> keys,
-                              final EntryModifiedSubscriber subscriber) throws NotSubscribedException;
+           final EntryModifiedSubscriber subscriber) throws NotSubscribedException;
 
 
    /**
