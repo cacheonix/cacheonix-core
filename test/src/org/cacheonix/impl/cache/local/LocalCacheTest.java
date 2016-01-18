@@ -13,11 +13,13 @@
  */
 package org.cacheonix.impl.cache.local;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import org.cacheonix.CacheonixTestCase;
 import org.cacheonix.TestConstants;
@@ -76,6 +78,21 @@ public final class LocalCacheTest extends CacheonixTestCase {
          final int expectedSize = i < MAX_SIZE ? i + 1 : MAX_SIZE;
          putAndAssert(makeKey(i), makeValue(i) + SUFFIX_ONE, makeValue(i) + SUFFIX_TWO, expectedSize);
       }
+   }
+
+
+   /**
+    * Tests {@link LocalCache#put(Serializable, Serializable, long, TimeUnit)}.
+    */
+   public void testPutCustomTimeUnit() throws InterruptedException {
+
+      final long delay = 10L;
+      final TimeUnit timeUnit = TimeUnit.MILLISECONDS;
+      cache().put(KEY_0, OBJECT_0, delay, timeUnit);
+
+      assertEquals(OBJECT_0, cache().get(KEY_0));
+      Thread.sleep(timeUnit.toMillis(delay) * 2);
+      assertNull(cache().get(KEY_0));
    }
 
 
@@ -629,18 +646,6 @@ public final class LocalCacheTest extends CacheonixTestCase {
       public boolean isCalled() {
 
          return called;
-      }
-
-
-      public Object getEvictedValue() {
-
-         return evictedValue;
-      }
-
-
-      public Object getEvictedKey() {
-
-         return evictedKey;
       }
 
 

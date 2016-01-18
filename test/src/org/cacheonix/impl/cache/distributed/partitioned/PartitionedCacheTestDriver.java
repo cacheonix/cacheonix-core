@@ -36,6 +36,7 @@ import org.cacheonix.cache.entry.CacheEntry;
 import org.cacheonix.cache.entry.EntryFilter;
 import org.cacheonix.cluster.CacheMember;
 import org.cacheonix.impl.RuntimeInterruptedException;
+import org.cacheonix.impl.cache.local.LocalCache;
 import org.cacheonix.impl.config.SystemProperty;
 import org.cacheonix.impl.lock.DistributedLock;
 import org.cacheonix.impl.util.ArgumentValidator;
@@ -84,7 +85,8 @@ public abstract class PartitionedCacheTestDriver extends CacheonixTestCase {
 
    static final int MAX_SIZE = 100000;
 
-   private final SavedSystemProperty savedSystemProperty = new SavedSystemProperty(SystemProperty.NAME_CACHEONIX_AUTO_CREATE_CACHE);
+   private final SavedSystemProperty savedSystemProperty = new SavedSystemProperty(
+           SystemProperty.NAME_CACHEONIX_AUTO_CREATE_CACHE);
 
    /**
     * Number of keys to get.
@@ -513,9 +515,13 @@ public abstract class PartitionedCacheTestDriver extends CacheonixTestCase {
          final long latencyMicros = TimeUnit.MILLISECONDS.toMicros(durationMillis) / singleKeyPerformanceCount;
          final double latencyMillis = (double) latencyMicros / (1000.0);
          LOG.debug("---------------------"); // NOPMD
-         LOG.debug("Time test took to execute " + singleKeyPerformanceCount + " gets: " + TimeUnit.MILLISECONDS.toSeconds(durationMillis) + " secs"); // NOPMD
-         LOG.debug("Single client throughput for " + singleKeyPerformanceCount + " gets: " + (1000L * singleKeyPerformanceCount) / durationMillis + " op/sec"); // NOPMD
-         LOG.debug("Total client throughput for " + singleKeyPerformanceCount + " gets, " + threadCount + " threads: " + (1000L * singleKeyPerformanceCount * threadCount) / durationMillis + " op/sec"); // NOPMD
+         LOG.debug(
+                 "Time test took to execute " + singleKeyPerformanceCount + " gets: " + TimeUnit.MILLISECONDS.toSeconds(
+                         durationMillis) + " secs"); // NOPMD
+         LOG.debug(
+                 "Single client throughput for " + singleKeyPerformanceCount + " gets: " + (1000L * singleKeyPerformanceCount) / durationMillis + " op/sec"); // NOPMD
+         LOG.debug(
+                 "Total client throughput for " + singleKeyPerformanceCount + " gets, " + threadCount + " threads: " + (1000L * singleKeyPerformanceCount * threadCount) / durationMillis + " op/sec"); // NOPMD
          LOG.debug("Latency: " + latencyMillis + " ms, or " + latencyMicros + " mks");
          LOG.debug("---------------------"); // NOPMD
       }
@@ -2089,6 +2095,21 @@ public abstract class PartitionedCacheTestDriver extends CacheonixTestCase {
    }
 
 
+   /**
+    * Tests {@link LocalCache#put(Serializable, Serializable, long, TimeUnit)}.
+    */
+   public void testPutCustomTimeUnit() throws InterruptedException {
+
+      final long delay = 10L;
+      final TimeUnit timeUnit = TimeUnit.MILLISECONDS;
+      cache().put(KEY_0, OBJECT_0, delay, timeUnit);
+
+      assertEquals(OBJECT_0, cache().get(KEY_0));
+      Thread.sleep(timeUnit.toMillis(delay) * 2);
+      assertNull(cache().get(KEY_0));
+   }
+
+
    protected abstract Cache<String, String> cache();
 
 
@@ -2208,7 +2229,7 @@ public abstract class PartitionedCacheTestDriver extends CacheonixTestCase {
 
 
       public MyRunnable(final CountDownLatch startupLatch, final Lock lock,
-                        final Collection<Exception> errors) {
+              final Collection<Exception> errors) {
 
          this.startupLatch = startupLatch;
          this.lock = lock;
