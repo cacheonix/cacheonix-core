@@ -62,7 +62,6 @@
          <classpath refid="test.classpath"/>
          <jvmarg value="-Dcacheonix.examples.cacheonix.config.xml=${basedir}/conf"/>
          <jvmarg value="-Djava.io.tmpdir=${test.temp.dir}"/>
-         <jvmarg value="-Dtest.temp.dir=${test.temp.dir}"/>
          <jvmarg value="-Djava.awt.headless=true"/>
          <batchtest todir="${test.log.dir}" unless="test.single">
             <fileset dir="${classes.dir}">

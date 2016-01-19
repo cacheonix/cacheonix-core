@@ -355,7 +355,6 @@
          <jvmarg value="-Djava.io.tmpdir=${test.temp.dir}"/>
          <jvmarg value="-Djava.net.preferIPv4Stack=true"/>
          <jvmarg value="-Dtest.data.home=${test.data.dir}"/>
-         <jvmarg value="-Dtest.temp.dir=${test.temp.dir}"/>
          <!-- Run only test defined by test.single property -->
          <batchtest todir="${test.log.dir}" if="test.single">
             <fileset dir="${test.classes.dir}">
@@ -396,7 +395,6 @@
          <jvmarg value="-Djava.net.preferIPv4Stack=true"/>
          <jvmarg value="-Dcacheonix.logging.configuration=log4j.properties"/>
          <jvmarg value="-Dtest.data.home=${test.data.dir}"/>
-         <jvmarg value="-Dtest.temp.dir=${test.temp.dir}"/>
 
          <!-- Run only test defined by test.single property -->
          <batchtest todir="${test.log.dir}" if="test.single">
