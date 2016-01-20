@@ -54,7 +54,6 @@ final class Dispatcher extends Thread {
       this.setDaemon(true);
 
       // set the dispatcher priority to lowest possible value
-      this.setPriority(Thread.MIN_PRIORITY);
       this.setName("Dispatcher-" + getName());
 
       // set the dispatcher priority to MIN_PRIORITY plus or minus 2

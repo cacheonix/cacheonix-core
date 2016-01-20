@@ -276,7 +276,6 @@ public final class SocketAppender extends AppenderSkeleton {
          LogLog.debug("Starting a new connector thread.");
          connector = new Connector();
          connector.setDaemon(true);
-         connector.setPriority(Thread.MIN_PRIORITY);
          connector.start();
       }
    }
