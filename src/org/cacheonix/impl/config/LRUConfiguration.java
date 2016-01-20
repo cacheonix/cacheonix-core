@@ -99,9 +99,6 @@ public final class LRUConfiguration extends DocumentReader {
       } else if ("maxElements".equals(attributeName)) {
 
          maxElements = Long.parseLong(attributeValue);
-      } else if ("maxBytes".equals(attributeName)) {
-
-         maxBytes = StringUtils.readBytes(attributeValue);
       }
    }
 
