@@ -82,7 +82,7 @@ public final class ArgumentValidator {
    public static void validateArgumentNotZero(final int argValue, final String argDescr) {
 
       if (argValue == 0) {
-         throw new IllegalArgumentException("Argument \"" + argDescr + "\" should be not equal zero but it was " + argValue);
+         throw new IllegalArgumentException("Argument \"" + argDescr + "\" should be not equal zero but it was");
       }
    }
 
