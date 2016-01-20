@@ -155,13 +155,13 @@ public final class RendererMap {
       ObjectRenderer r = (ObjectRenderer) map.get(c);
       if (r != null) {
          return r;
-      } else {
-         final Class[] ia = c.getInterfaces();
-         for (final Class anIa : ia) {
-            r = searchInterfaces(anIa);
-            if (r != null) {
-               return r;
-            }
+      }
+
+      final Class[] ia = c.getInterfaces();
+      for (final Class anIa : ia) {
+         r = searchInterfaces(anIa);
+         if (r != null) {
+            return r;
          }
       }
       return null;
