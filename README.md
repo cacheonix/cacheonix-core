@@ -4,7 +4,7 @@ Cacheonix is a distributed cache for Java capable of running in clusters small a
 
 ## cacheonix-core
 
-Cacheonix's Core project contains distributed caching functionality.
+Cacheonix's Core project contains the distributed caching functionality.
 
 ## Cacheonix and Maven
 ```xml
