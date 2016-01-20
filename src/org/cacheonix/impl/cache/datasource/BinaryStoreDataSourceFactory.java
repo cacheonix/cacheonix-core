@@ -53,10 +53,10 @@ public final class BinaryStoreDataSourceFactory {
     */
    @SuppressWarnings("MethodMayBeStatic")
    public BinaryStoreDataSource createDataSource(final Clock clock, final String cacheName,
-                                                 final String dataSourceClass, final Properties dataSourceProperties,
-                                                 final boolean prefetchEnabled,
-                                                 final PrefetchStage prefetchScheduler,
-                                                 final PrefetchElementUpdater prefetchElementUpdater) {
+           final String dataSourceClass, final Properties dataSourceProperties,
+           final boolean prefetchEnabled,
+           final PrefetchStage prefetchScheduler,
+           final PrefetchElementUpdater prefetchElementUpdater) {
 
       try {
 
@@ -64,10 +64,9 @@ public final class BinaryStoreDataSourceFactory {
          if (StringUtils.isBlank(dataSourceClass)) {
 
             return DUMMY_DATASOURCE;
-         } else {
-
-            LOG.info("Creating data source for " + cacheName + ": " + dataSourceClass);
          }
+
+         LOG.info("Creating data source for " + cacheName + ": " + dataSourceClass);
 
          // Create user data source
          final DataSource userDataSource = createUserDataSource(cacheName, dataSourceClass);
@@ -77,7 +76,8 @@ public final class BinaryStoreDataSourceFactory {
          userDataSource.setContext(userDataSourceContext);
 
          // Create Cacheonix binary store data source
-         return new BinaryStoreDataSourceImpl(clock, prefetchElementUpdater, prefetchScheduler, userDataSource, prefetchEnabled);
+         return new BinaryStoreDataSourceImpl(clock, prefetchElementUpdater, prefetchScheduler, userDataSource,
+                 prefetchEnabled);
       } catch (final RuntimeException e) {
          throw e;
       } catch (final Exception e) {
@@ -99,7 +99,7 @@ public final class BinaryStoreDataSourceFactory {
     * @throws IllegalAccessException if the class or its nullary constructor is not accessible.
     */
    private static DataSource createUserDataSource(final String cacheName,
-                                                  final String dataSourceClass)
+           final String dataSourceClass)
            throws ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
 
       // Load class
