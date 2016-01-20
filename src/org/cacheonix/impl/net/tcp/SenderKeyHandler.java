@@ -270,6 +270,7 @@ final class SenderKeyHandler extends KeyHandler {
                // There are messages that may need sending
                handleWrite(idleKey);
             }
+            break;
          default:
             break;
       }
