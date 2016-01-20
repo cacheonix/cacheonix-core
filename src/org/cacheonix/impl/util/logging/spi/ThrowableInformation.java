@@ -68,26 +68,26 @@ public final class ThrowableInformation implements Serializable {
    public final String[] getThrowableStrRep() {
       if (rep != null) {
          return rep.clone();
-      } else {
-         final StringWriter sw = new StringWriter(100);
-         final PrintWriter pw = new PrintWriter(sw);
-         throwable.printStackTrace(pw);
-         pw.flush();
-         final LineNumberReader reader = new LineNumberReader(
-                 new StringReader(sw.toString()));
-         final Collection lines = new ArrayList(11);
-         try {
-            String line = reader.readLine();
-            while (line != null) {
-               lines.add(line);
-               line = reader.readLine();
-            }
-         } catch (final IOException ex) {
-            lines.add(ex.toString());
-         }
-         rep = new String[lines.size()];
-         lines.toArray(rep);
       }
+
+      final StringWriter sw = new StringWriter(100);
+      final PrintWriter pw = new PrintWriter(sw);
+      throwable.printStackTrace(pw);
+      pw.flush();
+      final LineNumberReader reader = new LineNumberReader(
+              new StringReader(sw.toString()));
+      final Collection lines = new ArrayList(11);
+      try {
+         String line = reader.readLine();
+         while (line != null) {
+            lines.add(line);
+            line = reader.readLine();
+         }
+      } catch (final IOException ex) {
+         lines.add(ex.toString());
+      }
+      rep = new String[lines.size()];
+      lines.toArray(rep);
       return rep;
    }
 }
