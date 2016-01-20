@@ -467,7 +467,7 @@ public final class BinaryStore implements Wireable {
          }
 
          // Check if expired or was invalidated
-         if (binaryStoreElement.isExpired(clock) || binaryStoreElement.isInvalid()) {
+         if (binaryStoreElement.isExpired(clock) || !binaryStoreElement.isValid()) {
 
             // Remove and notify about expiration
             removeElement(binaryStoreElement, EntryModifiedEventType.EXPIRE);
@@ -554,7 +554,7 @@ public final class BinaryStore implements Wireable {
 
             try {
 
-               if (element.isExpired(clock) || element.isInvalid()) {
+               if (element.isExpired(clock) || !element.isValid()) {
 
                   // Remove element if it is expired
                   removeElement(element);
@@ -813,7 +813,7 @@ public final class BinaryStore implements Wireable {
          final BinaryStoreElement elementAfter = element.getAfter();
 
          // Guard against expiration
-         if (element.isExpired(clock) || element.isInvalid()) {
+         if (element.isExpired(clock) || !element.isValid()) {
 
             // Remove element
             removeElement(element, EntryModifiedEventType.EXPIRE);
@@ -941,7 +941,7 @@ public final class BinaryStore implements Wireable {
 
             try {
 
-               if (element.isExpired(clock) || element.isInvalid()) {
+               if (element.isExpired(clock) || !element.isValid()) {
 
                   // Remove element if it is expired
                   removeElement(element);
@@ -992,7 +992,7 @@ public final class BinaryStore implements Wireable {
 
             try {
 
-               if (element.isExpired(clock) || element.isInvalid()) {
+               if (element.isExpired(clock) || !element.isValid()) {
 
                   // Remove element if it is expired
                   removeElement(element);
@@ -1677,7 +1677,7 @@ public final class BinaryStore implements Wireable {
       }
 
       // Check if expired
-      if (element.isExpired(clock) || element.isInvalid()) {
+      if (element.isExpired(clock) || !element.isValid()) {
 
 //         //noinspection ControlFlowStatementWithoutBraces
 //         if (LOG.isDebugEnabled()) LOG.debug("Element expired: " + element.getExpirationTime()); // NOPMD

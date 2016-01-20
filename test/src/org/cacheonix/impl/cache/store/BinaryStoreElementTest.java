@@ -119,13 +119,13 @@ public final class BinaryStoreElementTest extends CacheonixTestCase {
    public void testInvalidate() throws Exception {
 
       element.invalidate();
-      assertTrue(element.isInvalid());
+      assertFalse(element.isValid());
    }
 
 
    public void testIsInvalid() throws Exception {
 
-      assertFalse(element.isInvalid());
+      assertTrue(element.isValid());
    }
 
 
