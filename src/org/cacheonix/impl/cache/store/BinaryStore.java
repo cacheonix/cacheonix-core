@@ -137,7 +137,8 @@ public final class BinaryStore implements Wireable {
     * A list of subscribers for the event when an element is updated. The BinaryStore needs to keep track of subscribers
     * to support attaching subscribers to newly added elements.
     */
-   private transient final HashMap<Binary, List<BinaryEntryModifiedSubscriber>> updateSubscribers = new HashMap<Binary, List<BinaryEntryModifiedSubscriber>>(1); // NOPMD
+   private transient final HashMap<Binary, List<BinaryEntryModifiedSubscriber>> updateSubscribers = new HashMap<Binary, List<BinaryEntryModifiedSubscriber>>(
+           1); // NOPMD
 
 
    /**
@@ -514,10 +515,8 @@ public final class BinaryStore implements Wireable {
             final Binary binaryValue = BinaryStoreUtils.getValue(element);
 
             // Compare
-            if (value != null && binaryValue != null && value.equals(binaryValue)) {
-
-               return true;
-            } else if (value == null && binaryValue == null) {
+            if ((value != null && binaryValue != null && value.equals(binaryValue))
+                    || (value == null && binaryValue == null)) {
 
                return true;
             }
@@ -1027,7 +1026,7 @@ public final class BinaryStore implements Wireable {
     *
     * @param key key whose associated value is to be returned.
     * @return the value to which this map maps the specified key, or <tt>null</tt> if the map contains no mapping for
-    *         this key.
+    * this key.
     * @throws ClassCastException   if the key is of an inappropriate type for this map (optional).
     * @throws NullPointerException key is <tt>null</tt> and this map does not not permit <tt>null</tt> keys (optional).
     * @see #containsKey(Binary)
@@ -1116,8 +1115,8 @@ public final class BinaryStore implements Wireable {
     *
     * @param key key whose mapping is to be removed from the map.
     * @return previous the value to which the map previously associated the key. returned PreviousValue's
-    *         isPreviousValuePresent() returns <code>false</code> if the map contained no mapping for this key. This
-    *         methods cannot return <tt>null</tt>.
+    * isPreviousValuePresent() returns <code>false</code> if the map contained no mapping for this key. This methods
+    * cannot return <tt>null</tt>.
     * @throws ClassCastException            if the key is of an inappropriate type for this map (optional).
     * @throws NullPointerException          if the key is <tt>null</tt> and this map does not not permit <tt>null</tt>
     *                                       keys (optional).
@@ -1238,8 +1237,8 @@ public final class BinaryStore implements Wireable {
     * @param binaryKey   a key with which the specified value is associated with.
     * @param binaryValue a value to be associated with the specified key.
     * @return a previous value associated with the specified key, or null if there was no mapping for the key. A null
-    *         can also indicate that the map previously associated null with the specified key, if the implementation
-    *         supports null values.
+    * can also indicate that the map previously associated null with the specified key, if the implementation supports
+    * null values.
     */
    public PreviousValue replace(final Binary binaryKey, final Binary binaryValue) {
 
@@ -1311,8 +1310,8 @@ public final class BinaryStore implements Wireable {
     * @param key   key with which the specified value is to be associated.
     * @param value value to be associated with the specified key.
     * @return previous value associated with specified key, or <tt>null</tt> if there was no mapping for key.  A
-    *         <tt>null</tt> return can also indicate that the map previously associated <tt>null</tt> with the specified
-    *         key, if the implementation supports <tt>null</tt> values.
+    * <tt>null</tt> return can also indicate that the map previously associated <tt>null</tt> with the specified key, if
+    * the implementation supports <tt>null</tt> values.
     * @throws UnsupportedOperationException if the <tt>put</tt> operation is not supported by this map.
     * @throws ClassCastException            if the class of the specified key or value prevents it from being stored in
     *                                       this map.
