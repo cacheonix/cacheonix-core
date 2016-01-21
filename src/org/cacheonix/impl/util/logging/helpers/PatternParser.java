@@ -40,6 +40,7 @@ import org.cacheonix.impl.util.logging.spi.LoggingEvent;
  * @author Anders Kristensen
  * @since 0.8.2
  */
+@SuppressWarnings("NestedSwitchStatement")
 public final class PatternParser {
 
    private static final char ESCAPE_CHAR = '%';
