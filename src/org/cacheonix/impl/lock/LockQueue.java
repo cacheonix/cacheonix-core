@@ -180,7 +180,7 @@ public final class LockQueue implements Wireable {
             }
          }
 
-         return !(readLockOwner == null);
+         return readLockOwner != null;
 
 
       } else {
