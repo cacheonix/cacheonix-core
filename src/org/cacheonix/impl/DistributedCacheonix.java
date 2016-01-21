@@ -783,7 +783,7 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
 
       // Notify all cache processors that they should un-block
       for (final CacheProcessor cacheProcessor : cacheProcessorMap.values()) {
-         cacheProcessor.post(new SetCacheNodeStateMessage(CacheProcessor.STATE_BLOCKED));
+         cacheProcessor.post(new SetCacheNodeStateMessage(CacheProcessor.STATE_OPERATIONAL));
       }
    }
 

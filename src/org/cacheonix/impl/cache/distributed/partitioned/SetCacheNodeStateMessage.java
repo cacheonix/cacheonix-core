@@ -61,6 +61,6 @@ public final class SetCacheNodeStateMessage extends LocalCacheMessage {
     */
    public void executeBlocked() {
 
-      executeOperational();
+      getCacheProcessor().setState(state);
    }
 }
