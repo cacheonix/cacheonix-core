@@ -730,7 +730,7 @@ public abstract class AggregatingRequest extends CacheDataRequest implements Pre
                   if (ownerResponse != null) {
 
                      // Amend owner response to a error if any of the aggregated responses is an error
-                     if (!(ownerResponse.getResultCode() == Response.RESULT_ERROR)) {
+                     if (ownerResponse.getResultCode() != Response.RESULT_ERROR) {
 
                         final List<Response> partialResponses = ((Waiter) getOwnerWaiter()).getPartialResponses();
                         for (final Response partialResponse : partialResponses) {
