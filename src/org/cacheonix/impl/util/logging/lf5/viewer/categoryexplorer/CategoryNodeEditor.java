@@ -19,6 +19,7 @@ package org.cacheonix.impl.util.logging.lf5.viewer.categoryexplorer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -72,7 +73,8 @@ public final class CategoryNodeEditor extends CategoryAbstractCellEditor {
 
       _renderer.addMouseListener(new MouseAdapter() {
          public void mousePressed(final MouseEvent e) {
-            if ((e.getModifiers() & MouseEvent.BUTTON3_MASK) != 0) {
+
+            if ((e.getModifiers() & InputEvent.BUTTON3_MASK) != 0) {
                showPopup(_lastEditedNode, e.getX(), e.getY());
             }
             stopCellEditing();
