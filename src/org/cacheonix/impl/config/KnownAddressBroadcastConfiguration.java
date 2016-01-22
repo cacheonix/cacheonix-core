@@ -76,6 +76,6 @@ public final class KnownAddressBroadcastConfiguration extends DocumentReader {
       return "KnownAddressBroadcastConfiguration{" +
               "limitedToLocalAddresses=" + limitedToLocalAddresses +
               ", addressConfiguration=" + addressConfiguration +
-              "} " + super.toString();
+              "} ";
    }
 }
