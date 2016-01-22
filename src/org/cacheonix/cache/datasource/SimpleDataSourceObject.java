@@ -84,7 +84,7 @@ public final class SimpleDataSourceObject implements DataSourceObject {
 
       final SimpleDataSourceObject that = (SimpleDataSourceObject) obj;
 
-      return !(object != null ? !object.equals(that.object) : that.object != null);
+      return object != null ? object.equals(that.object) : that.object == null;
 
    }
 
