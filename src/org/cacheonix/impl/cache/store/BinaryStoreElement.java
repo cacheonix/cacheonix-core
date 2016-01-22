@@ -894,7 +894,7 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
       result = 31 * result + (hasKeySizeBytes ? 1 : 0);
       result = 31 * result + (int) (valueSizeBytes ^ (valueSizeBytes >>> 32));
       result = 31 * result + (hasValueSizeBytes ? 1 : 0);
-      result = 31 * result + (!valid ? 1 : 0);
+      result = 31 * result + (valid ? 1 : 0);
       return result;
    }
 
