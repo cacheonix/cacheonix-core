@@ -101,14 +101,14 @@ public final class GetMaxSizeRequest extends CacheRequest {
             final int resultCode = cacheResponse.getResultCode();
             final Object objectResult = cacheResponse.getResult();
             switch (resultCode) {
-               case CacheResponse.RESULT_SUCCESS:
+               case Response.RESULT_SUCCESS:
                   setResult(objectResult);
                   break;
-               case CacheResponse.RESULT_ERROR:
+               case Response.RESULT_ERROR:
                   setResult(WaiterUtils.resultToThrowable(objectResult));
                   break;
-               case CacheResponse.RESULT_INACCESSIBLE:
-               case CacheResponse.RESULT_RETRY:
+               case Response.RESULT_INACCESSIBLE:
+               case Response.RESULT_RETRY:
                   setResult(new RetryException());
                   break;
                default:
