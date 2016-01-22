@@ -44,6 +44,7 @@ import org.cacheonix.impl.config.LeaseConfiguration;
 import org.cacheonix.impl.net.serializer.SerializerUtils;
 import org.cacheonix.impl.net.serializer.Wireable;
 import org.cacheonix.impl.net.serializer.WireableBuilder;
+import org.cacheonix.impl.util.IOUtils;
 import org.cacheonix.impl.util.cache.ObjectSizeCalculator;
 import org.cacheonix.impl.util.logging.Logger;
 
@@ -597,6 +598,7 @@ public final class Bucket implements Wireable {
     */
    Bucket copy() throws RuntimeIOException {
 
+      DataInputStream dis = null;
       try {
 
          final ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -605,7 +607,7 @@ public final class Bucket implements Wireable {
          daos.flush();
 
          final ByteArrayInputStream bis = new ByteArrayInputStream(baos.toByteArray());
-         final DataInputStream dis = new DataInputStream(bis);
+         dis = new DataInputStream(bis);
 
          return SerializerUtils.readBucket(dis);
       } catch (final RuntimeException e) {
@@ -614,6 +616,9 @@ public final class Bucket implements Wireable {
       } catch (final Exception e) {
 
          throw new RuntimeIOException(e);
+      } finally {
+
+         IOUtils.closeHard(dis);
       }
    }
 

@@ -30,6 +30,7 @@ import javax.swing.tree.TreePath;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.cacheonix.impl.util.IOUtils;
 import org.cacheonix.impl.util.logging.lf5.LogLevel;
 import org.cacheonix.impl.util.logging.lf5.LogLevelFormatException;
 import org.cacheonix.impl.util.logging.lf5.viewer.LogBrokerMonitor;
@@ -353,13 +354,15 @@ public final class ConfigurationManager {
 
    protected final void store(final String s) {
 
+      PrintWriter writer = null;
       try {
-         final PrintWriter writer = new PrintWriter(new FileWriter(getFilename()));
+         writer = new PrintWriter(new FileWriter(getFilename()));
          writer.print(s);
-         writer.close();
       } catch (final IOException e) {
          // do something with this error.
          e.printStackTrace();
+      } finally {
+         IOUtils.closeHard(writer);
       }
 
    }
