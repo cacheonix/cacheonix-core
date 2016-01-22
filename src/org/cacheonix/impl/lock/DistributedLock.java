@@ -243,7 +243,6 @@ public final class DistributedLock implements Lock {
               ", lockKey=" + lockKey +
               ", readLock=" + readLock +
               ", clusterProcessor=" + clusterProcessor +
-              ", retrier=" + retrier +
               '}';
    }
 }
