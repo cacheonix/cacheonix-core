@@ -592,18 +592,18 @@ public abstract class KeyRequest extends CacheDataRequest implements Prepareable
             final Object result = cacheResponse.getResult();
             switch (resultCode) {
 
-               case CacheResponse.RESULT_SUCCESS:
+               case Response.RESULT_SUCCESS:
 
                   setResult(result);
                   break;
 
-               case CacheResponse.RESULT_INACCESSIBLE:
-               case CacheResponse.RESULT_RETRY:
+               case Response.RESULT_INACCESSIBLE:
+               case Response.RESULT_RETRY:
 
                   setResult(new RetryException());
                   break;
 
-               case CacheResponse.RESULT_ERROR:
+               case Response.RESULT_ERROR:
 
                   setResult(WaiterUtils.resultToThrowable(result));
                   break;
