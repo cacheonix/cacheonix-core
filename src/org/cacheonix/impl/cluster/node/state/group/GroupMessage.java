@@ -158,9 +158,6 @@ public abstract class GroupMessage extends Message {
    }
 
 
-   /**
-    * @noinspection SimplifiableIfStatement
-    */
    public boolean equals(final Object obj) {
 
       if (this == obj) {
@@ -178,7 +175,7 @@ public abstract class GroupMessage extends Message {
       if (groupType != that.groupType) {
          return false;
       }
-      return !(groupName != null ? !groupName.equals(that.groupName) : that.groupName != null);
+      return groupName != null ? groupName.equals(that.groupName) : that.groupName == null;
 
    }
 
@@ -186,8 +183,8 @@ public abstract class GroupMessage extends Message {
    public int hashCode() {
 
       int result = super.hashCode();
-      result = 29 * result + groupType;
-      result = 29 * result + (groupName != null ? groupName.hashCode() : 0);
+      result = 31 * result + (groupName != null ? groupName.hashCode() : 0);
+      result = 31 * result + groupType;
       return result;
    }
 
