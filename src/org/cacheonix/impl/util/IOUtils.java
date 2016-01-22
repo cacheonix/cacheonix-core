@@ -407,7 +407,7 @@ public final class IOUtils {
       InputStream is = null;
       OutputStream os = null;
       try {
-         if (!(destination.length() == 0L)) {
+         if (destination.length() != 0L) {
             throw new IOException("Cannot copy to file \"" + destination.getCanonicalPath() + "\" - file in not empty");
          }
          is = new FileInputStream(source);
