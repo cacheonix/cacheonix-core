@@ -90,6 +90,6 @@ public final class BroadcastConfiguration extends DocumentReader {
       return "BroadcastConfiguration{" +
               "multicast=" + multicast +
               ", knownAddresses=" + knownAddresses +
-              "} " + super.toString();
+              "} ";
    }
 }
