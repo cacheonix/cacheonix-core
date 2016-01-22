@@ -511,7 +511,7 @@ public final class LoggingEvent implements Serializable {
       oos.writeInt(level.toInt());
 
       final Class clazz = level.getClass();
-      if (clazz == Level.class) {
+      if (clazz.equals(Level.class)) {
          oos.writeObject(null);
       } else {
          // writing directly the Class object would be nicer, except that
