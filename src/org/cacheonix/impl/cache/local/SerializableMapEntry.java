@@ -14,15 +14,15 @@
 package org.cacheonix.impl.cache.local;
 
 import java.io.Serializable;
+import java.util.Map.Entry;
 
-import org.cacheonix.cache.Cache;
 import org.cacheonix.impl.OperationNotSupportedException;
 
 /**
  * Serializable map entry.
  */
 @SuppressWarnings("RedundantIfStatement")
-final class SerializableMapEntry<K extends Serializable, V extends Serializable> implements Cache.Entry<K, V> {
+final class SerializableMapEntry<K extends Serializable, V extends Serializable> implements Entry<K, V> {
 
    private final K key;
 
