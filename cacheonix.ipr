@@ -465,6 +465,7 @@
       </inspection_tool>
       <inspection_tool class="BigDecimalEquals" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="BooleanMethodIsAlwaysInverted" enabled="false" level="WARNING" enabled_by_default="false" />
+      <inspection_tool class="BooleanVariableAlwaysNegated" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="BusyWait" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="CStyleArrayDeclaration" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="CachedNumberConstructorCall" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -488,7 +489,7 @@
       <inspection_tool class="ClassCoupling" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="m_includeJavaClasses" value="false" />
         <option name="m_includeLibraryClasses" value="false" />
-        <option name="m_limit" value="15" />
+        <option name="m_limit" value="30" />
       </inspection_tool>
       <inspection_tool class="ClassEscapesItsScope" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ClassInitializer" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -637,9 +638,6 @@
       <inspection_tool class="JavaLangReflect" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="KeySetIterationMayUseEntrySet" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="LambdaParameterHidingMemberVariable" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="LawOfDemeter" enabled="true" level="WARNING" enabled_by_default="true">
-        <option name="ignoreLibraryCalls" value="true" />
-      </inspection_tool>
       <inspection_tool class="LengthOneStringInIndexOf" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="LengthOneStringsInConcatenation" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ListIndexOfReplaceableByContains" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -669,7 +667,6 @@
       <inspection_tool class="MethodOverridesPackageLocalMethod" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="MethodOverridesPrivateMethod" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="MethodOverridesStaticMethod" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="MethodReturnAlwaysConstant" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="MismatchedCollectionQueryUpdate" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="queryNames">
           <value>
@@ -858,7 +855,6 @@
       <inspection_tool class="SocketResource" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="insideTryAllowed" value="false" />
       </inspection_tool>
-      <inspection_tool class="StaticCallOnSubclass" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="StaticFieldReferenceOnSubclass" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="StaticGuardedByInstance" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="StaticNonFinalField" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -873,7 +869,7 @@
         <option name="m_ignoreUnlessAssigned" value="true" />
       </inspection_tool>
       <inspection_tool class="StringConcatenationInMessageFormatCall" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="StringConcatenationMissingWhitespace" enabled="true" level="WARNING" enabled_by_default="true">
+      <inspection_tool class="StringConcatenationMissingWhitespace" enabled="false" level="WARNING" enabled_by_default="false">
         <option name="ignoreNonStringLiterals" value="true" />
       </inspection_tool>
       <inspection_tool class="StringEqualsEmptyString" enabled="true" level="WARNING" enabled_by_default="true" />
