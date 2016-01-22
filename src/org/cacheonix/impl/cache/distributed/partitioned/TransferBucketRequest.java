@@ -457,13 +457,13 @@ public final class TransferBucketRequest extends CacheRequest {
             switch (message.getResultCode()) {
 
                // Result will contain TransferBucketResult
-               case CacheResponse.RESULT_SUCCESS:
+               case Response.RESULT_SUCCESS:
 
                   setResult(message.getResult());
                   break;
-               case CacheResponse.RESULT_INACCESSIBLE:
-               case CacheResponse.RESULT_RETRY:
-               case CacheResponse.RESULT_ERROR:
+               case Response.RESULT_INACCESSIBLE:
+               case Response.RESULT_RETRY:
+               case Response.RESULT_ERROR:
                default:
 
                   // Reject all bucket numbers
