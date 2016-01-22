@@ -841,7 +841,7 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
       if (hasElementSizeBytes != that.hasElementSizeBytes) {
          return false;
       }
-      if (!valid != !that.valid) {
+      if (valid != that.valid) {
          return false;
       }
       if (createdTime != null ? !createdTime.equals(that.createdTime) : that.createdTime != null) {
