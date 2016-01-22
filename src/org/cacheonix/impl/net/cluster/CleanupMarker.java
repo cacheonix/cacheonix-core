@@ -123,7 +123,7 @@ public final class CleanupMarker extends MarkerRequest {
       //noinspection ControlFlowStatementWithoutBraces
       if (LOG.isDebugEnabled()) LOG.debug(errorResult); // NOPMD
 
-      final Response errorResponse = createResponse(ClusterResponse.RESULT_ERROR);
+      final Response errorResponse = createResponse(Response.RESULT_ERROR);
       errorResponse.setResult(errorResult);
       getProcessor().post(errorResponse);
    }
@@ -143,7 +143,7 @@ public final class CleanupMarker extends MarkerRequest {
          //noinspection ControlFlowStatementWithoutBraces
          if (LOG.isDebugEnabled()) LOG.debug(errorResult); // NOPMD
 
-         final Response errorResponse = createResponse(ClusterResponse.RESULT_ERROR);
+         final Response errorResponse = createResponse(Response.RESULT_ERROR);
          errorResponse.setResult(errorResult);
          processor.post(errorResponse);
 
