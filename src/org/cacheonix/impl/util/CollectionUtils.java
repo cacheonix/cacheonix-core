@@ -57,16 +57,20 @@ public final class CollectionUtils {
     * @param list2
     * @return
     */
+   @SuppressWarnings("ObjectEquality")
    public static boolean same(final List list1, final List list2) {
 
-      if (list1 == null && list2 == null) {
+      if (list1 == null || list2 == null) {
+         return false;
+      }
+      if (list1.size() != list2.size()) {
          return false;
       }
       if (list1 == list2) {
          return true;
       }
-      if (list1.size() != list2.size()) {
-         return false;
+      if (list1.equals(list2)) {
+         return true;
       }
       for (int i = 0; i < list1.size(); i++) {
          if (!list1.get(i).equals(list2.get(i))) {
@@ -84,16 +88,17 @@ public final class CollectionUtils {
     * @param set2
     * @return
     */
+   @SuppressWarnings("ObjectEquality")
    public static boolean same(final Set set1, final Set set2) {
 
-      if (set1 == null && set2 == null) {
+      if (set1 == null || set2 == null) {
+         return false;
+      }
+      if (set1.size() != set2.size()) {
          return false;
       }
       if (set1 == set2) {
          return true;
-      }
-      if (set1.size() != set2.size()) {
-         return false;
       }
       final Iterator iter1 = set1.iterator();
       final Iterator iter2 = set2.iterator();
