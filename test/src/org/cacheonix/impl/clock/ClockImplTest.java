@@ -78,7 +78,6 @@ public final class ClockImplTest extends CacheonixTestCase {
 
       return "ClockTest{" +
               "clock=" + clock +
-              ", timer=" + timer +
               "} " + super.toString();
    }
 }

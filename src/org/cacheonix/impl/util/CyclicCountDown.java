@@ -62,4 +62,13 @@ public final class CyclicCountDown {
       value--;
       return value;
    }
+
+
+   public String toString() {
+
+      return "CyclicCountDown{" +
+              "maxValue=" + maxValue +
+              ", value=" + value +
+              '}';
+   }
 }

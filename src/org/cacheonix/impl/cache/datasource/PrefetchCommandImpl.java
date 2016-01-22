@@ -262,4 +262,16 @@ public final class PrefetchCommandImpl implements PrefetchCommand {
       currentStage = null;
       key = null;
    }
+
+
+   public String toString() {
+
+      return "PrefetchCommandImpl{" +
+              "closed=" + closed +
+              ", expectedElementUpdateCounter=" + expectedElementUpdateCounter +
+              ", key=" + key +
+              ", state=" + state +
+              ", prefetchTime=" + prefetchTime +
+              '}';
+   }
 }

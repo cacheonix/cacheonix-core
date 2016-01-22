@@ -457,4 +457,14 @@ public class Router {
       response.setResult(errorResult);
       return response;
    }
+
+
+   public String toString() {
+
+      return "Router{" +
+              "serializer=" + serializer +
+              ", clusterUUID=" + clusterUUID +
+              ", localAddress=" + localAddress +
+              '}';
+   }
 }

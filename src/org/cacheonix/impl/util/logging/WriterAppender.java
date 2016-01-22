@@ -191,8 +191,8 @@ public class WriterAppender extends AppenderSkeleton {
          try {
             qw.close();
          } catch (final IOException e) {
-            // There is do need to invoke an error handler at this late
-            // stage.
+            // There is do need to invoke an error handler at this late stage.
+            //noinspection ObjectToString
             LogLog.error("Could not close " + qw, e);
          }
       }

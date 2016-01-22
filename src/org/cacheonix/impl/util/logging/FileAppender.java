@@ -188,6 +188,7 @@ public class FileAppender extends WriterAppender {
          } catch (final IOException e) {
             // Exceptionally, it does not make sense to delegate to an
             // ErrorHandler. Since a closed appender is basically dead.
+            //noinspection ObjectToString
             LogLog.error("Could not close " + qw, e);
          }
       }

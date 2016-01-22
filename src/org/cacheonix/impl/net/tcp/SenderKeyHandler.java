@@ -455,6 +455,7 @@ final class SenderKeyHandler extends KeyHandler {
          handleRead(key);
 
       } else {
+         //noinspection ObjectToString
          throw new IllegalArgumentException("Key is not supported: " + key);
       }
    }

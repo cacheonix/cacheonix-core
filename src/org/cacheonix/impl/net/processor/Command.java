@@ -13,8 +13,6 @@
  */
 package org.cacheonix.impl.net.processor;
 
-import org.cacheonix.impl.util.logging.Logger;
-
 /**
  * Command executed by the Processor.
  * <p/>
@@ -22,15 +20,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Jan 8, 2010 8:17:22 AM
  */
-public abstract class Command {
+public interface Command {
 
-   /**
-    * Logger.
-    *
-    * @noinspection UNUSED_SYMBOL, UnusedDeclaration
-    */
-   private static final Logger LOG = Logger.getLogger(Command.class); // NOPMD
-
-
-   public abstract void execute() throws InterruptedException;
+   void execute() throws InterruptedException;
 }

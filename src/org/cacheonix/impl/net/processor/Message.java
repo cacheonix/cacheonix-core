@@ -35,7 +35,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * ConstantNamingConvention, TransientFieldInNonSerializableClass
  * @since Mar 27, 2008 12:18:08 AM
  */
-public abstract class Message extends Command implements Wireable {
+public abstract class Message implements Command, Wireable {
 
    /**
     * Logger.

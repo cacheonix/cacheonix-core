@@ -151,7 +151,7 @@ public final class ExceptionUtils {
 
             return e;
          }
-         final String socketAddressAsString = socketAddress.toString();
+         @SuppressWarnings("ObjectToString") final String socketAddressAsString = socketAddress.toString();
          final IOException result = new IOException(e.getMessage() == null ? socketAddressAsString : socketAddressAsString + ':' + e.getMessage());
          result.setStackTrace(e.getStackTrace());
          return result;

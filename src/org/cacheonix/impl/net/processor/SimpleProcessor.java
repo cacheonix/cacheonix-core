@@ -245,7 +245,6 @@ public class SimpleProcessor extends AbstractProcessor {
                  "messagesProcessed=" + messagesProcessed +
                  ", averageTimeToProcessNanos=" + averageTimeToProcessNanos +
                  ", maximumBacklog=" + maximumBacklog +
-                 ", random=" + random +
                  '}';
       }
    }

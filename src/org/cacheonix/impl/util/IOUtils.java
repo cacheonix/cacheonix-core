@@ -1271,7 +1271,6 @@ public final class IOUtils {
 
          return "DirectoryZipperCallback{" +
                  "baseDir='" + baseDir + '\'' +
-                 ", zos=" + zos +
                  '}';
       }
    }

@@ -16,7 +16,7 @@ package org.cacheonix.impl.net.processor;
 /**
  *
  */
-final class TimeoutCommand extends Command {
+final class TimeoutCommand implements Command {
 
    private final RequestProcessor processor;
 
@@ -41,6 +41,6 @@ final class TimeoutCommand extends Command {
       return "TimeoutCommand{" +
               "processor=" + processor.getAddress() +
               ", requestUUID=" + requestUUID +
-              "} " + super.toString();
+              "} " ;
    }
 }

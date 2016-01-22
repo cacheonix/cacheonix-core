@@ -99,8 +99,8 @@ public final class Loader {
          if (!java1) {
             classLoader = getTCL();
             if (classLoader != null) {
-               LogLog.debug("Trying to find [" + resource + "] using context classloader "
-                       + classLoader + '.');
+               //noinspection ObjectToString
+               LogLog.debug("Trying to find [" + resource + "] using context classloader " + classLoader + '.');
                url = classLoader.getResource(resource);
                if (url != null) {
                   return url;
@@ -112,8 +112,8 @@ public final class Loader {
          // classloader that loaded this class.
          classLoader = Loader.class.getClassLoader();
          if (classLoader != null) {
-            LogLog.debug("Trying to find [" + resource + "] using " + classLoader
-                    + " class loader.");
+            //noinspection ObjectToString
+            LogLog.debug("Trying to find [" + resource + "] using " + classLoader + " class loader.");
             url = classLoader.getResource(resource);
             if (url != null) {
                return url;

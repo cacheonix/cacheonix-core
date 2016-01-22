@@ -863,6 +863,6 @@ public final class ServerConfiguration extends DocumentReader {
               ", hasDefaultUnlockTimeoutMillis=" + hasDefaultUnlockTimeoutMillis +
               ", socketTimeoutMillis=" + socketTimeoutMillis +
               ", hasSocketTimeoutMillis=" + hasSocketTimeoutMillis +
-              "} " + super.toString();
+              "} ";
    }
 }

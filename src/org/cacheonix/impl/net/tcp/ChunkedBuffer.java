@@ -77,4 +77,13 @@ final class ChunkedBuffer {
       chunks.clear();
       available = 0;
    }
+
+
+   public String toString() {
+
+      return "ChunkedBuffer{" +
+              "chunks=" + chunks +
+              ", available=" + available +
+              '}';
+   }
 }

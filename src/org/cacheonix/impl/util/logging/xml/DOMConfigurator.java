@@ -758,7 +758,8 @@ problem: we can't create an Appender */ catch (final Exception oops) {
 
          public String toString() {
 
-            return "input stream [" + inputStream.toString() + ']';
+            //noinspection ObjectToString
+            return "input stream [" + inputStream + ']';
          }
       };
       doConfigure(action, repository);
@@ -783,7 +784,8 @@ problem: we can't create an Appender */ catch (final Exception oops) {
 
          public String toString() {
 
-            return "reader [" + reader.toString() + ']';
+            //noinspection ObjectToString
+            return "reader [" + reader + ']';
          }
       };
       doConfigure(action, repository);
@@ -809,7 +811,8 @@ problem: we can't create an Appender */ catch (final Exception oops) {
 
          public String toString() {
 
-            return "input source [" + inputSource.toString() + ']';
+            //noinspection ObjectToString
+            return "input source [" + inputSource + ']';
          }
       };
       doConfigure(action, repository);

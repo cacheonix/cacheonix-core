@@ -140,6 +140,7 @@ public final class CategoryPath {
          out.append("<<NONE>>");
       } else {
          for (int i = 0; i < this.size(); i++) {
+            //noinspection ObjectToString
             out.append(this.categoryElementAt(i).toString());
             out.append("\n\t");
          }

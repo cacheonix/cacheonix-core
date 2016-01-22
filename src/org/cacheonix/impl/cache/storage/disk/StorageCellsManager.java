@@ -774,6 +774,7 @@ public final class StorageCellsManager {
    }
 
 
+   @SuppressWarnings("ObjectToString")
    public String toString() {
 
       return "StorageCellsManager{" + "persistenceRequired=" + persistenceRequired + ", storageCellSize=" + storageCellSize

@@ -58,7 +58,6 @@ public final class CacheInvalidatorFactoryTest extends TestCase {
    public String toString() {
 
       return "CacheInvalidatorFactoryTest{" +
-              "cacheInvalidatorFactory=" + cacheInvalidatorFactory +
               '}';
    }
 }

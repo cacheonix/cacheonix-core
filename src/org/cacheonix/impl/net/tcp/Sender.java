@@ -143,7 +143,6 @@ public final class Sender extends AbstractProcessor {
 
       return "MessageSender{" +
               "address=" + localAddress +
-              ", selector=" + selector +
               "} " + super.toString();
    }
 }

@@ -95,6 +95,6 @@ public final class WebSessionReplicaConfiguration extends DocumentReader {
               "name='" + name + '\'' +
               ", propertyList=" + propertyList +
               ", partitionedSessionReplicaStoreConfiguration=" + partitionedSessionReplicaStoreConfiguration +
-              "} " + super.toString();
+              "} ";
    }
 }

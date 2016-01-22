@@ -352,7 +352,9 @@ public final class OptionConverter {
                LogLog.error("A \"" + className + "\" object is not assignable to a \"" +
                        superClass.getName() + "\" variable.");
                LogLog.error("The class \"" + superClass.getName() + "\" was loaded by ");
+               //noinspection ObjectToString
                LogLog.error("[" + superClass.getClassLoader() + "] whereas object of type ");
+               //noinspection ObjectToString
                LogLog.error('\"' + classObj.getName() + "\" was loaded by ["
                        + classObj.getClassLoader() + "].");
                return defaultValue;

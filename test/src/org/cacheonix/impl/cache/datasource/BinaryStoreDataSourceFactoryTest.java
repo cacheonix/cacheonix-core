@@ -51,8 +51,7 @@ public final class BinaryStoreDataSourceFactoryTest extends TestCase {
    public String toString() {
 
       return "BinaryStoreDataSourceFactoryTest{" +
-              "binaryStoreDataSourceFactory=" + binaryStoreDataSourceFactory +
-              ", clock=" + clock +
+              "clock=" + clock +
               '}';
    }
 }

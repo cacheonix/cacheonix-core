@@ -66,7 +66,6 @@ public final class SystemWallClockTest extends CacheonixTestCase {
    public String toString() {
 
       return "SystemWallClockTest{" +
-              "clock=" + clock +
               "} " + super.toString();
    }
 }

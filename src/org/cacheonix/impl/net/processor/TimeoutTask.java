@@ -60,6 +60,6 @@ final class TimeoutTask extends TimerTask {
       return "TimeoutTask{" +
               "processor=" + processor.getAddress() +
               ", requestUUID=" + requestUUID +
-              "} " + super.toString();
+              "} ";
    }
 }

@@ -109,7 +109,6 @@ public abstract class ActionableTimeout implements Shutdownable {
 
       return "ActionableTimeout{" +
               "timeoutAction=" + timeoutAction +
-              ", timer=" + timer +
               '}';
    }
 }

@@ -21,7 +21,7 @@ import org.cacheonix.impl.net.processor.Command;
 /**
  * Command to shutdown the cluster node.
  */
-public final class ShutdownClusterProcessorCommand extends Command {
+public final class ShutdownClusterProcessorCommand implements Command {
 
    private final ClusterProcessor processor;
 
