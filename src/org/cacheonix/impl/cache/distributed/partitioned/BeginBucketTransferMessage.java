@@ -257,7 +257,7 @@ public final class BeginBucketTransferMessage extends LocalCacheMessage {
    public String toString() {
 
       return "BeginBucketTransferMessage{" +
-              "bucketNumbers" + StringUtils.sizeToString(bucketNumbers) +
+              "bucketNumbers=" + StringUtils.sizeToString(bucketNumbers) +
               ", currentOwner=" + currentOwner +
               ", newOwner=" + newOwner +
               ", sourceStorageNumber=" + sourceStorageNumber +
