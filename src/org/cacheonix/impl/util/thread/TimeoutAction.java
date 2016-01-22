@@ -32,4 +32,12 @@ public abstract class TimeoutAction extends TimerTask {
 
       return timeoutMillis;
    }
+
+
+   public String toString() {
+
+      return "TimeoutAction{" +
+              "timeoutMillis=" + timeoutMillis +
+              '}';
+   }
 }
