@@ -172,6 +172,6 @@ public final class CacheonixConfiguration extends DocumentReader {
               ", loggingConfiguration=" + loggingConfiguration +
               ", server=" + server +
               ", local=" + local +
-              "} " + super.toString();
+              "} ";
    }
 }
