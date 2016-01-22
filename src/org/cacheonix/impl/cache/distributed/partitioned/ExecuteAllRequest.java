@@ -162,14 +162,9 @@ public final class ExecuteAllRequest extends KeySetRequest {
       try {
 
          // Call executable
-         final Object result = executable.execute(cacheEntries);
+         final Serializable result = executable.execute(cacheEntries);
 
-         if (result != null) {
-
-            if (!(result instanceof Serializable) && !(result instanceof Wireable)) {
-               results.add(new IOException("Result is not serializable: " + result.getClass().getName()));
-            }
-         }
+         // Add to results
          results.add(result);
       } catch (final RuntimeException e) {
 
