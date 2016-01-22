@@ -297,7 +297,6 @@ public final class Receiver implements Shutdownable {
               "stackTraceAtCreate=" + stackTraceAtCreate +
               ", operationalStatus=" + operationalStatus +
               ", endpoint=" + endpoint +
-              ", selector=" + selector +
               ", selectorThread=" + selectorThread +
               '}';
    }
