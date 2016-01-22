@@ -29,7 +29,7 @@ import org.cacheonix.impl.net.cluster.ClusterView;
 /**
  * Utility class.
  */
-public class ClusterEventUtil {
+public final class ClusterEventUtil {
 
    private ClusterEventUtil() {
 
