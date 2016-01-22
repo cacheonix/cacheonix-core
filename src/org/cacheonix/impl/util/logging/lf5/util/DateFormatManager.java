@@ -258,9 +258,7 @@ public final class DateFormatManager {
 
    private synchronized void configure() {
 
-      _dateFormat = SimpleDateFormat.getDateTimeInstance(DateFormat.FULL,
-              DateFormat.FULL,
-              getLocale());
+      _dateFormat = DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.FULL, getLocale());
       _dateFormat.setTimeZone(getTimeZone());
 
       if (_pattern != null) {
