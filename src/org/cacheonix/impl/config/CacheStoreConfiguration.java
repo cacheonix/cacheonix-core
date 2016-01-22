@@ -306,6 +306,6 @@ public class CacheStoreConfiguration extends DocumentReader {
               ", dataStore=" + dataStore +
               ", invalidator=" + invalidator +
               ", loader=" + loader +
-              "} " + super.toString();
+              "} ";
    }
 }
