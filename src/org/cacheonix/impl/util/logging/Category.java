@@ -244,7 +244,7 @@ public class Category implements AppenderAttachable {
     */
    public void debug(final Object message) {
 
-      if (repository.isDisabled(Level.DEBUG_INT)) {
+      if (repository.isDisabled(Priority.DEBUG_INT)) {
          return;
       }
       if (Level.DEBUG.isGreaterOrEqual(this.getEffectiveLevel())) {
@@ -264,7 +264,7 @@ public class Category implements AppenderAttachable {
     */
    public void debug(final Object message, final Throwable t) {
 
-      if (repository.isDisabled(Level.DEBUG_INT)) {
+      if (repository.isDisabled(Priority.DEBUG_INT)) {
          return;
       }
       if (Level.DEBUG.isGreaterOrEqual(this.getEffectiveLevel())) {
@@ -290,7 +290,7 @@ public class Category implements AppenderAttachable {
     */
    public void error(final Object message) {
 
-      if (repository.isDisabled(Level.ERROR_INT)) {
+      if (repository.isDisabled(Priority.ERROR_INT)) {
          return;
       }
       if (Level.ERROR.isGreaterOrEqual(this.getEffectiveLevel())) {
@@ -310,7 +310,7 @@ public class Category implements AppenderAttachable {
     */
    public void error(final Object message, final Throwable t) {
 
-      if (repository.isDisabled(Level.ERROR_INT)) {
+      if (repository.isDisabled(Priority.ERROR_INT)) {
          return;
       }
       if (Level.ERROR.isGreaterOrEqual(this.getEffectiveLevel())) {
@@ -350,7 +350,7 @@ public class Category implements AppenderAttachable {
     */
    public void fatal(final Object message) {
 
-      if (repository.isDisabled(Level.FATAL_INT)) {
+      if (repository.isDisabled(Priority.FATAL_INT)) {
          return;
       }
       if (Level.FATAL.isGreaterOrEqual(this.getEffectiveLevel())) {
@@ -370,7 +370,7 @@ public class Category implements AppenderAttachable {
     */
    public void fatal(final Object message, final Throwable t) {
 
-      if (repository.isDisabled(Level.FATAL_INT)) {
+      if (repository.isDisabled(Priority.FATAL_INT)) {
          return;
       }
       if (Level.FATAL.isGreaterOrEqual(this.getEffectiveLevel())) {
@@ -649,7 +649,7 @@ public class Category implements AppenderAttachable {
     */
    public void info(final Object message) {
 
-      if (repository.isDisabled(Level.INFO_INT)) {
+      if (repository.isDisabled(Priority.INFO_INT)) {
          return;
       }
       if (Level.INFO.isGreaterOrEqual(this.getEffectiveLevel())) {
@@ -669,7 +669,7 @@ public class Category implements AppenderAttachable {
     */
    public void info(final Object message, final Throwable t) {
 
-      if (repository.isDisabled(Level.INFO_INT)) {
+      if (repository.isDisabled(Priority.INFO_INT)) {
          return;
       }
       if (Level.INFO.isGreaterOrEqual(this.getEffectiveLevel())) {
@@ -723,7 +723,7 @@ public class Category implements AppenderAttachable {
     */
    public boolean isDebugEnabled() {
 
-      return !repository.isDisabled(Level.DEBUG_INT) && Level.DEBUG.isGreaterOrEqual(this.getEffectiveLevel());
+      return !repository.isDisabled(Priority.DEBUG_INT) && Level.DEBUG.isGreaterOrEqual(this.getEffectiveLevel());
    }
 
 
@@ -747,7 +747,7 @@ public class Category implements AppenderAttachable {
     */
    public boolean isInfoEnabled() {
 
-      return !repository.isDisabled(Level.INFO_INT) && Level.INFO.isGreaterOrEqual(this.getEffectiveLevel());
+      return !repository.isDisabled(Priority.INFO_INT) && Level.INFO.isGreaterOrEqual(this.getEffectiveLevel());
    }
 
 
@@ -1021,7 +1021,7 @@ public class Category implements AppenderAttachable {
     */
    public void warn(final Object message) {
 
-      if (repository.isDisabled(Level.WARN_INT)) {
+      if (repository.isDisabled(Priority.WARN_INT)) {
          return;
       }
 
@@ -1042,7 +1042,7 @@ public class Category implements AppenderAttachable {
     */
    public void warn(final Object message, final Throwable t) {
 
-      if (repository.isDisabled(Level.WARN_INT)) {
+      if (repository.isDisabled(Priority.WARN_INT)) {
          return;
       }
       if (Level.WARN.isGreaterOrEqual(this.getEffectiveLevel())) {
