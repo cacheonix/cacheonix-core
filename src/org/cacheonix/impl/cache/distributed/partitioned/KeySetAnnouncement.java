@@ -397,17 +397,17 @@ public abstract class KeySetAnnouncement extends AggregatingAnnouncement {
             final Object result = response.getResult();
             switch (resultCode) {
 
-               case CacheResponse.RESULT_ERROR:
+               case Response.RESULT_ERROR:
 
                   return WaiterUtils.resultToThrowable(result);
 
-               case CacheResponse.RESULT_INACCESSIBLE:
+               case Response.RESULT_INACCESSIBLE:
 
-               case CacheResponse.RESULT_RETRY:
+               case Response.RESULT_RETRY:
 
                   return createRetryException(response);
 
-               case CacheResponse.RESULT_SUCCESS:
+               case Response.RESULT_SUCCESS:
 
                   aggregate(resultAccumulator, response);
 
