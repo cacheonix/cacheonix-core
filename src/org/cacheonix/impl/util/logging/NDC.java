@@ -237,9 +237,9 @@ public final class NDC {
          // Avoid calling clean-up too often.
          if (++pushCounter <= REAP_THRESHOLD) {
             return; // We release the lock ASAP.
-         } else {
-            pushCounter = 0; // OK let's do some work.
          }
+
+         pushCounter = 0; // OK let's do some work.
 
          v = new Vector(ht.size());
          final Enumeration enumeration = ht.keys();

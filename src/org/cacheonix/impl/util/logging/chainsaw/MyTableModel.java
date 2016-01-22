@@ -56,9 +56,13 @@ final class MyTableModel
 
          if (aObj1 == null && aObj2 == null) {
             return 0; // treat as equal
-         } else if (aObj1 == null) {
+         }
+
+         if (aObj1 == null) {
             return -1; // null less than everything
-         } else if (aObj2 == null) {
+         }
+
+         if (aObj2 == null) {
             return 1; // think about it. :->
          }
 
@@ -254,14 +258,22 @@ final class MyTableModel
 
          if (aCol == 0) {
             return DATE_FORMATTER.format(new Date(event.getTimeStamp()));
-         } else if (aCol == 1) {
+         }
+
+         if (aCol == 1) {
             return event.getPriority();
-         } else if (aCol == 2) {
+         }
+
+         if (aCol == 2) {
             return event.getThrowableStrRep() == null
                     ? Boolean.FALSE : Boolean.TRUE;
-         } else if (aCol == 3) {
+         }
+
+         if (aCol == 3) {
             return event.getCategoryName();
-         } else if (aCol == 4) {
+         }
+
+         if (aCol == 4) {
             return event.getNDC();
          }
          return event.getMessage();
