@@ -158,7 +158,7 @@ public final class MarkerListRequest extends ClusterRequest {
          //noinspection ControlFlowStatementWithoutBraces
          if (LOG.isDebugEnabled()) LOG.debug(errorResult); // NOPMD
 
-         final Response response = createResponse(ClusterResponse.RESULT_ERROR);
+         final Response response = createResponse(Response.RESULT_ERROR);
          response.setResult(errorResult);
          processor.post(response);
 
@@ -172,7 +172,7 @@ public final class MarkerListRequest extends ClusterRequest {
          //noinspection ControlFlowStatementWithoutBraces
          if (LOG.isDebugEnabled()) LOG.debug(errorResult); // NOPMD
 
-         final Response response = createResponse(ClusterResponse.RESULT_ERROR);
+         final Response response = createResponse(Response.RESULT_ERROR);
          response.setResult(errorResult);
          processor.post(response);
 
@@ -196,7 +196,7 @@ public final class MarkerListRequest extends ClusterRequest {
       joinStatus.setMessageAssemblerParts(messageAssemblerParts);
 
       // Respond OK
-      processor.post(createResponse(ClusterResponse.RESULT_SUCCESS));
+      processor.post(createResponse(Response.RESULT_SUCCESS));
 
       //noinspection ControlFlowStatementWithoutBraces
       if (LOG.isDebugEnabled()) LOG.debug("Posted success response: " + this); // NOPMD
@@ -213,7 +213,7 @@ public final class MarkerListRequest extends ClusterRequest {
       //noinspection ControlFlowStatementWithoutBraces
       if (LOG.isDebugEnabled()) LOG.debug(errorResult); // NOPMD
 
-      final Response response = createResponse(ClusterResponse.RESULT_ERROR);
+      final Response response = createResponse(Response.RESULT_ERROR);
       response.setResult(errorResult);
       getProcessor().post(response);
    }
@@ -229,7 +229,7 @@ public final class MarkerListRequest extends ClusterRequest {
       //noinspection ControlFlowStatementWithoutBraces
       if (LOG.isDebugEnabled()) LOG.debug(errorResult); // NOPMD
 
-      final Response response = createResponse(ClusterResponse.RESULT_ERROR);
+      final Response response = createResponse(Response.RESULT_ERROR);
       response.setResult(errorResult);
       getProcessor().post(response);
    }
@@ -398,7 +398,7 @@ public final class MarkerListRequest extends ClusterRequest {
             if (message instanceof ClusterResponse) {
 
                final ClusterResponse response = (ClusterResponse) message;
-               if (response.getResultCode() == ClusterResponse.RESULT_SUCCESS) {
+               if (response.getResultCode() == Response.RESULT_SUCCESS) {
 
                   //noinspection ControlFlowStatementWithoutBraces
                   if (LOG.isDebugEnabled()) LOG.debug("Marker list was successfuly sent: " + getRequest()); // NOPMD
