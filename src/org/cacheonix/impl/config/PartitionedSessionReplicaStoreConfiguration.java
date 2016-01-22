@@ -111,6 +111,6 @@ public final class PartitionedSessionReplicaStoreConfiguration extends DocumentR
       return "PartitionedSessionReplicaStoreConfiguration{" +
               "propertyList=" + propertyList +
               ", replicaCount=" + replicaCount +
-              "} " + super.toString();
+              "} ";
    }
 }
