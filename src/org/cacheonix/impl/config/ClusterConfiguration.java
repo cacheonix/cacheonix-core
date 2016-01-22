@@ -495,6 +495,6 @@ public final class ClusterConfiguration extends DocumentReader {
               ", worstCaseLatencyMillis=" + worstCaseLatencyMillis +
               ", minimumNodeCount=" + minimumNodeCount +
               ", propertyList=" + propertyList +
-              "} " + super.toString();
+              "} ";
    }
 }
