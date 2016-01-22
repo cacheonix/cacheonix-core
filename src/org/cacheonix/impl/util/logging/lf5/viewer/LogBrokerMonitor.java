@@ -1578,6 +1578,7 @@ public final class LogBrokerMonitor {
    }
 
 
+   @SuppressWarnings("ObjectEquality")
    protected final void setLeastSevereDisplayedLogLevel(final LogLevel level) {
 
       if (level == null || _leastSevereDisplayedLogLevel == level) {
