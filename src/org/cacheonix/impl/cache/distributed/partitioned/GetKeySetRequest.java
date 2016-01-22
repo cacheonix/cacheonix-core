@@ -106,12 +106,12 @@ public final class GetKeySetRequest extends BucketSetRequest {
             final int resultCode = cacheResponse.getResultCode();
             final Object partialResult = cacheResponse.getResult();
             switch (resultCode) {
-               case CacheResponse.RESULT_ERROR:
+               case Response.RESULT_ERROR:
                   return WaiterUtils.resultToThrowable(partialResult);
-               case CacheResponse.RESULT_INACCESSIBLE:
-               case CacheResponse.RESULT_RETRY:
+               case Response.RESULT_INACCESSIBLE:
+               case Response.RESULT_RETRY:
                   return createRetryException(cacheResponse);
-               case CacheResponse.RESULT_SUCCESS:
+               case Response.RESULT_SUCCESS:
                   result.addAll((Collection<Binary>) partialResult);
                   break;
                default:
