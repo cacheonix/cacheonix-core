@@ -84,7 +84,7 @@ public final class JoinRequest extends ClusterRequest {
          //noinspection ControlFlowStatementWithoutBraces
          if (LOG.isDebugEnabled()) LOG.debug(errorDescription); // NOPMD
 
-         final Response errorResponse = createResponse(ClusterResponse.RESULT_ERROR);
+         final Response errorResponse = createResponse(Response.RESULT_ERROR);
          errorResponse.setResult(errorDescription);
          clusterProcessor.post(errorResponse);
 
@@ -102,7 +102,7 @@ public final class JoinRequest extends ClusterRequest {
          //noinspection ControlFlowStatementWithoutBraces
          if (LOG.isDebugEnabled()) LOG.debug(errorDescription); // NOPMD
 
-         final Response errorResponse = createResponse(ClusterResponse.RESULT_ERROR);
+         final Response errorResponse = createResponse(Response.RESULT_ERROR);
          errorResponse.setResult(errorDescription);
          clusterProcessor.post(errorResponse);
 
@@ -142,7 +142,7 @@ public final class JoinRequest extends ClusterRequest {
       }
 
       // Respond with success
-      clusterProcessor.post(createResponse(ClusterResponse.RESULT_SUCCESS));
+      clusterProcessor.post(createResponse(Response.RESULT_SUCCESS));
    }
 
 
@@ -169,7 +169,7 @@ public final class JoinRequest extends ClusterRequest {
       //noinspection ControlFlowStatementWithoutBraces
       if (LOG.isDebugEnabled()) LOG.debug(errorResult); // NOPMD
 
-      final Response response = createResponse(ClusterResponse.RESULT_ERROR);
+      final Response response = createResponse(Response.RESULT_ERROR);
       response.setResult(errorResult);
       getProcessor().post(response);
    }
@@ -187,7 +187,7 @@ public final class JoinRequest extends ClusterRequest {
       //noinspection ControlFlowStatementWithoutBraces
       if (LOG.isDebugEnabled()) LOG.debug(errorResult); // NOPMD
 
-      final Response response = createResponse(ClusterResponse.RESULT_ERROR);
+      final Response response = createResponse(Response.RESULT_ERROR);
       response.setResult(errorResult);
       getProcessor().post(response);
    }
@@ -227,7 +227,7 @@ public final class JoinRequest extends ClusterRequest {
 
       public void notifyResponseReceived(final Response response) throws InterruptedException {
 
-         if (response instanceof ClusterResponse && response.getResultCode() == ClusterResponse.RESULT_SUCCESS) {
+         if (response instanceof ClusterResponse && response.getResultCode() == Response.RESULT_SUCCESS) {
 
             //noinspection ControlFlowStatementWithoutBraces
             if (LOG.isDebugEnabled()) LOG.debug("Our join request was accepted by " + response.getSender()); // NOPMD
