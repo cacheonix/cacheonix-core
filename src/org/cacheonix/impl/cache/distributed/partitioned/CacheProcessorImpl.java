@@ -645,10 +645,6 @@ public final class CacheProcessorImpl extends AbstractRequestProcessor implement
               ", state=" + state +
               ", bucketStorages=" + (bucketStorages == null ? null : bucketStorages.length) +
               ", bucketCalculator=" + bucketCalculator +
-              ", objectSizeCalculatorFactory=" + objectSizeCalculatorFactory +
-              ", binaryStoreDataSourceFactory=" + binaryStoreDataSourceFactory +
-              ", invalidatorFactory=" + invalidatorFactory +
-              ", dataStoreFactory=" + dataStoreFactory +
               ", cacheConfig=" + cacheConfig +
               ", diskStorages=" + (diskStorages == null ? null : Arrays.asList(diskStorages)) +
               ", localEntryModifiedSubscriptions=" + localEntryModifiedSubscriptions +

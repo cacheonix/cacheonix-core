@@ -511,7 +511,6 @@
       <inspection_tool class="ConfusingOctalEscape" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ConstantAssertCondition" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ConstantJUnitAssertArgument" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="ConstantOnRHSOfComparison" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ConstantValueVariableUse" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ControlFlowStatementWithoutBraces" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="CovariantCompareTo" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -565,7 +564,7 @@
       </inspection_tool>
       <inspection_tool class="ForLoopThatDoesntUseLoopVariable" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ForLoopWithMissingComponent" enabled="true" level="WARNING" enabled_by_default="true">
-        <option name="ignoreCollectionLoops" value="false" />
+        <option name="ignoreCollectionLoops" value="true" />
       </inspection_tool>
       <inspection_tool class="GroovyLoopStatementThatDoesntLoop" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="GroovyRangeTypeCheck" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -580,9 +579,6 @@
       </inspection_tool>
       <inspection_tool class="IfStatementWithIdenticalBranches" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="IfStatementWithIdenticalBranchesJS" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="ImplicitCallToSuper" enabled="true" level="WARNING" enabled_by_default="true">
-        <option name="m_ignoreForObjectSubclasses" value="false" />
-      </inspection_tool>
       <inspection_tool class="InnerClassMayBeStatic" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="InnerClassOnInterface" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="m_ignoreInnerInterfaces" value="false" />
@@ -726,7 +722,6 @@
         <option name="m_ignoreNegatedZeroComparison" value="false" />
       </inspection_tool>
       <inspection_tool class="NegativelyNamedBooleanVariable" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="NestedConditionalExpression" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="NestedSwitchStatement" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="NestedSynchronizedStatement" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="NestedTryStatement" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -979,8 +974,8 @@
         <option name="ignoreNonEmtpyLoops" value="false" />
       </inspection_tool>
     </profile>
-    <option name="PROJECT_PROFILE" />
-    <option name="USE_PROJECT_PROFILE" value="false" />
+    <option name="PROJECT_PROFILE" value="Project Default" />
+    <option name="USE_PROJECT_PROFILE" value="true" />
     <version value="1.0" />
     <list size="6">
       <item index="0" class="java.lang.String" itemvalue="SERVER PROBLEM" />
