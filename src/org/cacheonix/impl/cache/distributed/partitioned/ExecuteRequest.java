@@ -156,7 +156,7 @@ public final class ExecuteRequest extends BucketSetRequest {
          // Remember interrupted flag in case 3-rd party executable tries to rise it.
          final boolean interruptedBeforeExecute = Thread.currentThread().isInterrupted();
 
-         final Object result;
+         final Serializable result;
          try {
             result = executable.execute(cacheEntries);
 
@@ -174,12 +174,6 @@ public final class ExecuteRequest extends BucketSetRequest {
             }
          }
 
-         if (result != null) {
-
-            if (!(result instanceof Serializable) && !(result instanceof Wireable)) {
-               results.add(new IOException("Result is not serializable: " + result.getClass().getName()));
-            }
-         }
          results.add(result);
       } catch (final RuntimeException e) {
          // Do not trust 3-rd party executables
