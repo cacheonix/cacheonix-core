@@ -527,7 +527,7 @@ public final class MulticastMarker extends OperationalMarker {
       final MulticastMarker multicastMarker = copy();
 
       // Response to previous node with success
-      clusterProcessor.post(createResponse(ClusterResponse.RESULT_SUCCESS));
+      clusterProcessor.post(createResponse(Response.RESULT_SUCCESS));
 
 
       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1062,7 +1062,7 @@ public final class MulticastMarker extends OperationalMarker {
       if (joinStatus.isJoining() && joinStatus.isReceivedMarkerList()) {
 
          // Receive marker in normal state
-         processor.post(createResponse(ClusterResponse.RESULT_SUCCESS));
+         processor.post(createResponse(Response.RESULT_SUCCESS));
 
          // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
          //
@@ -1080,7 +1080,7 @@ public final class MulticastMarker extends OperationalMarker {
             final String errorDescription = "First marker is NOT from the expected cluster: " + getClusterUUID()
                     + ", expected: " + joinStatus.getJoiningToCluster().getClusterUUID();
             LOG.warn(errorDescription);
-            final Response errorResponse = createResponse(ClusterResponse.RESULT_ERROR);
+            final Response errorResponse = createResponse(Response.RESULT_ERROR);
             errorResponse.setResult(errorDescription);
             processor.post(errorResponse);
 
@@ -1163,7 +1163,7 @@ public final class MulticastMarker extends OperationalMarker {
          if (LOG.isDebugEnabled()) {
             LOG.debug(errorDescription);
          }
-         final Response errorResponse = createResponse(ClusterResponse.RESULT_ERROR);
+         final Response errorResponse = createResponse(Response.RESULT_ERROR);
          errorResponse.setResult(errorDescription);
          processor.post(errorResponse);
       }
@@ -1194,7 +1194,7 @@ public final class MulticastMarker extends OperationalMarker {
          //noinspection ControlFlowStatementWithoutBraces
          if (LOG.isDebugEnabled()) LOG.debug(errorResult); // NOPMD
 
-         final Response response = createResponse(ClusterResponse.RESULT_ERROR);
+         final Response response = createResponse(Response.RESULT_ERROR);
          response.setResult(errorResult);
          processor.post(response);
 
@@ -1202,7 +1202,7 @@ public final class MulticastMarker extends OperationalMarker {
       }
 
       // Respond with success
-      processor.post(createResponse(ClusterResponse.RESULT_SUCCESS));
+      processor.post(createResponse(Response.RESULT_SUCCESS));
 
       if (LOG.isDebugEnabled()) {
          LOG.debug("Received multicast marker: " + this);
@@ -1293,7 +1293,7 @@ public final class MulticastMarker extends OperationalMarker {
          //noinspection ControlFlowStatementWithoutBraces
          if (LOG.isDebugEnabled()) LOG.debug("Destroying a marker that took too long to forward: " + this); // NOPMD
 
-         processor.post(createResponse(ClusterResponse.RESULT_SUCCESS));
+         processor.post(createResponse(Response.RESULT_SUCCESS));
       } else {
 
          // Respond with error. The sender will initiate its own recovery.
@@ -1302,7 +1302,7 @@ public final class MulticastMarker extends OperationalMarker {
          //noinspection ControlFlowStatementWithoutBraces
          if (LOG.isDebugEnabled()) LOG.debug(errorResult); // NOPMD
 
-         final Response response = createResponse(ClusterResponse.RESULT_ERROR);
+         final Response response = createResponse(Response.RESULT_ERROR);
          response.setResult(errorResult);
          processor.post(response);
       }
