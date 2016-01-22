@@ -577,7 +577,7 @@ public final class LogBrokerMonitor {
       //
       _logMonitorFrame = new JFrame("LogFactor5");
 
-      _logMonitorFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+      _logMonitorFrame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
       final String resource =
               "/org/apache/log4j/lf5/viewer/images/lf5_small_icon.gif";
@@ -767,7 +767,7 @@ public final class LogBrokerMonitor {
       final JLabel status =
               new JLabel("No log records to display.");
       _statusLabel = status;
-      status.setHorizontalAlignment(JLabel.LEFT);
+      status.setHorizontalAlignment(SwingConstants.LEFT);
 
       statusArea.setBorder(BorderFactory.createEtchedBorder());
       statusArea.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
