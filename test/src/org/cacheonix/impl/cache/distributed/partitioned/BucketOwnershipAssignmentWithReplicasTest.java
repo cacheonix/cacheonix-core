@@ -248,8 +248,8 @@ public final class BucketOwnershipAssignmentWithReplicasTest extends TestCase {
       assertEquals(1384, eventListener.getBeginRestoreReplicaCommandsBucketCount());
       assertEquals(4, eventListener.getRestoreBucketCommands().size());
       assertEquals(515, eventListener.getRestoreBucketCommandsBucketCount());
-      assertEquals(2, eventListener.getBeginTransferCommands().size());
-      assertEquals(162, eventListener.getBeginTransferCommandsBucketCount(0));
+      assertEquals(1, eventListener.getBeginTransferCommands().size());
+      assertEquals(161, eventListener.getBeginTransferCommandsBucketCount(0));
 
       final int bucketCount = bucketOwnershipAssignment.getBucketCount();
       for (int n = 0; n < bucketCount; n++) {
