@@ -195,7 +195,7 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
       final UUID initialClusterUUID = UUID.randomUUID();
       this.router = new Router(address);
       this.router.setClusterUUID(initialClusterUUID);
-      this.multicastSender = createMulticastSender(address, serverConfig);
+      this.multicastSender = createMulticastSender(router, address, serverConfig);
       this.multicastServer = createMulticastServer(serverConfig);
       this.clusterProcessor = createClusterProcessor(clock, timer, router, multicastSender, serverConfig, address,
               initialClusterUUID);
@@ -225,11 +225,12 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
    /**
     * Creates a multicast sender based on the server configuration.
     *
+    * @param router the router.
     * @param localAddress the local node address.
     * @param serverConfig the server configuration.  @return a new multicast sender.
     * @throws IOException if an I/O error occured.
     */
-   private static MulticastSender createMulticastSender(final ClusterNodeAddress localAddress,
+   private static MulticastSender createMulticastSender(final Router router, final ClusterNodeAddress localAddress,
            final ServerConfiguration serverConfig) throws IOException {
 
       // Limit broadcast to the local host
@@ -261,7 +262,7 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
             knownReceiverAddresses.add(new ReceiverAddress(receiverTcpAddress, receiverTcpPort));
          }
 
-         return new TCPMulticastSender(localAddress, knownReceiverAddresses);
+         return new TCPMulticastSender(router, localAddress, knownReceiverAddresses);
       }
    }
 

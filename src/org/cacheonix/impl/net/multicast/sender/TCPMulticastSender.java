@@ -43,17 +43,20 @@ public final class TCPMulticastSender implements MulticastSender {
 
    private final ClusterNodeAddress localAddress;
 
-   private Router router;
+   private final Router router;
 
 
-   public TCPMulticastSender(final ClusterNodeAddress localAddress, final List<ReceiverAddress> receiverAddresses) {
+   public TCPMulticastSender(final Router router, final ClusterNodeAddress localAddress,
+           final List<ReceiverAddress> receiverAddresses) {
 
       this.loopbackReceiverAddress = new ReceiverAddress(localAddress.getAddresses(), localAddress.getTcpPort());
       this.receiverAddresses = new ArrayList<ReceiverAddress>(receiverAddresses);
       this.localAddress = localAddress;
+      this.router = router;
    }
 
-  /**
+
+   /**
     * {@inheritDoc}
     * <p/>
     * This implementation wraps the frame into a MulticastFrameMessage and sends the MulticastFrameMessage to the known
@@ -99,7 +102,7 @@ public final class TCPMulticastSender implements MulticastSender {
             router.route(loopbackMessage);
          } catch (final IOException e) {
 
-            LOG.warn("Error while sending a frame to self: " + e.toString(), e);
+            LOG.warn("Error while sending a frame to self: " + e, e);
          }
       }
    }
