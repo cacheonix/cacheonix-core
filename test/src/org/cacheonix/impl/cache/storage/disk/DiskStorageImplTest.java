@@ -22,6 +22,7 @@ import java.io.RandomAccessFile;
 
 import junit.framework.TestCase;
 import org.cacheonix.TestUtils;
+import org.cacheonix.impl.util.IOUtils;
 
 /**
  * Tests DiskStorageImpl.
@@ -46,7 +47,8 @@ public final class DiskStorageImplTest extends TestCase {
 
       super.setUp();
       final File fl = TestUtils.getTestFile(diskStorageFile);
-      diskStorage = (DiskStorageImpl) StorageFactory.createStorage(diskStorageName, 1024L * 1024L, fl.getCanonicalPath());
+      diskStorage = (DiskStorageImpl) StorageFactory.createStorage(diskStorageName, 1024L * 1024L,
+              fl.getCanonicalPath());
    }
 
 
@@ -118,10 +120,11 @@ public final class DiskStorageImplTest extends TestCase {
 
       Object value = null;
 
+      RandomAccessFile fileRand = null;
       try {
          final File fl = TestUtils.getTestFile(diskStorageFile);
 
-         final RandomAccessFile fileRand = new RandomAccessFile(fl, "rw");
+         fileRand = new RandomAccessFile(fl, "rw");
          fileRand.setLength(10L);
          value = diskStorage.get(str);
       } catch (final StorageException sex) {
@@ -129,6 +132,9 @@ public final class DiskStorageImplTest extends TestCase {
          final Throwable iox = sex.getCause();
 
          assertTrue(iox instanceof IOException);
+      } finally {
+
+         IOUtils.closeHard(fileRand);
       }
 
       assertNull(value);
