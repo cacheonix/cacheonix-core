@@ -20,6 +20,7 @@ import org.cacheonix.impl.net.serializer.SerializerFactory;
 /**
  * Tester for Time.
  */
+@SuppressWarnings("EqualsWithItself")
 public class TimeImplTest extends TestCase {
 
    private static final long MILLIS = 1000L;
@@ -65,7 +66,7 @@ public class TimeImplTest extends TestCase {
    }
 
 
-   @SuppressWarnings("ObjectEqualsNull")
+   @SuppressWarnings({"ObjectEqualsNull", "EqualsWithItself"})
    public void testEquals() throws Exception {
 
       assertEquals(time, new TimeImpl(MILLIS, COUNT));
