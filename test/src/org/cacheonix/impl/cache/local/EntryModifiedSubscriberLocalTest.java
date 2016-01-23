@@ -102,6 +102,7 @@ public final class EntryModifiedSubscriberLocalTest extends CacheonixTestCase {
       cache.put(KEY, VALUE);
 
       // Assert
+      //noinspection StatementWithEmptyBody
       while (subscriber.getReceivedEvents().isEmpty()) { // NOPMD
          // Crash-poll to wait for the event
       }

@@ -36,6 +36,7 @@ public final class NanosTimeTest extends CacheonixTestCase {
 
       final long n1 = System.nanoTime();
 
+      //noinspection StatementWithEmptyBody
       for (long i = 0; i < 100; i++) {
       }
 
