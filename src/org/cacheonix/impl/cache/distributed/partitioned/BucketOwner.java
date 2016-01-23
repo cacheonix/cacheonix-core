@@ -207,7 +207,7 @@ public final class BucketOwner implements Wireable {
 
    public boolean hasInboundBuckets() {
 
-      return inboundBuckets != null && !inboundBuckets.isEmpty();
+      return !inboundBuckets.isEmpty();
    }
 
 
@@ -223,7 +223,7 @@ public final class BucketOwner implements Wireable {
 
    public boolean hasOutboundBuckets() {
 
-      return outboundBuckets != null && !outboundBuckets.isEmpty();
+      return !outboundBuckets.isEmpty();
    }
 
 
@@ -328,7 +328,7 @@ public final class BucketOwner implements Wireable {
 
    public boolean hasInboundReplicas() {
 
-      return inboundReplicas != null && !inboundReplicas.isEmpty();
+      return !inboundReplicas.isEmpty();
    }
 
 
@@ -420,7 +420,7 @@ public final class BucketOwner implements Wireable {
       }
 
       //
-      if (inboundReplicas != null && !inboundReplicas.isEmpty()) {
+      if (!inboundReplicas.isEmpty()) {
 
          return true;
       }
@@ -684,19 +684,19 @@ public final class BucketOwner implements Wireable {
       if (address != null ? !address.equals(that.address) : that.address != null) {
          return false;
       }
-      if (inboundBuckets != null ? !inboundBuckets.equals(that.inboundBuckets) : that.inboundBuckets != null) {
+      if (!inboundBuckets.equals(that.inboundBuckets)) {
          return false;
       }
-      if (inboundReplicas != null ? !inboundReplicas.equals(that.inboundReplicas) : that.inboundReplicas != null) {
+      if (!inboundReplicas.equals(that.inboundReplicas)) {
          return false;
       }
-      if (outboundBuckets != null ? !outboundBuckets.equals(that.outboundBuckets) : that.outboundBuckets != null) {
+      if (!outboundBuckets.equals(that.outboundBuckets)) {
          return false;
       }
       if (!Arrays.equals(outboundReplicas, that.outboundReplicas)) {
          return false;
       }
-      if (ownedBuckets != null ? !ownedBuckets.equals(that.ownedBuckets) : that.ownedBuckets != null) {
+      if (!ownedBuckets.equals(that.ownedBuckets)) {
          return false;
       }
 
@@ -709,11 +709,11 @@ public final class BucketOwner implements Wireable {
       int result = (int) replicaCount;
       result = 31 * result + (address != null ? address.hashCode() : 0);
       result = 31 * result + (leaving ? 1 : 0);
-      result = 31 * result + (ownedBuckets != null ? ownedBuckets.hashCode() : 0);
-      result = 31 * result + (outboundBuckets != null ? outboundBuckets.hashCode() : 0);
-      result = 31 * result + (inboundBuckets != null ? inboundBuckets.hashCode() : 0);
+      result = 31 * result + ownedBuckets.hashCode();
+      result = 31 * result + outboundBuckets.hashCode();
+      result = 31 * result + inboundBuckets.hashCode();
       result = 31 * result + (outboundReplicas != null ? Arrays.hashCode(outboundReplicas) : 0);
-      result = 31 * result + (inboundReplicas != null ? inboundReplicas.hashCode() : 0);
+      result = 31 * result + inboundReplicas.hashCode();
       return result;
    }
 
@@ -721,23 +721,14 @@ public final class BucketOwner implements Wireable {
    @Override
    public String toString() {
 
-      return "BucketOwner{" +
-              "leaving=" + leaving +
-              ", address=" + address +
-              ", replicaCount=" + replicaCount +
-              ", inboundBuckets.size()=" + (inboundBuckets == null ? "null" : inboundBuckets.size()) +
-              ", inboundReplicas.size()=" + (inboundReplicas == null ? "null" : inboundReplicas.size()) +
-              ", outboundBuckets.size()=" + (outboundBuckets == null ? "null" : outboundBuckets.size()) +
-              ", outboundReplicas.length =" + (outboundReplicas == null ? "null" : outboundReplicas.length) +
-              ", ownedBuckets.size()=" + (ownedBuckets == null ? "null" : ownedBuckets.size()) +
-              '}';
+      return "BucketOwner{" + "leaving=" + leaving + ", address=" + address + ", replicaCount=" + replicaCount + ", inboundBuckets.size()=" + inboundBuckets.size() + ", inboundReplicas.size()=" + inboundReplicas.size() + ", outboundBuckets.size()=" + outboundBuckets.size() + ", outboundReplicas.length =" + (outboundReplicas == null ? "null" : outboundReplicas.length) + ", ownedBuckets.size()=" + ownedBuckets.size() + '}';
    }
 
 
    /**
     * A class factory.
     */
-   private final static class Builder implements WireableBuilder {
+   private static final class Builder implements WireableBuilder {
 
       public Wireable create() {
 
