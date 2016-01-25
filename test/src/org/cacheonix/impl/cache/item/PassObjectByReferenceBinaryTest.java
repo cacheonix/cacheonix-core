@@ -32,18 +32,18 @@ import static org.cacheonix.TestUtils.getBytes;
 /**
  * Tester for  PartitionElementValueByCopy.
  */
-public final class PassByReferenceBinaryTest extends TestCase {
+public final class PassObjectByReferenceBinaryTest extends TestCase {
 
    /**
     * Logger.
     *
     * @noinspection UNUSED_SYMBOL, UnusedDeclaration
     */
-   private static final Logger LOG = Logger.getLogger(PassByReferenceBinaryTest.class); // NOPMD
+   private static final Logger LOG = Logger.getLogger(PassObjectByReferenceBinaryTest.class); // NOPMD
 
    private static final String TEST_VALUE = "test_value";
 
-   private PassByReferenceBinary binary;
+   private PassObjectByReferenceBinary binary;
 
 
    public void testSetValue() {
@@ -55,7 +55,7 @@ public final class PassByReferenceBinaryTest extends TestCase {
 
    public void testSetNullValue() {
 
-      final PassByReferenceBinary nullBinary = new PassByReferenceBinary(null);
+      final PassObjectByReferenceBinary nullBinary = new PassObjectByReferenceBinary(null);
       assertNull(nullBinary.getValue());
       assertEquals(0, nullBinary.hashCode());
    }
@@ -70,7 +70,7 @@ public final class PassByReferenceBinaryTest extends TestCase {
 
    public void testSerializeDeserializeInteger() throws IOException {
 
-      final PassByReferenceBinary intBinary = new PassByReferenceBinary(Integer.valueOf(5000));
+      final PassObjectByReferenceBinary intBinary = new PassObjectByReferenceBinary(Integer.valueOf(5000));
       final Serializer ser = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
       assertEquals(intBinary, ser.deserialize(ser.serialize(intBinary)));
    }
@@ -79,7 +79,7 @@ public final class PassByReferenceBinaryTest extends TestCase {
    public void testSerializeDeserializeUsingUtils() throws IOException, ClassNotFoundException {
 
       // Write
-      final PassByReferenceBinary intBinary = new PassByReferenceBinary(Integer.valueOf(5000));
+      final PassObjectByReferenceBinary intBinary = new PassObjectByReferenceBinary(Integer.valueOf(5000));
       final ByteArrayOutputStream baos = new ByteArrayOutputStream(111);
       final DataOutputStream dos = new DataOutputStream(baos);
       SerializerUtils.writeBinary(dos, intBinary);
@@ -102,15 +102,15 @@ public final class PassByReferenceBinaryTest extends TestCase {
 
    public void testEquals() {
 
-      assertEquals(new PassByReferenceBinary(new Serializable[]{0, 1, 2}),
-              new PassByReferenceBinary(new Serializable[]{0, 1, 2}));
+      assertEquals(new PassObjectByReferenceBinary(new Serializable[]{0, 1, 2}),
+              new PassObjectByReferenceBinary(new Serializable[]{0, 1, 2}));
    }
 
 
 
    public void testEqualsNulls() {
 
-      assertEquals(new PassByReferenceBinary(null), new PassByReferenceBinary(null));
+      assertEquals(new PassObjectByReferenceBinary(null), new PassObjectByReferenceBinary(null));
    }
 
 
@@ -118,7 +118,7 @@ public final class PassByReferenceBinaryTest extends TestCase {
    protected final void setUp() throws Exception {
 
       super.setUp();
-      binary = new PassByReferenceBinary(TEST_VALUE);
+      binary = new PassObjectByReferenceBinary(TEST_VALUE);
    }
 
 

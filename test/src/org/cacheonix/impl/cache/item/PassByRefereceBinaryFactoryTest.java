@@ -39,7 +39,7 @@ public final class PassByRefereceBinaryFactoryTest extends TestCase {
    public void testCreate() {
 
       final Binary binary = factory.createBinary(OBJECT);
-      assertTrue(binary instanceof PassByReferenceBinary);
+      assertTrue(binary instanceof PassObjectByReferenceBinary);
    }
 
 

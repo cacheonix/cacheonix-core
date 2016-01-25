@@ -23,7 +23,7 @@ final class PassByReferenceBinaryFactory implements BinaryFactory {
     */
    public Binary createItem() {
 
-      return new PassByReferenceBinary();
+      return new PassObjectByReferenceBinary();
    }
 
 
@@ -32,7 +32,7 @@ final class PassByReferenceBinaryFactory implements BinaryFactory {
     */
    public Binary createBinary(final Object object) {
 
-      return new PassByReferenceBinary(object);
+      return new PassObjectByReferenceBinary(object);
    }
 
 

@@ -42,7 +42,7 @@ final class ImmutableBinaryFactoryDecorator implements BinaryFactory {
    public Binary createBinary(final Object object) throws InvalidObjectException {
 
       if (isImmutable(object)) {
-         return new PassByReferenceBinary(object);
+         return new PassObjectByReferenceBinary(object);
       } else {
          return binaryFactory.createBinary(object);
       }

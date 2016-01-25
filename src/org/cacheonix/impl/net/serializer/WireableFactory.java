@@ -71,7 +71,7 @@ import org.cacheonix.impl.cache.distributed.partitioned.UpdateKeyRequest;
 import org.cacheonix.impl.cache.distributed.partitioned.ValuesRequest;
 import org.cacheonix.impl.cache.item.CompressedBinary;
 import org.cacheonix.impl.cache.item.PassByCopyBinary;
-import org.cacheonix.impl.cache.item.PassByReferenceBinary;
+import org.cacheonix.impl.cache.item.PassObjectByReferenceBinary;
 import org.cacheonix.impl.cache.store.BinaryStore;
 import org.cacheonix.impl.cache.store.BinaryStoreElement;
 import org.cacheonix.impl.cache.store.CacheStatisticsImpl;
@@ -138,7 +138,7 @@ public final class WireableFactory {
 
    private WireableFactory() {
 
-      addMaker(Wireable.TYPE_PASS_BY_REFERENCE_BINARY, PassByReferenceBinary.BUILDER);
+      addMaker(Wireable.TYPE_PASS_BY_REFERENCE_BINARY, PassObjectByReferenceBinary.BUILDER);
       addMaker(Wireable.TYPE_PASS_BY_COPY_BINARY, PassByCopyBinary.BUILDER);
       addMaker(Wireable.TYPE_COMPRESSED_BINARY, CompressedBinary.BUILDER);
       addMaker(Wireable.TYPE_BUCKET_OWNER, BucketOwner.BUILDER);
