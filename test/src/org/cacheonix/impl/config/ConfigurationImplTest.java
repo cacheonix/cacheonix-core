@@ -70,7 +70,7 @@ public final class ConfigurationImplTest extends TestCase {
       final ServerConfiguration serverConfiguration = read(TestConstants.CACHEONIX_CLUSTER_XML).getServer();
       final MulticastBroadcastConfiguration multicastBroadcast = serverConfiguration.getBroadcastConfiguration().getMulticast();
 
-      assertEquals(1000, serverConfiguration.getSelectorTimeoutMillis());
+      assertEquals(10, serverConfiguration.getSelectorTimeoutMillis());
       assertEquals(5000, serverConfiguration.getSocketTimeoutMillis());
       assertEquals(MULTICAST_ADDRESS, StringUtils.toString(multicastBroadcast.getMulticastAddress()));
       assertEquals(MULTICAST_PORT, multicastBroadcast.getMulticastPort());
