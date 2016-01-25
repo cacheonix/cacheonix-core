@@ -136,7 +136,7 @@ public final class OrphanBucketMessage extends LocalCacheMessage {
 
       public Wireable create() {
 
-         return new OrphanBucketMessage();
+         return new OrphanBucketMessage(); // NOPMD
       }
    }
 }

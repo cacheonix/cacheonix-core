@@ -230,7 +230,7 @@ public final class EntryModifiedNotificationMessage extends CacheMessage {
 
       public Wireable create() {
 
-         return new EntryModifiedNotificationMessage();
+         return new EntryModifiedNotificationMessage(); // NOPMD
       }
    }
 }

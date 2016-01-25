@@ -115,7 +115,7 @@ public final class ShutdownCacheProcessorMessage extends LocalCacheMessage {
 
       public Wireable create() {
 
-         return new ShutdownCacheProcessorMessage();
+         return new ShutdownCacheProcessorMessage(); // NOPMD
       }
    }
 }

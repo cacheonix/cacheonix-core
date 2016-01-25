@@ -211,7 +211,7 @@ public final class ClearFrontCacheBucketAnnouncement extends Request {
 
       public Wireable create() {
 
-         return new ClearFrontCacheBucketAnnouncement();
+         return new ClearFrontCacheBucketAnnouncement(); // NOPMD
       }
    }
 }

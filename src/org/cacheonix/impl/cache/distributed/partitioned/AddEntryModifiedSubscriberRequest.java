@@ -208,7 +208,7 @@ public final class AddEntryModifiedSubscriberRequest extends LocalCacheRequest i
 
       public Wireable create() {
 
-         return new AddEntryModifiedSubscriberRequest();
+         return new AddEntryModifiedSubscriberRequest(); // NOPMD
       }
    }
 }

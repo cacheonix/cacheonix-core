@@ -77,7 +77,7 @@ public final class RepartitionAnnouncement extends GroupMessage {
 
       public Wireable create() {
 
-         return new RepartitionAnnouncement();
+         return new RepartitionAnnouncement(); // NOPMD
       }
    }
 }
