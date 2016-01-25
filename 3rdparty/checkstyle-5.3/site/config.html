@@ -1,0 +1,1446 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>checkstyle - Configuration</title>
+    <style type="text/css" media="all">
+      @import url("./css/maven-base.css");
+      @import url("./css/maven-theme.css");
+      @import url("./css/site.css");
+    </style>
+    <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+          <meta name="author" content="Lars Kühne" />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+  <body class="composite">
+    <div id="banner">
+                    <span id="bannerLeft">
+    
+            Checkstyle 5.3
+    
+            </span>
+                        <a href="" id="bannerRight">
+    
+                                            <img src="images/logo.png" alt="Checkstyle" />
+    
+            </a>
+            <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+  
+  
+    
+            <div class="xleft">
+        Last Published: 2010-10-19
+                      </div>
+            <div class="xright">      
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+  
+  
+    
+                   <h5>About</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="index.html">Checkstyle</a>
+          </li>
+              
+    <li class="none">
+                    <a href="releasenotes.html">Release Notes</a>
+          </li>
+          </ul>
+              <h5>Documentation</h5>
+            <ul>
+              
+          
+              
+      
+              
+            <li class="expanded">
+              <strong>Configuration</strong>
+                <ul>
+                  
+    <li class="none">
+                    <a href="property_types.html">Property Types</a>
+          </li>
+              </ul>
+        </li>
+              
+          
+              
+      
+            
+      
+              
+        <li class="expanded">
+                    <a href="running.html">Running</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="anttask.html">Ant Task</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="cmdline.html">Command Line</a>
+          </li>
+              </ul>
+        </li>
+              
+    <li class="none">
+                    <a href="availablechecks.html">Available Checks</a>
+          </li>
+              
+          
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="expanded">
+                    <a href="checks.html">Standard Checks</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="config_annotation.html">Annotations</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_blocks.html">Block Checks</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_design.html">Class Design</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_coding.html">Coding</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_duplicates.html">Duplicate Code</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_header.html">Headers</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_imports.html">Imports</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_javadoc.html">Javadoc Comments</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_metrics.html">Metrics</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_misc.html">Miscellaneous</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_modifier.html">Modifiers</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_naming.html">Naming Conventions</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_regexp.html">Regexp</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_sizes.html">Size Violations</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_whitespace.html">Whitespace</a>
+          </li>
+              </ul>
+        </li>
+              
+          
+              
+      
+            
+      
+            
+      
+              
+        <li class="expanded">
+                    <a href="extending.html">Extending Checkstyle</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="writingchecks.html">Writing checks</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="writingfilters.html">Writing filters</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="writinglisteners.html">Writing listeners</a>
+          </li>
+              </ul>
+        </li>
+          </ul>
+              <h5>Developers</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="apidocs/index.html">Javadoc</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://sourceforge.net/projects/checkstyle" class="externalLink">Project Page</a>
+          </li>
+              
+    <li class="none">
+                    <a href="contributing.html">Contributing</a>
+          </li>
+          </ul>
+              <h5>Project Documentation</h5>
+            <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-info.html">Project Information</a>
+                </li>
+              
+                
+              
+      
+              
+        <li class="collapsed">
+                    <a href="project-reports.html">Project Reports</a>
+                </li>
+          </ul>
+                                                 
+                        
+                        
+            <a href="http://sourceforge.net/projects/checkstyle" title="SourceForge" class="poweredBy">
+                            <img alt="SourceForge" src="http://sflogo.sourceforge.net/sflogo.php?group_id=29721&type=11" />
+            </a>
+                               
+  
+
+  
+    
+  
+  
+    
+        </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <div class="section"><h2><a name="Overview"></a>Overview</h2>
+<p>
+        A Checkstyle configuration specifies which <em>modules</em> to
+        plug in and apply to Java source files. Modules are structured
+        in a tree whose root is the <em>Checker</em> module. The next
+        level of modules contains:
+      </p>
+<ul><li><em>FileSetChecks</em> - modules that take a set of input
+        files and fire error messages.</li>
+<li><em>Filters</em>
+
+        - modules that filter audit events,
+        including error messages, for acceptance.</li>
+<li><em>AuditListeners</em> - modules that report accepted events.</li>
+</ul>
+<p>
+        Many checks are submodules of the <em>TreeWalker</em>
+        FileSetCheck module. The TreeWalker operates by separately
+        transforming each of the Java source files into an abstract
+        syntax tree and then handing the result over to each of its
+        submodules which in turn have a look at certain aspects of the
+        tree.
+      </p>
+<p>
+        Checkstyle obtains a configuration from an XML document whose
+        elements specify the configuration's hierarchy of modules and
+        their properties. You provide a file that contains the
+        configuration document when you invoke Checkstyle at the <a href="cmdline.html">command line</a>, and when you run a <a href="anttask.html">Checkstyle task</a> in ant. The
+        documentation directory of the Checkstyle distribution contains
+        a sample configuration file <em>sun_checks.xml</em> which
+        configures Checkstyle to check for the Sun coding conventions.
+      </p>
+</div>
+<div class="section"><h2><a name="Modules"></a>Modules</h2>
+<p>
+        A <code>module</code> element in the configuration
+        XML document specifies a module identified by the element's
+        <code>name</code> attribute.
+      </p>
+<p>
+        Here is a fragment of a typical configuration document:
+      </p>
+<div class="source"><pre>
+&lt;module name=&quot;Checker&quot;&gt;
+    &lt;module name=&quot;JavadocPackage&quot;/&gt;
+    &lt;module name=&quot;TreeWalker&quot;&gt;
+        &lt;module name=&quot;AvoidStarImport&quot;/&gt;
+        &lt;module name=&quot;ConstantName&quot;/&gt;
+        &lt;module name=&quot;EmptyBlock&quot;/&gt;
+    &lt;/module&gt;
+&lt;/module&gt;
+      </pre>
+</div>
+<p>
+        In this configuration:
+      </p>
+<ul><li>
+          Root module <code>Checker</code> has child
+          FileSetChecks <code>JavadocPackage</code> and <code>TreeWalker</code>. (Module <a href="config_javadoc.html"><code>JavadocPackage</code></a> checks that all packages
+          have package documentation.)
+        </li>
+<li>
+          Module <code>TreeWalker</code> has submodules
+          <code>AvoidStarImport</code>, <code>ConstantName</code>, and <code>EmptyBlock</code>.  (Modules <a href="config_imports.html"><code>AvoidStarImport</code></a>, <a href="config_naming.html"><code>ConstantName</code></a>, and <a href="config_blocks.html"><code>EmptyBlock</code></a> check that a Java source
+          file has no star imports, has valid constant names, and has no
+          empty blocks, respectively.)
+        </li>
+</ul>
+<p>
+        For each configuration module, Checkstyle loads a class
+        identified by the <code>name</code> attribute of
+        the <code>module</code>.  There are several rules
+        for loading a module's class:
+      </p>
+<ol type="1"><li>
+          Load a class directly according to a package-qualified <code>name</code>, such as loading class <code>com.puppycrawl.tools.checkstyle.TreeWalker</code>
+          for element:
+
+          <div class="source"><pre>
+&lt;module name=&quot;com.puppycrawl.tools.checkstyle.TreeWalker&quot;&gt;
+          </pre>
+</div>
+
+
+          This is useful for plugging third-party modules into a configuration.
+        </li>
+<li>
+          Load a class of a pre-specified package, such as loading class
+          <code>com.puppycrawl.tools.checkstyle.checks.AvoidStarImport</code>
+          for element
+          <div class="source"><pre>
+&lt;module name=&quot;AvoidStarImport&quot;/&gt;
+          </pre>
+</div>
+
+
+          Checkstyle applies packages <code>
+          com.puppycrawl.tools.checkstyle</code>, <code>
+          com.puppycrawl.tools.checkstyle.filters</code>, and <code> com.puppycrawl.tools.checkstyle.checks</code>
+          and its sub-packages (only those included in the Checkstyle
+          distribution). You can specify other packages in a <a href="#Packages"><em>package names XML document</em></a>
+          when you invoke Checkstyle at the <a href="cmdline.html">command line</a>, and when you run a <a href="anttask.html">Checkstyle task</a> in ant.
+        </li>
+<li>
+          Apply the above rules to <code>name</code>
+          concatenated with <code>&quot;Check&quot;</code>,
+          such as loading class <code>com.puppycrawl.tools.checkstyle.checks.ConstantNameCheck</code>
+          for element
+          <div class="source"><pre>
+&lt;module name=&quot;ConstantName&quot;/&gt;
+          </pre>
+</div>
+</li>
+</ol>
+</div>
+<div class="section"><h2><a name="Properties"></a>Properties</h2>
+<p>
+        Properties of a module control how the module performs its task.
+        Each module property has a default value, and you are not
+        required to define a property in the configuration document if
+        the default value is satisfactory.  To assign a non-default
+        value to a module's property, define a child <code>property</code> element of the <code>module</code> element in the configuration XML
+        document. Also provide appropriate <code>name</code> and <code>value</code>
+        attributes for the <code>property</code> element.
+        For example, property <code>max</code> of module
+        <code>MethodLength</code> specifies the maximum
+        allowable number of lines in a method or constructor, and has
+        default value <code>150</code>.  Here is a
+        configuration of module <code>MethodLength</code>
+        so that the check reports methods and constructors with more
+        than <code>60</code> lines:
+      </p>
+<div class="source"><pre>
+&lt;module name=&quot;MethodLength&quot;&gt;
+    &lt;property name=&quot;max&quot; value=&quot;60&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+</div>
+<p><a href="cmdline.html">Command line</a> properties and ant <a href="anttask.html">Checkstyle task</a> properties apply to the
+        root <code>Checker</code> module. Also, properties
+        are inherited in the module hierarchy. These features make it
+        easy to define one property value that applies to many
+        modules. For example, the following configuration fragment
+        specifies that a <code>tabWidth</code> of <code>4</code> applies to <code>TreeWalker</code> and its submodules:
+      </p>
+<div class="source"><pre>
+&lt;module name=&quot;Checker&quot;&gt;
+    &lt;module name=&quot;JavadocPackage&quot;/&gt;
+    &lt;module name=&quot;TreeWalker&quot;&gt;
+        &lt;property name=&quot;tabWidth&quot; value=&quot;4&quot;/&gt;
+        &lt;module name=&quot;AvoidStarImport&quot;/&gt;
+        &lt;module name=&quot;ConstantName&quot;/&gt;
+        ...
+    &lt;/module&gt;
+&lt;/module&gt;
+      </pre>
+</div>
+<p>
+        The value of a module property can be specified through
+        <em>property expansion</em> with the <code>${<em>property_name</em>}</code> notation, where
+        <code><em>property_name</em></code> is a <a href="cmdline.html">command line</a> property or an ant <a href="anttask.html">Checkstyle task</a> property.  For example,
+        the following configuration document element gives property
+        <code>headerFile</code> the value of command line
+        property <code>checkstyle.header.file</code>:
+     </p>
+<div class="source"><pre>
+&lt;property name=&quot;headerFile&quot; value=&quot;${checkstyle.header.file}&quot;/&gt;
+      </pre>
+</div>
+<p>
+        You can use property expansion to re-specify a module property
+        value without changing the configuration document.
+      </p>
+<p>
+        The property element provides an optional <code>default</code> attribute which is used when a
+        property in the value cannot be resolved. For example this
+        configuration snippet from a central configuration file checks
+        that methods have javadoc, but allows individual projects to
+        override the severity by specifying their desired value in the
+        command line property <code>checkstyle.javadoc.severity</code>:
+      </p>
+<div class="source"><pre>
+&lt;module name=&quot;JavaDocMethod&quot;&gt;
+  &lt;property name=&quot;severity&quot;
+               value=&quot;${checkstyle.javadoc.severity}&quot;
+               default=&quot;error&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+</div>
+<p>
+        This feature is a great help when setting up a centralized
+        configuration file (e.g. one file for the whole company) to
+        lower configuration maintenance costs.  Projects that are happy
+        with the default can simply use that configuration file as is,
+        but individual projects with special needs have the flexibility
+        to adjust a few settings to fit their needs without having to
+        copy and maintain the whole configuration.
+      </p>
+</div>
+<div class="section"><h2><a name="Checker"></a>Checker</h2>
+<p>
+        All configurations have root module <code>Checker</code>.  <code>Checker</code>
+        contains:
+      </p>
+<ul><li><em>FileSetCheck</em> children: modules that check sets of
+        files.</li>
+<li><em>Filter</em> children: modules that filter audit
+        events.</li>
+<li><em>AuditListener</em> children: modules that report
+        filtered events.</li>
+</ul>
+<p><code>Checker</code> also defines properties that are
+        inherited by all other modules of a configuration.
+      </p>
+<h4>Properties</h4>
+<table class="bodyTable"><tr class="a"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="b"><td>basedir</td>
+<td>base directory name; stripped off in messages about files</td>
+<td><a href="property_types.html#string">string</a></td>
+<td><code>null</code></td>
+</tr>
+<tr class="a"><td>localeCountry</td>
+<td>locale country for messages</td>
+<td><a href="property_types.html#string">string</a>: either
+          the empty string or an uppercase ISO 3166 2-letter code</td>
+<td>default locale country for the Java Virtual Machine</td>
+</tr>
+<tr class="b"><td>localeLanguage</td>
+<td>locale language for messages</td>
+<td><a href="property_types.html#string">string</a>: either
+          the empty string or a lowercase ISO 639 code</td>
+<td>default locale language for the Java Virtual Machine</td>
+</tr>
+<tr class="a"><td>charset</td>
+<td>name of the file charset</td>
+<td><a href="property_types.html#string">String</a></td>
+<td>System property &quot;file.encoding&quot;</td>
+</tr>
+</table>
+<p>
+        For example, the following configuration fragment specifies base
+        directory <code>src/checkstyle</code> and German
+        locale for all modules:
+      </p>
+<div class="source"><pre>
+&lt;module name=&quot;Checker&quot;&gt;
+    &lt;property name=&quot;basedir&quot; value=&quot;src/checkstyle&quot;/&gt;
+    &lt;property name=&quot;localeCountry&quot; value=&quot;DE&quot;/&gt;
+    &lt;property name=&quot;localeLanguage&quot; value=&quot;de&quot;/&gt;
+    &lt;module name=&quot;JavadocPackage&quot;/&gt;
+    &lt;module name=&quot;TreeWalker&quot;&gt;
+        ...
+    &lt;/module&gt;
+&lt;/module&gt;
+      </pre>
+</div>
+<p>
+        To configure a <code>Checker</code> so that it
+        handles files with the <code>UTF-8</code> charset:
+      </p>
+<div class="source"><pre>
+&lt;module name=&quot;Checker&quot;&gt;
+    &lt;property name=&quot;charset&quot; value=&quot;UTF-8&quot;/&gt;
+    ...
+&lt;/module&gt;
+      </pre>
+</div>
+</div>
+<div class="section"><h2><a name="TreeWalker"></a>TreeWalker</h2>
+<p>
+        FileSetCheck <code>TreeWalker</code> checks
+        individual Java source files and defines properties that are
+        applicable to checking such files.
+      </p>
+<h4>Properties</h4>
+<table class="bodyTable"><tr class="b"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="a"><td>cacheFile</td>
+<td>caches information about files that have checked ok; used
+          to avoid repeated checks of the same files</td>
+<td><a href="property_types.html#string">string</a></td>
+<td><code>null</code> (no cache file)</td>
+</tr>
+<tr class="b"><td>tabWidth</td>
+<td>number of expanded spaces for a tab character (<code>'\t'</code>); used in messages and Checks that
+          require a tab width, such as <a href="config_sizes.html#LineLength"><code>LineLength</code></a></td>
+<td><a href="property_types.html#integer">integer</a></td>
+<td><code>8</code></td>
+</tr>
+<tr class="a"><td>fileExtensions</td>
+<td>file type extension to identify java files. Setting this
+          property is typically only required if your java source code
+          is preprocessed before compilation and the original files do
+          not have the extension <code>.java</code></td>
+<td><a href="property_types.html#stringSet">String Set</a></td>
+<td><code>java</code></td>
+</tr>
+</table>
+<p>
+        For example, the following configuration fragment specifies
+        <code>TreeWalker</code> cache file <code>target/cachefile</code>, and a <code>tabWidth</code> of <code>4</code>:
+      </p>
+<div class="source"><pre>
+&lt;module name=&quot;Checker&quot;&gt;
+    &lt;module name=&quot;TreeWalker&quot;&gt;
+        &lt;property name=&quot;cacheFile&quot; value=&quot;target/cachefile&quot;/&gt;
+        &lt;property name=&quot;tabWidth&quot; value=&quot;4&quot;/&gt;
+        ...
+    &lt;/module&gt;
+&lt;/module&gt;
+      </pre>
+</div>
+<p>
+        
+        To integrate Checkstyle with BEA Weblogic Workshop 8.1:
+      </p>
+<div class="source"><pre>
+&lt;module name=&quot;Checker&quot;&gt;
+    &lt;module name=&quot;TreeWalker&quot;&gt;
+        &lt;property name=&quot;fileExtensions&quot; value=&quot;java,ejb,jpf&quot;/&gt;
+        ...
+      </pre>
+</div>
+</div>
+<div class="section"><h2><a name="TreeWalker_Checks"></a>TreeWalker Checks</h2>
+<p>
+        The <code>TreeWalker</code> module creates a syntax
+        tree for a Java source file and invokes its submodules, called
+        <em>Checks</em>, during a walk, or traversal, of the nodes of
+        the tree.  Every node of the syntax tree has a token. A visit to
+        a node during the traversal triggers all Checks that are
+        configured for its token.  For example, if Check <code>MethodLength</code> has been configured as a
+        submodule of <code>TreeWalker</code>, then a visit
+        to a node with a method or a constructor definition token
+        triggers <code>MethodLength</code> to check the
+        number of lines of the node's code block.
+      </p>
+<p>
+        Some Checks, such as <code>FileLength</code> and
+        <code>LineLength</code>, apply directly to the
+        source file and do not involve tokens of the syntax tree.  Other
+        Checks are associated with configurable sets of tokens that
+        trigger the Checks.  For example, this element configures Check
+        <code>MethodLength</code>:
+      </p>
+<div class="source"><pre>
+&lt;module name=&quot;MethodLength&quot;/&gt;
+      </pre>
+</div>
+<p>
+        The default token set for <code>MethodLength</code>
+        is <code>{METHOD_DEF, CTOR_DEF}</code>, method
+        definition and constructor definition tokens, so <code>TreeWalker</code> invokes <code>MethodLength</code> whenever it visits a node with
+        a <code>METHOD_DEF</code> or a <code>CTOR_DEF</code> token.
+      </p>
+<p>
+        You specify the trigger tokens for a Check with property <code>tokens</code>.  The value of <code>tokens</code> is a list that denotes a subset of
+        the Check's tokens, as in the following element that configures
+        Check <code>MethodLength</code> to check the number
+        of lines of methods only:
+      </p>
+<div class="source"><pre>
+&lt;module name=&quot;MethodLength&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+</div>
+<p>
+        To apply particular properties to different subsets of tokens
+        for a Check, repeat the Check.  For example, to check that the
+        length of each method is at most 150 lines (the default value of
+        <code>MethodLength</code> property <code>max</code>) and the length of each constructor is
+        at most 60 lines, include the following in the <code>TreeWalker</code> configuration:
+      </p>
+<div class="source"><pre>
+&lt;module name=&quot;MethodLength&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
+&lt;/module&gt;
+        &lt;module name=&quot;MethodLength&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;CTOR_DEF&quot;/&gt;
+    &lt;property name=&quot;max&quot; value=&quot;60&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+</div>
+<p>
+        Configurations of the Checks are specified in the pages under <a href="checks.html">here</a>.
+      </p>
+</div>
+<div class="section"><h2><a name="Severity"></a>Severity</h2>
+<p>
+        Each check has a <a href="property_types.html#severity">severity</a> property that a
+        Checkstyle audit assigns to all violations of the check. The
+        default severity level of a check is <code>error</code>.
+      </p>
+<p>
+        You can use the severity property to control the output of the
+        plain formatter for the <a href="cmdline.html">command line
+        tool</a> and the <a href="anttask.html">ANT task</a>. The plain
+        formatter does not report violations with severity level <code>ignore</code>, and notes violations with
+        severity level <code>warning</code>. For
+        example, according to the following configuration fragment, the
+        plain formatter outputs warnings for translation violations:
+      </p>
+<div class="source"><pre>
+&lt;module name=&quot;Translation&quot;&gt;
+    &lt;property name=&quot;severity&quot; value=&quot;warning&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+</div>
+<p>
+        The XML formatter reports the severity level of every violation
+        as an attribute of the violation's <code>error</code> element.
+      </p>
+</div>
+<div class="section"><h2><a name="Custom_messages"></a>Custom messages</h2>
+<p>
+        As of Checkstyle 5 all checks can be configured to report
+        custom, configuration specific messages instead of the
+        Checkstyle default messages.  This can be useful in cases where
+        the check message should reference corresponding sections in a
+        coding style document or the default is too generic for
+        developers to understand.
+      </p>
+<p>An example usage is:</p>
+<div class="source"><pre>
+&lt;module name=&quot;MemberName&quot;&gt;
+    &lt;property name=&quot;format&quot; value=&quot;^m[a-zA-Z0-9]*$&quot;/&gt;
+    &lt;message key=&quot;name.invalidPattern&quot;
+             value=&quot;Member ''{0}'' must start with a lowercase ''m'' (checked pattern ''{1}'').&quot;
+             /&gt;
+&lt;/module&gt;
+      </pre>
+</div>
+<p>
+        Each check configuration element can zero or more <code>message</code> elements. Every check uses one or
+        more distinct message keys to log violations. If you want to
+        customize a certain message you need to specify the message key
+        in the <code>key</code> attribute of the <code>message</code> element.
+      </p>
+<p>
+        The <code>value</code> attribute specifies the
+        custom message pattern, as shown in the example above.
+        Placeholders used in the default message can also be used in the
+        custom message.  Note that the message pattern must be a valid
+        <code>java.text.MessageFormat</code> style pattern,
+        so be careful about curly braces outside a placeholder
+        definition.
+      </p>
+<p>
+        The obvious question is how do you know which message keys a
+        Check uses, so that you can override them? Well, that is the
+        tricky part. To find out which keys a Check uses you currently
+        need to look into the Check's source code, in conjunction with
+        the Check's <code>messages.properties</code> file.
+        Tools/plugins might come to the rescue on this topic, so have a
+        look there.
+      </p>
+</div>
+<div class="section"><h2><a name="Filters"></a>Filters</h2>
+<p>
+        A Checker module has a set of Filter submodules to filter audit
+        events, including the error messages fired by Checks.  A Filter
+        can accept or reject an audit event. If all Filters accept an
+        audit event, then the Checker reports the event.  If any Filter
+        rejects an event, then the Checker does not report the
+        event.
+      </p>
+<div class="section"><h3><a name="SeverityMatchFilter"></a>SeverityMatchFilter</h3>
+<p>
+          Filter <code>SeverityMatchFilter</code> decides
+          audit events according to the <a href="#Severity">severity
+          level</a> of the event.
+        </p>
+<h5>SeverityMatchFilter Properties</h5>
+<table class="bodyTable"><tr class="b"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="a"><td>severity</td>
+<td>the severity level of this filter</td>
+<td><a href="property_types.html#severity">severity</a></td>
+<td><code>error</code></td>
+</tr>
+<tr class="b"><td>acceptOnMatch</td>
+<td>
+              If acceptOnMatch is <code>true</code>, then
+              the filter accepts an audit event if and only if there is
+              a match between the event's severity level and property
+              severity. If acceptOnMatch
+              is <code>false</code>, then the filter
+              accepts an audit event if and only if there is not a match
+              between the event's severity level and property severity.
+            </td>
+<td><a href="property_types.html#boolean">boolean</a></td>
+<td><code>true</code></td>
+</tr>
+</table>
+<p>
+          For example, the following configuration fragment directs the
+          Checker to not report audit events with severity
+          level <code>info</code>:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;SeverityMatchFilter&quot;&gt;
+    &lt;property name=&quot;severity&quot; value=&quot;info&quot;/&gt;
+    &lt;property name=&quot;acceptOnMatch&quot; value=&quot;false&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="SuppressionFilter"></a>SuppressionFilter</h3>
+<p>
+          Filter <code>SuppressionFilter</code> rejects
+          audit events for Check errors according to
+          a <a href="#XML_Details"><em>suppressions XML
+          document</em></a> in a file. If there is no configured
+          suppressions file, the Filter accepts all audit events.
+        </p>
+<h5>SuppressionFilter Properties</h5>
+<table class="bodyTable"><tr class="a"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="b"><td>file</td>
+<td>the name of the <em>suppressions XML document</em> file</td>
+<td><a href="property_types.html#string">string</a></td>
+<td><code>none</code></td>
+</tr>
+</table>
+<p>
+          For example, the following configuration fragment directs the
+          Checker to use a <code>SuppressionFilter</code>
+          with suppressions
+          file <code>docs/suppressions.xml</code>:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;SuppressionFilter&quot;&gt;
+    &lt;property name=&quot;file&quot; value=&quot;docs/suppressions.xml&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+<p>
+          A <a href="#XML_Details"><em>suppressions XML
+          document</em></a> contains a set
+          of <code>suppress</code> elements, where
+          each <code>suppress</code> element can have the
+          following attributes:
+        </p>
+<ul><li><code>files</code> -
+            a <a href="property_types.html#regexp">regular expression</a>
+            matched against the file name associated with an audit
+            event. It is mandatory.
+          </li>
+<li><code>checks</code> -
+            a <a href="property_types.html#regexp">regular expression</a>
+            matched against the name of the check associated with an audit
+            event. Optional if <code>id</code> is specified.
+          </li>
+<li><code>id</code> -
+            a <a href="property_types.html#string">string</a>
+            matched against the id of the check associated with an audit
+            event. Optional if <code>checks</code> is specified.
+          </li>
+<li><code>lines</code> - a comma-separated list of
+            values, where each value is
+            an <a href="property_types.html#integer">integer</a> or a
+            range of integers denoted by integer-integer. It is optional.
+          </li>
+<li><code>columns</code> - a comma-separated list of
+            values, where each value is
+            an <a href="property_types.html#integer">integer</a> or a
+            range of integers denoted by integer-integer. It is optional.
+          </li>
+</ul>
+<p>
+          Each audit event is checked against
+          each <code>suppress</code> element. It is
+          suppressed if all specified attributes match against the audit
+          event.
+        </p>
+<h5>Examples</h5>
+<p>
+          For example, the following suppressions XML document directs
+          a <code>SuppressionFilter</code> to
+          reject <code>JavadocStyleCheck</code> errors for
+          lines 82 and 108 to 122 of
+          file <code>AbstractComplexityCheck.java</code>,
+          and <code>MagicNumberCheck</code> errors for line
+          221 of file <code>JavadocStyleCheck.java</code>:
+        </p>
+<div class="source"><pre>
+&lt;?xml version=&quot;1.0&quot;?&gt;
+
+&lt;!DOCTYPE suppressions PUBLIC
+    &quot;-//Puppy Crawl//DTD Suppressions 1.1//EN&quot;
+    &quot;http://www.puppycrawl.com/dtds/suppressions_1_1.dtd&quot;&gt;
+
+&lt;suppressions&gt;
+    &lt;suppress checks=&quot;JavadocStyleCheck&quot;
+              files=&quot;AbstractComplexityCheck.java&quot;
+              lines=&quot;82,108-122&quot;/&gt;
+    &lt;suppress checks=&quot;MagicNumberCheck&quot;
+              files=&quot;JavadocStyleCheck.java&quot;
+              lines=&quot;221&quot;/&gt;
+&lt;/suppressions&gt;
+        </pre>
+</div>
+<p>
+          As another example, imagine that a configuration contains the
+          following:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;DescendantToken&quot;&gt;
+    &lt;property name=&quot;id&quot; value=&quot;stringEqual&quot;/&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;EQUAL,NOT_EQUAL&quot;/&gt;
+    &lt;property name=&quot;limitedTokens&quot; value=&quot;STRING_LITERAL&quot;/&gt;
+    &lt;property name=&quot;maximumNumber&quot; value=&quot;0&quot;/&gt;
+    &lt;property name=&quot;maximumDepth&quot; value=&quot;1&quot;/&gt;
+&lt;/module&gt;
+
+&lt;module name=&quot;DescendantToken&quot;&gt;
+    &lt;property name=&quot;id&quot; value=&quot;switchNoDefault&quot;/&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_SWITCH&quot;/&gt;
+    &lt;property name=&quot;maximumDepth&quot; value=&quot;2&quot;/&gt;
+    &lt;property name=&quot;limitedTokens&quot; value=&quot;LITERAL_DEFAULT&quot;/&gt;
+    &lt;property name=&quot;minimumNumber&quot; value=&quot;1&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+<p>
+          Then the following can be used to suppress only the first
+          check and not the second by using
+          the <code>id</code> attribute:
+        </p>
+<div class="source"><pre>
+&lt;suppress id=&quot;stringEqual&quot; files=&quot;SomeTestCode.java&quot;/&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="SuppressionCommentFilter"></a>SuppressionCommentFilter</h3>
+<h4>SuppressionCommentFilter</h4>
+<p>
+        Filter <code>SuppressionCommentFilter</code> uses
+        pairs of comments to suppress audit events.
+      </p>
+<p>
+        Rationale: Sometimes there are legitimate reasons for violating
+        a check.  When this is a matter of the code in question and not
+        personal preference, the best place to override the policy is in
+        the code itself.  Semi-structured comments can be associated
+        with the check.  This is sometimes superior to a separate
+        suppressions file, which must be kept up-to-date as the source
+        file is edited.
+      </p>
+<p>
+        Usage: This filter only works in conjunction with a <code>FileContentsHolder</code>, since that check makes
+        the suppression comments in the .java files available <i>sub
+        rosa</i>. A configuration that includes this filter must
+        configure <code>FileContentsHolder</code> as a
+        child module of <code>TreeWalker</code>.
+      </p>
+<h5>SuppressionCommentFilter Properties</h5>
+<table class="bodyTable"><tr class="a"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="b"><td>offCommentFormat</td>
+<td>comment pattern to trigger filter to begin suppression</td>
+<td><a href="property_types.html#regexp">regular expression</a></td>
+<td><code>CHECKSTYLE\:OFF</code></td>
+</tr>
+<tr class="a"><td>onCommentFormat</td>
+<td>comment pattern to trigger filter to end suppression</td>
+<td><a href="property_types.html#regexp">regular expression</a></td>
+<td><code>CHECKSTYLE\:ON</code></td>
+</tr>
+<tr class="b"><td>checkFormat</td>
+<td>check pattern to suppress</td>
+<td><a href="property_types.html#regexp">regular expression</a></td>
+<td><code>.*</code> (all checks)</td>
+</tr>
+<tr class="a"><td>messageFormat</td>
+<td>message pattern to suppress</td>
+<td><a href="property_types.html#regexp">regular expression</a></td>
+<td>none</td>
+</tr>
+<tr class="b"><td>checkCPP</td>
+<td>whether to check C++ style comments (<code>//</code>)</td>
+<td><a href="property_types.html#boolean">boolean</a></td>
+<td><code>true</code></td>
+</tr>
+<tr class="a"><td>checkC</td>
+<td>whether to check C style comments (<code>/* ... */</code>)</td>
+<td><a href="property_types.html#boolean">boolean</a></td>
+<td><code>true</code></td>
+</tr>
+</table>
+<h5>Restrictions</h5>
+<p>
+        offCommentFormat and onCommentFormat must have equal <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/regex/Matcher.html#groupCount()" class="externalLink">paren counts</a>.
+      </p>
+<h5>Examples</h5>
+<p>
+        To configure the check that makes comments available to the filter:
+      </p>
+<div class="source"><pre>
+&lt;module name=&quot;TreeWalker&quot;&gt;
+    ...
+    &lt;module name=&quot;FileContentsHolder&quot;/&gt;
+    ...
+&lt;/module&gt;
+      </pre>
+</div>
+<p>
+        To configure a filter to suppress audit events between a comment
+        containing <code>CHECKSTYLE:OFF</code> and a comment containing
+        <code>CHECKSTYLE:ON</code>:
+      </p>
+<div class="source"><pre>
+&lt;module name=&quot;SuppressionCommentFilter&quot;/&gt;
+      </pre>
+</div>
+<p>
+        To configure a filter to suppress audit events between a comment
+        containing line <code>BEGIN GENERATED CODE</code> and a comment
+        containing line <code>END GENERATED CODE</code>:
+      </p>
+<div class="source"><pre>
+&lt;module name=&quot;SuppressionCommentFilter&quot;&gt;
+    &lt;property name=&quot;offCommentFormat&quot; value=&quot;BEGIN GENERATED CODE&quot;/&gt;
+    &lt;property name=&quot;onCommentFormat&quot; value=&quot;END GENERATED CODE&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+</div>
+<p>
+        To configure a filter so that <code>// stop constant
+        check</code> and <code>// resume constant check</code> marks
+        legitimate constant names:
+      </p>
+<div class="source"><pre>
+&lt;module name=&quot;SuppressionCommentFilter&quot;&gt;
+    &lt;property name=&quot;offCommentFormat&quot; value=&quot;stop constant check&quot;/&gt;
+    &lt;property name=&quot;onCommentFormat&quot; value=&quot;resume constant check&quot;/&gt;
+    &lt;property name=&quot;checkFormat&quot; value=&quot;ConstantNameCheck&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+</div>
+<p>
+        To configure a filter so that <code>UNUSED OFF:
+        <i>var</i></code> and <code>UNUSED ON: <i>var</i></code> marks a
+        variable or parameter known not to be used by the code by
+        matching the variable name in the message:
+      </p>
+<div class="source"><pre>
+&lt;module name=&quot;SuppressionCommentFilter&quot;&gt;
+    &lt;property name=&quot;offCommentFormat&quot; value=&quot;UNUSED OFF\: (\w+)&quot;/&gt;
+    &lt;property name=&quot;onCommentFormat&quot; value=&quot;UNUSED ON\: (\w+)&quot;/&gt;
+    &lt;property name=&quot;checkFormat&quot; value=&quot;Unused&quot;/&gt;
+    &lt;property name=&quot;messageFormat&quot; value=&quot;^Unused \w+ '$1'.$&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+</div>
+<p>
+        To configure a filter so that <code>CSOFF: <i>regexp</i></code>
+        and <code>CSN: <i>regexp</i></code> mark a matching check:
+      </p>
+<div class="source"><pre>
+&lt;module name=&quot;SuppressionCommentFilter&quot;&gt;
+    &lt;property name=&quot;offCommentFormat&quot; value=&quot;CSOFF\: ([\w\|]+)&quot;/&gt;
+    &lt;property name=&quot;onCommentFormat&quot; value=&quot;CSON\: ([\w\|]+)&quot;/&gt;
+    &lt;property name=&quot;checkFormat&quot; value=&quot;$1&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+</div>
+<p>
+        To configure a filter to suppress all audit events between a comment
+        containing <code>CHECKSTYLE_OFF: ALL</code> and a comment containing
+        <code>CHECKSTYLE_OFF: ALL</code> except for the <em>EqualsHashCode</em> check:
+      </p>
+<div class="source"><pre>
+&lt;module name=&quot;SuppressionCommentFilter&quot;&gt;
+    &lt;property name=&quot;offCommentFormat&quot; value=&quot;CHECKSTYLE_OFF: ALL&quot;/&gt;
+    &lt;property name=&quot;onCommentFormat&quot; value=&quot;CHECKSTYLE_ON: ALL&quot;/&gt;
+    &lt;property name=&quot;checkFormat&quot; value=&quot;^((?!(EqualsHashCode)).)*$&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+</div>
+</div>
+<div class="section"><h3><a name="SuppressWithNearbyCommentFilter"></a>SuppressWithNearbyCommentFilter</h3>
+<h4>SuppressWithNearbyCommentFilter</h4>
+<p>
+        Filter <code>SuppressWithNearbyCommentFilter</code> uses
+        individual comments to suppress audit events.
+      </p>
+<p>
+        Rationale: Same as <code>SuppressionCommentFilter</code>.
+        Whereas the SuppressionCommentFilter uses matched pairs of
+        filters to turn on/off comment matching,
+        <code>SuppressWithNearbyCommentFilter</code> uses
+        single comments.  This requires fewer lines to mark a region, and
+        may be aesthetically preferable in some contexts.
+      </p>
+<p>
+        Usage: This filter only works in conjunction with a <code>FileContentsHolder</code>, since that check makes
+        the suppression comments in the .java files available <i>sub
+        rosa</i>. A configuration that includes this filter must
+        configure <code>FileContentsHolder</code> as a
+        child module of <code>TreeWalker</code>.
+      </p>
+<h5>SuppressWithNearbyCommentFilter Properties</h5>
+<table class="bodyTable"><tr class="b"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="a"><td>commentFormat</td>
+<td>comment pattern to trigger filter to begin suppression</td>
+<td><a href="property_types.html#regexp">regular expression</a></td>
+<td><code>SUPPRESS CHECKSTYLE (\w+)</code></td>
+</tr>
+<tr class="b"><td>checkFormat</td>
+<td>check pattern to suppress</td>
+<td><a href="property_types.html#regexp">regular expression</a></td>
+<td><code>$1</code></td>
+</tr>
+<tr class="a"><td>messageFormat</td>
+<td>message pattern to suppress</td>
+<td><a href="property_types.html#regexp">regular expression</a></td>
+<td>none</td>
+</tr>
+<tr class="b"><td>influenceFormat</td>
+<td>a negative/zero/positive value that defines the number of
+          lines preceding/at/following the suppression comment</td>
+<td><a href="property_types.html#regexp">regular expression</a></td>
+<td><code>0</code> (the line containing the comment)</td>
+</tr>
+<tr class="a"><td>checkCPP</td>
+<td>whether to check C++ style comments (<code>//</code>)</td>
+<td><a href="property_types.html#boolean">boolean</a></td>
+<td><code>true</code></td>
+</tr>
+<tr class="b"><td>checkC</td>
+<td>whether to check C style comments (<code>/* ... */</code>)</td>
+<td><a href="property_types.html#boolean">boolean</a></td>
+<td><code>true</code></td>
+</tr>
+</table>
+<h5>Examples</h5>
+<p>
+        To configure the check that makes comments available to the filter:
+      </p>
+<div class="source"><pre>
+&lt;module name=&quot;TreeWalker&quot;&gt;
+    ...
+    &lt;module name=&quot;FileContentsHolder&quot;/&gt;
+    ...
+&lt;/module&gt;
+      </pre>
+</div>
+<p>
+        To configure a filter to suppress audit events for <i>check</i>
+        on any line with a comment <code>SUPPRESS CHECKSTYLE <i>check</i></code>:
+      </p>
+<div class="source"><pre>
+&lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;/&gt;
+      </pre>
+</div>
+<p>
+        To configure a filter to suppress all audit events on any line
+        containing the comment <code>CHECKSTYLE IGNORE THIS LINE</code>:
+      </p>
+<div class="source"><pre>
+&lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;&gt;
+    &lt;property name=&quot;commentFormat&quot; value=&quot;CHECKSTYLE IGNORE THIS LINE&quot;/&gt;
+    &lt;property name=&quot;checkFormat&quot; value=&quot;.*&quot;/&gt;
+    &lt;property name=&quot;influenceFormat&quot; value=&quot;0&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+</div>
+<p>
+        To configure a filter so that
+        <code>// Ok to catch (Throwable|Exception|RuntimeException) here</code>
+        permits the current and previous line to avoid generating an IllegalCatch
+        audit event:
+      </p>
+<div class="source"><pre>
+&lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;&gt;
+    &lt;property name=&quot;commentFormat&quot; value=&quot;Ok to catch (\w+) here&quot;/&gt;
+    &lt;property name=&quot;checkFormat&quot; value=&quot;IllegalCatchCheck&quot;/&gt;
+    &lt;property name=&quot;messageFormat&quot; value=&quot;$1&quot;/&gt;
+    &lt;property name=&quot;influenceFormat&quot; value=&quot;-1&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+</div>
+<p>
+        To configure a filter so that <code>CHECKSTYLE IGNORE <i>check</i> FOR NEXT <i>var</i> LINES</code>
+        avoids triggering any audits for the given check for the current line and the next <i>var</i> lines
+        (for a total of <i>var</i>+1 lines):
+      </p>
+<div class="source"><pre>
+&lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;&gt;
+    &lt;property name=&quot;commentFormat&quot; value=&quot;CHECKSTYLE IGNORE (\w+) FOR NEXT (\d+) LINES&quot;/&gt;
+    &lt;property name=&quot;checkFormat&quot; value=&quot;$1&quot;/&gt;
+    &lt;property name=&quot;messageFormat&quot; value=&quot;$2&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+</div>
+</div>
+</div>
+<div class="section"><h2><a name="AuditListeners"></a>AuditListeners</h2>
+<p>
+        In addition to an audit reporter for text or XML output, a
+        Checker can have <a href="writinglisteners.html">custom
+        AuditListeners</a> that handle audit events. In order to use a
+        custom listener, add a <code>Checker</code> submodule for the
+        listener and its properties.  For example, to configure a <code>Checker</code> so that it uses custom listener <a href="writinglisteners.html#Writing_Listeners">VerboseListener</a> to
+        print audit messages to a file named &quot;audit.txt&quot;,
+        include the following module in the configuration file:
+      </p>
+<div class="source"><pre>
+&lt;module name=&quot;com.mycompany.listeners.VerboseListener&quot;&gt;
+    &lt;property name=&quot;file&quot; value=&quot;audit.txt&quot;/&gt;
+&lt;/module&gt;
+      </pre>
+</div>
+</div>
+<div class="section"><h2><a name="Packages"></a>Packages</h2>
+<p>
+        Checkstyle loads a module class according to the <code>name</code> of a <code>module</code>
+        element, and automatically appends pre-specified package
+        prefixes to that <code>name</code> in its search
+        for a loadable class.  By default, Checkstyle applies packages
+        <code> com.puppycrawl.tools.checkstyle</code>,
+        <code>
+        com.puppycrawl.tools.checkstyle.filters</code>, and <code> com.puppycrawl.tools.checkstyle.checks</code> as
+        well as any sub-packages of <code>com.puppycrawl.tools.checkstyle.checks</code> that
+        are distributed with Checkstyle.
+      </p>
+<p>
+        To specify other packages to apply,
+        create a <em>package names XML document</em> in a file
+        named <code>checkstyle_packages.xml</code>,
+        and provide that file in the root of the .jar containing your
+        custom checks.
+      </p>
+<p>
+        Note that the support for providing a <em>package names XML document</em>
+        via <a href="cmdline.html">command line</a> option or as a attribute
+        of an <a href="anttask.html">ant Checkstyle task</a> has been dropped
+        with Checkstyle 5.0.
+      </p>
+<p>
+        A <em>package names XML document</em> specifies a list of
+        package names. Here is a sample package names XML document for
+        packages <code>
+        com.puppycrawl.tools.checkstyle</code> and <code>
+        com.puppycrawl.tools.checkstyle.checks</code>:
+      </p>
+<div class="source"><pre>
+&lt;checkstyle-packages&gt;
+  &lt;package name=&quot;com.puppycrawl.tools.checkstyle&quot;&gt;
+    &lt;package name=&quot;checks&quot;/&gt;
+  &lt;/package&gt;
+&lt;/checkstyle-packages&gt;
+      </pre>
+</div>
+<p>
+        Notice that the packages are specified recursively - a child
+        <code>package</code> element is a subpackage of its
+        parent <code>package</code> element.
+      </p>
+<p>
+        For example, to incorporate modules from package <code>com.mycompany.checks</code> with Checkstyle
+        modules, create the XML file below and put this file into the
+        <b>root of the jar</b> file which contains your custom check modules.
+        The XML file must be named exactly <code>checkstyle_packages.xml</code>:
+      </p>
+<div class="source"><pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+
+    &lt;!DOCTYPE checkstyle-packages PUBLIC
+    &quot;-//Puppy Crawl//DTD Package Names 1.0//EN&quot;
+    &quot;http://www.puppycrawl.com/dtds/packages_1_0.dtd&quot;&gt;
+
+&lt;checkstyle-packages&gt;
+  &lt;package name=&quot;com.mycompany.checks&quot;/&gt;
+&lt;/checkstyle-packages&gt;
+      </pre>
+</div>
+<p>
+        Now you can configure a module of package <code>com.mycompany.checks</code>, say <code>com.mycompany.checks.MethodLimitCheck</code>, with
+        a shortened <code>module</code> element in the
+        configuration document:
+      </p>
+<div class="source"><pre>
+&lt;module name=&quot;MethodLimit&quot;/&gt;
+      </pre>
+</div>
+<div class="tip"><h4>Note</h4>
+<p>
+          As of Checkstyle 5.0 it is unnecessary to repeat the
+          <code>package</code> elements for Checkstyle's packages in
+          your custom <code>checkstyle_packages.xml</code> file.
+        </p>
+</div></div>
+<div class="section"><h2><a name="XML_Details"></a>XML Details</h2>
+<h4>Configuration XML Document</h4>
+<p>
+        The following DTD for a configuration XML document specifies the
+        hierarchy of modules and their properties:
+      </p>
+<div class="source"><pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+
+&lt;!ELEMENT module (module|property)*&gt;
+&lt;!ATTLIST module name NMTOKEN #REQUIRED&gt;
+
+&lt;!ELEMENT property EMPTY&gt;
+&lt;!ATTLIST property
+        name NMTOKEN #REQUIRED
+        value CDATA #REQUIRED
+&gt;
+      </pre>
+</div>
+<p>
+        Checkstyle validates a configuration XML document when it loads
+        the document.  To validate against the above configuration DTD,
+        include the following document type declaration in your
+        configuration XML document:
+      </p>
+<div class="source"><pre>
+&lt;!DOCTYPE module PUBLIC
+    &quot;-//Puppy Crawl//DTD Check Configuration 1.3//EN&quot;
+    &quot;http://www.puppycrawl.com/dtds/configuration_1_3.dtd&quot;&gt;
+      </pre>
+</div>
+<p>
+        Checkstyle also strictly enforces the encoding attribute of an
+        XML declaration.  If Checkstyle rejects your configuration
+        document's encoding, correct the value of the encoding
+        attribute, or remove the encoding attribute entirely.
+      </p>
+<p>
+        For a complete example of a configuration XML document, examine
+        file <code>docs/sun_checks.xml</code> that checks the Sun coding
+        conventions.
+      </p>
+<h4>Package Names XML Document</h4>
+<p>
+        This is a DTD for a package names XML document:
+      </p>
+<div class="source"><pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+
+&lt;!ELEMENT checkstyle-packages (package)*&gt;
+
+&lt;!ELEMENT package (package)*&gt;
+&lt;!ATTLIST package name NMTOKEN #REQUIRED&gt;
+      </pre>
+</div>
+<p>
+        Checkstyle also validates a package names XML document when it
+        loads the document.  To validate against the above package names
+        DTD, include the following document type declaration in your
+        package names XML document:
+      </p>
+<div class="source"><pre>
+&lt;!DOCTYPE checkstyle-packages PUBLIC
+&quot;-//Puppy Crawl//DTD Package Names 1.1//EN&quot;
+&quot;http://www.puppycrawl.com/dtds/packages_1_1.dtd&quot;&gt;
+      </pre>
+</div>
+<h4>Suppressions XML Document</h4>
+<p>
+        This is a DTD for a suppressions XML document:
+      </p>
+<div class="source"><pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+
+&lt;!ELEMENT suppressions (suppress*)&gt;
+
+&lt;!ELEMENT suppress EMPTY&gt;
+&lt;!ATTLIST suppress files CDATA #REQUIRED
+                   checks CDATA #IMPLIED
+                   id CDATA #IMPLIED
+                   lines CDATA #IMPLIED
+                   columns CDATA #IMPLIED&gt;
+      </pre>
+</div>
+</div>
+
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2001-2010
+    
+          
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>

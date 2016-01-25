@@ -1,0 +1,480 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>checkstyle - Command Line</title>
+    <style type="text/css" media="all">
+      @import url("./css/maven-base.css");
+      @import url("./css/maven-theme.css");
+      @import url("./css/site.css");
+    </style>
+    <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+          <meta name="author" content="Oliver Burn" />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+  <body class="composite">
+    <div id="banner">
+                    <span id="bannerLeft">
+    
+            Checkstyle 5.3
+    
+            </span>
+                        <a href="" id="bannerRight">
+    
+                                            <img src="images/logo.png" alt="Checkstyle" />
+    
+            </a>
+            <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+  
+  
+    
+            <div class="xleft">
+        Last Published: 2010-10-19
+                      </div>
+            <div class="xright">      
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+  
+  
+    
+                   <h5>About</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="index.html">Checkstyle</a>
+          </li>
+              
+    <li class="none">
+                    <a href="releasenotes.html">Release Notes</a>
+          </li>
+          </ul>
+              <h5>Documentation</h5>
+            <ul>
+              
+          
+              
+      
+              
+        <li class="expanded">
+                    <a href="config.html">Configuration</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="property_types.html">Property Types</a>
+          </li>
+              </ul>
+        </li>
+              
+          
+              
+      
+            
+            
+              
+            <li class="expanded">
+                    <a href="running.html">Running</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="anttask.html">Ant Task</a>
+          </li>
+                  
+    <li class="none">
+              <strong>Command Line</strong>
+        </li>
+              </ul>
+        </li>
+              
+    <li class="none">
+                    <a href="availablechecks.html">Available Checks</a>
+          </li>
+              
+          
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="expanded">
+                    <a href="checks.html">Standard Checks</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="config_annotation.html">Annotations</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_blocks.html">Block Checks</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_design.html">Class Design</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_coding.html">Coding</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_duplicates.html">Duplicate Code</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_header.html">Headers</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_imports.html">Imports</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_javadoc.html">Javadoc Comments</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_metrics.html">Metrics</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_misc.html">Miscellaneous</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_modifier.html">Modifiers</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_naming.html">Naming Conventions</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_regexp.html">Regexp</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_sizes.html">Size Violations</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_whitespace.html">Whitespace</a>
+          </li>
+              </ul>
+        </li>
+              
+          
+              
+      
+            
+      
+            
+      
+              
+        <li class="expanded">
+                    <a href="extending.html">Extending Checkstyle</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="writingchecks.html">Writing checks</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="writingfilters.html">Writing filters</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="writinglisteners.html">Writing listeners</a>
+          </li>
+              </ul>
+        </li>
+          </ul>
+              <h5>Developers</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="apidocs/index.html">Javadoc</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://sourceforge.net/projects/checkstyle" class="externalLink">Project Page</a>
+          </li>
+              
+    <li class="none">
+                    <a href="contributing.html">Contributing</a>
+          </li>
+          </ul>
+              <h5>Project Documentation</h5>
+            <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-info.html">Project Information</a>
+                </li>
+              
+                
+              
+      
+              
+        <li class="collapsed">
+                    <a href="project-reports.html">Project Reports</a>
+                </li>
+          </ul>
+                                                 
+                        
+                        
+            <a href="http://sourceforge.net/projects/checkstyle" title="SourceForge" class="poweredBy">
+                            <img alt="SourceForge" src="http://sflogo.sourceforge.net/sflogo.php?group_id=29721&type=11" />
+            </a>
+                               
+  
+
+  
+    
+  
+  
+    
+        </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <div class="section"><h2><a name="Description"></a>Description</h2>
+<p>
+        This document describes how to run Checkstyle using the command line
+        tool. The latest version of Checkstyle can be found at <a href="http://checkstyle.sourceforge.net" class="externalLink">http://checkstyle.sourceforge.net</a>.
+        This command line tool is included in the Checkstyle distribution.
+      </p>
+</div>
+<div class="section"><h2><a name="Installation"></a>Installation</h2>
+<p>
+        The easiest way is to include
+        <code>checkstyle-5.3-all.jar</code> in the
+        classpath. Alternatively, you must include the
+        <code>compile</code> third party dependencies listed in
+
+        <a href="dependencies.html">Project Dependencies</a> in the
+        classpath.
+      </p>
+</div>
+<div class="section"><h2><a name="Usage"></a>Usage</h2>
+<p>
+        The command line usage is:
+      </p>
+<div class="source"><pre>
+java -D&lt;property&gt;=&lt;value&gt;  \
+     com.puppycrawl.tools.checkstyle.Main \
+     -c &lt;configurationFile&gt; \
+     [-f &lt;format&gt;] [-p &lt;propertiesFile&gt;] [-o &lt;file&gt;] \
+     [-r &lt;dir&gt;] file...
+      </pre>
+</div>
+<p>
+        Checkstyle will process the specified files and by default report
+        errors to standard out in plain format. Checkstyle requires a <a href="config.html">configuration XML file</a> that configures the
+        checks to apply. Command line options are:
+      </p>
+<ul><li><code>-f format</code> - specify the output
+          format. Options are <code> &quot;plain&quot;</code> for the <a href="apidocs/com/puppycrawl/tools/checkstyle/DefaultLogger.html">DefaultLogger</a>
+          and <code>&quot;xml&quot;</code> for the <a href="apidocs/com/puppycrawl/tools/checkstyle/XMLLogger.html">XMLLogger</a>.
+          Defaults to <code>&quot;plain&quot;</code>.
+        </li>
+<li><code>-p propertiesFile</code> - specify a
+          properties file to use.
+        </li>
+<li><code>-o file</code> - specify the file to output
+          to.
+        </li>
+<li><code>-r dir</code> - specify the directory to
+          traverse for Java source files.
+        </li>
+</ul>
+<p>
+        Note that the <code>-n packageNamesFile</code>
+        option has been dropped for Checkstyle 5.0, because of
+        significant changes regarding package name file handling. See <a href="config.html#Packages"></a> for details.
+      </p>
+<p>
+        Set the properties for <a href="config.html#Properties">expanded
+        property values</a> by either by assigning system properties using the
+        <code>-D&lt;property&gt;=&lt;value&gt;</code> arguments to java or
+        specifying a property file using the <code>-p</code> option.  If a
+        property file is specified, the system properties are ignored.
+      </p>
+</div>
+<div class="section"><h2><a name="Examples"></a>Examples</h2>
+<p><b>
+          Run checkstyle with configuration file
+          <code>docs/sun_checks.xml</code> on a file
+        </b></p>
+<div class="source"><pre>
+java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml \
+     Check.java
+      </pre>
+</div>
+<p><b>
+          Run checkstyle with configuration file
+          <code>docs/sun_checks.xml</code> on all java files in a directory
+        </b></p>
+<div class="source"><pre>
+java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml \
+     -r src/
+      </pre>
+</div>
+<p><b>
+          Run checkstyle with configuration file
+          <code>docs/sun_checks.xml</code> on a file and provide a system
+          property
+        </b></p>
+<div class="source"><pre>
+java -Dcheckstyle.cache.file=target/cachefile \
+     com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml \
+     Check.java
+      </pre>
+</div>
+<p><b>
+          Run checkstyle with configuration file
+          <code>docs/sun_checks.xml</code> on a file and use properties in a
+          file
+        </b></p>
+<div class="source"><pre>
+java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml \
+     -p myCheckstyle.properties Check.java
+      </pre>
+</div>
+<p><b>
+          Run checkstyle with configuration file
+          <code>docs/sun_checks.xml</code> on a file and output to a file in
+          XML format
+        </b></p>
+<div class="source"><pre>
+java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml \
+     -f xml -o build/checkstyle_errors.xml Check.java
+      </pre>
+</div>
+<p><b>
+          Run checkstyle with configuration file
+          <code>docs/sun_checks.xml</code> on a file and provide a package
+          names file
+        </b></p>
+<div class="source"><pre>
+java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml \
+     -n myPackageNames.xml Check.java
+      </pre>
+</div>
+<div class="tip"><h4>Tip</h4>
+<p>
+          It is possible to run Checkstyle directly from the JAR file using
+          the <code>-jar</code> option. An example would be:
+        </p>
+<div class="source"><pre>
+java -jar checkstyle-5.3-all.jar \
+     -c docs/sun_checks.xml Check.java
+        </pre>
+</div>
+</div></div>
+
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2001-2010
+    
+          
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>

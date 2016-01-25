@@ -1,0 +1,783 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>checkstyle - Imports</title>
+    <style type="text/css" media="all">
+      @import url("./css/maven-base.css");
+      @import url("./css/maven-theme.css");
+      @import url("./css/site.css");
+    </style>
+    <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+          <meta name="author" content="Checkstyle Development Team" />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+  <body class="composite">
+    <div id="banner">
+                    <span id="bannerLeft">
+    
+            Checkstyle 5.3
+    
+            </span>
+                        <a href="" id="bannerRight">
+    
+                                            <img src="images/logo.png" alt="Checkstyle" />
+    
+            </a>
+            <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+  
+  
+    
+            <div class="xleft">
+        Last Published: 2010-10-19
+                      </div>
+            <div class="xright">      
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+  
+  
+    
+                   <h5>About</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="index.html">Checkstyle</a>
+          </li>
+              
+    <li class="none">
+                    <a href="releasenotes.html">Release Notes</a>
+          </li>
+          </ul>
+              <h5>Documentation</h5>
+            <ul>
+              
+          
+              
+      
+              
+        <li class="expanded">
+                    <a href="config.html">Configuration</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="property_types.html">Property Types</a>
+          </li>
+              </ul>
+        </li>
+              
+          
+              
+      
+            
+      
+              
+        <li class="expanded">
+                    <a href="running.html">Running</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="anttask.html">Ant Task</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="cmdline.html">Command Line</a>
+          </li>
+              </ul>
+        </li>
+              
+    <li class="none">
+                    <a href="availablechecks.html">Available Checks</a>
+          </li>
+              
+          
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+            
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+            <li class="expanded">
+                    <a href="checks.html">Standard Checks</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="config_annotation.html">Annotations</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_blocks.html">Block Checks</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_design.html">Class Design</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_coding.html">Coding</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_duplicates.html">Duplicate Code</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_header.html">Headers</a>
+          </li>
+                  
+    <li class="none">
+              <strong>Imports</strong>
+        </li>
+                  
+    <li class="none">
+                    <a href="config_javadoc.html">Javadoc Comments</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_metrics.html">Metrics</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_misc.html">Miscellaneous</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_modifier.html">Modifiers</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_naming.html">Naming Conventions</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_regexp.html">Regexp</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_sizes.html">Size Violations</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_whitespace.html">Whitespace</a>
+          </li>
+              </ul>
+        </li>
+              
+          
+              
+      
+            
+      
+            
+      
+              
+        <li class="expanded">
+                    <a href="extending.html">Extending Checkstyle</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="writingchecks.html">Writing checks</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="writingfilters.html">Writing filters</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="writinglisteners.html">Writing listeners</a>
+          </li>
+              </ul>
+        </li>
+          </ul>
+              <h5>Developers</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="apidocs/index.html">Javadoc</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://sourceforge.net/projects/checkstyle" class="externalLink">Project Page</a>
+          </li>
+              
+    <li class="none">
+                    <a href="contributing.html">Contributing</a>
+          </li>
+          </ul>
+              <h5>Project Documentation</h5>
+            <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-info.html">Project Information</a>
+                </li>
+              
+                
+              
+      
+              
+        <li class="collapsed">
+                    <a href="project-reports.html">Project Reports</a>
+                </li>
+          </ul>
+                                                 
+                        
+                        
+            <a href="http://sourceforge.net/projects/checkstyle" title="SourceForge" class="poweredBy">
+                            <img alt="SourceForge" src="http://sflogo.sourceforge.net/sflogo.php?group_id=29721&type=11" />
+            </a>
+                               
+  
+
+  
+    
+  
+  
+    
+        </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <div class="section"><h2><a name="AvoidStarImport"></a>AvoidStarImport</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p>
+          Checks that there are no import statements that use the * notation.
+        </p>
+<p>
+          Rationale: Importing all classes from a package or static
+          members from a class leads to tight coupling between packages
+          or classes and might lead to problems when a new version of a
+          library introduces name clashes.
+        </p>
+</div>
+<div class="section"><h3><a name="Properties"></a>Properties</h3>
+<table class="bodyTable"><tr class="a"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="b"><td>excludes</td>
+<td>
+              packages where star imports are allowed. Note that this property
+              is not recursive, subpackages of excluded packages are not
+              automatically excluded.
+            </td>
+<td><a href="property_types.html#stringSet">list of strings</a></td>
+<td><code>empty list</code></td>
+</tr>
+<tr class="a"><td>allowClassImports</td>
+<td>
+              whether to allow starred class imports like
+              <code>import java.util.*;</code>.
+            </td>
+<td><a href="property_types.html#Boolean">Boolean</a></td>
+<td><code>false</code></td>
+</tr>
+<tr class="b"><td>allowStaticMemberImports</td>
+<td>
+              whether to allow starred static member imports like
+              <code>import static org.junit.Assert.*;</code></td>
+<td><a href="property_types.html#Boolean">Boolean</a></td>
+<td><code>false</code></td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="Example"></a>Example</h3>
+<p>
+          An example how to configure the check so that star imports from
+          packages java.io and java.net as well as static members from class
+          from java.lang.Math are allowed:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;AvoidStarImport&quot;&gt;
+   &lt;property name=&quot;excludes&quot; value=&quot;java.io,java.net,java.lang.Math&quot;/&gt;
+   &lt;property name=&quot;allowClassImports&quot; value=&quot;false&quot;/&gt;
+   &lt;property name=&quot;allowStaticMemberImports&quot; value=&quot;false&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p> com.puppycrawl.tools.checkstyle.checks.imports </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#TreeWalker">TreeWalker</a></p>
+</div>
+</div>
+<div class="section"><h2><a name="AvoidStaticImport"></a>AvoidStaticImport</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p>
+          Checks that there are no static import statements.
+        </p>
+<p>
+          Rationale: Importing static members can lead to naming
+          conflicts between class' members. It may lead to poor code
+          readability since it may no longer be clear what class a
+          member resides in (without looking at the import statement).
+        </p>
+</div>
+<div class="section"><h3><a name="Properties"></a>Properties</h3>
+<table class="bodyTable"><tr class="a"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="b"><td>excludes</td>
+<td>
+              Allows for certain classes via a star notation to be
+              excluded such as <code>java.lang.Math.*</code> or specific static
+              members to be excluded like <code>java.lang.System.out</code> for a variable or
+              <code>java.lang.Math.random</code> for a
+              method.
+              <br />
+
+              If you exclude a starred import on a class this automatically
+              excludes each member individually.
+              <br />
+
+              For example: Excluding <code>java.lang.Math.*</code>. will allow the
+              import of each static member in the Math class
+              individually like <code>java.lang.Math.PI</code>.
+            </td>
+<td><a href="property_types.html#stringSet">list of strings</a></td>
+<td><code>empty list</code></td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="Example"></a>Example</h3>
+<p>
+          An example of how to configure the check so that the <code>java.lang.System.out</code> member and all
+          members from <code>java.lang.Math</code> are
+          allowed:
+        </p>
+<div class="source"><pre>
+         &lt;module name=&quot;AvoidStaticImport&quot;&gt;
+           &lt;property name=&quot;excludes&quot; value=&quot;java.lang.System.out,java.lang.Math.*&quot;/&gt;
+         &lt;/module&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p> com.puppycrawl.tools.checkstyle.checks.imports </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#TreeWalker">TreeWalker</a></p>
+</div>
+</div>
+<div class="section"><h2><a name="IllegalImport"></a>IllegalImport</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p>
+          Checks for imports from a set of illegal packages. By default, the
+          check rejects all <code>sun.*</code> packages since
+          programs that contain direct calls to the <code>sun.*</code> packages are <a href="http://java.sun.com/products/jdk/faq/faq-sun-packages.html" class="externalLink">not
+          100% Pure Java</a>. To reject other packages, set property <code> illegalPkgs</code> to a list of the illegal packages.
+        </p>
+</div>
+<div class="section"><h3><a name="Properties"></a>Properties</h3>
+<table class="bodyTable"><tr class="a"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="b"><td>illegalPkgs</td>
+<td>packages to reject</td>
+<td><a href="property_types.html#stringSet">list of strings</a></td>
+<td><code>sun</code></td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="Examples"></a>Examples</h3>
+<p>
+          To configure the check:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;IllegalImport&quot;/&gt;
+        </pre>
+</div>
+<p>
+          To configure the check so that it rejects packages <code>java.io.*</code> and <code>java.sql.*</code>:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;IllegalImport&quot;&gt;
+    &lt;property name=&quot;illegalPkgs&quot; value=&quot;java.io, java.sql&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p>
+          com.puppycrawl.tools.checkstyle.checks.imports
+        </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#TreeWalker">TreeWalker</a></p>
+</div>
+</div>
+<div class="section"><h2><a name="RedundantImport"></a>RedundantImport</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p>
+          Checks for redundant import statements. An import statement is
+          considered redundant if:
+        </p>
+<ul><li>
+            It is a duplicate of another import. This is, when a class is
+            imported more than once.
+          </li>
+<li>
+            The class imported is from the <code>java.lang</code>
+            package, e.g.  importing <code>java.lang.String</code>.
+          </li>
+<li>
+            The class imported is from the same package.
+          </li>
+</ul>
+</div>
+<div class="section"><h3><a name="Example"></a>Example</h3>
+<p>
+          To configure the check:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;RedundantImport&quot;/&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p>
+          com.puppycrawl.tools.checkstyle.checks.imports
+        </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#TreeWalker">TreeWalker</a></p>
+</div>
+</div>
+<div class="section"><h2><a name="UnusedImports"></a>UnusedImports</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p>
+          Checks for unused import statements. Checkstyle uses a simple but
+          very reliable algorithm to report on unused import statements. An
+          import statement is considered unused if:
+        </p>
+<ul><li>
+            It is not referenced in the file. The algorithm does not support
+            wild-card imports like <code>import
+            java.io.*;</code>. Most IDE's provide very sophisticated checks
+            for imports that handle wild-card imports.
+          </li>
+<li>
+            It is a duplicate of another import. This is when a class is
+            imported more than once.
+          </li>
+<li>
+            The class imported is from the <code>java.lang</code>
+            package. For example importing <code>java.lang.String</code>.
+          </li>
+<li>
+            The class imported is from the same package.
+          </li>
+</ul>
+<p>
+          The main limitation of this check is handling the case where
+          an imported type has the same name as a declaration, such as a
+          member variable.
+        </p>
+<p>
+          For example, in the following case the import <code>java.awt.Component</code> will not be flagged as
+          unused:
+        </p>
+<div class="source"><pre>
+import java.awt.Component;
+class FooBar {
+    private Object Component; // IMHO bad practise
+    ...
+}
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Example"></a>Example</h3>
+<p>
+          To configure the check:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;UnusedImports&quot;/&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p>
+          com.puppycrawl.tools.checkstyle.checks.imports
+        </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#TreeWalker">TreeWalker</a></p>
+</div>
+</div>
+<div class="section"><h2><a name="ImportOrder"></a>ImportOrder</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p>Checks the ordering/grouping of imports. Features are:</p>
+<ul><li>groups imports: ensures that groups of imports come in a
+          specific order (e.g., java. comes first, javax. comes second,
+          then everything else)</li>
+<li>adds a separation between groups : ensures that a blank
+          line sit between each group</li>
+<li>sorts imports inside each group: ensures that imports
+          within each group are in lexicographic order</li>
+<li>sorts according to case: ensures that the comparison
+          between imports is case sensitive</li>
+<li>groups static imports: ensures the relative order between
+          regular imports and static imports (see
+          <a href="property_types.html#importOrder">import orders</a>)</li>
+</ul>
+</div>
+<div class="section"><h3><a name="Properties"></a>Properties</h3>
+<table class="bodyTable"><tr class="a"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="b"><td>option</td>
+<td>policy on the relative order between regular imports and static imports</td>
+<td><a href="property_types.html#importOrder">import order</a></td>
+<td><code>under</code></td>
+</tr>
+<tr class="a"><td>groups</td>
+<td>
+              list of imports groups (every group identified either by a
+              common prefix string, or by a regular expression enclosed
+              in forward slashes (e.g. <code>/regexp/</code>)
+            </td>
+<td><a href="property_types.html#stringSet">list of strings</a></td>
+<td><code>empty list</code></td>
+</tr>
+<tr class="b"><td>ordered</td>
+<td>whether imports within group should be sorted</td>
+<td><a href="property_types.html#boolean">Boolean</a></td>
+<td>true</td>
+</tr>
+<tr class="a"><td>separated</td>
+<td>
+              whether imports groups should be separated by, at least, one
+              blank line
+            </td>
+<td><a href="property_types.html#boolean">Boolean</a></td>
+<td>false</td>
+</tr>
+<tr class="b"><td>caseSensitive</td>
+<td>whether string comparision should be case sensitive or not</td>
+<td><a href="property_types.html#boolean">Boolean</a></td>
+<td>true</td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="Example"></a>Example</h3>
+<p>To configure the check so that it requires that:</p>
+<ul><li>&quot;java&quot; and &quot;javax&quot; packages together first, then &quot;org&quot; and then all other imports</li>
+<li>imports will be sorted in the groups</li>
+<li>groups are separated by, at least, one blank line</li>
+<li>static imports are above each local groups</li>
+</ul>
+<div class="source"><pre>
+&lt;module name=&quot;ImportOrder&quot;&gt;
+    &lt;property name=&quot;groups&quot; value=&quot;/^javax?\./,org&quot;/&gt;
+    &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
+    &lt;property name=&quot;separated&quot; value=&quot;true&quot;/&gt;
+    &lt;property name=&quot;option&quot; value=&quot;above&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p>
+          com.puppycrawl.tools.checkstyle.checks.imports
+        </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#TreeWalker">TreeWalker</a></p>
+</div>
+</div>
+<div class="section"><h2><a name="ImportControl"></a>ImportControl</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p>
+          Controls what can be imported in each package. Useful for
+          ensuring that application layering rules are not violated,
+          especially on large projects.
+        </p>
+<p>
+          The DTD for a import control XML document is at <a href="http://www.puppycrawl.com/dtds/import_control_1_1.dtd" class="externalLink">http://www.puppycrawl.com/dtds/import_control_1_1.dtd</a>. It
+          contains documentation on each of the elements and attributes.
+        </p>
+<p>
+          The check validates a XML document when it loads the document.
+          To validate against the above DTD, include the following
+          document type declaration in your XML document:
+        </p>
+<pre>
+&lt;!DOCTYPE import-control PUBLIC
+    &quot;-//Puppy Crawl//DTD Import Control 1.1//EN&quot;
+    &quot;http://www.puppycrawl.com/dtds/import_control_1_1.dtd&quot;&gt;
+        </pre></div>
+<div class="section"><h3><a name="Properties"></a>Properties</h3>
+<table class="bodyTable"><tr class="a"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="b"><td>file</td>
+<td>
+              name of the file containing the import control configuration.
+            </td>
+<td><a href="property_types.html#string">string</a></td>
+<td><code>null</code></td>
+</tr>
+<tr class="a"><td>url</td>
+<td>
+              url of the file containing the import control configuration.
+            </td>
+<td><a href="property_types.html#string">string</a></td>
+<td><code>null</code></td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="Example"></a>Example</h3>
+<p>
+          To configure the check using a import control file called
+          &quot;import-control.xml&quot;, then have the following:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;ImportControl&quot;&gt;
+    &lt;property name=&quot;file&quot; value=&quot;import-control.xml&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+<p>
+          In the example below, all classes beginning with an I in the package
+          java.awt are allowed. In the package java.io only the classes File
+          and InputStream are allowed.
+        </p>
+<div class="source"><pre>
+&lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle&quot;&gt;
+    &lt;allow class=&quot;java\.awt\.I.*&quot; regex=&quot;true&quot;/&gt;
+    &lt;allow class=&quot;java\.io\.(File|InputStream)&quot; local-only=&quot;true&quot;
+        regex=&quot;true&quot;/&gt;
+&lt;/import-control&gt;
+        </pre>
+</div>
+<p>
+          For an example import control file, look at the file called <a href="http://checkstyle.svn.sourceforge.net/viewvc/checkstyle/trunk/checkstyle/import-control.xml?view=markup" class="externalLink">import-control.xml</a>
+          which is part of the Checkstyle distribution.
+        </p>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p>
+          com.puppycrawl.tools.checkstyle.checks.imports
+        </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#TreeWalker">TreeWalker</a></p>
+</div>
+</div>
+
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2001-2010
+    
+          
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,1619 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>checkstyle - Miscellaneous</title>
+    <style type="text/css" media="all">
+      @import url("./css/maven-base.css");
+      @import url("./css/maven-theme.css");
+      @import url("./css/site.css");
+    </style>
+    <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+          <meta name="author" content="Checkstyle Development Team" />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+  <body class="composite">
+    <div id="banner">
+                    <span id="bannerLeft">
+    
+            Checkstyle 5.3
+    
+            </span>
+                        <a href="" id="bannerRight">
+    
+                                            <img src="images/logo.png" alt="Checkstyle" />
+    
+            </a>
+            <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+  
+  
+    
+            <div class="xleft">
+        Last Published: 2010-10-19
+                      </div>
+            <div class="xright">      
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+  
+  
+    
+                   <h5>About</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="index.html">Checkstyle</a>
+          </li>
+              
+    <li class="none">
+                    <a href="releasenotes.html">Release Notes</a>
+          </li>
+          </ul>
+              <h5>Documentation</h5>
+            <ul>
+              
+          
+              
+      
+              
+        <li class="expanded">
+                    <a href="config.html">Configuration</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="property_types.html">Property Types</a>
+          </li>
+              </ul>
+        </li>
+              
+          
+              
+      
+            
+      
+              
+        <li class="expanded">
+                    <a href="running.html">Running</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="anttask.html">Ant Task</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="cmdline.html">Command Line</a>
+          </li>
+              </ul>
+        </li>
+              
+    <li class="none">
+                    <a href="availablechecks.html">Available Checks</a>
+          </li>
+              
+          
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+            
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+            <li class="expanded">
+                    <a href="checks.html">Standard Checks</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="config_annotation.html">Annotations</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_blocks.html">Block Checks</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_design.html">Class Design</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_coding.html">Coding</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_duplicates.html">Duplicate Code</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_header.html">Headers</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_imports.html">Imports</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_javadoc.html">Javadoc Comments</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_metrics.html">Metrics</a>
+          </li>
+                  
+    <li class="none">
+              <strong>Miscellaneous</strong>
+        </li>
+                  
+    <li class="none">
+                    <a href="config_modifier.html">Modifiers</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_naming.html">Naming Conventions</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_regexp.html">Regexp</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_sizes.html">Size Violations</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="config_whitespace.html">Whitespace</a>
+          </li>
+              </ul>
+        </li>
+              
+          
+              
+      
+            
+      
+            
+      
+              
+        <li class="expanded">
+                    <a href="extending.html">Extending Checkstyle</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="writingchecks.html">Writing checks</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="writingfilters.html">Writing filters</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="writinglisteners.html">Writing listeners</a>
+          </li>
+              </ul>
+        </li>
+          </ul>
+              <h5>Developers</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="apidocs/index.html">Javadoc</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://sourceforge.net/projects/checkstyle" class="externalLink">Project Page</a>
+          </li>
+              
+    <li class="none">
+                    <a href="contributing.html">Contributing</a>
+          </li>
+          </ul>
+              <h5>Project Documentation</h5>
+            <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-info.html">Project Information</a>
+                </li>
+              
+                
+              
+      
+              
+        <li class="collapsed">
+                    <a href="project-reports.html">Project Reports</a>
+                </li>
+          </ul>
+                                                 
+                        
+                        
+            <a href="http://sourceforge.net/projects/checkstyle" title="SourceForge" class="poweredBy">
+                            <img alt="SourceForge" src="http://sflogo.sourceforge.net/sflogo.php?group_id=29721&type=11" />
+            </a>
+                               
+  
+
+  
+    
+  
+  
+    
+        </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <div class="section"><h2><a name="NewlineAtEndOfFile"></a>NewlineAtEndOfFile</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p>
+          Checks whether files end with a new line.
+        </p>
+<p>
+          Rationale: Any source files and text files in general should
+          end with a newline character, especially when using SCM
+          systems such as CVS. CVS will even print a warning when it
+          encounters a file that doesn't end with a newline.
+        </p>
+</div>
+<div class="section"><h3><a name="Properties"></a>Properties</h3>
+<table class="bodyTable"><tr class="a"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="b"><td>lineSeparator</td>
+<td>type of line separator</td>
+<td>
+              One of &quot;system&quot; (system default),
+              &quot;crlf&quot; (Windows-style), &quot;cr&quot;
+              (Mac-style) and &quot;lf&quot; (Unix-style)
+            </td>
+<td>system default</td>
+</tr>
+<tr class="a"><td>fileExtensions</td>
+<td>file type extension of the files to check.</td>
+<td><a href="property_types.html#stringSet">String Set</a></td>
+<td>all files</td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="Examples"></a>Examples</h3>
+<p>
+          To configure the check:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;NewlineAtEndOfFile&quot;/&gt;
+        </pre>
+</div>
+<p>
+          To configure the check to always use Unix-style line separators:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;NewlineAtEndOfFile&quot;&gt;
+    &lt;property name=&quot;lineSeparator&quot; value=&quot;lf&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+<p>
+            To configure the check to work only on java, xml and python files:
+          </p>
+<div class="source"><pre>
+&lt;module name=&quot;NewlineAtEndOfFile&quot;&gt;
+    &lt;property name=&quot;fileExtensions&quot; value=&quot;java, xml, py&quot;/&gt;
+&lt;/module&gt;
+          </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#Checker">Checker</a></p>
+</div>
+</div>
+<div class="section"><h2><a name="TodoComment"></a>TodoComment</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p>
+          A check for <code>TODO:</code> comments. Actually
+          it is a generic <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/regex/Pattern.html" class="externalLink">regular
+          expression</a> matcher on Java comments. To check for other
+          patterns in Java comments, set property format.
+        </p>
+</div>
+<div class="section"><h3><a name="Properties"></a>Properties</h3>
+<table class="bodyTable"><tr class="b"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="a"><td>format</td>
+<td>pattern to check</td>
+<td><a href="property_types.html#regexp">regular expression</a></td>
+<td><code>TODO:</code></td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="Notes"></a>Notes</h3>
+<p>
+          Using <code>TODO:</code> comments is a great way
+          to keep track of tasks that need to be done. Having them
+          reported by Checkstyle makes it very hard to forget about
+          them.
+        </p>
+</div>
+<div class="section"><h3><a name="Examples"></a>Examples</h3>
+<p>
+          To configure the check:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;TodoComment&quot;/&gt;
+        </pre>
+</div>
+<p>
+          To configure the check for comments that contain <code>WARNING</code>:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;TodoComment&quot;&gt;
+    &lt;property name=&quot;format&quot; value=&quot;WARNING&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#TreeWalker">TreeWalker</a></p>
+</div>
+</div>
+<div class="section"><h2><a name="Translation"></a>Translation</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p>
+          A <a href="config.html#Overview">FileSetCheck</a> that ensures
+          the correct translation of code by checking property files for
+          consistency regarding their keys. Two property files
+          describing one and the same context are consistent if they
+          contain the same keys.
+        </p>
+<p>
+          Consider the following properties file in the same directory:
+        </p>
+<div class="source"><pre>
+#messages.properties
+hello=Hello
+cancel=Cancel
+
+#messages_de.properties
+hell=Hallo
+ok=OK
+        </pre>
+</div>
+<p>
+          The Translation check will find the typo in the german hello
+          key, the missing ok key in the default resource file and the
+          missing cancel key in the german resource file:
+        </p>
+<div class="source"><pre>
+messages_de.properties: Key 'hello' missing.
+messages_de.properties: Key 'cancel' missing.
+messages.properties: Key 'hell' missing.
+messages.properties: Key 'ok' missing.
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Properties"></a>Properties</h3>
+<table class="bodyTable"><tr class="b"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="a"><td>fileExtensions</td>
+<td>
+              file type extension to identify translation files. Setting
+              this property is typically only required if your
+              translation files are preprocessed and the original files
+              do not have the extension <code>.properties</code></td>
+<td><a href="property_types.html#stringSet">String Set</a></td>
+<td><code>properties</code></td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="Example"></a>Example</h3>
+<p>
+          To configure the check:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;Translation&quot;/&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#Checker">Checker</a></p>
+</div>
+</div>
+<div class="section"><h2><a name="UncommentedMain"></a>UncommentedMain</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p>
+          Checks for uncommented main() methods (debugging leftovers).
+        </p>
+<p>
+          Rationale: A main() method is often used for debug
+          puposes. When debugging is finished, developers often forget
+          to remove the method, which changes the API and increases the
+          size of the resulting class/jar file. With the exception of
+          the real program entry points, all main() methods should be
+          removed/commented out of the sources.
+        </p>
+</div>
+<div class="section"><h3><a name="Properties"></a>Properties</h3>
+<table class="bodyTable"><tr class="b"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="a"><td>excludedClasses</td>
+<td>pattern for qualified names of classes which are allowed
+            to have a main method.</td>
+<td><a href="property_types.html#regexp">regular expression</a></td>
+<td><code>^$</code></td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="Examples"></a>Examples</h3>
+<p>
+          To configure the check:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;UncommentedMain&quot;/&gt;
+        </pre>
+</div>
+<p>
+          To configure the check to allow main method for all classes
+          with &quot;Main&quot; name:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;UncommentedMain&quot;&gt;
+    &lt;property name=&quot;excludedClasses&quot; value=&quot;\.Main$&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#TreeWalker">TreeWalker</a></p>
+</div>
+</div>
+<div class="section"><h2><a name="UpperEll"></a>UpperEll</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p>
+          Checks that long constants are defined with an upper ell. That
+          is <code>' L'</code> and not <code>'l'</code>. This is in accordance to the Java
+          Language Specification, <a href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#48282" class="externalLink">
+          Section 3.10.1</a>.
+        </p>
+<p>
+          looks a lot like <code>1</code>.
+        </p>
+</div>
+<div class="section"><h3><a name="Examples"></a>Examples</h3>
+<p>
+          To configure the check:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;UpperEll&quot;/&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#TreeWalker">TreeWalker</a></p>
+</div>
+</div>
+<div class="section"><h2><a name="ArrayTypeStyle"></a>ArrayTypeStyle</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p>
+          Checks the style of array type definitions.  Some like Java-style:
+          <code>public static void main(String[] args)</code> and some like
+          C-style: public static void main(String args[])
+        </p>
+</div>
+<div class="section"><h3><a name="Properties"></a>Properties</h3>
+<table class="bodyTable"><tr class="b"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="a"><td>javaStyle</td>
+<td>
+              Controls whether to enforce Java style (true) or C style (false).
+            </td>
+<td><a href="property_types.html#boolean">Boolean</a></td>
+<td><code>true</code></td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="Examples"></a>Examples</h3>
+<p>
+          To configure the check to enforce Java style:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;ArrayTypeStyle&quot;/&gt;
+        </pre>
+</div>
+<p>
+          To configure the check to enforce C style:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;ArrayTypeStyle&quot;&gt;
+    &lt;property name=&quot;javaStyle&quot; value=&quot;false&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#TreeWalker">TreeWalker</a></p>
+</div>
+</div>
+<div class="section"><h2><a name="FinalParameters"></a>FinalParameters</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p>
+          Check that method/constructor/catch block parameters are
+          final. Interface and abstract methods are not checked - the final
+          keyword does not make sense for interface and abstract method
+          parameters as there is no code that could modify the parameter.
+        </p>
+<p>
+          Rationale: Changing the value of parameters during the execution of
+          the method's algorithm can be confusing and should be avoided. A
+          great way to let the Java compiler prevent this coding style is to
+          declare parameters final.
+        </p>
+</div>
+<div class="section"><h3><a name="Properties"></a>Properties</h3>
+<table class="bodyTable"><tr class="b"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="a"><td>tokens</td>
+<td>blocks to check</td>
+<td>subset of tokens <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
+             <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">LITERAL_CATCH</a></td>
+<td><a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a></td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="Examples"></a>Examples</h3>
+<p>
+          To configure the check to enforce final parameters for methods and
+          constructors:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;FinalParameters&quot;/&gt;
+        </pre>
+</div>
+<p>
+          To configure the check to enforce final parameters only for
+          constructors:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;FinalParameters&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;CTOR_DEF&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#TreeWalker">TreeWalker</a></p>
+</div>
+</div>
+<div class="section"><h2><a name="DescendantToken"></a>DescendantToken</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p>
+          Checks for restricted tokens beneath other tokens.
+        </p>
+<p>
+          WARNING: This is a very powerful and flexible check, but, at the
+          same time, it is low level and very implementation dependent because
+          its results depend on the grammar we use to build abstract syntax
+          trees. Thus we recomend using other checks when they provide the
+          desired funcionality. All in all, this check just works on the level
+          of an abstract tree and knows nothing about language structures.
+        </p>
+</div>
+<div class="section"><h3><a name="Properties"></a>Properties</h3>
+<table class="bodyTable"><tr class="b"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="a"><td>tokens</td>
+<td>token types to check</td>
+<td>subset of tokens declared in <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a></td>
+<td>empty set</td>
+</tr>
+<tr class="b"><td>limitedTokens</td>
+<td>set of tokens with limited occurances as descendants</td>
+<td>subset of tokens declared in <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a></td>
+<td>empty set</td>
+</tr>
+<tr class="a"><td>minimumDepth</td>
+<td>the mimimum depth for descendant counts</td>
+<td><a href="property_types.html#integer">Integer</a></td>
+<td>0</td>
+</tr>
+<tr class="b"><td>maximumDepth</td>
+<td>the maximum depth for descendant counts</td>
+<td><a href="property_types.html#integer">Integer</a></td>
+<td>java.lang.Integer.MAX_VALUE</td>
+</tr>
+<tr class="a"><td>minimumNumber</td>
+<td>a minimum count for descendants</td>
+<td><a href="property_types.html#integer">Integer</a></td>
+<td>0</td>
+</tr>
+<tr class="b"><td>maximumNumber</td>
+<td>a maximum count for descendants</td>
+<td><a href="property_types.html#integer">Integer</a></td>
+<td>java.lang.Integer.MAX_VALUE</td>
+</tr>
+<tr class="a"><td>sumTokenCounts</td>
+<td>
+              whether the number of tokens found should be calculated
+              from the sum of the individual token counts
+            </td>
+<td><a href="property_types.html#boolean">Boolean</a></td>
+<td><code>false</code></td>
+</tr>
+<tr class="b"><td>minimumMessage</td>
+<td>error message when minimum count not reached</td>
+<td><a href="property_types.html#string">String</a></td>
+<td>&quot;descendant.token.min&quot;</td>
+</tr>
+<tr class="a"><td>maximumMessage</td>
+<td>error message when maximum count exceeded</td>
+<td><a href="property_types.html#string">String</a></td>
+<td>&quot;descendant.token.max&quot;</td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="Examples"></a>Examples</h3>
+<p>
+          Comparing <code>this</code> with <code>null</code> (i.e. <code>this ==
+          null</code> and <code>this != null</code>):
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;DescendantToken&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;EQUAL,NOT_EQUAL&quot;/&gt;
+    &lt;property name=&quot;limitedTokens&quot; value=&quot;LITERAL_THIS,LITERAL_NULL&quot;/&gt;
+    &lt;property name=&quot;maximumNumber&quot; value=&quot;1&quot;/&gt;
+    &lt;property name=&quot;maximumDepth&quot; value=&quot;1&quot;/&gt;
+    &lt;property name=&quot;sumTokenCounts&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+<p>String literal equality check:</p>
+<div class="source"><pre>
+&lt;module name=&quot;DescendantToken&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;EQUAL,NOT_EQUAL&quot;/&gt;
+    &lt;property name=&quot;limitedTokens&quot; value=&quot;STRING_LITERAL&quot;/&gt;
+    &lt;property name=&quot;maximumNumber&quot; value=&quot;0&quot;/&gt;
+    &lt;property name=&quot;maximumDepth&quot; value=&quot;1&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+<p>Switch with no default:</p>
+<div class="source"><pre>
+&lt;module name=&quot;DescendantToken&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_SWITCH&quot;/&gt;
+    &lt;property name=&quot;maximumDepth&quot; value=&quot;2&quot;/&gt;
+    &lt;property name=&quot;limitedTokens&quot; value=&quot;LITERAL_DEFAULT&quot;/&gt;
+    &lt;property name=&quot;minimumNumber&quot; value=&quot;1&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+<p>
+          Assert statement may have side effects (formatted for browser
+          display):
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;DescendantToken&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_ASSERT&quot;/&gt;
+    &lt;property name=&quot;limitedTokens&quot; value=&quot;ASSIGN,DEC,INC,POST_DEC,
+        POST_INC,PLUS_ASSIGN,MINUS_ASSIGN,STAR_ASSIGN,DIV_ASSIGN,MOD_ASSIGN,
+        BSR_ASSIGN,SR_ASSIGN,SL_ASSIGN,BAND_ASSIGN,BXOR_ASSIGN,BOR_ASSIGN,
+        METHOD_CALL&quot;/&gt;
+    &lt;property name=&quot;maximumNumber&quot; value=&quot;0&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+<p>
+          Initialiser in for performs no setup (use while instead?):
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;DescendantToken&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;FOR_INIT&quot;/&gt;
+    &lt;property name=&quot;limitedTokens&quot; value=&quot;EXPR&quot;/&gt;
+    &lt;property name=&quot;minimumNumber&quot; value=&quot;1&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+<p>
+          Condition in for performs no check:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;DescendantToken&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;FOR_CONDITION&quot;/&gt;
+    &lt;property name=&quot;limitedTokens&quot; value=&quot;EXPR&quot;/&gt;
+    &lt;property name=&quot;minimumNumber&quot; value=&quot;1&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+<p>
+          Switch within switch:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;DescendantToken&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_SWITCH&quot;/&gt;
+    &lt;property name=&quot;limitedTokens&quot; value=&quot;LITERAL_SWITCH&quot;/&gt;
+    &lt;property name=&quot;maximumNumber&quot; value=&quot;0&quot;/&gt;
+    &lt;property name=&quot;minimumDepth&quot; value=&quot;1&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+<p>Return from within a catch or finally block:</p>
+<div class="source"><pre>
+&lt;module name=&quot;DescendantToken&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_FINALLY,LITERAL_CATCH&quot;/&gt;
+    &lt;property name=&quot;limitedTokens&quot; value=&quot;LITERAL_RETURN&quot;/&gt;
+    &lt;property name=&quot;maximumNumber&quot; value=&quot;0&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+<p>Try within catch or finally block:</p>
+<div class="source"><pre>
+&lt;module name=&quot;DescendantToken&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_CATCH,LITERAL_FINALLY&quot;/&gt;
+    &lt;property name=&quot;limitedTokens&quot; value=&quot;LITERAL_TRY&quot;/&gt;
+    &lt;property name=&quot;maximumNumber&quot; value=&quot;0&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+<p>Too many cases within a switch:</p>
+<div class="source"><pre>
+&lt;module name=&quot;DescendantToken&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_SWITCH&quot;/&gt;
+    &lt;property name=&quot;limitedTokens&quot; value=&quot;LITERAL_CASE&quot;/&gt;
+    &lt;property name=&quot;maximumDepth&quot; value=&quot;2&quot;/&gt;
+    &lt;property name=&quot;maximumNumber&quot; value=&quot;10&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+<p>Too many local variables within a method:</p>
+<div class="source"><pre>
+&lt;module name=&quot;DescendantToken&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
+    &lt;property name=&quot;limitedTokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
+    &lt;property name=&quot;maximumDepth&quot; value=&quot;2&quot;/&gt;
+    &lt;property name=&quot;maximumNumber&quot; value=&quot;10&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+<p>Too many returns from within a method:</p>
+<div class="source"><pre>
+&lt;module name=&quot;DescendantToken&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
+    &lt;property name=&quot;limitedTokens&quot; value=&quot;LITERAL_RETURN&quot;/&gt;
+    &lt;property name=&quot;maximumNumber&quot; value=&quot;3&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+<p>Too many fields within an interface:</p>
+<div class="source"><pre>
+&lt;module name=&quot;DescendantToken&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;INTERFACE_DEF&quot;/&gt;
+    &lt;property name=&quot;limitedTokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
+    &lt;property name=&quot;maximumDepth&quot; value=&quot;2&quot;/&gt;
+    &lt;property name=&quot;maximumNumber&quot; value=&quot;0&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+<p>Limit the number of exceptions a method can throw:</p>
+<div class="source"><pre>
+&lt;module name=&quot;DescendantToken&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_THROWS&quot;/&gt;
+    &lt;property name=&quot;limitedTokens&quot; value=&quot;IDENT&quot;/&gt;
+    &lt;property name=&quot;maximumNumber&quot; value=&quot;1&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+<p>Limit the number of expressions in a method:</p>
+<div class="source"><pre>
+&lt;module name=&quot;DescendantToken&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
+    &lt;property name=&quot;limitedTokens&quot; value=&quot;EXPR&quot;/&gt;
+    &lt;property name=&quot;maximumNumber&quot; value=&quot;200&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+<p>Disallow empty statements:</p>
+<div class="source"><pre>
+&lt;module name=&quot;DescendantToken&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;EMPTY_STAT&quot;/&gt;
+    &lt;property name=&quot;limitedTokens&quot; value=&quot;EMPTY_STAT&quot;/&gt;
+    &lt;property name=&quot;maximumNumber&quot; value=&quot;0&quot;/&gt;
+    &lt;property name=&quot;maximumDepth&quot; value=&quot;0&quot;/&gt;
+    &lt;property name=&quot;maximumMessage&quot;
+        value=&quot;Empty statement is not allowed.&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+<p>Too many fields within a class:</p>
+<div class="source"><pre>
+&lt;module name=&quot;DescendantToken&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF&quot;/&gt;
+    &lt;property name=&quot;limitedTokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
+    &lt;property name=&quot;maximumDepth&quot; value=&quot;2&quot;/&gt;
+    &lt;property name=&quot;maximumNumber&quot; value=&quot;10&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#TreeWalker">TreeWalker</a></p>
+</div>
+</div>
+<div class="section"><h2><a name="Indentation"></a>Indentation</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p>
+          Checks correct indentation of Java Code.
+        </p>
+<p>
+          The basic idea behind this is that while pretty printers are
+          sometimes convienent for bulk reformats of legacy code, they often
+          either aren't configurable enough or just can't anticipate how
+          format should be done.  Sometimes this is personal preference, other
+          times it is practical experience.  In any case, this check should
+          just ensure that a minimal set of indentation rules are followed.
+        </p>
+</div>
+<div class="section"><h3><a name="Properties"></a>Properties</h3>
+<table class="bodyTable"><tr class="b"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="a"><td>basicOffset</td>
+<td>how many spaces to use for new indentation level</td>
+<td><a href="property_types.html#integer">Integer</a></td>
+<td>4</td>
+</tr>
+<tr class="b"><td>braceAdjustment</td>
+<td>how far brace should be indented when on next line</td>
+<td><a href="property_types.html#integer">Integer</a></td>
+<td>0</td>
+</tr>
+<tr class="a"><td>caseIndent</td>
+<td>how much to indent a case label</td>
+<td><a href="property_types.html#integer">Integer</a></td>
+<td>4</td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="Examples"></a>Examples</h3>
+<p>
+          To configure the check:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;Indentation&quot;/&gt;
+        </pre>
+</div>
+<p>
+          To configure the check to enforce indentation style recommended by
+          Sun:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;Indentation&quot;&gt;
+    &lt;property name=&quot;caseIndent&quot; value=&quot;0&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p>
+          com.puppycrawl.tools.checkstyle.checks.indentation
+        </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#TreeWalker">TreeWalker</a></p>
+</div>
+</div>
+<div class="section"><h2><a name="TrailingComment"></a>TrailingComment</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p>
+          The check to ensure that requires that comments be the only thing on
+          a line.  For the case of // comments that means that the only thing
+          that should precede it is whitespace.  It doesn't check comments if
+          they do not end line, i.e. it accept the following:
+          <code>Thread.sleep( 10 &lt;some comment here&gt; );</code> Format
+          property is intended to deal with the &quot;} // while&quot; example.
+        </p>
+<p>
+          Rationale: Steve McConnel in &quot;Code Complete&quot; suggests that
+          endline comments are a bad practice. An end line comment would be
+          one that is on the same line as actual code. For example:
+        </p>
+<div class="source"><pre>
+a = b + c;      // Some insightful comment
+d = e / f;        // Another comment for this line
+        </pre>
+</div>
+<p>
+          Quoting &quot;Code Complete&quot; for the justfication:
+        </p>
+<ul><li> &quot;The comments have to be aligned so that they do not
+          interfere with the visual structure of the code. If you don't align
+          them neatly, they'll make your listing look like it's been through a
+          washing machine.&quot;
+          </li>
+<li> &quot;Endline comments tend to be hard to format...It takes
+          time to align them. Such time is not spent learning more about the
+          code; it's dedicated solely to the tedious task of pressing the
+          spacebar or tab key.&quot;
+          </li>
+<li> &quot;Endline comments are also hard to maintain. If the code
+          on any line containing an endline comment grows, it bumps the
+          comment farther out, and all the other endline comments will have to
+          bumped out to match. Styles that are hard to maintain aren't
+          maintained....&quot;
+          </li>
+<li> &quot;Endline comments also tend to be cryptic. The right side
+          of the line doesn't offer much room and the desire to keep the
+          comment on one line means the comment must be short.  Work then goes
+          into making the line as short as possible instead of as clear as
+          possible. The comment usually ends up as cryptic as
+          possible....&quot;
+          </li>
+<li> &quot;A systemic problem with endline comments is that it's
+          hard to write a meaningful comment for one line of code. Most
+          endline comments just repeat the line of code, which hurts more than
+          it helps.&quot;
+          </li>
+</ul>
+<p>
+          His comments on being hard to maintain when the size of the line
+          changes are even more important in the age of automated
+          refactorings.
+        </p>
+</div>
+<div class="section"><h3><a name="Properties"></a>Properties</h3>
+<table class="bodyTable"><tr class="b"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="a"><td>format</td>
+<td>pattern for string allowed before comment.</td>
+<td><a href="property_types.html#regexp">regular expression</a></td>
+<td><code>^[\\s\\}\\);]*$</code></td>
+</tr>
+<tr class="b"><td>legalComment</td>
+<td>pattern for text of trailing comment which is allowed. (this
+                patter will not be applied to multiline comments and text of
+                comment will be trimmed before matching)</td>
+<td><a href="property_types.html#regexp">regular expression</a></td>
+<td>(not set)</td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="Examples"></a>Examples</h3>
+<p>
+          To configure the check:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;TrailingComment&quot;/&gt;
+        </pre>
+</div>
+<p>
+          To configure the check so it enforces only comment on a line:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;TrailingComment&quot;&gt;
+    &lt;property name=&quot;format&quot; value=&quot;^\\s*$&quot;/&gt;
+ &lt;/module&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p>
+          com.puppycrawl.tools.checkstyle.checks.indentation
+        </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#TreeWalker">TreeWalker</a></p>
+</div>
+</div>
+<div class="section"><h2><a name="Regexp"></a>Regexp</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p>
+          A check that makes sure that a specified pattern exists, exists less
+          than a set number of times, or does not exist in the file.
+        </p>
+<p>
+          This check combines all the functionality provided by
+          <a href="config_header.html#RegexpHeader">RegexpHeader</a>,
+          <a href="config_misc.html#GenericIllegalRegexp">GenericIllegalRegexp</a>
+          and <a href="config_misc.html#RequiredRegexp">RequiredRegexp</a>,
+          except supplying the regular expression from a file.
+        </p>
+<p>
+          It differs from them in that it works in multiline mode.
+          It's regular expression can span multiple lines and it checks this
+          against the whole file at once.
+          The others work in singleline mode.
+          Their single or multiple regular expressions can only span one line.
+          They check each of these against each line in the file in turn.
+        </p>
+<p><b>Note:</b> Because of the different mode of operation there may be
+          some changes in the regular expressions used to achieve a particular end.
+        </p>
+<p>In multiline mode...</p>
+<ul><li> ^ means beginning of a line, as oposed to beginning of input.</li>
+<li> For beginning of input use \A.</li>
+<li> $ means end of a line, as oposed to end of input.</li>
+<li> For end of input use \Z.</li>
+<li> Each line in the file is terminated with a newline character.</li>
+</ul>
+<p><b>Note:</b> Not all regexp engines are created equal. Some provide extra
+          functions that others do not and some elements of the syntax may vary.
+          This check makes use of the <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/regex/package-summary.html" class="externalLink">
+          java.util.regex package</a>, please check its documentation for
+          details of how to construct a regular expression to achive a particular
+          goal.
+        </p>
+<p><b>Note:</b> When entering a regular expression as a parameter in the
+          xml config file you must also take into account the xml rules. e.g. if
+          you want to match a &lt; symbol you need to enter &amp;lt;. The regular
+          expression should be entered on one line.
+        </p>
+</div>
+<div class="section"><h3><a name="Properties"></a>Properties</h3>
+<table class="bodyTable"><tr class="a"><th>name</th>
+<th>description</th>
+<th>type</th>
+<th>default value</th>
+</tr>
+<tr class="b"><td>format</td>
+<td>pattern</td>
+<td><a href="property_types.html#regexp">regular expression</a></td>
+<td><code>$^</code> (empty)</td>
+</tr>
+<tr class="a"><td>message</td>
+<td>message which is used to notify about violations,
+            if empty then default(hard-coded) message is used.</td>
+<td><a href="property_types.html#string">String</a></td>
+<td><code>&quot;&quot;</code>(empty)</td>
+</tr>
+<tr class="b"><td>illegalPattern</td>
+<td>Controls whether the pattern is required or illegal.</td>
+<td><a href="property_types.html#boolean">Boolean</a></td>
+<td><code>false</code></td>
+</tr>
+<tr class="a"><td>duplicateLimit</td>
+<td>Controls whether to check for duplicates of a required pattern,
+            any negative value means no checking for duplicates, any positive
+            value is used as the maximum number of allowed duplicates, if the
+            limit is exceeded errors will be logged.</td>
+<td><a href="property_types.html#integer">Integer</a></td>
+<td><code>-1</code></td>
+</tr>
+<tr class="b"><td>errorLimit</td>
+<td>Controls the maximum number of errors before the check will abort.</td>
+<td><a href="property_types.html#integer">Integer</a></td>
+<td><code>100</code></td>
+</tr>
+<tr class="a"><td>ignoreComments</td>
+<td>Controls whether to ignore matches found within comments.</td>
+<td><a href="property_types.html#boolean">Boolean</a></td>
+<td><code>false</code></td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="Examples"></a>Examples</h3>
+<p>
+          The following examples are mainly copied from the other 3 checks
+          mentioned above, to show how the same results can be acheived using
+          this check in place of them.
+        </p>
+<p><b>To use like <a href="config_misc.html#RequiredRegexp">RequiredRegexp
+          </a>:</b></p>
+<p>
+          An example of how to configure the check to make sure a copyright
+          statement is included in the file:
+        </p>
+<p> The statement. </p>
+<div class="source"><pre>
+// This code is copyrighted
+        </pre>
+</div>
+<p> The check. </p>
+<div class="source"><pre>
+&lt;module name=&quot;Regexp&quot;&gt;
+   &lt;property name=&quot;format&quot; value=&quot;// This code is copyrighted&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+<p> Your statement may be multiline. </p>
+<div class="source"><pre>
+// This code is copyrighted
+// (c) MyCompany
+        </pre>
+</div>
+<p> Then the check would be. </p>
+<div class="source"><pre>
+&lt;module name=&quot;Regexp&quot;&gt;
+   &lt;property name=&quot;format&quot; value=&quot;// This code is copyrighted\n// \(c\) MyCompany&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+<p><b>Note:</b> To search for parentheses () in a regular expression
+          you must escape them like \(\). This is required by the regexp engine,
+          otherwise it will think they are special instruction characters.
+        </p>
+<p>
+          And to make sure it appears only once:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;Regexp&quot;&gt;
+   &lt;property name=&quot;format&quot; value=&quot;// This code is copyrighted\n// \(c\) MyCompany&quot;/&gt;
+   &lt;property name=&quot;duplicateLimit&quot; value=&quot;0&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+<p>
+          It can also be useful to attach a meaningful message to the check:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;Regexp&quot;&gt;
+   &lt;property name=&quot;format&quot; value=&quot;// This code is copyrighted\n// \(c\) MyCompany&quot;/&gt;
+   &lt;property name=&quot;message&quot; value=&quot;Copyright&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+<p><b>To use like <a href="config_misc.html#GenericIllegalRegexp">GenericIllegalRegexp
+          </a>:</b></p>
+<p>
+          An example of how to configure the check to make sure there are no
+          calls to <code>System.out.println</code>:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;Regexp&quot;&gt;
+    &lt;!-- . matches any character, so we need to escape it and use \. to match dots. --&gt;
+    &lt;property name=&quot;format&quot; value=&quot;System\.out\.println&quot;/&gt;
+    &lt;property name=&quot;illegalPattern&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+<p>
+          You may want to make the above check ignore comments, like this:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;Regexp&quot;&gt;
+    &lt;property name=&quot;format&quot; value=&quot;System\.out\.println&quot;/&gt;
+    &lt;property name=&quot;illegalPattern&quot; value=&quot;true&quot;/&gt;
+    &lt;property name=&quot;ignoreComments&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+<p>
+          An example of how to configure the check to find trailing whitespace
+          at the end of a line:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;Regexp&quot;&gt;
+    &lt;property name=&quot;format&quot; value=&quot;[ \t]+$&quot;/&gt;
+    &lt;property name=&quot;illegalPattern&quot; value=&quot;true&quot;/&gt;
+    &lt;property name=&quot;message&quot; value=&quot;Trailing whitespace&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+<p><b>Note:</b> The difference between this and the example given for
+          <a href="config_misc.html#genericIllegalRegexp">GenericIllegalRegexp</a>
+          is necessary because \s and $ both match the newline character (&quot;\n&quot;).
+        </p>
+<p>
+          An example of how to configure the check to find case-insensitive
+          occurrences of &quot;debug&quot;:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;Regexp&quot;&gt;
+    &lt;property name=&quot;format&quot; value=&quot;(?i)debug&quot;/&gt;
+    &lt;property name=&quot;illegalPattern&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+<p><b>Note:</b> The (?i) at the beginning of the regular expression
+          tells the regexp engine to ignore the case.
+        </p>
+<p>
+          There is also a feature to limit the number of errors reported.
+          When the limit is reached the check aborts with a message
+          reporting that the limit has been reached.
+          The default limit setting is 100, but this can be change as shown in
+          the following example.
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;Regexp&quot;&gt;
+    &lt;property name=&quot;format&quot; value=&quot;(?i)debug&quot;/&gt;
+    &lt;property name=&quot;illegalPattern&quot; value=&quot;true&quot;/&gt;
+    &lt;property name=&quot;errorLimit&quot; value=&quot;1000&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+<p><b>To use like <a href="config_misc.html#RegexpHeader">RegexpHeader
+          </a>:</b></p>
+<p>
+          To configure the check to verify that each file starts with the
+          following multiline header.
+        </p>
+<p>Note the following:</p>
+<ul><li>\A means the start of the file.</li>
+<li>The date can be any 4 digit number.</li>
+</ul>
+<div class="source"><pre>
+// Copyright (C) 2004 MyCompany
+// All rights reserved
+        </pre>
+</div>
+<div class="source"><pre>
+&lt;module name=&quot;Regexp&quot;&gt;
+  &lt;property
+    name=&quot;format&quot;
+    value=&quot;\A// Copyright \(C\) \d\d\d\d MyCompany\n// All rights reserved&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+<p>
+          A more complex example. Note how the import and javadoc multilines are
+          handled, there can be any number of them.
+        </p>
+<div class="source"><pre>
+///////////////////////////////////////////////////////////////////////
+// checkstyle:
+// Checks Java source code for adherence to a set of rules.
+// Copyright (C) 2004  Oliver Burn
+// Last modification by $Author A.N.Other$
+///////////////////////////////////////////////////////////////////////
+
+package com.puppycrawl.checkstyle;
+
+import java.util.thing1;
+import java.util.thing2;
+import java.util.thing3;
+
+/**
+ * javadoc line 1
+ * javadoc line 2
+ * javadoc line 3
+ */
+        </pre>
+</div>
+<div class="source"><pre>
+&lt;module name=&quot;Regexp&quot;&gt;
+  &lt;property
+    name=&quot;format&quot;
+    value=&quot;\A/{71}\n// checkstyle:\n// Checks Java source code for
+    adherence to a set of rules\.\n// Copyright \(C\) \d\d\d\d  Oliver Burn\n
+    // Last modification by \$Author.*\$\n/{71}\n\npackage [\w\.]*;\n\n
+    (import [\w\.]*;\n)*\n/\*\*\n( \*[^/]*\n)* \*/&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+<p><b>More examples:</b></p>
+<p>
+          The next 2 examples deal with the following example java source file:
+        </p>
+<div class="source"><pre>
+/*
+ * PID.java
+ *
+ * Copyright (c) 2001 ACME
+ * 123 Some St.
+ * Somewhere.
+ *
+ * This software is the confidential and proprietary information of ACME.
+ * (&quot;Confidential Information&quot;). You shall not disclose such
+ * Confidential Information and shall use it only in accordance with
+ * the terms of the license agreement you entered into with ACME.
+ *
+ * $Log: config_misc.xml,v $
+ * Revision 1.7  2007/01/16 12:16:35  oburn
+ * Removing all reference to mailing lists
+ *
+ * Revision 1.6  2005/12/25 16:13:10  o_sukhodolsky
+ * Fix for rfe 1248106 (TYPECAST is now accepted by NoWhitespaceAfter)
+ *
+ * Fix for rfe 953266 (thanks to Paul Guyot (pguyot) for submitting patch)
+ * IllegalType can be configured to accept some abstract classes which
+ * matches to regexp of illegal type names (property legalAbstractClassNames)
+ *
+ * TrailingComment now can be configured to accept some trailing comments
+ * (such as NOI18N) (property legalComment, rfe 1385344).
+ *
+ * Revision 1.5  2005/11/06 11:54:12  oburn
+ * Incorporate excellent patch [ 1344344 ] Consolidation of regexp checks.
+ *
+ * Revision 1.3.8.1  2005/10/11 14:26:32  someone
+ * Fix for bug 251.  The broken bit is fixed
+ */
+
+package com.acme.tools;
+
+import com.acme.thing1;
+import com.acme.thing2;
+import com.acme.thing3;
+
+/**
+ *
+ * &lt;P&gt;
+ *   &lt;I&gt;This software is the confidential and proprietary information of
+ *   ACME (&lt;B&gt;&quot;Confidential Information&quot;&lt;/B&gt;). You shall not
+ *   disclose such Confidential Information and shall use it only in
+ *   accordance with the terms of the license agreement you entered into
+ *   with ACME.&lt;/I&gt;
+ * &lt;/P&gt;
+ *
+ * &amp;#169; copyright 2002 ACME
+ *
+ * @author   Some Body
+ */
+public class PID extends StateMachine implements WebObject.Constants {
+
+    /** javadoc. */
+    public static final int A_SETPOINT = 1;
+    .
+    .
+    .
+} // class PID
+        </pre>
+</div>
+<p>
+          This checks for the presence of the header, the first 16 lines.
+        </p>
+<p>Note the following:</p>
+<ul><li>Line 2 and 13 contain the file name. These are checked to
+          make sure they are the same, and that they match the class name.</li>
+<li>The date can be any 4 digit number.</li>
+</ul>
+<div class="source"><pre>
+&lt;module name=&quot;Regexp&quot;&gt;
+        &lt;property
+                name=&quot;format&quot;
+                value=&quot;\A/\*\n \* (\w*)\.java\n \*\n \* Copyright \(c\)
+                \d\d\d\d ACME\n \* 123 Some St\.\n \* Somewhere\.\n \*\n
+                \* This software is the confidential and proprietary information
+                of ACME\.\n \* \(&quot;Confidential Information&quot;\)\. You
+                shall not disclose such\n \* Confidential Information and shall
+                use it only in accordance with\n \* the terms of the license
+                agreement you entered into with ACME\.\n \*\n
+                \* \$Log: config_misc.xml,v $
+                \* \Revision 1.7  2007/01/16 12:16:35  oburn
+                \* \Removing all reference to mailing lists
+                \* \
+                \* \Revision 1.6  2005/12/25 16:13:10  o_sukhodolsky
+                \* \Fix for rfe 1248106 (TYPECAST is now accepted by NoWhitespaceAfter)
+                \* \
+                \* \Fix for rfe 953266 (thanks to Paul Guyot (pguyot) for submitting patch)
+                \* \IllegalType can be configured to accept some abstract classes which
+                \* \matches to regexp of illegal type names (property legalAbstractClassNames)
+                \* \
+                \* \TrailingComment now can be configured to accept some trailing comments
+                \* \(such as NOI18N) (property legalComment, rfe 1385344).
+                \* \
+                \* \Revision 1.5  2005/11/06 11:54:12  oburn
+                \* \Incorporate excellent patch [ 1344344 ] Consolidation of regexp checks.
+                \* \\n(.*\n)*([\w|\s]*( class | interface )\1)&quot;/&gt;
+        &lt;property name=&quot;message&quot; value=&quot;Correct header not found&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+<p>
+          This checks for the presence of a copyright notice within the class
+          javadoc, lines 24 to 37.
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;Regexp&quot;&gt;
+        &lt;property
+                name=&quot;format&quot;
+                value=&quot;(/\*\*\n)( \*.*\n)*( \* &amp;lt;P&amp;gt;\n \*   &amp;lt;I&amp;gt;
+                This software is the confidential and proprietary information of\n
+                \*   ACME \(&amp;lt;B&amp;gt;&amp;quot;Confidential Information&amp;quot;&amp;lt;/B&amp;gt;
+                \)\. You shall not\n \*   disclose such Confidential Information
+                and shall use it only in\n \*   accordance with the terms of the
+                license agreement you entered into\n \*   with ACME\.&amp;lt;/I&amp;gt;\n
+                 \* &amp;lt;/P&amp;gt;\n \*\n \* &amp;#169; copyright \d\d\d\d ACME\n
+                  \*\n \* @author .*)(\n\s\*.*)*/\n[\w|\s]*( class | interface )&quot;/&gt;
+        &lt;property name=&quot;message&quot; value=&quot;Copyright in class/interface Javadoc&quot;/&gt;
+        &lt;property name=&quot;duplicateLimit&quot; value=&quot;0&quot;/&gt;
+&lt;/module&gt;
+        </pre>
+</div>
+<p><b>Note:</b> To search for things that mean something in xml, like
+          &lt; you need to escape them like &amp;lt;. This is required so the
+          xml parser does not act on them, but instead passes the correct
+          character to the regexp engine.
+        </p>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#TreeWalker">TreeWalker</a></p>
+</div>
+</div>
+<div class="section"><h2><a name="OuterTypeFilename"></a>OuterTypeFilename</h2>
+<div class="section"><h3><a name="Description"></a>Description</h3>
+<p>
+          Checks that the outer type name and the file name match. For example,
+          the class <code>Foo</code> must be in a file named
+          <code>Foo.java</code>.
+        </p>
+</div>
+<div class="section"><h3><a name="Properties"></a>Properties</h3>
+<p>None.</p>
+</div>
+<div class="section"><h3><a name="Examples"></a>Examples</h3>
+<p>
+          To configure the check:
+        </p>
+<div class="source"><pre>
+&lt;module name=&quot;OuterTypeFilename&quot;/&gt;
+        </pre>
+</div>
+</div>
+<div class="section"><h3><a name="Package"></a>Package</h3>
+<p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+</div>
+<div class="section"><h3><a name="Parent_Module"></a>Parent Module</h3>
+<p><a href="config.html#TreeWalker">TreeWalker</a></p>
+</div>
+</div>
+
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2001-2010
+    
+          
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>
