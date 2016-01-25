@@ -141,10 +141,8 @@ public final class StandardObjectSizeCalculator implements ObjectSizeCalculator 
          do {
 
             final Field[] fields = clazz.getDeclaredFields();
-            final int cField = fields == null ? 0 : fields.length;
-            for (int i = 0; i < cField; i++) {
+            for (final Field field : fields) {
 
-               final Field field = fields[i];
                if (Modifier.isStatic(field.getModifiers())) {
 
                   continue;
