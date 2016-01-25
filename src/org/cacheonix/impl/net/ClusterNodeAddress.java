@@ -20,6 +20,7 @@ import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.cacheonix.impl.net.serializer.SerializerUtils;
 import org.cacheonix.impl.net.serializer.Wireable;
@@ -56,7 +57,7 @@ public final class ClusterNodeAddress implements Comparable, Wireable {
    /**
     * Cache that keeps inlined cluster node addresses.
     */
-   private static final HashMap<ClusterNodeAddress, ClusterNodeAddress> cache = new HashMap<ClusterNodeAddress, ClusterNodeAddress>(
+   private static final Map<ClusterNodeAddress, ClusterNodeAddress> cache = new HashMap<ClusterNodeAddress, ClusterNodeAddress>(
            111); // NOPMD
 
    /**
