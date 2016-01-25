@@ -134,7 +134,7 @@ public final class TransferBucketRequest extends CacheRequest {
    }
 
 
-   public byte getSourceStorageNumber() {
+   public synchronized byte getSourceStorageNumber() {
 
       return sourceStorageNumber;
    }
