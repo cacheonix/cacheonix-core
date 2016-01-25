@@ -73,7 +73,11 @@ public abstract class SinglePartitionedCacheTestDriver extends PartitionedCacheT
          thread.join();
 
       } finally {
-         writeLock.unlock();
+         try {
+            writeLock.unlock();
+         } catch (final ShutdownException ignored) {
+
+         }
       }
 
       assertTrue(thrown);
