@@ -33,7 +33,7 @@ import org.cacheonix.impl.net.serializer.WireableBuilder;
  * @noinspection NonFinalFieldReferenceInEquals, NonFinalFieldReferenceInEquals, NonFinalFieldReferenceInEquals,
  * NonFinalFieldReferenceInEquals, NonFinalFieldReferencedInHashCode, NonFinalFieldReferencedInHashCode
  */
-public final class PassByReferenceBinary implements Binary {
+public final class PassObjectByReferenceBinary implements Binary {
 
    /**
     * Builder used by WireableFactory.
@@ -47,7 +47,7 @@ public final class PassByReferenceBinary implements Binary {
    private Object reference = null;
 
 
-   public PassByReferenceBinary() {
+   public PassObjectByReferenceBinary() {
 
    }
 
@@ -58,7 +58,7 @@ public final class PassByReferenceBinary implements Binary {
     * @param object to wrap.
     * @noinspection PublicConstructorInNonPublicClass
     */
-   public PassByReferenceBinary(final Object object) {
+   public PassObjectByReferenceBinary(final Object object) {
 
       this.reference = object;
    }
@@ -75,7 +75,7 @@ public final class PassByReferenceBinary implements Binary {
 
    public Binary create(final Serializable value) {
 
-      return new PassByReferenceBinary(value);
+      return new PassObjectByReferenceBinary(value);
    }
 
 
@@ -130,7 +130,7 @@ public final class PassByReferenceBinary implements Binary {
          return false;
       }
 
-      final PassByReferenceBinary that = (PassByReferenceBinary) obj;
+      final PassObjectByReferenceBinary that = (PassObjectByReferenceBinary) obj;
 
 
       if (reference == null && that.reference == null) {
@@ -172,7 +172,7 @@ public final class PassByReferenceBinary implements Binary {
 
       public Wireable create() {
 
-         return new PassByReferenceBinary();
+         return new PassObjectByReferenceBinary();
       }
    }
 }
