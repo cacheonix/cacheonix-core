@@ -14,7 +14,7 @@
    <!-- Location of source files -->
    <property name="config.dir" value="conf"/>
    <property name="test.data.dir" value="test/data"/>
-   <property name="pmd.home" value="quality/3rdparty/pmd-4.0"/>
+   <property name="pmd.home" value="3rdparty/pmd-4.0"/>
 
    <!-- Results -->
    <property name="test.classes.dir" value="temp/test/classes"/>
