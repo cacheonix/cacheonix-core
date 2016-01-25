@@ -137,7 +137,7 @@ public final class BinaryStore implements Wireable {
     * A list of subscribers for the event when an element is updated. The BinaryStore needs to keep track of subscribers
     * to support attaching subscribers to newly added elements.
     */
-   private transient final HashMap<Binary, List<BinaryEntryModifiedSubscriber>> updateSubscribers = new HashMap<Binary, List<BinaryEntryModifiedSubscriber>>(
+   private final transient Map<Binary, List<BinaryEntryModifiedSubscriber>> updateSubscribers = new HashMap<Binary, List<BinaryEntryModifiedSubscriber>>(
            1); // NOPMD
 
 

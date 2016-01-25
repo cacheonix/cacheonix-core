@@ -786,7 +786,7 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
 
       try {
 
-         out.writeBoolean(!valid);
+         out.writeBoolean(valid);
          out.writeBoolean(hasKeySizeBytes);
          out.writeBoolean(isStored() ? false : hasValueSizeBytes);
          out.writeBoolean(isStored() ? false : hasElementSizeBytes);
@@ -808,7 +808,7 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
 
    public void readWire(final DataInputStream in) throws IOException, ClassNotFoundException {
 
-      valid = !in.readBoolean();
+      valid = in.readBoolean();
       hasKeySizeBytes = in.readBoolean();
       hasValueSizeBytes = in.readBoolean();
       hasElementSizeBytes = in.readBoolean();
