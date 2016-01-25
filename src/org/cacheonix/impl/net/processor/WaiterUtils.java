@@ -79,7 +79,7 @@ public final class WaiterUtils {
       }
       final ClusterNodeAddress senderAddress = response.getSender();
       final InetAddress[] addresses = senderAddress.getAddresses();
-      final String addressesAsString = addresses == null? "null" : Arrays.toString(addresses);
+      final String addressesAsString = Arrays.toString(addresses);
       return new CacheonixException("Node " + addressesAsString + ':' + senderAddress.getTcpPort()
               + " returned error: " + (result == null ? "null" : result.toString()));
    }
