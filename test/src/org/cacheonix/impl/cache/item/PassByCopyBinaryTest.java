@@ -14,16 +14,16 @@
 package org.cacheonix.impl.cache.item;
 
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 import org.cacheonix.CacheonixTestCase;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
 import org.cacheonix.impl.util.logging.Logger;
+
+import static org.cacheonix.TestUtils.getBytes;
 
 /**
  * Tester for  PartitionElementValueByCopy.
@@ -72,13 +72,9 @@ public final class PassByCopyBinaryTest extends CacheonixTestCase {
 
    public void testReadWriteExternal() throws IOException, ClassNotFoundException {
 
-      final ByteArrayOutputStream baos = new ByteArrayOutputStream(100);
-      final ObjectOutputStream oos = new ObjectOutputStream(baos);
-      oos.writeObject(binary);
-      oos.flush();
-
+      final byte[] bytes = getBytes(binary);
       assertEquals((byte[]) binary.getValue(), (byte[]) ((Binary) new ObjectInputStream(
-              new ByteArrayInputStream(baos.toByteArray())).readObject()).getValue());
+              new ByteArrayInputStream(bytes)).readObject()).getValue());
    }
 
 

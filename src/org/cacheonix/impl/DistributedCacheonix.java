@@ -86,7 +86,6 @@ import org.cacheonix.impl.net.processor.Message;
 import org.cacheonix.impl.net.processor.ReceiverAddress;
 import org.cacheonix.impl.net.processor.Router;
 import org.cacheonix.impl.net.processor.UUID;
-import org.cacheonix.impl.net.serializer.WireableFactory;
 import org.cacheonix.impl.net.tcp.Receiver;
 import org.cacheonix.impl.net.tcp.Sender;
 import org.cacheonix.impl.util.Assert;
@@ -290,9 +289,6 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
          LOG.info("Starting up cluster node: " + getSummary());
          Assert.assertTrue(!started, "Cannot startup cluster member twice: {0} ", getSummary());
          started = true;
-
-         final int wireableFactorySize = WireableFactory.getInstance().size();
-         LOG.debug("Wireable factory size: " + wireableFactorySize);
 
          final BucketEventDispatcher bucketEventDispatcher = new BucketEventDispatcher(address, clusterProcessor);
          replicatedState.addBucketEventListener(Group.GROUP_TYPE_CACHE, bucketEventDispatcher);

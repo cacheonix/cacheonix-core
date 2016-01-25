@@ -140,9 +140,9 @@ final class SenderSelectorWorker extends SelectorWorker {
 
          // Register the senderKeyHandler
          senders.put(receiverAddress, senderKeyHandler);
-
-         // Enqueue message
-         senderKeyHandler.enqueue(message);
       }
+
+      // Enqueue message
+      senderKeyHandler.enqueue(message);
    }
 }

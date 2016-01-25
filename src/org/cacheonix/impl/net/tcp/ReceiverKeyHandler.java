@@ -266,14 +266,14 @@ final class ReceiverKeyHandler extends KeyHandler {
                         // Get message
                         final Message message = (Message) Frame.getPayload(frame);
 
+                        // Synchronize time
+                        clock.adjust(message.getTimestamp());
+
                         // Set sender's inet address
                         if (message instanceof SenderInetAddressAware) {
 
                            ((SenderInetAddressAware) message).setSenderInetAddress(channel.socket().getInetAddress());
                         }
-
-                        // Synchronize time
-                        clock.adjust(message.getTimestamp());
 
                         // Dispatch
 //                        //noinspection ControlFlowStatementWithoutBraces

@@ -55,6 +55,7 @@ public final class SimpleCacheDataSourceObjectTest extends TestCase {
    }
 
 
+   @SuppressWarnings("EqualsWithItself")
    public void testEqualsSame() {
 
       assertTrue(cacheDataSourceObject.equals(cacheDataSourceObject));

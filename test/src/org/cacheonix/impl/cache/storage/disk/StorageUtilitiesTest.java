@@ -60,12 +60,10 @@ public final class StorageUtilitiesTest extends TestCase {
       final Object objRes = StorageUtilities.deserialize(resA);
 
       assertTrue(objRes instanceof Object[]);
-      if (objRes instanceof Object[]) {
-         final String keyRes = (String) ((Object[]) objRes)[0];
-         final String dataRes = (String) ((Object[]) objRes)[1];
-         assertEquals(key, keyRes);
-         assertEquals(data, dataRes);
-      }
+      final String keyRes = (String) ((Object[]) objRes)[0];
+      final String dataRes = (String) ((Object[]) objRes)[1];
+      assertEquals(key, keyRes);
+      assertEquals(data, dataRes);
    }
 
 
@@ -74,12 +72,10 @@ public final class StorageUtilitiesTest extends TestCase {
       final byte[] resA = StorageUtilities.serialize(pairOrg);
       final Object objRes = StorageUtilities.deserialize(resA);
       assertTrue(objRes instanceof Object[]);
-      if (objRes instanceof Object[]) {
-         final String keyRes = (String) ((Object[]) objRes)[0];
-         final String dataRes = (String) ((Object[]) objRes)[1];
-         assertEquals(key, keyRes);
-         assertEquals(data, dataRes);
-      }
+      final String keyRes = (String) ((Object[]) objRes)[0];
+      final String dataRes = (String) ((Object[]) objRes)[1];
+      assertEquals(key, keyRes);
+      assertEquals(data, dataRes);
    }
 
 

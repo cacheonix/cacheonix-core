@@ -52,6 +52,7 @@ public final class BinaryStoreDataSourceImplTest extends CacheonixTestCase {
 
       // Test
       final BinaryStoreDataSourceObject binaryStoreDataSourceObject = binaryStoreDataSource.get(toBinary(TEST_KEY));
+      assertNotNull(binaryStoreDataSourceObject);
       assertEquals(TEST_VALUE, binaryStoreDataSourceObject.getObject());
       assertNotNull(binaryStoreDataSourceObject.getTimeToRead());
    }

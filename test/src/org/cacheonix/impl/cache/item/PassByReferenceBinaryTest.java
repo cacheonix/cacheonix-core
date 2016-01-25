@@ -19,7 +19,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 import junit.framework.TestCase;
@@ -27,6 +26,8 @@ import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
 import org.cacheonix.impl.net.serializer.SerializerUtils;
 import org.cacheonix.impl.util.logging.Logger;
+
+import static org.cacheonix.TestUtils.getBytes;
 
 /**
  * Tester for  PartitionElementValueByCopy.
@@ -94,12 +95,8 @@ public final class PassByReferenceBinaryTest extends TestCase {
 
    public void testReadWriteExternal() throws IOException, ClassNotFoundException {
 
-      final ByteArrayOutputStream baos = new ByteArrayOutputStream(100);
-      final ObjectOutputStream oos = new ObjectOutputStream(baos);
-      oos.writeObject(binary);
-      oos.flush();
-
-      assertEquals(binary, new ObjectInputStream(new ByteArrayInputStream(baos.toByteArray())).readObject());
+      final byte[] bytes = getBytes(binary);
+      assertEquals(binary, new ObjectInputStream(new ByteArrayInputStream(bytes)).readObject());
    }
 
 

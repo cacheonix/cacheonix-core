@@ -29,6 +29,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.io.RandomAccessFile;
 import java.io.Reader;
 import java.io.Writer;
 import java.net.DatagramSocket;
@@ -289,7 +290,7 @@ public final class IOUtils {
 
 
    public static void copyInputToOuputStream(final InputStream in,
-                                             final OutputStream out) throws IOException {
+           final OutputStream out) throws IOException {
 
       int bytesRead;
       final byte[] b = new byte[1024];
@@ -494,7 +495,7 @@ public final class IOUtils {
     * Line skipper
     */
    public static String readUntil(final BufferedReader reader, final String beginsWith1,
-                                  final String beginsWith2) throws IOException {
+           final String beginsWith2) throws IOException {
 
       String line = reader.readLine();
       while (!(line == null || line.startsWith(beginsWith1) || line.startsWith(beginsWith2))) {
@@ -514,19 +515,19 @@ public final class IOUtils {
     * @param notPast    String which indicates that lines should stop being consumed, even if the begins with match has
     *                   not been found. Pass null to this method to ignore this string.
     * @return String that begin as indicated, or null if none matched to the end of the reader or the notPast line was
-    *         found.
+    * found.
     * @throws IOException
     */
    public static String readToNotPast(final BufferedReader reader, final String beginsWith,
-                                      final String notPast) throws IOException {
+           final String notPast) throws IOException {
 
       return readToNotPast(reader, beginsWith, notPast, false);
    }
 
 
    public static String readToNotPast(final BufferedReader reader, final String beginsWith,
-                                      final String notPast,
-                                      final boolean trimLine) throws IOException {
+           final String notPast,
+           final boolean trimLine) throws IOException {
 
       final boolean checkingNotPast = notPast != null;
 
@@ -542,7 +543,7 @@ public final class IOUtils {
 
 
    public static String readAndTrim(final BufferedReader reader,
-                                    final boolean trim) throws IOException {
+           final boolean trim) throws IOException {
 
       final String result = reader.readLine();
       if (trim) {
@@ -574,7 +575,8 @@ public final class IOUtils {
 
       if (!dir.exists()) {
          if (!dir.mkdirs()) {
-            throw new IOException("Error creating a directory. The user may not have enough rights or the path is invalid: \"" + dir.toString() + '\"');
+            throw new IOException(
+                    "Error creating a directory. The user may not have enough rights or the path is invalid: \"" + dir.toString() + '\"');
          }
       }
    }
@@ -684,7 +686,7 @@ public final class IOUtils {
     * @see #zipFile(File, File)
     */
    private static void zipFile(final String baseDir, final File f,
-                               final ZipOutputStream zos) throws IOException {
+           final ZipOutputStream zos) throws IOException {
 
       FileInputStream fis = null;
       try {
@@ -881,7 +883,7 @@ public final class IOUtils {
 
 
    public static int inetAddressCompare(final InetAddress address1,
-                                        final InetAddress address2) {
+           final InetAddress address2) {
 
       if (address1 == null || address2 == null) {
          return -1;
@@ -927,7 +929,7 @@ public final class IOUtils {
 
 
    public static int inetAddressesCompare(final InetAddress[] addresses1,
-                                          final InetAddress[] addresses2) {
+           final InetAddress[] addresses2) {
 
       if (Arrays.equals(addresses1, addresses2)) {
          return 0;
@@ -1057,6 +1059,26 @@ public final class IOUtils {
 
 
    /**
+    * Closes a RandomAccessFile.
+    *
+    * @param file to close.
+    */
+   public static void closeHard(final RandomAccessFile file) {
+
+      if (file == null) {
+         return;
+      }
+
+      try {
+
+         file.close();
+      } catch (final IOException ignored) {
+
+      }
+   }
+
+
+   /**
     * Tests if a specified file has given extension.
     */
    public static final class ExtensionFileFilter implements FilenameFilter {
@@ -1100,7 +1122,7 @@ public final class IOUtils {
     * @see DirectoryTraverserCallback
     */
    public static int traverseDir(final File dir,
-                                 final DirectoryTraverserCallback callback) throws IOException {
+           final DirectoryTraverserCallback callback) throws IOException {
 
       if (!dir.isDirectory()) {
          throw new IOException("Not a directory: " + dir.toString());
@@ -1118,7 +1140,7 @@ public final class IOUtils {
     * @see DirectoryTraverserCallback
     */
    public static int traversePath(final File dir,
-                                  final DirectoryTraverserCallback callback) throws IOException {
+           final DirectoryTraverserCallback callback) throws IOException {
 
       final int[] counter = {0};
       traversePath(dir, callback, counter, true);
@@ -1133,8 +1155,8 @@ public final class IOUtils {
     * @throws IOException
     */
    private static boolean traversePath(final File path, final DirectoryTraverserCallback callback,
-                                       final int[] counter,
-                                       final boolean firstTime) throws IOException {
+           final int[] counter,
+           final boolean firstTime) throws IOException {
 
       if (path == null || !path.exists()) {
          return false;
@@ -1147,7 +1169,8 @@ public final class IOUtils {
       if (keepGoing && path.isDirectory()) {
          final File[] files = path.listFiles();
          if (files == null) {
-            throw new IOException("Files cannot be listed for the path \"" + path.toString() + "\". The path may be not a directory or an I/O error has occurred.");
+            throw new IOException(
+                    "Files cannot be listed for the path \"" + path.toString() + "\". The path may be not a directory or an I/O error has occurred.");
          }
          for (int ii = 0; keepGoing && ii < files.length; ii++) {
             keepGoing = traversePath(files[ii], callback, counter, false);
@@ -1186,7 +1209,7 @@ public final class IOUtils {
     * @throws IOException
     */
    public static File createTempFile(final String prefix, final String suffix,
-                                     final File parentDir) throws IOException {
+           final File parentDir) throws IOException {
 
       return File.createTempFile(prefix, suffix, parentDir);
    }

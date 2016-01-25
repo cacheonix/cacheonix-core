@@ -13,10 +13,12 @@
  */
 package org.cacheonix;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Arrays;
@@ -32,6 +34,7 @@ import org.cacheonix.impl.util.exception.ExceptionUtils;
 
 import static org.cacheonix.TestConstants.PORT_7676;
 import static org.cacheonix.impl.cache.item.BinaryType.BY_REFERERENCE;
+import static org.cacheonix.impl.util.IOUtils.closeHard;
 
 /**
  * Test helper.
@@ -159,5 +162,25 @@ public final class TestUtils {
    public static Binary toBinary(final Object obj) throws InvalidObjectException {
 
       return BINARY_FACTORY.createBinary(obj);
+   }
+
+
+   public static byte[] getBytes(final Binary binary) throws IOException {
+
+      ObjectOutputStream oos = null;
+      ByteArrayOutputStream baos = null;
+      try {
+
+         baos = new ByteArrayOutputStream(100);
+         oos = new ObjectOutputStream(baos);
+         oos.writeObject(binary);
+         oos.flush();
+      } finally {
+
+         closeHard(oos);
+         closeHard(baos);
+      }
+
+      return baos.toByteArray();
    }
 }
