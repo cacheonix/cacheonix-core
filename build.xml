@@ -49,7 +49,7 @@
    <property name="spring.jar" value="3rdparty/spring-framework-2.5.1/dist/spring.jar"/>
    <property name="activation.jar" value="3rdparty/jaf-1.0.2/activation.jar"/>
    <property name="catalina-7.0.30.jar" value="3rdparty/apache-tomcat-7.0.30/lib/catalina.jar"/>
-   <property name="findbugs.home" value="quality/3rdparty/findbugs-1.2.1"/>
+   <property name="findbugs.home" value="3rdparty/findbugs-2.0.3"/>
    <property name="checkstyle-all.jar" value="quality/3rdparty/checkstyle-5.3/checkstyle-5.3-all.jar"/>
 
    <!-- Maven snapshots and staging repository id and url -->
