@@ -17,7 +17,6 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -129,9 +128,6 @@ public class SimpleProcessor extends AbstractProcessor {
     * @noinspection NonStaticInnerClassInSecureContext
     */
    private final class Worker implements Runnable {
-
-      // DELETEME: simeshev@cacheonix.org 2011-06-06 - Deleted when debugging is done.
-      private final Random random = new Random(System.currentTimeMillis());
 
       /**
        * Number of processed messages.
