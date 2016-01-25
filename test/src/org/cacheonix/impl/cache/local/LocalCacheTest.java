@@ -486,8 +486,8 @@ public final class LocalCacheTest extends CacheonixTestCase {
       }
 
       assertTrue(listener.called);
-      assertEquals(makeKey(0), listener.evictedKey);
-      assertEquals(makeValue(0), listener.evictedValue);
+      assertEquals(makeKey(0), listener.getEvictedKey());
+      assertEquals(makeValue(0), listener.getEvictedValue());
    }
 
 
@@ -706,6 +706,7 @@ public final class LocalCacheTest extends CacheonixTestCase {
       public void notifyKeysUpdated(final List<EntryModifiedEvent> events) {
 
          called = true;
+
          evictedValue = events.get(0).getPreviousValue();
          evictedKey = events.get(0).getUpdatedKey();
       }
@@ -732,6 +733,18 @@ public final class LocalCacheTest extends CacheonixTestCase {
                  1);
          entryModifiedEventContentFlags.add(EntryModifiedEventContentFlag.NEED_ALL);
          return entryModifiedEventContentFlags;
+      }
+
+
+      public Object getEvictedValue() {
+
+         return evictedValue;
+      }
+
+
+      public Object getEvictedKey() {
+
+         return evictedKey;
       }
    }
 }
