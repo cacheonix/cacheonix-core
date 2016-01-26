@@ -70,7 +70,7 @@ public final class TimeImpl implements Time {
 
    public Time subtract(final Time time) {
 
-      return new TimeImpl(millis - time.getMillis(), count - time.getMillis());
+      return new TimeImpl(millis - time.getMillis(), count - time.getCount());
    }
 
 

@@ -18,7 +18,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
-import java.io.Serializable;
 import java.util.Arrays;
 
 import org.cacheonix.impl.net.serializer.Serializer;
@@ -111,12 +110,6 @@ public final class CompressedBinary implements Binary {
       } catch (final Exception e) {
          throw ExceptionUtils.createIllegalStateException(e);
       }
-   }
-
-
-   public Binary create(final Serializable value) throws InvalidObjectException {
-
-      return new CompressedBinary(value);
    }
 
 

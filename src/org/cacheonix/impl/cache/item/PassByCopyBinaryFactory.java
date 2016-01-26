@@ -21,15 +21,6 @@ final class PassByCopyBinaryFactory implements BinaryFactory {
    /**
     * {@inheritDoc}
     */
-   public Binary createItem() {
-
-      return new PassByCopyBinary();
-   }
-
-
-   /**
-    * {@inheritDoc}
-    */
    public Binary createBinary(final Object object) throws InvalidObjectException {
 
       return object == null ? NULL_BINARY : new PassByCopyBinary(object);

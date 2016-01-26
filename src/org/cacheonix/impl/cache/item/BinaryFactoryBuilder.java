@@ -37,7 +37,7 @@ public final class BinaryFactoryBuilder {
          return decorateAsImmutable(new PassByCopyBinaryFactory());
       } else if (storageType.equals(BinaryType.BY_REFERERENCE)) {
 
-         return decorateAsImmutable(new PassByReferenceBinaryFactory());
+         return decorateAsImmutable(new ImmutableBinaryFactory());
       } else {
 
          throw new IllegalArgumentException("Unknown storage type: " + storageType);

@@ -23,15 +23,6 @@ final class CompressedBinaryFactory implements BinaryFactory {
    /**
     * {@inheritDoc}
     */
-   public Binary createItem() {
-
-      return new CompressedBinary();
-   }
-
-
-   /**
-    * {@inheritDoc}
-    */
    public Binary createBinary(final Object object) throws InvalidObjectException {
 
       return object == null ? NULL_BINARY : new CompressedBinary(object);

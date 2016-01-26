@@ -20,7 +20,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 
 import junit.framework.TestCase;
 import org.cacheonix.impl.net.serializer.Serializer;
@@ -29,34 +28,25 @@ import org.cacheonix.impl.net.serializer.SerializerUtils;
 import org.cacheonix.impl.util.logging.Logger;
 
 /**
- * Tester for  PartitionElementValueByCopy.
+ * Tester for  PassByteByReferenceBinary.
  */
-public final class PassByReferenceBinaryTest extends TestCase {
+public final class PassByteByValueBinaryTest extends TestCase {
 
    /**
     * Logger.
     *
     * @noinspection UNUSED_SYMBOL, UnusedDeclaration
     */
-   private static final Logger LOG = Logger.getLogger(PassByReferenceBinaryTest.class); // NOPMD
+   private static final Logger LOG = Logger.getLogger(PassByteByValueBinaryTest.class); // NOPMD
 
-   private static final String TEST_VALUE = "test_value";
+   private static final Byte TEST_VALUE = 100;
 
-   private PassByReferenceBinary binary;
+   private PassByteByValueBinary binary;
 
 
    public void testSetValue() {
 
       assertEquals(TEST_VALUE, binary.getValue());
-      assertSame(TEST_VALUE, binary.getValue());
-   }
-
-
-   public void testSetNullValue() {
-
-      final PassByReferenceBinary nullBinary = new PassByReferenceBinary(null);
-      assertNull(nullBinary.getValue());
-      assertEquals(0, nullBinary.hashCode());
    }
 
 
@@ -67,28 +57,19 @@ public final class PassByReferenceBinaryTest extends TestCase {
    }
 
 
-   public void testSerializeDeserializeInteger() throws IOException {
-
-      final PassByReferenceBinary intBinary = new PassByReferenceBinary(Integer.valueOf(5000));
-      final Serializer ser = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
-      assertEquals(intBinary, ser.deserialize(ser.serialize(intBinary)));
-   }
-
-
    public void testSerializeDeserializeUsingUtils() throws IOException, ClassNotFoundException {
 
       // Write
-      final PassByReferenceBinary intBinary = new PassByReferenceBinary(Integer.valueOf(5000));
       final ByteArrayOutputStream baos = new ByteArrayOutputStream(111);
       final DataOutputStream dos = new DataOutputStream(baos);
-      SerializerUtils.writeBinary(dos, intBinary);
+      SerializerUtils.writeBinary(dos, binary);
       dos.flush();
 
       // Read
       final ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
       final DataInputStream dis = new DataInputStream(bais);
       final Binary newBinary = SerializerUtils.readBinary(dis);
-      assertEquals(intBinary, newBinary);
+      assertEquals(binary, newBinary);
    }
 
 
@@ -105,30 +86,21 @@ public final class PassByReferenceBinaryTest extends TestCase {
 
    public void testEquals() {
 
-      assertEquals(new PassByReferenceBinary(new Serializable[]{0, 1, 2}),
-              new PassByReferenceBinary(new Serializable[]{0, 1, 2}));
+      assertEquals(new PassByteByValueBinary(TEST_VALUE), new PassByteByValueBinary(TEST_VALUE));
    }
-
-
-
-   public void testEqualsNulls() {
-
-      assertEquals(new PassByReferenceBinary(null), new PassByReferenceBinary(null));
-   }
-
 
 
    protected final void setUp() throws Exception {
 
       super.setUp();
-      binary = new PassByReferenceBinary(TEST_VALUE);
+      binary = new PassByteByValueBinary(TEST_VALUE);
    }
 
 
-   public final String toString() {
+   public String toString() {
 
-      return "PassByReferenceItemTest{" +
-              "item=" + binary +
-              '}';
+      return "PassByteByReferenceBinaryTest{" +
+              "binary=" + binary +
+              "} " + super.toString();
    }
 }
