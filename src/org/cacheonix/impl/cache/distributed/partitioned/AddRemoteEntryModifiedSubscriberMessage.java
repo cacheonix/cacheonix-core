@@ -198,7 +198,7 @@ public final class AddRemoteEntryModifiedSubscriberMessage extends LocalCacheMes
 
       public Wireable create() {
 
-         return new AddRemoteEntryModifiedSubscriberMessage();
+         return new AddRemoteEntryModifiedSubscriberMessage(); // NOPMD
       }
    }
 }

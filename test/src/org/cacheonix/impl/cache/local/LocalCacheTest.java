@@ -22,7 +22,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.cacheonix.CacheonixTestCase;
-import org.cacheonix.TestConstants;
+import org.cacheonix.cache.Cache;
 import org.cacheonix.cache.subscriber.EntryModifiedEvent;
 import org.cacheonix.cache.subscriber.EntryModifiedEventContentFlag;
 import org.cacheonix.cache.subscriber.EntryModifiedEventType;
@@ -33,10 +33,13 @@ import org.cacheonix.impl.cache.datastore.DummyDataStore;
 import org.cacheonix.impl.cache.invalidator.DummyCacheInvalidator;
 import org.cacheonix.impl.cache.loader.DummyCacheLoader;
 import org.cacheonix.impl.cache.storage.disk.DummyDiskStorage;
-import org.cacheonix.impl.config.ElementEventNotification;
 import org.cacheonix.impl.util.array.HashMap;
 import org.cacheonix.impl.util.array.HashSet;
 import org.cacheonix.impl.util.cache.DummyObjectSizeCalculator;
+
+import static java.lang.Thread.sleep;
+import static org.cacheonix.TestConstants.LOCAL_TEST_CACHE;
+import static org.cacheonix.impl.config.ElementEventNotification.SYNCHRONOUS;
 
 /**
  * Tests {@link LocalCacheTest}
@@ -62,6 +65,18 @@ public final class LocalCacheTest extends CacheonixTestCase {
    private static final String OBJECT_2 = createTestObject(2);
 
    private static final int MAX_SIZE = 1000;
+
+   public static final DummyDiskStorage DUMMY_DISK_STORAGE = new DummyDiskStorage(LOCAL_TEST_CACHE);
+
+   public static final DummyObjectSizeCalculator DUMMY_OBJECT_SIZE_CALCULATOR = new DummyObjectSizeCalculator();
+
+   public static final DummyBinaryStoreDataSource DUMMY_BINARY_STORE_DATA_SOURCE = new DummyBinaryStoreDataSource();
+
+   public static final DummyDataStore DUMMY_DATA_STORE = new DummyDataStore();
+
+   public static final DummyCacheInvalidator DUMMY_CACHE_INVALIDATOR = new DummyCacheInvalidator();
+
+   public static final DummyCacheLoader DUMMY_CACHE_LOADER = new DummyCacheLoader();
 
 
    private LocalCache<String, String> cache;
@@ -91,7 +106,7 @@ public final class LocalCacheTest extends CacheonixTestCase {
       cache().put(KEY_0, OBJECT_0, delay, timeUnit);
 
       assertEquals(OBJECT_0, cache().get(KEY_0));
-      Thread.sleep(timeUnit.toMillis(delay) * 2);
+      sleep(timeUnit.toMillis(delay) * 2);
       assertNull(cache().get(KEY_0));
    }
 
@@ -149,7 +164,7 @@ public final class LocalCacheTest extends CacheonixTestCase {
       }
 
       // Remove and assert
-      final Map result = cache.getAll(subset);
+      final Map<String, String> result = cache.getAll(subset);
       assertEquals(subset.size(), result.size());
       assertEquals(subset, result.keySet());
    }
@@ -556,6 +571,37 @@ public final class LocalCacheTest extends CacheonixTestCase {
    }
 
 
+   public void testPutTimedWitNonZeroDelayProducesExpiringElement() throws InterruptedException {
+
+      final long expirationIntervalMillis = 50L;
+
+      cache().put(KEY_0, OBJECT_0, expirationIntervalMillis, TimeUnit.MILLISECONDS);
+
+      // Wait for the expiration time to pass.
+      sleep(expirationIntervalMillis * 2L);
+
+      // Assert the element is still gone.
+      assertNull(cache().get(KEY_0));
+   }
+
+
+   public void testPutTimedWitZeroDelayProducesNonexpiringElement() throws InterruptedException {
+
+      final long expirationIntervalMillis = 50L;
+      final Cache<String, String> cacheWithExpiration = new LocalCache<String, String>(LOCAL_TEST_CACHE, MAX_SIZE, 0,
+              expirationIntervalMillis, 0, getClock(), getEventNotificationExecutor(), DUMMY_DISK_STORAGE,
+              DUMMY_OBJECT_SIZE_CALCULATOR, DUMMY_BINARY_STORE_DATA_SOURCE, DUMMY_DATA_STORE,
+              DUMMY_CACHE_INVALIDATOR, DUMMY_CACHE_LOADER, SYNCHRONOUS);
+      cacheWithExpiration.put(KEY_0, OBJECT_0, 0, TimeUnit.MILLISECONDS);
+
+      // Wait for the expiration time to pass.
+      sleep(expirationIntervalMillis * 2L);
+
+      // Assert the element is still there.
+      assertEquals(OBJECT_0, cacheWithExpiration.get(KEY_0));
+   }
+
+
    private List<Entry<String, String>> populate(final int maxSize) {
 
       final List<Entry<String, String>> entries = new ArrayList<Entry<String, String>>(maxSize);
@@ -600,10 +646,10 @@ public final class LocalCacheTest extends CacheonixTestCase {
    protected void setUp() throws Exception {
 
       super.setUp();
-      cache = new LocalCache<String, String>(TestConstants.LOCAL_TEST_CACHE, MAX_SIZE, 0, 0, 0,
-              getClock(), getEventNotificationExecutor(), new DummyDiskStorage(TestConstants.LOCAL_TEST_CACHE),
-              new DummyObjectSizeCalculator(), new DummyBinaryStoreDataSource(), new DummyDataStore(),
-              new DummyCacheInvalidator(), new DummyCacheLoader(), ElementEventNotification.SYNCHRONOUS);
+      cache = new LocalCache<String, String>(LOCAL_TEST_CACHE, MAX_SIZE, 0, 0, 0,
+              getClock(), getEventNotificationExecutor(), DUMMY_DISK_STORAGE,
+              DUMMY_OBJECT_SIZE_CALCULATOR, DUMMY_BINARY_STORE_DATA_SOURCE, DUMMY_DATA_STORE,
+              DUMMY_CACHE_INVALIDATOR, DUMMY_CACHE_LOADER, SYNCHRONOUS);
 
    }
 

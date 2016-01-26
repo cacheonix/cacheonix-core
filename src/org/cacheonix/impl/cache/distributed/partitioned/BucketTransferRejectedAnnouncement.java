@@ -240,7 +240,7 @@ public final class BucketTransferRejectedAnnouncement extends GroupMessage {
 
       public Wireable create() {
 
-         return new BucketTransferRejectedAnnouncement();
+         return new BucketTransferRejectedAnnouncement(); // NOPMD
       }
    }
 }

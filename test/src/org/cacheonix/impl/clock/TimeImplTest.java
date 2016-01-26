@@ -73,7 +73,7 @@ public class TimeImplTest extends TestCase {
       assertFalse(new TimeImpl(MILLIS + 1, COUNT).equals(time));
       assertFalse(new TimeImpl(MILLIS, COUNT + 1).equals(time));
       assertTrue(time.equals(time));
-      assertFalse(time.equals(null));
+      assertFalse(time.equals(null)); // NOPMD
       assertFalse(time.equals(new Object()));
    }
 

@@ -48,12 +48,6 @@ public final class MulticastMarkerTest extends CacheonixTestCase {
 
    private static final int TCP_PORT = 9999;
 
-   private static final int NUMBER_5 = 5;
-
-   private static final int NUMBER_6 = 6;
-
-   private static final int NUMBER_7 = 7;
-
    private static final ClusterNodeAddress JOIN = new ClusterNodeAddress(TCP_PORT, new InetAddress[]{IP_ADDRESS});
 
    private static final ClusterNodeAddress LEAVE = new ClusterNodeAddress(TCP_PORT, new InetAddress[]{IP_ADDRESS});

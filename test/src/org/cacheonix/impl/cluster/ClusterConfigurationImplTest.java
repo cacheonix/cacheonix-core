@@ -77,7 +77,7 @@ public final class ClusterConfigurationImplTest extends TestCase {
    public void testEquals() throws Exception {
 
       assertEquals(new ClusterConfigurationImpl(OPERATIONAL, clusterMembers), clusterConfiguration);
-      assertFalse(clusterConfiguration.equals(null));
+      assertFalse(clusterConfiguration.equals(null)); // NOPMD
    }
 
 

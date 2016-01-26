@@ -58,7 +58,6 @@ import org.cacheonix.impl.util.array.ObjectObjectProcedure;
 import org.cacheonix.impl.util.array.ObjectProcedure;
 import org.cacheonix.impl.util.cache.DummyObjectSizeCalculator;
 import org.cacheonix.impl.util.cache.ObjectSizeCalculator;
-import org.cacheonix.impl.util.cache.ObjectSizeCalculatorFactory;
 import org.cacheonix.impl.util.cache.StandardObjectSizeCalculator;
 import org.cacheonix.impl.util.logging.Logger;
 
@@ -96,14 +95,6 @@ public final class CacheProcessorImpl extends AbstractRequestProcessor implement
     * Bucket index calculator.
     */
    private final BucketIndexCalculator bucketCalculator = new BucketIndexCalculator(BUCKET_COUNT);
-
-   private final ObjectSizeCalculatorFactory objectSizeCalculatorFactory = new ObjectSizeCalculatorFactory();
-
-   private final BinaryStoreDataSourceFactory binaryStoreDataSourceFactory = new BinaryStoreDataSourceFactory();
-
-   private final CacheInvalidatorFactory invalidatorFactory = new CacheInvalidatorFactory();
-
-   private final DataStoreFactory dataStoreFactory = new DataStoreFactory();
 
    /**
     * The executor used to execute event notifications outside of the processor's loop.

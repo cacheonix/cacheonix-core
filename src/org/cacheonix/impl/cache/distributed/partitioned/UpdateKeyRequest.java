@@ -199,7 +199,7 @@ public final class UpdateKeyRequest extends KeyRequest {
 
       public Wireable create() {
 
-         return new UpdateKeyRequest();
+         return new UpdateKeyRequest(); // NOPMD
       }
    }
 }

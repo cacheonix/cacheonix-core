@@ -125,7 +125,7 @@ public final class ClearFrontCacheBucketMessage extends LocalCacheMessage {
 
       public Wireable create() {
 
-         return new ClearFrontCacheBucketMessage();
+         return new ClearFrontCacheBucketMessage(); // NOPMD
       }
    }
 }
