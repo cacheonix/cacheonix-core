@@ -299,7 +299,7 @@ public final class GetAllRequest extends KeySetRequest {
 
 
       @SuppressWarnings("unchecked")
-      protected synchronized void notifyFinished() {
+      protected void notifyFinished() {
 
          // Finish normally
          super.notifyFinished();

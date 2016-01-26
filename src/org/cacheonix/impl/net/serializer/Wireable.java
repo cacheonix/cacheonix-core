@@ -98,6 +98,8 @@ public interface Wireable {
 
    int TYPE_RECEIVER_ADDRESS = DESTINATION_NONE << 8 | 33;
 
+   int TYPE_NULL_BINARY = DESTINATION_NONE << 8 | 36;
+
 
    /**
     * ++++++++++++++++++++++++++++++++++++++ Connection-related messages  ++++++++++++++++++++++++++++++++++++++

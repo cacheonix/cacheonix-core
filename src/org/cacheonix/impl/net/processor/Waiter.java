@@ -197,6 +197,8 @@ public class Waiter implements ResponseWaiter {
          finished = true;
 
          notifyFinished();
+
+         notifyAll();
       }
    }
 
@@ -228,9 +230,8 @@ public class Waiter implements ResponseWaiter {
     * Inheritors can overwrite this method to implement actions to be performed on wait finish. This method should be be
     * called in the end of the overwriting method because it will wakeup a thread waiting for the result.
     */
-   protected synchronized void notifyFinished() {
+   protected void notifyFinished() {
 
-      notifyAll();
    }
 
 

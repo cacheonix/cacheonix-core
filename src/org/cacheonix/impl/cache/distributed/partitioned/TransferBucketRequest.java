@@ -384,7 +384,7 @@ public final class TransferBucketRequest extends CacheRequest {
        * <p/>
        * This method enhances the default behaviour by announcing bucket ownership change
        */
-      protected final synchronized void notifyFinished() {
+      protected final void notifyFinished() {
 
          final TransferBucketRequest request = (TransferBucketRequest) getRequest();
          final RequestProcessor processor = request.getProcessor();

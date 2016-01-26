@@ -18,6 +18,8 @@ package org.cacheonix.impl.cache.item;
  */
 public interface BinaryFactory {
 
+   Binary NULL_BINARY = new NullBinary();
+
    /**
     * Creates item.
     *

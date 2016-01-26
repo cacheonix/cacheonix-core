@@ -627,7 +627,7 @@ public abstract class KeyRequest extends CacheDataRequest implements Prepareable
        * <p/>
        * 2. This is a subrequest
        */
-      protected synchronized void notifyFinished() {
+      protected void notifyFinished() {
 
          // Check if there is processor - a request could have finished with retry because there is no a processor yet.
          // See CACHEONIX-368 - "java.lang.NullPointerException at GetAllRequest$Waiter.notifyFinished()" for details.
