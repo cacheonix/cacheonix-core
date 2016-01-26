@@ -18,11 +18,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
-import java.util.Arrays;
 
-import org.cacheonix.impl.net.serializer.Serializer;
-import org.cacheonix.impl.net.serializer.SerializerFactory;
-import org.cacheonix.impl.net.serializer.SerializerUtils;
 import org.cacheonix.impl.net.serializer.Wireable;
 import org.cacheonix.impl.net.serializer.WireableBuilder;
 
@@ -32,7 +28,7 @@ import org.cacheonix.impl.net.serializer.WireableBuilder;
  * @noinspection NonFinalFieldReferenceInEquals, NonFinalFieldReferenceInEquals, NonFinalFieldReferenceInEquals,
  * NonFinalFieldReferenceInEquals, NonFinalFieldReferencedInHashCode, NonFinalFieldReferencedInHashCode
  */
-public final class PassObjectByReferenceBinary implements Binary {
+public final class PassByteByValueBinary implements Binary {
 
    /**
     * Builder used by WireableFactory.
@@ -41,12 +37,10 @@ public final class PassObjectByReferenceBinary implements Binary {
 
    private static final long serialVersionUID = 0L;
 
-   private Serializer serializer = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
-
-   private Object reference = null;
+   private byte value;
 
 
-   public PassObjectByReferenceBinary() {
+   public PassByteByValueBinary() {
 
    }
 
@@ -57,9 +51,9 @@ public final class PassObjectByReferenceBinary implements Binary {
     * @param object to wrap.
     * @noinspection PublicConstructorInNonPublicClass
     */
-   public PassObjectByReferenceBinary(final Object object) {
+   public PassByteByValueBinary(final byte object) {
 
-      this.reference = object;
+      this.value = object;
    }
 
 
@@ -68,28 +62,25 @@ public final class PassObjectByReferenceBinary implements Binary {
     */
    public Object getValue() {
 
-      return reference;
+      return value;
    }
 
 
    public int getWireableType() {
 
-      return TYPE_PASS_BY_REFERENCE_OBJECT_BINARY;
+      return TYPE_PASS_BY_VALUE_BYTE_BINARY;
    }
 
 
    public void writeWire(final DataOutputStream out) throws IOException {
 
-      out.writeByte((int) serializer.getType());
-      serializer.serialize(reference, out);
+      out.writeByte(value);
    }
 
 
    public void readWire(final DataInputStream in) throws IOException {
 
-      final byte serializerType = in.readByte();
-      serializer = SerializerFactory.getInstance().getSerializer(serializerType);
-      reference = serializer.deserialize(in);
+      value = in.readByte();
    }
 
 
@@ -98,19 +89,16 @@ public final class PassObjectByReferenceBinary implements Binary {
     */
    public void writeExternal(final ObjectOutput out) throws IOException {
 
-      out.writeByte(serializer.getType());
-      SerializerUtils.writeObject(out, reference);
+      out.writeByte(value);
    }
 
 
    /**
     * {@inheritDoc}
     */
-   public void readExternal(final ObjectInput in) throws IOException, ClassNotFoundException {
+   public void readExternal(final ObjectInput in) throws IOException {
 
-      final byte serializerType = in.readByte();
-      serializer = SerializerFactory.getInstance().getSerializer(serializerType);
-      reference = SerializerUtils.readObject(in);
+      value = in.readByte();
    }
 
 
@@ -123,40 +111,23 @@ public final class PassObjectByReferenceBinary implements Binary {
          return false;
       }
 
-      final PassObjectByReferenceBinary that = (PassObjectByReferenceBinary) obj;
+      final PassByteByValueBinary that = (PassByteByValueBinary) obj;
 
+      return value == that.value;
 
-      if (reference == null && that.reference == null) {
-         return true;
-      }
-
-      if (reference == null || that.reference == null) {
-         return false;
-      }
-
-      if (reference.getClass() != that.reference.getClass()) {
-         return false;
-      }
-
-      // Array
-      if (reference.getClass().isArray()) {
-         return Arrays.equals((Object[]) reference, (Object[]) that.reference);
-      }
-
-      return reference.equals(that.reference);
    }
 
 
    public int hashCode() {
 
-      return reference == null ? 0 : reference.hashCode();
+      return value;
    }
 
 
    public String toString() {
 
-      return "PassByReferenceItem{" +
-              "reference=" + reference +
+      return "PassByteByValueBinary{" +
+              "value=" + value +
               '}';
    }
 
@@ -165,7 +136,7 @@ public final class PassObjectByReferenceBinary implements Binary {
 
       public Wireable create() {
 
-         return new PassObjectByReferenceBinary();
+         return new PassByteByValueBinary();
       }
    }
 }

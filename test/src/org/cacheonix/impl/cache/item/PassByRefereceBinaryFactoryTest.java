@@ -24,7 +24,7 @@ import junit.framework.TestCase;
  */
 public final class PassByRefereceBinaryFactoryTest extends TestCase {
 
-   private PassByReferenceBinaryFactory factory = null;
+   private ImmutableBinaryFactory factory = null;
 
 
    private static final String OBJECT = "object";
@@ -46,7 +46,7 @@ public final class PassByRefereceBinaryFactoryTest extends TestCase {
    protected void setUp() throws Exception {
 
       super.setUp();
-      factory = new PassByReferenceBinaryFactory();
+      factory = new ImmutableBinaryFactory();
    }
 
 

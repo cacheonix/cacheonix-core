@@ -19,14 +19,6 @@ package org.cacheonix.impl.cache.item;
 public interface BinaryFactory {
 
    /**
-    * Creates item.
-    *
-    * @return new item.
-    */
-   Binary createItem();
-
-
-   /**
     * Creates item from a raw object value.
     *
     * @param object to create an item from.
