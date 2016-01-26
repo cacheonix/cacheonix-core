@@ -31,7 +31,7 @@ public final class Protocol {
    /**
     * Protocol version.
     */
-   public static final int PROTOCOL_VERSION = (byte) 8;
+   public static final int PROTOCOL_VERSION = (byte) 11;
 
 
    private Protocol() {
