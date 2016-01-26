@@ -13,13 +13,9 @@
  */
 package org.cacheonix.impl.cache.item;
 
-import java.io.Serializable;
-
 /**
  * InvalidObjectException is thrown by {@link Binary} methods when an object cannot be converted to or from internal
  * Binary representation.
- *
- * @see Binary#create(Serializable)
  */
 public final class InvalidObjectException extends Exception {
 

@@ -20,6 +20,8 @@ import org.cacheonix.cache.Immutable;
  */
 final class ImmutableBinaryFactoryDecorator implements BinaryFactory {
 
+   private final ImmutableBinaryFactory immutableBinaryFactory = new ImmutableBinaryFactory();
+
    private BinaryFactory binaryFactory = null;
 
 
@@ -33,16 +35,10 @@ final class ImmutableBinaryFactoryDecorator implements BinaryFactory {
    }
 
 
-   public Binary createItem() {
-
-      return binaryFactory.createItem();
-   }
-
-
    public Binary createBinary(final Object object) throws InvalidObjectException {
 
       if (isImmutable(object)) {
-         return new PassObjectByReferenceBinary(object);
+         return immutableBinaryFactory.createBinary(object);
       } else {
          return binaryFactory.createBinary(object);
       }

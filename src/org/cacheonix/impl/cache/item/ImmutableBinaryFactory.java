@@ -16,21 +16,39 @@ package org.cacheonix.impl.cache.item;
 /**
  * Factory for creating sore-by-reference element value.
  */
-final class PassByReferenceBinaryFactory implements BinaryFactory {
-
-   /**
-    * {@inheritDoc}
-    */
-   public Binary createItem() {
-
-      return new PassObjectByReferenceBinary();
-   }
-
+final class ImmutableBinaryFactory implements BinaryFactory {
 
    /**
     * {@inheritDoc}
     */
    public Binary createBinary(final Object object) {
+
+      if (object instanceof Number) {
+
+         if (object instanceof Integer) {
+            return new PassIntegerByValueBinary((Integer) object);
+         }
+
+         if (object instanceof Long) {
+            return new PassLongByValueBinary((Long) object);
+         }
+
+         if (object instanceof Byte) {
+            return new PassByteByValueBinary((Byte) object);
+         }
+
+         if (object instanceof Double) {
+            return new PassDoubleByValueBinary((Double) object);
+         }
+
+         if (object instanceof Float) {
+            return new PassFloatByReferenceBinary((Float) object);
+         }
+      }
+
+      if (object instanceof Boolean) {
+         return new PassBooleanByValueBinary((Boolean) object);
+      }
 
       return new PassObjectByReferenceBinary(object);
    }

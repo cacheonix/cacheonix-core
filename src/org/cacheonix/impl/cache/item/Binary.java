@@ -14,7 +14,6 @@
 package org.cacheonix.impl.cache.item;
 
 import java.io.Externalizable;
-import java.io.Serializable;
 
 import org.cacheonix.impl.net.serializer.Wireable;
 
@@ -34,14 +33,4 @@ public interface Binary extends Wireable, Externalizable {
     * @return actual object value of this item.
     */
    Object getValue();
-
-
-   /**
-    * Creates a Binary of the same concrete type.
-    *
-    * @param value value to assign
-    * @return the Binary of the same concrete type.
-    * @throws InvalidObjectException if an object cannot be serialized to a binary form.
-    */
-   Binary create(Serializable value) throws InvalidObjectException;
 }
