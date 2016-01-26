@@ -23,10 +23,6 @@ final class ImmutableBinaryFactory implements BinaryFactory {
     */
    public Binary createBinary(final Object object) {
 
-      if (object == null) {
-         return NULL_BINARY;
-      }
-
       if (object instanceof Number) {
 
          if (object instanceof Integer) {

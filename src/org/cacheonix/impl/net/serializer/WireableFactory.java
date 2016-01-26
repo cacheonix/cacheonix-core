@@ -70,7 +70,6 @@ import org.cacheonix.impl.cache.distributed.partitioned.TransferBucketResult;
 import org.cacheonix.impl.cache.distributed.partitioned.UpdateKeyRequest;
 import org.cacheonix.impl.cache.distributed.partitioned.ValuesRequest;
 import org.cacheonix.impl.cache.item.CompressedBinary;
-import org.cacheonix.impl.cache.item.NullBinary;
 import org.cacheonix.impl.cache.item.PassBooleanByValueBinary;
 import org.cacheonix.impl.cache.item.PassByCopyBinary;
 import org.cacheonix.impl.cache.item.PassByteByValueBinary;
@@ -153,7 +152,6 @@ public final class WireableFactory {
       addMaker(Wireable.TYPE_PASS_BY_VALUE_LONG_BINARY, PassLongByValueBinary.BUILDER);
       addMaker(Wireable.TYPE_PASS_BY_REFERENCE_OBJECT_BINARY, PassObjectByReferenceBinary.BUILDER);
       addMaker(Wireable.TYPE_PASS_BY_COPY_BINARY, PassByCopyBinary.BUILDER);
-      addMaker(Wireable.TYPE_NULL_BINARY, NullBinary.BUILDER);
       addMaker(Wireable.TYPE_COMPRESSED_BINARY, CompressedBinary.BUILDER);
       addMaker(Wireable.TYPE_BUCKET_OWNER, BucketOwner.BUILDER);
       addMaker(Wireable.TYPE_REPLICATED_STATE, ReplicatedState.BUILDER);
@@ -227,8 +225,7 @@ public final class WireableFactory {
       addMaker(Wireable.TYPE_CACHE_ADD_ENTRY_MODIFIED_SUBSCRIBER_REQUEST, AddEntryModifiedSubscriberRequest.BUILDER);
       addMaker(Wireable.TYPE_CACHE_ADD_REMOTE_SUBSCRIBER_MESSAGE, AddRemoteEntryModifiedSubscriberMessage.BUILDER);
       addMaker(Wireable.TYPE_CACHE_ENTRY_MODIFIED_MESSAGE, EntryModifiedNotificationMessage.BUILDER);
-      addMaker(Wireable.TYPE_CACHE_REMOVE_ENTRY_MODIFIED_SUBSCRIBER_REQUEST,
-              RemoveEntryModifiedSubscriberRequest.BUILDER);
+      addMaker(Wireable.TYPE_CACHE_REMOVE_ENTRY_MODIFIED_SUBSCRIBER_REQUEST, RemoveEntryModifiedSubscriberRequest.BUILDER);
       addMaker(Wireable.TYPE_CACHE_ORPHAN_BUCKET, OrphanBucketMessage.BUILDER);
       addMaker(Wireable.TYPE_CACHE_INVALIDATE_FRONT_CACHE_MESSAGE, ClearFrontCacheBucketMessage.BUILDER);
       addMaker(Wireable.TYPE_CACHE_UPDATE_KEY_REQUEST, UpdateKeyRequest.BUILDER);
