@@ -652,7 +652,7 @@ public abstract class AggregatingRequest extends CacheDataRequest implements Pre
        * <p/>
        * 2. This is a subrequest
        */
-      protected void notifyFinished() {
+      protected synchronized void notifyFinished() {
 
          final AggregatingRequest request = (AggregatingRequest) getRequest();
 

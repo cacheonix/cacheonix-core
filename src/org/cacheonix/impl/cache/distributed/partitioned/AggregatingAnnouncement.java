@@ -530,7 +530,7 @@ public abstract class AggregatingAnnouncement extends Request implements Prepare
        * <p/>
        * 2. This is a subrequest. Re-splits and re-sends incomplete requests or finishes if nothing to re-send
        */
-      protected void notifyFinished() {
+      protected synchronized void notifyFinished() {
 
          final AggregatingAnnouncement request = (AggregatingAnnouncement) getRequest();
 

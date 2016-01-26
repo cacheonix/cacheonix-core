@@ -278,7 +278,7 @@ public final class RemoveEntryModifiedSubscriptionAnnouncement extends KeySetAnn
       }
 
 
-      protected void notifyFinished() {
+      protected synchronized void notifyFinished() {
 
          // Proceed as usual
          super.notifyFinished();

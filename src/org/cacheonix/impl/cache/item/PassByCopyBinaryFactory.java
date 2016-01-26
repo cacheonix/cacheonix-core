@@ -23,7 +23,7 @@ final class PassByCopyBinaryFactory implements BinaryFactory {
     */
    public Binary createBinary(final Object object) throws InvalidObjectException {
 
-      return object == null ? NULL_BINARY : new PassByCopyBinary(object);
+      return new PassByCopyBinary(object);
    }
 
 

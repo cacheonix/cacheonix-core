@@ -25,7 +25,7 @@ final class CompressedBinaryFactory implements BinaryFactory {
     */
    public Binary createBinary(final Object object) throws InvalidObjectException {
 
-      return object == null ? NULL_BINARY : new CompressedBinary(object);
+      return new CompressedBinary(object);
    }
 
 

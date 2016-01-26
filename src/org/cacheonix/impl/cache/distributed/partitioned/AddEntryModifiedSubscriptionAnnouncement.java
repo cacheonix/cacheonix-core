@@ -287,7 +287,7 @@ public final class AddEntryModifiedSubscriptionAnnouncement extends KeySetAnnoun
       }
 
 
-      protected void notifyFinished() {
+      protected synchronized void notifyFinished() {
 
          final AggregatingAnnouncement request = (AggregatingAnnouncement) getRequest();
 
