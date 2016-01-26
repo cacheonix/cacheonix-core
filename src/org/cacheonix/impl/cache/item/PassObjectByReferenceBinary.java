@@ -25,14 +25,14 @@ import org.cacheonix.impl.net.serializer.SerializerFactory;
 import org.cacheonix.impl.net.serializer.SerializerUtils;
 import org.cacheonix.impl.net.serializer.Wireable;
 import org.cacheonix.impl.net.serializer.WireableBuilder;
-import org.cacheonix.impl.util.exception.ExceptionUtils;
 
 /**
- * Holds value passed by copy.
+ * Item that holds a object passsed by copy.
  *
- * @noinspection NonFinalFieldReferenceInEquals, OverlyBroadCatchBlock, RedundantIfStatement
+ * @noinspection NonFinalFieldReferenceInEquals, NonFinalFieldReferenceInEquals, NonFinalFieldReferenceInEquals,
+ * NonFinalFieldReferenceInEquals, NonFinalFieldReferencedInHashCode, NonFinalFieldReferencedInHashCode
  */
-public final class PassByCopyBinary implements Binary {
+public final class PassObjectByReferenceBinary implements Binary {
 
    /**
     * Builder used by WireableFactory.
@@ -41,57 +41,47 @@ public final class PassByCopyBinary implements Binary {
 
    private static final long serialVersionUID = 0L;
 
-   /**
-    * REVIEWME: slava@cacheonix.org - this should be made a configuration parameter.
-    */
    private Serializer serializer = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
 
-   private Object copy = null;
+   private Object reference = null;
 
 
-   /**
-    * @param value raw Object value.
-    * @throws InvalidObjectException if object cannot be serialized.
-    * @noinspection PublicConstructorInNonPublicClass
-    */
-   public PassByCopyBinary(final Object value) throws InvalidObjectException {
+   public PassObjectByReferenceBinary() {
 
-      try {
-         copy = serializer.deserialize(serializer.serialize(value));
-      } catch (final RuntimeException e) {
-         throw e;
-      } catch (final Exception e) {
-         throw new InvalidObjectException(e);
-      }
    }
 
 
-   public PassByCopyBinary() {
+   /**
+    * Constructor.
+    *
+    * @param object to wrap.
+    * @noinspection PublicConstructorInNonPublicClass
+    */
+   public PassObjectByReferenceBinary(final Object object) {
 
+      this.reference = object;
    }
 
 
    /**
     * {@inheritDoc}
-    *
-    * @noinspection ProhibitedExceptionThrown
     */
-   public Object getValue() throws IllegalStateException {
+   public Object getValue() {
 
-      try {
-         return serializer.deserialize(serializer.serialize(copy));
-      } catch (final RuntimeException e) {
-         throw e;
-      } catch (final Exception e) {
-         throw ExceptionUtils.createIllegalStateException(e);
-      }
+      return reference;
+   }
+
+
+   public int getWireableType() {
+
+      return TYPE_PASS_BY_REFERENCE_OBJECT_BINARY;
    }
 
 
    public void writeWire(final DataOutputStream out) throws IOException {
 
-      out.write((int) serializer.getType());
-      serializer.serialize(copy, out);
+      out.writeByte((int) serializer.getType());
+      serializer.serialize(reference, out);
    }
 
 
@@ -99,7 +89,7 @@ public final class PassByCopyBinary implements Binary {
 
       final byte serializerType = in.readByte();
       serializer = SerializerFactory.getInstance().getSerializer(serializerType);
-      copy = serializer.deserialize(in);
+      reference = serializer.deserialize(in);
    }
 
 
@@ -109,7 +99,7 @@ public final class PassByCopyBinary implements Binary {
    public void writeExternal(final ObjectOutput out) throws IOException {
 
       out.writeByte(serializer.getType());
-      SerializerUtils.writeObject(out, copy);
+      SerializerUtils.writeObject(out, reference);
    }
 
 
@@ -120,62 +110,53 @@ public final class PassByCopyBinary implements Binary {
 
       final byte serializerType = in.readByte();
       serializer = SerializerFactory.getInstance().getSerializer(serializerType);
-      copy = SerializerUtils.readObject(in);
+      reference = SerializerUtils.readObject(in);
    }
 
 
-   public int getWireableType() {
-
-      return TYPE_PASS_BY_COPY_BINARY;
-   }
-
-
-   @Override
    public boolean equals(final Object obj) {
 
       if (this == obj) {
          return true;
       }
-      if (!(obj instanceof PassByCopyBinary)) {
+      if (obj == null || getClass() != obj.getClass()) {
          return false;
       }
 
-      final PassByCopyBinary that = (PassByCopyBinary) obj;
+      final PassObjectByReferenceBinary that = (PassObjectByReferenceBinary) obj;
 
-      if (copy == null && that.copy == null) {
+
+      if (reference == null && that.reference == null) {
          return true;
       }
 
-      if (copy == null || that.copy == null) {
+      if (reference == null || that.reference == null) {
          return false;
       }
 
-      if (!copy.getClass().equals(that.copy.getClass())) {
+      if (reference.getClass() != that.reference.getClass()) {
          return false;
       }
 
       // Array
-      if (copy.getClass().isArray()) {
-         return Arrays.equals((Object[]) copy, (Object[]) that.copy);
+      if (reference.getClass().isArray()) {
+         return Arrays.equals((Object[]) reference, (Object[]) that.reference);
       }
 
-      return copy.equals(that.copy);
+      return reference.equals(that.reference);
    }
 
 
-   @Override
    public int hashCode() {
 
-      return copy == null ? 0 : copy.hashCode();
+      return reference == null ? 0 : reference.hashCode();
    }
 
 
-   @Override
    public String toString() {
 
-      return "PassByCopyBinary{" +
-              "copy=" + copy +
-              ", serializer=" + serializer +
+      return "PassByReferenceItem{" +
+              "reference=" + reference +
               '}';
    }
 
@@ -184,7 +165,7 @@ public final class PassByCopyBinary implements Binary {
 
       public Wireable create() {
 
-         return new PassByCopyBinary();
+         return new PassObjectByReferenceBinary();
       }
    }
 }

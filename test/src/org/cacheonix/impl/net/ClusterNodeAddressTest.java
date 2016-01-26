@@ -89,7 +89,7 @@ public final class ClusterNodeAddressTest extends TestCase {
 
    public void testHashCode() {
 
-      assertEquals(-1930334286, SAME_1.hashCode());
+      assertEquals(-1987552425, SAME_1.hashCode());
    }
 
 

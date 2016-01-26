@@ -23,7 +23,7 @@ import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.cache.item.CompressedBinary;
 import org.cacheonix.impl.cache.item.InvalidObjectException;
 import org.cacheonix.impl.cache.item.PassByCopyBinary;
-import org.cacheonix.impl.cache.item.PassByReferenceBinary;
+import org.cacheonix.impl.cache.item.PassObjectByReferenceBinary;
 import org.cacheonix.impl.clock.TimeImpl;
 import org.cacheonix.impl.net.processor.Message;
 import org.cacheonix.impl.net.serializer.Serializer;
@@ -104,7 +104,7 @@ public class ClusterResponseTest extends TestCase {
 
    public void testSerializeDeserializeBinarySetAsValue() throws IOException, ClassNotFoundException, InvalidObjectException {
 
-      setBinary(new PassByReferenceBinary("value"));
+      setBinary(new PassObjectByReferenceBinary("value"));
       setBinary(new PassByCopyBinary("value"));
       setBinary(new PassByCopyBinary("value"));
       setBinary(new CompressedBinary("value"));
