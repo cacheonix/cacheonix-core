@@ -18,8 +18,8 @@ import org.cacheonix.ShutdownException;
 import org.cacheonix.ShutdownMode;
 import org.cacheonix.TestUtils;
 import org.cacheonix.cache.Cache;
-import org.cacheonix.locks.Lock;
 import org.cacheonix.impl.util.MutableBoolean;
+import org.cacheonix.locks.Lock;
 
 /**
  */
@@ -73,7 +73,11 @@ public abstract class SinglePartitionedCacheTestDriver extends PartitionedCacheT
          thread.join();
 
       } finally {
-         writeLock.unlock();
+         try {
+            writeLock.unlock();
+         } catch (final ShutdownException ignored) {
+            // Expected becuase the node has been shutdown
+         }
       }
 
       assertTrue(thrown);
