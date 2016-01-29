@@ -63,6 +63,14 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
     */
    private static final Logger LOG = Logger.getLogger(BinaryStoreElement.class); // NOPMD
 
+   private static final byte FLAG_HAS_ELEMENT_SIZE_BYTES = 1;
+
+   private static final byte FLAG_HAS_KEY_SIZE_BYTES = 2;
+
+   private static final byte FLAG_HAS_VALUE_SIZE_BYTES = 4;
+
+   private static final byte FLAG_VALID = 8;
+
    /**
     * Builder used by WireableFactory.
     */
@@ -134,36 +142,14 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
    private long elementSizeBytes;
 
    /**
-    * Flag indicating that element size has been calculated.
-    */
-   private boolean hasElementSizeBytes = false;
-
-   /**
     * Key size.
     */
    private long keySizeBytes;
 
    /**
-    * Flag indicating that key size has been calculated.
-    */
-   private boolean hasKeySizeBytes = false;
-
-   /**
     * Value size.
     */
    private long valueSizeBytes;
-
-   /**
-    * Flag indicating that value size has been calculated.
-    */
-   private boolean hasValueSizeBytes = false;
-
-   /**
-    * Invalid flag
-    *
-    * @see Invalidateable
-    */
-   private boolean valid = true;
 
    /**
     * Update counter.
@@ -179,6 +165,11 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
     * A prefetch order.
     */
    private transient PrefetchCommand prefetchCommand;
+
+   /**
+    * Boolean flags.
+    */
+   private byte flags;
 
 
    /**
@@ -206,6 +197,7 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
       this.idleTime = idleTime;
       this.key = key;
       this.value = value;
+      this.setValid(true);
    }
 
 
@@ -375,7 +367,7 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
     */
    public void invalidate() {
 
-      valid = false;
+      setValid(false);
    }
 
 
@@ -385,7 +377,7 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
    public boolean isValid() {
 
       // Do invalidation only once.
-      if (valid) {
+      if ((flags & FLAG_VALID) != 0) {
 
          return true;
       }
@@ -470,7 +462,7 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
     * Removes an element from the LRU list.
     *
     * @return a element that comes after the removed element as returned by {@link #getAfter()}. The returned result can
-    *         be used for iterative removal of elements.
+    * be used for iterative removal of elements.
     */
    public BinaryStoreElement removeFromLRUList() {
 
@@ -559,7 +551,7 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
     */
    public long getSizeBytes() {
 
-      if (!hasElementSizeBytes) {
+      if (!hasElementSizeBytes()) {
 
          final long keySizeBytes = getKeySizeBytes();
          final long valueSizeBytes = getValueSizeBytes();
@@ -573,7 +565,7 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
    private void setElementSizeBytes(final long elementSizeBytes) {
 
       this.elementSizeBytes = elementSizeBytes;
-      this.hasElementSizeBytes = true;
+      this.setHasElementSizeBytes(true);
    }
 
 
@@ -584,7 +576,7 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
     */
    private long getKeySizeBytes() {
 
-      if (!hasKeySizeBytes) {
+      if (!hasKeySizeBytes()) {
 
          setKeySizeBytes(objectSizeCalculator.sizeOf(key));
       }
@@ -596,7 +588,7 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
    private void setKeySizeBytes(final long keySizeBytes) {
 
       this.keySizeBytes = keySizeBytes;
-      this.hasKeySizeBytes = true;
+      this.setHasKeySizeBytes(true);
    }
 
 
@@ -607,7 +599,7 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
     */
    private long getValueSizeBytes() {
 
-      if (!hasValueSizeBytes) {
+      if (!hasValueSizeBytes()) {
 
          if (isStored()) {
 
@@ -625,7 +617,7 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
    private void setValueSizeBytes(final long valueSizeBytes) {
 
       this.valueSizeBytes = valueSizeBytes;
-      this.hasValueSizeBytes = true;
+      this.setHasValueSizeBytes(true);
    }
 
 
@@ -781,15 +773,95 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
    }
 
 
+   /**
+    * Returns the flag indicating that element size has been calculated.
+    */
+   private boolean hasElementSizeBytes() {
+
+      return (flags & FLAG_HAS_ELEMENT_SIZE_BYTES) != 0;
+   }
+
+
+   /**
+    * Sets the flag indicating that element size has been calculated.
+    */
+   private void setHasElementSizeBytes(final boolean hasElementSizeBytes) {
+
+      if (hasElementSizeBytes) {
+
+         flags |= FLAG_HAS_ELEMENT_SIZE_BYTES;
+      } else {
+         flags &= ~FLAG_HAS_ELEMENT_SIZE_BYTES;
+      }
+   }
+
+
+   /**
+    * Returns the flag indicating that key size has been calculated.
+    */
+   private boolean hasKeySizeBytes() {
+
+      return (flags & FLAG_HAS_KEY_SIZE_BYTES) != 0;
+   }
+
+
+   /**
+    * Sets the flag indicating that key size has been calculated.
+    */
+   private void setHasKeySizeBytes(final boolean hasKeySizeBytes) {
+
+      if (hasKeySizeBytes) {
+
+         flags |= FLAG_HAS_KEY_SIZE_BYTES;
+      } else {
+         flags &= ~FLAG_HAS_KEY_SIZE_BYTES;
+      }
+   }
+
+
+   /**
+    * Returns the flag indicating that value size has been calculated.
+    */
+   private boolean hasValueSizeBytes() {
+
+      return (flags & FLAG_HAS_VALUE_SIZE_BYTES) != 0;
+   }
+
+
+   /**
+    * Sets the flag indicating that value size has been calculated.
+    */
+   private void setHasValueSizeBytes(final boolean hasValueSizeBytes) {
+
+      if (hasValueSizeBytes) {
+
+         flags |= FLAG_HAS_VALUE_SIZE_BYTES;
+      } else {
+         flags &= ~FLAG_HAS_VALUE_SIZE_BYTES;
+      }
+   }
+
+
+   /**
+    * Sets the flag indicating that element is valid.
+    */
+   private void setValid(final boolean valid) {
+
+      if (valid) {
+
+         flags |= FLAG_VALID;
+      } else {
+         flags &= ~FLAG_VALID;
+      }
+   }
+
+
    @SuppressWarnings("SimplifiableConditionalExpression")
    public void writeWire(final DataOutputStream out) throws IOException {
 
       try {
 
-         out.writeBoolean(valid);
-         out.writeBoolean(hasKeySizeBytes);
-         out.writeBoolean(isStored() ? false : hasValueSizeBytes);
-         out.writeBoolean(isStored() ? false : hasElementSizeBytes);
+         out.writeByte(flags);
          out.writeLong(updateCounter);
          out.writeLong(keySizeBytes);
          out.writeLong(valueSizeBytes);
@@ -808,10 +880,7 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
 
    public void readWire(final DataInputStream in) throws IOException, ClassNotFoundException {
 
-      valid = in.readBoolean();
-      hasKeySizeBytes = in.readBoolean();
-      hasValueSizeBytes = in.readBoolean();
-      hasElementSizeBytes = in.readBoolean();
+      flags = in.readByte();
       updateCounter = in.readLong();
       keySizeBytes = in.readLong();
       valueSizeBytes = in.readLong();
@@ -838,10 +907,22 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
       if (elementSizeBytes != that.elementSizeBytes) {
          return false;
       }
-      if (hasElementSizeBytes != that.hasElementSizeBytes) {
+      if (keySizeBytes != that.keySizeBytes) {
          return false;
       }
-      if (valid != that.valid) {
+      if (valueSizeBytes != that.valueSizeBytes) {
+         return false;
+      }
+      if (updateCounter != that.updateCounter) {
+         return false;
+      }
+      if (flags != that.flags) {
+         return false;
+      }
+      if (key != null ? !key.equals(that.key) : that.key != null) {
+         return false;
+      }
+      if (value != null ? !value.equals(that.value) : that.value != null) {
          return false;
       }
       if (createdTime != null ? !createdTime.equals(that.createdTime) : that.createdTime != null) {
@@ -853,27 +934,6 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
       if (idleTime != null ? !idleTime.equals(that.idleTime) : that.idleTime != null) {
          return false;
       }
-      if (key != null ? !key.equals(that.key) : that.key != null) {
-         return false;
-      }
-      if (keySizeBytes != that.keySizeBytes) {
-         return false;
-      }
-      if (hasKeySizeBytes != that.hasKeySizeBytes) {
-         return false;
-      }
-      if (storedValue != null ? !storedValue.equals(that.storedValue) : that.storedValue != null) {
-         return false;
-      }
-      if (value != null ? !value.equals(that.value) : that.value != null) {
-         return false;
-      }
-      if (valueSizeBytes != that.valueSizeBytes) {
-         return false;
-      }
-      if (hasValueSizeBytes != that.hasValueSizeBytes) {
-         return false;
-      }
 
       return true;
    }
@@ -881,20 +941,16 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
 
    public int hashCode() {
 
-      int result = 0;
-      result = 31 * result + (key != null ? key.hashCode() : 0);
+      int result = key != null ? key.hashCode() : 0;
       result = 31 * result + (value != null ? value.hashCode() : 0);
-      result = 31 * result + (storedValue != null ? storedValue.hashCode() : 0);
       result = 31 * result + (createdTime != null ? createdTime.hashCode() : 0);
       result = 31 * result + (expirationTime != null ? expirationTime.hashCode() : 0);
       result = 31 * result + (idleTime != null ? idleTime.hashCode() : 0);
-      result = 31 * result + (int) (elementSizeBytes ^ (elementSizeBytes >>> 32));
-      result = 31 * result + (hasElementSizeBytes ? 1 : 0);
-      result = 31 * result + (int) (keySizeBytes ^ (keySizeBytes >>> 32));
-      result = 31 * result + (hasKeySizeBytes ? 1 : 0);
-      result = 31 * result + (int) (valueSizeBytes ^ (valueSizeBytes >>> 32));
-      result = 31 * result + (hasValueSizeBytes ? 1 : 0);
-      result = 31 * result + (valid ? 1 : 0);
+      result = 31 * result + (int) (elementSizeBytes ^ elementSizeBytes >>> 32);
+      result = 31 * result + (int) (keySizeBytes ^ keySizeBytes >>> 32);
+      result = 31 * result + (int) (valueSizeBytes ^ valueSizeBytes >>> 32);
+      result = 31 * result + (int) (updateCounter ^ updateCounter >>> 32);
+      result = 31 * result + (int) flags;
       return result;
    }
 
@@ -913,7 +969,7 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
               ", sizeBytes=" + elementSizeBytes +
               ", keyByteSize=" + keySizeBytes +
               ", valueByteSize=" + valueSizeBytes +
-              ", invalid=" + !valid +
+              ", valid=" + isValid() +
               ", invalidator=" + invalidator +
               ", updateCounter=" + updateCounter +
               '}';
