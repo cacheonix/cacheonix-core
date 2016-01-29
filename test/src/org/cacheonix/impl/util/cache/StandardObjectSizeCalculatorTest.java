@@ -99,19 +99,19 @@ public class StandardObjectSizeCalculatorTest extends TestCase {
       for (int i = -128; i < 128; i++) {
          all[i + 128] = Byte.valueOf((byte) i);
       }
-      assertEquals(5136, CALCULATOR.sizeOf(all));
+      assertEquals(6160, CALCULATOR.sizeOf(all));
 
       final HashMap hm = new HashMap(16);
       for (int i = -128; i < 128; i++) {
          hm.put(String.valueOf(i), new Byte((byte) i)); // NOPMD Avoid instantiating Byte objects. Call Byte.valueOf() instead
       }
-      assertEquals(23940, CALCULATOR.sizeOf(hm));
+      assertEquals(32148, CALCULATOR.sizeOf(hm));
    }
 
 
    public void testVector() {
 
-      assertEquals(120, CALCULATOR.sizeOf(new Vector(10))); // NOPMD Use ArrayList instead of Vector
+      assertEquals(128, CALCULATOR.sizeOf(new Vector(10))); // NOPMD Use ArrayList instead of Vector
    }
 
 
@@ -257,7 +257,7 @@ public class StandardObjectSizeCalculatorTest extends TestCase {
       try {
          final ConfigurationReader reader = new ConfigurationReader();
          final CacheonixConfiguration config = reader.readConfiguration(testFileInputStream);
-         assertEquals(1656, CALCULATOR.sizeOf(config));
+         assertEquals(1648, CALCULATOR.sizeOf(config));
       } finally {
          IOUtils.closeHard(testFileInputStream);
       }
