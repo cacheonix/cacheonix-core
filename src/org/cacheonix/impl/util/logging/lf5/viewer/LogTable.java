@@ -289,7 +289,7 @@ public final class LogTable extends JTable {
             buf.append(_colNames[_numCols - 1]).append(":\n");
             final Object obj = _table.getModel().getValueAt(selectedRow, _numCols - 1);
             if (obj != null) {
-               buf.append(obj.toString());
+               buf.append(obj);
             }
 
             _detailTextArea.setText(buf.toString());

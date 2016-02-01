@@ -90,10 +90,10 @@ public class SelectorWorker implements Runnable {
          ExceptionUtils.ignoreException(e, "Shutdown has been initiated");
       } catch (final UnrecoverableAcceptException e) {
 
-         LOG.error("Failed to accept a connection, selector thread terminates: " + e.toString(), e);
+         LOG.error("Failed to accept a connection, selector thread terminates: " + e, e);
       } catch (final Exception e) {
 
-         LOG.error("Unexpected error, selector thread terminates: " + e.toString(), e);
+         LOG.error("Unexpected error, selector thread terminates: " + e, e);
       } finally {
 
          IOUtils.closeHard(selector);

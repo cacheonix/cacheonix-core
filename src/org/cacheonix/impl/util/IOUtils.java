@@ -458,7 +458,7 @@ public final class IOUtils {
       try {
          return file.getCanonicalPath();
       } catch (final IOException e) {
-         LOG.fatal("Can not get canonical path for " + file.toString(), e);
+         LOG.fatal("Can not get canonical path for " + file, e);
          throw ExceptionUtils.createIllegalStateException(e);
       }
    }
@@ -475,7 +475,7 @@ public final class IOUtils {
       try {
          return file.getCanonicalFile();
       } catch (final IOException e) {
-         LOG.fatal("Can not get canonical file for " + file.toString(), e);
+         LOG.fatal("Can not get canonical file for " + file, e);
          throw ExceptionUtils.createIllegalStateException(e);
       }
    }
@@ -576,7 +576,7 @@ public final class IOUtils {
       if (!dir.exists()) {
          if (!dir.mkdirs()) {
             throw new IOException(
-                    "Error creating a directory. The user may not have enough rights or the path is invalid: \"" + dir.toString() + '\"');
+                    "Error creating a directory. The user may not have enough rights or the path is invalid: \"" + dir + '\"');
          }
       }
    }
@@ -1125,7 +1125,7 @@ public final class IOUtils {
            final DirectoryTraverserCallback callback) throws IOException {
 
       if (!dir.isDirectory()) {
-         throw new IOException("Not a directory: " + dir.toString());
+         throw new IOException("Not a directory: " + dir);
       }
       return traversePath(dir, callback);
    }
@@ -1170,7 +1170,7 @@ public final class IOUtils {
          final File[] files = path.listFiles();
          if (files == null) {
             throw new IOException(
-                    "Files cannot be listed for the path \"" + path.toString() + "\". The path may be not a directory or an I/O error has occurred.");
+                    "Files cannot be listed for the path \"" + path + "\". The path may be not a directory or an I/O error has occurred.");
          }
          for (int ii = 0; keepGoing && ii < files.length; ii++) {
             keepGoing = traversePath(files[ii], callback, counter, false);

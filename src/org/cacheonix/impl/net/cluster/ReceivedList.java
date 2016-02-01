@@ -233,7 +233,7 @@ public final class ReceivedList {
       if (!received.isEmpty()) {
 
          throw new IllegalStateException("A forced setting of the sequence number " +
-                 "is allowed only for an empty receive list: " + this.toString());
+                 "is allowed only for an empty receive list: " + this);
       }
 
       highestContinuousNumberReceived = sequenceNumber;
@@ -246,7 +246,7 @@ public final class ReceivedList {
       if (!received.isEmpty()) {
 
          throw new IllegalStateException("A forced setting of the sequence number " +
-                 "is allowed only for an empty receive list: " + this.toString());
+                 "is allowed only for an empty receive list: " + this);
       }
 
       highestSequenceNumberReceived = sequenceNumber;

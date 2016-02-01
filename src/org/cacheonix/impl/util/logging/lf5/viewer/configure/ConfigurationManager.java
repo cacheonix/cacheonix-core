@@ -378,7 +378,7 @@ public final class ConfigurationManager {
          }
       } catch (final SecurityException e) {
          System.err.println("Cannot delete " + getFilename() +
-                 " because a security violation occurred: " + e.toString());
+                 " because a security violation occurred: " + e);
       }
    }
 

@@ -46,7 +46,7 @@ public final class ExceptionUtils {
    public static void ignoreException(final Throwable throwable, final String explanation) {
 
       if (SystemProperty.CACHEONIX_PRINT_IGNORED_EXCEPTIONS) {
-         LOG.warn(new StringBuffer(100).append("Ignored exception ").append(throwable.toString())
+         LOG.warn(new StringBuffer(100).append("Ignored exception ").append(throwable)
                  .append(". Reason for ignoring: ").append(explanation.toLowerCase()), throwable);
       }
    }

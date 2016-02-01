@@ -181,7 +181,7 @@ public final class TTCCLayout extends DateLayout {
          buf.append(event.getThreadName());
          buf.append("] ");
       }
-      buf.append(event.getLevel().toString());
+      buf.append(event.getLevel());
       buf.append(' ');
 
       if (this.categoryPrefixing) {

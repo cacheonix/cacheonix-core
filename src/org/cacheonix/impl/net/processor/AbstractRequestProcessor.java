@@ -196,7 +196,7 @@ public abstract class AbstractRequestProcessor extends SimpleProcessor implement
          }
       } catch (final InvalidMessageException e) {
 
-         LOG.warn("Invalid message: " + e.toString(), e);
+         LOG.warn("Invalid message: " + e, e);
          if (message instanceof Request) {
 
             final Request request = (Request) message;

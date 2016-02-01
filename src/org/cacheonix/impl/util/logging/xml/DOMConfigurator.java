@@ -733,7 +733,7 @@ problem: we can't create an Appender */ catch (final Exception oops) {
 
          public String toString() {
 
-            return "url [" + url.toString() + ']';
+            return "url [" + url + ']';
          }
       };
       doConfigure(action, repository);
@@ -849,7 +849,7 @@ problem: we can't create an Appender */ catch (final Exception oops) {
          parse(doc.getDocumentElement());
       } catch (final Exception e) {
          // I know this is miserable...
-         LogLog.error("Could not parse " + action.toString() + '.', e);
+         LogLog.error("Could not parse " + action + '.', e);
       }
    }
 

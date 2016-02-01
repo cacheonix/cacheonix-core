@@ -908,7 +908,7 @@ public final class StringUtils {
       sb.append('[');
       for (int i = 0; i < objects.length; i++) {
          final Object o = objects[i];
-         sb.append(o.toString());
+         sb.append(o);
          if (i < objects.length - 1) {
             sb.append(", ");
          }

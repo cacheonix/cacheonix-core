@@ -109,7 +109,7 @@ public abstract class ClusterRequest extends Request {
       } catch (final IOException e) {
 
          // Log
-         LOG.error("Error while executing cluster request: " + e.toString(), e);
+         LOG.error("Error while executing cluster request: " + e, e);
 
          // Respond with error
          final Response errorResponse = createResponse(RESULT_ERROR);

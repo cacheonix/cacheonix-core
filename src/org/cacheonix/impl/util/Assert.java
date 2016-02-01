@@ -258,7 +258,7 @@ public final class Assert {
       try {
          return parameter.toString();
       } catch (final Throwable e) {
-         return "Error converting to String: " + e.toString();
+         return "Error converting to String: " + e;
       }
    }
 }

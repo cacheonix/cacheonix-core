@@ -303,7 +303,7 @@ public abstract class Cacheonix {
          return getInstanceFromExternalPath(configurationPath);
       } catch (final IOException e) {
 
-         throw new ConfigurationException("Unexpected error while getting Cacheonix instance: " + e.toString(), e);
+         throw new ConfigurationException("Unexpected error while getting Cacheonix instance: " + e, e);
       }
    }
 
@@ -324,7 +324,7 @@ public abstract class Cacheonix {
          return getInstanceFromExternalPath(configurationPath.getCanonicalFile().toURL().toExternalForm());
       } catch (final IOException e) {
 
-         throw new ConfigurationException("Unexpected error while getting Cacheonix instance: " + e.toString(), e);
+         throw new ConfigurationException("Unexpected error while getting Cacheonix instance: " + e, e);
       }
    }
 
@@ -405,7 +405,7 @@ public abstract class Cacheonix {
 
          return getInstanceFromExternalPath(fallbackCacheonixXmlResource.toExternalForm());
       } catch (final IOException e) {
-         throw new ConfigurationException("Unexpected error while getting Cacheonix instance: " + e.toString(), e);
+         throw new ConfigurationException("Unexpected error while getting Cacheonix instance: " + e, e);
       }
    }
 

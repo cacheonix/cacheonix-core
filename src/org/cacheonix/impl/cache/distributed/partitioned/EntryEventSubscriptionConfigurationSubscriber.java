@@ -101,7 +101,7 @@ public final class EntryEventSubscriptionConfigurationSubscriber {
          // This is a synchronous call from replicated
          // state,  so log and ignore the exception.
 
-         LOG.error("Unexpected error while processing notifySubscriptionAdded(): " + e.toString(), e);
+         LOG.error("Unexpected error while processing notifySubscriptionAdded(): " + e, e);
       }
    }
 
@@ -133,7 +133,7 @@ public final class EntryEventSubscriptionConfigurationSubscriber {
          // This is a synchronous call from replicated
          // state,  so log and ignore the exception.
 
-         LOG.error("Unexpected error while processing notifySubscriptionAdded(): " + e.toString(), e);
+         LOG.error("Unexpected error while processing notifySubscriptionAdded(): " + e, e);
       }
    }
 

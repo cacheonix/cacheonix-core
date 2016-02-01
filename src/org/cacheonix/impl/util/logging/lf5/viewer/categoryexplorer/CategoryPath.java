@@ -141,7 +141,7 @@ public final class CategoryPath {
       } else {
          for (int i = 0; i < this.size(); i++) {
             //noinspection ObjectToString
-            out.append(this.categoryElementAt(i).toString());
+            out.append(this.categoryElementAt(i));
             out.append("\n\t");
          }
       }

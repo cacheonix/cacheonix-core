@@ -60,7 +60,7 @@ public final class NetUtils {
          return unmodifiableSet(result);
       } catch (final SocketException e) {
 
-         throw new CacheonixException("Failed to obtain a list of local InetAddresses: " + e.toString(), e);
+         throw new CacheonixException("Failed to obtain a list of local InetAddresses: " + e, e);
       }
    }
 

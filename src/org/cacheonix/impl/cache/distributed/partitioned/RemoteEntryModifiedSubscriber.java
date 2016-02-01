@@ -76,7 +76,7 @@ public final class RemoteEntryModifiedSubscriber implements BinaryEntryModifiedS
          processor.post(entryModifiedMessage);
       } catch (final Exception e) {
 
-         LOG.warn("Error while posting an entry modified event message: " + e.toString(), e);
+         LOG.warn("Error while posting an entry modified event message: " + e, e);
       }
    }
 

@@ -107,12 +107,12 @@ public final class NetworkInterfaceEnumerator {
                        EMPTY_CLASS_ARRAY);
                buf.append(StringUtils.toString(
                        (InetAddress) getAddressMethod.invoke(interfaceAddress, EMPTY_OBJECT_ARRAY))).append('/')
-                       .append(getNetworkPrefixLengthMethod.invoke(interfaceAddress, EMPTY_OBJECT_ARRAY).toString());
+                       .append(getNetworkPrefixLengthMethod.invoke(interfaceAddress, EMPTY_OBJECT_ARRAY));
                if (i < n - 1) {
                   buf.append(", ");
                }
             }
-            stream.println(INTERFACE_ADDRESS_ES + buf.toString());
+            stream.println(INTERFACE_ADDRESS_ES + buf);
          } catch (final NoSuchMethodException ignored) {
             // Multicast not supported
          }
