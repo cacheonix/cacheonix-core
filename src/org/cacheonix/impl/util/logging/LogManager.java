@@ -149,7 +149,7 @@ public final class LogManager {
    public static void setRepositorySelector(final RepositorySelector selector, final Object guard)
            throws IllegalArgumentException {
 
-      if (LogManager.guard != null && LogManager.guard != guard) {
+      if (LogManager.guard != null && !LogManager.guard.equals(guard)) {
          throw new IllegalArgumentException(
                  "Attempted to reset the LoggerFactory without possessing the guard.");
       }
