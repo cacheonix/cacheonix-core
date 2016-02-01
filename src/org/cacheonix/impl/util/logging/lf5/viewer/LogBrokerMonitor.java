@@ -697,10 +697,11 @@ public final class LogBrokerMonitor {
             final CategoryPath path = new CategoryPath(record.getCategory());
             if (NDC == null || _NDCTextFilter == null) {
                return false;
-            } else
+            } else {
                return NDC.toLowerCase().contains(_NDCTextFilter.toLowerCase()) && getMenuItem(
                        record.getLevel()).isSelected() && _categoryExplorerTree.getExplorerModel().isCategoryPathActive(
                        path);
+            }
          }
       };
    }
