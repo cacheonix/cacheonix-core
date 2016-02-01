@@ -543,9 +543,7 @@ problem: we can't create an Appender */ catch (final Exception oops) {
 
                cat.addAppender(appender);
 
-            } else if (tagName.equals(LEVEL_TAG)) {
-               parseLevel(currentElement, cat, isRoot);
-            } else if (tagName.equals(PRIORITY_TAG)) {
+            } else if (tagName.equals(LEVEL_TAG) || tagName.equals(PRIORITY_TAG)) {
                parseLevel(currentElement, cat, isRoot);
             } else if (tagName.equals(PARAM_TAG)) {
                setParameter(currentElement, propSetter);
