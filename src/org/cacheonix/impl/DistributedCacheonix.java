@@ -20,6 +20,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.Timer;
 import java.util.concurrent.ConcurrentHashMap;
@@ -729,8 +730,8 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
       }
 
       // Destroy cache processors
-      for (final Iterator<Map.Entry<String, CacheProcessor>> iterator = cacheProcessorMap.entrySet().iterator(); iterator.hasNext(); ) {
-         final Map.Entry<String, CacheProcessor> entry = iterator.next();
+      for (final Iterator<Entry<String, CacheProcessor>> iterator = cacheProcessorMap.entrySet().iterator(); iterator.hasNext(); ) {
+         final Entry<String, CacheProcessor> entry = iterator.next();
          final String cacheName = entry.getKey(); // NOPMD
          final CacheProcessor cacheProcessor = entry.getValue(); // NOPMD
 
@@ -798,10 +799,10 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
 
          // Shutdown all cache processors.
 
-         final Set<Map.Entry<String, CacheProcessor>> entries = cacheProcessorMap.entrySet();
-         for (final Iterator<Map.Entry<String, CacheProcessor>> iterator = entries.iterator(); iterator.hasNext(); ) {
+         final Set<Entry<String, CacheProcessor>> entries = cacheProcessorMap.entrySet();
+         for (final Iterator<Entry<String, CacheProcessor>> iterator = entries.iterator(); iterator.hasNext(); ) {
 
-            final Map.Entry<String, CacheProcessor> entry = iterator.next();
+            final Entry<String, CacheProcessor> entry = iterator.next();
             final CacheProcessor cacheProcessor = entry.getValue();
 
             LOG.debug("Re-setting cache processors: " + entry.getKey());

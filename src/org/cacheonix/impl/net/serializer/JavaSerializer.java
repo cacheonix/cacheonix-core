@@ -24,7 +24,7 @@ import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
-import java.util.Map;
+import java.util.Map.Entry;
 
 import org.cacheonix.impl.util.IOUtils;
 import org.cacheonix.impl.util.array.HashSet;
@@ -258,9 +258,9 @@ final class JavaSerializer implements Serializer {
       } else if (obj instanceof Byte) {
          dos.writeByte(OBJECT_TYPE_BYTE);
          dos.writeByte((Byte) obj);
-      } else if (obj instanceof Map.Entry) {
+      } else if (obj instanceof Entry) {
          dos.writeByte(OBJECT_TYPE_MAP_ENTRY);
-         final Map.Entry entry = (Map.Entry) obj;
+         final Entry entry = (Entry) obj;
          serialize(entry.getKey(), dos);
          serialize(entry.getValue(), dos);
       } else if (obj instanceof ArrayList || obj instanceof LinkedList || obj instanceof HashSet) {

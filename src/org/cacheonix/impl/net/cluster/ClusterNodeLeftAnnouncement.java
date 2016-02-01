@@ -21,7 +21,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
+import java.util.Map.Entry;
 
 import org.cacheonix.cluster.ClusterEventSubscriber;
 import org.cacheonix.cluster.ClusterMember;
@@ -153,7 +153,7 @@ public final class ClusterNodeLeftAnnouncement extends Message {
       final ClusterProcessor processor = (ClusterProcessor) getProcessor();
 
       final LockRegistry lockRegistry = processor.getProcessorState().getReplicatedState().getLockRegistry();
-      for (final Map.Entry<LockQueueKey, LockQueue> entry : lockRegistry.getLockQueues().entrySet()) {
+      for (final Entry<LockQueueKey, LockQueue> entry : lockRegistry.getLockQueues().entrySet()) {
 
          // Process a particular lock queue
          final LockQueue lockQueue = entry.getValue();

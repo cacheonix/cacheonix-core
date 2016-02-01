@@ -13,7 +13,7 @@
  */
 package org.cacheonix.impl.util.cache;
 
-import java.util.Map;
+import java.util.Map.Entry;
 
 import org.cacheonix.impl.cache.local.LocalCache;
 import org.cacheonix.impl.util.logging.Logger;
@@ -26,7 +26,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * @author vimeshev
  */
 @SuppressWarnings("RedundantIfStatement")
-public final class EntryImpl implements Map.Entry {
+public final class EntryImpl implements Entry {
 
 
    /**

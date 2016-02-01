@@ -21,6 +21,7 @@ import java.net.URL;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import org.cacheonix.cache.Cache;
@@ -468,9 +469,9 @@ public abstract class Cacheonix {
    protected final void unregister(final Cacheonix instance) {
 
       synchronized (CLASS_STATE_LOCK) {
-         final Set<Map.Entry<String, AbstractCacheonix>> entrySet = INSTANCES.entrySet();
-         for (final Iterator<Map.Entry<String, AbstractCacheonix>> iter = entrySet.iterator(); iter.hasNext(); ) {
-            final Map.Entry<String, AbstractCacheonix> entry = iter.next();
+         final Set<Entry<String, AbstractCacheonix>> entrySet = INSTANCES.entrySet();
+         for (final Iterator<Entry<String, AbstractCacheonix>> iter = entrySet.iterator(); iter.hasNext(); ) {
+            final Entry<String, AbstractCacheonix> entry = iter.next();
             //noinspection ObjectEquality
             if (entry.getValue() == instance) { // Intended comparison by reference
                //noinspection ControlFlowStatementWithoutBraces

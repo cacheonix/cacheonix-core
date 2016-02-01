@@ -18,6 +18,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.cacheonix.impl.RuntimeIOException;
@@ -151,7 +152,7 @@ public final class ReplicatedState implements Wireable {
       // Write group map
       final int size = groupMap.size();
       out.writeInt(size);
-      for (final Map.Entry<GroupKey, Group> entry : groupMap.entrySet()) {
+      for (final Entry<GroupKey, Group> entry : groupMap.entrySet()) {
          entry.getValue().writeWire(out);
       }
 
@@ -218,7 +219,7 @@ public final class ReplicatedState implements Wireable {
 
    public void notifyClusterNodesLeft(final Collection<ClusterNodeAddress> nodesLeft) {
 
-      for (final Map.Entry<GroupKey, Group> groupKeyGroupEntry : groupMap.entrySet()) {
+      for (final Entry<GroupKey, Group> groupKeyGroupEntry : groupMap.entrySet()) {
 
          groupKeyGroupEntry.getValue().removeMembers(nodesLeft);
       }

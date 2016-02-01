@@ -16,6 +16,7 @@ package org.cacheonix.impl.net.cluster;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Queue;
 import java.util.Timer;
 import java.util.concurrent.ConcurrentHashMap;
@@ -427,7 +428,7 @@ public final class ClusterProcessorImpl extends AbstractRequestProcessor impleme
     */
    private void beginCacheProcessorsShutdown(final boolean shutdownCacheProcessorsGracefully) {
 
-      for (final Map.Entry<String, CacheProcessor> entry : cacheProcessors.entrySet()) {
+      for (final Entry<String, CacheProcessor> entry : cacheProcessors.entrySet()) {
 
          // Post shutdown message to the cache processor
          try {
@@ -451,7 +452,7 @@ public final class ClusterProcessorImpl extends AbstractRequestProcessor impleme
     */
    private void waitForCacheProcessorsToShutdown() {
 
-      for (final Map.Entry<String, CacheProcessor> entry : cacheProcessors.entrySet()) {
+      for (final Entry<String, CacheProcessor> entry : cacheProcessors.entrySet()) {
 
          final CacheProcessor cacheProcessor = entry.getValue();
          final String cacheName = cacheProcessor.getCacheName();

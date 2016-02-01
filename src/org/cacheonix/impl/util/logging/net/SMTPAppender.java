@@ -21,6 +21,7 @@ import java.util.Date;
 import java.util.Properties;
 import javax.mail.Authenticator;
 import javax.mail.Message;
+import javax.mail.Message.RecipientType;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
@@ -156,17 +157,17 @@ public final class SMTPAppender extends AppenderSkeleton
       }
 
       if (to != null && !to.isEmpty()) {
-         msg.setRecipients(Message.RecipientType.TO, parseAddress(to));
+         msg.setRecipients(RecipientType.TO, parseAddress(to));
       }
 
       //Add CC receipients if defined.
       if (cc != null && !cc.isEmpty()) {
-         msg.setRecipients(Message.RecipientType.CC, parseAddress(cc));
+         msg.setRecipients(RecipientType.CC, parseAddress(cc));
       }
 
       //Add BCC receipients if defined.
       if (bcc != null && !bcc.isEmpty()) {
-         msg.setRecipients(Message.RecipientType.BCC, parseAddress(bcc));
+         msg.setRecipients(RecipientType.BCC, parseAddress(bcc));
       }
    }
 

@@ -472,7 +472,7 @@ public abstract class AggregatingRequest extends CacheDataRequest implements Pre
 
             // Root request still can receive responses such as retry
 
-            final AggregatingRequest.Waiter rootWaiter = (AggregatingRequest.Waiter) request.getWaiter();
+            final Waiter rootWaiter = (Waiter) request.getWaiter();
             if (message instanceof AggregatingResponse) {
 
                final AggregatingResponse response = (AggregatingResponse) message;
@@ -565,7 +565,7 @@ public abstract class AggregatingRequest extends CacheDataRequest implements Pre
 
             // Response to a partial request
 
-            final AggregatingRequest.Waiter ownerWaiter = (AggregatingRequest.Waiter) getOwnerWaiter();
+            final Waiter ownerWaiter = (Waiter) getOwnerWaiter();
 
             if (message instanceof AggregatingResponse) {
 

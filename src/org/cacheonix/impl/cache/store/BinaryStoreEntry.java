@@ -13,7 +13,7 @@
  */
 package org.cacheonix.impl.cache.store;
 
-import java.util.Map;
+import java.util.Map.Entry;
 
 import org.cacheonix.impl.OperationNotSupportedException;
 import org.cacheonix.impl.cache.item.Binary;
@@ -22,7 +22,7 @@ import org.cacheonix.impl.cache.item.Binary;
  * Serializable map entry.
  */
 @SuppressWarnings("RedundantIfStatement")
-final class BinaryStoreEntry implements Map.Entry<Binary, Binary> {
+final class BinaryStoreEntry implements Entry<Binary, Binary> {
 
    private final Binary key;
 

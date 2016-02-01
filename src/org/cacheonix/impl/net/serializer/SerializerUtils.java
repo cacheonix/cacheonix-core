@@ -28,6 +28,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.cacheonix.impl.RuntimeIOException;
 import org.cacheonix.impl.cache.distributed.partitioned.Bucket;
@@ -448,7 +449,7 @@ public final class SerializerUtils {
 
       out.writeInt(map.size());
       for (final Object obj : map.entrySet()) {
-         final Map.Entry entry = (Map.Entry) obj;
+         final Entry entry = (Entry) obj;
          writeBinary(out, (Binary) entry.getKey());
          writeBinary(out, (Binary) entry.getValue());
       }

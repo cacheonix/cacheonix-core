@@ -20,6 +20,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
@@ -324,7 +325,7 @@ public final class Bucket implements Wireable {
    }
 
 
-   public Set<Map.Entry<Binary, Binary>> entrySet() {
+   public Set<Entry<Binary, Binary>> entrySet() {
 
       return keyStore.entrySet();
    }

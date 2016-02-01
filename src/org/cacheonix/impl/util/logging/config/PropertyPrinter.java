@@ -26,6 +26,7 @@ import org.cacheonix.impl.util.logging.Category;
 import org.cacheonix.impl.util.logging.Level;
 import org.cacheonix.impl.util.logging.LogManager;
 import org.cacheonix.impl.util.logging.Logger;
+import org.cacheonix.impl.util.logging.config.PropertyGetter.PropertyCallback;
 
 /**
  * Prints the configuration of the log4j default hierarchy (which needs to be auto-initialized) as a propoperties file
@@ -33,7 +34,7 @@ import org.cacheonix.impl.util.logging.Logger;
  *
  * @author Anders Kristensen
  */
-public final class PropertyPrinter implements PropertyGetter.PropertyCallback {
+public final class PropertyPrinter implements PropertyCallback {
 
    protected int numAppenders = 0;
 

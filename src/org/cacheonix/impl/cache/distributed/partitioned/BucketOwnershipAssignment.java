@@ -23,6 +23,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.concurrent.atomic.AtomicReferenceArray;
@@ -239,7 +240,7 @@ public final class BucketOwnershipAssignment implements Wireable {
     */
    public boolean isAllBucketOwnersLeaving() {
 
-      for (final Map.Entry<ClusterNodeAddress, BucketOwner> entry : bucketOwners[0].entrySet()) {
+      for (final Entry<ClusterNodeAddress, BucketOwner> entry : bucketOwners[0].entrySet()) {
          if (!entry.getValue().isLeaving()) {
             return false;
          }
@@ -302,8 +303,8 @@ public final class BucketOwnershipAssignment implements Wireable {
 
       final Map<ClusterNodeAddress, BucketOwner> primaryBucketOwners = bucketOwners[0];
       final List<ClusterNodeAddress> result = new ArrayList<ClusterNodeAddress>(primaryBucketOwners.size());
-      final Set<Map.Entry<ClusterNodeAddress, BucketOwner>> entries = primaryBucketOwners.entrySet();
-      for (final Map.Entry<ClusterNodeAddress, BucketOwner> entry : entries) {
+      final Set<Entry<ClusterNodeAddress, BucketOwner>> entries = primaryBucketOwners.entrySet();
+      for (final Entry<ClusterNodeAddress, BucketOwner> entry : entries) {
          result.add(entry.getKey());
       }
       return result;
@@ -319,7 +320,7 @@ public final class BucketOwnershipAssignment implements Wireable {
    int calculateMaxOwnedBucketCount(final int storageNumber) {
 
       int result = 0;
-      for (final Map.Entry<ClusterNodeAddress, BucketOwner> entry : bucketOwners[storageNumber].entrySet()) {
+      for (final Entry<ClusterNodeAddress, BucketOwner> entry : bucketOwners[storageNumber].entrySet()) {
          final BucketOwner bucketOwner = entry.getValue();
          result = Math.max(result, bucketOwner.ownedBucketCount());
       }
@@ -335,10 +336,10 @@ public final class BucketOwnershipAssignment implements Wireable {
     */
    int calculateMinOwnedBucketCount(final byte storageNumber) {
 
-      final Iterator<Map.Entry<ClusterNodeAddress, BucketOwner>> iter = bucketOwners[storageNumber].entrySet().iterator();
+      final Iterator<Entry<ClusterNodeAddress, BucketOwner>> iter = bucketOwners[storageNumber].entrySet().iterator();
       int result = (iter.next()).getValue().ownedBucketCount();
       while (iter.hasNext()) {
-         final Map.Entry<ClusterNodeAddress, BucketOwner> entry = iter.next();
+         final Entry<ClusterNodeAddress, BucketOwner> entry = iter.next();
          final BucketOwner bucketOwner = entry.getValue();
          result = Math.min(result, bucketOwner.ownedBucketCount());
       }
@@ -597,7 +598,7 @@ public final class BucketOwnershipAssignment implements Wireable {
          // --------------------------------------------------------------------------
 
          final Map<ClusterNodeAddress, BucketOwner> storageOwnerMap = bucketOwners[storageNumber];
-         for (final Map.Entry<ClusterNodeAddress, BucketOwner> entry : storageOwnerMap.entrySet()) {
+         for (final Entry<ClusterNodeAddress, BucketOwner> entry : storageOwnerMap.entrySet()) {
 
             final BucketOwner owner = entry.getValue();
             if (!owner.isLeaving()) {
@@ -709,7 +710,7 @@ public final class BucketOwnershipAssignment implements Wireable {
          // --------------------------------------------------------------------------
          final HashMap<ClusterNodeAddress, BucketOwner> underloadedOwners = new HashMap<ClusterNodeAddress, BucketOwner>(1);
          final HashMap<ClusterNodeAddress, BucketOwner> overloadedOwners = new HashMap<ClusterNodeAddress, BucketOwner>(1);
-         for (final Map.Entry<ClusterNodeAddress, BucketOwner> entry : storageOwnerMap.entrySet()) {
+         for (final Entry<ClusterNodeAddress, BucketOwner> entry : storageOwnerMap.entrySet()) {
 
             final ClusterNodeAddress ownerAddress = entry.getKey();
             final BucketOwner owner = entry.getValue();
@@ -878,7 +879,7 @@ public final class BucketOwnershipAssignment implements Wireable {
       final Iterator<Integer> orphansIter = orphans.iterator();
 
       // First, use underloaded to adopt orphans
-      for (final Iterator<Map.Entry<ClusterNodeAddress, BucketOwner>> underloadedIter = underloadedMap.entrySet().iterator(); underloadedIter.hasNext() && orphansIter.hasNext(); ) {
+      for (final Iterator<Entry<ClusterNodeAddress, BucketOwner>> underloadedIter = underloadedMap.entrySet().iterator(); underloadedIter.hasNext() && orphansIter.hasNext(); ) {
 
          final BucketOwner underloadedOwner = (underloadedIter.next()).getValue();
          while (orphansIter.hasNext() && underloadedOwner.underload(fairBucketsPerNode) > 0) {
@@ -895,7 +896,7 @@ public final class BucketOwnershipAssignment implements Wireable {
       }
 
       // Second, use all owners to adopt left orphans
-      Iterator<Map.Entry<ClusterNodeAddress, BucketOwner>> ownershipIter = bucketOwnership.entrySet().iterator();
+      Iterator<Entry<ClusterNodeAddress, BucketOwner>> ownershipIter = bucketOwnership.entrySet().iterator();
       while (orphansIter.hasNext()) {
 
          final BucketOwner owner = ownershipIter.next().getValue();
@@ -925,7 +926,7 @@ public final class BucketOwnershipAssignment implements Wireable {
 
       BeginBucketTransferCommand command = null;
 
-      for (final Iterator<Map.Entry<ClusterNodeAddress, BucketOwner>> overloadedIter = overloadedMap.entrySet().iterator(); overloadedIter.hasNext() && !underloadedMap.isEmpty(); ) {
+      for (final Iterator<Entry<ClusterNodeAddress, BucketOwner>> overloadedIter = overloadedMap.entrySet().iterator(); overloadedIter.hasNext() && !underloadedMap.isEmpty(); ) {
 
          final BucketOwner overloadedOwner = overloadedIter.next().getValue();
 
@@ -1022,7 +1023,7 @@ public final class BucketOwnershipAssignment implements Wireable {
       BucketOwner result = null;
 
       final byte replicaCount = getReplicaCount();
-      for (final Map.Entry<ClusterNodeAddress, BucketOwner> clusterNodeAddressBucketOwnerEntry : prospectiveOwners.entrySet()) {
+      for (final Entry<ClusterNodeAddress, BucketOwner> clusterNodeAddressBucketOwnerEntry : prospectiveOwners.entrySet()) {
 
          // The idea is to try to find if the prospective owner is registered as current or future owner of
          // the bucket.
@@ -1281,7 +1282,7 @@ public final class BucketOwnershipAssignment implements Wireable {
 
       // Calculate non-leaving bucket count
       int nonLeavingBucketOwnerCount = 0;
-      for (final Map.Entry<ClusterNodeAddress, BucketOwner> entry : bucketOwners[0].entrySet()) {
+      for (final Entry<ClusterNodeAddress, BucketOwner> entry : bucketOwners[0].entrySet()) {
          nonLeavingBucketOwnerCount += entry.getValue().isLeaving() ? 0 : 1;
       }
 
@@ -1610,7 +1611,7 @@ public final class BucketOwnershipAssignment implements Wireable {
             SerializerUtils.writeAddress(bucketAssignments[i].get(j), out);
          }
          out.writeInt(bucketOwners[i].size());
-         for (final Map.Entry<ClusterNodeAddress, BucketOwner> entry : bucketOwners[i].entrySet()) {
+         for (final Entry<ClusterNodeAddress, BucketOwner> entry : bucketOwners[i].entrySet()) {
             SerializerUtils.writeAddress(entry.getKey(), out);
             final BucketOwner bucketOwner = entry.getValue();
             bucketOwner.writeWire(out);

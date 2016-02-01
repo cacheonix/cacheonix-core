@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import org.cacheonix.impl.cache.item.Binary;
@@ -81,10 +81,10 @@ public final class GetEntrySetRequest extends BucketSetRequest {
       }
 
       // Collect
-      final Collection<Map.Entry<Binary, Binary>> partialEntries = new ArrayList<Map.Entry<Binary, Binary>>(size);
+      final Collection<Entry<Binary, Binary>> partialEntries = new ArrayList<Entry<Binary, Binary>>(size);
       for (final Bucket bucket : bucketsToProcess) {
-         final Set<Map.Entry<Binary, Binary>> entries = bucket.entrySet();
-         for (final Map.Entry<Binary, Binary> entry : entries) {
+         final Set<Entry<Binary, Binary>> entries = bucket.entrySet();
+         for (final Entry<Binary, Binary> entry : entries) {
             partialEntries.add(entry);
          }
       }
@@ -102,7 +102,7 @@ public final class GetEntrySetRequest extends BucketSetRequest {
    @SuppressWarnings("unchecked")
    protected Object aggregate(final List<Response> partialResponses) {
 
-      final LinkedList<Map.Entry<Binary, Binary>> result = new LinkedList<Map.Entry<Binary, Binary>>();
+      final LinkedList<Entry<Binary, Binary>> result = new LinkedList<Entry<Binary, Binary>>();
       for (final Message partialResponse : partialResponses) {
 
          if (partialResponse instanceof CacheResponse) {
@@ -116,7 +116,7 @@ public final class GetEntrySetRequest extends BucketSetRequest {
                case Response.RESULT_RETRY:
                   return createRetryException(cacheResponse);
                case Response.RESULT_SUCCESS:
-                  result.addAll((Collection<Map.Entry<Binary, Binary>>) partialResult);
+                  result.addAll((Collection<Entry<Binary, Binary>>) partialResult);
                   break;
                default:
                   return WaiterUtils.unknownResultToThrowable(resultCode, partialResult);

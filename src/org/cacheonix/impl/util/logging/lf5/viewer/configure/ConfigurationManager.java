@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import javax.swing.*;
 import javax.swing.tree.TreePath;
 import javax.xml.parsers.DocumentBuilder;
@@ -412,7 +413,7 @@ public final class ConfigurationManager {
 
       xml.append("\t<loglevels>\r\n");
       for (final Object o : logLevelMenuItems.entrySet()) {
-         final Map.Entry entry = (Map.Entry) o;
+         final Entry entry = (Entry) o;
          final LogLevel level = (LogLevel) entry.getKey();
          final JCheckBoxMenuItem item = (JCheckBoxMenuItem) entry.getValue();
          exportLogLevelXMLElement(level.getLabel(), item.isSelected(), xml);

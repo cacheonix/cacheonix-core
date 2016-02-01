@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import org.cacheonix.cache.entry.CacheEntry;
@@ -134,8 +134,8 @@ public final class ExecuteRequest extends BucketSetRequest {
             }
 
             // Convert bucket entries tp cache entries
-            final Set<Map.Entry<Binary, Binary>> entries = bucket.entrySet();
-            for (final Map.Entry<Binary, Binary> entry : entries) {
+            final Set<Entry<Binary, Binary>> entries = bucket.entrySet();
+            for (final Entry<Binary, Binary> entry : entries) {
 
                // REVIEWME: simeshev@cacheonix.org - 2010-05-20 - Consider passing
                // whole entry to DistributedCacheEntry - this will save saving

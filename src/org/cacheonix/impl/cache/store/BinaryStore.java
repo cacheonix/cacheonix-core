@@ -22,6 +22,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import org.cacheonix.CacheonixException;
@@ -506,9 +507,9 @@ public final class BinaryStore implements Wireable {
             return false;
          }
 
-         final Collection<Map.Entry<Binary, BinaryStoreElement>> collection = elements.entrySet();
+         final Collection<Entry<Binary, BinaryStoreElement>> collection = elements.entrySet();
 
-         for (final Map.Entry<Binary, BinaryStoreElement> entry : collection) {
+         for (final Entry<Binary, BinaryStoreElement> entry : collection) {
 
             // Get cache element
             final BinaryStoreElement element = entry.getValue();
@@ -607,7 +608,7 @@ public final class BinaryStore implements Wireable {
 
       try {
 
-         for (final Map.Entry<Binary, Binary> entry : map.entrySet()) {
+         for (final Entry<Binary, Binary> entry : map.entrySet()) {
 
             final Binary key = entry.getKey();
             final Binary value = entry.getValue();
@@ -920,13 +921,13 @@ public final class BinaryStore implements Wireable {
 
    /**
     * Returns a set view of the mappings contained in this map.  Each element in the returned set is a {@link
-    * Map.Entry}. The set is detached from the map, so changes to the map are not reflected in the set, and vice-versa.
+    * Entry}. The set is detached from the map, so changes to the map are not reflected in the set, and vice-versa.
     *
     * @return a set view of the mappings contained in this map.
     */
-   public Set<Map.Entry<Binary, Binary>> entrySet() {
+   public Set<Entry<Binary, Binary>> entrySet() {
 
-      final Set<Map.Entry<Binary, Binary>> result = new HashSet<Map.Entry<Binary, Binary>>(elements.size());
+      final Set<Entry<Binary, Binary>> result = new HashSet<Entry<Binary, Binary>>(elements.size());
       if (elements.isEmpty()) {
 
          return result;

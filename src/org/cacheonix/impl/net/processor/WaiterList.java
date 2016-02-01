@@ -16,6 +16,7 @@ package org.cacheonix.impl.net.processor;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Timer;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -137,7 +138,7 @@ public final class WaiterList {
       }
 
       // Get a copy of the waiter list
-      final LinkedList<Map.Entry<UUID, Waiter>> copy = new LinkedList<Map.Entry<UUID, Waiter>>(waiters.entrySet());
+      final LinkedList<Entry<UUID, Waiter>> copy = new LinkedList<Entry<UUID, Waiter>>(waiters.entrySet());
 
       // Remove waiters that have finished as a result of a node leaving
       while (!copy.isEmpty()) {
@@ -180,7 +181,7 @@ public final class WaiterList {
    public final void notifyShutdown() {
 
       // Finish all waiters left with ShutdownException
-      for (final Iterator<Map.Entry<UUID, Waiter>> iterator = waiters.entrySet().iterator(); iterator.hasNext(); ) {
+      for (final Iterator<Entry<UUID, Waiter>> iterator = waiters.entrySet().iterator(); iterator.hasNext(); ) {
          final Waiter waiter = iterator.next().getValue();
          waiter.notifyShutdown();
          iterator.remove();
@@ -196,7 +197,7 @@ public final class WaiterList {
    public void notifyReset() {
 
       // Finish all waiters left with ReconfigurationException
-      for (final Iterator<Map.Entry<UUID, Waiter>> iterator = waiters.entrySet().iterator(); iterator.hasNext(); ) {
+      for (final Iterator<Entry<UUID, Waiter>> iterator = waiters.entrySet().iterator(); iterator.hasNext(); ) {
 
          iterator.next().getValue().notifyReset();
          iterator.remove();
