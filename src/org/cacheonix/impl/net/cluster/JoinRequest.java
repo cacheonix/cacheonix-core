@@ -60,7 +60,7 @@ public final class JoinRequest extends ClusterRequest {
    public JoinRequest(final ClusterNodeAddress joinToMember) {
 
       super(TYPE_CLUSTER_JOIN_REQUEST);
-      super.setReceiver(joinToMember);
+      setReceiver(joinToMember);
 
       this.setRequiresSameCluster(false);
    }

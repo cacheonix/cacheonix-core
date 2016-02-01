@@ -62,7 +62,7 @@ public final class CategoryImmediateEditor extends DefaultTreeCellEditor {
       renderer.setOpenIcon(null);
       renderer.setClosedIcon(null);
 
-      super.editingIcon = null;
+      editingIcon = null;
    }
 
 

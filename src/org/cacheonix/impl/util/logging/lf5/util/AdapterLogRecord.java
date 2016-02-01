@@ -55,7 +55,7 @@ public final class AdapterLogRecord extends LogRecord {
    public final void setCategory(final String category) {
 
       super.setCategory(category);
-      super.setLocation(getLocationInfo(category));
+      setLocation(getLocationInfo(category));
    }
 
 

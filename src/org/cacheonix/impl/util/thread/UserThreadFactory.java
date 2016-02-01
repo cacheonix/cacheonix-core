@@ -29,7 +29,7 @@ public final class UserThreadFactory extends AbstractThreadFactory {
 
    public Thread newThread(final Runnable r) {
 
-      final Thread th = new Thread(r, (SystemProperty.isShowThreadType() ? "[U]" : "") + super.createNextName());
+      final Thread th = new Thread(r, (SystemProperty.isShowThreadType() ? "[U]" : "") + createNextName());
       th.setDaemon(false);
       return th;
    }

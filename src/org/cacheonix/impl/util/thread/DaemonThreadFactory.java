@@ -29,7 +29,7 @@ public final class DaemonThreadFactory extends AbstractThreadFactory {
 
    public Thread newThread(final Runnable r) {
 
-      final Thread th = new Thread(r, (SystemProperty.isShowThreadType() ? "[D]" : "") + super.createNextName());
+      final Thread th = new Thread(r, (SystemProperty.isShowThreadType() ? "[D]" : "") + createNextName());
       th.setDaemon(true);
       return th;
    }
