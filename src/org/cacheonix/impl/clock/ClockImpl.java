@@ -69,7 +69,7 @@ public final class ClockImpl implements Clock {
 
    /**
     */
-   private boolean lastClockReadingMillisIsSet = false;
+   private boolean needToSetClockReadingMillis = true;
 
    /**
     * Offset set by the clock synchronization protocol {@link #adjust(Time)}.
@@ -136,10 +136,10 @@ public final class ClockImpl implements Clock {
          final long currentClockReadingMillis = currentTimeMillis + offsetMillis;
 
          // Init
-         if (!lastClockReadingMillisIsSet) {
+         if (needToSetClockReadingMillis) {
 
             lastClockReadingMillis = currentTimeMillis;
-            lastClockReadingMillisIsSet = true;
+            needToSetClockReadingMillis = false;
          }
 
          final long differential = currentClockReadingMillis - lastClockReadingMillis;
