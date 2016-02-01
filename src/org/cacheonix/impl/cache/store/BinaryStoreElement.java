@@ -979,7 +979,7 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
    /**
     * A class factory.
     */
-   final static class Builder implements WireableBuilder {
+   static final class Builder implements WireableBuilder {
 
       public Wireable create() {
 

@@ -250,7 +250,7 @@ public abstract class CacheDataRequest extends CacheRequest {
     * This extension holds objects and provides methods that support scattering sub-requests.
     */
    @SuppressWarnings({"ClassNameSameAsAncestorName", "CanBeFinal", "ReturnOfCollectionOrArrayField"})
-   static abstract class Waiter extends org.cacheonix.impl.net.processor.Waiter {
+   abstract static class Waiter extends org.cacheonix.impl.net.processor.Waiter {
 
       /**
        * Waiter of the owner of this request. Makes sense only for a sub-request. <code>ownerWaiter</code> be null if

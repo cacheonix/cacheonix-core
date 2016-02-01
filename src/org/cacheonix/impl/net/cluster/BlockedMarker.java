@@ -796,7 +796,7 @@ public final class BlockedMarker extends OperationalMarker {
    /**
     * A class factory.
     */
-   final static class Builder implements WireableBuilder {
+   static final class Builder implements WireableBuilder {
 
       public Wireable create() {
 

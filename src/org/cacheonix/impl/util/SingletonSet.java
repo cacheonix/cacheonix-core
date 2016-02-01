@@ -24,7 +24,7 @@ public final class SingletonSet<E> extends AbstractSet<E> implements Serializabl
    // use serialVersionUID from JDK 1.2.2 for interoperability
    private static final long serialVersionUID = 3193687207550431679L;
 
-   final private E element;
+   private final E element;
 
 
    public SingletonSet(final E o) {

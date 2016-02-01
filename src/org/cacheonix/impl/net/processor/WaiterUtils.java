@@ -41,7 +41,7 @@ public final class WaiterUtils {
    }
 
 
-   public final static String resultToString(final Object result, final int maxLength) {
+   public static final String resultToString(final Object result, final int maxLength) {
 
       if (result == null) {
          return "null";

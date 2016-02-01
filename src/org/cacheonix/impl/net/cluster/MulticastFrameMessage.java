@@ -352,7 +352,7 @@ public final class MulticastFrameMessage extends Message implements SenderInetAd
    /**
     * A class factory.
     */
-   final static class Builder implements WireableBuilder {
+   static final class Builder implements WireableBuilder {
 
       public Wireable create() {
 

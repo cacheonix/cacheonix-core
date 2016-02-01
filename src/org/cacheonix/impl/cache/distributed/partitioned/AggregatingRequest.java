@@ -409,7 +409,7 @@ public abstract class AggregatingRequest extends CacheDataRequest implements Pre
     * provides methods that support scattering sub-requests and gathering responses.
     */
    @SuppressWarnings({"ClassNameSameAsAncestorName", "CanBeFinal", "ReturnOfCollectionOrArrayField"})
-   static abstract class Waiter extends CacheDataRequest.Waiter {
+   abstract static class Waiter extends CacheDataRequest.Waiter {
 
       /**
        * Collector for partial results. Holds responses from sub-requests. Makes sense only for a parent request.

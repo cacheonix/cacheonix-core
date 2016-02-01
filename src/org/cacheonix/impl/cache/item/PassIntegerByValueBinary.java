@@ -132,7 +132,7 @@ public final class PassIntegerByValueBinary implements Binary {
    }
 
 
-   final static class Builder implements WireableBuilder {
+   static final class Builder implements WireableBuilder {
 
       public Wireable create() {
 

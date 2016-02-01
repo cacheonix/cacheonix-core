@@ -422,7 +422,7 @@ public abstract class AggregatingAnnouncement extends Request implements Prepare
     * provides methods that support scattering sub-requests and gathering responses.
     */
    @SuppressWarnings({"ClassNameSameAsAncestorName", "CanBeFinal", "ReturnOfCollectionOrArrayField"})
-   static abstract class Waiter extends org.cacheonix.impl.net.processor.Waiter {
+   abstract static class Waiter extends org.cacheonix.impl.net.processor.Waiter {
 
       /**
        * Waiter of the owner of this request. Makes sense only for a sub-request. <code>ownerWaiter</code> be null if

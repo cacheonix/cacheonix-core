@@ -309,7 +309,7 @@ public final class ClusterAnnouncement extends ClusterMessage implements SenderI
    /**
     * A class factory.
     */
-   final static class Builder implements WireableBuilder {
+   static final class Builder implements WireableBuilder {
 
       public Wireable create() {
 

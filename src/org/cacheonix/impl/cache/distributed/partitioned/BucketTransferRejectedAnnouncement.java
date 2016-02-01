@@ -236,7 +236,7 @@ public final class BucketTransferRejectedAnnouncement extends GroupMessage {
    /**
     * A class factory.
     */
-   private final static class Builder implements WireableBuilder {
+   private static final class Builder implements WireableBuilder {
 
       public Wireable create() {
 

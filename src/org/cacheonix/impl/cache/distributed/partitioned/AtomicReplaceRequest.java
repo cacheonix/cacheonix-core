@@ -207,7 +207,7 @@ public final class AtomicReplaceRequest extends KeyRequest {
    /**
     * A class factory.
     */
-   private final static class Builder implements WireableBuilder {
+   private static final class Builder implements WireableBuilder {
 
       public Wireable create() {
 

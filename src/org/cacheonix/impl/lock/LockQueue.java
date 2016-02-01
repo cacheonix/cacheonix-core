@@ -53,7 +53,7 @@ public final class LockQueue implements Wireable {
     * <p/>
     * Note that it transient and makes sense only on the cluster representative.
     */
-   private transient final LinkedList<LockOwner> forcedReleasesRegistry = new LinkedList<LockOwner>(); // NOPMD
+   private final transient LinkedList<LockOwner> forcedReleasesRegistry = new LinkedList<LockOwner>(); // NOPMD
 
 
    public LinkedList<AcquireLockRequest> getPendingRequests() { // NOPMD
@@ -362,7 +362,7 @@ public final class LockQueue implements Wireable {
    /**
     * A class factory.
     */
-   private final static class Builder implements WireableBuilder {
+   private static final class Builder implements WireableBuilder {
 
       public Wireable create() {
 
