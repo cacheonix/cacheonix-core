@@ -20,7 +20,7 @@ import org.cacheonix.impl.util.logging.Logger;
 /**
  * A tester for a partitioned cache with a single-node configuration.
  */
-public class SinglePartitionedCacheTest extends SinglePartitionedCacheTestDriver {
+public class SinglePartitionedCacheTest extends SinglePartitionedCacheTestCase {
 
 
    /**

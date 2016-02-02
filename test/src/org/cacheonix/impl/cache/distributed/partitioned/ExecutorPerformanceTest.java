@@ -22,8 +22,8 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 
-import org.cacheonix.impl.util.logging.Logger;
 import junit.framework.TestCase;
+import org.cacheonix.impl.util.logging.Logger;
 
 /**
  * Test performance of the Executor framework
@@ -35,7 +35,7 @@ public final class ExecutorPerformanceTest extends TestCase {
     *
     * @noinspection UNUSED_SYMBOL, UnusedDeclaration
     */
-   private static final Logger LOG = Logger.getLogger(PartitionedCacheTestDriver.class); // NOPMD
+   private static final Logger LOG = Logger.getLogger(PartitionedCacheTestCase.class); // NOPMD
 
    private static final int singleKeyPerformanceCount = 1000000;
 

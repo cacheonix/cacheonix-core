@@ -29,7 +29,7 @@ import static org.cacheonix.ShutdownMode.GRACEFUL_SHUTDOWN;
  * @noinspection ProhibitedExceptionDeclared, ProhibitedExceptionDeclared, ConstantNamingConvention,
  * ConstantNamingConvention, ConstantNamingConvention, ConstantNamingConvention, ConstantNamingConvention
  */
-public final class MultiplePartitionedCacheWithFrontCacheTest extends MultiplePartitionedCacheTestDriver {
+public final class MultiplePartitionedCacheWithFrontCacheTest extends MultiplePartitionedCacheTestCase {
 
    /**
     * Logger.

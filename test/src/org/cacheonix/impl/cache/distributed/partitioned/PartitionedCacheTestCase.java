@@ -56,14 +56,14 @@ import org.cacheonix.locks.ReadWriteLock;
  * ConstantNamingConvention, ConstantNamingConvention, ConstantNamingConvention, ConstantNamingConvention,
  * JUnitTestCaseWithNonTrivialConstructors
  */
-public abstract class PartitionedCacheTestDriver extends CacheonixTestCase {
+public abstract class PartitionedCacheTestCase extends CacheonixTestCase {
 
    /**
     * Logger.
     *
     * @noinspection UNUSED_SYMBOL, UnusedDeclaration
     */
-   private static final Logger LOG = Logger.getLogger(PartitionedCacheTestDriver.class); // NOPMD
+   private static final Logger LOG = Logger.getLogger(PartitionedCacheTestCase.class); // NOPMD
 
    protected static final String DISTRIBUTED_CACHE_NAME = "partitioned.distributed.cache";
 

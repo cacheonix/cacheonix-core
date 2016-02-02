@@ -39,7 +39,7 @@ import org.cacheonix.locks.ReadWriteLock;
 
 /**
  */
-public abstract class MultiplePartitionedCacheTestDriver extends PartitionedCacheTestDriver {
+public abstract class MultiplePartitionedCacheTestCase extends PartitionedCacheTestCase {
 
 
    /**
@@ -47,7 +47,7 @@ public abstract class MultiplePartitionedCacheTestDriver extends PartitionedCach
     *
     * @noinspection UNUSED_SYMBOL, UnusedDeclaration
     */
-   private static final Logger LOG = Logger.getLogger(PartitionedCacheTestDriver.class); // NOPMD
+   private static final Logger LOG = Logger.getLogger(PartitionedCacheTestCase.class); // NOPMD
 
 
    /**
@@ -66,7 +66,7 @@ public abstract class MultiplePartitionedCacheTestDriver extends PartitionedCach
    final List<Cache<String, String>> cacheList = new ArrayList<Cache<String, String>>(5);
 
 
-   MultiplePartitionedCacheTestDriver(final String[] configurations) {
+   MultiplePartitionedCacheTestCase(final String[] configurations) {
 
       this.configurations = ArrayUtils.copy(configurations);
    }

@@ -28,7 +28,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * @noinspection ProhibitedExceptionDeclared, ProhibitedExceptionDeclared, ConstantNamingConvention,
  * ConstantNamingConvention, ConstantNamingConvention, ConstantNamingConvention, ConstantNamingConvention
  */
-public final class MultiplePartitionedCacheWithReplicasTest extends MultiplePartitionedCacheTestDriver {
+public final class MultiplePartitionedCacheWithReplicasTest extends MultiplePartitionedCacheTestCase {
 
    /**
     * Logger.

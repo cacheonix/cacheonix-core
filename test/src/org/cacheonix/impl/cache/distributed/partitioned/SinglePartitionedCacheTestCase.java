@@ -23,7 +23,7 @@ import org.cacheonix.locks.Lock;
 
 /**
  */
-public abstract class SinglePartitionedCacheTestDriver extends PartitionedCacheTestDriver {
+public abstract class SinglePartitionedCacheTestCase extends PartitionedCacheTestCase {
 
    private final String configuration;
 
@@ -33,7 +33,7 @@ public abstract class SinglePartitionedCacheTestDriver extends PartitionedCacheT
 
 
    @SuppressWarnings("JUnitTestCaseWithNonTrivialConstructors")
-   protected SinglePartitionedCacheTestDriver(final String configuration) {
+   protected SinglePartitionedCacheTestCase(final String configuration) {
 
       this.configuration = configuration;
    }
