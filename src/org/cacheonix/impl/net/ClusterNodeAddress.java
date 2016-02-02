@@ -328,14 +328,17 @@ public final class ClusterNodeAddress implements Comparable, Wireable {
    }
 
 
-   public synchronized ClusterNodeAddress inline() {
+   public ClusterNodeAddress inline() {
 
-      final ClusterNodeAddress existing = cache.get(this);
-      if (existing != null) {
-         return existing;
+      synchronized (cache) {
+
+         final ClusterNodeAddress existing = cache.get(this);
+         if (existing != null) {
+            return existing;
+         }
+
+         cache.put(this, this);
       }
-
-      cache.put(this, this);
 
       return this;
    }
