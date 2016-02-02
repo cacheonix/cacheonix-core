@@ -40,7 +40,7 @@ final class BucketEventDispatcher implements BucketEventListener {
     * @param nodeAddress      the address of this cluster node.
     * @param clusterProcessor the network.
     */
-   public BucketEventDispatcher(final ClusterNodeAddress nodeAddress, final ClusterProcessor clusterProcessor) {
+   BucketEventDispatcher(final ClusterNodeAddress nodeAddress, final ClusterProcessor clusterProcessor) {
 
       this.clusterProcessor = clusterProcessor;
       this.nodeAddress = nodeAddress;

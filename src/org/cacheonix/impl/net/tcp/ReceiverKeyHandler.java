@@ -89,7 +89,7 @@ final class ReceiverKeyHandler extends KeyHandler {
    private final RequestDispatcher requestDispatcher;
 
 
-   public ReceiverKeyHandler(final Selector selector, final RequestDispatcher requestDispatcher, final Clock clock,
+   ReceiverKeyHandler(final Selector selector, final RequestDispatcher requestDispatcher, final Clock clock,
            final long socketTimeoutMillis) {
 
       super(selector, socketTimeoutMillis, clock);

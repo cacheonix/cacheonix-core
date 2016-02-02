@@ -23,7 +23,7 @@ final class TimeoutCommand implements Command {
    private final UUID requestUUID;
 
 
-   public TimeoutCommand(final RequestProcessor processor, final UUID requestUUID) {
+   TimeoutCommand(final RequestProcessor processor, final UUID requestUUID) {
 
       this.processor = processor;
       this.requestUUID = requestUUID;

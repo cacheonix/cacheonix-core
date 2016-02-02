@@ -56,7 +56,7 @@ final class ClusterMemberImpl implements ClusterMember {
    }
 
 
-   public ClusterMemberImpl(final String clusterName, final List<ClusterMemberAddress> clusterMemberAddresses,
+   ClusterMemberImpl(final String clusterName, final List<ClusterMemberAddress> clusterMemberAddresses,
                             final int clusterMemberPort) {
 
       this.clusterName = clusterName;

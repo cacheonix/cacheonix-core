@@ -35,7 +35,7 @@ final class RequestDispatcherImpl implements RequestDispatcher {
    private final Router router;
 
 
-   public RequestDispatcherImpl(final Router router) {
+   RequestDispatcherImpl(final Router router) {
 
       this.router = router;
    }

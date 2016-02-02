@@ -40,7 +40,7 @@ final class LocalCacheEntry implements CacheEntry {
    private final Binary value;
 
 
-   public LocalCacheEntry(final Binary key, final Binary value) {
+   LocalCacheEntry(final Binary key, final Binary value) {
 
       this.key = key;
       this.value = value;

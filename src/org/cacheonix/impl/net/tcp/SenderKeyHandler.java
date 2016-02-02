@@ -122,7 +122,7 @@ final class SenderKeyHandler extends KeyHandler {
     * @param networkTimeoutMillis network timeout in milliseconds.
     * @param clock                this cluster node's clock.
     */
-   public SenderKeyHandler(final Selector selector, final ReceiverAddress receiverAddress,
+   SenderKeyHandler(final Selector selector, final ReceiverAddress receiverAddress,
            final Router router, final long networkTimeoutMillis, final Clock clock) {
 
       super(selector, networkTimeoutMillis, clock);

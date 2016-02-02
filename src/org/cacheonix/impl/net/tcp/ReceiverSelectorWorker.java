@@ -28,7 +28,7 @@ class ReceiverSelectorWorker extends SelectorWorker {
     * @param selectorTimeoutMillis a time the selector should block for while waiting for a channel to become ready,
     *                              must be greater than zero.
     */
-   public ReceiverSelectorWorker(final Selector selector, final long socketTimeoutMillis,
+   ReceiverSelectorWorker(final Selector selector, final long socketTimeoutMillis,
            final long selectorTimeoutMillis) {
 
       super(selector, socketTimeoutMillis, selectorTimeoutMillis);

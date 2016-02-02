@@ -43,7 +43,7 @@ final class DeliveryNotificationEntry {
     *
     * @param request message that wants to be notified.
     */
-   public DeliveryNotificationEntry(final Request request) {
+   DeliveryNotificationEntry(final Request request) {
 
       this.request = request;
    }

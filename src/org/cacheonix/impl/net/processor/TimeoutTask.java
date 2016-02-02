@@ -33,7 +33,7 @@ final class TimeoutTask extends TimerTask {
     * @param processor   the processor to enqueue a timeout command to.
     * @param requestUUID the UUID of a request that timed out.
     */
-   public TimeoutTask(final RequestProcessor processor, final UUID requestUUID) {
+   TimeoutTask(final RequestProcessor processor, final UUID requestUUID) {
 
       this.processor = processor;
       this.requestUUID = requestUUID;

@@ -83,7 +83,7 @@ public final class GetMaxSizeRequest extends CacheRequest {
        *
        * @param request request UUID
        */
-      public Waiter(final Request request) {
+      Waiter(final Request request) {
 
          super(request);
       }

@@ -61,7 +61,7 @@ abstract class OperationalMarker extends MarkerRequest {
    }
 
 
-   public OperationalMarker(final int wireableType) {
+   OperationalMarker(final int wireableType) {
 
       super(wireableType);
    }
