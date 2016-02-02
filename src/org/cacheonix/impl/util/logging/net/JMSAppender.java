@@ -157,10 +157,10 @@ public final class JMSAppender extends AppenderSkeleton {
     */
    public void activateOptions() {
 
+      Context jndi = null;
       try {
 
          LogLog.debug("Getting initial context.");
-         final Context jndi;
          if (initialContextFactoryName != null) {
             final Properties env = new Properties();
             env.setProperty(Context.INITIAL_CONTEXT_FACTORY, initialContextFactoryName);
@@ -216,6 +216,14 @@ public final class JMSAppender extends AppenderSkeleton {
       } catch (final Exception e) {
          errorHandler.error("Error while activating options for appender named [" + name +
                  "].", e, ErrorCode.GENERIC_FAILURE);
+      } finally {
+
+         if (jndi != null) {
+            try {
+               jndi.close();
+            } catch (final Exception ignore) {
+            }
+         }
       }
    }
 
