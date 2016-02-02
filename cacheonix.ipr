@@ -594,10 +594,10 @@
       <inspection_tool class="IteratorHasNextCallsIteratorNext" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="IteratorNextDoesNotThrowNoSuchElementException" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="JDBCResource" enabled="true" level="WARNING" enabled_by_default="true">
-        <option name="insideTryAllowed" value="false" />
+        <option name="insideTryAllowed" value="true" />
       </inspection_tool>
       <inspection_tool class="JNDIResource" enabled="true" level="WARNING" enabled_by_default="true">
-        <option name="insideTryAllowed" value="false" />
+        <option name="insideTryAllowed" value="true" />
       </inspection_tool>
       <inspection_tool class="JavaDoc" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="TOP_LEVEL_CLASS_OPTIONS">
@@ -880,7 +880,6 @@
         <option name="m_ignoreFullyCoveredEnums" value="true" />
       </inspection_tool>
       <inspection_tool class="SynchronizeOnLock" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="SynchronizeOnThis" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="SynchronizedOnLiteralObject" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="SystemOutErr" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="SystemRunFinalizersOnExit" enabled="true" level="WARNING" enabled_by_default="true" />
