@@ -230,7 +230,7 @@ public class SimpleProcessor extends AbstractProcessor {
          } finally {
 
             // Update average time to process
-            averageTimeToProcessNanos = ((averageTimeToProcessNanos * (messagesProcessed - 1)) + (System.nanoTime() - startTimeNanos)) / messagesProcessed;
+            averageTimeToProcessNanos = (averageTimeToProcessNanos * (messagesProcessed - 1) + (System.nanoTime() - startTimeNanos)) / messagesProcessed;
          }
       }
 

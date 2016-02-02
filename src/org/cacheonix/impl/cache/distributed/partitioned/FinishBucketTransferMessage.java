@@ -229,8 +229,8 @@ public final class FinishBucketTransferMessage extends LocalCacheMessage {
               "sourceStorageNumber=" + sourceStorageNumber +
               ", destinationStorageNumber=" + destinationStorageNumber +
               ", bucketNumbersCount=" + (bucketNumbers == null ? "null" : Integer.toString(bucketNumbers.size())) +
-              ", newOwner=" + ((newOwner == null) ? "null" : Integer.toString(newOwner.getTcpPort())) +
-              ", previousOwner=" + ((previousOwner == null) ? "null" : Integer.toString(previousOwner.getTcpPort())) +
+              ", newOwner=" + (newOwner == null ? "null" : Integer.toString(newOwner.getTcpPort())) +
+              ", previousOwner=" + (previousOwner == null ? "null" : Integer.toString(previousOwner.getTcpPort())) +
               "} " + super.toString();
    }
 

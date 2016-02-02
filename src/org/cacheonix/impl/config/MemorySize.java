@@ -36,7 +36,7 @@ public final class MemorySize implements Serializable {
     */
    private static final Logger LOG = Logger.getLogger(MemorySize.class); // NOPMD
 
-   private static final int BYTES_IN_GIGABYTE = (1024 << 10) << 10;
+   private static final int BYTES_IN_GIGABYTE = 1024 << 10 << 10;
 
    private static final int BYTES_IN_MEGABYTE = 1024 << 10;
 

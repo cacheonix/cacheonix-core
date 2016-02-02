@@ -399,7 +399,7 @@ public final class CleanupMarker extends MarkerRequest {
          //     field with L.
 
          final Long highestSequenceNumberReceived = processor.getProcessorState().getReceivedList().getHighestSequenceNumberReceived();
-         if (highestSequenceNumberReceived != null && (cleanupMarker.highSeqNum == null || (highestSequenceNumberReceived > cleanupMarker.highSeqNum))) {
+         if (highestSequenceNumberReceived != null && (cleanupMarker.highSeqNum == null || highestSequenceNumberReceived > cleanupMarker.highSeqNum)) {
 
             //noinspection ControlFlowStatementWithoutBraces
             if (LOG.isDebugEnabled())
@@ -533,7 +533,7 @@ public final class CleanupMarker extends MarkerRequest {
       // and all have been delivered (e.g normal completion); b) there have not been any messages. The second part
       // ensures completion when there have not been undelivered messages but there were previous messages.
 
-      return ((first == null) && (current == null) && (previous == null) && highSeqNum != null) || ((previous == null && highSeqNum == null) || (previous != null && previous.equals(highSeqNum)));
+      return first == null && current == null && previous == null && highSeqNum != null || previous == null && highSeqNum == null || previous != null && previous.equals(highSeqNum);
    }
 
 

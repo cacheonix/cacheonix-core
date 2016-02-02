@@ -266,7 +266,7 @@ public final class BinaryEntryModifiedEvent implements Wireable {
       result = 31 * result + (previousValue != null ? previousValue.hashCode() : 0);
       result = 31 * result + (updateType != null ? updateType.hashCode() : 0);
       result = 31 * result + (lastUpdateTime != null ? lastUpdateTime.hashCode() : 0);
-      result = 31 * result + (int) (version ^ (version >>> 32));
+      result = 31 * result + (int) (version ^ version >>> 32);
       result = 31 * result + (updater != null ? updater.hashCode() : 0);
       return result;
    }

@@ -105,7 +105,7 @@ public final class OrphanBucketMessage extends LocalCacheMessage {
 
          //noinspection ControlFlowStatementWithoutBraces
          if (LOG.isDebugEnabled())
-            LOG.debug("Cannot orphan bucket '" + bucket + "', bucket is  " + ((bucket == null) ? "null" : "reconfiguring")); // NOPMD
+            LOG.debug("Cannot orphan bucket '" + bucket + "', bucket is  " + (bucket == null ? "null" : "reconfiguring")); // NOPMD
          return;
       }
 

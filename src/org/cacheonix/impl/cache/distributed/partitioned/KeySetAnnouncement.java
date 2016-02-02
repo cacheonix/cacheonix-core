@@ -618,7 +618,7 @@ public abstract class KeySetAnnouncement extends AggregatingAnnouncement {
             final AggregatingAnnouncementResponse response = (AggregatingAnnouncementResponse) message;
 
             Assert.assertTrue(!request.isRootRequest() || response.getResultCode() == Response.RESULT_RETRY, "Root's notifyResponseReceived() should never be called except when it is a Retry response: {0}", message);
-            Assert.assertTrue(getOwnerWaiter() != null || (request.isRootRequest() && response.getResultCode() == Response.RESULT_RETRY), "Parent's notifyResponseReceived() should never be called: {0}", message);
+            Assert.assertTrue(getOwnerWaiter() != null || request.isRootRequest() && response.getResultCode() == Response.RESULT_RETRY, "Parent's notifyResponseReceived() should never be called: {0}", message);
 
             switch (response.getResultCode()) {
 

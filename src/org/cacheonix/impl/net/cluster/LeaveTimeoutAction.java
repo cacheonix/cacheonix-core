@@ -52,7 +52,7 @@ final class LeaveTimeoutAction extends TimeoutAction {
    public final String toString() {
 
       return "LeaveTimeoutAction{" +
-              "context=" + ((processor == null) ? "null" : processor.getAddress().toString()) +
+              "context=" + (processor == null ? "null" : processor.getAddress().toString()) +
               '}';
    }
 }

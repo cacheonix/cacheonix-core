@@ -109,7 +109,7 @@ public final class StorageCellsManager {
 
             randomFile = new File(filePath);
 
-            final long numberOfCellsIncrement = (storageSize + (storageCellSize - 1L)) / storageCellSize;
+            final long numberOfCellsIncrement = (storageSize + storageCellSize - 1L) / storageCellSize;
             storageSizeIncrement = numberOfCellsIncrement * storageCellSize;
 
             final long numberOfCells;
@@ -488,7 +488,7 @@ public final class StorageCellsManager {
     */
    private void clearAll() throws IOException {
 
-      final long numberOfCells = (storageSize + (storageCellSize - 1L)) / storageCellSize;
+      final long numberOfCells = (storageSize + storageCellSize - 1L) / storageCellSize;
 
       try {
          long offset = 0L;
@@ -689,7 +689,7 @@ public final class StorageCellsManager {
             } else {
                StorageUtilities.controlInfoToByteArray(buffer, 0, controlByte, nextPos);
                useful_length = (int) (storageCellSize - (long) dataOffset);
-               offset = (useful_length - 4) + (i - 1) * useful_length;
+               offset = useful_length - 4 + (i - 1) * useful_length;
             }
 
             if (lengthToRecord < useful_length) {

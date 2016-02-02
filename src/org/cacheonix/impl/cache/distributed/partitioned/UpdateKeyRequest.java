@@ -177,7 +177,7 @@ public final class UpdateKeyRequest extends KeyRequest {
       int result = super.hashCode();
       result = 31 * result + (value != null ? value.hashCode() : 0);
       result = 31 * result + (timeToRead != null ? timeToRead.hashCode() : 0);
-      result = 31 * result + (int) (expectedElementUpdateCounter ^ (expectedElementUpdateCounter >>> 32));
+      result = 31 * result + (int) (expectedElementUpdateCounter ^ expectedElementUpdateCounter >>> 32);
       return result;
    }
 

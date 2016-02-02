@@ -516,8 +516,8 @@ public final class BinaryStore implements Wireable {
             final Binary binaryValue = BinaryStoreUtils.getValue(element);
 
             // Compare
-            if ((value != null && binaryValue != null && value.equals(binaryValue))
-                    || (value == null && binaryValue == null)) {
+            if (value != null && binaryValue != null && value.equals(binaryValue)
+                    || value == null && binaryValue == null) {
 
                return true;
             }

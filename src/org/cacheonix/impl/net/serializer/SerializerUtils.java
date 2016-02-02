@@ -487,9 +487,9 @@ public final class SerializerUtils {
                in.readLong();
             }
             final byte[] addr = new byte[4];
-            addr[0] = (byte) ((address >>> 24) & 0xFF);
-            addr[1] = (byte) ((address >>> 16) & 0xFF);
-            addr[2] = (byte) ((address >>> 8) & 0xFF);
+            addr[0] = (byte) (address >>> 24 & 0xFF);
+            addr[1] = (byte) (address >>> 16 & 0xFF);
+            addr[2] = (byte) (address >>> 8 & 0xFF);
             addr[3] = (byte) (address & 0xFF);
             return InetAddress.getByAddress(addr);
          case 16:
@@ -528,9 +528,9 @@ public final class SerializerUtils {
          if (addr.length == 4) {
 
             int address = addr[3] & 0xFF;
-            address |= ((addr[2] << 8) & 0xFF00);
-            address |= ((addr[1] << 16) & 0xFF0000);
-            address |= ((addr[0] << 24) & 0xFF000000);
+            address |= addr[2] << 8 & 0xFF00;
+            address |= addr[1] << 16 & 0xFF0000;
+            address |= addr[0] << 24 & 0xFF000000;
 
             out.writeInt(address);
 

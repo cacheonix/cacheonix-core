@@ -574,7 +574,7 @@ public final class Bucket implements Wireable {
 
    public int hashCode() {
 
-      int result = (reconfiguring ? 1 : 0);
+      int result = reconfiguring ? 1 : 0;
       result = 31 * result + bucketNumber;
       result = 31 * result + (keyStore != null ? keyStore.hashCode() : 0);
       return result;

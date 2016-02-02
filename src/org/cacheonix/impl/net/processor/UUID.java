@@ -99,8 +99,8 @@ public final class UUID implements Externalizable, Comparable {
 
    private static int calculateHashCode(final long mostSigBits, final long leastSigBits) {
 
-      int result = (int) (mostSigBits ^ (mostSigBits >>> 32));
-      result = 31 * result + (int) (leastSigBits ^ (leastSigBits >>> 32));
+      int result = (int) (mostSigBits ^ mostSigBits >>> 32);
+      result = 31 * result + (int) (leastSigBits ^ leastSigBits >>> 32);
       return result;
    }
 

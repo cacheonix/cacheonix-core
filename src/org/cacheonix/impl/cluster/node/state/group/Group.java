@@ -719,8 +719,8 @@ public final class Group implements Wireable {
       int result = name != null ? name.hashCode() : 0;
       result = 31 * result + groupType;
       result = 31 * result + (members != null ? members.hashCode() : 0);
-      result = 31 * result + (int) (version ^ (version >>> 32));
-      result = 31 * result + (int) (partitionSizeBytes ^ (partitionSizeBytes >>> 32));
+      result = 31 * result + (int) (version ^ version >>> 32);
+      result = 31 * result + (int) (partitionSizeBytes ^ partitionSizeBytes >>> 32);
       result = 31 * result + replicaCount;
       result = 31 * result + (partitionConfigured ? 1 : 0);
       result = 31 * result + (bucketOwnershipAssignment != null ? bucketOwnershipAssignment.hashCode() : 0);

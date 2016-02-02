@@ -280,7 +280,7 @@ public abstract class KeyRequest extends CacheDataRequest implements Prepareable
       // Get a bucket to process
 
       final Bucket bucket = cacheProcessor.getBucket(storageNumber, bucketNumber);
-      if (bucket == null || (!lockReconfiguringBucket && bucket.isReconfiguring())) {
+      if (bucket == null || !lockReconfiguringBucket && bucket.isReconfiguring()) {
 
          if (LOG.isDebugEnabled()) {
             LOG.debug("Bucket " + bucketNumber + " is reconfiguring, asking to retry: " + this);
@@ -670,7 +670,7 @@ public abstract class KeyRequest extends CacheDataRequest implements Prepareable
                }
 
                // Post remembered owner response if all subrequests have finished
-               if (getOwnerWaiter().isPartialWaitersEmpty() && (getOwnerResponse() != null)) {
+               if (getOwnerWaiter().isPartialWaitersEmpty() && getOwnerResponse() != null) {
 
                   processor.post(getOwnerResponse());
                }

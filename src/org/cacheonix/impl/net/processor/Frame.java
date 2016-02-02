@@ -517,7 +517,7 @@ public final class Frame {
       result = 31 * result + (senderInetAddress != null ? senderInetAddress.hashCode() : 0);
       result = 31 * result + (int) serializerType;
       result = 31 * result + (int) compressionType;
-      result = 31 * result + (int) (sequenceNumber ^ (sequenceNumber >>> 32));
+      result = 31 * result + (int) (sequenceNumber ^ sequenceNumber >>> 32);
       result = 31 * result + partCount;
       result = 31 * result + partIndex;
       result = 31 * result + payloadLength;

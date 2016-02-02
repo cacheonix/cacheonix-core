@@ -61,7 +61,7 @@ public final class WaiterUtils {
     */
    public static Throwable resultToThrowable(final Object result) {
 
-      return (result instanceof Throwable) ? (Throwable) result : new CacheonixException(String.valueOf(result));
+      return result instanceof Throwable ? (Throwable) result : new CacheonixException(String.valueOf(result));
    }
 
 

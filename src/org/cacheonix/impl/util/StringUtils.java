@@ -128,8 +128,8 @@ public final class StringUtils {
          base64Alphabet[i] = (byte) (i - (int) '0' + 52);
       }
 
-      base64Alphabet[((int) '+')] = (byte) 62;
-      base64Alphabet[((int) '/')] = (byte) 63;
+      base64Alphabet[(int) '+'] = (byte) 62;
+      base64Alphabet[(int) '/'] = (byte) 63;
 
       for (int i = 0; i <= 25; i++) {
          lookUpBase64Alphabet[i] = (byte) ((int) 'A' + i);
@@ -645,7 +645,7 @@ public final class StringUtils {
 
    public static boolean isBase64(final byte octect) {
       //shall we ignore white space? JEFF??
-      return octect == PAD || base64Alphabet[((int) octect)] != (byte) -1;
+      return octect == PAD || base64Alphabet[(int) octect] != (byte) -1;
    }
 
 
@@ -714,7 +714,7 @@ public final class StringUtils {
          final byte val2 = (b2 & SIGN) == 0 ? (byte) (b2 >> 4) : (byte) (b2 >> 4 ^ 0xf0);
          final byte val3 = (b3 & SIGN) == 0 ? (byte) (b3 >> 6) : (byte) (b3 >> 6 ^ 0xfc);
 
-         encodedData[encodedIndex] = lookUpBase64Alphabet[((int) val1)];
+         encodedData[encodedIndex] = lookUpBase64Alphabet[(int) val1];
          //log.debug( "val2 = " + val2 );
          //log.debug( "k4   = " + (k<<4) );
          //log.debug(  "vak  = " + (val2 | (k<<4)) );
@@ -734,7 +734,7 @@ public final class StringUtils {
          //log.debug("b1=" + b1);
          //log.debug("b1<<2 = " + (b1>>2) );
          final byte val1 = (b11 & SIGN) == 0 ? (byte) (b11 >> 2) : (byte) (b11 >> 2 ^ 0xc0);
-         encodedData[encodedIndex1] = lookUpBase64Alphabet[((int) val1)];
+         encodedData[encodedIndex1] = lookUpBase64Alphabet[(int) val1];
          encodedData[encodedIndex1 + 1] = lookUpBase64Alphabet[k1 << 4];
          encodedData[encodedIndex1 + 2] = PAD;
          encodedData[encodedIndex1 + 3] = PAD;
@@ -748,7 +748,7 @@ public final class StringUtils {
          final byte val1 = (b11 & SIGN) == 0 ? (byte) (b11 >> 2) : (byte) (b11 >> 2 ^ 0xc0);
          final byte val2 = (b21 & SIGN) == 0 ? (byte) (b21 >> 4) : (byte) (b21 >> 4 ^ 0xf0);
 
-         encodedData[encodedIndex1] = lookUpBase64Alphabet[((int) val1)];
+         encodedData[encodedIndex1] = lookUpBase64Alphabet[(int) val1];
          encodedData[encodedIndex1 + 1] =
                  lookUpBase64Alphabet[val2 | k1 << 4];
          encodedData[encodedIndex1 + 2] = lookUpBase64Alphabet[l1 << 2];
@@ -805,8 +805,8 @@ public final class StringUtils {
 
          if (marker0 != PAD && marker1 != PAD) {
             //No PAD e.g 3cQl
-            b3 = base64Alphabet[((int) marker0)];
-            b4 = base64Alphabet[((int) marker1)];
+            b3 = base64Alphabet[(int) marker0];
+            b4 = base64Alphabet[(int) marker1];
 
             decodedData[encodedIndex] = (byte) (b1 << 2 | b2 >> 4);
             decodedData[encodedIndex + 1] =
@@ -817,7 +817,7 @@ public final class StringUtils {
             decodedData[encodedIndex] = (byte) (b1 << 2 | b2 >> 4);
          } else if (marker1 == PAD) {
             //One PAD e.g. 3cQ[Pad]
-            b3 = base64Alphabet[((int) marker0)];
+            b3 = base64Alphabet[(int) marker0];
 
             decodedData[encodedIndex] = (byte) (b1 << 2 | b2 >> 4);
             decodedData[encodedIndex + 1] =
@@ -931,7 +931,7 @@ public final class StringUtils {
                out.print("   ");
             }
             out.print(" - ");
-            final int start = (i / 16) * 16;
+            final int start = i / 16 * 16;
             final int end = b.length < i + 1 ? b.length : i + 1;
             for (j = start; j < end; ++j) {
                if (b[j] >= 32 && b[j] <= 126) {
@@ -962,7 +962,7 @@ public final class StringUtils {
             for (int i = 0; i < listSize; i++) {
                final Object o = list.get(i);
                sb.append(o);
-               if (i < (listSize - 1)) {
+               if (i < listSize - 1) {
                   sb.append(',');
                }
             }

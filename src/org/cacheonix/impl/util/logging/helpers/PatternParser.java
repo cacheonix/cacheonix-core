@@ -208,7 +208,7 @@ public final class PatternParser {
             case MIN_STATE:
                currentLiteral.append(c);
                if (c >= '0' && c <= '9') {
-                  formattingInfo.min = formattingInfo.min * 10 + (c - '0');
+                  formattingInfo.min = formattingInfo.min * 10 + c - '0';
                } else if (c == '.') {
                   state = DOT_STATE;
                } else {
@@ -229,7 +229,7 @@ public final class PatternParser {
             case MAX_STATE:
                currentLiteral.append(c);
                if (c >= '0' && c <= '9') {
-                  formattingInfo.max = formattingInfo.max * 10 + (c - '0');
+                  formattingInfo.max = formattingInfo.max * 10 + c - '0';
                } else {
                   finalizeConverter(c);
                   state = LITERAL_STATE;

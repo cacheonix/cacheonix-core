@@ -70,7 +70,7 @@ final class AssembledMessageImpl implements AssembledMessage {
    public int hashCode() {
 
       int result = message != null ? message.hashCode() : 0;
-      result = 31 * result + (int) (startFrame ^ (startFrame >>> 32));
+      result = 31 * result + (int) (startFrame ^ startFrame >>> 32);
       return result;
    }
 

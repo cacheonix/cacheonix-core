@@ -185,7 +185,7 @@ public final class ClearFrontCacheBucketAnnouncement extends Request {
 
          getOwnerWaiter().getPartialWaiters().remove(this);
 
-         if (getOwnerWaiter().isPartialWaitersEmpty() && (getOwnerResponse() != null)) {
+         if (getOwnerWaiter().isPartialWaitersEmpty() && getOwnerResponse() != null) {
 
             getRequest().getProcessor().post(getOwnerResponse());
          }

@@ -120,7 +120,7 @@ public final class PassBooleanByValueBinary implements Binary {
 
    public int hashCode() {
 
-      return (value ? 1 : 0);
+      return value ? 1 : 0;
    }
 
 

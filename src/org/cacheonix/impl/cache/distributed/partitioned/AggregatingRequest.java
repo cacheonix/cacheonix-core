@@ -764,7 +764,7 @@ public abstract class AggregatingRequest extends CacheDataRequest implements Pre
       final AggregatingResponse createErrorResponse(final String description,
               final Response problemResponse) {
 
-         final AggregatingResponse result = (AggregatingResponse) (getRequest()).createResponse(Response.RESULT_ERROR);
+         final AggregatingResponse result = (AggregatingResponse) getRequest().createResponse(Response.RESULT_ERROR);
          final String errorMessage = description + ": " + problemResponse;
          result.setResult(errorMessage);
          return result;

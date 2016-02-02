@@ -265,7 +265,7 @@ public final class GroupMember implements Wireable {
       int result = address != null ? address.hashCode() : 0;
       result = 31 * result + (active ? 1 : 0);
       result = 31 * result + (partitionContributor ? 1 : 0);
-      result = 31 * result + (int) (heapSizeBytes ^ (heapSizeBytes >>> 32));
+      result = 31 * result + (int) (heapSizeBytes ^ heapSizeBytes >>> 32);
       result = 31 * result + (cacheConfigName != null ? cacheConfigName.hashCode() : 0);
       result = 31 * result + (leaving ? 1 : 0);
       return result;

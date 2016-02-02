@@ -182,7 +182,7 @@ public final class ClusterAnnouncement extends ClusterMessage implements SenderI
       final boolean announcerIsLoopbackOnly = getSender().isLoopbackOnly();
       final boolean bothAreRemote = !(processorIsLoopbackOnly || announcerIsLoopbackOnly);
       final boolean bothAreLocal = processorIsLoopbackOnly && announcerIsLoopbackOnly;
-      if (!(bothAreRemote || (bothAreLocal && processor.getLocalInetAddresses().contains(senderInetAddress)))) {
+      if (!(bothAreRemote || bothAreLocal && processor.getLocalInetAddresses().contains(senderInetAddress))) {
 
          // Ignore if this processor is loopback-only, and this is a message from an non-local machine
          return;

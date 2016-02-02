@@ -396,7 +396,7 @@ final class ClusterProcessorStateImpl implements ClusterProcessorState {
 
       final long clusterViewSize = getClusterView().getSize();
 
-      return (worstCaseLatencyMillis * clusterViewSize) + randomMills;
+      return worstCaseLatencyMillis * clusterViewSize + randomMills;
    }
 
 

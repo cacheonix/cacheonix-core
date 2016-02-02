@@ -835,8 +835,8 @@ public final class MulticastMarker extends OperationalMarker {
 
       // NOTE: simeshev@cacheonix.org - 2010-08-25 - Join request can be handled only when there
       // is no delivery round or all frames in the current delivery round has been delivered.
-      if (multicastMarker.originator == null || (multicastMarker.current != null && multicastMarker.previous != null && multicastMarker.current.equals(
-              multicastMarker.previous))) {
+      if (multicastMarker.originator == null || multicastMarker.current != null && multicastMarker.previous != null && multicastMarker.current.equals(
+              multicastMarker.previous)) {
 
          // NOPMD
          final LinkedList<JoiningNode> joinRequests = clusterProcessor.getProcessorState().getJoinRequests();
@@ -1393,7 +1393,7 @@ public final class MulticastMarker extends OperationalMarker {
 
       int result = super.hashCode();
       result = 31 * result + (originator != null ? originator.hashCode() : 0);
-      result = 31 * result + (int) (seqNum ^ (seqNum >>> 32));
+      result = 31 * result + (int) (seqNum ^ seqNum >>> 32);
       result = 31 * result + (current != null ? current.hashCode() : 0);
       result = 31 * result + (previous != null ? previous.hashCode() : 0);
       result = 31 * result + (leaveSeqNum != null ? leaveSeqNum.hashCode() : 0);

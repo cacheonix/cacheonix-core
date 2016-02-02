@@ -173,7 +173,7 @@ public final class AppenderAttachableImpl implements AppenderAttachable {
       }
       final int size = appenderList.size();
       for (int i = 0; i < size; i++) {
-         if (name.equals((appenderList.elementAt(i)).getName())) {
+         if (name.equals(appenderList.elementAt(i).getName())) {
             appenderList.removeElementAt(i);
             break;
          }

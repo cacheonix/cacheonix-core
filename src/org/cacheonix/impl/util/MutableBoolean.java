@@ -87,7 +87,7 @@ public final class MutableBoolean {
 
    public int hashCode() {
 
-      return (value ? 1 : 0);
+      return value ? 1 : 0;
    }
 
 

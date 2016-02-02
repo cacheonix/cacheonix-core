@@ -337,7 +337,7 @@ public final class BucketOwnershipAssignment implements Wireable {
    int calculateMinOwnedBucketCount(final byte storageNumber) {
 
       final Iterator<Entry<ClusterNodeAddress, BucketOwner>> iter = bucketOwners[storageNumber].entrySet().iterator();
-      int result = (iter.next()).getValue().ownedBucketCount();
+      int result = iter.next().getValue().ownedBucketCount();
       while (iter.hasNext()) {
          final Entry<ClusterNodeAddress, BucketOwner> entry = iter.next();
          final BucketOwner bucketOwner = entry.getValue();
@@ -881,7 +881,7 @@ public final class BucketOwnershipAssignment implements Wireable {
       // First, use underloaded to adopt orphans
       for (final Iterator<Entry<ClusterNodeAddress, BucketOwner>> underloadedIter = underloadedMap.entrySet().iterator(); underloadedIter.hasNext() && orphansIter.hasNext(); ) {
 
-         final BucketOwner underloadedOwner = (underloadedIter.next()).getValue();
+         final BucketOwner underloadedOwner = underloadedIter.next().getValue();
          while (orphansIter.hasNext() && underloadedOwner.underload(fairBucketsPerNode) > 0) {
 
             final Integer orphanedBucketNumber = orphansIter.next();
@@ -940,7 +940,7 @@ public final class BucketOwnershipAssignment implements Wireable {
             // That's why it does not make sense to send a command to begin transfer. It will be
             // most likely rejected.
             final BucketOwner primaryOwner = getPrimaryOwner(bucketNumber);
-            if (primaryOwner == null || (storageNumber == 0 && primaryOwner.isRestoringReplicas(bucketNumber))) {
+            if (primaryOwner == null || storageNumber == 0 && primaryOwner.isRestoringReplicas(bucketNumber)) {
                continue;
             }
 
@@ -1294,7 +1294,7 @@ public final class BucketOwnershipAssignment implements Wireable {
          return bucketCount;
       } else {
 
-         return (bucketCount / nonLeavingBucketOwnerCount) + (bucketCount % nonLeavingBucketOwnerCount);
+         return bucketCount / nonLeavingBucketOwnerCount + bucketCount % nonLeavingBucketOwnerCount;
       }
    }
 

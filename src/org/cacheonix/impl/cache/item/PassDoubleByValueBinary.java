@@ -121,7 +121,7 @@ public final class PassDoubleByValueBinary implements Binary {
    public int hashCode() {
 
       final long temp = Double.doubleToLongBits(value);
-      return (int) (temp ^ (temp >>> 32));
+      return (int) (temp ^ temp >>> 32);
    }
 
 

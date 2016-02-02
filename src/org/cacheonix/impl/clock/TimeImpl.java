@@ -181,8 +181,8 @@ public final class TimeImpl implements Time {
 
    public int hashCode() {
 
-      int result = (int) (millis ^ (millis >>> 32));
-      result = 31 * result + (int) (count ^ (count >>> 32));
+      int result = (int) (millis ^ millis >>> 32);
+      result = 31 * result + (int) (count ^ count >>> 32);
       return result;
    }
 

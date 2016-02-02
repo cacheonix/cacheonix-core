@@ -53,7 +53,7 @@ final class MarkerTimeoutAction extends TimeoutAction {
 
       return "MarkerTimeoutAction{" +
               "markerCounterAtCreate=" + markerCounterAtCreate +
-              ", context=" + ((processor == null) ? "null" : processor.getAddress().toString()) +
+              ", context=" + (processor == null ? "null" : processor.getAddress().toString()) +
               '}';
    }
 }

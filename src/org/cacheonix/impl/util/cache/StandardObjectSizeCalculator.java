@@ -83,7 +83,7 @@ public final class StandardObjectSizeCalculator implements ObjectSizeCalculator 
 
    public static final long pad(final long lMin, final long lMultiple) {
 
-      return (((lMin + lMultiple) - 1L) / lMultiple) * lMultiple;
+      return (lMin + lMultiple - 1L) / lMultiple * lMultiple;
    }
 
 
@@ -197,7 +197,7 @@ public final class StandardObjectSizeCalculator implements ObjectSizeCalculator 
             return true;
          }
       }
-      return (obj == null) || visited.containsKey(obj);
+      return obj == null || visited.containsKey(obj);
    }
 
 
@@ -278,9 +278,9 @@ public final class StandardObjectSizeCalculator implements ObjectSizeCalculator 
 
    private static long roundUpToNearestEightBytes(long result) {
 
-      if ((result % 8) != 0) {
+      if (result % 8 != 0) {
 
-         result += 8 - (result % 8);
+         result += 8 - result % 8;
       }
       return result;
    }

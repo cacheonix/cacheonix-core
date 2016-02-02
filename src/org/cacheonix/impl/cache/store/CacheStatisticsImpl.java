@@ -334,11 +334,11 @@ public final class CacheStatisticsImpl implements CacheStatistics, Wireable {
 
    public int hashCode() {
 
-      int result = (int) (readHitCount ^ (readHitCount >>> 32));
-      result = 31 * result + (int) (readMissCount ^ (readMissCount >>> 32));
-      result = 31 * result + (int) (writeHitCount ^ (writeHitCount >>> 32));
-      result = 31 * result + (int) (writeMissCount ^ (writeMissCount >>> 32));
-      result = 31 * result + (int) (elementsOnDiskCount ^ (elementsOnDiskCount >>> 32));
+      int result = (int) (readHitCount ^ readHitCount >>> 32);
+      result = 31 * result + (int) (readMissCount ^ readMissCount >>> 32);
+      result = 31 * result + (int) (writeHitCount ^ writeHitCount >>> 32);
+      result = 31 * result + (int) (writeMissCount ^ writeMissCount >>> 32);
+      result = 31 * result + (int) (elementsOnDiskCount ^ elementsOnDiskCount >>> 32);
       return result;
    }
 
