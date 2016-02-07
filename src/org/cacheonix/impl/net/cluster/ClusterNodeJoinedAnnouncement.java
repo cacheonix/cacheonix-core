@@ -16,13 +16,12 @@ package org.cacheonix.impl.net.cluster;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
+import org.cacheonix.cluster.ClusterConfiguration;
 import org.cacheonix.cluster.ClusterEventSubscriber;
 import org.cacheonix.cluster.ClusterMember;
-import org.cacheonix.impl.cluster.ClusterEventUtil;
+import org.cacheonix.cluster.ClusterMemberJoinedEvent;
 import org.cacheonix.impl.cluster.ClusterMemberJoinedEventImpl;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.processor.Message;
@@ -31,6 +30,10 @@ import org.cacheonix.impl.net.serializer.SerializerUtils;
 import org.cacheonix.impl.net.serializer.Wireable;
 import org.cacheonix.impl.net.serializer.WireableBuilder;
 import org.cacheonix.impl.util.logging.Logger;
+
+import static java.util.Collections.singletonList;
+import static org.cacheonix.impl.cluster.ClusterEventUtil.createClusterMember;
+import static org.cacheonix.impl.cluster.ClusterEventUtil.getUserClusterConfiguration;
 
 /**
  * A message that every cluster processor sends to self when a cluster node joins.
@@ -107,7 +110,7 @@ public final class ClusterNodeJoinedAnnouncement extends Message {
       }
 
       // Notify mcast listeners about join
-      multicastMessageListeners.notifyNodesJoined(Collections.singletonList(joined));
+      multicastMessageListeners.notifyNodesJoined(singletonList(joined));
 
       // Notify cluster event subscribers
       notifyClusterEventSubscribersMemberJoined();
@@ -127,17 +130,28 @@ public final class ClusterNodeJoinedAnnouncement extends Message {
     */
    private void notifyClusterEventSubscribersMemberJoined() {
 
+      // Get cluster processor state
       final ClusterProcessor processor = (ClusterProcessor) getProcessor();
       final ClusterProcessorState processorState = processor.getProcessorState();
-      final List<ClusterEventSubscriber> clusterEventSubscribers = processorState.getClusterEventSubscribers();
 
+      // Create cluster configuration
+      final ClusterView clusterView = processorState.getClusterView();
+      final String clusterName = processorState.getClusterName();
+      final int state = processorState.getState();
+      final ClusterConfiguration clusterConfiguration = getUserClusterConfiguration(clusterName, state, clusterView);
+
+      // Populate a list of joined members
+      final ClusterMember clusterMember = createClusterMember(clusterName, joined);
+      final List<ClusterMember> joinedMembers = singletonList(clusterMember);
+
+      final List<ClusterEventSubscriber> clusterEventSubscribers = processorState.getClusterEventSubscribers();
       for (final ClusterEventSubscriber clusterEventSubscriber : clusterEventSubscribers) {
 
-         final List<ClusterMember> joinedMembers = new ArrayList<ClusterMember>(1);
-         joinedMembers.add(ClusterEventUtil.createClusterMember(processorState.getClusterName(), joined));
          try {
 
-            clusterEventSubscriber.notifyClusterMemberJoined(new ClusterMemberJoinedEventImpl(joinedMembers));
+            final ClusterMemberJoinedEvent clusterMemberJoinedEvent = new ClusterMemberJoinedEventImpl(
+                    clusterConfiguration, joinedMembers);
+            clusterEventSubscriber.notifyClusterMemberJoined(clusterMemberJoinedEvent);
          } catch (final Throwable e) { // NOPMD A catch statement should never catch throwable since it includes errors.
 
             // Catch user all errors

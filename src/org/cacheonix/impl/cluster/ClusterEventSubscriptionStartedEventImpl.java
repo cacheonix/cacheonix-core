@@ -21,6 +21,9 @@ import org.cacheonix.cluster.ClusterEventSubscriptionStartedEvent;
  */
 final class ClusterEventSubscriptionStartedEventImpl implements ClusterEventSubscriptionStartedEvent {
 
+   /**
+    * A cluster configuration at the time the subscription started.
+    */
    private final ClusterConfiguration clusterConfiguration;
 
 
@@ -36,11 +39,11 @@ final class ClusterEventSubscriptionStartedEventImpl implements ClusterEventSubs
 
 
    /**
-    * Returns the cluster configuration at the time that subscription started.
+    * Returns the cluster configuration at the time the subscription started.
     *
-    * @return the cluster configuration at the time that subscription started.
+    * @return the cluster configuration at the time the subscription started.
     */
-   public ClusterConfiguration getCurrentClusterConfiguration() {
+   public ClusterConfiguration getClusterConfiguration() {
 
       return clusterConfiguration;
    }

@@ -257,7 +257,7 @@ public class StandardObjectSizeCalculatorTest extends TestCase {
       try {
          final ConfigurationReader reader = new ConfigurationReader();
          final CacheonixConfiguration config = reader.readConfiguration(testFileInputStream);
-         assertEquals(1648, CALCULATOR.sizeOf(config));
+         assertEquals(1656, CALCULATOR.sizeOf(config));
       } finally {
          IOUtils.closeHard(testFileInputStream);
       }

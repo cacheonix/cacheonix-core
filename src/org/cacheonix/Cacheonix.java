@@ -28,6 +28,7 @@ import org.cacheonix.cache.Cache;
 import org.cacheonix.cache.CacheExistsException;
 import org.cacheonix.cache.ConfigurationException;
 import org.cacheonix.cluster.Cluster;
+import org.cacheonix.cluster.ClusterEventSubscriber;
 import org.cacheonix.impl.AbstractCacheonix;
 import org.cacheonix.impl.DistributedCacheonix;
 import org.cacheonix.impl.cache.local.LocalCacheonix;
@@ -500,5 +501,12 @@ public abstract class Cacheonix {
       return "Cacheonix{" +
               "INSTANCES.size()=" + INSTANCES.size() +
               '}';
+   }
+
+
+   public static Cacheonix getInstance(final String configurationPath,
+           final ClusterEventSubscriber clusterEventSubscriber) {
+
+      return null;
    }
 }

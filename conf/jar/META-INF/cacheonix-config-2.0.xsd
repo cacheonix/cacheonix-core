@@ -134,7 +134,7 @@
          </xsd:annotation>
       </xsd:attribute>
 
-      <xsd:attribute name="selectorTimeout" type="TimeIntervalType" default="10ms">
+      <xsd:attribute name="selectorTimeout" type="TimeIntervalType" default="100ms">
          <xsd:annotation>
             <xsd:documentation>
                Time the selector should block for while waiting for a channel to become ready, must be greater than

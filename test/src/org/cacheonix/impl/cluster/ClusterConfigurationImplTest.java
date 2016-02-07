@@ -36,6 +36,8 @@ public final class ClusterConfigurationImplTest extends TestCase {
 
    private static final int PORT = 7777;
 
+   public static final String UUID = "test-UUID";
+
    private List<ClusterMember> clusterMembers;
 
    private ClusterConfigurationImpl clusterConfiguration;
@@ -72,18 +74,23 @@ public final class ClusterConfigurationImplTest extends TestCase {
       assertEquals(CLUSTER_STATE, clusterConfiguration.getClusterState());
    }
 
+   public void testGetClusterUUID() {
+
+      assertEquals(UUID, clusterConfiguration.getClusterUUID());
+   }
+
 
    @SuppressWarnings("ObjectEqualsNull")
    public void testEquals() throws Exception {
 
-      assertEquals(new ClusterConfigurationImpl(OPERATIONAL, clusterMembers), clusterConfiguration);
+      assertEquals(new ClusterConfigurationImpl("test-UUID", OPERATIONAL, clusterMembers), clusterConfiguration);
       assertFalse(clusterConfiguration.equals(null)); // NOPMD
    }
 
 
    public void testHashCode() throws Exception {
 
-      assertEquals(761562785, clusterConfiguration.hashCode());
+      assertEquals(906371477, clusterConfiguration.hashCode());
    }
 
 
@@ -95,7 +102,7 @@ public final class ClusterConfigurationImplTest extends TestCase {
       clusterMembers.add(EventTestUtil.clusterMember(CLUSTER_NAME, "1.1.1.1", PORT));
       clusterMembers.add(EventTestUtil.clusterMember(CLUSTER_NAME, "2.2.2.2", PORT));
 
-      clusterConfiguration = new ClusterConfigurationImpl(CLUSTER_STATE, clusterMembers);
+      clusterConfiguration = new ClusterConfigurationImpl(UUID, CLUSTER_STATE, clusterMembers);
    }
 
 

@@ -35,6 +35,8 @@ final class ClusterConfigurationImpl implements ClusterConfiguration {
 
    private ClusterState clusterState;
 
+   private String uuid;
+
 
    /**
     * Required by Externalizable.
@@ -48,13 +50,17 @@ final class ClusterConfigurationImpl implements ClusterConfiguration {
    /**
     * Creates ClusterConfigurationImpl.
     *
+    * @param uuid           a cluster UUID.
     * @param clusterState   a cluster state.
     * @param clusterMembers a list of cluster members that this constructor uses to create a copy.
     */
-   ClusterConfigurationImpl(final ClusterState clusterState, final Collection<ClusterMember> clusterMembers) {
+   ClusterConfigurationImpl(final String uuid, final ClusterState clusterState,
+           final Collection<ClusterMember> clusterMembers) {
+
 
       this.clusterMembers = new ArrayList<ClusterMember>(clusterMembers);
       this.clusterState = clusterState;
+      this.uuid = uuid;
    }
 
 
@@ -79,6 +85,15 @@ final class ClusterConfigurationImpl implements ClusterConfiguration {
 
 
    /**
+    * {@inheritDoc}
+    */
+   public String getClusterUUID() {
+
+      return uuid;
+   }
+
+
+   /**
     * The object implements the writeExternal method to save its contents by calling the methods of DataOutput for its
     * primitive values or calling the writeObject method of ObjectOutput for objects, strings, and arrays.
     *
@@ -89,6 +104,8 @@ final class ClusterConfigurationImpl implements ClusterConfiguration {
     * this Externalizable class.
     */
    public void writeExternal(final ObjectOutput out) throws IOException {
+
+      out.writeUTF(uuid);
 
       //
       ClusterState.writeDataOutput(clusterState, out);
@@ -111,6 +128,8 @@ final class ClusterConfigurationImpl implements ClusterConfiguration {
     * @throws ClassNotFoundException If the class for an object being restored cannot be found.
     */
    public void readExternal(final ObjectInput in) throws IOException, ClassNotFoundException {
+
+      uuid = in.readUTF();
 
       //
       clusterState = ClusterState.readDataInput(in);
@@ -138,10 +157,13 @@ final class ClusterConfigurationImpl implements ClusterConfiguration {
 
       final ClusterConfigurationImpl that = (ClusterConfigurationImpl) o;
 
-      if (!clusterMembers.equals(that.clusterMembers)) {
+      if (clusterMembers != null ? !clusterMembers.equals(that.clusterMembers) : that.clusterMembers != null) {
          return false;
       }
-      if (!clusterState.equals(that.clusterState)) {
+      if (clusterState != null ? !clusterState.equals(that.clusterState) : that.clusterState != null) {
+         return false;
+      }
+      if (uuid != null ? !uuid.equals(that.uuid) : that.uuid != null) {
          return false;
       }
 
@@ -151,17 +173,19 @@ final class ClusterConfigurationImpl implements ClusterConfiguration {
 
    public int hashCode() {
 
-      int result = clusterMembers.hashCode();
-      result = 31 * result + clusterState.hashCode();
+      int result = clusterMembers != null ? clusterMembers.hashCode() : 0;
+      result = 31 * result + (clusterState != null ? clusterState.hashCode() : 0);
+      result = 31 * result + (uuid != null ? uuid.hashCode() : 0);
       return result;
    }
 
 
-   @Override
    public String toString() {
 
       return "ClusterConfigurationImpl{" +
-              "clusterMembers=" + clusterMembers +
+              "uuid='" + uuid + '\'' +
+              ", clusterState=" + clusterState +
+              ", clusterMembers=" + clusterMembers +
               '}';
    }
 }

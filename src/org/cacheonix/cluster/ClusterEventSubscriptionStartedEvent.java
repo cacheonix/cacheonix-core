@@ -26,5 +26,5 @@ public interface ClusterEventSubscriptionStartedEvent {
     *
     * @return the cluster configuration at the time the subscription started.
     */
-   ClusterConfiguration getCurrentClusterConfiguration();
+   ClusterConfiguration getClusterConfiguration();
 }

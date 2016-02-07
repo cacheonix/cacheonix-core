@@ -17,7 +17,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import junit.framework.TestCase;
+import org.cacheonix.cluster.ClusterConfiguration;
 import org.cacheonix.cluster.ClusterMember;
+
+import static org.mockito.Mockito.mock;
 
 /**
  * Tester for ClusterMemberLeftEventImpl.
@@ -51,7 +54,8 @@ public class ClusterMemberLeftEventImplTest extends TestCase {
       final ArrayList<ClusterMember> leftMembers = new ArrayList<ClusterMember>(1);
       leftMembers.add(clusterMember);
 
-      clusterMemberLeftEvent = new ClusterMemberLeftEventImpl(leftMembers);
+      final ClusterConfiguration clusterConfiguration = mock(ClusterConfiguration.class);
+      clusterMemberLeftEvent = new ClusterMemberLeftEventImpl(clusterConfiguration, leftMembers);
    }
 
 

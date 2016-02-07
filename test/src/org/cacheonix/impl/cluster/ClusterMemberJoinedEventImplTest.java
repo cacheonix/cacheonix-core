@@ -17,7 +17,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import junit.framework.TestCase;
+import org.cacheonix.cluster.ClusterConfiguration;
 import org.cacheonix.cluster.ClusterMember;
+
+import static org.mockito.Mockito.mock;
 
 /**
  * Tester for ClusterMemberJoinedEventImpl.
@@ -25,9 +28,9 @@ import org.cacheonix.cluster.ClusterMember;
 public class ClusterMemberJoinedEventImplTest extends TestCase {
 
 
-   private ClusterMemberImpl clusterMember;
-
    private ClusterMemberJoinedEventImpl clusterMemberJoinedEvent;
+
+   private ClusterMemberImpl clusterMember;
 
 
    public void testGetJoinedMembers() throws Exception {
@@ -51,7 +54,8 @@ public class ClusterMemberJoinedEventImplTest extends TestCase {
       final ArrayList<ClusterMember> joinedMembers = new ArrayList<ClusterMember>(1);
       joinedMembers.add(clusterMember);
 
-      clusterMemberJoinedEvent = new ClusterMemberJoinedEventImpl(joinedMembers);
+      final ClusterConfiguration clusterConfiguration = mock(ClusterConfiguration.class);
+      clusterMemberJoinedEvent = new ClusterMemberJoinedEventImpl(clusterConfiguration, joinedMembers);
    }
 
 

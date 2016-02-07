@@ -46,7 +46,9 @@ public final class PlainMulticastSender implements MulticastSender {
    /**
     * Send buffer size.
     */
-   private static final int SEND_BUFFER_SIZE = 128 * (Frame.MAXIMUM_MULTICAST_PACKET_SIZE + 1);
+   private static final int SEND_BUFFER_SIZE = 4096 * (Frame.MAXIMUM_MULTICAST_PACKET_SIZE + 1);
+
+   public static final String NO_BUFFER_SPACE_AVAILABLE = "No buffer space available";
 
    /**
     * Multicast address.
@@ -63,10 +65,14 @@ public final class PlainMulticastSender implements MulticastSender {
     */
    private final MulticastSocket[] mcastSockets;
 
+   /**
+    * Sent messages.
+    */
+   private long sentMessages;
+
 
    /**
     * Constructs multicast message sender.
-    *
     *
     * @param router
     * @param mcastAddress multicast address
@@ -99,12 +105,16 @@ public final class PlainMulticastSender implements MulticastSender {
       while (enumeration.hasMoreElements()) {
          try {
             final NetworkInterface netIf = enumeration.nextElement();
-            final MulticastSocket socket = new MulticastSocket(); // NOPMD
-            socket.setTimeToLive(mcastTTL);
-            socket.setNetworkInterface(netIf);
-            socket.setSendBufferSize(SEND_BUFFER_SIZE);
-            socketList.add(socket);
+            if (netIf.supportsMulticast()) {
+
+               final MulticastSocket socket = new MulticastSocket(); // NOPMD
+               socket.setTimeToLive(mcastTTL);
+               socket.setNetworkInterface(netIf);
+               socket.setSendBufferSize(SEND_BUFFER_SIZE);
+               socketList.add(socket);
+            }
          } catch (final Exception e) {
+
             lastException = e;
             ExceptionUtils.ignoreException(e, "continue to connect to those we can");
          }
@@ -121,7 +131,28 @@ public final class PlainMulticastSender implements MulticastSender {
       final byte[] message = toValidMessage(frame);
       final DatagramPacket packet = new DatagramPacket(message, 0, message.length, mcastAddress, mcastPort);
       for (final MulticastSocket mcastSocket : mcastSockets) {
-         mcastSocket.send(packet);
+
+         try {
+
+            sentMessages++;
+            mcastSocket.send(packet);
+         } catch (final IOException e) {
+            if (e.getMessage().endsWith(NO_BUFFER_SPACE_AVAILABLE)) {
+
+//               final NetworkInterface networkInterface = mcastSocket.getNetworkInterface();
+//               final InetAddress intf = mcastSocket.getInterface();
+//               final IOException extendedException = new IOException(NO_BUFFER_SPACE_AVAILABLE + ": "
+//                       + "interface: " + intf + ", "
+//                       + "network interface: " + networkInterface.getDisplayName() + ", "
+//                       + "total messages sent: " + sentMessages
+//               );
+//               extendedException.setStackTrace(e.getStackTrace());
+//               throw extendedException;
+            } else {
+
+               throw e;
+            }
+         }
       }
    }
 

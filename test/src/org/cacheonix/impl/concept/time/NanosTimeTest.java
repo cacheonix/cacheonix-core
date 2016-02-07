@@ -43,6 +43,6 @@ public final class NanosTimeTest extends CacheonixTestCase {
       final long n2 = System.nanoTime();
 
       assertEquals("Experiment shows that on  on MAC OS X  the tick size is 1000ns == 1mks", 0, (n2 - n1) % 1000L);
-      assertTrue(Long.toString(n2 - n1), n2 - n1 > 1000);
+      assertTrue(Long.toString(n2 - n1), n2 - n1 >= 1000);
    }
 }

@@ -26,6 +26,8 @@ import org.cacheonix.impl.net.processor.Response;
 import org.cacheonix.impl.net.serializer.Wireable;
 import org.cacheonix.impl.net.serializer.WireableBuilder;
 
+import static org.cacheonix.impl.cluster.ClusterEventUtil.getUserClusterConfiguration;
+
 /**
  * A request to add a cluster event subscriber.
  */
@@ -106,7 +108,7 @@ public final class AddClusterEventSubscriberRequest extends LocalClusterRequest 
       // Create configuration
       final String clusterName = processorState.getClusterName();
       final int state = processorState.getState();
-      final ClusterConfiguration clusterConfiguration = ClusterEventUtil.getUserClusterConfiguration(clusterName, state, clusterView);
+      final ClusterConfiguration clusterConfiguration = getUserClusterConfiguration(clusterName, state, clusterView);
 
       // Create event
       final ClusterEventSubscriptionStartedEvent subscriptionStartedEvent = new ClusterEventSubscriptionStartedEventImpl(clusterConfiguration);

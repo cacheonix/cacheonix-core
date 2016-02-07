@@ -23,6 +23,13 @@ import java.util.Collection;
 public interface ClusterMemberLeftEvent {
 
    /**
+    * Returns the cluster configuration after the members left.
+    *
+    * @return the cluster configuration after the members left.
+    */
+   ClusterConfiguration getClusterConfiguration();
+
+   /**
     * Returns an unmodifiable collection containing ClusterMembers that left the cluster.
     *
     * @return the unmodifiable collection containing ClusterMembers that left the cluster.

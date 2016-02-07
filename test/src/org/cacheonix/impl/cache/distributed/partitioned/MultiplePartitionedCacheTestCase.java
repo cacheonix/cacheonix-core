@@ -26,6 +26,14 @@ import org.cacheonix.TestUtils;
 import org.cacheonix.cache.Cache;
 import org.cacheonix.cache.entry.EntryFilter;
 import org.cacheonix.cluster.CacheMember;
+import org.cacheonix.cluster.Cluster;
+import org.cacheonix.cluster.ClusterConfiguration;
+import org.cacheonix.cluster.ClusterEventSubscriber;
+import org.cacheonix.cluster.ClusterEventSubscriptionEndedEvent;
+import org.cacheonix.cluster.ClusterEventSubscriptionStartedEvent;
+import org.cacheonix.cluster.ClusterMemberJoinedEvent;
+import org.cacheonix.cluster.ClusterMemberLeftEvent;
+import org.cacheonix.cluster.ClusterStateChangedEvent;
 import org.cacheonix.impl.cache.CacheonixCache;
 import org.cacheonix.impl.config.SystemProperty;
 import org.cacheonix.impl.util.ArrayUtils;
@@ -95,7 +103,8 @@ public abstract class MultiplePartitionedCacheTestCase extends PartitionedCacheT
       cache().put(TEST_KEY, TEST_OBJECT);
       for (int i = 0; i < cacheList.size(); i++) {
          final CacheonixCache<String, String> remoteCache = cache(i);
-         assertEquals("Cache # " + i + ": " + remoteCache + " should find object ", TEST_OBJECT, remoteCache.get(TEST_KEY));
+         assertEquals("Cache # " + i + ": " + remoteCache + " should find object ", TEST_OBJECT,
+                 remoteCache.get(TEST_KEY));
       }
    }
 
@@ -216,7 +225,8 @@ public abstract class MultiplePartitionedCacheTestCase extends PartitionedCacheT
          assertEquals(map.size(), remoteCache.size());
          final Set<Map.Entry<String, String>> entries = map.entrySet();
          for (final Map.Entry<String, String> entry : entries) {
-            assertEquals("Object not found in cache " + remoteCache.getName(), entry.getValue(), remoteCache.get(entry.getKey()));
+            assertEquals("Object not found in cache " + remoteCache.getName(), entry.getValue(),
+                    remoteCache.get(entry.getKey()));
          }
       }
    }
@@ -790,7 +800,8 @@ public abstract class MultiplePartitionedCacheTestCase extends PartitionedCacheT
       for (int i = 0; i < cacheList.size(); i++) {
 
          final Map result = cache(i).getAll(subset);
-         assertEquals("Result from cache " + i + " must have the same size as the subset", subset.size(), result.size());
+         assertEquals("Result from cache " + i + " must have the same size as the subset", subset.size(),
+                 result.size());
          assertEquals("Result from cache " + i + " must have the key set as the subset", subset, result.keySet());
       }
 
@@ -1108,7 +1119,8 @@ public abstract class MultiplePartitionedCacheTestCase extends PartitionedCacheT
       final List<int[]> c = new ArrayList<int[]>(counters.values());
       final double difference = (double) Math.abs((c.get(0))[0] - (c.get(1))[0]) / (double) count;
       final double expected = 0.1;
-      assertTrue("Difference should be under " + expected + " but it is " + difference, Math.abs(difference) <= expected);
+      assertTrue("Difference should be under " + expected + " but it is " + difference,
+              Math.abs(difference) <= expected);
    }
 
 
@@ -1152,8 +1164,64 @@ public abstract class MultiplePartitionedCacheTestCase extends PartitionedCacheT
          cacheList.add(cache);
       }
 
-      // Let the cluster form
-      Thread.sleep(1000L);
+      final int[] clusterSize = {0};
+
+      // Set up waiting for the cluster to form. The cluster is formed when it reached
+      // the number of members the same as the number of Cacheonix instances in the test.
+      for (final Cacheonix cacheonix : cacheManagerList) {
+
+         final Cluster cluster = cacheonix.getCluster();
+         cluster.addClusterEventSubscriber(new ClusterEventSubscriber() {
+
+
+            public void notifyClusterEventSubscriptionStarted(final ClusterEventSubscriptionStartedEvent event) {
+
+               updateClusterSize(event.getClusterConfiguration());
+            }
+
+
+            public void notifyClusterMemberJoined(final ClusterMemberJoinedEvent event) {
+
+               updateClusterSize(event.getClusterConfiguration());
+            }
+
+
+            public void notifyClusterMemberLeft(final ClusterMemberLeftEvent event) {
+
+               updateClusterSize(event.getClusterConfiguration());
+            }
+
+
+            public void notifyClusterStateChanged(final ClusterStateChangedEvent event) {
+
+            }
+
+
+            public void notifyClusterEventSubscriptionEnded(final ClusterEventSubscriptionEndedEvent event) {
+
+            }
+
+
+            private void updateClusterSize(final ClusterConfiguration clusterConfiguration) {
+
+               synchronized (clusterSize) {
+
+                  clusterSize[0] = clusterConfiguration.getClusterMembers().size();
+                  clusterSize.notifyAll();
+               }
+            }
+         });
+      }
+
+      //noinspection SynchronizationOnLocalVariableOrMethodParameter
+      synchronized (clusterSize) {
+
+         while (clusterSize[0] < cacheManagerList.size()) {
+            clusterSize.wait(100L);
+         }
+      }
+
+
       LOG.debug("================================================================================================");
       LOG.debug("========== Started up =========================================================================");
       LOG.debug("================================================================================================");

@@ -22,6 +22,8 @@ import java.util.Collection;
  */
 public interface ClusterMemberJoinedEvent {
 
+   ClusterConfiguration getClusterConfiguration();
+
    /**
     * Returns an unmodifiable collection containing ClusterMembers that joined the cluster.
     *

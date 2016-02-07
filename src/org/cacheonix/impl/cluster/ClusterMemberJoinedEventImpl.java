@@ -16,6 +16,7 @@ package org.cacheonix.impl.cluster;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.cacheonix.cluster.ClusterConfiguration;
 import org.cacheonix.cluster.ClusterMember;
 import org.cacheonix.cluster.ClusterMemberJoinedEvent;
 
@@ -24,17 +25,40 @@ import org.cacheonix.cluster.ClusterMemberJoinedEvent;
  */
 public final class ClusterMemberJoinedEventImpl implements ClusterMemberJoinedEvent {
 
+   /**
+    * A collection of joined members.
+    */
    private final Collection<ClusterMember> joinedMembers;
+
+   /**
+    * A cluster configuration after the members joined.
+    */
+   private final ClusterConfiguration clusterConfiguration;
 
 
    /**
     * Creates ClusterMemberJoinedEventImpl.
     *
-    * @param joinedMembers a list of joined members.
+    * @param clusterConfiguration a cluster configuration after the members joined.
+    * @param joinedMembers        a list of joined members.
     */
-   public ClusterMemberJoinedEventImpl(final Collection<ClusterMember> joinedMembers) {
+   public ClusterMemberJoinedEventImpl(final ClusterConfiguration clusterConfiguration,
+           final Collection<ClusterMember> joinedMembers) {
+
+      this.clusterConfiguration = clusterConfiguration;
 
       this.joinedMembers = new ArrayList<ClusterMember>(joinedMembers);
+   }
+
+
+   /**
+    * Returns the cluster configuration after the members joined.
+    *
+    * @return the cluster configuration after the members joined.
+    */
+   public ClusterConfiguration getClusterConfiguration() {
+
+      return clusterConfiguration;
    }
 
 

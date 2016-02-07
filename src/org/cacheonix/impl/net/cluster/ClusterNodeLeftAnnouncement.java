@@ -16,16 +16,15 @@ package org.cacheonix.impl.net.cluster;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
 
+import org.cacheonix.cluster.ClusterConfiguration;
 import org.cacheonix.cluster.ClusterEventSubscriber;
 import org.cacheonix.cluster.ClusterMember;
-import org.cacheonix.impl.cluster.ClusterEventUtil;
 import org.cacheonix.impl.cluster.ClusterMemberLeftEventImpl;
 import org.cacheonix.impl.lock.AcquireLockRequest;
 import org.cacheonix.impl.lock.LockOwner;
@@ -40,6 +39,9 @@ import org.cacheonix.impl.net.serializer.SerializerUtils;
 import org.cacheonix.impl.net.serializer.Wireable;
 import org.cacheonix.impl.net.serializer.WireableBuilder;
 import org.cacheonix.impl.util.logging.Logger;
+
+import static org.cacheonix.impl.cluster.ClusterEventUtil.createClusterMember;
+import static org.cacheonix.impl.cluster.ClusterEventUtil.getUserClusterConfiguration;
 
 /**
  * A message that every cluster processor sends to self when a cluster node leaves.
@@ -123,17 +125,27 @@ public final class ClusterNodeLeftAnnouncement extends Message {
     */
    private void notifyClusterEventSubscribersMemberLeft() {
 
+      // Get cluster processor state
       final ClusterProcessor processor = (ClusterProcessor) getProcessor();
       final ClusterProcessorState processorState = processor.getProcessorState();
-      final List<ClusterEventSubscriber> clusterEventSubscribers = processorState.getClusterEventSubscribers();
 
+      // Create cluster configuration
+      final ClusterView clusterView = processorState.getClusterView();
+      final String clusterName = processorState.getClusterName();
+      final int state = processorState.getState();
+      final ClusterConfiguration clusterConfiguration = getUserClusterConfiguration(clusterName, state, clusterView);
+
+      // Create left member list
+      final ClusterMember clusterMember = createClusterMember(clusterName, leave);
+      final List<ClusterMember> leftMembers = Collections.singletonList(clusterMember);
+
+      final List<ClusterEventSubscriber> clusterEventSubscribers = processorState.getClusterEventSubscribers();
       for (final ClusterEventSubscriber clusterEventSubscriber : clusterEventSubscribers) {
 
-         final List<ClusterMember> leftMembers = new ArrayList<ClusterMember>(1);
-         leftMembers.add(ClusterEventUtil.createClusterMember(processorState.getClusterName(), leave));
          try {
 
-            clusterEventSubscriber.notifyClusterMemberLeft(new ClusterMemberLeftEventImpl(leftMembers));
+            final ClusterMemberLeftEventImpl clusterMemberLeftEvent = new ClusterMemberLeftEventImpl(clusterConfiguration, leftMembers);
+            clusterEventSubscriber.notifyClusterMemberLeft(clusterMemberLeftEvent);
          } catch (final Throwable e) { // NOPMD A catch statement should never catch throwable since it includes errors.
 
             // Catch user all errors

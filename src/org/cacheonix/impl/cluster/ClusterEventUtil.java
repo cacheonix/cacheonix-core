@@ -36,8 +36,8 @@ public final class ClusterEventUtil {
    }
 
 
-   public static ClusterConfiguration getUserClusterConfiguration(final String clusterName,
-                                                                      final int state, final ClusterView clusterView) {
+   public static ClusterConfiguration getUserClusterConfiguration(final String clusterName, final int state,
+           final ClusterView clusterView) {
 
       // Create cluster member list
       final List<ClusterNodeAddress> clusterNodeList = clusterView == null ? Collections.<ClusterNodeAddress>emptyList() : clusterView.getClusterNodeList();
@@ -47,20 +47,23 @@ public final class ClusterEventUtil {
          clusterMembers.add(createClusterMember(clusterName, clusterNodeAddress));
       }
 
+      // Get UUID
+      final String uuid = clusterView == null ? null : clusterView.getClusterUUID().toString();
 
       // Get user cluster state
       final ClusterState clusterState = convertStateMachineToUserClusterState(state);
 
       // Create cluster configuration
-      return new ClusterConfigurationImpl(clusterState, clusterMembers);
+      return new ClusterConfigurationImpl(uuid, clusterState, clusterMembers);
    }
 
 
    public static ClusterMember createClusterMember(final String clusterName,
-                                                   final ClusterNodeAddress clusterNodeAddress) {
+           final ClusterNodeAddress clusterNodeAddress) {
 
       final InetAddress[] inetAddresses = clusterNodeAddress.getAddresses();
-      final List<ClusterMemberAddress> clusterMemberAddresses = new ArrayList<ClusterMemberAddress>(inetAddresses.length);
+      final List<ClusterMemberAddress> clusterMemberAddresses = new ArrayList<ClusterMemberAddress>(
+              inetAddresses.length);
       for (final InetAddress inetAddress : inetAddresses) {
 
          clusterMemberAddresses.add(new ClusterMemberAddressImpl(inetAddress));

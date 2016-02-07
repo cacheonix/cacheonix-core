@@ -2156,16 +2156,7 @@ public abstract class PartitionedCacheTestCase extends CacheonixTestCase {
       savedSystemProperty.save();
       System.setProperty(SystemProperty.NAME_CACHEONIX_AUTO_CREATE_CACHE, "false");
 
-      waitForClusterToForm();
-
       LOG.debug("========== Started up =========================================================================");
-   }
-
-
-   private static void waitForClusterToForm() throws InterruptedException {
-
-      // Let the cluster form
-      Thread.sleep(1000L);
    }
 
 

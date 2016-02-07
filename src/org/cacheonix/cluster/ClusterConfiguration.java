@@ -37,4 +37,11 @@ public interface ClusterConfiguration extends Externalizable {
     * @see ClusterState#RECONFIGURING
     */
    ClusterState getClusterState();
+
+   /**
+    * Returns a unique cluster ID.
+    *
+    * @return a unique cluster ID. Returns null if the cluster has never been operational.
+    */
+   String getClusterUUID();
 }
