@@ -68,7 +68,7 @@ public final class SharedCounter {
     */
    public long add(final long value) {
 
-      counter = counter + value;
+      counter += value;
 
       return counter;
    }
@@ -82,7 +82,7 @@ public final class SharedCounter {
     */
    public long subtract(final long value) {
 
-      counter = counter - value;
+      counter -= value;
 
       return counter;
    }
