@@ -2100,7 +2100,7 @@ public abstract class PartitionedCacheTestCase extends CacheonixTestCase {
     */
    public void testPutCustomTimeUnit() throws InterruptedException {
 
-      final long delay = 10L;
+      final long delay = 50L;
       final TimeUnit timeUnit = TimeUnit.MILLISECONDS;
       cache().put(KEY_0, OBJECT_0, delay, timeUnit);
 
