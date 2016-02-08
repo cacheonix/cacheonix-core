@@ -417,7 +417,8 @@ public abstract class MultiplePartitionedCacheTestCase extends PartitionedCacheT
       cache(1).remove(KEY_1);
 
       // Make sure size is zero
-      assertNull(cache().get(KEY_1));
+      final String value = cache().get(KEY_1);
+      assertNull("Expected null value but it was: " + value, value);
       assertNull(cache(1).get(KEY_1));
 
       // Remove never existed
