@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Random;
 import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -613,7 +613,7 @@ final class ClusterProcessorStateImpl implements ClusterProcessorState {
     *
     * @return the executor responsible for executing user event notifications.
     */
-   public Executor getUserEventExecutor() {
+   public ExecutorService getUserEventExecutor() {
 
       return userEventExecutor;
    }

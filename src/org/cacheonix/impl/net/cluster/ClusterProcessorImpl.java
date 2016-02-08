@@ -410,6 +410,9 @@ public final class ClusterProcessorImpl extends AbstractRequestProcessor impleme
       // Shutdown marker timeout
       markerTimeout.shutdown();
 
+      // Shutdown user messages thread
+      processorState.getUserEventExecutor().shutdownNow();
+
       // Shutdown message processor
       super.shutdown();
 

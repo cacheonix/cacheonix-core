@@ -16,7 +16,7 @@ package org.cacheonix.impl.net.cluster;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
 
 import org.cacheonix.cluster.ClusterEventSubscriber;
 import org.cacheonix.impl.cluster.node.state.ReplicatedState;
@@ -309,7 +309,7 @@ public interface ClusterProcessorState extends ProcessorState {
     *
     * @return the executor responsible for executing user event notifications.
     */
-   Executor getUserEventExecutor();
+   ExecutorService getUserEventExecutor();
 
    /**
     * Returns a list of user cluster event subscribers.
