@@ -645,7 +645,8 @@ public abstract class PartitionedCacheTestCase extends CacheonixTestCase {
       assertTrue(cache().remove(KEY_0, OBJECT_0));
 
       // Make sure element is gone
-      assertNull(cache().get(KEY_0));
+      final String value = cache().get(KEY_0);
+      assertNull("Expected value to be null butit was: " + value, value);
 
       // ----------
       // - Step 2 -
