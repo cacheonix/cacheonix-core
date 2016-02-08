@@ -131,7 +131,7 @@ public final class RecoveryMarker extends MarkerRequest {
     * @return the previous list
     * @noinspection ReturnOfCollectionOrArrayField
     */
-   public List<JoiningNode> getPreviousList() {
+   List<JoiningNode> getPreviousList() {
 
       return previousList;
    }
