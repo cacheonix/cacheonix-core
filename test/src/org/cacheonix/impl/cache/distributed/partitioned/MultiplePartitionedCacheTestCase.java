@@ -424,7 +424,8 @@ public abstract class MultiplePartitionedCacheTestCase extends PartitionedCacheT
       assertNull(cache().remove(NEVER_EXISTED_KEY));
 
       // Remove removed
-      assertNull(cache(1).remove(KEY_1));
+      final String removed = cache(1).remove(KEY_1);
+      assertNull("Returned non-null value: " + removed, removed);
    }
 
 
