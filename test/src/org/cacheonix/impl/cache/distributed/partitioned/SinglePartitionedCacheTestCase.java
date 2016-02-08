@@ -103,7 +103,10 @@ public abstract class SinglePartitionedCacheTestCase extends PartitionedCacheTes
 
    public void tearDown() throws Exception {
 
-      cacheonix.shutdown(ShutdownMode.GRACEFUL_SHUTDOWN, true);
+      try {
+         cacheonix.shutdown(ShutdownMode.GRACEFUL_SHUTDOWN, true);
+      } catch (final ShutdownException ignored) {
+      }
 
       super.tearDown();
    }

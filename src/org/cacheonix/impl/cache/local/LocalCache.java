@@ -45,6 +45,8 @@ import org.cacheonix.impl.cache.CacheonixCache;
 import org.cacheonix.impl.cache.datasource.BinaryStoreDataSource;
 import org.cacheonix.impl.cache.datasource.DummyBinaryStoreDataSource;
 import org.cacheonix.impl.cache.datastore.DummyDataStore;
+import org.cacheonix.impl.cache.distributed.partitioned.BinaryStoreContext;
+import org.cacheonix.impl.cache.distributed.partitioned.BinaryStoreContextImpl;
 import org.cacheonix.impl.cache.invalidator.DummyCacheInvalidator;
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.cache.item.BinaryUtils;
@@ -181,15 +183,20 @@ public final class LocalCache<K extends Serializable, V extends Serializable> im
          this.byteCounter = new SharedCounter(maxSizeBytes);
          this.overflowDiskStorage = overflowDiskStorage;
 
+
+         // Create context
+         final BinaryStoreContext binaryStoreContext = new BinaryStoreContextImpl();
+         binaryStoreContext.setObjectSizeCalculator(objectSizeCalculator);
+         binaryStoreContext.setDiskStorage(overflowDiskStorage);
+         binaryStoreContext.setInvalidator(invalidator);
+         binaryStoreContext.setDataSource(dataSource);
+         binaryStoreContext.setDataStore(dataStore);
+
          // Create binary store
          final BinaryStore newBinaryStore = new BinaryStore(clock, expirationIntervalMillis, idleIntervalMillis);
-         newBinaryStore.attachToByteCounter(byteCounter);
          newBinaryStore.attachToElementCounter(elementCounter);
-         newBinaryStore.setDiskStorage(overflowDiskStorage);
-         newBinaryStore.setInvalidator(invalidator);
-         newBinaryStore.setDataSource(dataSource);
-         newBinaryStore.setDataStore(dataStore);
-         newBinaryStore.setObjectSizeCalculator(objectSizeCalculator);
+         newBinaryStore.attachToByteCounter(byteCounter);
+         newBinaryStore.setContext(binaryStoreContext);
 
          // Load
          final LoadableBinaryStoreAdapter loadableAdapter = new LoadableBinaryStoreAdapter(newBinaryStore);

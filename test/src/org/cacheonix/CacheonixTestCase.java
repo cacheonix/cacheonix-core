@@ -16,6 +16,7 @@ package org.cacheonix;
 import java.net.InetAddress;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.Timer;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
@@ -25,6 +26,7 @@ import java.util.concurrent.TimeUnit;
 
 import junit.framework.AssertionFailedError;
 import junit.framework.TestCase;
+import org.cacheonix.cluster.*;
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.cache.item.InvalidObjectException;
 import org.cacheonix.impl.clock.Clock;
@@ -211,6 +213,67 @@ public abstract class CacheonixTestCase extends TestCase {
    protected static void assertFalse(final MutableBoolean mutableBoolean) {
 
       assertFalse(mutableBoolean.get());
+   }
+
+
+   protected static void waitForClusterToForm(final List<Cacheonix> cacheManagerList) throws InterruptedException {
+
+      final int[] clusterSize = {0};
+
+      // Set up waiting for the cluster to form. The cluster is formed when it reached
+      // the number of members the same as the number of Cacheonix instances in the test.
+      for (final Cacheonix cacheonix : cacheManagerList) {
+
+         final org.cacheonix.cluster.Cluster cluster = cacheonix.getCluster();
+         cluster.addClusterEventSubscriber(new ClusterEventSubscriber() {
+
+
+            public void notifyClusterEventSubscriptionStarted(final ClusterEventSubscriptionStartedEvent event) {
+
+               updateClusterSize(event.getClusterConfiguration());
+            }
+
+
+            public void notifyClusterMemberJoined(final ClusterMemberJoinedEvent event) {
+
+               updateClusterSize(event.getClusterConfiguration());
+            }
+
+
+            public void notifyClusterMemberLeft(final ClusterMemberLeftEvent event) {
+
+               updateClusterSize(event.getClusterConfiguration());
+            }
+
+
+            public void notifyClusterStateChanged(final ClusterStateChangedEvent event) {
+
+            }
+
+
+            public void notifyClusterEventSubscriptionEnded(final ClusterEventSubscriptionEndedEvent event) {
+
+            }
+
+
+            private void updateClusterSize(final ClusterConfiguration clusterConfiguration) {
+
+               synchronized (clusterSize) {
+
+                  clusterSize[0] = clusterConfiguration.getClusterMembers().size();
+                  clusterSize.notifyAll();
+               }
+            }
+         });
+      }
+
+      //noinspection SynchronizationOnLocalVariableOrMethodParameter
+      synchronized (clusterSize) {
+
+         while (clusterSize[0] < cacheManagerList.size()) {
+            clusterSize.wait(100L);
+         }
+      }
    }
 
 

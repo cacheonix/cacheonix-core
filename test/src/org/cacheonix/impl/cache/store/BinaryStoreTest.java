@@ -18,6 +18,8 @@ import java.util.Map;
 import org.cacheonix.CacheonixTestCase;
 import org.cacheonix.impl.cache.datasource.DummyBinaryStoreDataSource;
 import org.cacheonix.impl.cache.datastore.DummyDataStore;
+import org.cacheonix.impl.cache.distributed.partitioned.BinaryStoreContext;
+import org.cacheonix.impl.cache.distributed.partitioned.BinaryStoreContextImpl;
 import org.cacheonix.impl.cache.invalidator.DummyCacheInvalidator;
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.cache.item.BinaryFactory;
@@ -59,14 +61,18 @@ public final class BinaryStoreTest extends CacheonixTestCase {
       }
       assertEquals(binaryStore.size(), MAX_SIZE);
 
+      // Test context
+      final BinaryStoreContext context = new BinaryStoreContextImpl();
+      context.setObjectSizeCalculator(new DummyObjectSizeCalculator());
+      context.setDiskStorage(new DummyDiskStorage(DISK_STORAGE_NAME + "-deserialized"));
+      context.setDataSource(new DummyBinaryStoreDataSource());
+      context.setInvalidator(new DummyCacheInvalidator());
+      context.setDataStore(new DummyDataStore());
+
       final Serializer ser = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
       final BinaryStore deserializedBinaryStore = (BinaryStore) ser.deserialize(ser.serialize(binaryStore));
       deserializedBinaryStore.setClock(getClock());
-      deserializedBinaryStore.setDiskStorage(new DummyDiskStorage(DISK_STORAGE_NAME + "-deserialized"));
-      deserializedBinaryStore.setObjectSizeCalculator(new DummyObjectSizeCalculator());
-      deserializedBinaryStore.setInvalidator(new DummyCacheInvalidator());
-      deserializedBinaryStore.setDataSource(new DummyBinaryStoreDataSource());
-      deserializedBinaryStore.setDataStore(new DummyDataStore());
+      deserializedBinaryStore.setContext(context);
       deserializedBinaryStore.attachToElementCounter(new SharedCounter(MAX_SIZE));
       deserializedBinaryStore.attachToByteCounter(new SharedCounter(0L));
 
@@ -161,14 +167,18 @@ public final class BinaryStoreTest extends CacheonixTestCase {
 
    private BinaryStore createBinaryStore() {
 
+      // Test context
+      final BinaryStoreContext context = new BinaryStoreContextImpl();
+      context.setObjectSizeCalculator(new DummyObjectSizeCalculator());
+      context.setDiskStorage(new DummyDiskStorage(DISK_STORAGE_NAME + "-deserialized"));
+      context.setDataSource(new DummyBinaryStoreDataSource());
+      context.setInvalidator(new DummyCacheInvalidator());
+      context.setDataStore(new DummyDataStore());
+
       final BinaryStore keyStore = new BinaryStore(getClock(), Integer.MAX_VALUE, Integer.MAX_VALUE);
-      keyStore.setObjectSizeCalculator(new DummyObjectSizeCalculator());
-      keyStore.setDiskStorage(new DummyDiskStorage("test"));
-      keyStore.setInvalidator(new DummyCacheInvalidator());
-      keyStore.setDataSource(new DummyBinaryStoreDataSource());
-      keyStore.setDataStore(new DummyDataStore());
-      keyStore.attachToByteCounter(new SharedCounter(0L));
       keyStore.attachToElementCounter(new SharedCounter(MAX_SIZE));
+      keyStore.attachToByteCounter(new SharedCounter(0L));
+      keyStore.setContext(context);
 
       return keyStore;
    }

@@ -13,6 +13,7 @@
  */
 package org.cacheonix.impl.cache.distributed.partitioned;
 
+import java.util.Collections;
 import java.util.Map;
 
 import com.gargoylesoftware.base.testing.OrderedTestSuite;
@@ -151,8 +152,8 @@ public final class PutAllRequestBug217Test extends CacheonixTestCase {
       cacheonix = Cacheonix.getInstance(configurationPath);
       cache = cacheonix.getCache(DISTRIBUTED_CACHE_NAME);
 
-      // Let the cluster form
-      Thread.sleep(1000L);
+      // Wait for cluster to form
+      waitForClusterToForm(Collections.singletonList(cacheonix));
    }
 
 

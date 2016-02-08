@@ -578,8 +578,9 @@ public final class EntryModifiedSubscriberDistributedTest extends CacheonixTestC
          assertNotNull("Cache " + i + " should be not null", cache);
          cacheList.add(cache);
       }
-      // Let the cluster form
-      Thread.sleep(1000L);
+
+      // Wait for cluster to form
+      waitForClusterToForm(cacheManagerList);
    }
 
 

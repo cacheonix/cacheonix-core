@@ -26,14 +26,6 @@ import org.cacheonix.TestUtils;
 import org.cacheonix.cache.Cache;
 import org.cacheonix.cache.entry.EntryFilter;
 import org.cacheonix.cluster.CacheMember;
-import org.cacheonix.cluster.Cluster;
-import org.cacheonix.cluster.ClusterConfiguration;
-import org.cacheonix.cluster.ClusterEventSubscriber;
-import org.cacheonix.cluster.ClusterEventSubscriptionEndedEvent;
-import org.cacheonix.cluster.ClusterEventSubscriptionStartedEvent;
-import org.cacheonix.cluster.ClusterMemberJoinedEvent;
-import org.cacheonix.cluster.ClusterMemberLeftEvent;
-import org.cacheonix.cluster.ClusterStateChangedEvent;
 import org.cacheonix.impl.cache.CacheonixCache;
 import org.cacheonix.impl.config.SystemProperty;
 import org.cacheonix.impl.util.ArrayUtils;
@@ -1164,63 +1156,9 @@ public abstract class MultiplePartitionedCacheTestCase extends PartitionedCacheT
          cacheList.add(cache);
       }
 
-      final int[] clusterSize = {0};
 
-      // Set up waiting for the cluster to form. The cluster is formed when it reached
-      // the number of members the same as the number of Cacheonix instances in the test.
-      for (final Cacheonix cacheonix : cacheManagerList) {
-
-         final Cluster cluster = cacheonix.getCluster();
-         cluster.addClusterEventSubscriber(new ClusterEventSubscriber() {
-
-
-            public void notifyClusterEventSubscriptionStarted(final ClusterEventSubscriptionStartedEvent event) {
-
-               updateClusterSize(event.getClusterConfiguration());
-            }
-
-
-            public void notifyClusterMemberJoined(final ClusterMemberJoinedEvent event) {
-
-               updateClusterSize(event.getClusterConfiguration());
-            }
-
-
-            public void notifyClusterMemberLeft(final ClusterMemberLeftEvent event) {
-
-               updateClusterSize(event.getClusterConfiguration());
-            }
-
-
-            public void notifyClusterStateChanged(final ClusterStateChangedEvent event) {
-
-            }
-
-
-            public void notifyClusterEventSubscriptionEnded(final ClusterEventSubscriptionEndedEvent event) {
-
-            }
-
-
-            private void updateClusterSize(final ClusterConfiguration clusterConfiguration) {
-
-               synchronized (clusterSize) {
-
-                  clusterSize[0] = clusterConfiguration.getClusterMembers().size();
-                  clusterSize.notifyAll();
-               }
-            }
-         });
-      }
-
-      //noinspection SynchronizationOnLocalVariableOrMethodParameter
-      synchronized (clusterSize) {
-
-         while (clusterSize[0] < cacheManagerList.size()) {
-            clusterSize.wait(100L);
-         }
-      }
-
+      // Wait for cluster to form
+      waitForClusterToForm(cacheManagerList);
 
       LOG.debug("================================================================================================");
       LOG.debug("========== Started up =========================================================================");

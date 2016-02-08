@@ -87,13 +87,16 @@ public final class BucketExpirationTest extends CacheonixTestCase {
 
       super.setUp();
 
-      final BinaryStore keyStore = new BinaryStore(getClock(), EXPIRATION_INTERVAL_MILLIS, Integer.MAX_VALUE);
+      // Test context
+      final BinaryStoreContext context = new BinaryStoreContextImpl();
+      context.setObjectSizeCalculator(new DummyObjectSizeCalculator());
+      context.setDiskStorage(new DummyDiskStorage("test.cache"));
+      context.setDataSource(new DummyBinaryStoreDataSource());
+      context.setInvalidator(new DummyCacheInvalidator());
+      context.setDataStore(new DummyDataStore());
 
-      keyStore.setObjectSizeCalculator(new DummyObjectSizeCalculator());
-      keyStore.setDiskStorage(new DummyDiskStorage("test"));
-      keyStore.setInvalidator(new DummyCacheInvalidator());
-      keyStore.setDataStore(new DummyDataStore());
-      keyStore.setDataSource(new DummyBinaryStoreDataSource());
+      final BinaryStore keyStore = new BinaryStore(getClock(), EXPIRATION_INTERVAL_MILLIS, Integer.MAX_VALUE);
+      keyStore.setContext(context);
       keyStore.attachToByteCounter(new SharedCounter(0L));
       keyStore.attachToElementCounter(new SharedCounter(0L));
 

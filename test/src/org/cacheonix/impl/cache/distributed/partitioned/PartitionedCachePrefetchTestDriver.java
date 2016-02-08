@@ -142,8 +142,9 @@ public abstract class PartitionedCachePrefetchTestDriver extends CacheonixTestCa
          cacheList.add(cache);
       }
 
-      // Let the cluster form
-      Thread.sleep(1000L);
+      // Wait for cluster to form
+      waitForClusterToForm(cacheManagerList);
+
       LOG.debug("================================================================================================");
       LOG.debug("========== Started up =========================================================================");
       LOG.debug("================================================================================================");

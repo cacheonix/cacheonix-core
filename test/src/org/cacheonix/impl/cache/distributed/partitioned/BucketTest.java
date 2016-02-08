@@ -159,15 +159,18 @@ public final class BucketTest extends CacheonixTestCase {
 
       expirationTime = getClock().currentTime().add(1000L);
 
-      final BinaryStore keyStore = new BinaryStore(getClock(), Integer.MAX_VALUE, Integer.MAX_VALUE);
+      // Test context
+      final BinaryStoreContext context = new BinaryStoreContextImpl();
+      context.setObjectSizeCalculator(new DummyObjectSizeCalculator());
+      context.setDiskStorage(new DummyDiskStorage("test.cache"));
+      context.setDataSource(new DummyBinaryStoreDataSource());
+      context.setInvalidator(new DummyCacheInvalidator());
+      context.setDataStore(new DummyDataStore());
 
-      keyStore.setObjectSizeCalculator(new DummyObjectSizeCalculator());
-      keyStore.setDiskStorage(new DummyDiskStorage("test"));
-      keyStore.setInvalidator(new DummyCacheInvalidator());
-      keyStore.setDataStore(new DummyDataStore());
-      keyStore.setDataSource(new DummyBinaryStoreDataSource());
-      keyStore.attachToByteCounter(new SharedCounter(0L));
+      final BinaryStore keyStore = new BinaryStore(getClock(), Integer.MAX_VALUE, Integer.MAX_VALUE);
       keyStore.attachToElementCounter(new SharedCounter(0L));
+      keyStore.attachToByteCounter(new SharedCounter(0L));
+      keyStore.setContext(context);
 
       key = TestUtils.toBinary("key");
       value = TestUtils.toBinary("value");

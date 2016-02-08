@@ -17,15 +17,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.cacheonix.Cacheonix;
+import org.cacheonix.CacheonixTestCase;
 import org.cacheonix.ShutdownMode;
 import org.cacheonix.TestUtils;
 import org.cacheonix.impl.util.logging.Logger;
-import junit.framework.TestCase;
 
 /**
  * Tester for cacheonix.cluster.Cluster
  */
-public final class ClusterTest extends TestCase {
+public final class ClusterTest extends CacheonixTestCase {
 
    /**
     * Logger.
@@ -46,18 +46,18 @@ public final class ClusterTest extends TestCase {
    /**
     * List of Cacheonix instance.
     */
-   private final List<Cacheonix> cacheonixList = new ArrayList<Cacheonix>(5);
+   private final List<Cacheonix> cacheManagerList = new ArrayList<Cacheonix>(5);
 
 
    public void testGetCluster() throws Exception {
 
-      assertNotNull(cacheonixList.get(0).getCluster());
+      assertNotNull(cacheManagerList.get(0).getCluster());
    }
 
 
    public void testToString() throws Exception {
 
-      assertNotNull(cacheonixList.get(0).getCluster().toString());
+      assertNotNull(cacheManagerList.get(0).getCluster().toString());
    }
 
 
@@ -66,11 +66,11 @@ public final class ClusterTest extends TestCase {
       super.setUp();
       for (final String configuration : CACHEONIX_CONFIGURATIONS) {
          final Cacheonix manager = Cacheonix.getInstance(TestUtils.getTestFile(configuration).toString());
-         cacheonixList.add(manager);
+         cacheManagerList.add(manager);
       }
 
-      // Let the cluster form
-      Thread.sleep(1000L);
+      // Wait for cluster to form
+      waitForClusterToForm(cacheManagerList);
    }
 
 
@@ -80,9 +80,9 @@ public final class ClusterTest extends TestCase {
    protected void tearDown() throws Exception {
 
       for (int i = 0; i < CACHEONIX_CONFIGURATIONS.length; i++) {
-         cacheonixList.get(i).shutdown(ShutdownMode.GRACEFUL_SHUTDOWN, true);
+         cacheManagerList.get(i).shutdown(ShutdownMode.GRACEFUL_SHUTDOWN, true);
       }
-      cacheonixList.clear();
+      cacheManagerList.clear();
       super.tearDown();
    }
 }

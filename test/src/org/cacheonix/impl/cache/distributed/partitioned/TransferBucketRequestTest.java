@@ -129,14 +129,18 @@ public final class TransferBucketRequestTest extends CacheonixTestCase {
 
    private BinaryStore createKeyStore() {
 
+      // Test context
+      final BinaryStoreContext context = new BinaryStoreContextImpl();
+      context.setObjectSizeCalculator(new DummyObjectSizeCalculator());
+      context.setDiskStorage(new DummyDiskStorage("test.cache"));
+      context.setDataSource(new DummyBinaryStoreDataSource());
+      context.setInvalidator(new DummyCacheInvalidator());
+      context.setDataStore(new DummyDataStore());
+
       final BinaryStore keyStore = new BinaryStore(getClock(), Integer.MAX_VALUE, Integer.MAX_VALUE);
-      keyStore.setObjectSizeCalculator(new DummyObjectSizeCalculator());
-      keyStore.setDiskStorage(new DummyDiskStorage("test"));
-      keyStore.setInvalidator(new DummyCacheInvalidator());
-      keyStore.setDataSource(new DummyBinaryStoreDataSource());
-      keyStore.setDataStore(new DummyDataStore());
       keyStore.attachToByteCounter(new SharedCounter(0L));
       keyStore.attachToElementCounter(new SharedCounter(0L));
+      keyStore.setContext(context);
 
       return keyStore;
    }

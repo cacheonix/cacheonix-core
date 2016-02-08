@@ -13,10 +13,6 @@
  */
 package org.cacheonix.impl.cache.local;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 import org.cacheonix.CacheonixTestCase;
 import org.cacheonix.TestConstants;
 import org.cacheonix.impl.cache.datasource.DummyBinaryStoreDataSource;
@@ -25,7 +21,6 @@ import org.cacheonix.impl.cache.invalidator.DummyCacheInvalidator;
 import org.cacheonix.impl.cache.loader.DummyCacheLoader;
 import org.cacheonix.impl.cache.storage.disk.DummyDiskStorage;
 import org.cacheonix.impl.config.ElementEventNotification;
-import org.cacheonix.impl.util.array.HashMap;
 import org.cacheonix.impl.util.cache.DummyObjectSizeCalculator;
 import org.cacheonix.impl.util.logging.Logger;
 
@@ -39,7 +34,7 @@ public final class LocalCacheIntegerPutGetPerformanceTest extends CacheonixTestC
    @SuppressWarnings("UnusedDeclaration")
    private static final Logger LOG = Logger.getLogger(LocalCacheIntegerPutGetPerformanceTest.class); // NOPMD
 
-   private final static int SIZE = 1000000;
+   private static final int SIZE = 500000;
 
    private LocalCache<Integer, Integer> cache;
 
@@ -47,25 +42,13 @@ public final class LocalCacheIntegerPutGetPerformanceTest extends CacheonixTestC
    public void testRead() {
 
 
-      final List<Integer> list = new ArrayList<Integer>(SIZE);
-
       for (int i = 0; i < SIZE; i++) {
 
-         list.add(i);
-      }
-
-
-      final Map<Integer, Integer> map = new HashMap<Integer, Integer>(SIZE);
-      for (final Integer integer : list) {
-         map.put(integer, integer);
+         cache.put(i, i);
       }
 
 
       long timeBefore = System.nanoTime();
-
-      for (final Integer i : list) {
-         cache.put(i, i);
-      }
 
       long time = System.nanoTime() - timeBefore;
 
@@ -74,10 +57,9 @@ public final class LocalCacheIntegerPutGetPerformanceTest extends CacheonixTestC
 
       timeBefore = System.nanoTime();
 
-      for (final Integer i : list) {
+      for (int i = 0; i < SIZE; i++) {
 
          cache.get(i);
-
       }
 
       time = System.nanoTime() - timeBefore;

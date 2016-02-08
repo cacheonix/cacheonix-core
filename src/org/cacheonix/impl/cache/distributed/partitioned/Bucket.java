@@ -27,13 +27,9 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import org.cacheonix.CacheonixException;
 import org.cacheonix.cache.CacheStatistics;
-import org.cacheonix.cache.datastore.DataStore;
-import org.cacheonix.cache.invalidator.CacheInvalidator;
 import org.cacheonix.impl.RuntimeIOException;
-import org.cacheonix.impl.cache.datasource.BinaryStoreDataSource;
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.cache.item.InvalidObjectException;
-import org.cacheonix.impl.cache.storage.disk.DiskStorage;
 import org.cacheonix.impl.cache.store.BinaryEntryModifiedSubscriber;
 import org.cacheonix.impl.cache.store.BinaryStore;
 import org.cacheonix.impl.cache.store.PreviousValue;
@@ -46,7 +42,6 @@ import org.cacheonix.impl.net.serializer.SerializerUtils;
 import org.cacheonix.impl.net.serializer.Wireable;
 import org.cacheonix.impl.net.serializer.WireableBuilder;
 import org.cacheonix.impl.util.IOUtils;
-import org.cacheonix.impl.util.cache.ObjectSizeCalculator;
 import org.cacheonix.impl.util.logging.Logger;
 
 /**
@@ -384,61 +379,15 @@ public final class Bucket implements Wireable {
    }
 
 
-   /**
-    * Sets an invalidator. This method must be called immediately after de-serialization is complete.
-    *
-    * @param invalidator the invalidator to set.
-    */
-   public void setInvalidator(final CacheInvalidator invalidator) {
+   public void setContext(final BucketContext bucketContext) {
 
-      keyStore.setInvalidator(invalidator);
-   }
-
-
-   /**
-    * Sets a disk storage. This method must be called immediately after de-serialization is complete.
-    *
-    * @param diskStorage the disk storage to set.
-    */
-   public void setDiskStorage(final DiskStorage diskStorage) {
-
-      keyStore.setDiskStorage(diskStorage);
-   }
-
-
-   /**
-    * Sets an auxiliary, user-provided data source. This method must be called immediately after de-serialization is
-    * complete.
-    *
-    * @param dataSource the data source to set.
-    */
-   public void setDataSource(final BinaryStoreDataSource dataSource) {
-
-      keyStore.setDataSource(dataSource);
-   }
-
-
-   /**
-    * Sets an auxiliary, user-provided data store. This method must be called immediately after de-serialization is
-    * complete.
-    *
-    * @param dataStore the data store to set.
-    */
-   public void setDataStore(final DataStore dataStore) {
-
-      keyStore.setDataStore(dataStore);
-   }
-
-
-   /**
-    * Sets a mandatory object size calculator. This method must be called immediately after de-serialization is
-    * complete.
-    *
-    * @param objectSizeCalculator the object size calculator to set.
-    */
-   public void setObjectSizeCalculator(final ObjectSizeCalculator objectSizeCalculator) {
-
-      keyStore.setObjectSizeCalculator(objectSizeCalculator);
+      final BinaryStoreContext storeContext = new BinaryStoreContextImpl();
+      storeContext.setObjectSizeCalculator(bucketContext.getObjectSizeCalculator());
+      storeContext.setDiskStorage(bucketContext.getDiskStorage());
+      storeContext.setInvalidator(bucketContext.getInvalidator());
+      storeContext.setDataSource(bucketContext.getDataSource());
+      storeContext.setDataStore(bucketContext.getDataStore());
+      keyStore.setContext(storeContext);
    }
 
 

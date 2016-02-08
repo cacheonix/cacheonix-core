@@ -21,13 +21,11 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import org.cacheonix.cache.invalidator.CacheInvalidator;
 import org.cacheonix.cache.invalidator.Invalidateable;
 import org.cacheonix.cache.subscriber.EntryModifiedEventContentFlag;
 import org.cacheonix.cache.subscriber.EntryModifiedEventType;
 import org.cacheonix.impl.cache.datasource.PrefetchCommand;
 import org.cacheonix.impl.cache.item.Binary;
-import org.cacheonix.impl.cache.storage.disk.DiskStorage;
 import org.cacheonix.impl.cache.storage.disk.StorageException;
 import org.cacheonix.impl.cache.storage.disk.StoredObject;
 import org.cacheonix.impl.cache.subscriber.BinaryEntryModifiedEvent;
@@ -37,7 +35,6 @@ import org.cacheonix.impl.net.serializer.SerializerUtils;
 import org.cacheonix.impl.net.serializer.Wireable;
 import org.cacheonix.impl.net.serializer.WireableBuilder;
 import org.cacheonix.impl.util.Assert;
-import org.cacheonix.impl.util.cache.ObjectSizeCalculator;
 import org.cacheonix.impl.util.exception.ExceptionUtils;
 import org.cacheonix.impl.util.logging.Logger;
 
@@ -80,23 +77,8 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
     * Shallow size of empty BinaryStoreElement used to calculate total byte size in memory of BinaryStoreElement. See
     * <code>BinaryStoreElementTest.testWriteReadWire()</code> for calculation.
     */
-   static final int SIZE_CACHE_ELEMENT_OVERHEAD = 152;
+   static final int SIZE_CACHE_ELEMENT_OVERHEAD = 136;
 
-
-   /**
-    * Storage used to store this element.
-    */
-   private DiskStorage diskStorage = null;
-
-   /**
-    * Object size calculator.
-    */
-   private ObjectSizeCalculator objectSizeCalculator;
-
-   /**
-    * Cache element invalidator.
-    */
-   private CacheInvalidator invalidator;
 
    /**
     * Key.
@@ -171,6 +153,8 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
     */
    private byte flags;
 
+   private BinaryStoreElementContext context;
+
 
    /**
     * Constructor.
@@ -179,17 +163,9 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
     * @param createdTime
     * @param expirationTime expiration time millis.
     * @param idleTime       idle time millis.
-    * @param invalidator    invalidator.
-    * @param diskStorage    overflow disk storage.
     */
    public BinaryStoreElement(final Binary key, final Binary value, final Time createdTime, final Time expirationTime,
-           final Time idleTime, final ObjectSizeCalculator sizeCalculator,
-           final CacheInvalidator invalidator, final DiskStorage diskStorage) {
-
-      // Support objects
-      this.objectSizeCalculator = sizeCalculator;
-      this.diskStorage = diskStorage;
-      this.invalidator = invalidator;
+           final Time idleTime) {
 
       // Functional fields
       this.createdTime = createdTime;
@@ -218,7 +194,7 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
       if (isStored()) {
 
          // Element contains stored object as value
-         return (Binary) diskStorage.get(storedValue);
+         return (Binary) context.getDiskStorage().get(storedValue);
       } else {
          return value;
       }
@@ -383,7 +359,7 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
       }
 
       // Call invalidator.
-      invalidator.process(this);
+      context.getInvalidator().process(this);
 
       // Return result
       return false;
@@ -405,29 +381,6 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
    public void setUpdateCounter(final long counter) {
 
       this.updateCounter = counter;
-   }
-
-
-   /**
-    * Sets invalidator.
-    *
-    * @param invalidator
-    */
-   public void setInvalidator(final CacheInvalidator invalidator) {
-
-      this.invalidator = invalidator;
-   }
-
-
-   public void setDiskStorage(final DiskStorage diskStorage) {
-
-      this.diskStorage = diskStorage;
-   }
-
-
-   public void setObjectSizeCalculator(final ObjectSizeCalculator objectSizeCalculator) {
-
-      this.objectSizeCalculator = objectSizeCalculator;
    }
 
 
@@ -491,15 +444,15 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
 
       Assert.assertFalse(isStored(), "Object cannot be stored twice, key: {0}", key);
 
-      final StoredObject storedObject = diskStorage.put(key, value);
+      final StoredObject storedObject = context.getDiskStorage().put(key, value);
       if (storedObject != null) {
 
          // Replace value
          storedValue = storedObject;
          value = null;
          setValueSizeBytes(SIZE_OBJECT_REF);
-         setElementSizeBytes(
-                 objectSizeCalculator.sum(SIZE_CACHE_ELEMENT_OVERHEAD, getKeySizeBytes(), getValueSizeBytes()));
+         setElementSizeBytes(context.getObjectSizeCalculator().sum(SIZE_CACHE_ELEMENT_OVERHEAD, getKeySizeBytes(),
+                 getValueSizeBytes()));
       }
       return isStored();
    }
@@ -516,18 +469,18 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
       if (isStored()) {
 
          // Load value
-         value = (Binary) diskStorage.get(storedValue);
+         value = (Binary) context.getDiskStorage().get(storedValue);
 
          // Discard
-         diskStorage.remove(storedValue);
+         context.getDiskStorage().remove(storedValue);
 
          // Mark as not stored
          storedValue = null;
 
          // Recalculate the size becuase it was set to reference length value at store()
-         setValueSizeBytes(objectSizeCalculator.sizeOf(value));
-         setElementSizeBytes(
-                 objectSizeCalculator.sum(SIZE_CACHE_ELEMENT_OVERHEAD, getKeySizeBytes(), getValueSizeBytes()));
+         setValueSizeBytes(context.getObjectSizeCalculator().sizeOf(value));
+         setElementSizeBytes(context.getObjectSizeCalculator().sum(SIZE_CACHE_ELEMENT_OVERHEAD, getKeySizeBytes(),
+                 getValueSizeBytes()));
       }
 
       return getSizeBytes();
@@ -541,7 +494,7 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
 
       Assert.assertTrue(isStored(), "Cannot discard an object that is not stored, key: {0}", key);
 
-      diskStorage.remove(storedValue);
+      context.getDiskStorage().remove(storedValue);
       storedValue = null;
    }
 
@@ -555,7 +508,8 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
 
          final long keySizeBytes = getKeySizeBytes();
          final long valueSizeBytes = getValueSizeBytes();
-         setElementSizeBytes(objectSizeCalculator.sum(SIZE_CACHE_ELEMENT_OVERHEAD, keySizeBytes, valueSizeBytes));
+         setElementSizeBytes(
+                 context.getObjectSizeCalculator().sum(SIZE_CACHE_ELEMENT_OVERHEAD, keySizeBytes, valueSizeBytes));
       }
 
       return elementSizeBytes;
@@ -578,7 +532,7 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
 
       if (!hasKeySizeBytes()) {
 
-         setKeySizeBytes(objectSizeCalculator.sizeOf(key));
+         setKeySizeBytes(context.getObjectSizeCalculator().sizeOf(key));
       }
 
       return keySizeBytes;
@@ -606,7 +560,7 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
             setValueSizeBytes(SIZE_OBJECT_REF);
          } else {
 
-            setValueSizeBytes(objectSizeCalculator.sizeOf(value));
+            setValueSizeBytes(context.getObjectSizeCalculator().sizeOf(value));
          }
       }
 
@@ -962,17 +916,20 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
               ", value=" + value +
               ", storedValue=" + storedValue +
               ", createdTimeMillis=" + createdTime +
-              ", overflowDiskStorage=" + diskStorage +
               ", expirationTimeMillis=" + expirationTime +
               ", idleTimeMillis=" + idleTime +
-              ", objectSizeCalculator=" + objectSizeCalculator +
               ", sizeBytes=" + elementSizeBytes +
               ", keyByteSize=" + keySizeBytes +
               ", valueByteSize=" + valueSizeBytes +
               ", valid=" + isValid() +
-              ", invalidator=" + invalidator +
               ", updateCounter=" + updateCounter +
               '}';
+   }
+
+
+   public void setContext(final BinaryStoreElementContext context) {
+
+      this.context = context;
    }
 
 

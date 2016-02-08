@@ -347,10 +347,8 @@ public final class RecoveryMarker extends MarkerRequest {
             LOG.debug("Store Previous list as the marker list: " + recoveryMarker.previousList);
          }
 
-         processor.getProcessorState().setClusterView(
-                 new ClusterViewImpl(recoveryMarker.newClusterUUID, recoveryMarker.originator,
-                         recoveryMarker.previousList,
-                         self));
+         processor.getProcessorState().setClusterView(new ClusterViewImpl(recoveryMarker.newClusterUUID,
+                 recoveryMarker.originator, recoveryMarker.previousList, self));
          processor.getRouter().setClusterUUID(recoveryMarker.newClusterUUID);
       }
 

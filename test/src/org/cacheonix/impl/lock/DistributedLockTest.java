@@ -57,12 +57,12 @@ public final class DistributedLockTest extends CacheonixTestCase {
    /**
     * List of cache managers.
     */
-   private final List<Cacheonix> cacheonixList = new ArrayList<Cacheonix>(5);
+   private final List<Cacheonix> cacheManagerList = new ArrayList<Cacheonix>(5);
 
 
    public void testGetLock() {
 
-      final ReadWriteLock writeLock = cacheonixList.get(0).getCluster().getReadWriteLock();
+      final ReadWriteLock writeLock = cacheManagerList.get(0).getCluster().getReadWriteLock();
       final Lock lock = writeLock.writeLock();
       lock.lock();
       try {
@@ -78,11 +78,11 @@ public final class DistributedLockTest extends CacheonixTestCase {
    public void testTryLockWithNoWait() {
 
       // Place a hard lock
-      final Lock lockAtNode0 = cacheonixList.get(0).getCluster().getReadWriteLock().writeLock();
+      final Lock lockAtNode0 = cacheManagerList.get(0).getCluster().getReadWriteLock().writeLock();
       lockAtNode0.lock();
       try {
 
-         final Lock lockAtNode1 = cacheonixList.get(1).getCluster().getReadWriteLock().writeLock();
+         final Lock lockAtNode1 = cacheManagerList.get(1).getCluster().getReadWriteLock().writeLock();
          assertFalse("Must not succeed because write lock is already held by other node", lockAtNode1.tryLock());
       } finally {
          lockAtNode0.unlock();
@@ -93,11 +93,11 @@ public final class DistributedLockTest extends CacheonixTestCase {
    public void testGrantsMultipleReadLocks() {
 
       // Place a hard lock
-      final Lock lockAtNode0 = cacheonixList.get(0).getCluster().getReadWriteLock().readLock();
+      final Lock lockAtNode0 = cacheManagerList.get(0).getCluster().getReadWriteLock().readLock();
       lockAtNode0.lock();
       try {
 
-         final Lock lockAtNode1 = cacheonixList.get(1).getCluster().getReadWriteLock().readLock();
+         final Lock lockAtNode1 = cacheManagerList.get(1).getCluster().getReadWriteLock().readLock();
          assertTrue(lockAtNode1.tryLock());
          lockAtNode1.unlock();
       } finally {
@@ -108,11 +108,11 @@ public final class DistributedLockTest extends CacheonixTestCase {
 
    public void testDoesNotUpgradeReadLockWhileOtherThreadHoldsRead() {
 
-      final ReadWriteLock rwLockAtNode0 = cacheonixList.get(0).getCluster().getReadWriteLock();
+      final ReadWriteLock rwLockAtNode0 = cacheManagerList.get(0).getCluster().getReadWriteLock();
       final Lock readLockAtNode0 = rwLockAtNode0.readLock();
       readLockAtNode0.lock();
       try {
-         final ReadWriteLock rwLockAtNode1 = cacheonixList.get(1).getCluster().getReadWriteLock();
+         final ReadWriteLock rwLockAtNode1 = cacheManagerList.get(1).getCluster().getReadWriteLock();
          final Lock readLockAtNode1 = rwLockAtNode1.readLock();
          assertTrue(readLockAtNode1.tryLock());
          final Lock writeLockAtNode0 = rwLockAtNode0.writeLock();
@@ -150,7 +150,7 @@ public final class DistributedLockTest extends CacheonixTestCase {
 
 
       final Collection<Exception> errors = new ConcurrentLinkedQueue<Exception>();
-      final Lock lock = cacheonixList.get(0).getCluster().getReadWriteLock().writeLock();
+      final Lock lock = cacheManagerList.get(0).getCluster().getReadWriteLock().writeLock();
 
       final CountDownLatch startupLatch = new CountDownLatch(2);
 
@@ -172,7 +172,7 @@ public final class DistributedLockTest extends CacheonixTestCase {
    public void testNestedWriteLocks() {
 
       // Place a write lock
-      final Lock writeLock = cacheonixList.get(0).getCluster().getReadWriteLock().writeLock();
+      final Lock writeLock = cacheManagerList.get(0).getCluster().getReadWriteLock().writeLock();
       writeLock.lock();
       try {
          writeLock.lock();
@@ -191,7 +191,7 @@ public final class DistributedLockTest extends CacheonixTestCase {
    public void testNestedLocksWithDifferentLockObjects() {
 
       // Place a write lock
-      final Cacheonix cacheonix = cacheonixList.get(0);
+      final Cacheonix cacheonix = cacheManagerList.get(0);
       cacheonix.getCluster().getReadWriteLock().writeLock().lock();
       try {
          cacheonix.getCluster().getReadWriteLock().writeLock().lock();
@@ -209,7 +209,7 @@ public final class DistributedLockTest extends CacheonixTestCase {
    public void testNestedLocksDetectMismatchedUnlock() {
 
       // Place a write lock
-      final Lock lock = cacheonixList.get(0).getCluster().getReadWriteLock().writeLock();
+      final Lock lock = cacheManagerList.get(0).getCluster().getReadWriteLock().writeLock();
       boolean brokenLockExceptionThrown = false;
       lock.lock();
       try {
@@ -235,7 +235,7 @@ public final class DistributedLockTest extends CacheonixTestCase {
    public void testNestedLocksDetectMismatchedUnlockWithDifferentLockObjects() {
 
       // Place a write lock
-      final Cacheonix cacheonix = cacheonixList.get(0);
+      final Cacheonix cacheonix = cacheManagerList.get(0);
       cacheonix.getCluster().getReadWriteLock().writeLock().lock();
       boolean brokenLockExceptionThrown = false;
       try {
@@ -260,7 +260,7 @@ public final class DistributedLockTest extends CacheonixTestCase {
 
    public void testNestedReadLocks() {
 
-      final Cacheonix cacheonix = cacheonixList.get(0);
+      final Cacheonix cacheonix = cacheManagerList.get(0);
       final Lock readLock = cacheonix.getCluster().getReadWriteLock().readLock();
       readLock.lock();
       try {
@@ -279,7 +279,7 @@ public final class DistributedLockTest extends CacheonixTestCase {
 
    public void testReadLockUpgradesToWrite() {
 
-      final Cacheonix cacheonix = cacheonixList.get(0);
+      final Cacheonix cacheonix = cacheManagerList.get(0);
       final ReadWriteLock readWriteLock = cacheonix.getCluster().getReadWriteLock();
       final Lock readLock = readWriteLock.readLock();
       final Lock writeLock = readWriteLock.writeLock();
@@ -302,7 +302,7 @@ public final class DistributedLockTest extends CacheonixTestCase {
 
    public void testWriteLockUpgradesToRead() {
 
-      final Cacheonix cacheonix = cacheonixList.get(0);
+      final Cacheonix cacheonix = cacheManagerList.get(0);
       final ReadWriteLock readWriteLock = cacheonix.getCluster().getReadWriteLock();
       final Lock readLock = readWriteLock.readLock();
       final Lock writeLock = readWriteLock.writeLock();
@@ -325,7 +325,7 @@ public final class DistributedLockTest extends CacheonixTestCase {
 
    public void testWriteToReadToRead() {
 
-      final Cacheonix cacheonix = cacheonixList.get(0);
+      final Cacheonix cacheonix = cacheManagerList.get(0);
       final ReadWriteLock readWriteLock = cacheonix.getCluster().getReadWriteLock();
       final Lock readLock = readWriteLock.readLock();
       final Lock writeLock = readWriteLock.writeLock();
@@ -353,7 +353,7 @@ public final class DistributedLockTest extends CacheonixTestCase {
 
    public void testReadToWriteToWrite() {
 
-      final Cacheonix cacheonix = cacheonixList.get(0);
+      final Cacheonix cacheonix = cacheManagerList.get(0);
       final ReadWriteLock readWriteLock = cacheonix.getCluster().getReadWriteLock();
       final Lock readLock = readWriteLock.readLock();
       final Lock writeLock = readWriteLock.writeLock();
@@ -386,8 +386,8 @@ public final class DistributedLockTest extends CacheonixTestCase {
     */
    public void testDetectsDeadlock() throws InterruptedException {
 
-      final Lock writeLock0 = cacheonixList.get(0).getCluster().getReadWriteLock("lock0").writeLock();
-      final Lock writeLock1 = cacheonixList.get(0).getCluster().getReadWriteLock("lock1").writeLock();
+      final Lock writeLock0 = cacheManagerList.get(0).getCluster().getReadWriteLock("lock0").writeLock();
+      final Lock writeLock1 = cacheManagerList.get(0).getCluster().getReadWriteLock("lock1").writeLock();
       final MutableBoolean detected = new MutableBoolean();
 
       final CountDownLatch step1Latch = new CountDownLatch(1);
@@ -484,12 +484,12 @@ public final class DistributedLockTest extends CacheonixTestCase {
     */
    public void testTimedTryLock() throws InterruptedException {
 
-      final Cacheonix cacheonix0 = cacheonixList.get(0);
+      final Cacheonix cacheonix0 = cacheManagerList.get(0);
       final Lock writeLock = cacheonix0.getCluster().getReadWriteLock().writeLock();
       writeLock.lock();
       try {
 
-         final Cacheonix cacheonix1 = cacheonixList.get(1);
+         final Cacheonix cacheonix1 = cacheManagerList.get(1);
          assertFalse(cacheonix1.getCluster().getReadWriteLock().writeLock().tryLock(100L));
 
       } finally {
@@ -509,8 +509,8 @@ public final class DistributedLockTest extends CacheonixTestCase {
       final long waitTime = 1000L;
       final long timeout = System.currentTimeMillis() + waitTime;
       final MutableBoolean lockGone = new MutableBoolean();
-      final Lock writeLock0 = cacheonixList.get(0).getCluster().getReadWriteLock().writeLock();
-      final Lock writeLock1 = cacheonixList.get(1).getCluster().getReadWriteLock().writeLock();
+      final Lock writeLock0 = cacheManagerList.get(0).getCluster().getReadWriteLock().writeLock();
+      final Lock writeLock1 = cacheManagerList.get(1).getCluster().getReadWriteLock().writeLock();
       writeLock0.lock(200L);
       try {
 
@@ -537,8 +537,8 @@ public final class DistributedLockTest extends CacheonixTestCase {
 
    public void testWaitingForLockThrowsExceptionOnShutdown() throws Exception {
 
-      final Lock writeLock = cacheonixList.get(0).getCluster().getReadWriteLock().writeLock();
-      final Cacheonix cacheonix1 = cacheonixList.get(1);
+      final Lock writeLock = cacheManagerList.get(0).getCluster().getReadWriteLock().writeLock();
+      final Cacheonix cacheonix1 = cacheManagerList.get(1);
       writeLock.lock();
       final MutableBoolean thrown = new MutableBoolean();
       try {
@@ -577,8 +577,8 @@ public final class DistributedLockTest extends CacheonixTestCase {
    @SuppressWarnings("TooBroadScope")
    public void testWaitingForLockAcquiresLockOnShutdown() throws Exception {
 
-      final Cacheonix cacheonix0 = cacheonixList.get(0);
-      final Cacheonix cacheonix1 = cacheonixList.get(1);
+      final Cacheonix cacheonix0 = cacheManagerList.get(0);
+      final Cacheonix cacheonix1 = cacheManagerList.get(1);
       final MutableBoolean thrown = new MutableBoolean();
       final MutableBoolean acquired = new MutableBoolean();
       final Lock writeLock = cacheonix0.getCluster().getReadWriteLock().writeLock();
@@ -630,14 +630,14 @@ public final class DistributedLockTest extends CacheonixTestCase {
       if (LOG.isDebugEnabled()) LOG.debug("-------------------------- setUp -------------------------"); // NOPMD
       super.setUp();
 
-      assertTrue(cacheonixList.isEmpty());
+      assertTrue(cacheManagerList.isEmpty());
       for (final String configuration : CACHEONIX_CONFIGURATIONS) {
          final Cacheonix manager = Cacheonix.getInstance(TestUtils.getTestFile(configuration).toString());
-         cacheonixList.add(manager);
+         cacheManagerList.add(manager);
       }
 
-      // Let the cluster form
-      Thread.sleep(1000L);
+      // Wait for cluster to form
+      waitForClusterToForm(cacheManagerList);
    }
 
 
@@ -648,12 +648,12 @@ public final class DistributedLockTest extends CacheonixTestCase {
       //noinspection ControlFlowStatementWithoutBraces
       if (LOG.isDebugEnabled()) LOG.debug("-------------------------- tearDown ----------------------"); // NOPMD
       for (int i = 0; i < CACHEONIX_CONFIGURATIONS.length; i++) {
-         final Cacheonix cacheonix = cacheonixList.get(i);
+         final Cacheonix cacheonix = cacheManagerList.get(i);
          if (!cacheonix.isShutdown()) {
             cacheonix.shutdown(ShutdownMode.GRACEFUL_SHUTDOWN, true);
          }
       }
-      cacheonixList.clear();
+      cacheManagerList.clear();
 
       super.tearDown();
    }

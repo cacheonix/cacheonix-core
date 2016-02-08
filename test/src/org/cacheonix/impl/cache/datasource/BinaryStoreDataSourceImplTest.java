@@ -19,6 +19,7 @@ import org.cacheonix.cache.datasource.SimpleDataSourceObject;
 import org.cacheonix.impl.cache.invalidator.DummyCacheInvalidator;
 import org.cacheonix.impl.cache.storage.disk.DummyDiskStorage;
 import org.cacheonix.impl.cache.store.BinaryStoreElement;
+import org.cacheonix.impl.cache.store.BinaryStoreElementContextImpl;
 import org.cacheonix.impl.clock.Time;
 import org.cacheonix.impl.clock.TimeImpl;
 import org.cacheonix.impl.util.cache.DummyObjectSizeCalculator;
@@ -76,11 +77,18 @@ public final class BinaryStoreDataSourceImplTest extends CacheonixTestCase {
       final DummyCacheInvalidator invalidator = new DummyCacheInvalidator();
       final DummyDiskStorage diskStorage = new DummyDiskStorage("test.cache");
 
+      // Context
+      final BinaryStoreElementContextImpl context = new BinaryStoreElementContextImpl();
+      context.setDiskStorage(diskStorage);
+      context.setInvalidator(invalidator);
+      context.setObjectSizeCalculator(sizeCalculator);
+
       final Time createdTime = getClock().currentTime();
       final Time expirationTime = getClock().currentTime().add(100);
       final Time timeTookToReadFromDataSource = new TimeImpl(50, 0);
       final BinaryStoreElement element = new BinaryStoreElement(toBinary(TEST_KEY), toBinary(TEST_VALUE), createdTime,
-              expirationTime, null, sizeCalculator, invalidator, diskStorage);
+              expirationTime, null);
+      element.setContext(context);
 
       // Confirm
       binaryStoreDataSource.schedulePrefetch(element, timeTookToReadFromDataSource);

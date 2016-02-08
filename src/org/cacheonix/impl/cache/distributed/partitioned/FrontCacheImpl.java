@@ -18,6 +18,7 @@ import org.cacheonix.impl.cache.datastore.DummyDataStore;
 import org.cacheonix.impl.cache.invalidator.DummyCacheInvalidator;
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.cache.item.InvalidObjectException;
+import org.cacheonix.impl.cache.storage.disk.DummyDiskStorage;
 import org.cacheonix.impl.cache.store.BinaryStore;
 import org.cacheonix.impl.cache.store.ReadableElement;
 import org.cacheonix.impl.cache.store.SharedCounter;
@@ -48,6 +49,8 @@ public final class FrontCacheImpl implements FrontCache {
 
    private final DummyCacheInvalidator dummyCacheInvalidator = new DummyCacheInvalidator();
 
+   private final DummyDiskStorage dummyDiskStorage = new DummyDiskStorage("front.cache");
+
    private final FrontCacheConfiguration frontCacheConfiguration;
 
    private final SharedCounter byteCounter;
@@ -61,6 +64,8 @@ public final class FrontCacheImpl implements FrontCache {
    private final long timeToLiveMillis;
 
    private final long idleTimeMillis;
+
+   private final BinaryStoreContext binaryStoreContext;
 
 
    public FrontCacheImpl(final Clock clock, final FrontCacheConfiguration frontCacheConfiguration) {
@@ -76,6 +81,14 @@ public final class FrontCacheImpl implements FrontCache {
       this.elementCounter = new SharedCounter(storeConfiguration.getLru().getMaxElements());
       this.timeToLiveMillis = storeConfiguration.getExpiration().getTimeToLiveMillis();
       this.idleTimeMillis = storeConfiguration.getExpiration().getIdleTimeMillis();
+
+      // Context
+      this.binaryStoreContext = new BinaryStoreContextImpl();
+      this.binaryStoreContext.setObjectSizeCalculator(objectSizeCalculator);
+      this.binaryStoreContext.setInvalidator(dummyCacheInvalidator);
+      this.binaryStoreContext.setDataSource(dummyCacheDataSource);
+      this.binaryStoreContext.setDataStore(dummyCacheDataStore);
+      this.binaryStoreContext.setDiskStorage(dummyDiskStorage);
    }
 
 
@@ -91,12 +104,9 @@ public final class FrontCacheImpl implements FrontCache {
       if (keyStores[bucketNumber] == null) {
 
          final BinaryStore keyStore = new BinaryStore(clock, timeToLiveMillis, idleTimeMillis);
-         keyStore.setObjectSizeCalculator(objectSizeCalculator);
+         keyStore.setContext(binaryStoreContext);
          keyStore.attachToElementCounter(elementCounter);
          keyStore.attachToByteCounter(byteCounter);
-         keyStore.setDataStore(dummyCacheDataStore);
-         keyStore.setDataSource(dummyCacheDataSource);
-         keyStore.setInvalidator(dummyCacheInvalidator);
          keyStores[bucketNumber] = keyStore;
       }
 

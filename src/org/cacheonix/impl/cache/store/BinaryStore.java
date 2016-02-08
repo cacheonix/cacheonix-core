@@ -29,19 +29,18 @@ import org.cacheonix.CacheonixException;
 import org.cacheonix.NotSubscribedException;
 import org.cacheonix.cache.CacheStatistics;
 import org.cacheonix.cache.datastore.DataStore;
-import org.cacheonix.cache.invalidator.CacheInvalidator;
 import org.cacheonix.cache.subscriber.EntryModifiedEventType;
 import org.cacheonix.impl.RuntimeIOException;
 import org.cacheonix.impl.RuntimeStorageException;
 import org.cacheonix.impl.cache.datasource.BinaryStoreDataSource;
 import org.cacheonix.impl.cache.datasource.BinaryStoreDataSourceObject;
 import org.cacheonix.impl.cache.datastore.StorableImpl;
+import org.cacheonix.impl.cache.distributed.partitioned.BinaryStoreContext;
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.cache.item.BinaryFactory;
 import org.cacheonix.impl.cache.item.BinaryFactoryBuilder;
 import org.cacheonix.impl.cache.item.BinaryType;
 import org.cacheonix.impl.cache.item.InvalidObjectException;
-import org.cacheonix.impl.cache.storage.disk.DiskStorage;
 import org.cacheonix.impl.cache.storage.disk.StorageException;
 import org.cacheonix.impl.clock.Clock;
 import org.cacheonix.impl.clock.Time;
@@ -53,7 +52,6 @@ import org.cacheonix.impl.util.array.HashMap;
 import org.cacheonix.impl.util.array.HashSet;
 import org.cacheonix.impl.util.array.ObjectObjectProcedure;
 import org.cacheonix.impl.util.array.ObjectProcedure;
-import org.cacheonix.impl.util.cache.ObjectSizeCalculator;
 import org.cacheonix.impl.util.exception.ExceptionUtils;
 import org.cacheonix.impl.util.logging.Logger;
 
@@ -122,7 +120,7 @@ public final class BinaryStore implements Wireable {
    /**
     * Secondary storage for this cache.
     */
-   private DiskStorage diskStorage;
+//   private DiskStorage diskStorage;
 
    /**
     * Maximum number of elements stored in memory.
@@ -141,27 +139,9 @@ public final class BinaryStore implements Wireable {
    private final transient Map<Binary, List<BinaryEntryModifiedSubscriber>> updateSubscribers = new HashMap<Binary, List<BinaryEntryModifiedSubscriber>>(
            1); // NOPMD
 
+   private BinaryStoreContext binaryStoreContext;
 
-   /**
-    * Object size calculator.
-    */
-   private ObjectSizeCalculator objectSizeCalculator;
-
-
-   /**
-    * Auxiliary, user-provided data store.
-    */
-   private BinaryStoreDataSource dataSource;
-
-   /**
-    * Cache invalidator.
-    */
-   private CacheInvalidator invalidator;
-
-   /**
-    * Auxiliary cache data store.
-    */
-   private DataStore dataStore;
+   private BinaryStoreElementContext binaryStoreElementContext;
 
 
    public BinaryStore() {
@@ -273,7 +253,7 @@ public final class BinaryStore implements Wireable {
       });
 
       // Set disk storage to null;
-      diskStorage = null;
+      binaryStoreContext.setDiskStorage(null);
    }
 
 
@@ -310,94 +290,6 @@ public final class BinaryStore implements Wireable {
    public void setClock(final Clock clock) {
 
       this.clock = clock;
-   }
-
-
-   /**
-    * Sets an invalidator. This method must be called immediately after de-serialization is complete.
-    *
-    * @param invalidator the invalidator to set.
-    */
-   public void setInvalidator(final CacheInvalidator invalidator) {
-
-      // Set the invalidator field
-      this.invalidator = invalidator;
-
-      // Set the invalidator in all elements
-      elements.forEachValue(new ObjectProcedure<BinaryStoreElement>() {
-
-         public boolean execute(final BinaryStoreElement binaryStoreElement) {
-
-            binaryStoreElement.setInvalidator(invalidator);
-
-            return true;
-         }
-      });
-   }
-
-
-   public void setObjectSizeCalculator(final ObjectSizeCalculator objectSizeCalculator) {
-
-      // Set the calculator field
-      this.objectSizeCalculator = objectSizeCalculator;
-
-      // Set the invalidator in all elements
-      elements.forEachValue(new ObjectProcedure<BinaryStoreElement>() {
-
-         public boolean execute(final BinaryStoreElement binaryStoreElement) {
-
-            binaryStoreElement.setObjectSizeCalculator(objectSizeCalculator);
-
-            return true;
-         }
-      });
-   }
-
-
-   /**
-    * Sets a disk storage. This method must be called immediately after de-serialization is complete.
-    *
-    * @param diskStorage the disk storage to set.
-    */
-   public void setDiskStorage(final DiskStorage diskStorage) {
-
-      // Set the disk storage field
-      this.diskStorage = diskStorage;
-
-      // Set the disk storage in all elements
-      elements.forEachValue(new ObjectProcedure<BinaryStoreElement>() {
-
-         public boolean execute(final BinaryStoreElement binaryStoreElement) {
-
-            binaryStoreElement.setDiskStorage(diskStorage);
-
-            return true;
-         }
-      });
-   }
-
-
-   /**
-    * Sets an auxiliary, user-provided data source. This method must be called immediately after de-serialization is
-    * complete.
-    *
-    * @param dataSource the data source to set.
-    */
-   public void setDataSource(final BinaryStoreDataSource dataSource) {
-
-      this.dataSource = dataSource;
-   }
-
-
-   /**
-    * Sets an auxiliary, user-provided data store. This method must be called immediately after de-serialization is
-    * complete.
-    *
-    * @param dataStore the data store to set.
-    */
-   public void setDataStore(final DataStore dataStore) {
-
-      this.dataStore = dataStore;
    }
 
 
@@ -704,13 +596,15 @@ public final class BinaryStore implements Wireable {
       }
 
       // Schedule prefetch
-      dataSource.schedulePrefetch(newElement, timeTookToReadFromDataSource);
+      final BinaryStoreDataSource binaryStoreDataSource = binaryStoreContext.getDataSource();
+      binaryStoreDataSource.schedulePrefetch(newElement, timeTookToReadFromDataSource);
 
       // Add new new element to the end of the linked list
       addToLRUList(newElement);
 
       // Store element in the user-provided data store
 
+      DataStore dataStore = binaryStoreContext.getDataStore();
       dataStore.store(new StorableImpl(key, value));
 
       // Evict eldest element if exceeded size
@@ -898,9 +792,16 @@ public final class BinaryStore implements Wireable {
     */
    private BinaryStoreElement createElement(final Binary key, final Binary value, final Time expirationTime) {
 
+      // Create element
       final Time idleTime = idleInterval == null ? null : clock.currentTime().add(idleInterval);
-      return new BinaryStoreElement(key, value, clock.currentTime(), expirationTime, idleTime, objectSizeCalculator,
-              invalidator, diskStorage);
+      final BinaryStoreElement binaryStoreElement = new BinaryStoreElement(key, value, clock.currentTime(),
+              expirationTime, idleTime);
+
+      // Set context
+      binaryStoreElement.setContext(binaryStoreElementContext);
+
+      // Return result
+      return binaryStoreElement;
    }
 
 
@@ -1045,7 +946,8 @@ public final class BinaryStore implements Wireable {
 //            //noinspection ControlFlowStatementWithoutBraces
 //            if (LOG.isDebugEnabled()) LOG.debug("Read miss, element: " + element); // NOPMD
 
-            final BinaryStoreDataSourceObject binaryStoreDataSourceObject = dataSource.get(key);
+            final BinaryStoreDataSource binaryStoreDataSource = binaryStoreContext.getDataSource();
+            final BinaryStoreDataSourceObject binaryStoreDataSourceObject = binaryStoreDataSource.get(key);
             if (binaryStoreDataSourceObject == null) {
 
                // Not found in data source.
@@ -1604,10 +1506,9 @@ public final class BinaryStore implements Wireable {
                final Binary binaryValue = BinaryStoreUtils.getValue(element);
                final Time expirationTime = element.getExpirationTime();
                final Time idleTime = element.getIdleTime();
-               final BinaryStoreElement newElement = new BinaryStoreElement(binaryKey, binaryValue,
-                       clock.currentTime(), expirationTime,
-                       idleTime, objectSizeCalculator, invalidator,
-                       diskStorage);
+               final BinaryStoreElement newElement = new BinaryStoreElement(binaryKey, binaryValue, clock.currentTime(),
+                       expirationTime, idleTime);
+               newElement.setContext(binaryStoreElementContext);
 
                // Store if source element is stored
                if (element.isStored()) {
@@ -1885,16 +1786,35 @@ public final class BinaryStore implements Wireable {
               ", statistics=" + statistics +
               ", expirationTimeMillis=" + expirationInterval +
               ", idleTimeMillis=" + idleInterval +
-              ", overflowDiskStorage=" + diskStorage +
               ", maxSize=" + elementCounter +
               ", maxSizeBytes=" + byteCounter +
               ", updateListeners=" + updateSubscribers +
-              ", objectSizeCalculator=" + objectSizeCalculator +
-              ", dataSource=" + dataSource +
-              ", invalidator=" + invalidator +
-              ", dataStore=" + dataStore +
               ", binaryFactory=" + binaryFactory +
               '}';
+   }
+
+
+   public void setContext(final BinaryStoreContext binaryStoreContext) {
+
+      // Set context
+      this.binaryStoreContext = binaryStoreContext;
+
+      // Create element context
+      binaryStoreElementContext = new BinaryStoreElementContextImpl();
+      binaryStoreElementContext.setObjectSizeCalculator(binaryStoreContext.getObjectSizeCalculator());
+      binaryStoreElementContext.setDiskStorage(binaryStoreContext.getDiskStorage());
+      binaryStoreElementContext.setInvalidator(binaryStoreContext.getInvalidator());
+
+      // Set the invalidator in all elements
+      elements.forEachValue(new ObjectProcedure<BinaryStoreElement>() {
+
+         public boolean execute(final BinaryStoreElement binaryStoreElement) {
+
+            binaryStoreElement.setContext(binaryStoreElementContext);
+
+            return true;
+         }
+      });
    }
 
 

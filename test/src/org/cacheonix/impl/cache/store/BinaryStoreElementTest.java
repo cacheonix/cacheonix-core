@@ -135,7 +135,8 @@ public final class BinaryStoreElementTest extends CacheonixTestCase {
       final Serializer ser = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
       final byte[] serialize = ser.serialize(expected);
       final long size = new StandardObjectSizeCalculator().sizeOf(expected);
-      assertEquals("Update BinaryStoreElement.SIZE_CACHE_ELEMENT_OVERHEAD if this size changes", size, BinaryStoreElement.SIZE_CACHE_ELEMENT_OVERHEAD);
+      assertEquals("Update BinaryStoreElement.SIZE_CACHE_ELEMENT_OVERHEAD if this size changes",
+              BinaryStoreElement.SIZE_CACHE_ELEMENT_OVERHEAD, size);
       assertEquals(expected, ser.deserialize(serialize));
    }
 
@@ -148,8 +149,16 @@ public final class BinaryStoreElementTest extends CacheonixTestCase {
       final ObjectSizeCalculator sizeCalculator = calculatorFactory.createSizeCalculator(1000L);
       final DummyCacheInvalidator invalidator = new DummyCacheInvalidator();
       final DummyDiskStorage diskStorage = new DummyDiskStorage(TEST_CACHE_NAME);
+
+      // Create test context
+      final BinaryStoreElementContext context = new BinaryStoreElementContextImpl();
+      context.setObjectSizeCalculator(sizeCalculator);
+      context.setInvalidator(invalidator);
+      context.setDiskStorage(diskStorage);
+
       value = VALUE;
-      element = new BinaryStoreElement(KEY, value, getClock().currentTime(), EXPIRATION_TIME, IDLE_TIME_MILLIS, sizeCalculator, invalidator, diskStorage);
+      element = new BinaryStoreElement(KEY, value, getClock().currentTime(), EXPIRATION_TIME, IDLE_TIME_MILLIS);
+      element.setContext(context);
    }
 
 

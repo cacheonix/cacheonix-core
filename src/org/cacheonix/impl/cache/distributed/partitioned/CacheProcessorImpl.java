@@ -307,11 +307,14 @@ public final class CacheProcessorImpl extends AbstractRequestProcessor implement
       bucket.attachToByteCounter(primaryStorage ? byteCounter : new SharedCounter(0L));
 
       // Set other dependencies
-      bucket.setObjectSizeCalculator(getObjectSizeCalculator(storageNumber));
-      bucket.setInvalidator(createInvalidator(storageNumber));
-      bucket.setDataStore(createDataStore(storageNumber));
-      bucket.setDiskStorage(diskStorages[storageNumber]);
-      bucket.setDataSource(dataSource);
+
+      final BucketContext bucketContext = new BucketContextImpl();
+      bucketContext.setObjectSizeCalculator(getObjectSizeCalculator(storageNumber));
+      bucketContext.setInvalidator(createInvalidator(storageNumber));
+      bucketContext.setDataStore(createDataStore(storageNumber));
+      bucketContext.setDiskStorage(diskStorages[storageNumber]);
+      bucketContext.setDataSource(dataSource);
+      bucket.setContext(bucketContext);
 
 
       // Set entry modification subscribers
