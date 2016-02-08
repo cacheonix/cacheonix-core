@@ -322,7 +322,8 @@ public final class RecoveryMarker extends MarkerRequest {
       // that we don't know about and thus won't be able to complete the recovery. See
       // CACHEONIX-144 for more information.
 
-      if (!processor.getProcessorState().getClusterView().contains(recoveryMarker.originator)) {
+      final ClusterProcessorState processorState = processor.getProcessorState();
+      if (!processorState.getClusterView().contains(recoveryMarker.originator)) {
 
          final String errorResult = "Recovery marker from an unknown originator " + originator;
 
@@ -347,12 +348,12 @@ public final class RecoveryMarker extends MarkerRequest {
             LOG.debug("Store Previous list as the marker list: " + recoveryMarker.previousList);
          }
 
-         processor.getProcessorState().setClusterView(new ClusterViewImpl(recoveryMarker.newClusterUUID,
+         processorState.setClusterView(new ClusterViewImpl(recoveryMarker.newClusterUUID,
                  recoveryMarker.originator, recoveryMarker.previousList, self));
          processor.getRouter().setClusterUUID(recoveryMarker.newClusterUUID);
       }
 
-      if (processor.getProcessorState().isRecoveryOriginator()) {
+      if (processorState.isRecoveryOriginator()) {
 
          // Originator of the recovery round
          if (LOG.isDebugEnabled()) {
@@ -373,15 +374,15 @@ public final class RecoveryMarker extends MarkerRequest {
                //
                // Check if we have a majority
 
-               if (processor.getProcessorState().getClusterView().hasMajorityOver(
-                       processor.getProcessorState().getLastOperationalClusterView()) || processor.getProcessorState().getClusterView().getSize() >= processor.getProcessorState().getTargetMajoritySize()) {
+               if (processorState.getClusterView().hasMajorityOver(
+                       processorState.getLastOperationalClusterView()) || processorState.getClusterView().getSize() >= processorState.getTargetMajoritySize()) {
 
                   // We have majority, begin stage 2 of recovery by creating and forwarding
                   // cleanup marker
                   if (LOG.isDebugEnabled()) {
 
                      LOG.info(
-                             "We have majority, new member list size is " + recoveryMarker.currentList.size() + ": " + processor.getProcessorState().getClusterView());
+                             "We have majority, new member list size is " + recoveryMarker.currentList.size() + ": " + processorState.getClusterView());
                   }
 
                   // Begin cleanup
@@ -393,14 +394,14 @@ public final class RecoveryMarker extends MarkerRequest {
                   if (LOG.isDebugEnabled()) {
 
                      LOG.debug(
-                             "We do not have majority (target majority size is " + processor.getProcessorState().getTargetMajoritySize()
-                                     + ") , new marker list size is " + processor.getProcessorState().getClusterView().getSize()
-                                     + ": " + processor.getProcessorState().getClusterView());
+                             "We do not have majority (target majority size is " + processorState.getTargetMajoritySize()
+                                     + ") , new marker list size is " + processorState.getClusterView().getSize()
+                                     + ": " + processorState.getClusterView());
                   }
 
                   // Switch to blocked state
 
-                  beginBlocking(processor.getProcessorState().getTargetMajoritySize());
+                  beginBlocking(processorState.getTargetMajoritySize());
 
                   return;
                }
@@ -413,7 +414,7 @@ public final class RecoveryMarker extends MarkerRequest {
                }
                recoveryMarker.previousList.clear();
                recoveryMarker.previousList.addAll(recoveryMarker.currentList);
-               processor.getProcessorState().setClusterView(
+               processorState.setClusterView(
                        new ClusterViewImpl(recoveryMarker.newClusterUUID, self, recoveryMarker.previousList, self));
                processor.getRouter().setClusterUUID(recoveryMarker.newClusterUUID);
             }
@@ -469,7 +470,7 @@ public final class RecoveryMarker extends MarkerRequest {
       // Forward recovery marker
       // ----------------------------------------------------
 
-      final ClusterNodeAddress nextProcess = processor.getProcessorState().getClusterView().getNextElement();
+      final ClusterNodeAddress nextProcess = processorState.getClusterView().getNextElement();
 
 //      if (nextProcess.equals(getContext().getAddress())) {
 //         // Handle when only us left
