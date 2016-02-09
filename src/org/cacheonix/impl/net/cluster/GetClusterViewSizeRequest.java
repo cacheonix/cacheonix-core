@@ -127,7 +127,7 @@ public final class GetClusterViewSizeRequest extends ClusterRequest {
    /**
     * A class factory.
     */
-   static final class Builder implements WireableBuilder {
+   private static final class Builder implements WireableBuilder {
 
       public Wireable create() {
 

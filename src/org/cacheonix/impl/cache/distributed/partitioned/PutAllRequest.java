@@ -156,7 +156,7 @@ public final class PutAllRequest extends EntrySetRequest {
    /**
     * A class factory.
     */
-   static final class Builder implements WireableBuilder {
+   private static final class Builder implements WireableBuilder {
 
       public Wireable create() {
 

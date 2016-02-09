@@ -289,7 +289,7 @@ public final class BinaryEntryModifiedEvent implements Wireable {
    /**
     * A class factory.
     */
-   static final class Builder implements WireableBuilder {
+   private static final class Builder implements WireableBuilder {
 
       public Wireable create() {
 

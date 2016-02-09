@@ -230,7 +230,7 @@ public final class MarkerTimeoutMessage extends ClusterMessage {
    /**
     * A class factory.
     */
-   static final class Builder implements WireableBuilder {
+   private static final class Builder implements WireableBuilder {
 
       public Wireable create() {
 

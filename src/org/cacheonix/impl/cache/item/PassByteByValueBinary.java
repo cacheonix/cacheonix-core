@@ -132,7 +132,7 @@ public final class PassByteByValueBinary implements Binary {
    }
 
 
-   static final class Builder implements WireableBuilder {
+   private static final class Builder implements WireableBuilder {
 
       public Wireable create() {
 
