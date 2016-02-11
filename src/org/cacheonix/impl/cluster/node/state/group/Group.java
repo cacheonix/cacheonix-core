@@ -21,7 +21,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
 
 import org.cacheonix.impl.cache.distributed.partitioned.BucketEventListenerList;
@@ -37,7 +36,6 @@ import org.cacheonix.impl.net.serializer.WireableBuilder;
 import org.cacheonix.impl.util.Assert;
 import org.cacheonix.impl.util.array.HashMap;
 import org.cacheonix.impl.util.array.HashSet;
-import org.cacheonix.impl.util.array.IntArrayList;
 import org.cacheonix.impl.util.array.IntObjectHashMap;
 import org.cacheonix.impl.util.array.IntObjectProcedure;
 import org.cacheonix.impl.util.array.ObjectObjectProcedure;
@@ -597,18 +595,6 @@ public final class Group implements Wireable {
    public ClusterNodeAddress getBucketOwner(final int storageNumber, final int bucketNumber) {
 
       return bucketOwnershipAssignment.getBucketOwnerAddress(storageNumber, bucketNumber);
-   }
-
-
-   public IntArrayList getOwnedBuckets(final int storageNumber, final ClusterNodeAddress ownerAddress) {
-
-      return bucketOwnershipAssignment.getOwnedBuckets(storageNumber, ownerAddress);
-   }
-
-
-   public Set<ClusterNodeAddress> getBucketOwnersAddresses(final int storageNumber) {
-
-      return bucketOwnershipAssignment.getBucketOwnersAddresses(storageNumber);
    }
 
 
