@@ -54,7 +54,7 @@ public final class PutRequest extends KeyRequest {
 
    private Time expirationTime = null;
 
-   private boolean putIfAbsent;
+   private boolean putOnlyIfAbsent;
 
 
    /**
@@ -68,11 +68,11 @@ public final class PutRequest extends KeyRequest {
 
 
    public PutRequest(final ClusterNodeAddress sender, final String cacheName, final Binary key, final Binary value,
-                     final Time expirationTime, final boolean putIfAbsent) {
+                     final Time expirationTime, final boolean putOnlyIfAbsent) {
 
       super(TYPE_CACHE_PUT_REQUEST, cacheName, false, false);
       this.expirationTime = expirationTime;
-      this.putIfAbsent = putIfAbsent;
+      this.putOnlyIfAbsent = putOnlyIfAbsent;
       this.value = value;
       this.setSender(sender);
       this.setKey(key);
@@ -80,11 +80,11 @@ public final class PutRequest extends KeyRequest {
 
 
    private PutRequest(final String cacheName, final Binary key, final Binary value, final Time expirationTime,
-                      final boolean putIfAbsent) {
+                      final boolean putOnlyIfAbsent) {
 
       super(TYPE_CACHE_PUT_REQUEST, cacheName, false, false);
       this.expirationTime = expirationTime;
-      this.putIfAbsent = putIfAbsent;
+      this.putOnlyIfAbsent = putOnlyIfAbsent;
       this.value = value;
       this.setKey(key);
    }
@@ -118,9 +118,9 @@ public final class PutRequest extends KeyRequest {
    }
 
 
-   boolean isPutIfAbsent() {
+   boolean isPutOnlyIfAbsent() {
 
-      return putIfAbsent;
+      return putOnlyIfAbsent;
    }
 
 
@@ -132,7 +132,7 @@ public final class PutRequest extends KeyRequest {
          final Binary previousValue;
          final Binary modifiedKey;
 
-         if (putIfAbsent) {
+         if (putOnlyIfAbsent) {
 
             // NOTE: simeshev@cacheonix.org - 2012-07-01 - If putAbsent is set and the previous value
             // is not null, this means that the update *was not* performed. This in turn means that
@@ -200,7 +200,7 @@ public final class PutRequest extends KeyRequest {
     */
    public KeyRequest createRequest() {
 
-      return new PutRequest(getCacheName(), getKey(), value, expirationTime, putIfAbsent);
+      return new PutRequest(getCacheName(), getKey(), value, expirationTime, putOnlyIfAbsent);
    }
 
 
@@ -212,7 +212,7 @@ public final class PutRequest extends KeyRequest {
       super.readWire(in);
       value = SerializerUtils.readBinary(in);
       expirationTime = SerializerUtils.readTime(in);
-      putIfAbsent = in.readBoolean();
+      putOnlyIfAbsent = in.readBoolean();
    }
 
 
@@ -224,7 +224,7 @@ public final class PutRequest extends KeyRequest {
       super.writeWire(out);
       SerializerUtils.writeBinary(out, value);
       SerializerUtils.writeTime(expirationTime, out);
-      out.writeBoolean(putIfAbsent);
+      out.writeBoolean(putOnlyIfAbsent);
    }
 
 
@@ -242,7 +242,7 @@ public final class PutRequest extends KeyRequest {
 
       final PutRequest that = (PutRequest) o;
 
-      if (putIfAbsent != that.putIfAbsent) {
+      if (putOnlyIfAbsent != that.putOnlyIfAbsent) {
          return false;
       }
       if (expirationTime != null ? !expirationTime.equals(that.expirationTime) : that.expirationTime != null) {
@@ -261,7 +261,7 @@ public final class PutRequest extends KeyRequest {
       int result = super.hashCode();
       result = 31 * result + (value != null ? value.hashCode() : 0);
       result = 31 * result + (expirationTime != null ? expirationTime.hashCode() : 0);
-      result = 31 * result + (putIfAbsent ? 1 : 0);
+      result = 31 * result + (putOnlyIfAbsent ? 1 : 0);
       return result;
    }
 
@@ -271,7 +271,7 @@ public final class PutRequest extends KeyRequest {
       return "PutRequest{" +
               "value=" + value +
               ", expirationTime=" + expirationTime +
-              ", putIfAbsent=" + putIfAbsent +
+              ", putOnlyIfAbsent=" + putOnlyIfAbsent +
               "} " + super.toString();
    }
 

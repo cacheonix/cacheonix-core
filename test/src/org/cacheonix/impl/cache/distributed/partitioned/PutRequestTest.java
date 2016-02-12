@@ -88,7 +88,7 @@ public final class PutRequestTest extends CacheonixTestCase {
 
    public void testGetPutIfAbsent() {
 
-      assertTrue(request.isPutIfAbsent());
+      assertTrue(request.isPutOnlyIfAbsent());
    }
 
 
@@ -99,7 +99,7 @@ public final class PutRequestTest extends CacheonixTestCase {
       request.setSender(TestUtils.createTestAddress());
       final Serializer ser = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
       assertEquals(request, ser.deserialize(ser.serialize(request)));
-      assertTrue(request.isPutIfAbsent());
+      assertTrue(request.isPutOnlyIfAbsent());
    }
 
 
