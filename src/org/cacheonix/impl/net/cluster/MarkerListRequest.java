@@ -89,8 +89,8 @@ public final class MarkerListRequest extends ClusterRequest {
     *                                   the
     */
    public MarkerListRequest(final ClusterNodeAddress sender, final ClusterView clusterView,
-                            final ClusterView lastOperationalClusterView, final ReplicatedState replicatedState,
-                            final List<Frame> messageAssemblerParts) {
+           final ClusterView lastOperationalClusterView, final ReplicatedState replicatedState,
+           final List<Frame> messageAssemblerParts) {
 
       super(TYPE_CLUSTER_MARKER_LIST);
       setRequiresSameCluster(false);
@@ -124,7 +124,7 @@ public final class MarkerListRequest extends ClusterRequest {
     * MarkerListRequest.
     *
     * @return the reference to the internal list frames present in the message assembler at the time of creating
-    *         MarkerListRequest.
+    * MarkerListRequest.
     */
    public List<Frame> getMessageAssemblerParts() {
 
@@ -317,10 +317,12 @@ public final class MarkerListRequest extends ClusterRequest {
       if (clusterView != null ? !clusterView.equals(that.clusterView) : that.clusterView != null) {
          return false;
       }
-      if (lastOperationalClusterView != null ? !lastOperationalClusterView.equals(that.lastOperationalClusterView) : that.lastOperationalClusterView != null) {
+      if (lastOperationalClusterView != null ? !lastOperationalClusterView.equals(
+              that.lastOperationalClusterView) : that.lastOperationalClusterView != null) {
          return false;
       }
-      if (messageAssemblerParts != null ? !messageAssemblerParts.equals(that.messageAssemblerParts) : that.messageAssemblerParts != null) {
+      if (messageAssemblerParts != null ? !messageAssemblerParts.equals(
+              that.messageAssemblerParts) : that.messageAssemblerParts != null) {
          return false;
       }
       if (replicatedState != null ? !replicatedState.equals(that.replicatedState) : that.replicatedState != null) {
@@ -384,7 +386,7 @@ public final class MarkerListRequest extends ClusterRequest {
       /**
        * {@inheritDoc}
        */
-      public void notifyResponseReceived(final Response message) throws InterruptedException {
+      public void notifyResponseReceived(final Response response) throws InterruptedException {
 
          final ClusterProcessor processor = (ClusterProcessor) getRequest().getProcessor();
 
@@ -395,27 +397,18 @@ public final class MarkerListRequest extends ClusterRequest {
 
          if (getRequest().getClusterUUID().equals(processor.getProcessorState().getClusterView().getClusterUUID())) {
 
-            if (message instanceof ClusterResponse) {
+            if (response.getResultCode() == Response.RESULT_SUCCESS) {
 
-               final ClusterResponse response = (ClusterResponse) message;
-               if (response.getResultCode() == Response.RESULT_SUCCESS) {
+               //noinspection ControlFlowStatementWithoutBraces
+               if (LOG.isDebugEnabled()) LOG.debug("Marker list was successfuly sent: " + getRequest()); // NOPMD
 
-                  //noinspection ControlFlowStatementWithoutBraces
-                  if (LOG.isDebugEnabled()) LOG.debug("Marker list was successfuly sent: " + getRequest()); // NOPMD
-
-                  // Call back the marker to forward to execute action
-                  // in case of successful sending of the marker list
-                  markerToForward.finishJoin();
-
-               } else {
-
-                  // Cannot contact
-                  rollbackJoin();
-               }
+               // Call back the marker to forward to execute action
+               // in case of successful sending of the marker list
+               markerToForward.finishJoin();
 
             } else {
 
-               // Unknown response
+               // Cannot contact
                rollbackJoin();
             }
 
@@ -437,7 +430,7 @@ public final class MarkerListRequest extends ClusterRequest {
          }
 
          //
-         super.notifyResponseReceived(message);
+         super.notifyResponseReceived(response);
       }
 
 
