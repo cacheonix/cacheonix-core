@@ -262,10 +262,10 @@ public final class MarkerListRequest extends ClusterRequest {
       //
       if (lastOperationalClusterView == null) {
 
-         out.writeBoolean(true);
+         out.writeBoolean(false);
       } else {
 
-         out.writeBoolean(false);
+         out.writeBoolean(true);
          lastOperationalClusterView.writeWire(out);
       }
    }
@@ -291,8 +291,8 @@ public final class MarkerListRequest extends ClusterRequest {
       }
 
       //
-      final boolean lastOperationalClusterViewIsNull = in.readBoolean();
-      if (!lastOperationalClusterViewIsNull) {
+      final boolean lastOperationalClusterViewIsSet = in.readBoolean();
+      if (lastOperationalClusterViewIsSet) {
 
          lastOperationalClusterView = new ClusterViewImpl();
          lastOperationalClusterView.readWire(in);
