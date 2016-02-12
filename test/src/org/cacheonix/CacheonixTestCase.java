@@ -26,11 +26,18 @@ import java.util.concurrent.TimeUnit;
 
 import junit.framework.AssertionFailedError;
 import junit.framework.TestCase;
-import org.cacheonix.cluster.*;
+import org.cacheonix.cluster.ClusterConfiguration;
+import org.cacheonix.cluster.ClusterEventSubscriber;
+import org.cacheonix.cluster.ClusterEventSubscriptionEndedEvent;
+import org.cacheonix.cluster.ClusterEventSubscriptionStartedEvent;
+import org.cacheonix.cluster.ClusterMemberJoinedEvent;
+import org.cacheonix.cluster.ClusterMemberLeftEvent;
+import org.cacheonix.cluster.ClusterStateChangedEvent;
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.cache.item.InvalidObjectException;
 import org.cacheonix.impl.clock.Clock;
 import org.cacheonix.impl.clock.ClockImpl;
+import org.cacheonix.impl.net.serializer.Wireable;
 import org.cacheonix.impl.util.MutableBoolean;
 import org.cacheonix.impl.util.exception.ExceptionUtils;
 
@@ -85,6 +92,12 @@ public abstract class CacheonixTestCase extends TestCase {
    }
 
 
+   protected static void assertWireableTypeEquals(final int expected, final Wireable wireable) {
+
+      assertEquals("Change protocol version if wireable type changed", expected, wireable.getWireableType());
+   }
+
+
    protected static String createTestKey(final long i) {
 
       return TEST_KEY_PREFIX + i;
@@ -125,14 +138,16 @@ public abstract class CacheonixTestCase extends TestCase {
 
       final int length = array1.length;
       if (array2.length != length) {
-         throw new AssertionFailedError("Arrays not equal. length 1 is " + array1.length + ", length 2 is " + array2.length);
+         throw new AssertionFailedError(
+                 "Arrays not equal. length 1 is " + array1.length + ", length 2 is " + array2.length);
       }
 
       for (int i = 0; i < length; i++) {
          final Object o1 = array1[i];
          final Object o2 = array2[i];
          if (!(o1 == null ? o2 == null : o1.equals(o2))) {
-            throw new AssertionFailedError("Arrays not equal. value 1 [" + i + "] " + o1 + ", value 1 [" + i + "] " + array2.length);
+            throw new AssertionFailedError(
+                    "Arrays not equal. value 1 [" + i + "] " + o1 + ", value 1 [" + i + "] " + array2.length);
          }
       }
 
@@ -308,7 +323,8 @@ public abstract class CacheonixTestCase extends TestCase {
       clock = new ClockImpl(1L).attachTo(timer);
 
       // Set up executor
-      eventNotificationExecutor = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>());
+      eventNotificationExecutor = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.SECONDS,
+              new LinkedBlockingQueue<Runnable>());
    }
 
 
