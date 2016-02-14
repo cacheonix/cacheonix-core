@@ -63,7 +63,7 @@ public final class SystemProperty {
    /**
     * System property that overrides attribute loggingLevel.
     */
-   private static final String NAME_CACHEONIX_LOGGING_LEVEL = "cacheonix.logging.level";
+   public static final String NAME_CACHEONIX_LOGGING_LEVEL = "cacheonix.logging.level";
 
    /**
     * Defines a system property for Cacheonix configuration.

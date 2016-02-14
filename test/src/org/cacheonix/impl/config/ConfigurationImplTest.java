@@ -19,9 +19,13 @@ import java.util.concurrent.TimeUnit;
 
 import junit.framework.TestCase;
 import org.cacheonix.TestConstants;
-import org.cacheonix.TestUtils;
 import org.cacheonix.impl.util.StringUtils;
 import org.cacheonix.impl.util.logging.Logger;
+
+import static org.cacheonix.TestUtils.getTestFileInputStream;
+import static org.cacheonix.impl.config.ConfigurationConstants.DEFAULT_LOGGING_LEVEL;
+import static org.cacheonix.impl.config.SystemProperty.CACHEONIX_LOGGING_LEVEL;
+import static org.cacheonix.impl.config.SystemProperty.NAME_CACHEONIX_LOGGING_LEVEL;
 
 /**
  * Tests {@link CacheonixConfiguration}
@@ -149,7 +153,7 @@ public final class ConfigurationImplTest extends TestCase {
 
       final ConfigurationReader configurationReader = new ConfigurationReader();
       final CacheonixConfiguration configuration71 = configurationReader.readConfiguration(
-              TestUtils.getTestFileInputStream(CACHEONIX_CONFIG_CACHEONIX_71_XML));
+              getTestFileInputStream(CACHEONIX_CONFIG_CACHEONIX_71_XML));
       final ServerConfiguration serverConf = configuration71.getServer();
       final PartitionedCacheConfiguration cacheConf = serverConf.enumeratePartitionedCaches().get(0);
       assertEquals(99 * 1024, cacheConf.getStore().getLru().getMaxBytes());
@@ -163,7 +167,7 @@ public final class ConfigurationImplTest extends TestCase {
 
       final ConfigurationReader configurationReader = new ConfigurationReader();
       final CacheonixConfiguration configuration101 = configurationReader.readConfiguration(
-              TestUtils.getTestFileInputStream(CACHEONIX_CONFIG_CACHEONIX_101_XML));
+              getTestFileInputStream(CACHEONIX_CONFIG_CACHEONIX_101_XML));
       final ServerConfiguration serverConf = configuration101.getServer();
       final PartitionedCacheConfiguration cacheConf = serverConf.enumeratePartitionedCaches().get(0);
       assertEquals(Runtime.getRuntime().maxMemory() / 2, cacheConf.getStore().getLru().getMaxBytes());
@@ -202,7 +206,7 @@ public final class ConfigurationImplTest extends TestCase {
 
       final ConfigurationReader configurationReader = new ConfigurationReader();
       final CacheonixConfiguration configuration15 = configurationReader.readConfiguration(
-              TestUtils.getTestFileInputStream(CACHEONIX_CONFIG_CACHEONIX_15_XML));
+              getTestFileInputStream(CACHEONIX_CONFIG_CACHEONIX_15_XML));
       final ServerConfiguration serverConfiguration = configuration15.getServer();
       assertEquals(TEST_CLUSTER_NAME, serverConfiguration.getClusterConfiguration().getName());
    }
@@ -215,7 +219,7 @@ public final class ConfigurationImplTest extends TestCase {
 
       final ConfigurationReader configurationReader = new ConfigurationReader();
       final CacheonixConfiguration conf = configurationReader.readConfiguration(
-              TestUtils.getTestFileInputStream(CACHEONIX_CONFIG_CACHEONIX_119_XML));
+              getTestFileInputStream(CACHEONIX_CONFIG_CACHEONIX_119_XML));
       final ServerConfiguration serverConfiguration = conf.getServer();
       final PartitionedCacheConfiguration cacheConfiguration = serverConfiguration.getPartitionedCacheList().get(0);
       assertEquals(120000, cacheConfiguration.getStore().getExpiration().getIdleTimeMillis());
@@ -243,20 +247,26 @@ public final class ConfigurationImplTest extends TestCase {
 
    public void testGetLoggingLevel() throws IOException {
 
-      final ConfigurationReader configurationReader = new ConfigurationReader();
 
-      assertEquals(
-              SystemProperty.CACHEONIX_LOGGING_LEVEL != null ? SystemProperty.CACHEONIX_LOGGING_LEVEL : ConfigurationConstants.DEFAULT_LOGGING_LEVEL,
+      assertEquals(CACHEONIX_LOGGING_LEVEL != null ? CACHEONIX_LOGGING_LEVEL : DEFAULT_LOGGING_LEVEL,
               read(TestConstants.CACHEONIX_CLUSTER_XML).getLoggingConfiguration().getLoggingLevel());
-      assertEquals(LoggingLevel.DEBUG, configurationReader.readConfiguration(TestUtils.getTestFileInputStream(
-              CACHEONIX_CONFIG_CACHEONIX_99_XML)).getLoggingConfiguration().getLoggingLevel());
+
+      // Test only if the logging level is not overridden
+      final String systemProperty = System.getProperty(NAME_CACHEONIX_LOGGING_LEVEL);
+      if (systemProperty == null || systemProperty.equalsIgnoreCase("debug")) {
+
+         final LoggingConfiguration loggingConfiguration = read(
+                 CACHEONIX_CONFIG_CACHEONIX_99_XML).getLoggingConfiguration();
+         assertEquals(LoggingLevel.DEBUG, loggingConfiguration.getLoggingLevel());
+
+      }
    }
 
 
    private static CacheonixConfiguration read(final String xml) throws IOException {
 
       final ConfigurationReader configurationReader = new ConfigurationReader();
-      return configurationReader.readConfiguration(TestUtils.getTestFileInputStream(xml)); // NOPMD
+      return configurationReader.readConfiguration(getTestFileInputStream(xml)); // NOPMD
    }
 
 
