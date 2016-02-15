@@ -53,17 +53,17 @@ public abstract class MultiplePartitionedCacheTestCase extends PartitionedCacheT
    /**
     * Cacheonix configurations, one per cluster.
     */
-   private final String[] configurations;
+   private String[] configurations;
 
    /**
     * List of cache managers.
     */
-   private final List<Cacheonix> cacheManagerList = new ArrayList<Cacheonix>(5);
+   private List<Cacheonix> cacheManagerList = new ArrayList<Cacheonix>(5);
 
    /**
     * List of clustered caches.
     */
-   final List<Cache<String, String>> cacheList = new ArrayList<Cache<String, String>>(5);
+   private List<Cache<String, String>> cacheList = new ArrayList<Cache<String, String>>(5);
 
 
    MultiplePartitionedCacheTestCase(final String[] configurations) {
@@ -1184,8 +1184,15 @@ public abstract class MultiplePartitionedCacheTestCase extends PartitionedCacheT
             cacheonix.shutdown(ShutdownMode.GRACEFUL_SHUTDOWN, true);
          }
       }
+
+      configurations = null;
+
       cacheList.clear();
+      cacheList = null;
+
       cacheManagerList.clear();
+      cacheManagerList = null;
+
       super.tearDown();
       LOG.debug("================================================================================================");
       LOG.debug("========== Teared down =========================================================================");
