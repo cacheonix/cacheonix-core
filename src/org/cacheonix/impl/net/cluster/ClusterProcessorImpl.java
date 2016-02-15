@@ -442,7 +442,7 @@ public final class ClusterProcessorImpl extends AbstractRequestProcessor impleme
             message.setReceiver(getAddress());
             cacheProcessor.post(message);
 
-            LOG.debug("Requested cache processor: " + cacheName + ':' + getAddress() + " to shutdown");
+            LOG.debug("Requested cache processor to shutdown: " + cacheName + ':' + getAddress());
          } catch (final Exception e) {
             ExceptionUtils.ignoreException(e, "Shutdown in progress");
          }
