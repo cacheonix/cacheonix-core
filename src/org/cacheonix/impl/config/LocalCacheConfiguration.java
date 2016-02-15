@@ -321,10 +321,6 @@ public final class LocalCacheConfiguration extends DocumentReader {
 
          name = attributeValue;
 
-         if (name.equals(ConfigurationConstants.CACHE_TEMPLATE_NAME_DEFAULT)) {
-
-            template = true;
-         }
       } else if ("template".equals(attributeName)) {
 
          template = Boolean.parseBoolean(attributeValue);

@@ -23,6 +23,7 @@ import org.cacheonix.impl.util.StringUtils;
 import org.cacheonix.impl.util.logging.Logger;
 
 import static org.cacheonix.TestUtils.getTestFileInputStream;
+import static org.cacheonix.impl.config.ConfigurationConstants.CACHE_TEMPLATE_NAME_DEFAULT;
 import static org.cacheonix.impl.config.ConfigurationConstants.DEFAULT_LOGGING_LEVEL;
 import static org.cacheonix.impl.config.SystemProperty.CACHEONIX_LOGGING_LEVEL;
 import static org.cacheonix.impl.config.SystemProperty.NAME_CACHEONIX_LOGGING_LEVEL;
@@ -236,7 +237,7 @@ public final class ConfigurationImplTest extends TestCase {
       final List<LocalCacheConfiguration> cacheConfigurations = localConfigurations.getLocalCacheConfigurationList();
 
       final LocalCacheConfiguration cacheConfiguration0 = cacheConfigurations.get(0);
-      assertEquals(ConfigurationConstants.CACHE_TEMPLATE_NAME_DEFAULT, cacheConfiguration0.getName());
+      assertEquals(CACHE_TEMPLATE_NAME_DEFAULT, cacheConfiguration0.getName());
       assertTrue(cacheConfiguration0.isTemplate());
 
       final LocalCacheConfiguration cacheConfiguration1 = cacheConfigurations.get(1);
@@ -253,10 +254,10 @@ public final class ConfigurationImplTest extends TestCase {
 
       // Test only if the logging level is not overridden
       final String systemProperty = System.getProperty(NAME_CACHEONIX_LOGGING_LEVEL);
-      if (systemProperty == null || systemProperty.equalsIgnoreCase("debug")) {
+      if (systemProperty == null || "debug".equalsIgnoreCase(systemProperty)) {
 
-         final LoggingConfiguration loggingConfiguration = read(
-                 CACHEONIX_CONFIG_CACHEONIX_99_XML).getLoggingConfiguration();
+         final CacheonixConfiguration cacheonixConfiguration = read(CACHEONIX_CONFIG_CACHEONIX_99_XML);
+         final LoggingConfiguration loggingConfiguration = cacheonixConfiguration.getLoggingConfiguration();
          assertEquals(LoggingLevel.DEBUG, loggingConfiguration.getLoggingLevel());
 
       }

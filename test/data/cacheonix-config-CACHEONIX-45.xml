@@ -7,7 +7,7 @@
 
    <local>
 
-      <localCache name="default">
+      <localCache name="default" template="true">
          <store>
             <lru maxElements="10" maxBytes="10mb"/>
             <overflowToDisk maxOverflowBytes="1mb"/>
