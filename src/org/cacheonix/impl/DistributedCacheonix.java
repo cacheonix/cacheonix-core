@@ -24,6 +24,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.Timer;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
@@ -34,6 +35,7 @@ import org.cacheonix.cache.Cache;
 import org.cacheonix.cache.CacheExistsException;
 import org.cacheonix.cluster.Cluster;
 import org.cacheonix.impl.cache.CacheonixCache;
+import org.cacheonix.impl.cache.datasource.PrefetchScheduler;
 import org.cacheonix.impl.cache.distributed.partitioned.CacheNodeJoinedMessage;
 import org.cacheonix.impl.cache.distributed.partitioned.CacheNodeLeftMessage;
 import org.cacheonix.impl.cache.distributed.partitioned.CacheProcessor;
@@ -874,9 +876,10 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
                final PartitionedCacheConfiguration cacheConfig = serverConfig.getPartitionedCacheType(cacheConfigName);
 
                // Create cache processor
-               final CacheProcessor newCacheProcessor = new CacheProcessorImpl(timer, clock, getPrefetchScheduler(),
-                       router,
-                       getEventNotificationExecutor(), group, cacheName, address, cacheConfig);
+               final ExecutorService eventNotificationExecutor = getEventNotificationExecutor();
+               final PrefetchScheduler prefetchScheduler = getPrefetchScheduler();
+               final CacheProcessor newCacheProcessor = new CacheProcessorImpl(timer, clock, prefetchScheduler,
+                       router, eventNotificationExecutor, group, cacheName, address, cacheConfig);
                newCacheProcessor.startup();
 
                // Register a subscriber to entry modification event subscriber configuration events
