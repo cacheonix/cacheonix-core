@@ -426,7 +426,7 @@ public abstract class MultiplePartitionedCacheTestCase extends PartitionedCacheT
 
       // Remove removed
       final String removed = cache(1).remove(KEY_1);
-      assertNull("Returned non-null value: " + removed, removed);
+      assertNull("Expected null value but it was: " + removed, removed);
    }
 
 
