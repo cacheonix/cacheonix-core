@@ -49,8 +49,8 @@ public final class BeginBucketTransferCommand extends BucketCommand {
 
 
    BeginBucketTransferCommand(final String cacheName, final byte sourceStorageNumber,
-                              final byte destinationStorageNumber, final ClusterNodeAddress currentOwner,
-                              final ClusterNodeAddress newOwners) {
+           final byte destinationStorageNumber, final ClusterNodeAddress currentOwner,
+           final ClusterNodeAddress newOwners) {
 
       super(cacheName);
       this.destinationStorageNumber = destinationStorageNumber;
@@ -106,11 +106,11 @@ public final class BeginBucketTransferCommand extends BucketCommand {
    public String toString() {
 
       return "BeginBucketTransferCommand{" +
-              "bucketNumbers=" + bucketNumbers +
-              ", currentOwner=" + currentOwner +
+              "currentOwner=" + currentOwner +
               ", newOwner=" + newOwner +
-              ", sourceStorageNumber=" + sourceStorageNumber +
-              ", destinationStorageNumber=" + destinationStorageNumber +
+              ", sourceStorage=" + sourceStorageNumber +
+              ", destinationStorage=" + destinationStorageNumber +
+              ", bucketNumbers=" + bucketNumbers +
               '}';
    }
 }
