@@ -189,9 +189,10 @@ public abstract class KeyRequest extends CacheDataRequest implements Prepareable
       final CacheProcessor processor = getCacheProcessor();
 
       // Set will cache flag if there is a front cache
-      if (storageNumber == 0 && processor.getFrontCache() != null) {
+      final FrontCache frontCache = processor.getFrontCache();
+      if (storageNumber == 0 && frontCache != null) {
 
-         final FrontCacheConfiguration cacheConfiguration = processor.getFrontCache().getFrontCacheConfiguration();
+         final FrontCacheConfiguration cacheConfiguration = frontCache.getFrontCacheConfiguration();
          final ExpirationConfiguration expiration = cacheConfiguration.getStore().getExpiration();
          final Time currentTime = processor.getClock().currentTime();
          setWillCacheUntil(currentTime.add(expiration.getTimeToLiveMillis()));
