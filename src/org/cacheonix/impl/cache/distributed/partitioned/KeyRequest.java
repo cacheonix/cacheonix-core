@@ -37,6 +37,11 @@ import org.cacheonix.impl.net.serializer.Wireable;
 import org.cacheonix.impl.util.Assert;
 import org.cacheonix.impl.util.logging.Logger;
 
+import static org.cacheonix.impl.net.processor.Response.RESULT_ERROR;
+import static org.cacheonix.impl.net.processor.Response.RESULT_INACCESSIBLE;
+import static org.cacheonix.impl.net.processor.Response.RESULT_RETRY;
+import static org.cacheonix.impl.net.processor.Response.RESULT_SUCCESS;
+
 /**
  * Provides an abstract implementation of request-sub-request pattern.
  * <p/>
@@ -206,7 +211,7 @@ public abstract class KeyRequest extends CacheDataRequest implements Prepareable
       if (keyOwner == null) {
 
          // There is no owner
-         processor.post(createResponse(Response.RESULT_RETRY));
+         processor.post(createResponse(RESULT_RETRY));
 
          // Nothing to process
          return PrepareResult.BREAK;
@@ -273,7 +278,7 @@ public abstract class KeyRequest extends CacheDataRequest implements Prepareable
          if (LOG.isDebugEnabled()) {
             LOG.debug(">>>>>>>>>>> " + this.getClass().getSimpleName() + ": Not our bucket " + bucketNumber);
          }
-         cacheProcessor.post(createResponse(Response.RESULT_RETRY));
+         cacheProcessor.post(createResponse(RESULT_RETRY));
          return;
       }
 
@@ -287,7 +292,7 @@ public abstract class KeyRequest extends CacheDataRequest implements Prepareable
             LOG.debug("Bucket " + bucketNumber + " is reconfiguring, asking to retry: " + this);
          }
 
-         cacheProcessor.post(createResponse(Response.RESULT_RETRY));
+         cacheProcessor.post(createResponse(RESULT_RETRY));
          return;
       }
 
@@ -295,7 +300,7 @@ public abstract class KeyRequest extends CacheDataRequest implements Prepareable
       final ProcessingResult processingResult = processKey(bucket, key);
 
       // Create response and set result
-      final CacheResponse response = (CacheResponse) createResponse(Response.RESULT_SUCCESS);
+      final CacheResponse response = (CacheResponse) createResponse(RESULT_SUCCESS);
       response.setResult(processingResult.getResult());
 
       // Calculate invalidation
@@ -387,7 +392,7 @@ public abstract class KeyRequest extends CacheDataRequest implements Prepareable
       } else {
 
          // Client request
-         getProcessor().post(createResponse(Response.RESULT_RETRY));
+         getProcessor().post(createResponse(RESULT_RETRY));
       }
    }
 
@@ -593,18 +598,18 @@ public abstract class KeyRequest extends CacheDataRequest implements Prepareable
             final Object result = cacheResponse.getResult();
             switch (resultCode) {
 
-               case Response.RESULT_SUCCESS:
+               case RESULT_SUCCESS:
 
                   setResult(result);
                   break;
 
-               case Response.RESULT_INACCESSIBLE:
-               case Response.RESULT_RETRY:
+               case RESULT_INACCESSIBLE:
+               case RESULT_RETRY:
 
                   setResult(response.createRetryException());
                   break;
 
-               case Response.RESULT_ERROR:
+               case RESULT_ERROR:
 
                   setResult(WaiterUtils.resultToThrowable(result));
                   break;
