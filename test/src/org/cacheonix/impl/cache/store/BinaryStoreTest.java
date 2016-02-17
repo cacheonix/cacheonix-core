@@ -28,6 +28,7 @@ import org.cacheonix.impl.cache.item.BinaryType;
 import org.cacheonix.impl.cache.item.CompressedBinary;
 import org.cacheonix.impl.cache.item.InvalidObjectException;
 import org.cacheonix.impl.cache.storage.disk.DummyDiskStorage;
+import org.cacheonix.impl.cache.storage.disk.StorageException;
 import org.cacheonix.impl.clock.Time;
 import org.cacheonix.impl.clock.TimeImpl;
 import org.cacheonix.impl.net.serializer.Serializer;
@@ -141,6 +142,28 @@ public final class BinaryStoreTest extends CacheonixTestCase {
       final Binary value = new CompressedBinary(null);
       binaryStore.put(key, value);
       assertTrue(binaryStore.containsValue(value));
+   }
+
+
+   public void testAtomicReplaceNullNewValue() throws InvalidObjectException, StorageException {
+
+      // Prepare
+      final Binary key = binaryFactory.createBinary("key");
+      final Binary value = binaryFactory.createBinary("value");
+      final Binary nullValue = binaryFactory.createBinary(null);
+
+      binaryStore.put(key, value);
+      final ReadableElement element = binaryStore.get(key);
+      assertNotNull(element);
+      assertEquals(value, element.getValue());
+
+      // Try to replace key with a null value
+      assertTrue(binaryStore.replace(key, value, nullValue));
+
+      // Assert replace happened
+      final ReadableElement object = binaryStore.get(key);
+      assert object != null;
+      assertNull(object.getValue().getValue());
    }
 
 
