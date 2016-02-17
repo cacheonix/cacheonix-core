@@ -114,7 +114,8 @@ public final class ContainsValueRequest extends BucketSetRequest {
                   return WaiterUtils.resultToThrowable(result);
                case Response.RESULT_INACCESSIBLE:
                case Response.RESULT_RETRY:
-                  return createRetryException(cacheResponse);
+
+                  return cacheResponse.createRetryException();
                case Response.RESULT_SUCCESS:
                   if (!found && Boolean.TRUE.equals(result)) {
                      found = true;

@@ -83,6 +83,28 @@ public abstract class Response extends Message {
 
 
    /**
+    * Creates a RetryException while setting the exception message to the response's result if the response carries a
+    * String result. A utility method.
+    *
+    * @param response the response to use.
+    * @return RetryException with the exception message set to the response's result if the response carries a String
+    *         result.
+    */
+   public RetryException createRetryException() {
+
+      if (result instanceof String) {
+
+         final String message = (String) result;
+         return new RetryException(message);
+      } else {
+
+         final String resultType = result == null ? null : result.getClass().getName();
+         return new RetryException("Result type was: " + resultType);
+      }
+   }
+
+
+   /**
     * Returns UUID of the request this request is a response to.
     *
     * @return UUID of the request this request is a response to.

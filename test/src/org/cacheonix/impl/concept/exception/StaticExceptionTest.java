@@ -34,7 +34,7 @@ public final class StaticExceptionTest extends TestCase {
     */
    private static final Logger LOG = Logger.getLogger(StaticExceptionTest.class); // NOPMD
 
-   private static final RetryException EXCEPTION = new RetryException();
+   private static final RetryException EXCEPTION = new RetryException("Test");
 
 
    public void testThrow() {

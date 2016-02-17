@@ -109,7 +109,8 @@ public final class ValuesRequest extends BucketSetRequest {
                   return WaiterUtils.resultToThrowable(partialResult);
                case Response.RESULT_INACCESSIBLE:
                case Response.RESULT_RETRY:
-                  return createRetryException(cacheResponse);
+
+                  return cacheResponse.createRetryException();
                case Response.RESULT_SUCCESS:
                   result.addAll((Collection<Binary>) partialResult);
                   break;

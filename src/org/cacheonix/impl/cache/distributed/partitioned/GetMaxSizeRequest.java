@@ -109,7 +109,7 @@ public final class GetMaxSizeRequest extends CacheRequest {
                   break;
                case Response.RESULT_INACCESSIBLE:
                case Response.RESULT_RETRY:
-                  setResult(new RetryException());
+                  setResult(response.createRetryException());
                   break;
                default:
                   setResult(WaiterUtils.unknownResultToThrowable(resultCode, objectResult));
@@ -122,7 +122,7 @@ public final class GetMaxSizeRequest extends CacheRequest {
       protected synchronized void notifyFinished() {
 
          if (!isResponseReceived()) {
-            setResult(new RetryException());
+            setResult(new RetryException("Finished waiting for response without receiving a result"));
          }
          super.notifyFinished();
       }

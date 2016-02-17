@@ -386,7 +386,8 @@ public abstract class EntrySetRequest extends AggregatingRequest {
                   return WaiterUtils.resultToThrowable(result);
                case Response.RESULT_INACCESSIBLE:
                case Response.RESULT_RETRY:
-                  return createRetryException(cacheResponse);
+
+                  return cacheResponse.createRetryException();
                case Response.RESULT_SUCCESS:
                   aggregate(resultAccumulator, cacheResponse);
                   break;

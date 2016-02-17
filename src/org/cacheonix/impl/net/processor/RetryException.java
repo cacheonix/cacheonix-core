@@ -14,8 +14,9 @@
 package org.cacheonix.impl.net.processor;
 
 import org.cacheonix.impl.OperationNotSupportedException;
-import org.cacheonix.impl.util.StringUtils;
 import org.cacheonix.impl.util.logging.Logger;
+
+import static org.cacheonix.impl.util.StringUtils.isBlank;
 
 /**
  * Waiter's waitForResult throws this exception when the result could not be obtained. Retrying the request may be
@@ -39,11 +40,6 @@ public final class RetryException extends Exception {
    private static final long serialVersionUID = 0L;
 
 
-   public RetryException() {
-
-   }
-
-
    public RetryException(final String result) {
 
       super(result);
@@ -58,6 +54,6 @@ public final class RetryException extends Exception {
     */
    public boolean isMessageBlank() {
 
-      return StringUtils.isBlank(getMessage());
+      return isBlank(getMessage());
    }
 }

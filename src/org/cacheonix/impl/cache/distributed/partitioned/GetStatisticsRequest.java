@@ -125,7 +125,7 @@ public final class GetStatisticsRequest extends BucketSetRequest {
                case Response.RESULT_INACCESSIBLE:
                case Response.RESULT_RETRY:
 
-                  return createRetryException(cacheResponse);
+                  return cacheResponse.createRetryException();
 
                case Response.RESULT_SUCCESS:
 

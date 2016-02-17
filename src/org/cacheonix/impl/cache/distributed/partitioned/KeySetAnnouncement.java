@@ -405,7 +405,7 @@ public abstract class KeySetAnnouncement extends AggregatingAnnouncement {
 
                case Response.RESULT_RETRY:
 
-                  return createRetryException(response);
+                  return response.createRetryException();
 
                case Response.RESULT_SUCCESS:
 

@@ -601,7 +601,7 @@ public abstract class KeyRequest extends CacheDataRequest implements Prepareable
                case Response.RESULT_INACCESSIBLE:
                case Response.RESULT_RETRY:
 
-                  setResult(new RetryException());
+                  setResult(response.createRetryException());
                   break;
 
                case Response.RESULT_ERROR:

@@ -120,7 +120,8 @@ public final class RetainAllRequest extends BucketSetRequest {
                   return WaiterUtils.resultToThrowable(result);
                case Response.RESULT_INACCESSIBLE:
                case Response.RESULT_RETRY:
-                  return createRetryException(cacheResponse);
+
+                  return cacheResponse.createRetryException();
                case Response.RESULT_SUCCESS:
                   // Any bucket owner that modified its content will rise
                   // the modified flag.

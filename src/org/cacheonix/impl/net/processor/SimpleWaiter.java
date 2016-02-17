@@ -58,14 +58,7 @@ public class SimpleWaiter extends Waiter {
          case Response.RESULT_INACCESSIBLE:
          case Response.RESULT_RETRY:
 
-            if (result instanceof String) {
-
-               // Set the reason to the exception message to make debugging easier
-               setResult(new RetryException(result.toString()));
-            } else {
-
-               setResult(new RetryException());
-            }
+            setResult(response.createRetryException());
             break;
          case Response.RESULT_ERROR:
 

@@ -30,7 +30,6 @@ import org.cacheonix.impl.net.processor.Prepareable;
 import org.cacheonix.impl.net.processor.ProcessorKey;
 import org.cacheonix.impl.net.processor.Request;
 import org.cacheonix.impl.net.processor.Response;
-import org.cacheonix.impl.net.processor.RetryException;
 import org.cacheonix.impl.net.serializer.SerializerUtils;
 import org.cacheonix.impl.net.serializer.Wireable;
 import org.cacheonix.impl.util.Assert;
@@ -312,27 +311,6 @@ public abstract class AggregatingAnnouncement extends Request implements Prepare
       response.setResultCode(resultCode);
       response.setReceiver(getSender());
       return response;
-   }
-
-
-   /**
-    * Creates a RetryException while setting the exception message to the response's result if the response carries a
-    * String result. A utility method.
-    *
-    * @param response the response to use.
-    * @return RetryException with the exception message set to the response's result if the response carries a String
-    *         result.
-    */
-   protected static RetryException createRetryException(final Response response) {
-
-      if (response.getResult() instanceof String) {
-
-         final String message = (String) response.getResult();
-         return new RetryException(message);
-      } else {
-
-         return new RetryException();
-      }
    }
 
 
