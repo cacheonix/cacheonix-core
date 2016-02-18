@@ -66,7 +66,6 @@ public class DistributedCacheonixTest extends CacheonixTestCase {
       final long timeoutBarrier = System.currentTimeMillis() + 10000L;
       while (cache == null && !timeoutReached) {
          cache = node.getCache(DISTRIBUTED_CACHE);
-         Thread.sleep(1L);
          timeoutReached = System.currentTimeMillis() >= timeoutBarrier;
       }
       assertTrue("Timeout", !timeoutReached);
