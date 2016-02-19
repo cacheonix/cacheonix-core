@@ -26,9 +26,9 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Map.Entry;
 
+import org.cacheonix.impl.cache.util.EntryImpl;
 import org.cacheonix.impl.util.IOUtils;
 import org.cacheonix.impl.util.array.HashSet;
-import org.cacheonix.impl.util.cache.EntryImpl;
 import org.cacheonix.impl.util.exception.ExceptionUtils;
 import org.cacheonix.impl.util.logging.Logger;
 

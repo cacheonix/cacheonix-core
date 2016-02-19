@@ -37,6 +37,8 @@ import org.cacheonix.impl.cache.loader.CacheLoaderFactory;
 import org.cacheonix.impl.cache.storage.disk.DiskStorage;
 import org.cacheonix.impl.cache.storage.disk.StorageException;
 import org.cacheonix.impl.cache.storage.disk.StorageFactory;
+import org.cacheonix.impl.cache.util.ObjectSizeCalculator;
+import org.cacheonix.impl.cache.util.ObjectSizeCalculatorFactory;
 import org.cacheonix.impl.config.CacheonixConfiguration;
 import org.cacheonix.impl.config.ConfigurationConstants;
 import org.cacheonix.impl.config.DataSourceConfiguration;
@@ -54,8 +56,6 @@ import org.cacheonix.impl.config.PropertyConfiguration;
 import org.cacheonix.impl.config.SystemProperty;
 import org.cacheonix.impl.util.Shutdownable;
 import org.cacheonix.impl.util.array.HashMap;
-import org.cacheonix.impl.util.cache.ObjectSizeCalculator;
-import org.cacheonix.impl.util.cache.ObjectSizeCalculatorFactory;
 import org.cacheonix.impl.util.exception.ExceptionUtils;
 import org.cacheonix.impl.util.logging.Logger;
 

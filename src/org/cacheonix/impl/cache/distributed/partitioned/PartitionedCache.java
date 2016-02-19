@@ -39,6 +39,7 @@ import org.cacheonix.impl.cache.item.BinaryFactoryBuilder;
 import org.cacheonix.impl.cache.item.BinaryType;
 import org.cacheonix.impl.cache.item.BinaryUtils;
 import org.cacheonix.impl.cache.item.InvalidObjectException;
+import org.cacheonix.impl.cache.util.EntryImpl;
 import org.cacheonix.impl.clock.Clock;
 import org.cacheonix.impl.clock.Time;
 import org.cacheonix.impl.config.ConfigurationConstants;
@@ -53,7 +54,6 @@ import org.cacheonix.impl.util.ArgumentValidator;
 import org.cacheonix.impl.util.array.HashMap;
 import org.cacheonix.impl.util.array.HashSet;
 import org.cacheonix.impl.util.array.IntObjectHashMap;
-import org.cacheonix.impl.util.cache.EntryImpl;
 import org.cacheonix.impl.util.logging.Logger;
 import org.cacheonix.locks.ReadWriteLock;
 

@@ -2,7 +2,7 @@ package org.cacheonix.impl.cache.store;
 
 import org.cacheonix.cache.invalidator.CacheInvalidator;
 import org.cacheonix.impl.cache.storage.disk.DiskStorage;
-import org.cacheonix.impl.util.cache.ObjectSizeCalculator;
+import org.cacheonix.impl.cache.util.ObjectSizeCalculator;
 
 /**
  *

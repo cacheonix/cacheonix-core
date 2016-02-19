@@ -22,13 +22,13 @@ import org.cacheonix.impl.cache.storage.disk.DummyDiskStorage;
 import org.cacheonix.impl.cache.store.BinaryStore;
 import org.cacheonix.impl.cache.store.ReadableElement;
 import org.cacheonix.impl.cache.store.SharedCounter;
+import org.cacheonix.impl.cache.util.ObjectSizeCalculator;
+import org.cacheonix.impl.cache.util.StandardObjectSizeCalculator;
 import org.cacheonix.impl.clock.Clock;
 import org.cacheonix.impl.clock.Time;
 import org.cacheonix.impl.config.CacheStoreConfiguration;
 import org.cacheonix.impl.config.ConfigurationConstants;
 import org.cacheonix.impl.config.FrontCacheConfiguration;
-import org.cacheonix.impl.util.cache.ObjectSizeCalculator;
-import org.cacheonix.impl.util.cache.StandardObjectSizeCalculator;
 
 /**
  * Partitioned cache's front cache.

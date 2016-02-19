@@ -46,6 +46,12 @@ public final class MultiplePartitionedCacheWithReplicasWithKnownAddressTest exte
    }
 
 
+   public void testPutToInvalid() {
+
+      super.testPutToInvalid();
+   }
+
+
    public MultiplePartitionedCacheWithReplicasWithKnownAddressTest() {
 
       super(CONFIGURATIONS);

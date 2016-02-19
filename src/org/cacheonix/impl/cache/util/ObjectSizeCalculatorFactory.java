@@ -11,29 +11,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.impl.util.cache;
-
-import java.lang.reflect.Field;
-import java.util.LinkedHashMap;
-import java.util.Map;
+package org.cacheonix.impl.cache.util;
 
 /**
+ * A calculator for object sizes.
  */
-final class DefinedFieldCache extends LinkedHashMap<String, Field[]> {
-
-   private static final long serialVersionUID = -3994446045477896583L;
-
-   private static final int CACHE_SIZE = 1000;
+public final class ObjectSizeCalculatorFactory {
 
 
-   DefinedFieldCache() {
+   public ObjectSizeCalculator createSizeCalculator(final long maxSizeBytes) {
 
-      super(CACHE_SIZE, 0.75f, true);
-   }
+      if (maxSizeBytes >= 0) {
 
+         return new StandardObjectSizeCalculator();
+      } else {
 
-   protected boolean removeEldestEntry(final Map.Entry<String, Field[]> eldest) {
-
-      return size() > CACHE_SIZE;
+         return new DummyObjectSizeCalculator();
+      }
    }
 }

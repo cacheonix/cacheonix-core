@@ -28,13 +28,13 @@ import org.cacheonix.impl.cache.storage.disk.StorageException;
 import org.cacheonix.impl.cache.store.BinaryStore;
 import org.cacheonix.impl.cache.store.ReadableElement;
 import org.cacheonix.impl.cache.store.SharedCounter;
+import org.cacheonix.impl.cache.util.DummyObjectSizeCalculator;
 import org.cacheonix.impl.clock.Time;
 import org.cacheonix.impl.clock.TimeImpl;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
 import org.cacheonix.impl.util.array.HashMap;
 import org.cacheonix.impl.util.array.HashSet;
-import org.cacheonix.impl.util.cache.DummyObjectSizeCalculator;
 import org.cacheonix.impl.util.logging.Logger;
 
 /**

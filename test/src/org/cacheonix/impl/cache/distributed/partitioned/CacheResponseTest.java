@@ -24,11 +24,11 @@ import org.cacheonix.impl.cache.item.CompressedBinary;
 import org.cacheonix.impl.cache.item.InvalidObjectException;
 import org.cacheonix.impl.cache.item.PassByCopyBinary;
 import org.cacheonix.impl.cache.item.PassObjectByReferenceBinary;
+import org.cacheonix.impl.cache.util.EntryImpl;
 import org.cacheonix.impl.net.processor.Message;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
 import org.cacheonix.impl.util.array.HashSet;
-import org.cacheonix.impl.util.cache.EntryImpl;
 import org.cacheonix.impl.util.logging.Logger;
 
 /**

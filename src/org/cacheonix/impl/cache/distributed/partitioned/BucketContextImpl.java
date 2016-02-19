@@ -4,7 +4,7 @@ import org.cacheonix.cache.datastore.DataStore;
 import org.cacheonix.cache.invalidator.CacheInvalidator;
 import org.cacheonix.impl.cache.datasource.BinaryStoreDataSource;
 import org.cacheonix.impl.cache.storage.disk.DiskStorage;
-import org.cacheonix.impl.util.cache.ObjectSizeCalculator;
+import org.cacheonix.impl.cache.util.ObjectSizeCalculator;
 
 /**
  * An implementation of {@link BucketContext}.

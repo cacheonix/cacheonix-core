@@ -62,13 +62,13 @@ import org.cacheonix.impl.cache.store.PreviousValue;
 import org.cacheonix.impl.cache.store.ReadableElement;
 import org.cacheonix.impl.cache.store.SafeEntryUpdateSubscriber;
 import org.cacheonix.impl.cache.store.SharedCounter;
+import org.cacheonix.impl.cache.util.ObjectSizeCalculator;
 import org.cacheonix.impl.clock.Clock;
 import org.cacheonix.impl.clock.Time;
 import org.cacheonix.impl.config.ElementEventNotification;
 import org.cacheonix.impl.util.StringUtils;
 import org.cacheonix.impl.util.array.HashMap;
 import org.cacheonix.impl.util.array.HashSet;
-import org.cacheonix.impl.util.cache.ObjectSizeCalculator;
 import org.cacheonix.impl.util.logging.Logger;
 
 import static org.cacheonix.impl.cache.CacheUtils.createExpirationTime;

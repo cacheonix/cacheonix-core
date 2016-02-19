@@ -17,12 +17,12 @@ import org.cacheonix.CacheonixTestCase;
 import org.cacheonix.impl.cache.invalidator.DummyCacheInvalidator;
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.cache.storage.disk.DummyDiskStorage;
+import org.cacheonix.impl.cache.util.ObjectSizeCalculator;
+import org.cacheonix.impl.cache.util.ObjectSizeCalculatorFactory;
+import org.cacheonix.impl.cache.util.StandardObjectSizeCalculator;
 import org.cacheonix.impl.clock.TimeImpl;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
-import org.cacheonix.impl.util.cache.ObjectSizeCalculator;
-import org.cacheonix.impl.util.cache.ObjectSizeCalculatorFactory;
-import org.cacheonix.impl.util.cache.StandardObjectSizeCalculator;
 import org.cacheonix.impl.util.logging.Logger;
 
 /**

@@ -33,9 +33,9 @@ import org.cacheonix.impl.cache.datastore.DummyDataStore;
 import org.cacheonix.impl.cache.invalidator.DummyCacheInvalidator;
 import org.cacheonix.impl.cache.loader.DummyCacheLoader;
 import org.cacheonix.impl.cache.storage.disk.DummyDiskStorage;
+import org.cacheonix.impl.cache.util.DummyObjectSizeCalculator;
 import org.cacheonix.impl.util.array.HashMap;
 import org.cacheonix.impl.util.array.HashSet;
-import org.cacheonix.impl.util.cache.DummyObjectSizeCalculator;
 
 import static java.lang.Thread.sleep;
 import static org.cacheonix.TestConstants.LOCAL_TEST_CACHE;

@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.impl.util.cache;
+package org.cacheonix.impl.cache.util;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;

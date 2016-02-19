@@ -22,7 +22,7 @@ import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.cache.storage.disk.DummyDiskStorage;
 import org.cacheonix.impl.cache.store.BinaryStore;
 import org.cacheonix.impl.cache.store.SharedCounter;
-import org.cacheonix.impl.util.cache.DummyObjectSizeCalculator;
+import org.cacheonix.impl.cache.util.DummyObjectSizeCalculator;
 import org.cacheonix.impl.util.logging.Logger;
 
 /**

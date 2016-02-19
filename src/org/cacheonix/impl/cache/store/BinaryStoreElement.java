@@ -44,7 +44,7 @@ import static org.cacheonix.cache.subscriber.EntryModifiedEventContentFlag.NEED_
 import static org.cacheonix.cache.subscriber.EntryModifiedEventContentFlag.NEED_PREVIOUS_VALUE;
 import static org.cacheonix.cache.subscriber.EntryModifiedEventType.EVICT;
 import static org.cacheonix.cache.subscriber.EntryModifiedEventType.REMOVE;
-import static org.cacheonix.impl.util.cache.StandardObjectSizeCalculator.SIZE_OBJECT_REF;
+import static org.cacheonix.impl.cache.util.StandardObjectSizeCalculator.SIZE_OBJECT_REF;
 
 /**
  * Cache element used in local caches to store cached values. In addition to holding a cache value itself, the cache

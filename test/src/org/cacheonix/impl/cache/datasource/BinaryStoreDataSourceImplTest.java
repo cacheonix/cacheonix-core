@@ -20,9 +20,9 @@ import org.cacheonix.impl.cache.invalidator.DummyCacheInvalidator;
 import org.cacheonix.impl.cache.storage.disk.DummyDiskStorage;
 import org.cacheonix.impl.cache.store.BinaryStoreElement;
 import org.cacheonix.impl.cache.store.BinaryStoreElementContextImpl;
+import org.cacheonix.impl.cache.util.DummyObjectSizeCalculator;
 import org.cacheonix.impl.clock.Time;
 import org.cacheonix.impl.clock.TimeImpl;
-import org.cacheonix.impl.util.cache.DummyObjectSizeCalculator;
 import org.mockito.Mockito;
 
 import static org.mockito.Matchers.any;

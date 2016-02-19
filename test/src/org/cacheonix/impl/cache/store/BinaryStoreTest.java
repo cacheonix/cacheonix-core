@@ -29,6 +29,7 @@ import org.cacheonix.impl.cache.item.CompressedBinary;
 import org.cacheonix.impl.cache.item.InvalidObjectException;
 import org.cacheonix.impl.cache.storage.disk.DummyDiskStorage;
 import org.cacheonix.impl.cache.storage.disk.StorageException;
+import org.cacheonix.impl.cache.util.DummyObjectSizeCalculator;
 import org.cacheonix.impl.clock.Time;
 import org.cacheonix.impl.clock.TimeImpl;
 import org.cacheonix.impl.net.serializer.Serializer;
@@ -36,7 +37,6 @@ import org.cacheonix.impl.net.serializer.SerializerFactory;
 import org.cacheonix.impl.net.serializer.Wireable;
 import org.cacheonix.impl.util.array.HashMap;
 import org.cacheonix.impl.util.array.HashSet;
-import org.cacheonix.impl.util.cache.DummyObjectSizeCalculator;
 
 /**
  * Tester for BinaryStore.
