@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.util;
+package org.cacheonix.impl.util.hashcode;
 
 import org.cacheonix.CacheonixException;
 import org.cacheonix.impl.util.logging.Logger;

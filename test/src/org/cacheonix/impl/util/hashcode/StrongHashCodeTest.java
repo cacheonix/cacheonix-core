@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.util;
+package org.cacheonix.impl.util.hashcode;
 
 import junit.framework.TestCase;
 
@@ -22,7 +22,7 @@ import junit.framework.TestCase;
  * @version 1.0
  * @since <pre>04/13/2008</pre>
  */
-public final class NormalHashCodeTest extends TestCase {
+public final class StrongHashCodeTest extends TestCase {
 
    private HashCode hashCode;
 
@@ -40,7 +40,25 @@ public final class NormalHashCodeTest extends TestCase {
       hashCode.add(2);
       hashCode.add(3);
       hashCode.add(4);
-      assertEquals(-1158159973, hashCode.getValue());
+      assertEquals(1245456523, hashCode.getValue());
+   }
+
+
+   public void testDistrbution() {
+
+      int geZero = 0;
+      int ltZero = 0;
+      for (int i = 0; i < 1000; i++) {
+         final HashCode hashCode = new HashCode(HashCodeType.STRONG);
+         hashCode.add(i);
+         if (hashCode.getValue() >= 0) {
+            geZero++;
+         } else {
+            ltZero++;
+         }
+      }
+      assertTrue(geZero > 0);
+      assertTrue(ltZero > 0);
    }
 
 
@@ -56,34 +74,16 @@ public final class NormalHashCodeTest extends TestCase {
    }
 
 
-   public void testDistrbution() {
-
-      int geZero = 0;
-      int ltZero = 0;
-      for (int i = 0; i < 1000; i++) {
-         final HashCode hashCode = new HashCode(HashCodeType.NORMAL);
-         hashCode.add(new Object());
-         if (hashCode.getValue() >= 0) {
-            geZero++;
-         } else {
-            ltZero++;
-         }
-      }
-      assertTrue(geZero > 0);
-      assertTrue(ltZero > 0);
-   }
-
-
    protected void setUp() throws Exception {
 
       super.setUp();
-      hashCode = new HashCode(HashCodeType.NORMAL);
+      hashCode = new HashCode(HashCodeType.STRONG);
    }
 
 
    public String toString() {
 
-      return "NormalHashCodeTest{" +
+      return "StrongHashCodeTest{" +
               "hashCode=" + hashCode +
               "} " + super.toString();
    }

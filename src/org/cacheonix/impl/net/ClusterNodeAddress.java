@@ -29,9 +29,9 @@ import org.cacheonix.impl.util.ArrayUtils;
 import org.cacheonix.impl.util.IOUtils;
 import org.cacheonix.impl.util.StringUtils;
 import org.cacheonix.impl.util.array.HashMap;
+import org.cacheonix.impl.util.hashcode.HashCode;
+import org.cacheonix.impl.util.hashcode.HashCodeType;
 import org.cacheonix.impl.util.logging.Logger;
-import org.cacheonix.util.HashCode;
-import org.cacheonix.util.HashCodeType;
 
 /**
  * Processes communicate by exchanging messages. Each process is unique. An example of a process is a cache.

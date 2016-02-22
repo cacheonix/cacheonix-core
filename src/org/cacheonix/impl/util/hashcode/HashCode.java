@@ -11,13 +11,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cacheonix.util;
+package org.cacheonix.impl.util.hashcode;
 
 import java.io.Serializable;
 
-import org.cacheonix.impl.util.hashcode.HashCodeCalculator;
-import org.cacheonix.impl.util.hashcode.HashCodeCalculatorFactory;
-import org.cacheonix.impl.util.hashcode.HashCodeCalculatorType;
 import org.cacheonix.impl.util.logging.Logger;
 
 /**

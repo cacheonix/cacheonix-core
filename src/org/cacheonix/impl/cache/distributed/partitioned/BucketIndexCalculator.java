@@ -13,8 +13,8 @@
  */
 package org.cacheonix.impl.cache.distributed.partitioned;
 
-import org.cacheonix.util.HashCode;
-import org.cacheonix.util.HashCodeType;
+import org.cacheonix.impl.util.hashcode.HashCode;
+import org.cacheonix.impl.util.hashcode.HashCodeType;
 import org.cacheonix.impl.util.logging.Logger;
 
 /**
