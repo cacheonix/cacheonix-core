@@ -604,7 +604,7 @@ public final class BinaryStore implements Wireable {
 
       // Store element in the user-provided data store
 
-      DataStore dataStore = binaryStoreContext.getDataStore();
+      final DataStore dataStore = binaryStoreContext.getDataStore();
       dataStore.store(new StorableImpl(key, value));
 
       // Evict eldest element if exceeded size
