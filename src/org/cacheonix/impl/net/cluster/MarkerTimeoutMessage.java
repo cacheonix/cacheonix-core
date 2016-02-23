@@ -101,7 +101,7 @@ public final class MarkerTimeoutMessage extends ClusterMessage {
 
       // Locality validation
       if (!getReceiver().isAddressOf(getSender())) {
-         throw new InvalidMessageException("Shutdown can be sent only to the local cluster node");
+         throw new InvalidMessageException("Timeout message can be sent only to the local cluster node");
       }
    }
 
