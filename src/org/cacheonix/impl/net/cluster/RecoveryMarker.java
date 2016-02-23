@@ -164,28 +164,11 @@ public final class RecoveryMarker extends MarkerRequest {
 
    protected void processNormal() {
 
-      // NOTE: simeshev@cacheonix.org - by that time we could have started the recovery because of
-      // the timeout and we have become an originator of the round. Setting it to the recovery
-      // state with the originator flag not set may lead to the situation when there are no
-      // originators that know that they are originators. That may lead to the situation when
-      // other markers are not dropped.
+      // NOTE: simeshev@cacheonix.org - 2016-02-22 - Recovery can start at any time by any member
+      // of the cluster. We should not check this recovery marker's cluster UUID in the NORMAL
+      // state because the recovery marker is created with a new cluster UUID.
 
       final ClusterProcessor processor = getClusterProcessor();
-
-      // Doesn't accept requests to begin recovery from other clusters
-
-      if (!processor.getProcessorState().getClusterView().getClusterUUID().equals(getClusterUUID())) {
-
-         final String errorResult = "Recovery marker from a different cluster: " + this;
-
-         //noinspection ControlFlowStatementWithoutBraces
-         if (LOG.isDebugEnabled()) LOG.debug(errorResult); // NOPMD
-
-         final Response errorResponse = createResponse(RESULT_ERROR);
-         errorResponse.setResult(errorResult);
-         processor.post(errorResponse);
-         return;
-      }
 
       // NOTE: slava@cacheonix.org - 2009-12-22 - Make sure that the recovery marker is coming from
       // a member of our cluster. Otherwise it is possible to enter into the RecoveryState with no
