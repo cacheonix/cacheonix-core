@@ -189,6 +189,13 @@ public final class MarkerTimeoutMessage extends ClusterMessage {
 
       final ClusterNodeAddress beginRecoveryWith = processor.getProcessorState().getClusterView().getNextElement();
 
+      beginRecovery(beginRecoveryWith);
+   }
+
+
+   private void beginRecovery(final ClusterNodeAddress beginRecoveryWith) {
+
+      final ClusterProcessor processor = getClusterProcessor();
       final ClusterNodeAddress self = processor.getAddress();
 
       if (LOG.isDebugEnabled()) {
