@@ -187,11 +187,12 @@ public final class MarkerTimeoutMessage extends ClusterMessage {
 
       // Begin recovery with the node next after failed.
 
-      final ClusterNodeAddress nextNode = processor.getProcessorState().getClusterView().getNextElement();
+      final ClusterNodeAddress beginRecoveryWith = processor.getProcessorState().getClusterView().getNextElement();
+
       final ClusterNodeAddress self = processor.getAddress();
 
       if (LOG.isDebugEnabled()) {
-         LOG.debug("RRRRRRRRRRRRRRRRRRRRRR Begin recovery starting with: " + nextNode);
+         LOG.debug("RRRRRRRRRRRRRRRRRRRRRR Begin recovery starting with: " + beginRecoveryWith);
       }
 
       // Change state to recovery, with us as an Originator
@@ -212,7 +213,7 @@ public final class MarkerTimeoutMessage extends ClusterMessage {
       final List<JoiningNode> currentList = CollectionUtils.createList(new JoiningNode(self));
       final List<JoiningNode> previousList = Collections.emptyList();
       final RecoveryMarker recoveryMarker = new RecoveryMarker(newClusterUUID, self, currentList, previousList);
-      recoveryMarker.setReceiver(nextNode);
+      recoveryMarker.setReceiver(beginRecoveryWith);
 
       processor.post(recoveryMarker);
    }
