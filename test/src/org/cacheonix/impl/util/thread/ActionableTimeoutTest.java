@@ -41,7 +41,8 @@ public final class ActionableTimeoutTest extends CacheonixTestCase {
    public void testReset() throws InterruptedException {
 
       actionableTimeout.reset();
-      Thread.sleep((long) (DELAY << 1));
+      final long delay = (long) (DELAY << 2);
+      Thread.sleep(delay);
       assertTrue(called);
    }
 
