@@ -161,7 +161,7 @@ public final class CleanupMarker extends MarkerRequest {
       processor.getProcessorState().getHomeAloneTimeout().cancel();
 
       // Notify cluster event subscribers
-      notifySubscribersClusterStateChanged(newState);
+      processor.getProcessorState().notifySubscribersClusterStateChanged(newState);
 
       // REVIEWME: simeshev@cacheonix.org - 2010-07-07 - What are the implications
       // of sending the new marker to self instead of just forwarding it?
@@ -297,7 +297,7 @@ public final class CleanupMarker extends MarkerRequest {
             processor.getProcessorState().getHomeAloneTimeout().cancel();
 
             // Notify cluster event subscribers
-            notifySubscribersClusterStateChanged(newState);
+            processor.getProcessorState().notifySubscribersClusterStateChanged(newState);
 
             // Receive marker
             final MulticastMarker multicastMarker = new MulticastMarker(currentClusterView.getClusterUUID());

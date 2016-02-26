@@ -617,7 +617,7 @@ public final class BlockedMarker extends OperationalMarker {
          processor.getProcessorState().getHomeAloneTimeout().reset();
 
          // Notify cluster event subscribers
-         notifySubscribersClusterStateChanged(newState);
+         processor.getProcessorState().notifySubscribersClusterStateChanged(newState);
 
          // REVIEWME: simeshev@cacheonix.org - 2010-07-07 - What are the implications
          // of sending the new marker to self instead of just forwarding it?
@@ -696,7 +696,7 @@ public final class BlockedMarker extends OperationalMarker {
       processor.getProcessorState().getHomeAloneTimeout().cancel();
 
       // Notifies cluster subscribers
-      notifySubscribersClusterStateChanged(newState);
+      processor.getProcessorState().notifySubscribersClusterStateChanged(newState);
 
       // Forward cleanup marker
       forwardCleanupMarker(cleanupMarker);

@@ -203,6 +203,7 @@ public interface ClusterProcessorState extends ProcessorState {
 
    /**
     * Retusn the last operational cluster view. Can return null if the cluster have never been
+    *
     * @return
     */
    ClusterView getLastOperationalClusterView();
@@ -317,4 +318,15 @@ public interface ClusterProcessorState extends ProcessorState {
     * @return a list of user cluster event subscribers.
     */
    List<ClusterEventSubscriber> getClusterEventSubscribers();
+
+   /**
+    * Notifies subscribers about changes in the state of the cluster.
+    *
+    * @param newState the new cluster state.
+    * @see #STATE_BLOCKED
+    * @see #STATE_CLEANUP
+    * @see #STATE_NORMAL
+    * @see #STATE_RECOVERY
+    */
+   void notifySubscribersClusterStateChanged(int newState);
 }

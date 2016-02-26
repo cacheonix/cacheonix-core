@@ -204,7 +204,7 @@ public final class RecoveryMarker extends MarkerRequest {
       processor.getProcessorState().getHomeAloneTimeout().cancel();
 
       // Notify cluster event subscribers
-      notifySubscribersClusterStateChanged(newState);
+      processor.getProcessorState().notifySubscribersClusterStateChanged(newState);
 
       // NOTE: simeshev@cacheonix.org - 2010-12-23 - it is possible that a node in a Normal
       // state receives a recovery marker with self as an originator. This may happen when
@@ -270,7 +270,7 @@ public final class RecoveryMarker extends MarkerRequest {
       processor.getProcessorState().getHomeAloneTimeout().cancel();
 
       // Notify cluster subscribers
-      notifySubscribersClusterStateChanged(newState);
+      processor.getProcessorState().notifySubscribersClusterStateChanged(newState);
 
       // NOTE: simeshev@cacheonix.org - 2010-12-23 - it is possible that a node in a blocked
       // state receives a recovery marker with self as an originator. This may happen when
@@ -588,7 +588,7 @@ public final class RecoveryMarker extends MarkerRequest {
       processor.getProcessorState().getHomeAloneTimeout().reset();
 
       // Notify cluster event subscribers
-      notifySubscribersClusterStateChanged(newState);
+      processor.getProcessorState().notifySubscribersClusterStateChanged(newState);
 
       // Create and forward new BlockedMarker
       final BlockedMarker blockedMarker = new BlockedMarker(

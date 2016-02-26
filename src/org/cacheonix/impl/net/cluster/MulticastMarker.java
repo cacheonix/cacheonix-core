@@ -1120,7 +1120,7 @@ public final class MulticastMarker extends OperationalMarker {
          processor.getProcessorState().getHomeAloneTimeout().cancel();
 
          // Notify cluster event subscribers
-         notifySubscribersClusterStateChanged(newState);
+         processor.getProcessorState().notifySubscribersClusterStateChanged(newState);
 
 
          // Calculate nodes left and joined
@@ -1262,7 +1262,7 @@ public final class MulticastMarker extends OperationalMarker {
       processor.getProcessorState().getHomeAloneTimeout().cancel();
 
       // Notify cluster event subscribers
-      notifySubscribersClusterStateChanged(newState);
+      processor.getProcessorState().notifySubscribersClusterStateChanged(newState);
 
       // Forward instead of receiving itself to support synchronous delivery of configuration messages.
       final MulticastMarker marker = copy();

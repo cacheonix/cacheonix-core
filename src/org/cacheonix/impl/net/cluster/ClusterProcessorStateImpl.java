@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Random;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -27,6 +28,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 
 import org.cacheonix.cluster.ClusterEventSubscriber;
+import org.cacheonix.cluster.ClusterState;
+import org.cacheonix.impl.cluster.ClusterStateChangedEventImpl;
 import org.cacheonix.impl.cluster.node.state.ReplicatedState;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.processor.Frame;
@@ -34,6 +37,8 @@ import org.cacheonix.impl.util.array.HashSet;
 import org.cacheonix.impl.util.logging.Logger;
 import org.cacheonix.impl.util.thread.UserThreadFactory;
 import org.cacheonix.impl.util.time.Timeout;
+
+import static org.cacheonix.impl.cluster.ClusterEventUtil.convertStateMachineToUserClusterState;
 
 /**
  * Cluster processor state.
@@ -605,6 +610,31 @@ final class ClusterProcessorStateImpl implements ClusterProcessorState {
    public List<ClusterEventSubscriber> getClusterEventSubscribers() {
 
       return clusterEventSubscribers;
+   }
+
+
+   public void notifySubscribersClusterStateChanged(final int newClusterState) {
+
+      final Executor userEventExecutor = getUserEventExecutor();
+      for (final ClusterEventSubscriber clusterEventSubscriber : clusterEventSubscribers) {
+         userEventExecutor.execute(new Runnable() {
+
+            public void run() {
+
+               try {
+
+                  final ClusterState clusterState = convertStateMachineToUserClusterState(newClusterState);
+                  final ClusterStateChangedEventImpl stateChangedEvent = new ClusterStateChangedEventImpl(clusterState);
+                  clusterEventSubscriber.notifyClusterStateChanged(stateChangedEvent);
+               } catch (final Throwable e) { // NOPMD A catch statement should never catch throwable since it includes errors.
+
+                  // Isolate errors possibly thrown by a call to a user API
+                  LOG.warn("Error while notifying subscriber" + clusterEventSubscriber
+                          + "that cluster state changed: " + e, e);
+               }
+            }
+         });
+      }
    }
 
 

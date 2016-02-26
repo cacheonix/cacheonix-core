@@ -16,11 +16,7 @@ package org.cacheonix.impl.net.cluster;
 import java.util.Collections;
 import java.util.List;
 import java.util.Queue;
-import java.util.concurrent.Executor;
 
-import org.cacheonix.cluster.ClusterEventSubscriber;
-import org.cacheonix.cluster.ClusterState;
-import org.cacheonix.impl.cluster.ClusterStateChangedEventImpl;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.processor.Frame;
 import org.cacheonix.impl.net.processor.InvalidMessageException;
@@ -32,7 +28,6 @@ import org.cacheonix.impl.util.Assert;
 import org.cacheonix.impl.util.CollectionUtils;
 import org.cacheonix.impl.util.logging.Logger;
 
-import static org.cacheonix.impl.cluster.ClusterEventUtil.convertStateMachineToUserClusterState;
 import static org.cacheonix.impl.net.cluster.ClusterProcessorState.STATE_RECOVERY;
 import static org.cacheonix.impl.net.processor.Response.RESULT_SUCCESS;
 
@@ -233,33 +228,6 @@ public abstract class MarkerRequest extends ClusterRequest {
    }
 
 
-   protected void notifySubscribersClusterStateChanged(final int newClusterState) {
-
-      final ClusterProcessorState processorState = getClusterProcessor().getProcessorState();
-      final List<ClusterEventSubscriber> clusterEventSubscribers = processorState.getClusterEventSubscribers();
-      final Executor userEventExecutor = processorState.getUserEventExecutor();
-      for (final ClusterEventSubscriber clusterEventSubscriber : clusterEventSubscribers) {
-         userEventExecutor.execute(new Runnable() {
-
-            public void run() {
-
-               try {
-
-                  final ClusterState clusterState = convertStateMachineToUserClusterState(newClusterState);
-                  final ClusterStateChangedEventImpl stateChangedEvent = new ClusterStateChangedEventImpl(clusterState);
-                  clusterEventSubscriber.notifyClusterStateChanged(stateChangedEvent);
-               } catch (final Throwable e) { // NOPMD A catch statement should never catch throwable since it includes errors.
-
-                  // Isolate errors possibly thrown by a call to a user API
-                  LOG.warn("Error while notifying subscriber" + clusterEventSubscriber
-                          + "that cluster state changed: " + e, e);
-               }
-            }
-         });
-      }
-   }
-
-
    /**
     * Waiter for MarkerMessage.
     */
@@ -376,7 +344,7 @@ public abstract class MarkerRequest extends ClusterRequest {
          processor.getProcessorState().setRecoveryOriginator(true);
 
          // Notify cluster event subscribers
-         request.notifySubscribersClusterStateChanged(newState);
+         processor.getProcessorState().notifySubscribersClusterStateChanged(newState);
 
          // Notify cluster event subscribers
 
