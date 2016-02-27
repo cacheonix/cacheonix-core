@@ -13,15 +13,10 @@
  */
 package org.cacheonix.impl.net.cluster;
 
-import java.util.Collections;
-import java.util.List;
-
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.processor.InvalidMessageException;
-import org.cacheonix.impl.net.processor.UUID;
 import org.cacheonix.impl.net.serializer.Wireable;
 import org.cacheonix.impl.net.serializer.WireableBuilder;
-import org.cacheonix.impl.util.CollectionUtils;
 import org.cacheonix.impl.util.logging.Logger;
 
 /**
@@ -186,43 +181,12 @@ public final class MarkerTimeoutMessage extends ClusterMessage {
       final ClusterProcessor processor = getClusterProcessor();
 
       // Begin recovery with the node next after failed.
-
       final ClusterNodeAddress beginRecoveryWith = processor.getProcessorState().getClusterView().getNextElement();
 
-      beginRecovery(beginRecoveryWith);
-   }
-
-
-   private void beginRecovery(final ClusterNodeAddress beginRecoveryWith) {
-
-      final ClusterProcessor processor = getClusterProcessor();
-      final ClusterNodeAddress self = processor.getAddress();
-
-      if (LOG.isDebugEnabled()) {
-         LOG.debug("RRRRRRRRRRRRRRRRRRRRRR Begin recovery starting with: " + beginRecoveryWith);
-      }
-
-      // Change state to recovery, with us as an Originator
-      if (LOG.isDebugEnabled()) {
-         LOG.debug("<><><><><><><><><><><><><><> Created recovery state: " + self.getTcpPort() + ", originator: " + true);
-      }
-
-      processor.getProcessorState().setState(ClusterProcessorState.STATE_RECOVERY);
+      MarkerRequest.beginRecovery(processor, beginRecoveryWith);
 
       // Cancel 'home alone' timeout
       processor.getProcessorState().getHomeAloneTimeout().cancel();
-
-      processor.getProcessorState().setRecoveryOriginator(true);
-
-      // Post new recovery marker with self as an originator
-      final UUID newClusterUUID = UUID.randomUUID();
-
-      final List<JoiningNode> currentList = CollectionUtils.createList(new JoiningNode(self));
-      final List<JoiningNode> previousList = Collections.emptyList();
-      final RecoveryMarker recoveryMarker = new RecoveryMarker(newClusterUUID, self, currentList, previousList);
-      recoveryMarker.setReceiver(beginRecoveryWith);
-
-      processor.post(recoveryMarker);
    }
 
 

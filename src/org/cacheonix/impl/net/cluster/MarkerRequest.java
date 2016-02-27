@@ -218,6 +218,31 @@ public abstract class MarkerRequest extends ClusterRequest {
    }
 
 
+   static void beginRecovery(final ClusterProcessor processor, final ClusterNodeAddress beginRecoveryWith) {
+
+      final ClusterNodeAddress self = processor.getAddress();
+
+      if (LOG.isDebugEnabled()) {
+         LOG.debug("RRRRRRRRRRRRRRRRRRRRRR Begin recovery at " + self.getTcpPort() + " starting with: " + beginRecoveryWith + ", originator: " + true);
+      }
+
+      // Change state to recovery, with us as an Originator
+      final int newState = STATE_RECOVERY;
+      processor.getProcessorState().setState(newState);
+      processor.getProcessorState().setRecoveryOriginator(true);
+      processor.getProcessorState().notifySubscribersClusterStateChanged(newState);
+
+      // Post new recovery marker with self as an originator
+      final UUID newClusterUUID = UUID.randomUUID();
+      final List<JoiningNode> currentList = CollectionUtils.createList(new JoiningNode(self));
+      final List<JoiningNode> previousList = Collections.emptyList();
+      final RecoveryMarker recoveryMarker = new RecoveryMarker(newClusterUUID, self, currentList, previousList);
+      recoveryMarker.setReceiver(beginRecoveryWith);
+
+      processor.post(recoveryMarker);
+   }
+
+
    /**
     * {@inheritDoc}
     */
@@ -296,8 +321,17 @@ public abstract class MarkerRequest extends ClusterRequest {
 
             // Error response from an other node that changed its cluster
             // while this request waited for response, initiate recovery
-            beginRecovery(beginRecoveryWith);
-//            }
+
+            //noinspection ControlFlowStatementWithoutBraces
+            final MarkerRequest request = (MarkerRequest) getRequest();
+            if (LOG.isDebugEnabled()) {
+               LOG.debug("Failed to forward marker to " + request.getReceiver()
+                       + ", initiating recovery round, originator: " + getClusterProcessor().getAddress()
+                       + ", marker: " + request);
+            }
+
+            MarkerRequest.beginRecovery(processor, beginRecoveryWith);
+            //            }
          } else {
 
             // The cluster configuration has changed while we were waiting for the response.
@@ -313,53 +347,6 @@ public abstract class MarkerRequest extends ClusterRequest {
       }
 
 
-      private void beginRecovery(final ClusterNodeAddress beginRecoveryWith) {
-
-         //noinspection ControlFlowStatementWithoutBraces
-         final MarkerRequest request = (MarkerRequest) getRequest();
-         if (LOG.isDebugEnabled()) {
-            LOG.debug("Failed to forward marker to " + request.getReceiver()
-                    + ", initiating recovery round, originator: " + getClusterProcessor().getAddress()
-                    + ", marker: " + request);
-         }
-
-         final ClusterProcessor processor = getClusterProcessor();
-
-         // Begin recovery with the node next after failed.
-         final ClusterNodeAddress self = processor.getAddress();
-
-         if (LOG.isDebugEnabled()) {
-            LOG.debug("RRRRRRRRRRRRRRRRRRRRRR Begin recovery starting with: " + beginRecoveryWith);
-         }
-
-         // Change state to recovery, with us as an Originator
-         if (LOG.isDebugEnabled()) {
-            LOG.debug(
-                    "<><><><><><><><><><><><><><> Created recovery state: " + self.getTcpPort() + ", originator: " + true);
-         }
-
-         final int newState = STATE_RECOVERY;
-         processor.getProcessorState().setState(newState);
-
-         processor.getProcessorState().setRecoveryOriginator(true);
-
-         // Notify cluster event subscribers
-         processor.getProcessorState().notifySubscribersClusterStateChanged(newState);
-
-         // Notify cluster event subscribers
-
-         // Post new recovery marker with self as an originator
-         final UUID newClusterUUID = UUID.randomUUID();
-
-         final List<JoiningNode> currentList = CollectionUtils.createList(new JoiningNode(self));
-         final List<JoiningNode> previousList = Collections.emptyList();
-         final RecoveryMarker recoveryMarker = new RecoveryMarker(newClusterUUID, self, currentList, previousList);
-         recoveryMarker.setReceiver(beginRecoveryWith);
-
-         processor.post(recoveryMarker);
-      }
-
-
       /**
        * Re-usable shortcut method to obtain a typed context ClusterService from the waiter's request.
        *
@@ -370,4 +357,6 @@ public abstract class MarkerRequest extends ClusterRequest {
          return ((ClusterRequest) getRequest()).getClusterProcessor();
       }
    }
+
+
 }
