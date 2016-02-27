@@ -96,7 +96,7 @@ public final class RecoveryMarkerTest extends TestCase {
       originator = TestUtils.createTestAddress();
       currentList = new ArrayList(1);
       previousList = new ArrayList(1);
-      recoveryMarker = new RecoveryMarker(UUID.randomUUID(), originator, currentList, previousList);
+      recoveryMarker = new RecoveryMarker(UUID.randomUUID(), originator);
    }
 
 

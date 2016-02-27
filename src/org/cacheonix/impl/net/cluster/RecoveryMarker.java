@@ -17,7 +17,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -37,6 +36,7 @@ import static org.cacheonix.impl.net.cluster.ClusterProcessorState.STATE_BLOCKED
 import static org.cacheonix.impl.net.cluster.ClusterProcessorState.STATE_RECOVERY;
 import static org.cacheonix.impl.net.processor.Response.RESULT_ERROR;
 import static org.cacheonix.impl.net.processor.Response.RESULT_SUCCESS;
+import static org.cacheonix.impl.util.CollectionUtils.createList;
 
 /**
  * RecoveryMarker
@@ -82,16 +82,14 @@ public final class RecoveryMarker extends MarkerRequest {
    }
 
 
-   public RecoveryMarker(final UUID newClusterUUID, final ClusterNodeAddress originator,
-           final List<JoiningNode> currentList,
-           final List<JoiningNode> previousList) {
+   public RecoveryMarker(final UUID newClusterUUID, final ClusterNodeAddress originator) {
 
       super(TYPE_CLUSTER_RECOVERY_MARKER);
       this.setRequiresSameCluster(false);
       this.newClusterUUID = newClusterUUID;
       this.originator = originator;
-      this.currentList = new ArrayList<JoiningNode>(currentList);
-      this.previousList = new ArrayList<JoiningNode>(previousList);
+      this.currentList = new ArrayList<JoiningNode>(createList(new JoiningNode(originator)));
+      this.previousList = new ArrayList<JoiningNode>(0);
    }
 
 
@@ -812,10 +810,7 @@ public final class RecoveryMarker extends MarkerRequest {
 
                         // Create new marker
                         final UUID newClusterUUID = UUID.randomUUID();
-
-                        final List<JoiningNode> currentList = CollectionUtils.createList(new JoiningNode(self));
-                        final List<JoiningNode> previousList = Collections.emptyList();
-                        recoveryMarker = new RecoveryMarker(newClusterUUID, self, currentList, previousList);
+                        recoveryMarker = new RecoveryMarker(newClusterUUID, self);
                      } else {
 
                         // Create a copy of the request

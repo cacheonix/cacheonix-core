@@ -13,7 +13,6 @@
  */
 package org.cacheonix.impl.net.cluster;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Queue;
 
@@ -25,7 +24,6 @@ import org.cacheonix.impl.net.processor.Request;
 import org.cacheonix.impl.net.processor.Response;
 import org.cacheonix.impl.net.processor.UUID;
 import org.cacheonix.impl.util.Assert;
-import org.cacheonix.impl.util.CollectionUtils;
 import org.cacheonix.impl.util.logging.Logger;
 
 import static org.cacheonix.impl.net.cluster.ClusterProcessorState.STATE_RECOVERY;
@@ -234,9 +232,7 @@ public abstract class MarkerRequest extends ClusterRequest {
 
       // Post new recovery marker with self as an originator
       final UUID newClusterUUID = UUID.randomUUID();
-      final List<JoiningNode> currentList = CollectionUtils.createList(new JoiningNode(self));
-      final List<JoiningNode> previousList = Collections.emptyList();
-      final RecoveryMarker recoveryMarker = new RecoveryMarker(newClusterUUID, self, currentList, previousList);
+      final RecoveryMarker recoveryMarker = new RecoveryMarker(newClusterUUID, self);
       recoveryMarker.setReceiver(beginRecoveryWith);
 
       processor.post(recoveryMarker);
