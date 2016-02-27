@@ -413,8 +413,8 @@ public final class RecoveryMarker extends MarkerRequest {
             // Not an originator of this recovery round, *our* marker will be destroyed some time
             // later
             if (LOG.isDebugEnabled()) {
-               LOG.debug(
-                       "Not an originator of this recovery round, *our* marker will be destroyed some time, later: " + self.getTcpPort());
+               LOG.debug("Not an originator (" + recoveryMarker.originator.getTcpPort() + ')'
+                       + " of this recovery round, *our* marker will be destroyed some time, later: " + self.getTcpPort());
             }
             if (recoveryMarker.previousList.isEmpty()) {
 
@@ -431,7 +431,8 @@ public final class RecoveryMarker extends MarkerRequest {
 
          // Not an originator of the recovery round
          if (LOG.isDebugEnabled()) {
-            LOG.debug("Not an originator of the recovery round: " + self.getTcpPort());
+            LOG.debug("Not an originator (" + recoveryMarker.originator.getTcpPort() + ')'
+                    + " of the recovery round: " + self.getTcpPort());
          }
 
 
