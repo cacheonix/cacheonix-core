@@ -139,15 +139,9 @@ public final class PlainMulticastSender implements MulticastSender {
          } catch (final IOException e) {
             if (e.getMessage().endsWith(NO_BUFFER_SPACE_AVAILABLE)) {
 
-//               final NetworkInterface networkInterface = mcastSocket.getNetworkInterface();
-//               final InetAddress intf = mcastSocket.getInterface();
-//               final IOException extendedException = new IOException(NO_BUFFER_SPACE_AVAILABLE + ": "
-//                       + "interface: " + intf + ", "
-//                       + "network interface: " + networkInterface.getDisplayName() + ", "
-//                       + "total messages sent: " + sentMessages
-//               );
-//               extendedException.setStackTrace(e.getStackTrace());
-//               throw extendedException;
+               final NetworkInterface networkInterface = mcastSocket.getNetworkInterface();
+               final InetAddress intf = mcastSocket.getInterface();
+               LOG.warn(createNoBufferSpaceAvailableWarning(networkInterface, intf));
             } else {
 
                throw e;
@@ -165,6 +159,22 @@ public final class PlainMulticastSender implements MulticastSender {
                  + Frame.MAXIMUM_MULTICAST_PACKET_SIZE);
       }
       return message;
+   }
+
+
+   /**
+    * Creates a warning message about no buffer space available.
+    *
+    * @param intf        the interface this happened to
+    * @param inetAddress the inet address it happened to.
+    * @return a new warning message about no buffer space available.
+    */
+   private String createNoBufferSpaceAvailableWarning(final NetworkInterface intf, final InetAddress inetAddress) {
+
+      return NO_BUFFER_SPACE_AVAILABLE + ": "
+              + "interface: " + inetAddress + ", "
+              + "network interface: " + intf.getDisplayName() + ", "
+              + "total messages sent: " + sentMessages;
    }
 
 
