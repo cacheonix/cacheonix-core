@@ -19,11 +19,19 @@ import org.cacheonix.ShutdownMode;
 import org.cacheonix.TestUtils;
 import org.cacheonix.cache.Cache;
 import org.cacheonix.impl.util.MutableBoolean;
+import org.cacheonix.impl.util.logging.Logger;
 import org.cacheonix.locks.Lock;
 
 /**
  */
 public abstract class SinglePartitionedCacheTestCase extends PartitionedCacheTestCase {
+
+   /**
+    * Logger.
+    *
+    * @noinspection UNUSED_SYMBOL, UnusedDeclaration
+    */
+   private static final Logger LOG = Logger.getLogger(SinglePartitionedCacheTestCase.class); // NOPMD
 
    private final String configuration;
 
@@ -76,7 +84,7 @@ public abstract class SinglePartitionedCacheTestCase extends PartitionedCacheTes
          try {
             writeLock.unlock();
          } catch (final ShutdownException ignored) {
-            // Expected becuase the node has been shutdown
+            LOG.info("Ignored exception: " + ignored);
          }
       }
 
@@ -106,6 +114,7 @@ public abstract class SinglePartitionedCacheTestCase extends PartitionedCacheTes
       try {
          cacheonix.shutdown(ShutdownMode.GRACEFUL_SHUTDOWN, true);
       } catch (final ShutdownException ignored) {
+         LOG.info("Ignored exception: " + ignored);
       }
 
       super.tearDown();

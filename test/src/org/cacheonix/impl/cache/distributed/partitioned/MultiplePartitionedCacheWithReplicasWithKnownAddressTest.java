@@ -46,7 +46,7 @@ public final class MultiplePartitionedCacheWithReplicasWithKnownAddressTest exte
    }
 
 
-   public void testPutToInvalid() {
+   public void testPutToInvalid() { // NOPMD 'Overriding method merely calls super'
 
       super.testPutToInvalid();
    }
