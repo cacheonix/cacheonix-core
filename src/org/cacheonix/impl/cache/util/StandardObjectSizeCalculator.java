@@ -18,6 +18,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.IdentityHashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import org.cacheonix.impl.util.logging.Logger;
@@ -201,7 +202,7 @@ public final class StandardObjectSizeCalculator implements ObjectSizeCalculator 
    }
 
 
-   private long calculate(final Object obj, final Map<Object, Object> visited, final LinkedList<Object> stack) {
+   private long calculate(final Object obj, final Map<Object, Object> visited, final List<Object> stack) {
 
       if (skipObject(obj, visited)) {
          return 0;
@@ -254,7 +255,7 @@ public final class StandardObjectSizeCalculator implements ObjectSizeCalculator 
    }
 
 
-   protected long sizeOfArray(final Object obj, final Map<Object, Object> visited, final LinkedList<Object> stack) {
+   protected long sizeOfArray(final Object obj, final Map<Object, Object> visited, final List<Object> stack) {
 
       long result = 16;
       final int length = Array.getLength(obj);
@@ -276,12 +277,15 @@ public final class StandardObjectSizeCalculator implements ObjectSizeCalculator 
    }
 
 
-   private static long roundUpToNearestEightBytes(long result) {
+   private static long roundUpToNearestEightBytes(final long valueToRoundUp) {
+
+      long result = valueToRoundUp;
 
       if (result % 8 != 0) {
 
          result += 8 - result % 8;
       }
+
       return result;
    }
 
