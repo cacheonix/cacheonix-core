@@ -35,6 +35,21 @@ import static org.cacheonix.impl.util.StringUtils.toYesNo;
  */
 public final class NetworkInterfaceEnumerator {
 
+
+   private static final String CHECKING_FOR_NETWORK_PREFIX_LENGTH_IS_NOT_SUPPORTED = "   Checking for network prefix length is not supported";
+
+   private static final String CHECKING_FOR_MTU_IS_NOT_SUPPORTED = "   Checking for MTU is not supported";
+
+   private static final String CHECKING_FOR_MULTICAST_IS_NOT_SUPPORTED = "   Checking for multicast is not supported";
+
+   private static final String CHECKING_FOR_IS_UP_IS_NOT_SUPPORTED = "   Checking for Is Up is not supported";
+
+   private static final String CHECKING_FOR_LOOPBACK_IS_NOT_SUPPORTED = "   Checking for loopback is not supported";
+
+   private static final String CHECKING_FOR_POINT_TO_POINT_IS_NOT_SUPPORTED = "   Checking for point to point is not supported";
+
+   private static final String CHECKING_FOR_VIRTUAL_IS_NOT_SUPPORTED = "   Checking for virtual is not supported";
+
    private static final char LINE_SEPARATOR = '\n';
 
    private static final int DEFAULT_STRING_BUFFER_LENGTH = 200;
@@ -114,7 +129,8 @@ public final class NetworkInterfaceEnumerator {
             }
             stream.println(INTERFACE_ADDRESS_ES + buf);
          } catch (final NoSuchMethodException ignored) {
-            // Multicast not supported
+
+            stream.println(CHECKING_FOR_NETWORK_PREFIX_LENGTH_IS_NOT_SUPPORTED);
          }
 
          try {
@@ -122,7 +138,8 @@ public final class NetworkInterfaceEnumerator {
             final Method mtuMethod = getMTUMethod(netIf);
             stream.println(MTU + ((Number) mtuMethod.invoke(netIf, EMPTY_OBJECT_ARRAY)).intValue());
          } catch (final NoSuchMethodException ignored) {
-            // Multicast not supported
+
+            stream.println(CHECKING_FOR_MTU_IS_NOT_SUPPORTED);
          }
 
          try {
@@ -131,7 +148,8 @@ public final class NetworkInterfaceEnumerator {
             final Boolean supportsMulticast = (Boolean) supportsMulticastMethod.invoke(netIf, EMPTY_OBJECT_ARRAY);
             stream.println(SUPPORTS_MULTICAST + toYesNo(supportsMulticast));
          } catch (final NoSuchMethodException ignored) {
-            // Multicast not supported
+
+            stream.println(CHECKING_FOR_MULTICAST_IS_NOT_SUPPORTED);
          }
 
          try {
@@ -140,7 +158,8 @@ public final class NetworkInterfaceEnumerator {
             final Boolean isUp = (Boolean) isUpMethod.invoke(netIf, EMPTY_OBJECT_ARRAY);
             stream.println(UP + toYesNo(isUp));
          } catch (final NoSuchMethodException ignore) {
-            // Is up is not supported
+
+            stream.println(CHECKING_FOR_IS_UP_IS_NOT_SUPPORTED);
          }
 
          try {
@@ -148,7 +167,8 @@ public final class NetworkInterfaceEnumerator {
             final Boolean isLoopback = (Boolean) isLoopbackMethod.invoke(netIf, EMPTY_OBJECT_ARRAY);
             stream.println(LOOPBACK + toYesNo(isLoopback));
          } catch (final NoSuchMethodException ignore) {
-            // isLoopback is not supported
+
+            stream.println(CHECKING_FOR_LOOPBACK_IS_NOT_SUPPORTED);
          }
 
          try {
@@ -157,7 +177,9 @@ public final class NetworkInterfaceEnumerator {
             final Boolean isPointToPoint = (Boolean) isPointToPointMethod.invoke(netIf, EMPTY_OBJECT_ARRAY);
             stream.println(POINT_TO_POINT + toYesNo(isPointToPoint));
          } catch (final NoSuchMethodException ignore) {
-            // isPointToPoint is not supported
+
+
+            stream.println(CHECKING_FOR_POINT_TO_POINT_IS_NOT_SUPPORTED);
          }
 
          try {
@@ -166,7 +188,8 @@ public final class NetworkInterfaceEnumerator {
             final Object isVirtual = isVirtualMethod.invoke(netIf, EMPTY_OBJECT_ARRAY);
             stream.println(VIRTUAL + toYesNo((Boolean) isVirtual));
          } catch (final NoSuchMethodException ignore) {
-            // isPointToPoint is not supported
+
+            stream.println(CHECKING_FOR_VIRTUAL_IS_NOT_SUPPORTED);
          }
 
          stream.println();
