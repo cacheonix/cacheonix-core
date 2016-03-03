@@ -89,7 +89,7 @@ public final class CacheNodeOnNodeLeavingWithReplicasTest extends CacheonixTestC
       LOG.debug("=============== Wait for cluster to stabilize ============================");
       final Timeout timeoutForOwnersToArrive = new Timeout(10000L).reset();
       //noinspection StatementWithEmptyBody
-      while (!timeoutForOwnersToArrive.isExpired() && cache(0).getKeyOwners().size() != NODE_COUNT) {
+      while (!timeoutForOwnersToArrive.isExpired() && cache(0).getKeyOwners().size() != NODE_COUNT) { // NOPMD
       }
 
       assertEquals(NODE_COUNT, cache(0).getKeyOwners().size());
