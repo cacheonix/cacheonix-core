@@ -191,8 +191,8 @@ public final class RecoveryMarker extends MarkerRequest {
       processor.post(createResponse(RESULT_SUCCESS));
 
       if (LOG.isDebugEnabled()) {
-         LOG.debug(
-                 "<><><><><><><><><><><><><><> Created recovery state: " + processor.getAddress().getTcpPort() + ", originator: " + originator);
+         LOG.debug("<><><><><><><><><><><><><><> Created recovery state: " + processor.getAddress().getTcpPort()
+                 + ", originator: " + originator);
       }
 
       final int newState = STATE_RECOVERY;
@@ -257,8 +257,8 @@ public final class RecoveryMarker extends MarkerRequest {
 
       // Switch to Recovery state
       if (LOG.isDebugEnabled()) {
-         LOG.debug(
-                 "<><><><><><><><><><><><><><> Created recovery state: " + processor.getAddress().getTcpPort() + ", originator: " + originator);
+         LOG.debug("<><><><><><><><><><><><><><> Created recovery state: " + processor.getAddress().getTcpPort()
+                 + ", originator: " + originator);
       }
 
       final int newState = STATE_RECOVERY;
@@ -349,8 +349,8 @@ public final class RecoveryMarker extends MarkerRequest {
             }
             if (CollectionUtils.same(recoveryMarker.currentList, recoveryMarker.previousList)) {
 
-               LOG.debug(
-                       "New member list of " + recoveryMarker.currentList.size() + " members has been formed: " + recoveryMarker.currentList);
+               LOG.debug("New member list of " + recoveryMarker.currentList.size()
+                       + " members has been formed: " + recoveryMarker.currentList);
                // New list formed
                //
                // Check if we have a majority
@@ -362,8 +362,8 @@ public final class RecoveryMarker extends MarkerRequest {
                   // cleanup marker
                   if (LOG.isDebugEnabled()) {
 
-                     LOG.info(
-                             "We have majority, new member list size is " + recoveryMarker.currentList.size() + ": " + processorState.getClusterView());
+                     LOG.info("We have majority, new member list size is " + recoveryMarker.currentList.size() + ": "
+                             + processorState.getClusterView());
                   }
 
                   // Begin cleanup
@@ -374,10 +374,9 @@ public final class RecoveryMarker extends MarkerRequest {
 
                   if (LOG.isDebugEnabled()) {
 
-                     LOG.debug(
-                             "We do not have majority (target majority size is " + processorState.getTargetMajoritySize()
-                                     + ") , new marker list size is " + processorState.getClusterView().getSize()
-                                     + ": " + processorState.getClusterView());
+                     LOG.debug("We do not have majority (target size is " + processorState.getTargetMajoritySize()
+                             + ") , new marker list size is " + processorState.getClusterView().getSize()
+                             + ": " + processorState.getClusterView());
                   }
 
                   // Switch to blocked state
@@ -390,8 +389,7 @@ public final class RecoveryMarker extends MarkerRequest {
 
                // Not the same, start another recovery round
                if (LOG.isDebugEnabled()) {
-                  LOG.debug(
-                          "R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R Not the same, starting another recovery round: " + self.getTcpPort());
+                  LOG.debug("R-R-R-R-R-R-R-R-R Not the same, starting another recovery round: " + self.getTcpPort());
                }
                recoveryMarker.previousList.clear();
                recoveryMarker.previousList.addAll(recoveryMarker.currentList);
@@ -403,8 +401,7 @@ public final class RecoveryMarker extends MarkerRequest {
 
             // Destroy other recovery marker
             if (LOG.isDebugEnabled()) {
-               LOG.debug(
-                       "R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-R-Destroyed other recovery marker: " + recoveryMarker);
+               LOG.debug("R-R-R-R-R-R-R-R-R Destroyed other recovery marker: " + recoveryMarker);
             }
 
             return;
@@ -495,8 +492,8 @@ public final class RecoveryMarker extends MarkerRequest {
       processor.post(createResponse(RESULT_SUCCESS));
 
       if (LOG.isDebugEnabled()) {
-         LOG.debug(
-                 "<><><><><><><><><><><><><><> Created recovery state: " + processor.getAddress().getTcpPort() + ", coordinator: " + originator);
+         LOG.debug("<><><><><><><><><><><><><><> Created recovery state: " + processor.getAddress().getTcpPort()
+                 + ", coordinator: " + originator);
       }
 
       processor.getProcessorState().setState(STATE_RECOVERY);
@@ -790,8 +787,8 @@ public final class RecoveryMarker extends MarkerRequest {
                              failedProcess);
 
                      if (LOG.isDebugEnabled()) {
-                        LOG.debug(
-                                "Amend current list by removing the failed process " + failedProcess.getTcpPort() + ", failed request: " + getRequest() + ", response: " + message);
+                        LOG.debug("Amend current list by removing the failed process " + failedProcess.getTcpPort()
+                                + ", failed request: " + getRequest() + ", response: " + message);
                      }
 
                      // Check if the failed process was originator
@@ -803,8 +800,8 @@ public final class RecoveryMarker extends MarkerRequest {
                         // Originator is gone with the next-process failure,
                         // we have to initiate a new recovery round
                         if (LOG.isDebugEnabled()) {
-                           LOG.debug(
-                                   "RRRRRRRRRRRRRRRRRRRRRRRRRRRRRR Originator " + failedProcess + " is gone with the next-process failure. Initiating a new recovery round");
+                           LOG.debug("RRRRRRRRRRRRRRRRRRRRRRRRRRRRRR Originator " + failedProcess
+                                   + " is gone with the next-process failure. Initiating a new recovery round");
                         }
 
                         processor.getProcessorState().setRecoveryOriginator(true);
@@ -838,8 +835,7 @@ public final class RecoveryMarker extends MarkerRequest {
 
                      // Ignore failure if the cluster has already adjusted
                      // to the loss of the member
-                     LOG.debug(
-                             "Ignored failure because cluster has already adjusted to the loss of the member: " + message);
+                     LOG.debug("Ignored failure because cluster has already adjusted to the member loss: " + message);
                   }
                }
             }
