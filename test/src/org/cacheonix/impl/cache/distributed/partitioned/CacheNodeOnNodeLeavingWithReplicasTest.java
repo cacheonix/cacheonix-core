@@ -13,9 +13,11 @@
  */
 package org.cacheonix.impl.cache.distributed.partitioned;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import com.gargoylesoftware.base.testing.OrderedTestSuite;
 import junit.framework.TestSuite;
@@ -24,8 +26,8 @@ import org.cacheonix.CacheonixTestCase;
 import org.cacheonix.SavedSystemProperty;
 import org.cacheonix.ShutdownMode;
 import org.cacheonix.TestUtils;
+import org.cacheonix.cache.Cache;
 import org.cacheonix.cluster.CacheMember;
-import org.cacheonix.impl.cache.CacheonixCache;
 import org.cacheonix.impl.config.SystemProperty;
 import org.cacheonix.impl.util.array.HashMap;
 import org.cacheonix.impl.util.logging.Logger;
@@ -60,7 +62,8 @@ public final class CacheNodeOnNodeLeavingWithReplicasTest extends CacheonixTestC
 
    private static final String DISTRIBUTED_CACHE_NAME = "partitioned.distributed.cache";
 
-   private final SavedSystemProperty savedSystemProperty = new SavedSystemProperty(SystemProperty.NAME_CACHEONIX_AUTO_CREATE_CACHE);
+   private final SavedSystemProperty savedSystemProperty = new SavedSystemProperty(
+           SystemProperty.NAME_CACHEONIX_AUTO_CREATE_CACHE);
 
    /**
     * List of cache managers.
@@ -70,7 +73,8 @@ public final class CacheNodeOnNodeLeavingWithReplicasTest extends CacheonixTestC
    /**
     * List of clustered caches.
     */
-   private final List<CacheonixCache> cacheList = new ArrayList<CacheonixCache>(5);
+   private final List<Cache<Serializable, Serializable>> cacheList = new ArrayList<Cache<Serializable, Serializable>>(
+           5);
 
    /**
     * Number of keys to trie.
@@ -78,14 +82,14 @@ public final class CacheNodeOnNodeLeavingWithReplicasTest extends CacheonixTestC
    private static final long KEY_COUNT = 100L;
 
 
-   public void testPutGetOnLeave() throws InterruptedException {
+   public void testPutGetOnLeave() {
 
 
       // Wait for cluster to stabilize
       LOG.debug("=============== Wait for cluster to stabilize ============================");
       final Timeout timeoutForOwnersToArrive = new Timeout(10000L).reset();
+      //noinspection StatementWithEmptyBody
       while (!timeoutForOwnersToArrive.isExpired() && cache(0).getKeyOwners().size() != NODE_COUNT) {
-         Thread.sleep(100L);
       }
 
       assertEquals(NODE_COUNT, cache(0).getKeyOwners().size());
@@ -135,7 +139,6 @@ public final class CacheNodeOnNodeLeavingWithReplicasTest extends CacheonixTestC
       final Timeout timeoutForOwnersToLeave = new Timeout(10000L).reset();
       List keyOwnersAfterLeave = cache(2).getKeyOwners();
       while (!timeoutForOwnersToLeave.isExpired() && keyOwnersAfterLeave.size() != NODE_COUNT - 1) {
-         Thread.sleep(10L);
          keyOwnersAfterLeave = cache(2).getKeyOwners();
       }
       assertTrue("Wait for key owners size drop should not timeout", !timeoutForOwnersToLeave.isExpired());
@@ -146,7 +149,7 @@ public final class CacheNodeOnNodeLeavingWithReplicasTest extends CacheonixTestC
       CacheMember left = null;
       for (final Object keyOwner : keyOwnersBeforeLeave) {
          final CacheMember before = (CacheMember) keyOwner;
-         boolean found = false;
+         @SuppressWarnings("BooleanVariableAlwaysNegated") boolean found = false;
          for (final Object aKeyOwnerAfterLeave : keyOwnersAfterLeave) {
             final CacheMember after = (CacheMember) aKeyOwnerAfterLeave;
             if (before.equals(after)) {
@@ -164,8 +167,8 @@ public final class CacheNodeOnNodeLeavingWithReplicasTest extends CacheonixTestC
 
       // Assert keys DO belong to an other node.
       LOG.debug("=============== Assert keys DO belong to an other node ============================");
-      for (final Map.Entry<Object, List<String>> objectListEntry : ownersToKeys.entrySet()) {
-         final List<String> keys = (objectListEntry).getValue();
+      for (final Entry<Object, List<String>> objectListEntry : ownersToKeys.entrySet()) {
+         final List<String> keys = objectListEntry.getValue();
          for (final String key : keys) {
             assertTrue(!cache(2).getKeyOwner(key).equals(left));
          }
@@ -185,7 +188,7 @@ public final class CacheNodeOnNodeLeavingWithReplicasTest extends CacheonixTestC
    }
 
 
-   private CacheonixCache cache(final int index) {
+   private Cache<Serializable, Serializable> cache(final int index) {
 
       return cacheList.get(index);
    }
@@ -210,7 +213,7 @@ public final class CacheNodeOnNodeLeavingWithReplicasTest extends CacheonixTestC
          final String configurationPath = TestUtils.getTestFile(NODE_CONFIGURATIONS[i]).toString();
          final Cacheonix manager = Cacheonix.getInstance(configurationPath);
          cacheManagerList.add(manager);
-         cacheList.add((CacheonixCache) manager.getCache(DISTRIBUTED_CACHE_NAME));
+         cacheList.add(manager.getCache(DISTRIBUTED_CACHE_NAME));
       }
 
       // Call to a get method makes sure the cache exists
