@@ -15,6 +15,7 @@ package org.cacheonix.impl.net.cluster;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.cacheonix.TestUtils;
@@ -36,7 +37,7 @@ public final class RecoveryMarkerTest extends TestCase {
 
    private RecoveryMarker recoveryMarker = null;
 
-   private List currentList;
+   private List<JoiningNode> currentList;
 
    private ClusterNodeAddress originator;
 
@@ -54,7 +55,7 @@ public final class RecoveryMarkerTest extends TestCase {
 
    public void testGetCurrentList() throws Exception {
 
-      assertEquals(currentList, recoveryMarker.getCurrentList());
+         assertEquals(currentList, recoveryMarker.getCurrentList());
    }
 
 
@@ -94,7 +95,7 @@ public final class RecoveryMarkerTest extends TestCase {
 
       super.setUp();
       originator = TestUtils.createTestAddress();
-      currentList = new ArrayList(1);
+      currentList = new ArrayList<JoiningNode>(Collections.singleton(new JoiningNode(originator)));
       previousList = new ArrayList(1);
       recoveryMarker = new RecoveryMarker(UUID.randomUUID(), originator);
    }
