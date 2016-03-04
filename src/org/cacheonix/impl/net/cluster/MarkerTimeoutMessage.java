@@ -19,6 +19,8 @@ import org.cacheonix.impl.net.serializer.Wireable;
 import org.cacheonix.impl.net.serializer.WireableBuilder;
 import org.cacheonix.impl.util.logging.Logger;
 
+import static org.cacheonix.impl.net.cluster.MarkerRequest.beginRecovery;
+
 /**
  * A local message sent to a cluster node upon marker timeout.
  */
@@ -134,14 +136,14 @@ public final class MarkerTimeoutMessage extends ClusterMessage {
    protected void processNormal() {
 
       // Begin recovery
-      beginRecovery();
+      initiateRecovery();
    }
 
 
    protected void processBlocked() {
 
       // Begin recovery
-      beginRecovery();
+      initiateRecovery();
    }
 
 
@@ -162,18 +164,18 @@ public final class MarkerTimeoutMessage extends ClusterMessage {
       }
 
       // Begin recovery
-      beginRecovery();
+      initiateRecovery();
    }
 
 
    protected void processCleanup() {
 
       // Begin recovery
-      beginRecovery();
+      initiateRecovery();
    }
 
 
-   private void beginRecovery() {
+   private void initiateRecovery() {
 
       LOG.debug("Timed out in '" + timeoutMillis + "' millis while waiting for a marker, initiating recovery round," +
               " originator: " + getClusterProcessor().getAddress());
@@ -183,7 +185,7 @@ public final class MarkerTimeoutMessage extends ClusterMessage {
       // Begin recovery with the node next after failed.
       final ClusterNodeAddress beginRecoveryWith = processor.getProcessorState().getClusterView().getNextElement();
 
-      MarkerRequest.beginRecovery(processor, beginRecoveryWith);
+      beginRecovery(processor, beginRecoveryWith);
 
       // Cancel 'home alone' timeout
       processor.getProcessorState().getHomeAloneTimeout().cancel();
