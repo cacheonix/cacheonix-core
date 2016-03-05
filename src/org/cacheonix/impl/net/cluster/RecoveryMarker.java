@@ -761,82 +761,83 @@ public final class RecoveryMarker extends MarkerRequest {
        */
       public void notifyResponseReceived(final Response message) throws InterruptedException {
 
-         if (message instanceof ClusterResponse) {
+         final ClusterResponse response = (ClusterResponse) message;
+         if (response.getResultCode() != RESULT_SUCCESS) {
 
-            final ClusterResponse response = (ClusterResponse) message;
-            if (response.getResultCode() != RESULT_SUCCESS) {
+            // Forward to the next node failed - handle next process failure.
 
-               // Forward to the next node failed - handle next process failure.
+            final ClusterProcessor processor = (ClusterProcessor) getRequest().getProcessor();
+            final ReceiverAddress failedProcess = getRequest().getReceiver();
+            final ClusterNodeAddress self = processor.getAddress();
 
-               final ClusterProcessor processor = (ClusterProcessor) getRequest().getProcessor();
-               final ReceiverAddress failedProcess = getRequest().getReceiver();
-               final ClusterNodeAddress self = processor.getAddress();
+            // NOTE: simeshev@cacheonix.org - 2010-12-23 - we check that the failed processes is not self because
+            // it is possible that recovery marker was rejected because the node was alone and then it joined
+            // another cluster while the recovery marker was still in flight.
 
-               // NOTE: simeshev@cacheonix.org - 2010-12-23 - we check that the failed processes is not self because
-               // it is possible that recovery marker was rejected because the node was alone and then it joined
-               // another cluster while the recovery marker was still in flight.
+            if (failedProcess.isAddressOf(self)) {
 
-               if (failedProcess.isAddressOf(self)) {
+               LOG.warn("Received error response from self, ignoring: " + response);
+            } else {
 
-                  LOG.warn("Received error response from self, ignoring: " + response);
-               } else {
+               if (processor.getProcessorState().getClusterView().contains(failedProcess)) {
 
-                  if (processor.getProcessorState().getClusterView().contains(failedProcess)) {
+                  final ClusterNodeAddress processNextAfterFailed = processor.getProcessorState().getClusterView().getNextElement(
+                          failedProcess);
 
-                     final ClusterNodeAddress processNextAfterFailed = processor.getProcessorState().getClusterView().getNextElement(
-                             failedProcess);
+                  if (LOG.isDebugEnabled()) {
+                     LOG.debug("Amend current list by removing the failed process " + failedProcess.getTcpPort()
+                             + ", failed request: " + getRequest() + ", response: " + message);
+                  }
 
+                  // Check if the failed process was originator
+                  final RecoveryMarker recoveryMarker;
+                  final RecoveryMarker request = (RecoveryMarker) getRequest();
+
+                  if (failedProcess.isAddressOf(request.getOriginator())) {
+
+                     // Originator is gone with the next-process failure,
+                     // we have to initiate a new recovery round
                      if (LOG.isDebugEnabled()) {
-                        LOG.debug("Amend current list by removing the failed process " + failedProcess.getTcpPort()
-                                + ", failed request: " + getRequest() + ", response: " + message);
+                        LOG.debug("RRRRRRRRRRRRRRRRRRRRRRRRRRRRRR Originator " + failedProcess
+                                + " is gone with the next-process failure. Initiating a new recovery round");
                      }
 
-                     // Check if the failed process was originator
-                     final RecoveryMarker recoveryMarker;
-                     final RecoveryMarker request = (RecoveryMarker) getRequest();
+                     processor.getProcessorState().setRecoveryOriginator(true);
 
-                     if (failedProcess.isAddressOf(request.getOriginator())) {
-
-                        // Originator is gone with the next-process failure,
-                        // we have to initiate a new recovery round
-                        if (LOG.isDebugEnabled()) {
-                           LOG.debug("RRRRRRRRRRRRRRRRRRRRRRRRRRRRRR Originator " + failedProcess
-                                   + " is gone with the next-process failure. Initiating a new recovery round");
-                        }
-
-                        processor.getProcessorState().setRecoveryOriginator(true);
-
-                        // Create new marker
-                        final UUID newClusterUUID = UUID.randomUUID();
-                        recoveryMarker = new RecoveryMarker(newClusterUUID, self);
-                     } else {
-
-                        // Create a copy of the request
-                        recoveryMarker = request.copy();
-
-                        // Amend Current list by removing the failed process
-                        for (final Iterator<JoiningNode> iter = recoveryMarker.getCurrentList().iterator(); iter.hasNext(); ) {
-
-                           final JoiningNode node = iter.next();
-
-                           if (failedProcess.isAddressOf(node.getAddress())) {
-
-                              iter.remove();
-
-                              break;
-                           }
-                        }
-                     }
-
-                     // Send recovery marker to next
-                     recoveryMarker.setReceiver(processNextAfterFailed);
-                     processor.post(recoveryMarker);
+                     // Create new marker
+                     final UUID newClusterUUID = UUID.randomUUID();
+                     recoveryMarker = new RecoveryMarker(newClusterUUID, self);
                   } else {
 
-                     // Ignore failure if the cluster has already adjusted
-                     // to the loss of the member
-                     LOG.debug("Ignored failure because cluster has already adjusted to the member loss: " + message);
+                     //
+                     // Amend Current list by removing the failed process
+                     //
+
+                     // Create a copy of the request
+                     recoveryMarker = request.copy();
+
+                     // Removing the failed process from the current list
+                     for (final Iterator<JoiningNode> iter = recoveryMarker.currentList.iterator(); iter.hasNext(); ) {
+
+                        final JoiningNode node = iter.next();
+
+                        if (failedProcess.isAddressOf(node.getAddress())) {
+
+                           iter.remove();
+
+                           break;
+                        }
+                     }
                   }
+
+                  // Send recovery marker to next
+                  recoveryMarker.setReceiver(processNextAfterFailed);
+                  processor.post(recoveryMarker);
+               } else {
+
+                  // Ignore failure if the cluster has already adjusted
+                  // to the loss of the member
+                  LOG.debug("Ignored failure because cluster has already adjusted to the member loss: " + message);
                }
             }
          }
