@@ -29,7 +29,6 @@ import org.cacheonix.impl.net.processor.UUID;
 import org.cacheonix.impl.net.serializer.SerializerUtils;
 import org.cacheonix.impl.net.serializer.Wireable;
 import org.cacheonix.impl.net.serializer.WireableBuilder;
-import org.cacheonix.impl.util.CollectionUtils;
 import org.cacheonix.impl.util.logging.Logger;
 
 import static org.cacheonix.impl.net.cluster.ClusterProcessorState.STATE_BLOCKED;
@@ -37,6 +36,7 @@ import static org.cacheonix.impl.net.cluster.ClusterProcessorState.STATE_RECOVER
 import static org.cacheonix.impl.net.processor.Response.RESULT_ERROR;
 import static org.cacheonix.impl.net.processor.Response.RESULT_SUCCESS;
 import static org.cacheonix.impl.util.CollectionUtils.createList;
+import static org.cacheonix.impl.util.CollectionUtils.same;
 
 /**
  * RecoveryMarker
@@ -347,7 +347,7 @@ public final class RecoveryMarker extends MarkerRequest {
             if (LOG.isDebugEnabled()) {
                LOG.debug("Marker returned to us (" + self.getTcpPort() + ") after one or more rounds: " + this);
             }
-            if (CollectionUtils.same(recoveryMarker.currentList, recoveryMarker.previousList)) {
+            if (same(recoveryMarker.currentList, recoveryMarker.previousList)) {
 
                LOG.debug("New member list of " + recoveryMarker.currentList.size()
                        + " members has been formed: " + recoveryMarker.currentList);
