@@ -97,9 +97,7 @@ public final class JoiningNode implements Wireable {
 
    public String toString() {
 
-      return "JoiningNode{" +
-              "address=" + address +
-              '}';
+      return "JoiningNode{" + address + '}';
    }
 
 
