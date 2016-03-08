@@ -50,6 +50,8 @@ public abstract class CacheonixTestCase extends TestCase {
 
    protected static final String TEST_OBJECT_PREFIX = "test_object";
 
+   public static final long CLUSTER_FORMATION_TIMEOUT = 10000L;
+
    private Timer timer;
 
    private Clock clock;
@@ -234,6 +236,7 @@ public abstract class CacheonixTestCase extends TestCase {
    protected static void waitForClusterToForm(final List<Cacheonix> cacheManagerList) throws InterruptedException {
 
       final int[] clusterSize = {0};
+      final long timeout = System.currentTimeMillis() + CLUSTER_FORMATION_TIMEOUT;
 
       // Set up waiting for the cluster to form. The cluster is formed when it reached
       // the number of members the same as the number of Cacheonix instances in the test.
@@ -285,9 +288,19 @@ public abstract class CacheonixTestCase extends TestCase {
       //noinspection SynchronizationOnLocalVariableOrMethodParameter
       synchronized (clusterSize) {
 
-         while (clusterSize[0] < cacheManagerList.size()) {
+         //noinspection CallToNativeMethodWhileLocked
+         while (clusterSize[0] < cacheManagerList.size() && System.currentTimeMillis() <= timeout) {
             clusterSize.wait(100L);
          }
+      }
+
+      // Terminate if
+      if (clusterSize[0] < cacheManagerList.size()) {
+         for (final Cacheonix cacheonix : cacheManagerList) {
+            cacheonix.shutdown();
+         }
+
+         throw new IllegalStateException("The cluster could not form after " + CLUSTER_FORMATION_TIMEOUT + "ms");
       }
    }
 
