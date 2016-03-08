@@ -50,7 +50,7 @@ public abstract class CacheonixTestCase extends TestCase {
 
    protected static final String TEST_OBJECT_PREFIX = "test_object";
 
-   public static final long CLUSTER_FORMATION_TIMEOUT = 10000L;
+   public static final long CLUSTER_FORMATION_TIMEOUT = 30000L;
 
    private Timer timer;
 
