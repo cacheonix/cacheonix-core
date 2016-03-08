@@ -389,7 +389,8 @@ public final class RecoveryMarker extends MarkerRequest {
 
                // Not the same, start another recovery round
                if (LOG.isDebugEnabled()) {
-                  LOG.debug("R-R-R-R-R-R-R-R-R Not the same, starting another recovery round: " + self.getTcpPort());
+                  LOG.debug("R-R-R-R-R-R-R-R-R Current and Previous are not the same, starting another recovery round: "
+                          + self.getTcpPort());
                }
                recoveryMarker.previousList.clear();
                recoveryMarker.previousList.addAll(recoveryMarker.currentList);

@@ -26,7 +26,7 @@ public interface ClusterView extends Wireable {
 
    boolean remove(ClusterNodeAddress clusterNodeAddress);
 
-   void insert(ClusterNodeAddress predecessor, JoiningNode joiningNode);
+   void insert(ClusterNodeAddress predecessor, final ClusterNodeAddress address);
 
    /**
     * @return representative.

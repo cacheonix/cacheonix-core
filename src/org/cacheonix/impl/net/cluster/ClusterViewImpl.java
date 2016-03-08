@@ -100,7 +100,7 @@ public final class ClusterViewImpl implements ClusterView {
       this.owner = owner;
       this.clusterNodeList = new ArrayList<ClusterNodeAddress>(clusterNodeList.size());
       for (final JoiningNode joiningNode : clusterNodeList) {
-         this.insert(owner, joiningNode);
+         this.clusterNodeList.add(joiningNode.getAddress());
       }
       if (!this.clusterNodeList.contains(owner)) {
          throw new IllegalArgumentException("Node is not a member of the list: " + owner);
@@ -118,9 +118,9 @@ public final class ClusterViewImpl implements ClusterView {
 
       this.clusterNodeList = new ArrayList<ClusterNodeAddress>(1);
       this.clusterUUID = clusterUUID;
+      this.clusterNodeList.add(owner);
       this.originator = owner;
       this.owner = owner;
-      this.insert(owner, new JoiningNode(owner));
    }
 
 
@@ -160,10 +160,10 @@ public final class ClusterViewImpl implements ClusterView {
    }
 
 
-   public void insert(final ClusterNodeAddress predecessor, final JoiningNode joiningNode) {
+   public void insert(final ClusterNodeAddress predecessor, final ClusterNodeAddress address) {
 
       // Add to the node list
-      clusterNodeList.add(clusterNodeList.indexOf(predecessor) + 1, joiningNode.getAddress());
+      clusterNodeList.add(clusterNodeList.indexOf(predecessor) + 1, address);
    }
 
 

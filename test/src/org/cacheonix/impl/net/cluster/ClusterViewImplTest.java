@@ -96,7 +96,7 @@ public final class ClusterViewImplTest extends CacheonixTestCase {
    public void testInsert() throws Exception {
 
       final JoiningNode joiningNode = new JoiningNode(PROCESS_ID_2);
-      clusterView.insert(PROCESS_ID_0, joiningNode);
+      clusterView.insert(PROCESS_ID_0, joiningNode.getAddress());
       assertEquals(PROCESS_ID_2, clusterView.getNextElement());
    }
 
@@ -110,7 +110,7 @@ public final class ClusterViewImplTest extends CacheonixTestCase {
    public void testInsertAfter() throws Exception {
 
       final JoiningNode joiningNode = new JoiningNode(PROCESS_ID_2);
-      clusterView.insert(PROCESS_ID_0, joiningNode);
+      clusterView.insert(PROCESS_ID_0, joiningNode.getAddress());
       assertEquals(PROCESS_ID_2, clusterView.getNextElement());
    }
 
@@ -169,6 +169,33 @@ public final class ClusterViewImplTest extends CacheonixTestCase {
       final Collection<ClusterNodeAddress> nodesJoined = clusterView.calculateNodesJoined(previousClusterView);
       assertEquals(1, nodesJoined.size());
       assertEquals(PROCESS_ID_1, nodesJoined.iterator().next());
+   }
+
+
+   public void testConstructorPreservesOrder() throws Exception {
+
+      //
+      // Prepare
+      //
+      final ArrayList<ClusterNodeAddress> addressList = new ArrayList<ClusterNodeAddress>(3);
+      addressList.add(PROCESS_ID_0);
+      addressList.add(PROCESS_ID_1);
+      addressList.add(PROCESS_ID_2);
+
+      final ArrayList<JoiningNode> nodeList = new ArrayList<JoiningNode>(3);
+      for (final ClusterNodeAddress address : addressList) {
+
+         nodeList.add(new JoiningNode(address));
+      }
+
+      //
+      // Assert by trying every address as an owner
+      //
+      for (final ClusterNodeAddress owner : addressList) {
+
+         final ClusterViewImpl view = new ClusterViewImpl(UUID.randomUUID(), REPRESENTATIVE, nodeList, owner);
+         assertEquals(addressList, view.getClusterNodeList());
+      }
    }
 
 

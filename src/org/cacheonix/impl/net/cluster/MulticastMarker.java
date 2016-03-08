@@ -547,19 +547,20 @@ public final class MulticastMarker extends OperationalMarker {
             // REVIEWME: simeshev@cahceonix.com - what about a predecessor being gone and not
             // cleaned up the predecessor?
             final JoiningNode joiningNode = multicastMarker.getJoiningNode();
-            if (!joiningNode.getAddress().equals(self)) {
+            final ClusterNodeAddress joiningNodeAddress = joiningNode.getAddress();
+            if (!joiningNodeAddress.equals(self)) {
 
                // Insert joined to the cluster view
 
                clusterProcessor.getProcessorState().getClusterView().insert(multicastMarker.getPredecessor(),
-                       joiningNode);
+                       joiningNodeAddress);
 
                clusterProcessor.getProcessorState().updateLastOperationalClusterView(
                        clusterProcessor.getProcessorState().getClusterView());
 
                // Sends a join mcast announcement to self to support ordering of
                // configuration changes with messages (a total order).
-               sendJoinedToSelf(multicastMarker.joinSeqNum, joiningNode.getAddress());
+               sendJoinedToSelf(multicastMarker.joinSeqNum, joiningNodeAddress);
             }
          }
       }
@@ -860,7 +861,7 @@ public final class MulticastMarker extends OperationalMarker {
 
                      // Insert immediately after ourselves
 
-                     clusterProcessor.getProcessorState().getClusterView().insert(self, joiningNode);
+                     clusterProcessor.getProcessorState().getClusterView().insert(self, joiningNode.getAddress());
 
                      clusterProcessor.getProcessorState().updateLastOperationalClusterView(
                              clusterProcessor.getProcessorState().getClusterView());

@@ -439,7 +439,8 @@ public final class BlockedMarker extends OperationalMarker {
 
             // Predecessor is not this node
 
-            if (blockedMarker.getJoiningNode().getAddress().equals(self)) {
+            final ClusterNodeAddress joiningNodeAddress = blockedMarker.getJoiningNode().getAddress();
+            if (joiningNodeAddress.equals(self)) {
 
                // We are joining, and this is the first mcast marker we have received. This
                // should happen only after the predecessor has sent us the cluster view.
@@ -461,8 +462,7 @@ public final class BlockedMarker extends OperationalMarker {
                   LOG.debug("Add joining to our list: " + blockedMarker);
                }
 
-               processorState.getClusterView().insert(blockedMarker.getPredecessor(),
-                       blockedMarker.getJoiningNode());
+               processorState.getClusterView().insert(blockedMarker.getPredecessor(), joiningNodeAddress);
             }
          }
       }
@@ -494,7 +494,7 @@ public final class BlockedMarker extends OperationalMarker {
 
                   // Insert immediately after ourselves
 
-                  processorState.getClusterView().insert(self, joiningNode);
+                  processorState.getClusterView().insert(self, joiningNodeAddress);
 
                   // Set up join in the marker
                   blockedMarker.setJoiningNode(joiningNode);
