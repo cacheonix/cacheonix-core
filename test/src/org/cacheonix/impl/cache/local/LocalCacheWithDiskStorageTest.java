@@ -74,7 +74,7 @@ public final class LocalCacheWithDiskStorageTest extends CacheonixTestCase {
    /**
     * Max size allows for twice more than allowed bytes.
     */
-   private static final int MAX_SIZE = (MAX_SIZE_BYTES / ESTIMATED_ENTRY_SIZE) * 2;
+   private static final int MAX_SIZE = MAX_SIZE_BYTES / ESTIMATED_ENTRY_SIZE * 2;
 
    private LocalCache<ByteArrayKey, byte[]> cache = null;
 
@@ -106,7 +106,7 @@ public final class LocalCacheWithDiskStorageTest extends CacheonixTestCase {
 
       assertEquals(MAX_SIZE, cache.size());
 
-      assertEquals("Number of elements evicted to disk", 3652, cache.getSizeOnDisk());
+      assertEquals("Number of elements evicted to disk", 21925, cache.getSizeOnDisk());
    }
 
 
