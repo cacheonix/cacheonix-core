@@ -184,11 +184,6 @@ public final class Receiver implements Shutdownable {
       // Close the server socket channel first so that closing socket channels
       // wouldn't allow other nodes to re-establish the connection.
       closeHard(serverSocketChannel);
-      try {
-         selector.selectNow();
-      } catch (final IOException e) {
-         ignoreException(e, "Shutting down");
-      }
 
       // Interrupt selector thread. This should unblock any NIO operations.
       interruptAndJoin(selectorThread, 1000L);
