@@ -460,9 +460,13 @@ public final class ClusterProcessorImpl extends AbstractRequestProcessor impleme
          final CacheProcessor cacheProcessor = entry.getValue();
          final String cacheName = cacheProcessor.getCacheName();
          final boolean success = cacheProcessor.waitForShutdown(gracefulShutdownTimeoutMillis);
-         final String stringResult = success ? "shutdown" : "didn't shutdown";
-         LOG.debug(
-                 "Cache processor: " + cacheName + ':' + getAddress() + ' ' + stringResult + " before timeout " + gracefulShutdownTimeoutMillis + " ms expired ");
+         if (success) {
+            continue;
+         }
+
+         // Log a warning message
+         LOG.warn("Cache processor: " + cacheName + ':' + getAddress() + " didn't shutdown before timeout "
+                 + gracefulShutdownTimeoutMillis + " ms expired ");
       }
    }
 
