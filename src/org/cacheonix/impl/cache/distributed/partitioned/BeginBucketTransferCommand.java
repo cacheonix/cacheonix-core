@@ -110,6 +110,7 @@ public final class BeginBucketTransferCommand extends BucketCommand {
               ", newOwner=" + newOwner +
               ", sourceStorage=" + sourceStorageNumber +
               ", destinationStorage=" + destinationStorageNumber +
+              ", bucketNumbers.size()=" + bucketNumbers.size() +
               ", bucketNumbers=" + bucketNumbers +
               '}';
    }
