@@ -118,9 +118,9 @@ public abstract class MultiplePartitionedCacheTestCase extends PartitionedCacheT
    /**
     */
    public void testGetOwner() {
-      // Simple compare
-      assertEquals(cache().getKeyOwner(KEY_0), cache(1).getKeyOwner(KEY_0));
-      assertEquals(cache().getKeyOwner(KEY_1), cache(1).getKeyOwner(KEY_1));
+
+      assertKeyOwnerIsSame(KEY_0);
+      assertKeyOwnerIsSame(KEY_1);
    }
 
 
@@ -1135,6 +1135,22 @@ public abstract class MultiplePartitionedCacheTestCase extends PartitionedCacheT
       return cacheList.get(0);
    }
 
+
+   private void assertKeyOwnerIsSame(final String key) {
+
+      final long delay = 5000L;
+      final long timeout = System.currentTimeMillis() + delay;
+      //noinspection StatementWithEmptyBody
+      while (!cache().getKeyOwner(key).equals(cache(1).getKeyOwner(key))) {
+
+         if (System.currentTimeMillis() >= timeout) {
+
+            fail("Timed out waiting for the cache to stabilize after " + delay + "ms: " + key
+                    + ", " + cache().getKeyOwner(key)
+                    + ", " + cache(1).getKeyOwner(key));
+         }
+      }
+   }
 
    /**
     * Sets up the fixture, for example, open a network connection. This method is called before a test is executed.
