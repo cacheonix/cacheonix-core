@@ -69,7 +69,7 @@ public final class LocalCacheWithDiskStorageTest extends CacheonixTestCase {
 
    private static final String SUFFIX_TWO = "_2";
 
-   private static final int MAX_SIZE_BYTES = 10000000; // 1 million bytes
+   private static final int MAX_SIZE_BYTES = 10000000; // 10 million bytes
 
    /**
     * Max size allows for twice more than allowed bytes.
@@ -106,7 +106,7 @@ public final class LocalCacheWithDiskStorageTest extends CacheonixTestCase {
 
       assertEquals(MAX_SIZE, cache.size());
 
-      assertEquals("Number of elements evicted to disk", 3652, cache.getSizeOnDisk());
+      assertEquals("Number of elements evicted to disk", 21925, cache.getSizeOnDisk());
    }
 
 
