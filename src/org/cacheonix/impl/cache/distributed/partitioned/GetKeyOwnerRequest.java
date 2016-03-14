@@ -1,4 +1,4 @@
-/*
+ /*
  * Cacheonix systems licenses this file to You under the LGPL 2.1
  * (the "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
@@ -19,6 +19,7 @@ import java.io.IOException;
 
 import org.cacheonix.impl.cluster.node.state.ReplicatedState;
 import org.cacheonix.impl.cluster.node.state.group.Group;
+import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.cluster.ClusterProcessor;
 import org.cacheonix.impl.net.cluster.ClusterRequest;
 import org.cacheonix.impl.net.processor.Response;
@@ -27,6 +28,7 @@ import org.cacheonix.impl.net.processor.Waiter;
 import org.cacheonix.impl.net.serializer.SerializerUtils;
 import org.cacheonix.impl.net.serializer.Wireable;
 import org.cacheonix.impl.net.serializer.WireableBuilder;
+import org.cacheonix.impl.util.logging.Logger;
 
 /**
  * A request to get key owners.
@@ -34,9 +36,20 @@ import org.cacheonix.impl.net.serializer.WireableBuilder;
 public class GetKeyOwnerRequest extends ClusterRequest {
 
    /**
+    * Logger.
+    *
+    * @noinspection UNUSED_SYMBOL, UnusedDeclaration
+    */
+   private static final Logger LOG = Logger.getLogger(GetKeyOwnerRequest.class); // NOPMD
+
+   /**
     * Builder used by WireableFactory.
     */
    public static final WireableBuilder BUILDER = new Builder();
+
+   private static final String CLUSTER_IS_RECONFIGURING = "Cluster is reconfiguring";
+
+   private static final String CLUSTER_IS_BLOCKED = "Cluster is blocked";
 
    private String cacheName;
 
@@ -91,27 +104,41 @@ public class GetKeyOwnerRequest extends ClusterRequest {
          postRetry("Cache " + cacheName + " is offline");
       } else {
          final Response response = createResponse(Response.RESULT_SUCCESS);
-         response.setResult(group.getBucketOwner(storageNumber, bucketNumber));
-         processor.post(response);
+         final ClusterNodeAddress bucketOwner = group.getBucketOwner(storageNumber, bucketNumber);
+         if (bucketOwner == null) {
+
+            // NOTE: simeshev@cacheonix.org - 2016-02-16 - it's possible that RBOAT is empty
+            // when the cluster node hasn't processes the group join yet, so we return retry.
+            //
+            // REVIEWME: simeshev@cacheonix.org -> 2016-03-01 - consider a a design where an
+            // empty RBOAT is impossible such as instead of shared access to RBOAT from the
+            // ClusterProcessor and CacheProcessor a CacheProcessor would receive RBOAT as
+            // a first [replicated] message.
+            processor.post(createResponse(Response.RESULT_RETRY));
+         } else {
+
+            response.setResult(bucketOwner);
+            processor.post(response);
+         }
       }
    }
 
 
    protected void processBlocked() throws IOException, InterruptedException {
 
-      postRetry("Cluster is blocked");
+      postRetry(CLUSTER_IS_BLOCKED);
    }
 
 
    protected void processRecovery() {
 
-      postRetry("Cluster is reconfiguring");
+      postRetry(CLUSTER_IS_RECONFIGURING);
    }
 
 
    protected void processCleanup() throws IOException {
 
-      postRetry("Cluster is reconfiguring");
+      postRetry(CLUSTER_IS_RECONFIGURING);
    }
 
 

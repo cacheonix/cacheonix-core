@@ -69,7 +69,7 @@ public final class LocalCacheWithDiskStorageTest extends CacheonixTestCase {
 
    private static final String SUFFIX_TWO = "_2";
 
-   private static final int MAX_SIZE_BYTES = 10000000; // 1 million bytes
+   private static final int MAX_SIZE_BYTES = 10000000; // 10 million bytes
 
    /**
     * Max size allows for twice more than allowed bytes.
