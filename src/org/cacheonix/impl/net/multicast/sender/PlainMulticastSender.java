@@ -50,6 +50,8 @@ public final class PlainMulticastSender implements MulticastSender {
 
    public static final String NO_BUFFER_SPACE_AVAILABLE = "No buffer space available";
 
+   public static final String NO_ROUTE_TO_HOST = "No route to host";
+
    /**
     * Multicast address.
     */
@@ -74,7 +76,6 @@ public final class PlainMulticastSender implements MulticastSender {
    /**
     * Constructs multicast message sender.
     *
-    * @param router
     * @param mcastAddress multicast address
     * @param mcastPort    multicast port
     * @param mcastTTL     multicast TTL
@@ -137,11 +138,14 @@ public final class PlainMulticastSender implements MulticastSender {
             sentMessages++;
             mcastSocket.send(packet);
          } catch (final IOException e) {
-            if (e.getMessage().endsWith(NO_BUFFER_SPACE_AVAILABLE)) {
+
+            final String exceptionMessage = e.getMessage();
+            if (exceptionMessage.endsWith(NO_BUFFER_SPACE_AVAILABLE)
+                    || exceptionMessage.endsWith(NO_ROUTE_TO_HOST)) {
 
                final NetworkInterface networkInterface = mcastSocket.getNetworkInterface();
                final InetAddress intf = mcastSocket.getInterface();
-               LOG.warn(createNoBufferSpaceAvailableWarning(networkInterface, intf));
+               LOG.warn(createIgnoredWarning(exceptionMessage, networkInterface, intf));
             } else {
 
                throw e;
@@ -165,13 +169,15 @@ public final class PlainMulticastSender implements MulticastSender {
    /**
     * Creates a warning message about no buffer space available.
     *
-    * @param intf        the interface this happened to
-    * @param inetAddress the inet address it happened to.
+    * @param exceptionMessage the message from <code>IOException.getMessage()</code>.
+    * @param intf             the interface this happened to
+    * @param inetAddress      the inet address it happened to.
     * @return a new warning message about no buffer space available.
     */
-   private String createNoBufferSpaceAvailableWarning(final NetworkInterface intf, final InetAddress inetAddress) {
+   private String createIgnoredWarning(final String exceptionMessage, final NetworkInterface intf,
+           final InetAddress inetAddress) {
 
-      return NO_BUFFER_SPACE_AVAILABLE + ": "
+      return exceptionMessage + ": "
               + "interface: " + inetAddress + ", "
               + "network interface: " + intf.getDisplayName() + ", "
               + "total messages sent: " + sentMessages;
