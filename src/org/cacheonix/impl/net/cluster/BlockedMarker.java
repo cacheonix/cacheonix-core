@@ -25,6 +25,7 @@ import org.cacheonix.impl.net.processor.UUID;
 import org.cacheonix.impl.net.serializer.Wireable;
 import org.cacheonix.impl.net.serializer.WireableBuilder;
 import org.cacheonix.impl.util.logging.Logger;
+import org.cacheonix.impl.util.time.Timeout;
 
 import static org.cacheonix.impl.net.cluster.ClusterProcessorState.STATE_BLOCKED;
 import static org.cacheonix.impl.net.cluster.ClusterProcessorState.STATE_CLEANUP;
@@ -557,7 +558,9 @@ public final class BlockedMarker extends OperationalMarker {
       // Decide if we waited enough to try to form the cluster.
       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-      if (!joinStatus.isJoining() && processorState.getClusterView().getSize() == 1 && processorState.getHomeAloneTimeout().isExpired()) {
+      final ClusterView clusterView = processorState.getClusterView();
+      final Timeout homeAloneTimeout = processorState.getHomeAloneTimeout();
+      if (!joinStatus.isJoining() && clusterView.getSize() == 1 && homeAloneTimeout.isExpired()) {
 
          // Stayed alone enough - switch to operational mode
          if (LOG.isDebugEnabled()) {

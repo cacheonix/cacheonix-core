@@ -22,6 +22,7 @@ import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.processor.Frame;
 import org.cacheonix.impl.util.logging.Logger;
 import org.cacheonix.impl.util.time.Timeout;
+import org.cacheonix.impl.util.time.TimeoutImpl;
 
 import static org.cacheonix.impl.config.ConfigurationConstants.DEFAULT_JOIN_TIMEOUT_MILLIS;
 
@@ -56,7 +57,7 @@ final class JoinStatusImpl implements JoinStatus {
    /**
     * A timeout to join.
     */
-   private final Timeout timeout = new Timeout(DEFAULT_JOIN_TIMEOUT_MILLIS);
+   private final Timeout timeout = new TimeoutImpl(DEFAULT_JOIN_TIMEOUT_MILLIS);
 
    /**
     * Timeout to wait to identify all available Cacheonix nodes before stating a join procedure.
@@ -92,7 +93,7 @@ final class JoinStatusImpl implements JoinStatus {
     */
    JoinStatusImpl(final long clusterSurveyTimeoutMillis) {
 
-      this.clusterSurveyTimeout = new Timeout(clusterSurveyTimeoutMillis);
+      this.clusterSurveyTimeout = new TimeoutImpl(clusterSurveyTimeoutMillis);
 
       clear();
    }

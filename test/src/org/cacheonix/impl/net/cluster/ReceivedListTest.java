@@ -13,8 +13,8 @@
  */
 package org.cacheonix.impl.net.cluster;
 
-import org.cacheonix.impl.net.processor.Frame;
 import junit.framework.TestCase;
+import org.cacheonix.impl.net.processor.Frame;
 
 /**
  * ReceivedList Tester.
@@ -25,7 +25,7 @@ import junit.framework.TestCase;
  */
 public final class ReceivedListTest extends TestCase {
 
-   private ReceivedList receivedList;
+   private ReceivedListImpl receivedList;
 
    private static final int PART_COUNT = 1;
 
@@ -129,7 +129,7 @@ public final class ReceivedListTest extends TestCase {
    protected void setUp() throws Exception {
 
       super.setUp();
-      receivedList = new ReceivedList();
+      receivedList = new ReceivedListImpl();
    }
 
 

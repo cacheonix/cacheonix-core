@@ -32,6 +32,7 @@ import org.cacheonix.impl.config.SystemProperty;
 import org.cacheonix.impl.util.array.HashMap;
 import org.cacheonix.impl.util.logging.Logger;
 import org.cacheonix.impl.util.time.Timeout;
+import org.cacheonix.impl.util.time.TimeoutImpl;
 
 /**
  * Tests clustered cache
@@ -87,7 +88,7 @@ public final class CacheNodeOnNodeLeavingWithReplicasTest extends CacheonixTestC
 
       // Wait for cluster to stabilize
       LOG.debug("=============== Wait for cluster to stabilize ============================");
-      final Timeout timeoutForOwnersToArrive = new Timeout(10000L).reset();
+      final Timeout timeoutForOwnersToArrive = new TimeoutImpl(10000L).reset();
       //noinspection StatementWithEmptyBody
       while (!timeoutForOwnersToArrive.isExpired() && cache(0).getKeyOwners().size() != NODE_COUNT) { // NOPMD
       }
@@ -136,7 +137,7 @@ public final class CacheNodeOnNodeLeavingWithReplicasTest extends CacheonixTestC
 
       // Assert that a gone node has created wholes where it should and has not where it should not
       LOG.debug("=============== Assert that a gone node has created wholes where it should and has not where it should not ============================");
-      final Timeout timeoutForOwnersToLeave = new Timeout(10000L).reset();
+      final Timeout timeoutForOwnersToLeave = new TimeoutImpl(10000L).reset();
       List keyOwnersAfterLeave = cache(2).getKeyOwners();
       while (!timeoutForOwnersToLeave.isExpired() && keyOwnersAfterLeave.size() != NODE_COUNT - 1) {
          keyOwnersAfterLeave = cache(2).getKeyOwners();

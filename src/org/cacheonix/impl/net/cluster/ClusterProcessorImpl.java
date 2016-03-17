@@ -49,7 +49,7 @@ import org.cacheonix.impl.util.Assert;
 import org.cacheonix.impl.util.exception.ExceptionUtils;
 import org.cacheonix.impl.util.logging.Logger;
 import org.cacheonix.impl.util.thread.ActionableTimeout;
-import org.cacheonix.impl.util.time.Timeout;
+import org.cacheonix.impl.util.time.TimeoutImpl;
 
 /**
  * A processor of cluster messages.
@@ -170,7 +170,7 @@ public final class ClusterProcessorImpl extends AbstractRequestProcessor impleme
               adjustedClusterSurveyTimeoutMillis);
 
       // Set fields
-      this.processorState.setHomeAloneTimeout(new Timeout(adjustedHomeAloneTimeoutMillis));
+      this.processorState.setHomeAloneTimeout(new TimeoutImpl(adjustedHomeAloneTimeoutMillis));
       this.processorState.setClusterAnnouncementTimeoutMillis(clusterAnnouncementTimeoutMillis);
       this.gracefulShutdownTimeoutMillis = gracefulShutdownTimeoutMillis;
       this.processorState.setWorstCaseLatencyMillis(worstCaseLatencyMillis);

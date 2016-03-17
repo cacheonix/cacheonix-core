@@ -24,6 +24,7 @@ import org.cacheonix.TestUtils;
 import org.cacheonix.impl.config.SystemProperty;
 import org.cacheonix.impl.util.logging.Logger;
 import org.cacheonix.impl.util.time.Timeout;
+import org.cacheonix.impl.util.time.TimeoutImpl;
 
 /**
  * Tests clustered cache
@@ -77,7 +78,7 @@ public final class ServerConfigurationAutoCreatesCacheNodeTest extends Cacheonix
          //noinspection ControlFlowStatementWithoutBraces
          if (LOG.isDebugEnabled()) LOG.debug("======= Begin waiting for a cache processor to create ======= "); // NOPMD
 
-         final Timeout timeoutForOwnersToArrive = new Timeout(10000L).reset();
+         final Timeout timeoutForOwnersToArrive = new TimeoutImpl(10000L).reset();
          while (!timeoutForOwnersToArrive.isExpired() && cacheManagerList.get(0).getCache(DISTRIBUTED_CACHE_NAME).getKeyOwners().size() != NODE_COUNT) {
 
             Thread.sleep(100L);

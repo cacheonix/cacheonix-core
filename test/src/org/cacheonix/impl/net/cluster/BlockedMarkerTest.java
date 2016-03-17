@@ -22,13 +22,14 @@ import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.processor.UUID;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
+import org.cacheonix.impl.util.time.Timeout;
 
 import static org.cacheonix.TestConstants.PORT_7676;
 import static org.cacheonix.TestConstants.PORT_7677;
 import static org.cacheonix.TestConstants.PORT_7678;
 import static org.cacheonix.TestUtils.createTestAddress;
 import static org.cacheonix.impl.net.cluster.ClusterProcessorState.STATE_BLOCKED;
-import static org.cacheonix.impl.net.cluster.ClusterProcessorState.STATE_RECOVERY;
+import static org.cacheonix.impl.net.cluster.ClusterProcessorState.STATE_CLEANUP;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -118,13 +119,24 @@ public final class BlockedMarkerTest extends CacheonixTestCase {
       final JoinStatus joinStatus = mock(JoinStatus.class);
 
       //
-      final ClusterView clusterView = new ClusterViewImpl(CLUSTER_UUID, ADDRESS_7676);
+      final ClusterView clusterView = mock(ClusterView.class);
+      when(clusterView.getSize()).thenReturn(2);
+      when(clusterView.getClusterUUID()).thenReturn(CLUSTER_UUID);
+      when(clusterView.getNextElement()).thenReturn(ADDRESS_7677);
+
+      final ReceivedList receivedList = mock(ReceivedList.class);
 
       //
       final ClusterProcessorState clusterProcessorState = mock(ClusterProcessorState.class);
+      when(clusterProcessorState.getReceivedList()).thenReturn(receivedList);
       when(clusterProcessorState.getClusterView()).thenReturn(clusterView);
       when(clusterProcessorState.getJoinStatus()).thenReturn(joinStatus);
       when(clusterProcessorState.getState()).thenReturn(STATE_BLOCKED);
+
+
+      //
+      final Timeout timeout = mock(Timeout.class);
+      when(clusterProcessorState.getHomeAloneTimeout()).thenReturn(timeout);
 
       //
       final Time time = mock(Time.class);
@@ -141,9 +153,11 @@ public final class BlockedMarkerTest extends CacheonixTestCase {
 
       blockedMarker.setReceiver(ADDRESS_7676);
       blockedMarker.setSender(ADDRESS_7677);
+      blockedMarker.setPredecessor(ADDRESS_7676);
       blockedMarker.setProcessor(clusterProcessor);
+      blockedMarker.setTargetMajorityClusterSize(2);
       blockedMarker.execute();
-      verify(clusterProcessorState).setState(STATE_RECOVERY);
+      verify(clusterProcessorState).setState(STATE_CLEANUP);
    }
 
 

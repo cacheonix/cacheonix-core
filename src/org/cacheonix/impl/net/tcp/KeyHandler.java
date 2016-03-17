@@ -19,6 +19,7 @@ import java.nio.channels.SocketChannel;
 
 import org.cacheonix.impl.clock.Clock;
 import org.cacheonix.impl.util.time.Timeout;
+import org.cacheonix.impl.util.time.TimeoutImpl;
 
 /**
  * A handler of key events.
@@ -57,7 +58,7 @@ abstract class KeyHandler {
    KeyHandler(final Selector selector, final long networkTimeoutMillis, final Clock clock) {
 
 
-      this.networkTimeout = new Timeout(networkTimeoutMillis).reset();
+      this.networkTimeout = new TimeoutImpl(networkTimeoutMillis).reset();
       this.selector = selector;
       this.clock = clock;
    }

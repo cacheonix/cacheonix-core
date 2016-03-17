@@ -19,6 +19,7 @@ import org.cacheonix.impl.net.processor.RetryException;
 import org.cacheonix.impl.util.logging.Logger;
 import org.cacheonix.impl.util.thread.ThreadUtils;
 import org.cacheonix.impl.util.time.Timeout;
+import org.cacheonix.impl.util.time.TimeoutImpl;
 
 /**
  * Retries until done.
@@ -49,7 +50,7 @@ public final class Retrier {
    public Object retryUntilDone(final Retryable retryable) {
 
       final long clientRequestTimeoutMillis = SystemProperty.getClientRequestTimeoutMillis();
-      final Timeout timeout = new Timeout(clientRequestTimeoutMillis).reset();
+      final Timeout timeout = new TimeoutImpl(clientRequestTimeoutMillis).reset();
       RetryException lastRetryException = null;
       long repeatDelay = INITIAL_RETRY_DELAY;
       int retryCount = 0;

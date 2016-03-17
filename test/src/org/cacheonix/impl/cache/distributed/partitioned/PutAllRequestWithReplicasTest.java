@@ -26,6 +26,7 @@ import org.cacheonix.impl.cache.CacheonixCache;
 import org.cacheonix.impl.util.array.HashMap;
 import org.cacheonix.impl.util.logging.Logger;
 import org.cacheonix.impl.util.time.Timeout;
+import org.cacheonix.impl.util.time.TimeoutImpl;
 
 /**
  * Tests clustered cache
@@ -79,7 +80,7 @@ public final class PutAllRequestWithReplicasTest extends CacheonixTestCase {
       LOG.debug("================================================================================================");
       LOG.debug("=============== Wait for cluster to stabilize ==================================================");
       LOG.debug("================================================================================================");
-      final Timeout timeoutForOwnersToArrive = new Timeout(10000L).reset();
+      final Timeout timeoutForOwnersToArrive = new TimeoutImpl(10000L).reset();
       while (!timeoutForOwnersToArrive.isExpired() && cache(0).getKeyOwners().size() != NODE_COUNT) {
          Thread.sleep(100L);
       }

@@ -13,8 +13,8 @@
  */
 package org.cacheonix.impl.net.cluster;
 
-import org.cacheonix.impl.util.time.Timeout;
 import junit.framework.TestCase;
+import org.cacheonix.impl.util.time.TimeoutImpl;
 
 /**
  * Timeout Tester.
@@ -29,7 +29,7 @@ public final class TimeoutTest extends TestCase {
 
    private static final long SLEEP_DURATION = (long) ((double) TIMEOUT_DURATION * 1.2);
 
-   private Timeout timeout = null;
+   private TimeoutImpl timeout = null;
 
 
    public void testSetGetDuration() throws Exception {
@@ -68,7 +68,7 @@ public final class TimeoutTest extends TestCase {
    protected void setUp() throws Exception {
 
       super.setUp();
-      timeout = new Timeout((long) TIMEOUT_DURATION);
+      timeout = new TimeoutImpl((long) TIMEOUT_DURATION);
    }
 
 

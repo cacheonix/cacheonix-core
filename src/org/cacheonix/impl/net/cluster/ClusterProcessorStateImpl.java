@@ -223,7 +223,7 @@ final class ClusterProcessorStateImpl implements ClusterProcessorState {
     * We used priority queue for receive list in order to sort incoming messages by the message id. This does not
     * guarantee the total ordering, but at least it allows to avoid pseudo-gaps in processing.
     */
-   private final ReceivedList receivedList = new ReceivedList();
+   private final ReceivedList receivedList = new ReceivedListImpl();
 
 
    /**

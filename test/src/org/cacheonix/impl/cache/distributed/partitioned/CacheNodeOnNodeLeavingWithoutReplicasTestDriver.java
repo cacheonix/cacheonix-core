@@ -29,6 +29,7 @@ import org.cacheonix.impl.util.ArrayUtils;
 import org.cacheonix.impl.util.array.HashMap;
 import org.cacheonix.impl.util.logging.Logger;
 import org.cacheonix.impl.util.time.Timeout;
+import org.cacheonix.impl.util.time.TimeoutImpl;
 
 /**
  * Tests clustered cache
@@ -94,7 +95,7 @@ public abstract class CacheNodeOnNodeLeavingWithoutReplicasTestDriver extends Ca
       LOG.debug("================================================================================================");
       LOG.debug("=============== Wait for cluster to stabilize ==================================================");
       LOG.debug("================================================================================================");
-      final Timeout timeoutForOwnersToArrive = new Timeout(10000L).reset();
+      final Timeout timeoutForOwnersToArrive = new TimeoutImpl(10000L).reset();
       while (!timeoutForOwnersToArrive.isExpired() && cache(0).getKeyOwners().size() != nodeCount) {
          Thread.sleep(100L);
       }
@@ -141,7 +142,7 @@ public abstract class CacheNodeOnNodeLeavingWithoutReplicasTestDriver extends Ca
       LOG.debug("========== Waiting for key owner count to drop down ============================================");
       LOG.debug("================================================================================================");
       // Assert that a gone node has created wholes where it should and has not where it should not
-      final Timeout timeout = new Timeout(10000L).reset();
+      final Timeout timeout = new TimeoutImpl(10000L).reset();
       List keyOwnersAfterLeave = cache(0).getKeyOwners();
       while (!timeout.isExpired() && keyOwnersAfterLeave.size() != configurations.length - 1) {
          Thread.sleep(10L);
