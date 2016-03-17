@@ -692,6 +692,8 @@ public final class MulticastMarker extends OperationalMarker {
                //
                // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                multicastMarker.current = highestContinuousNumberReceived;
+               //noinspection ControlFlowStatementWithoutBraces
+               if (LOG.isDebugEnabled()) LOG.debug("Adjusted multicast marker: " + multicastMarker);
             }
          }
 
