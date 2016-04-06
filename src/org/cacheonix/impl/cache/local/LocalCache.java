@@ -72,6 +72,7 @@ import org.cacheonix.impl.util.array.HashSet;
 import org.cacheonix.impl.util.logging.Logger;
 
 import static org.cacheonix.impl.cache.CacheUtils.createExpirationTime;
+import static org.cacheonix.impl.cache.item.BinaryUtils.toBinary;
 import static org.cacheonix.impl.config.ElementEventNotification.ASYNCHRONOUS;
 import static org.cacheonix.impl.config.ElementEventNotification.SYNCHRONOUS;
 
@@ -274,7 +275,7 @@ public final class LocalCache<K extends Serializable, V extends Serializable> im
     */
    public boolean containsKey(final Object key) {
 
-      final Binary binaryKey = BinaryUtils.toBinary(toSerializable("key", key));
+      final Binary binaryKey = toBinary(toSerializable("key", key));
 
       readLock.lock();
       try {
@@ -302,7 +303,7 @@ public final class LocalCache<K extends Serializable, V extends Serializable> im
    public boolean containsValue(final Object value) {
 
 
-      final Binary binaryValue = BinaryUtils.toBinary(toSerializable("value", value));
+      final Binary binaryValue = toBinary(toSerializable("value", value));
 
       readLock.lock();
       try {
@@ -365,8 +366,8 @@ public final class LocalCache<K extends Serializable, V extends Serializable> im
 
       for (final Entry<? extends Serializable, ? extends Serializable> entry : map.entrySet()) {
 
-         final Binary key = BinaryUtils.toBinary(entry.getKey());
-         final Binary value = BinaryUtils.toBinary(entry.getValue());
+         final Binary key = toBinary(entry.getKey());
+         final Binary value = toBinary(entry.getValue());
          binaryMap.put(key, value);
       }
 
@@ -447,7 +448,7 @@ public final class LocalCache<K extends Serializable, V extends Serializable> im
     */
    public V get(final Object key) {
 
-      final Binary binaryKey = BinaryUtils.toBinary(toSerializable("key", key));
+      final Binary binaryKey = toBinary(toSerializable("key", key));
       final Binary binaryValue;
 
       writeLock.lock();
@@ -491,7 +492,7 @@ public final class LocalCache<K extends Serializable, V extends Serializable> im
    public V remove(final Object key) {
 
 
-      final Binary binaryKey = BinaryUtils.toBinary(toSerializable("key", key));
+      final Binary binaryKey = toBinary(toSerializable("key", key));
 
       writeLock.lock();
       try {
@@ -511,8 +512,8 @@ public final class LocalCache<K extends Serializable, V extends Serializable> im
     */
    public boolean remove(final Object key, final Object value) {
 
-      final Binary binaryKey = BinaryUtils.toBinary(toSerializable("key", key));
-      final Binary binaryValue = BinaryUtils.toBinary(toSerializable("value", value));
+      final Binary binaryKey = toBinary(toSerializable("key", key));
+      final Binary binaryValue = toBinary(toSerializable("value", value));
       writeLock.lock();
       try {
 
@@ -525,9 +526,9 @@ public final class LocalCache<K extends Serializable, V extends Serializable> im
 
    public boolean replace(final K key, final V oldValue, final V newValue) {
 
-      final Binary binaryKey = BinaryUtils.toBinary(toSerializable("key", key));
-      final Binary binaryOldValue = BinaryUtils.toBinary(toSerializable("oldValue", oldValue));
-      final Binary binaryNewValue = BinaryUtils.toBinary(toSerializable("newValue", newValue));
+      final Binary binaryKey = toBinary(toSerializable("key", key));
+      final Binary binaryOldValue = toBinary(toSerializable("oldValue", oldValue));
+      final Binary binaryNewValue = toBinary(toSerializable("newValue", newValue));
       writeLock.lock();
       try {
 
@@ -544,8 +545,8 @@ public final class LocalCache<K extends Serializable, V extends Serializable> im
    @SuppressWarnings("unchecked")
    public V replace(final K key, final V value) {
 
-      final Binary binaryKey = BinaryUtils.toBinary(toSerializable("key", key));
-      final Binary binaryValue = BinaryUtils.toBinary(toSerializable("value", value));
+      final Binary binaryKey = toBinary(toSerializable("key", key));
+      final Binary binaryValue = toBinary(toSerializable("value", value));
       writeLock.lock();
       try {
 
@@ -579,8 +580,8 @@ public final class LocalCache<K extends Serializable, V extends Serializable> im
    public V put(final K key, final V value) {
 
       final Binary binaryPreviousValue;
-      final Binary binaryKey = BinaryUtils.toBinary(key);
-      final Binary binaryValue = BinaryUtils.toBinary(value);
+      final Binary binaryKey = toBinary(key);
+      final Binary binaryValue = toBinary(value);
 
       writeLock.lock();
       try {
@@ -609,8 +610,8 @@ public final class LocalCache<K extends Serializable, V extends Serializable> im
       //noinspection ControlFlowStatementWithoutBraces
       if (LOG.isDebugEnabled()) LOG.debug("Begin updating"); // NOPMD
 
-      final Binary binaryKey = BinaryUtils.toBinary(key);
-      final Binary binaryValue = BinaryUtils.toBinary(value);
+      final Binary binaryKey = toBinary(key);
+      final Binary binaryValue = toBinary(value);
 
       //noinspection ControlFlowStatementWithoutBraces
       if (LOG.isDebugEnabled()) LOG.debug("In update lock section"); // NOPMD
@@ -638,8 +639,8 @@ public final class LocalCache<K extends Serializable, V extends Serializable> im
    public V put(final K key, final V value, final long delay, final TimeUnit timeUnit) {
 
       final Binary binaryPreviousValue;
-      final Binary binaryKey = BinaryUtils.toBinary(key);
-      final Binary binaryValue = BinaryUtils.toBinary(value);
+      final Binary binaryKey = toBinary(key);
+      final Binary binaryValue = toBinary(value);
       final Time expirationTime = createExpirationTime(clock, delay, timeUnit);
 
       writeLock.lock();
@@ -657,8 +658,8 @@ public final class LocalCache<K extends Serializable, V extends Serializable> im
    public V putIfAbsent(final K key, final V value) {
 
       final Binary binaryPreviousValue;
-      final Binary binaryKey = BinaryUtils.toBinary(key);
-      final Binary binaryValue = BinaryUtils.toBinary(value);
+      final Binary binaryKey = toBinary(key);
+      final Binary binaryValue = toBinary(value);
 
       writeLock.lock();
       try {
@@ -805,7 +806,7 @@ public final class LocalCache<K extends Serializable, V extends Serializable> im
 
          for (final Serializable key : keySet) {
 
-            final Binary binaryKey = BinaryUtils.toBinary(key);
+            final Binary binaryKey = toBinary(key);
             final ReadableElement element = binaryStore.get().get(binaryKey);
             final Binary binaryValue = BinaryStoreUtils.getValue(element);
             entries.add(new LocalCacheEntry(binaryKey, binaryValue));
@@ -838,7 +839,7 @@ public final class LocalCache<K extends Serializable, V extends Serializable> im
          final BinaryStore store = validStorage();
          for (final K key : keySet) {
 
-            final Binary binaryKey = BinaryUtils.toBinary(key);
+            final Binary binaryKey = toBinary(key);
             final PreviousValue previousValue = store.remove(binaryKey);
             modified |= previousValue.isPreviousValuePresent();
          }
@@ -861,7 +862,7 @@ public final class LocalCache<K extends Serializable, V extends Serializable> im
          final BinaryStore store = validStorage();
          for (final K key : keys) {
 
-            final Binary binaryKey = BinaryUtils.toBinary(key);
+            final Binary binaryKey = toBinary(key);
             if (store.containsKey(binaryKey)) {
 
                final ReadableElement element = store.get(binaryKey);
@@ -889,7 +890,7 @@ public final class LocalCache<K extends Serializable, V extends Serializable> im
       final Set<Binary> binaryKeys = new HashSet<Binary>(keySet.size());
       for (final K key : keySet) {
 
-         binaryKeys.add(BinaryUtils.toBinary(key));
+         binaryKeys.add(toBinary(key));
       }
 
       // Process retainAll();
@@ -984,7 +985,7 @@ public final class LocalCache<K extends Serializable, V extends Serializable> im
 
             try {
 
-               validStorage().removeEventSubscriber(BinaryUtils.toBinary(key), subscriberIdentity);
+               validStorage().removeEventSubscriber(toBinary(key), subscriberIdentity);
             } catch (final NotSubscribedException e) {
 
                // Don't throw now, remember instead
