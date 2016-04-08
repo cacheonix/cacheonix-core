@@ -242,6 +242,7 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
     * @param clock
     * @return <code>true</code> if this cache element expired.
     */
+   @SuppressWarnings("ReuseOfLocalVariable")
    public boolean isExpired(final Clock clock) {
 
       Time currentTime = null;
