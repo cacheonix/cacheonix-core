@@ -24,12 +24,14 @@ import org.cacheonix.impl.cache.storage.disk.StorageException;
 import org.cacheonix.impl.clock.Clock;
 import org.cacheonix.impl.clock.ClockImpl;
 import org.cacheonix.impl.config.CacheonixConfiguration;
-import org.cacheonix.impl.config.ConfigurationConstants;
 import org.cacheonix.impl.config.SystemProperty;
 import org.cacheonix.impl.util.StringUtils;
 import org.cacheonix.impl.util.exception.ExceptionUtils;
 import org.cacheonix.impl.util.logging.Logger;
 import org.cacheonix.impl.util.thread.UserThreadFactory;
+
+import static org.cacheonix.impl.config.ConfigurationConstants.CACHE_TEMPLATE_NAME_DEFAULT;
+import static org.cacheonix.impl.config.SystemProperty.CACHEONIX_LOGGING_CONFIGURATION;
 
 /**
  * AbstractCacheonix
@@ -209,7 +211,7 @@ public abstract class AbstractCacheonix extends Cacheonix {
       // We need this condition to provide specialized logging
       // wo support developer testing.
 
-      if (StringUtils.isBlank(SystemProperty.CACHEONIX_LOGGING_CONFIGURATION)) {
+      if (StringUtils.isBlank(CACHEONIX_LOGGING_CONFIGURATION)) {
          config.getLoggingConfiguration().getLoggingLevel().activate();
       }
 
@@ -326,7 +328,7 @@ public abstract class AbstractCacheonix extends Cacheonix {
 
    public final Cache createCache(final String cacheName) {
 
-      return createCache(cacheName, ConfigurationConstants.CACHE_TEMPLATE_NAME_DEFAULT);
+      return createCache(cacheName, CACHE_TEMPLATE_NAME_DEFAULT);
    }
 
 
