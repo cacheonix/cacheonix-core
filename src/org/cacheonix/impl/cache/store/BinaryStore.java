@@ -1,5 +1,5 @@
 /*
- * Cacheonix systems licenses this file to You under the LGPL 2.1
+ * Cacheonix Systems licenses this file to You under the LGPL 2.1
  * (the "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
@@ -964,10 +964,9 @@ public final class BinaryStore implements Wireable {
                final Binary binaryValue = objectToBinary(valueFromDataSource);
                final Time expirationTime = calculateExpirationTime(expirationInterval);
                final Time timeTookToReadFromDataSource = binaryStoreDataSourceObject.getTimeToRead();
-
                put(key, binaryValue, expirationTime, false, timeTookToReadFromDataSource);
 
-               // Return a new readable element becuase put return previous
+               // Return a new readable element becuase put() above return previous
                // value which is not suitable for returning from get.
                return new SimpleReadableElement(binaryValue, expirationTime);
             }

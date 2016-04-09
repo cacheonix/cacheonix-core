@@ -1,5 +1,5 @@
 /*
- * Cacheonix systems licenses this file to You under the LGPL 2.1
+ * Cacheonix Systems licenses this file to You under the LGPL 2.1
  * (the "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
@@ -242,6 +242,7 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
     * @param clock
     * @return <code>true</code> if this cache element expired.
     */
+   @SuppressWarnings("ReuseOfLocalVariable")
    public boolean isExpired(final Clock clock) {
 
       Time currentTime = null;
