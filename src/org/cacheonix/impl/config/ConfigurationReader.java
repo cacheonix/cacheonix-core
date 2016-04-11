@@ -22,13 +22,15 @@ import java.net.URL;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import org.cacheonix.impl.util.IOUtils;
+import org.cacheonix.cache.ConfigurationException;
 import org.cacheonix.impl.util.exception.ExceptionUtils;
 import org.cacheonix.impl.util.logging.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
+
+import static org.cacheonix.impl.util.IOUtils.closeHard;
 
 /**
  * Configuration reader.
@@ -85,13 +87,13 @@ public final class ConfigurationReader {
 
          if (is == null) {
 
-            throw new IOException("Configuration could not be found: " + configurationPath);
+            throw new ConfigurationException("Configuration could not be found: " + configurationPath);
          }
 
          // Read
          return readConfiguration(is);
       } finally {
-         IOUtils.closeHard(is);
+         closeHard(is);
       }
    }
 
