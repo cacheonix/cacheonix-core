@@ -44,7 +44,6 @@ import org.cacheonix.impl.cache.distributed.partitioned.CacheProcessorKey;
 import org.cacheonix.impl.cache.distributed.partitioned.EntryEventSubscriptionConfigurationSubscriber;
 import org.cacheonix.impl.cache.distributed.partitioned.LeaveCacheGroupAnnouncement;
 import org.cacheonix.impl.cache.distributed.partitioned.PartitionedCache;
-import org.cacheonix.impl.cache.distributed.partitioned.RepartitionAnnouncement;
 import org.cacheonix.impl.cache.distributed.partitioned.SetCacheNodeStateMessage;
 import org.cacheonix.impl.clock.Clock;
 import org.cacheonix.impl.cluster.ClusterImpl;
@@ -900,13 +899,13 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
                   reentrantLock.unlock();
                }
 
-               // Send a repartition announcement to stimulate the RBOAT
-               // to send bucket to the new partition contributor.
-               if (cacheConfig.isPartitionContributor()) {
-
-                  clusterProcessor.post(new RepartitionAnnouncement(cacheName));
-               }
-
+//               // Send a repartition announcement to stimulate the RBOAT
+//               // to send bucket to the new partition contributor.
+//               if (cacheConfig.isPartitionContributor()) {
+//
+//                  clusterProcessor.post(new RepartitionAnnouncement(cacheName));
+//               }
+//
             } catch (final Exception e) {
 
                // REVIEME: simeshev@cacheonix.org - 2011-07-11 Consider setting up a cache processor that has failed with an error.

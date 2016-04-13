@@ -112,6 +112,16 @@ public interface Wireable {
 
    int TYPE_NULL_BINARY = DESTINATION_NONE << 8 | 36;
 
+   int TYPE_CACHED_RESPONSE_KEY = DESTINATION_NONE << 8 | 37;
+
+   int TYPE_CACHED_RESPONSE_VALUE = DESTINATION_NONE << 8 | 38;
+
+   int TYPE_DATE_HEADER = DESTINATION_NONE << 8 | 39;
+
+   int TYPE_INTEGER_HEADER = DESTINATION_NONE << 8 | 40;
+
+   int TYPE_STRING_HEADER = DESTINATION_NONE << 8 | 41;
+
 
    /**
     * ++++++++++++++++++++++++++++++++++++++ Connection-related messages  ++++++++++++++++++++++++++++++++++++++

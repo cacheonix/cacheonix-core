@@ -1,0 +1,17 @@
+<?xml version ="1.0"?>
+<cacheonix xmlns="http://www.cacheonix.org/schema/configuration"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.cacheonix.org/schema/configuration http://www.cacheonix.org/schema/cacheonix-config-2.0.xsd">
+
+   <tempDir path="${java.io.temp}"/>
+
+   <local>
+
+      <localCache name="TestRequestCache">
+         <store>
+            <lru maxElements="20" maxBytes="10mb"/>
+            <expiration timeToLive="2000s"/>
+         </store>
+      </localCache>
+   </local>
+</cacheonix>

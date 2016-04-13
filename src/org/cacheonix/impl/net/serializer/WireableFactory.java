@@ -83,6 +83,11 @@ import org.cacheonix.impl.cache.store.BinaryStore;
 import org.cacheonix.impl.cache.store.BinaryStoreElement;
 import org.cacheonix.impl.cache.store.CacheStatisticsImpl;
 import org.cacheonix.impl.cache.subscriber.BinaryEntryModifiedEvent;
+import org.cacheonix.impl.cache.web.CachedResponseKey;
+import org.cacheonix.impl.cache.web.CachedResponseValue;
+import org.cacheonix.impl.cache.web.DateHeader;
+import org.cacheonix.impl.cache.web.IntegerHeader;
+import org.cacheonix.impl.cache.web.StringHeader;
 import org.cacheonix.impl.clock.TimeImpl;
 import org.cacheonix.impl.cluster.AddClusterEventSubscriberRequest;
 import org.cacheonix.impl.cluster.RemoveClusterEventSubscriberRequest;
@@ -179,6 +184,11 @@ public final class WireableFactory {
       addMaker(Wireable.TYPE_CACHEABLE_ENTRY, CacheableEntry.BUILDER);
       addMaker(Wireable.TYPE_JOINING_NODE, JoiningNode.BUILDER);
       addMaker(Wireable.TYPE_RECEIVER_ADDRESS, ReceiverAddress.BUILDER);
+      addMaker(Wireable.TYPE_CACHED_RESPONSE_KEY, CachedResponseKey.BUILDER);
+      addMaker(Wireable.TYPE_CACHED_RESPONSE_VALUE, CachedResponseValue.BUILDER);
+      addMaker(Wireable.TYPE_DATE_HEADER, DateHeader.BUILDER);
+      addMaker(Wireable.TYPE_INTEGER_HEADER, IntegerHeader.BUILDER);
+      addMaker(Wireable.TYPE_STRING_HEADER, StringHeader.BUILDER);
 
       addMaker(Wireable.TYPE_CLUSTER_MULTICAST_MARKER, MulticastMarker.BUILDER);
       addMaker(Wireable.TYPE_CLUSTER_JOIN_REQUEST, JoinRequest.BUILDER);

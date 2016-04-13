@@ -20,7 +20,10 @@ import java.io.DataOutputStream;
 import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.net.InetAddress;
 import java.util.ArrayList;
@@ -65,6 +68,8 @@ public final class SerializerUtils {
     * @noinspection UNUSED_SYMBOL, UnusedDeclaration
     */
    private static final Logger LOG = Logger.getLogger(SerializerUtils.class); // NOPMD
+
+   private static WireableFactory WIREABLE_FACTORY = WireableFactory.getInstance();
 
 
    /**
@@ -352,6 +357,37 @@ public final class SerializerUtils {
    }
 
 
+   public static void writeObject(DataOutputStream out, Serializable object) throws IOException {
+
+      if (object == null) {
+         out.writeBoolean(true); // is null
+      } else {
+         out.writeBoolean(false);
+         final ObjectOutputStream oos = new ObjectOutputStream(out);
+         oos.writeObject(object);
+         oos.flush();
+         oos.close();
+      }
+   }
+
+
+   @SuppressWarnings("unchecked")
+   public static <T extends Serializable> T readObject(
+           final DataInputStream in) throws IOException, ClassNotFoundException {
+
+      if (in.readBoolean()) {
+         return null;
+      } else {
+         final ObjectInputStream ois = new ObjectInputStream(in);
+         final T result = (T) ois.readObject();
+         ois.close();
+         return result;
+      }
+   }
+
+
+
+
    public static void writeBucket(final DataOutputStream out, final Bucket bucket) throws IOException {
 
       if (bucket == null) {
@@ -505,7 +541,7 @@ public final class SerializerUtils {
 
 
    public static void writeInetAddress(final InetAddress inetAddress, final DataOutput out,
-                                       final boolean fixedLength) throws IOException {
+           final boolean fixedLength) throws IOException {
 
       if (inetAddress == null) {
 
@@ -901,7 +937,7 @@ public final class SerializerUtils {
 
 
    public static void writeReceiverAddress(final ReceiverAddress address,
-                                           final DataOutputStream out) throws IOException {
+           final DataOutputStream out) throws IOException {
 
       if (address == null) {
          out.writeBoolean(true); // is null
@@ -922,5 +958,33 @@ public final class SerializerUtils {
          result.readWire(in);
          return result;
       }
+   }
+
+
+   public static void writeWireable(final DataOutputStream out, final Wireable wireable) throws IOException {
+
+      if (wireable == null) {
+         out.writeBoolean(true); // is null
+      } else {
+         out.writeBoolean(false);
+         out.writeInt(wireable.getWireableType());
+         wireable.writeWire(out);
+      }
+   }
+
+
+   @SuppressWarnings("unchecked")
+   public static <T extends Wireable> T readWireable(
+           final DataInputStream in) throws IOException, ClassNotFoundException {
+
+      if (in.readBoolean()) {
+         return null;
+      } else {
+
+         final Wireable result = WIREABLE_FACTORY.createWireable(in.readInt());
+         result.readWire(in);
+         return (T) result;
+      }
+
    }
 }

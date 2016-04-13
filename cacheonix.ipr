@@ -1654,7 +1654,9 @@
       <CLASSES>
         <root url="jar://$PROJECT_DIR$/3rdparty/servlets-2.3/servletapi-2.3.jar!/" />
       </CLASSES>
-      <JAVADOC />
+      <JAVADOC>
+        <root url="https://docs.oracle.com/cd/E17802_01/products/products/servlet/2.3/javadoc/" />
+      </JAVADOC>
       <SOURCES />
     </library>
     <library name="Spring">

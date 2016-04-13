@@ -20,17 +20,13 @@
     <orderEntry type="library" name="hibernate3" level="project" />
     <orderEntry type="library" name="GSBase" level="project" />
     <orderEntry type="library" name="Servlets" level="project" />
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/test/data" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
     <orderEntry type="library" name="Spring" level="project" />
     <orderEntry type="library" name="Mail" level="project" />
+    <orderEntry type="library" name="Commons Math" level="project" />
+    <orderEntry type="library" name="Array Utils" level="project" />
+    <orderEntry type="library" name="Mockito" level="project" />
+    <orderEntry type="library" name="MyBatis" level="project" />
+    <orderEntry type="library" name="catalina" level="project" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
@@ -40,11 +36,15 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="Commons Math" level="project" />
-    <orderEntry type="library" name="Array Utils" level="project" />
-    <orderEntry type="library" name="Mockito" level="project" />
-    <orderEntry type="library" name="MyBatis" level="project" />
-    <orderEntry type="library" name="catalina" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/test/data" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
   <component name="org.twodividedbyzero.idea.findbugs">
     <option name="_basePreferences">
@@ -231,4 +231,3 @@
     </option>
   </component>
 </module>
-
