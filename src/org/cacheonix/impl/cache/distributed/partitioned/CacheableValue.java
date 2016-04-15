@@ -19,9 +19,13 @@ import java.io.IOException;
 
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.clock.Time;
-import org.cacheonix.impl.net.serializer.SerializerUtils;
 import org.cacheonix.impl.net.serializer.Wireable;
 import org.cacheonix.impl.net.serializer.WireableBuilder;
+
+import static org.cacheonix.impl.net.serializer.SerializerUtils.readBinary;
+import static org.cacheonix.impl.net.serializer.SerializerUtils.readTime;
+import static org.cacheonix.impl.net.serializer.SerializerUtils.writeBinary;
+import static org.cacheonix.impl.net.serializer.SerializerUtils.writeTime;
 
 /**
  * A value that can be cached, returned by read requests such as GetRequest.
@@ -90,8 +94,8 @@ public final class CacheableValue implements Wireable {
     */
    public void writeWire(final DataOutputStream out) throws IOException {
 
-      SerializerUtils.writeBinary(out, binaryValue);
-      SerializerUtils.writeTime(timeToLeave, out);
+      writeBinary(out, binaryValue);
+      writeTime(timeToLeave, out);
    }
 
 
@@ -100,8 +104,8 @@ public final class CacheableValue implements Wireable {
     */
    public void readWire(final DataInputStream in) throws IOException, ClassNotFoundException {
 
-      binaryValue = SerializerUtils.readBinary(in);
-      timeToLeave = SerializerUtils.readTime(in);
+      binaryValue = readBinary(in);
+      timeToLeave = readTime(in);
    }
 
 
