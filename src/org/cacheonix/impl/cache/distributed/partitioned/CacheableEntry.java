@@ -18,9 +18,13 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 
 import org.cacheonix.impl.cache.item.Binary;
-import org.cacheonix.impl.net.serializer.SerializerUtils;
 import org.cacheonix.impl.net.serializer.Wireable;
 import org.cacheonix.impl.net.serializer.WireableBuilder;
+
+import static org.cacheonix.impl.net.serializer.SerializerUtils.readBinary;
+import static org.cacheonix.impl.net.serializer.SerializerUtils.readCacheableValue;
+import static org.cacheonix.impl.net.serializer.SerializerUtils.writeBinary;
+import static org.cacheonix.impl.net.serializer.SerializerUtils.writeCacheableValue;
 
 /**
  * An entry returned by GetAllRequest.
@@ -103,8 +107,8 @@ public final class CacheableEntry implements Wireable {
     */
    public void writeWire(final DataOutputStream out) throws IOException {
 
-      SerializerUtils.writeBinary(out, key);
-      SerializerUtils.writeCacheableValue(out, value);
+      writeBinary(out, key);
+      writeCacheableValue(out, value);
    }
 
 
@@ -113,8 +117,8 @@ public final class CacheableEntry implements Wireable {
     */
    public void readWire(final DataInputStream in) throws IOException, ClassNotFoundException {
 
-      key = SerializerUtils.readBinary(in);
-      value = SerializerUtils.readCacheableValue(in);
+      key = readBinary(in);
+      value = readCacheableValue(in);
    }
 
 
