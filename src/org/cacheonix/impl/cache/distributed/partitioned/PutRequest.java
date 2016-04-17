@@ -177,7 +177,7 @@ public final class PutRequest extends KeyRequest {
          if (isPrimaryRequest()) {
 
             // Create result
-            final CacheableValue result = new CacheableValue(previousValue, null);
+            final CacheableValue result = new CacheableValue(previousValue, null, null, null);
 
             return new ProcessingResult(result, modifiedKey);
          } else {

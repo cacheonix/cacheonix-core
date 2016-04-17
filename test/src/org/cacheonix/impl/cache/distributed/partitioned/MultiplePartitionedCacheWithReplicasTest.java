@@ -40,9 +40,18 @@ public final class MultiplePartitionedCacheWithReplicasTest extends MultiplePart
    };
 
 
-   public void testCoherenceGetAllClear() throws Exception { // NOPMD
+   public void testCoherenceGetAllClear() throws Exception { // NOPMD Overriding method merely calls super
 
       super.testCoherenceGetAllClear();
+   }
+
+
+   /**
+    * Tests put into the item in invalid state.
+    */
+   public void testPutToInvalid() { // NOPMD Overriding method merely calls super
+
+      super.testPutToInvalid();
    }
 
 

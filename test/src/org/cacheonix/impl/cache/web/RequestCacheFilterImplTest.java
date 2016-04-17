@@ -11,6 +11,7 @@ import junit.framework.TestCase;
 import org.cacheonix.impl.util.array.HashMap;
 
 import static org.cacheonix.impl.cache.web.RequestCacheFilterImpl.CONFIGURATION_PATH;
+import static org.cacheonix.impl.cache.web.RequestCacheFilterImpl.IF_MODIFIED_SINCE;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
@@ -103,7 +104,15 @@ public final class RequestCacheFilterImplTest extends TestCase {
 
    public void testDestroy() throws Exception {
 
+
+      // Init
+      final FilterConfig filterConfig = mockFilterConfig();
+      requestCacheFilter.init(filterConfig);
+
+      // Destroy
       requestCacheFilter.destroy();
+
+      // Assert
       assertEquals(0, requestCacheFilter.getCache().size());
    }
 
@@ -111,9 +120,11 @@ public final class RequestCacheFilterImplTest extends TestCase {
    private static HttpServletRequest mockRequest() {
 
       final HttpServletRequest httpServletRequest = mock(HttpServletRequest.class);
+      when(httpServletRequest.getDateHeader(IF_MODIFIED_SINCE)).thenReturn(System.currentTimeMillis() - 10000L);
       when(httpServletRequest.getParameterMap()).thenReturn(createParameterMap(11));
       when(httpServletRequest.getRequestURI()).thenReturn(TEST_REQUEST_URI);
       when(httpServletRequest.getCookies()).thenReturn(createCookies(10));
+
       return httpServletRequest;
    }
 

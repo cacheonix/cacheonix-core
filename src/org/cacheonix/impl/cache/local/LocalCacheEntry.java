@@ -14,7 +14,6 @@
 package org.cacheonix.impl.cache.local;
 
 
-import java.io.Serializable;
 import java.util.Set;
 
 import org.cacheonix.cache.entry.CacheEntry;
@@ -22,6 +21,7 @@ import org.cacheonix.cache.entry.EntryFilter;
 import org.cacheonix.cache.executor.Aggregator;
 import org.cacheonix.cache.executor.Executable;
 import org.cacheonix.impl.cache.item.Binary;
+import org.cacheonix.impl.clock.Time;
 
 /**
  * An implementation of CacheEntry used by the local cache.
@@ -39,11 +39,31 @@ final class LocalCacheEntry implements CacheEntry {
 
    private final Binary value;
 
+   /**
+    * Time the element was created.
+    */
+   private Time createdTime;
 
-   LocalCacheEntry(final Binary key, final Binary value) {
+   /**
+    * Time to expire.
+    */
+   private Time expirationTime;
+
+
+   /**
+    * Creates a new instance of <tt>CacheEntryImpl</tt>
+    *
+    * @param key            the key.
+    * @param value          the value.
+    * @param createdTime    the time this entry was created.
+    * @param expirationTime the time this entry expires.
+    */
+   LocalCacheEntry(final Binary key, final Binary value, final Time createdTime, final Time expirationTime) {
 
       this.key = key;
       this.value = value;
+      this.createdTime = createdTime;
+      this.expirationTime = expirationTime;
    }
 
 
@@ -59,14 +79,36 @@ final class LocalCacheEntry implements CacheEntry {
    }
 
 
-   private static Serializable toObject(final Binary result) {
+   /**
+    * Returns time this element expires.
+    *
+    * @return time this element expires or null of the expiration time is not available.
+    */
+   public Time getExpirationTime() {
+
+      return expirationTime;
+   }
+
+
+   /**
+    * Returns the time this element was created.
+    *
+    * @return the time this element was created  or null of the created time is not available.
+    */
+   public Time getCreatedTime() {
+
+      return createdTime;
+   }
+
+
+   private static Object toObject(final Binary result) {
 
       if (result == null) {
 
          return null;
       }
 
-      return (Serializable) result.getValue();
+      return result.getValue();
    }
 
 
@@ -75,6 +117,8 @@ final class LocalCacheEntry implements CacheEntry {
       return "LocalCacheEntry{" +
               "key=" + key +
               ", value=" + value +
+              ", createdTime=" + createdTime +
+              ", expirationTime=" + expirationTime +
               '}';
    }
 }

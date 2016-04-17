@@ -25,7 +25,7 @@ import org.cacheonix.cache.executor.Executable;
  *
  * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  */
-public interface EntryFilter extends Serializable {
+public interface EntryFilter<K extends Serializable, V extends Serializable> extends Serializable {
 
    /**
     * This method is used to filters out a cache entry before it is passed passed to  an <code>Executable</code>. It

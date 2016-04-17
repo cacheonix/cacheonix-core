@@ -57,7 +57,8 @@ public final class BucketOwnershipAssignmentWithoutReplicasTest extends TestCase
    private static final byte REPLICA_COUNT = 0;
 
 
-   private final BucketOwnershipAssignment boat = new BucketOwnershipAssignment(CACHE_NAME, BUCKET_COUNT, REPLICA_COUNT);
+   private final BucketOwnershipAssignment boat = new BucketOwnershipAssignment(CACHE_NAME, BUCKET_COUNT,
+           REPLICA_COUNT);
 
    private final TestBucketEventListener eventListener = new TestBucketEventListener();
 
@@ -131,8 +132,10 @@ public final class BucketOwnershipAssignmentWithoutReplicasTest extends TestCase
 
       // Assert - both existing owners must begin to move
       assertEquals(2, eventListener.getBeginTransferCommands().size());
-      assertEquals((BUCKET_COUNT / 2) - (BUCKET_COUNT / 3) - 1, eventListener.getBeginTransferCommands().get(0).getBucketNumbers().size());
-      assertEquals((BUCKET_COUNT / 2) - (BUCKET_COUNT / 3) - 2, eventListener.getBeginTransferCommands().get(1).getBucketNumbers().size());
+      assertEquals((BUCKET_COUNT / 2) - (BUCKET_COUNT / 3) - 1,
+              eventListener.getBeginTransferCommands().get(0).getBucketNumbers().size());
+      assertEquals((BUCKET_COUNT / 2) - (BUCKET_COUNT / 3) - 2,
+              eventListener.getBeginTransferCommands().get(1).getBucketNumbers().size());
 
       // Assert there were not other commands issued
       assertEquals(0, eventListener.getCancelTransferCommands().size());
@@ -148,7 +151,8 @@ public final class BucketOwnershipAssignmentWithoutReplicasTest extends TestCase
       assertEquals(BUCKET_COUNT / 3 + 2, boat.getOwnedBuckets(0, address0).size());
       assertEquals(BUCKET_COUNT / 3 + 2, boat.getOwnedBuckets(0, address1).size());
       assertEquals(BUCKET_COUNT / 3 - 2, boat.getOwnedBuckets(0, address2).size());
-      assertEquals(BUCKET_COUNT, boat.getOwnedBuckets(0, address0).size() + boat.getOwnedBuckets(0, address1).size() + boat.getOwnedBuckets(0, address2).size());
+      assertEquals(BUCKET_COUNT, boat.getOwnedBuckets(0, address0).size() + boat.getOwnedBuckets(0,
+              address1).size() + boat.getOwnedBuckets(0, address2).size());
 
       // Assert there were not other commands issued
       assertEquals(3, boat.getBucketOwnerCount());
@@ -181,8 +185,10 @@ public final class BucketOwnershipAssignmentWithoutReplicasTest extends TestCase
 
       // Assert - both existing owners must begin to move
       assertEquals(2, eventListener.getBeginTransferCommands().size());
-      assertEquals("Transfer to the second node", (BUCKET_COUNT / 2), eventListener.getBeginTransferCommands().get(0).getBucketNumbers().size());
-      assertEquals("Transfer to the third node", (BUCKET_COUNT / 2) - (BUCKET_COUNT / 3) - 1, eventListener.getBeginTransferCommands().get(1).getBucketNumbers().size());
+      assertEquals("Transfer to the second node", (BUCKET_COUNT / 2),
+              eventListener.getBeginTransferCommands().get(0).getBucketNumbers().size());
+      assertEquals("Transfer to the third node", (BUCKET_COUNT / 2) - (BUCKET_COUNT / 3) - 1,
+              eventListener.getBeginTransferCommands().get(1).getBucketNumbers().size());
 
       assertEquals(0, eventListener.getBeginRestoreReplicaCommands().size());
       assertEquals(0, eventListener.getCancelTransferCommands().size());
@@ -192,20 +198,28 @@ public final class BucketOwnershipAssignmentWithoutReplicasTest extends TestCase
 
       // This complete transfer will [naturally create an unbalanced ownership 
       completeTransfers(eventListener);
-      assertEquals("First bucket owner has a third because it was a source all the time", BUCKET_COUNT / 3 + 2, boat.getOwnedBuckets(0, address0).size());
-      assertEquals("Second bucket owner has a half because it was second", (BUCKET_COUNT / 3) + 2, boat.getOwnedBuckets(0, address1).size());
-      assertEquals("Third has gotten what ever left within fair distribution", (BUCKET_COUNT / 3) - 2, boat.getOwnedBuckets(0, address2).size());
-      assertEquals(BUCKET_COUNT, boat.getOwnedBuckets(0, address0).size() + boat.getOwnedBuckets(0, address1).size() + boat.getOwnedBuckets(0, address2).size());
+      assertEquals("First bucket owner has a third because it was a source all the time", BUCKET_COUNT / 3 + 2,
+              boat.getOwnedBuckets(0, address0).size());
+      assertEquals("Second bucket owner has a half because it was second", (BUCKET_COUNT / 3) + 2,
+              boat.getOwnedBuckets(0, address1).size());
+      assertEquals("Third has gotten what ever left within fair distribution", (BUCKET_COUNT / 3) - 2,
+              boat.getOwnedBuckets(0, address2).size());
+      assertEquals(BUCKET_COUNT, boat.getOwnedBuckets(0, address0).size() + boat.getOwnedBuckets(0,
+              address1).size() + boat.getOwnedBuckets(0, address2).size());
       assertEquals(3, boat.getBucketOwnerCount());
       assertNoPendingCommands();
 
       // Now run one more repartition to balance distribution
       boat.repartition();
       completeTransfers(eventListener);
-      assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 3) + 2, boat.getOwnedBuckets(0, address0).size());
-      assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 3) + 2, boat.getOwnedBuckets(0, address1).size());
-      assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 3) - 2, boat.getOwnedBuckets(0, address2).size());
-      assertEquals(BUCKET_COUNT, boat.getOwnedBuckets(0, address0).size() + boat.getOwnedBuckets(0, address1).size() + boat.getOwnedBuckets(0, address2).size());
+      assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 3) + 2,
+              boat.getOwnedBuckets(0, address0).size());
+      assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 3) + 2,
+              boat.getOwnedBuckets(0, address1).size());
+      assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 3) - 2,
+              boat.getOwnedBuckets(0, address2).size());
+      assertEquals(BUCKET_COUNT, boat.getOwnedBuckets(0, address0).size() + boat.getOwnedBuckets(0,
+              address1).size() + boat.getOwnedBuckets(0, address2).size());
 
       assertEquals(3, boat.getBucketOwnerCount());
       assertNoPendingCommands();
@@ -235,17 +249,18 @@ public final class BucketOwnershipAssignmentWithoutReplicasTest extends TestCase
       final ClusterNodeAddress address2 = TestUtils.createTestAddress(2);
       boat.addBucketOwner(address2);
 
-      //
-      // Repartition
-      //
-      boat.repartition();
+      completeTransfers(eventListener);
 
       // Assert - all joined at once when there wasn't any owners
       assertNoPendingCommands();
-      assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 3) + 2, boat.getOwnedBuckets(0, address0).size());
-      assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 3) + 2, boat.getOwnedBuckets(0, address1).size());
-      assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 3) - 2, boat.getOwnedBuckets(0, address2).size());
-      assertEquals(BUCKET_COUNT, boat.getOwnedBuckets(0, address0).size() + boat.getOwnedBuckets(0, address1).size() + boat.getOwnedBuckets(0, address2).size());
+      assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 3) + 2,
+              boat.getOwnedBuckets(0, address0).size());
+      assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 3) + 2,
+              boat.getOwnedBuckets(0, address1).size());
+      assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 3) - 2,
+              boat.getOwnedBuckets(0, address2).size());
+      assertEquals(BUCKET_COUNT, boat.getOwnedBuckets(0, address0).size() + boat.getOwnedBuckets(0,
+              address1).size() + boat.getOwnedBuckets(0, address2).size());
       assertEquals(3, boat.getBucketOwnerCount());
    }
 
@@ -260,7 +275,7 @@ public final class BucketOwnershipAssignmentWithoutReplicasTest extends TestCase
       //
       final ClusterNodeAddress address0 = TestUtils.createTestAddress(0);
       boat.addBucketOwner(address0);
-      boat.repartition();
+//      boat.repartition();
 
       //
       // Add second bucket owner but don't complete transfers
@@ -277,12 +292,14 @@ public final class BucketOwnershipAssignmentWithoutReplicasTest extends TestCase
       //
       // Repartition
       //
-      boat.repartition();
+//      boat.repartition();
 
       // Assert - both existing owners must begin to move
       assertEquals(2, eventListener.getBeginTransferCommands().size());
-      assertEquals("Transfer to the second node", (BUCKET_COUNT / 3) + 2, eventListener.getBeginTransferCommands().get(0).getBucketNumbers().size());
-      assertEquals("Transfer to the third node", (BUCKET_COUNT / 3) - 2, eventListener.getBeginTransferCommands().get(1).getBucketNumbers().size());
+      assertEquals("Transfer to the second node", (BUCKET_COUNT / 2),
+              eventListener.getBeginTransferCommands().get(0).getBucketNumbers().size());
+      assertEquals("Transfer to the third node", (BUCKET_COUNT / 6),
+              eventListener.getBeginTransferCommands().get(1).getBucketNumbers().size());
 
       assertEquals(0, eventListener.getBeginRestoreReplicaCommands().size());
       assertEquals(0, eventListener.getCancelTransferCommands().size());
@@ -294,10 +311,14 @@ public final class BucketOwnershipAssignmentWithoutReplicasTest extends TestCase
       completeTransfers(eventListener);
       assertNoPendingCommands();
 
-      assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 3) + 2, boat.getOwnedBuckets(0, address0).size());
-      assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 3) + 2, boat.getOwnedBuckets(0, address1).size());
-      assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 3) - 2, boat.getOwnedBuckets(0, address2).size());
-      assertEquals(BUCKET_COUNT, boat.getOwnedBuckets(0, address0).size() + boat.getOwnedBuckets(0, address1).size() + boat.getOwnedBuckets(0, address2).size());
+      assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 3) + 2,
+              boat.getOwnedBuckets(0, address0).size());
+      assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 3) + 2,
+              boat.getOwnedBuckets(0, address1).size());
+      assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 3) - 2,
+              boat.getOwnedBuckets(0, address2).size());
+      assertEquals(BUCKET_COUNT, boat.getOwnedBuckets(0, address0).size() + boat.getOwnedBuckets(0,
+              address1).size() + boat.getOwnedBuckets(0, address2).size());
       assertEquals(3, boat.getBucketOwnerCount());
    }
 
@@ -322,10 +343,14 @@ public final class BucketOwnershipAssignmentWithoutReplicasTest extends TestCase
       completeTransfers(eventListener);
 
       // Just in case, assure proper distribution
-      assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 3) + 2, boat.getOwnedBuckets(0, address0).size());
-      assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 3) + 2, boat.getOwnedBuckets(0, address1).size());
-      assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 3) - 2, boat.getOwnedBuckets(0, address2).size());
-      assertEquals(BUCKET_COUNT, boat.getOwnedBuckets(0, address0).size() + boat.getOwnedBuckets(0, address1).size() + boat.getOwnedBuckets(0, address2).size());
+      assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 3) + 2,
+              boat.getOwnedBuckets(0, address0).size());
+      assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 3) + 2,
+              boat.getOwnedBuckets(0, address1).size());
+      assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 3) - 2,
+              boat.getOwnedBuckets(0, address2).size());
+      assertEquals(BUCKET_COUNT, boat.getOwnedBuckets(0, address0).size() + boat.getOwnedBuckets(0,
+              address1).size() + boat.getOwnedBuckets(0, address2).size());
       assertEquals(3, boat.getBucketOwnerCount());
 
       // Remove
@@ -335,8 +360,10 @@ public final class BucketOwnershipAssignmentWithoutReplicasTest extends TestCase
       assertNoPendingCommands(); // Because there is no replica
       assertEquals(2, boat.getBucketOwnerCount());
       assertEquals(BUCKET_COUNT, boat.getOwnedBuckets(0, address0).size() + boat.getOwnedBuckets(0, address2).size());
-      assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 2) + 1, boat.getOwnedBuckets(0, address0).size());
-      assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 2), boat.getOwnedBuckets(0, address2).size());
+      assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 2) + 1,
+              boat.getOwnedBuckets(0, address0).size());
+      assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 2),
+              boat.getOwnedBuckets(0, address2).size());
    }
 
 
@@ -402,7 +429,8 @@ public final class BucketOwnershipAssignmentWithoutReplicasTest extends TestCase
       // Assert that the buckets that got canceled are those that got moved
       assertEquals(2, eventListener.getBeginTransferCommands().size());
       final Set<Integer> transfers = new HashSet<Integer>();
-      final LinkedList<BeginBucketTransferCommand> beginTransferCommand = new LinkedList<BeginBucketTransferCommand>(eventListener.getBeginTransferCommands());
+      final LinkedList<BeginBucketTransferCommand> beginTransferCommand = new LinkedList<BeginBucketTransferCommand>(
+              eventListener.getBeginTransferCommands());
       for (final BeginBucketTransferCommand transferCommand : beginTransferCommand) {
          transfers.addAll(transferCommand.getBucketNumbers());
       }
@@ -416,7 +444,8 @@ public final class BucketOwnershipAssignmentWithoutReplicasTest extends TestCase
          final ClusterNodeAddress newOwner = transferCommand.getNewOwner();
          final byte sourceStorageNumber = transferCommand.getSourceStorageNumber();
          final byte destinationStorageNumber = transferCommand.getDestinationStorageNumber();
-         boat.rejectBucketTransfer(sourceStorageNumber, destinationStorageNumber, currentOwner, newOwner, bucketNumbers);
+         boat.rejectBucketTransfer(sourceStorageNumber, destinationStorageNumber, currentOwner, newOwner,
+                 bucketNumbers);
       }
 
 
@@ -454,60 +483,11 @@ public final class BucketOwnershipAssignmentWithoutReplicasTest extends TestCase
    }
 
 
-   @SuppressWarnings("InstanceMethodNamingConvention")
-   public void testBug166AssignmentDoesNotDependInOrderOfAddingOwners() {
-
-      // Create assignment #1
-      final BucketOwnershipAssignment assignment1 = new BucketOwnershipAssignment(CACHE_NAME, BUCKET_COUNT, REPLICA_COUNT);
-      final BucketEventListenerList eventListenerList1 = new BucketEventListenerList();
-      final TestBucketEventListener eventListener1 = new TestBucketEventListener();
-      eventListenerList1.add(eventListener1);
-      assignment1.attachListeners(eventListenerList1);
-
-      // Init bucket ownership
-      final int nodeCount = 50;
-      for (int i = 0; i < nodeCount; i++) {
-         assignment1.addBucketOwner(TestUtils.createTestAddress(i));
-      }
-      assignment1.repartition();
-      completeTransfers(assignment1, eventListener1);
-
-      // Create assignment #2 - revers order of adding nodes
-      final BucketOwnershipAssignment assignment2 = new BucketOwnershipAssignment(CACHE_NAME, BUCKET_COUNT, REPLICA_COUNT);
-      final BucketEventListenerList eventListenerList2 = new BucketEventListenerList();
-      final TestBucketEventListener eventListener2 = new TestBucketEventListener();
-      eventListenerList2.add(eventListener2);
-      assignment2.attachListeners(eventListenerList2);
-
-      // Init bucket ownership
-      for (int i = nodeCount - 1; i >= 0; i--) {
-         assignment2.addBucketOwner(TestUtils.createTestAddress(i));
-      }
-      assignment2.repartition();
-      completeTransfers(assignment2, eventListener2);
-
-      for (int i = 0; i < BUCKET_COUNT; i++) {
-         assertEquals(assignment1.getBucketOwnerAddress((byte) 0, i), assignment2.getBucketOwnerAddress((byte) 0, i));
-      }
-   }
-
-
    private void completeTransfers(final TestBucketEventListener listener) {
 
       final LinkedList<BeginBucketTransferCommand> transferCommands = listener.getBeginTransferCommands();
       while (!transferCommands.isEmpty()) {
          completeTransfer(transferCommands.removeFirst());
-      }
-      listener.getFinishTransferCommands().clear();
-   }
-
-
-   private static void completeTransfers(final BucketOwnershipAssignment ownershipAssignment,
-                                         final TestBucketEventListener listener) {
-
-      final LinkedList<BeginBucketTransferCommand> transferCommands = listener.getBeginTransferCommands();
-      while (!transferCommands.isEmpty()) {
-         completeTransfer(ownershipAssignment, transferCommands.removeFirst());
       }
       listener.getFinishTransferCommands().clear();
    }
@@ -520,7 +500,7 @@ public final class BucketOwnershipAssignmentWithoutReplicasTest extends TestCase
 
 
    private static void completeTransfer(final BucketOwnershipAssignment rboat,
-                                        final BeginBucketTransferCommand transferCommand) {
+           final BeginBucketTransferCommand transferCommand) {
 
       final List<Integer> bucketNumbers = transferCommand.getBucketNumbers();
 
@@ -535,7 +515,8 @@ public final class BucketOwnershipAssignmentWithoutReplicasTest extends TestCase
    private void assertNoPendingCommands() {
 
       assertEquals(0, eventListener.getBeginRestoreReplicaCommands().size());
-      assertEquals(0, eventListener.getBeginTransferCommands().size());
+      assertEquals("Expected 0 transfer commands: " + eventListener.getBeginTransferCommands(), 0,
+              eventListener.getBeginTransferCommands().size());
       assertEquals(0, eventListener.getCancelTransferCommands().size());
       assertEquals(0, eventListener.getFinishReplicaRestoreCommands().size());
       assertEquals(0, eventListener.getFinishTransferCommands().size());

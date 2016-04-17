@@ -83,7 +83,9 @@ public final class GetRequest extends KeyRequest {
             if (element != null) {
 
                // Respond with found cached value
-               result = new CacheableValue(BinaryStoreUtils.getValue(element), null);
+               final Time expirationTime = element.getExpirationTime();
+               final Time createdTime = element.getCreatedTime();
+               result = new CacheableValue(BinaryStoreUtils.getValue(element), null, createdTime, expirationTime);
             }
          }
 
@@ -95,11 +97,14 @@ public final class GetRequest extends KeyRequest {
             for (int storageNumber = 0; storageNumber <= replicaCount; storageNumber++) {
 
                final Bucket bucket = processor.getBucket(storageNumber, bucketNumber);
-               if (processor.isBucketOwner(storageNumber, bucketNumber) && bucket != null && !bucket.isReconfiguring()) {
+               if (processor.isBucketOwner(storageNumber,
+                       bucketNumber) && bucket != null && !bucket.isReconfiguring()) {
 
                   // Has bucket, proceed with returning a key from the bucket
                   final ReadableElement element = bucket.get(getKey());
-                  result = new CacheableValue(BinaryStoreUtils.getValue(element), null);
+                  final Time expirationTime = element.getExpirationTime();
+                  final Time createdTime = element.getCreatedTime();
+                  result = new CacheableValue(BinaryStoreUtils.getValue(element), null, createdTime, expirationTime);
 
 //                  //noinspection ControlFlowStatementWithoutBraces
 //                  if (LOG.isDebugEnabled()) LOG.debug("Found element in storage " + storageNumber); // NOPMD
@@ -153,7 +158,10 @@ public final class GetRequest extends KeyRequest {
             final Time resultExpirationTime = isWillCache() ? renewLease(bucket, element.getExpirationTime()) : null;
 
             // Set result
-            final CacheableValue cacheableValue = new CacheableValue(value, resultExpirationTime);
+            final Time expirationTime = element.getExpirationTime();
+            final Time createdTime = element.getCreatedTime();
+            final CacheableValue cacheableValue = new CacheableValue(value, resultExpirationTime, createdTime,
+                    expirationTime);
             return new ProcessingResult(cacheableValue, null);
          }
       } catch (final Exception e) {

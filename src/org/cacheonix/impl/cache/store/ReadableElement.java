@@ -30,6 +30,14 @@ public interface ReadableElement {
     */
    Binary getValue() throws StorageException;
 
+
+   /**
+    * Returns the time this element was created.
+    *
+    * @return the time this element was created.
+    */
+   Time getCreatedTime();
+
    /**
     * Returns time this element expires.
     *

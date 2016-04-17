@@ -13,15 +13,18 @@
  */
 package org.cacheonix.cache.entry;
 
+import java.io.Serializable;
 import java.util.Collection;
 
+import org.cacheonix.cache.Cache;
 import org.cacheonix.cache.executor.Executable;
+import org.cacheonix.impl.clock.Time;
 
 /**
- * A cache entry that Cacheonix make available to <code>Executable</code> for processing.
+ * A cache entry.
  *
  * @see Executable#execute(Collection)
- * @see Executable
+ * @see Cache#entry(Serializable)
  */
 public interface CacheEntry {
 
@@ -38,4 +41,19 @@ public interface CacheEntry {
     * @return the cache entry value.
     */
    Object getValue();
+
+   /**
+    * Returns time this element expires.
+    *
+    * @return time this element expires. Can be <code>null</code> if the time is not known.
+    */
+   Time getExpirationTime();
+
+
+   /**
+    * Returns the time this element was created.
+    *
+    * @return the time this element was created. Can be <code>null</code> if the time is not known.
+    */
+   Time getCreatedTime();
 }

@@ -125,7 +125,7 @@ public final class ExecuteRequest extends BucketSetRequest {
             size += bucket.size();
          }
 
-         // Convert bucket entries tp cache entries
+         // Convert bucket entries to cache entries
          final ArrayList<CacheEntry> cacheEntries = new ArrayList<CacheEntry>(size);
          for (final Bucket bucket : bucketsToProcess) {
 
@@ -144,7 +144,11 @@ public final class ExecuteRequest extends BucketSetRequest {
                // REVIEWME: simeshev@cacheonix.org - 2010-05-20 - Consider using
                // a limited size batch of entries instead of collecting them all
                // together.
-               final DistributedCacheEntry executableCacheEntry = new DistributedCacheEntry(entry.getKey(), entry.getValue());
+
+               // REVIEWME: simeshev@cacheonix.org -> 2016-04-17 - Find a way to
+               // determine the expirationTime and createdTime for DistributedCacheEntry.
+               final DistributedCacheEntry executableCacheEntry = new DistributedCacheEntry(entry.getKey(),
+                       entry.getValue(), null, null);
                if (entryFilter == null || entryFilter.matches(executableCacheEntry)) {
                   cacheEntries.add(executableCacheEntry);
                }

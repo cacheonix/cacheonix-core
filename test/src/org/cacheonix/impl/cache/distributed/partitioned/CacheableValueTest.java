@@ -59,7 +59,7 @@ public final class CacheableValueTest extends CacheonixTestCase {
 
    public void testWriteReadWireNullExpirationTime() throws Exception {
 
-      final CacheableValue cacheableValueWithNullExpirationTime = new CacheableValue(toBinary(VALUE), null);
+      final CacheableValue cacheableValueWithNullExpirationTime = createCacheableValue(null);
       final Serializer ser = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
       assertEquals(cacheableValueWithNullExpirationTime, ser.deserialize(ser.serialize(cacheableValueWithNullExpirationTime)));
    }
@@ -73,7 +73,7 @@ public final class CacheableValueTest extends CacheonixTestCase {
 
    public void testEquals() throws Exception {
 
-      assertEquals(new CacheableValue(toBinary(VALUE), new TimeImpl(MILLIS, COUNT)), cacheableValue);
+      assertEquals(createCacheableValue(new TimeImpl(MILLIS, COUNT)), cacheableValue);
    }
 
 
@@ -91,13 +91,20 @@ public final class CacheableValueTest extends CacheonixTestCase {
 
    public void testHashCodeNullExpirationTime() throws Exception {
 
-      assertTrue(new CacheableValue(toBinary(VALUE), null).hashCode() != 0);
+      assertTrue(createCacheableValue(null).hashCode() != 0);
    }
 
 
    public void testToStringNullExpirationTime() throws Exception {
 
-      assertNotNull(new CacheableValue(toBinary(VALUE), null).toString());
+      assertNotNull(createCacheableValue(null).toString());
+   }
+
+
+   private static CacheableValue createCacheableValue(final TimeImpl timeToLeave) {
+
+      return new CacheableValue(toBinary(VALUE), timeToLeave,
+              new TimeImpl(MILLIS, COUNT), new TimeImpl(MILLIS, COUNT));
    }
 
 
@@ -107,7 +114,7 @@ public final class CacheableValueTest extends CacheonixTestCase {
 
       binaryValue = toBinary(VALUE);
       expirationTime = new TimeImpl(MILLIS, COUNT);
-      cacheableValue = new CacheableValue(binaryValue, expirationTime);
+      cacheableValue = createCacheableValue(expirationTime);
    }
 
 

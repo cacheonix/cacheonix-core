@@ -82,7 +82,8 @@ public final class MultiplePartitionedCacheWithFrontCacheTest extends MultiplePa
       if (LOG.isDebugEnabled()) LOG.debug("cachedDuration: " + cachedDuration); // NOPMD
       //noinspection ControlFlowStatementWithoutBraces
       if (LOG.isDebugEnabled()) LOG.debug("nonCachedDuration: " + nonCachedDuration); // NOPMD
-      assertTrue("Non-cached: " + nonCachedDuration + " ms, cached: " + cachedDuration + " ms", nonCachedDuration / cachedDuration >= 2);
+      assertTrue("Non-cached: " + nonCachedDuration + " ms, cached: " + cachedDuration + " ms",
+              nonCachedDuration / cachedDuration >= 2);
    }
 
 
@@ -98,6 +99,7 @@ public final class MultiplePartitionedCacheWithFrontCacheTest extends MultiplePa
 
       // Populate
       cache(0).putAll(map);
+
 
       // Fill front caches
       final long start1 = System.currentTimeMillis();
@@ -122,7 +124,8 @@ public final class MultiplePartitionedCacheWithFrontCacheTest extends MultiplePa
       }
       final long cachedDuration = System.currentTimeMillis() - start2;
 
-      assertTrue("Non-cached: " + nonCachedDuration + " ms, cached: " + cachedDuration + " ms", nonCachedDuration / cachedDuration >= 4);
+      assertTrue("Non-cached: " + nonCachedDuration + " ms, cached: " + cachedDuration + " ms",
+              nonCachedDuration / cachedDuration >= 4);
    }
 
 
@@ -151,6 +154,12 @@ public final class MultiplePartitionedCacheWithFrontCacheTest extends MultiplePa
       final Map<String, String> newMap = cache(2).getAll(sourceMap.keySet());
 
       assertTrue(sourceMap.equals(newMap));
+   }
+
+
+   public void testGetOwner() { // NOPMD Overriding method merely calls super
+
+      super.testGetOwner();
    }
 
 

@@ -23,19 +23,34 @@ public final class SimpleReadableElement implements ReadableElement {
 
    private final Binary value;
 
+   /**
+    * Time the element was created.
+    */
+   private final Time createdTime;
+
+   /**
+    * Time to expire.
+    */
    private final Time expirationTime;
 
 
-   public SimpleReadableElement(final Binary value, final Time expirationTime) {
+   public SimpleReadableElement(final Binary value, final Time createdTime, final Time expirationTime) {
 
-      this.value = value;
       this.expirationTime = expirationTime;
+      this.createdTime = createdTime;
+      this.value = value;
    }
 
 
    public Binary getValue() {
 
       return value;
+   }
+
+
+   public Time getCreatedTime() {
+
+      return createdTime;
    }
 
 

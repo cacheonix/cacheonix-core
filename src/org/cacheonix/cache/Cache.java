@@ -23,6 +23,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.cacheonix.Cacheonix;
 import org.cacheonix.NotSubscribedException;
+import org.cacheonix.cache.entry.CacheEntry;
 import org.cacheonix.cache.entry.EntryFilter;
 import org.cacheonix.cache.executor.Aggregator;
 import org.cacheonix.cache.executor.Executable;
@@ -192,6 +193,18 @@ public interface Cache<K extends Serializable, V extends Serializable> extends C
     * @see #containsKey(Object)
     */
    V get(Object key);
+
+
+   /**
+    * Returns the entry which this map maps the specified key.  Returns <tt>null</tt> if the map contains no mapping for
+    * this key.  A return value of <tt>null</tt> does indicates that the map contains no mapping for the key.
+    *
+    * @param key key whose associated entry is to be returned. The key must implement <code>java.io.Serializable</code>.
+    * @return the entry to which this map maps the specified key, or <tt>null</tt> if the map contains no mapping for
+    * this key.
+    * @throws ClassCastException if the key is of an inappropriate type for this map (optional).
+    */
+   CacheEntry entry(K key);
 
 
    /**

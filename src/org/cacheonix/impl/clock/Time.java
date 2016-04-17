@@ -18,18 +18,7 @@ import org.cacheonix.impl.net.serializer.Wireable;
 /**
  * An immutable reading of a physical clock.
  */
-public interface Time extends Comparable<Time>, Wireable {
-
-   long getMillis();
-
-   /**
-    * Returns an event count used to advance the monotonic clock in cases repeated reads of the wall clock return the
-    * same value.
-    *
-    * @return the event count used to advance the monotonic clock in cases repeated reads of the wall clock return the
-    * same value.
-    */
-   long getCount();
+public interface Time extends Wireable, org.cacheonix.clock.Time {
 
    /**
     * Subtracts time from this time and returns result.

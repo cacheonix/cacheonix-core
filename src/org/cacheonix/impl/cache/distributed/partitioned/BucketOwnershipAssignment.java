@@ -129,6 +129,9 @@ public final class BucketOwnershipAssignment implements Wireable {
          final BucketOwner previousOwner = bucketOwners[storageNumber].put(addr, newOwner);
          Assert.assertNull(previousOwner, "Previous owner should be null: {0}", previousOwner);
       }
+
+      // Repartition
+      repartition();
    }
 
 

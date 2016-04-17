@@ -17,6 +17,7 @@ import java.util.List;
 
 import org.cacheonix.cache.entry.CacheEntry;
 import org.cacheonix.impl.cache.item.Binary;
+import org.cacheonix.impl.clock.Time;
 import org.cacheonix.impl.util.logging.Logger;
 
 /**
@@ -41,9 +42,21 @@ final class DistributedCacheEntry implements CacheEntry {
 
    private final Binary value;
 
+   /**
+    * Time the element was created.
+    */
+   private Time createdTime;
 
-   DistributedCacheEntry(final Binary key, final Binary value) {
+   /**
+    * Time to expire.
+    */
+   private Time expirationTime;
 
+
+   DistributedCacheEntry(final Binary key, final Binary value, final Time createdTime, final Time expirationTime) {
+
+      this.createdTime = createdTime;
+      this.expirationTime = expirationTime;
       this.key = key;
       this.value = value;
    }
@@ -61,11 +74,35 @@ final class DistributedCacheEntry implements CacheEntry {
    }
 
 
+   /**
+    * Returns time this element expires.
+    *
+    * @return time this element expires.
+    */
+   public Time getExpirationTime() {
+
+      return expirationTime;
+   }
+
+
+   /**
+    * Returns the time this element was created.
+    *
+    * @return the time this element was created.
+    */
+   public Time getCreatedTime() {
+
+      return createdTime;
+   }
+
+
    public String toString() {
 
       return "DistributedCacheEntry{" +
               "key=" + key +
               ", value=" + value +
+              ", createdTime=" + createdTime +
+              ", expirationTime=" + expirationTime +
               '}';
    }
 }

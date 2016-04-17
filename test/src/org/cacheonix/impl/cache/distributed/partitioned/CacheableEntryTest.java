@@ -68,7 +68,8 @@ public class CacheableEntryTest extends CacheonixTestCase {
       super.setUp();
 
       key = toBinary("key");
-      value = new CacheableValue(toBinary("value"), getClock().currentTime());
+      value = new CacheableValue(toBinary("value"), getClock().currentTime(),
+              getClock().currentTime(), getClock().currentTime());
       cacheableEntry = new CacheableEntry(key, value);
    }
 

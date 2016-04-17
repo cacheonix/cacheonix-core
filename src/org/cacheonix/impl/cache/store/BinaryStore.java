@@ -961,14 +961,15 @@ public final class BinaryStore implements Wireable {
                }
 
                // Put found value from the data source to the storage
+               final Time timeTookToReadFromDataSource = binaryStoreDataSourceObject.getTimeToRead();
                final Binary binaryValue = objectToBinary(valueFromDataSource);
                final Time expirationTime = calculateExpirationTime(expirationInterval);
-               final Time timeTookToReadFromDataSource = binaryStoreDataSourceObject.getTimeToRead();
+               final Time createdTime = element == null ? null : element.getCreatedTime();
                put(key, binaryValue, expirationTime, false, timeTookToReadFromDataSource);
 
                // Return a new readable element becuase put() above return previous
                // value which is not suitable for returning from get.
-               return new SimpleReadableElement(binaryValue, expirationTime);
+               return new SimpleReadableElement(binaryValue, createdTime, expirationTime);
             }
          } else {
 

@@ -103,7 +103,10 @@ public final class GetAllRequest extends KeySetRequest {
                         if (element != null) {
 
                            // Create result
-                           final CacheableValue value = new CacheableValue(BinaryStoreUtils.getValue(element), null);
+                           final Time expirationTime = element.getExpirationTime();
+                           final Time createdTime = element.getCreatedTime();
+                           final CacheableValue value = new CacheableValue(BinaryStoreUtils.getValue(element), null,
+                                   createdTime, expirationTime);
                            result = new CacheableEntry(key, value);
 
                            // No need to split this key into a subrequest
@@ -117,14 +120,18 @@ public final class GetAllRequest extends KeySetRequest {
                         for (int storageNumber = 0; storageNumber <= replicaCount; storageNumber++) {
 
                            final Bucket bucket = processor.getBucket(storageNumber, bucketNumber);
-                           if (processor.isBucketOwner(storageNumber, bucketNumber) && bucket != null && !bucket.isReconfiguring()) {
+                           if (processor.isBucketOwner(storageNumber,
+                                   bucketNumber) && bucket != null && !bucket.isReconfiguring()) {
 
                               // Has bucket, proceed with returning a key from the bucket
                               final ReadableElement element = bucket.get(key);
                               if (element != null) {
 
                                  // Found element
-                                 final CacheableValue value = new CacheableValue(BinaryStoreUtils.getValue(element), null);
+                                 final Time expirationTime = element.getExpirationTime();
+                                 final Time createdTime = element.getCreatedTime();
+                                 final CacheableValue value = new CacheableValue(BinaryStoreUtils.getValue(element),
+                                         null, createdTime, expirationTime);
                                  result = new CacheableEntry(key, value);
 
                                  // No need to split this key into a subrequest because it wasn't found at the owner
@@ -169,7 +176,8 @@ public final class GetAllRequest extends KeySetRequest {
 
             //noinspection ControlFlowStatementWithoutBraces
             if (LOG.isDebugEnabled())
-               LOG.debug("Responding with locally found elements: " + results.size() + ", keys left: " + getKeysSize()); // NOPMD
+               LOG.debug(
+                       "Responding with locally found elements: " + results.size() + ", keys left: " + getKeysSize()); // NOPMD
 
             // Add to 
             ((AggregatingRequest.Waiter) getWaiter()).getPartialResponses().add(response);
@@ -215,8 +223,12 @@ public final class GetAllRequest extends KeySetRequest {
                      final Binary value = BinaryStoreUtils.getValue(element);
 
                      // Create result
-                     final Time resultExpirationTime = isWillCache() ? renewLease(bucket, element.getExpirationTime()) : null;
-                     results.add(new CacheableEntry(key, new CacheableValue(value, resultExpirationTime)));
+                     final Time expirationTime = element.getExpirationTime();
+                     final Time resultExpirationTime = isWillCache() ? renewLease(bucket, expirationTime) : null;
+                     final Time createdTime = element.getCreatedTime();
+                     final CacheableValue cacheableValue = new CacheableValue(value, resultExpirationTime, createdTime,
+                             expirationTime);
+                     results.add(new CacheableEntry(key, cacheableValue));
                   }
                } catch (final RuntimeException e) {
 
@@ -242,7 +254,8 @@ public final class GetAllRequest extends KeySetRequest {
       // Collect entries - we put keys and values side by side becuase
       // for collection it does not matter that this is just a list -
       // it will be converted to map at return.
-      ((Collection<CacheableEntry>) resultAccumulator[0]).addAll((Collection<CacheableEntry>) cacheResponse.getResult());
+      ((Collection<CacheableEntry>) resultAccumulator[0]).addAll(
+              (Collection<CacheableEntry>) cacheResponse.getResult());
    }
 
 

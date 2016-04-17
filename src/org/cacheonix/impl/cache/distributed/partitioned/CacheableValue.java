@@ -48,6 +48,16 @@ public final class CacheableValue implements Wireable {
     */
    private Time timeToLeave = null;
 
+   /**
+    * Time the element was created.
+    */
+   private Time createdTime;
+
+   /**
+    * Time to expire.
+    */
+   private Time expirationTime;
+
 
    public CacheableValue() {
 
@@ -60,10 +70,13 @@ public final class CacheableValue implements Wireable {
     * @param binaryValue a value.
     * @param timeToLeave expiration time. Set to null if the value cannot be cached.
     */
-   public CacheableValue(final Binary binaryValue, final Time timeToLeave) {
+   public CacheableValue(final Binary binaryValue, final Time timeToLeave, final Time createdTime,
+           final Time expirationTime) {
 
+      this.expirationTime = expirationTime;
       this.binaryValue = binaryValue;
       this.timeToLeave = timeToLeave;
+      this.createdTime = createdTime;
    }
 
 
@@ -95,7 +108,9 @@ public final class CacheableValue implements Wireable {
    public void writeWire(final DataOutputStream out) throws IOException {
 
       writeBinary(out, binaryValue);
+      writeTime(expirationTime, out);
       writeTime(timeToLeave, out);
+      writeTime(createdTime, out);
    }
 
 
@@ -105,7 +120,31 @@ public final class CacheableValue implements Wireable {
    public void readWire(final DataInputStream in) throws IOException, ClassNotFoundException {
 
       binaryValue = readBinary(in);
+      expirationTime = readTime(in);
       timeToLeave = readTime(in);
+      createdTime = readTime(in);
+   }
+
+
+   /**
+    * Returns time this element expires.
+    *
+    * @return time this element expires.
+    */
+   public Time getExpirationTime() {
+
+      return expirationTime;
+   }
+
+
+   /**
+    * Returns the time this element was created.
+    *
+    * @return the time this element was created.
+    */
+   public Time getCreatedTime() {
+
+      return createdTime;
    }
 
 
@@ -118,9 +157,6 @@ public final class CacheableValue implements Wireable {
    }
 
 
-   /**
-    * {@inheritDoc}
-    */
    public boolean equals(final Object o) {
 
       if (this == o) {
@@ -132,10 +168,20 @@ public final class CacheableValue implements Wireable {
 
       final CacheableValue that = (CacheableValue) o;
 
+      if (binaryValue != null ? !binaryValue.equals(that.binaryValue) : that.binaryValue != null) {
+         return false;
+      }
+
       if (timeToLeave != null ? !timeToLeave.equals(that.timeToLeave) : that.timeToLeave != null) {
          return false;
       }
-      if (binaryValue != null ? !binaryValue.equals(that.binaryValue) : that.binaryValue != null) {
+
+      if (createdTime != null ? !createdTime.equals(that.createdTime) : that.createdTime != null) {
+         return false;
+      }
+
+      if (expirationTime != null ? !expirationTime.equals(
+              that.expirationTime) : that.expirationTime != null) {
          return false;
       }
 
@@ -143,13 +189,12 @@ public final class CacheableValue implements Wireable {
    }
 
 
-   /**
-    * {@inheritDoc}
-    */
    public int hashCode() {
 
       int result = binaryValue != null ? binaryValue.hashCode() : 0;
       result = 31 * result + (timeToLeave != null ? timeToLeave.hashCode() : 0);
+      result = 31 * result + (createdTime != null ? createdTime.hashCode() : 0);
+      result = 31 * result + (expirationTime != null ? expirationTime.hashCode() : 0);
       return result;
    }
 

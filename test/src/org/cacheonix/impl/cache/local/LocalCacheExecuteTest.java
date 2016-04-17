@@ -22,6 +22,7 @@ import org.cacheonix.CacheonixTestCase;
 import org.cacheonix.TestConstants;
 import org.cacheonix.cache.entry.CacheEntry;
 import org.cacheonix.cache.entry.EntryFilter;
+import org.cacheonix.cache.executor.Executable;
 import org.cacheonix.impl.cache.datasource.DummyBinaryStoreDataSource;
 import org.cacheonix.impl.cache.datastore.DummyDataStore;
 import org.cacheonix.impl.cache.invalidator.DummyCacheInvalidator;
@@ -34,8 +35,8 @@ import org.cacheonix.impl.util.array.HashSet;
 import org.cacheonix.impl.util.logging.Logger;
 
 /**
- * Tests {@link LocalCache#execute(org.cacheonix.cache.executor.Executable, org.cacheonix.cache.executor.Aggregator)} and {@link
- * LocalCache#executeAll(Set, org.cacheonix.cache.executor.Executable, org.cacheonix.cache.executor.Aggregator)}.
+ * Tests {@link LocalCache#execute(Executable, org.cacheonix.cache.executor.Aggregator)} and {@link
+ * LocalCache#executeAll(Set, Executable, org.cacheonix.cache.executor.Aggregator)}.
  */
 public final class LocalCacheExecuteTest extends CacheonixTestCase {
 
@@ -51,7 +52,7 @@ public final class LocalCacheExecuteTest extends CacheonixTestCase {
    public void testExecute() {
 
       // Create executable and aggregator.
-      final Executable executable = new Executable();
+      final TestExecutable executable = new TestExecutable();
       final Aggregator aggregator = new Aggregator();
 
       final Integer result = (Integer) cache.execute(executable, aggregator);
@@ -71,7 +72,7 @@ public final class LocalCacheExecuteTest extends CacheonixTestCase {
       }
 
       // Create executable and aggregator.
-      final Executable executable = new Executable();
+      final TestExecutable executable = new TestExecutable();
       final Aggregator aggregator = new Aggregator();
 
       final Integer result = (Integer) cache.executeAll(ketSet, executable, aggregator);
@@ -96,7 +97,7 @@ public final class LocalCacheExecuteTest extends CacheonixTestCase {
 
       // Create executable and aggregator.
       final EntryFilter filter = new EvenEntryFilter();
-      final Executable executable = new Executable();
+      final TestExecutable executable = new TestExecutable();
       final Aggregator aggregator = new Aggregator();
 
       final Integer result = (Integer) cache.execute(filter, executable, aggregator);
@@ -146,7 +147,7 @@ public final class LocalCacheExecuteTest extends CacheonixTestCase {
 
 
    @SuppressWarnings("ClassNameSameAsAncestorName")
-   private static final class Executable implements org.cacheonix.cache.executor.Executable {
+   private static final class TestExecutable implements Executable {
 
       private static final long serialVersionUID = 0L;
 

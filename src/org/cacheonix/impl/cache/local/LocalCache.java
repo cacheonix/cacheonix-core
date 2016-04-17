@@ -47,6 +47,7 @@ import org.cacheonix.impl.cache.datasource.DummyBinaryStoreDataSource;
 import org.cacheonix.impl.cache.datastore.DummyDataStore;
 import org.cacheonix.impl.cache.distributed.partitioned.BinaryStoreContext;
 import org.cacheonix.impl.cache.distributed.partitioned.BinaryStoreContextImpl;
+import org.cacheonix.impl.cache.entry.CacheEntryImpl;
 import org.cacheonix.impl.cache.invalidator.DummyCacheInvalidator;
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.cache.item.BinaryUtils;
@@ -473,6 +474,48 @@ public final class LocalCache<K extends Serializable, V extends Serializable> im
 
 
    /**
+    * {@inheritDoc}
+    */
+   public CacheEntry entry(final K key) {
+
+      final Binary binaryKey = toBinary(toSerializable("key", key));
+      final Binary binaryValue;
+
+      writeLock.lock();
+      try {
+
+         // Get element
+         final ReadableElement element = validStorage().get(binaryKey);
+         if (element == null) {
+
+            return null;
+         }
+
+         // Get entry metadata
+         final Time expirationTime = element.getExpirationTime();
+         final Time createdTime = element.getCreatedTime();
+
+         // Get value
+         binaryValue = BinaryStoreUtils.getValue(element);
+
+         //noinspection unchecked
+         final V value = (V) BinaryUtils.toObject(binaryValue);
+
+         return new CacheEntryImpl(key, value, createdTime, expirationTime);
+      } catch (final RuntimeException e) {
+
+         throw e;
+      } catch (final Exception e) {
+
+         throw new CacheonixException(e);
+      } finally {
+
+         writeLock.unlock();
+      }
+   }
+
+
+   /**
     * Removes the mapping for this key from this map if it is present.   More formally, if this map contains a mapping
     * from key <tt>k</tt> to value <tt>v</tt> such that <code>(key==null ? k==null : key.equals(k))</code>, that mapping
     * is removed.  (The map can contain at most one such mapping.)
@@ -734,7 +777,10 @@ public final class LocalCache<K extends Serializable, V extends Serializable> im
 
             public boolean processEntry(final Binary key, final Binary value) {
 
-               entriesToProcess.add(new LocalCacheEntry(key, value));
+               // REVIEWME: simeshev@cacheonix.com -> 2016-04-15 - Find if there is a way
+               // to find out created time and expiration time. For now leaving it empty.
+               final LocalCacheEntry localCacheEntry = new LocalCacheEntry(key, value, null, null);
+               entriesToProcess.add(localCacheEntry);
 
                return true;
             }
@@ -770,7 +816,9 @@ public final class LocalCache<K extends Serializable, V extends Serializable> im
 
             public boolean processEntry(final Binary key, final Binary value) {
 
-               final LocalCacheEntry cacheEntry = new LocalCacheEntry(key, value);
+               // REVIEWME: simeshev@cacheonix.com -> 2016-04-15 - Find if there is a way
+               // to find out created time and expiration time. For now leaving it empty.
+               final LocalCacheEntry cacheEntry = new LocalCacheEntry(key, value, null, null);
                if (entryFilter.matches(cacheEntry)) {
 
                   entries.add(cacheEntry);
@@ -809,7 +857,10 @@ public final class LocalCache<K extends Serializable, V extends Serializable> im
             final Binary binaryKey = toBinary(key);
             final ReadableElement element = binaryStore.get().get(binaryKey);
             final Binary binaryValue = BinaryStoreUtils.getValue(element);
-            entries.add(new LocalCacheEntry(binaryKey, binaryValue));
+
+            // REVIEWME: simeshev@cacheonix.com -> 2016-04-15 - Find if there is a way
+            // to find out created time and expiration time. For now leaving it empty.
+            entries.add(new LocalCacheEntry(binaryKey, binaryValue, null, null));
          }
       } catch (final RuntimeException e) {
 

@@ -33,6 +33,7 @@ import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.cache.item.InvalidObjectException;
 import org.cacheonix.impl.cache.store.BinaryStoreUtils;
 import org.cacheonix.impl.cache.store.ReadableElement;
+import org.cacheonix.impl.clock.Time;
 import org.cacheonix.impl.net.serializer.SerializerUtils;
 import org.cacheonix.impl.net.serializer.Wireable;
 import org.cacheonix.impl.net.serializer.WireableBuilder;
@@ -106,7 +107,7 @@ public final class ExecuteAllRequest extends KeySetRequest {
       final int calcSize = getKeysSize();
 
       // Collect entries
-      final Collection<CacheEntry> cacheEntries = new ArrayList<CacheEntry>(calcSize);
+      final List<CacheEntry> cacheEntries = new ArrayList<CacheEntry>(calcSize);
       for (final BucketKeys bucketKey : keysToProcess) {
 
          final Bucket bucket = bucketKey.getBucket();
@@ -128,6 +129,11 @@ public final class ExecuteAllRequest extends KeySetRequest {
 
                      final ReadableElement element = bucket.get(key);
                      value = BinaryStoreUtils.getValue(element);
+                     final Time expirationTime = element.getExpirationTime();
+                     final Time createdTime = element.getCreatedTime();
+                     final DistributedCacheEntry distributedCacheEntry = new DistributedCacheEntry(key, value,
+                             createdTime, expirationTime);
+                     cacheEntries.add(distributedCacheEntry);
                   } catch (final RuntimeException e) {
 
                      throw e;
@@ -136,7 +142,6 @@ public final class ExecuteAllRequest extends KeySetRequest {
                      exception[0] = e;
                      return false;
                   }
-                  cacheEntries.add(new DistributedCacheEntry(key, value));
                }
                return true;
             }
