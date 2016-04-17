@@ -50,7 +50,7 @@ final class BinaryStoreEntry implements Entry<Binary, Binary> {
 
    public Binary setValue(final Binary value) {
 
-      throw new OperationNotSupportedException();
+      throw new OperationNotSupportedException("Cacheonix doesn't support Entry.setValue() yet");
    }
 
 
