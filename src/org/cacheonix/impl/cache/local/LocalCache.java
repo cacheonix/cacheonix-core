@@ -777,7 +777,7 @@ public final class LocalCache<K extends Serializable, V extends Serializable> im
 
             public boolean processEntry(final Binary key, final Binary value) {
 
-               // REVIEWME: simeshev@cacheonix.com -> 2016-04-15 - Find if there is a way
+               // REVIEWME: simeshev@cacheonix.org -> 2016-04-15 - Find if there is a way
                // to find out created time and expiration time. For now leaving it empty.
                final LocalCacheEntry localCacheEntry = new LocalCacheEntry(key, value, null, null);
                entriesToProcess.add(localCacheEntry);
@@ -858,7 +858,7 @@ public final class LocalCache<K extends Serializable, V extends Serializable> im
             final ReadableElement element = binaryStore.get().get(binaryKey);
             final Binary binaryValue = BinaryStoreUtils.getValue(element);
 
-            // REVIEWME: simeshev@cacheonix.com -> 2016-04-15 - Find if there is a way
+            // REVIEWME: simeshev@cacheonix.org -> 2016-04-15 - Find if there is a way
             // to find out created time and expiration time. For now leaving it empty.
             entries.add(new LocalCacheEntry(binaryKey, binaryValue, null, null));
          }
