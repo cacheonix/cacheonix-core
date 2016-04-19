@@ -42,12 +42,12 @@ final class LocalCacheEntry implements CacheEntry {
    /**
     * Time the element was created.
     */
-   private Time createdTime;
+   private final Time createdTime;
 
    /**
     * Time to expire.
     */
-   private Time expirationTime;
+   private final Time expirationTime;
 
 
    /**
