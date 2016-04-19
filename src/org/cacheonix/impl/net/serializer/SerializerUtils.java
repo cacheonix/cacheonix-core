@@ -357,7 +357,7 @@ public final class SerializerUtils {
    }
 
 
-   public static void writeObject(DataOutputStream out, Serializable object) throws IOException {
+   public static void writeObject(final DataOutputStream out, final Serializable object) throws IOException {
 
       if (object == null) {
          out.writeBoolean(true); // is null
