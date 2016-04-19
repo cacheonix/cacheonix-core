@@ -45,12 +45,12 @@ final class DistributedCacheEntry implements CacheEntry {
    /**
     * Time the element was created.
     */
-   private Time createdTime;
+   private final Time createdTime;
 
    /**
     * Time to expire.
     */
-   private Time expirationTime;
+   private final Time expirationTime;
 
 
    DistributedCacheEntry(final Binary key, final Binary value, final Time createdTime, final Time expirationTime) {
