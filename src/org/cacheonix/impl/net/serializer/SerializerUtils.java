@@ -69,7 +69,7 @@ public final class SerializerUtils {
     */
    private static final Logger LOG = Logger.getLogger(SerializerUtils.class); // NOPMD
 
-   private static WireableFactory WIREABLE_FACTORY = WireableFactory.getInstance();
+   private static final WireableFactory WIREABLE_FACTORY = WireableFactory.getInstance();
 
 
    /**
