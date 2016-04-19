@@ -76,6 +76,7 @@ final class CookieSerializer {
    }
 
 
+   @SuppressWarnings("RedundantIfStatement")
    static boolean equals(final Cookie thisCookie, final Cookie thatCookie) {
 
       if (thisCookie.getMaxAge() != thatCookie.getMaxAge()) {
