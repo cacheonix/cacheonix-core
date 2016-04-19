@@ -4,29 +4,29 @@ import org.cacheonix.cache.entry.CacheEntry;
 import org.cacheonix.impl.clock.Time;
 
 /**
- * Created by vimeshev on 4/13/16.
+ * A default implementation of {@link CacheEntry}.
  */
 public class CacheEntryImpl implements CacheEntry {
 
    /**
     * The key.
     */
-   private Object key;
+   private final Object key;
 
    /**
     * The value.
     */
-   private Object value;
+   private final Object value;
 
    /**
     * Time the element was created.
     */
-   private Time createdTime;
+   private final Time createdTime;
 
    /**
     * Time to expire.
     */
-   private Time expirationTime;
+   private final Time expirationTime;
 
 
    /**
