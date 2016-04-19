@@ -120,7 +120,7 @@ public final class PassFloatByReferenceBinary implements Binary {
 
    public int hashCode() {
 
-      return value == +0.0f ? 0 : Float.floatToIntBits(value);
+      return value == 0.0f ? 0 : Float.floatToIntBits(value);
    }
 
 
