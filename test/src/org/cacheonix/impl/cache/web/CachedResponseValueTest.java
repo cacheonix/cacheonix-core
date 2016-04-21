@@ -2,6 +2,7 @@ package org.cacheonix.impl.cache.web;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Locale;
 import javax.servlet.http.Cookie;
 
@@ -10,6 +11,8 @@ import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
 import org.cacheonix.impl.util.array.HashMap;
 
+import static org.cacheonix.impl.cache.web.CachedResponseValue.CONTENT_TYPE;
+import static org.cacheonix.impl.cache.web.CachedResponseValue.ENCODING;
 import static org.cacheonix.impl.net.serializer.Serializer.TYPE_JAVA;
 
 /**
@@ -18,82 +21,95 @@ import static org.cacheonix.impl.net.serializer.Serializer.TYPE_JAVA;
 public final class CachedResponseValueTest extends TestCase {
 
 
-   private static final String REDIRECT_URL = "Test redirect URL";
+   private static final String TEST_REDIRECT_URL = "Test redirect URL";
 
-   private static final String CONTENT_TYPE = "Test content type";
+   private static final String TEST_CONTENT_TYPE = "text/html";
 
-   private static final int CONTENT_LENGTH = 111;
+   private static final int TEST_CONTENT_LENGTH = 111;
 
-   private static final int STATUS_CODE = 222;
+   private static final int TEST_STATUS_CODE = 222;
 
-   private static final Locale LOCALE = Locale.US;
+   private static final Locale TEST_LOCALE = Locale.US;
 
-   private static final String STATUS_MESSAGE = "Test status message";
-
-
-   private static final byte[] CHARACTER_RESPONSE = new byte[]{0, 1, 2, 3, 4, 5};
+   private static final String TEST_STATUS_MESSAGE = "Test status message";
 
 
-   private static final byte[] BYTE_RESPONSE = new byte[]{6, 7, 8, 9, 10};
+   private static final byte[] TEST_CHARACTER_RESPONSE = new byte[]{0, 1, 2, 3, 4, 5};
 
-   private static final HashMap<String, Collection<Header>> HEADERS = createHeaders();
 
-   private static final HashMap<String, Cookie> COOKIES = createCookies();
+   private static final byte[] TEST_BYTE_RESPONSE = new byte[]{6, 7, 8, 9, 10};
+
+   private static final HashMap<String, Collection<Header>> TEST_HEADERS = createHeaders();
+
+   private static final HashMap<String, Cookie> TEEST_COOKIES = createCookies();
+
 
    private CachedResponseValue cachedResponseValue;
 
 
    public void testGetContentType() throws Exception {
 
-      assertEquals(CONTENT_TYPE, cachedResponseValue.getContentType());
+      assertEquals(TEST_CONTENT_TYPE, cachedResponseValue.getContentType());
    }
 
 
    public void testGetContentLength() throws Exception {
 
-      assertEquals(CONTENT_LENGTH, cachedResponseValue.getContentLength());
+      assertEquals(TEST_CONTENT_LENGTH, cachedResponseValue.getContentLength());
    }
 
 
    public void testGetLocale() throws Exception {
 
-      assertEquals(LOCALE, cachedResponseValue.getLocale());
+      assertEquals(TEST_LOCALE, cachedResponseValue.getLocale());
    }
 
 
    public void testGetStatusMessage() throws Exception {
 
-      assertEquals(STATUS_MESSAGE, cachedResponseValue.getStatusMessage());
+      assertEquals(TEST_STATUS_MESSAGE, cachedResponseValue.getStatusMessage());
    }
 
 
    public void testGetRedirectUrl() throws Exception {
 
-      assertEquals(REDIRECT_URL, cachedResponseValue.getRedirectUrl());
+      assertEquals(TEST_REDIRECT_URL, cachedResponseValue.getRedirectUrl());
    }
 
 
    public void testGetStatusCode() throws Exception {
 
-      assertEquals(STATUS_CODE, cachedResponseValue.getStatusCode());
+      assertEquals(TEST_STATUS_CODE, cachedResponseValue.getStatusCode());
    }
 
 
    public void testGetByteResponse() throws Exception {
 
-      assertEquals(BYTE_RESPONSE, cachedResponseValue.getByteResponse());
+      assertEquals(TEST_BYTE_RESPONSE, cachedResponseValue.getByteResponse());
    }
 
 
    public void testGetCookies() throws Exception {
 
-      assertEquals(COOKIES, cachedResponseValue.getCookies());
+      assertEquals(TEEST_COOKIES, cachedResponseValue.getCookies());
    }
 
 
    public void testGetHeaders() throws Exception {
 
-      assertEquals(HEADERS, cachedResponseValue.getHeaders());
+      assertEquals(TEST_HEADERS, cachedResponseValue.getHeaders());
+   }
+
+
+   public void testIsTextContentType() throws Exception {
+
+      assertTrue(cachedResponseValue.isTextContentType());
+   }
+
+
+   public void testIsCompressed() throws Exception {
+
+      assertTrue(cachedResponseValue.isCompressed());
    }
 
 
@@ -112,7 +128,7 @@ public final class CachedResponseValueTest extends TestCase {
 
    public void testHashCode() {
 
-      assertEquals(541918403, cachedResponseValue.hashCode());
+      assertEquals(-760112032, cachedResponseValue.hashCode());
    }
 
 
@@ -126,8 +142,8 @@ public final class CachedResponseValueTest extends TestCase {
 
    private static CachedResponseValue createCachedResponseValue() {
 
-      return new CachedResponseValue(STATUS_MESSAGE, BYTE_RESPONSE, REDIRECT_URL,
-              CONTENT_TYPE, CONTENT_LENGTH, STATUS_CODE, LOCALE, COOKIES, HEADERS);
+      return new CachedResponseValue(TEST_STATUS_MESSAGE, TEST_BYTE_RESPONSE, TEST_REDIRECT_URL,
+              TEST_CONTENT_TYPE, TEST_CONTENT_LENGTH, TEST_STATUS_CODE, TEST_LOCALE, TEEST_COOKIES, TEST_HEADERS);
    }
 
 
@@ -165,6 +181,16 @@ public final class CachedResponseValueTest extends TestCase {
          }
          result.put(headerName, values);
       }
+
+      // Add text/html content type
+      final List<Header> contentTypeHeaders = new ArrayList<Header>(1);
+      contentTypeHeaders.add(new StringHeader(CONTENT_TYPE, "text/html"));
+      result.put(CONTENT_TYPE, contentTypeHeaders);
+
+      // Add encoding
+      final List<Header> encodingHeaders = new ArrayList<Header>(1);
+      encodingHeaders.add(new StringHeader(ENCODING, "gzip"));
+      result.put(ENCODING, encodingHeaders);
 
       return result;
    }

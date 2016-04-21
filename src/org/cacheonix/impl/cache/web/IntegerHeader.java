@@ -23,6 +23,7 @@ import org.cacheonix.impl.net.serializer.WireableBuilder;
 
 import static org.cacheonix.impl.net.serializer.SerializerUtils.readString;
 import static org.cacheonix.impl.net.serializer.SerializerUtils.writeString;
+import static org.cacheonix.impl.util.StringUtils.isBlank;
 
 /**
  * An integer header.
@@ -74,6 +75,31 @@ public final class IntegerHeader implements Header {
       httpServletResponse.addIntHeader(name, value);
    }
 
+
+   /**
+    * {@inheritDoc}
+    */
+   public boolean containsString(final String s) {
+
+      if (isBlank(s)) {
+         return false;
+      }
+
+      return Integer.toString(value).toLowerCase().contains(s.toLowerCase());
+   }
+
+
+   /**
+    * {@inheritDoc}
+    */
+   public boolean startsWith(final String s) {
+
+      if (isBlank(s)) {
+         return false;
+      }
+
+      return Integer.toString(value).toLowerCase().startsWith(s.toLowerCase());
+   }
 
    /**
     * Returns the name of the header.

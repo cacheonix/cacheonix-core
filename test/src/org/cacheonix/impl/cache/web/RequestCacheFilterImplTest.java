@@ -1,8 +1,12 @@
 package org.cacheonix.impl.cache.web;
 
+import java.io.IOException;
 import java.util.Map;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,7 +15,10 @@ import junit.framework.TestCase;
 import org.cacheonix.impl.util.array.HashMap;
 
 import static org.cacheonix.impl.cache.web.RequestCacheFilterImpl.CONFIGURATION_PATH;
-import static org.cacheonix.impl.cache.web.RequestCacheFilterImpl.IF_MODIFIED_SINCE;
+import static org.cacheonix.impl.cache.web.RequestCacheFilterImpl.GZIP;
+import static org.cacheonix.impl.cache.web.RequestCacheFilterImpl.HEADER_ACCEPT_ENCODING;
+import static org.cacheonix.impl.cache.web.RequestCacheFilterImpl.HEADER_ENCODING;
+import static org.cacheonix.impl.cache.web.RequestCacheFilterImpl.HEADER_IF_MODIFIED_SINCE;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
@@ -30,6 +37,8 @@ public final class RequestCacheFilterImplTest extends TestCase {
    private static final String TEST_REQUEST_CACHE = "TestRequestCache";
 
    private static final String TEST_REQUEST_URI = "test/request/uri";
+
+   public static final String TEXT_HTML = "text/html";
 
    private RequestCacheFilterImpl requestCacheFilter;
 
@@ -102,6 +111,47 @@ public final class RequestCacheFilterImplTest extends TestCase {
    }
 
 
+   public void testDoFilterCompressesOutput() throws Exception {
+
+      // Init
+      final FilterConfig filterConfig = mockFilterConfig();
+      requestCacheFilter.init(filterConfig);
+
+
+      // Prepare
+      final ServletOutputStream servletOutputStream = mock(ServletOutputStream.class);
+      final HttpServletResponse httpServletResponse = mock(HttpServletResponse.class);
+      when(httpServletResponse.getOutputStream()).thenReturn(servletOutputStream);
+
+      //
+      final HttpServletRequest httpServletRequest = mockRequest();
+      when(httpServletRequest.getHeader(HEADER_ACCEPT_ENCODING)).thenReturn("gzip");
+
+      final FilterChain filterChain = new FilterChain() {
+
+         public void doFilter(final ServletRequest servletRequest,
+                 final ServletResponse servletResponse) throws IOException {
+
+            // Set content type
+            servletResponse.setContentType("text/html");
+
+            // Output
+            final ServletOutputStream outputStream = servletResponse.getOutputStream();
+            outputStream.write(new byte[]{0,1,2,3,4,5,6,7,8,9});
+         }
+      };
+
+      // Do filter pass # 1
+      requestCacheFilter.doFilter(httpServletRequest, httpServletResponse, filterChain);
+
+      // Do filter pass # 2
+      requestCacheFilter.doFilter(httpServletRequest, httpServletResponse, filterChain);
+
+      //
+      verify(httpServletResponse).setHeader(HEADER_ENCODING, GZIP);
+   }
+
+
    public void testDestroy() throws Exception {
 
 
@@ -120,10 +170,11 @@ public final class RequestCacheFilterImplTest extends TestCase {
    private static HttpServletRequest mockRequest() {
 
       final HttpServletRequest httpServletRequest = mock(HttpServletRequest.class);
-      when(httpServletRequest.getDateHeader(IF_MODIFIED_SINCE)).thenReturn(System.currentTimeMillis() - 10000L);
-      when(httpServletRequest.getParameterMap()).thenReturn(createParameterMap(11));
+      when(httpServletRequest.getDateHeader(HEADER_IF_MODIFIED_SINCE)).thenReturn(System.currentTimeMillis() - 10000L);
+      when(httpServletRequest.getParameterMap()).thenReturn(createRequestParameterMap(11));
       when(httpServletRequest.getRequestURI()).thenReturn(TEST_REQUEST_URI);
       when(httpServletRequest.getCookies()).thenReturn(createCookies(10));
+
 
       return httpServletRequest;
    }
@@ -148,7 +199,7 @@ public final class RequestCacheFilterImplTest extends TestCase {
    }
 
 
-   private static Map createParameterMap(final int entryCount) {
+   private static Map createRequestParameterMap(final int entryCount) {
 
       final Map<String, String[]> parameterMap = new HashMap<String, String[]>(entryCount);
       for (int i = 0; i < entryCount; i++) {

@@ -29,4 +29,20 @@ public interface Header extends Wireable {
     * @param httpServletResponse an {@link HttpServletResponse} to add this header to.
     */
    void addToResponse(HttpServletResponse httpServletResponse);
+
+   /**
+    * Returns true if the value of the header contains a given string. The search ignores the case.
+    *
+    * @param s a string to check for.
+    * @return true of the value of the header contains a given string.
+    */
+   boolean containsString(String s);
+
+   /**
+    * Returns true if the value of the header starts with a given string. The search ignores the case.
+    *
+    * @param s a string to check for.
+    * @return true of the value of the header starts with a given string.
+    */
+   boolean startsWith(String s);
 }

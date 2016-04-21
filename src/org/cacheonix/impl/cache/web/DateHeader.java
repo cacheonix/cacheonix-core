@@ -23,6 +23,7 @@ import org.cacheonix.impl.net.serializer.WireableBuilder;
 
 import static org.cacheonix.impl.net.serializer.SerializerUtils.readString;
 import static org.cacheonix.impl.net.serializer.SerializerUtils.writeString;
+import static org.cacheonix.impl.util.StringUtils.isBlank;
 
 /**
  * A date header.
@@ -73,6 +74,32 @@ public final class DateHeader implements Header {
    public void addToResponse(final HttpServletResponse httpServletResponse) {
 
       httpServletResponse.addDateHeader(name, value);
+   }
+
+
+   /**
+    * {@inheritDoc}
+    */
+   public boolean containsString(final String s) {
+
+      if (isBlank(s)) {
+         return false;
+      }
+
+      return Long.toString(value).toLowerCase().contains(s.toLowerCase());
+   }
+
+
+   /**
+    * {@inheritDoc}
+    */
+   public boolean startsWith(final String s) {
+
+      if (isBlank(s)) {
+         return false;
+      }
+
+      return Long.toString(value).toLowerCase().startsWith(s.toLowerCase());
    }
 
 

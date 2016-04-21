@@ -23,6 +23,7 @@ import org.cacheonix.impl.net.serializer.WireableBuilder;
 
 import static org.cacheonix.impl.net.serializer.SerializerUtils.readString;
 import static org.cacheonix.impl.net.serializer.SerializerUtils.writeString;
+import static org.cacheonix.impl.util.StringUtils.isBlank;
 
 /**
  * A String header.
@@ -72,6 +73,32 @@ public final class StringHeader implements Header {
    public void addToResponse(final HttpServletResponse httpServletResponse) {
 
       httpServletResponse.addHeader(name, value);
+   }
+
+
+   /**
+    * {@inheritDoc}
+    */
+   public boolean containsString(final String s) {
+
+      if (isBlank(value) || isBlank(s)) {
+         return false;
+      }
+
+      return value.toLowerCase().contains(s.toLowerCase());
+   }
+
+
+   /**
+    * {@inheritDoc}
+    */
+   public boolean startsWith(final String s) {
+
+      if (isBlank(value) || isBlank(s)) {
+         return false;
+      }
+
+      return value.toLowerCase().startsWith(s.toLowerCase());
    }
 
 

@@ -20,6 +20,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -29,6 +30,8 @@ import javax.servlet.http.Cookie;
 import org.cacheonix.cache.Immutable;
 import org.cacheonix.impl.net.serializer.Wireable;
 import org.cacheonix.impl.net.serializer.WireableBuilder;
+import org.cacheonix.impl.util.CollectionUtils;
+import org.cacheonix.impl.util.StringUtils;
 import org.cacheonix.impl.util.array.HashMap;
 
 import static java.lang.String.CASE_INSENSITIVE_ORDER;
@@ -55,6 +58,14 @@ public final class CachedResponseValue implements Wireable, Serializable, Immuta
    };
 
    private static final long serialVersionUID = 4434736416582794562L;
+
+   static final String CONTENT_TYPE = "Content-Type";
+
+   static final String ENCODING = "Encoding";
+
+   static final String COMPRESS = "compress";
+
+   private static final String GZIP = "gzip";
 
    private final Map<String, Cookie> cookies = new TreeMap<String, Cookie>(CASE_INSENSITIVE_ORDER);
 
@@ -159,6 +170,50 @@ public final class CachedResponseValue implements Wireable, Serializable, Immuta
    public Map<String, Collection<Header>> getHeaders() {
 
       return new HashMap<String, Collection<Header>>(headers);
+   }
+
+
+   /**
+    * Returns true if the cached content is text.
+    *
+    * @return true if the cached content is text.
+    */
+   boolean isTextContentType() {
+
+      if (StringUtils.isBlank(contentType)) {
+
+         return false;
+      }
+
+      return contentType.startsWith("text/");
+   }
+
+
+   /**
+    * Returns true if the cached content is compressed.
+    *
+    * @return true if the cached content is compressed.
+    */
+   boolean isCompressed() {
+
+      if (CollectionUtils.isEmpty(headers)) {
+
+         return false;
+      }
+
+      final Collection<Header> encoding = headers.get(ENCODING);
+      if (CollectionUtils.isEmpty(encoding)) {
+         return false;
+      }
+
+      for (final Header encodingHeader : encoding) {
+
+         if (encodingHeader.containsString(GZIP) || encodingHeader.containsString(COMPRESS)) {
+            return true;
+         }
+      }
+
+      return false;
    }
 
 
