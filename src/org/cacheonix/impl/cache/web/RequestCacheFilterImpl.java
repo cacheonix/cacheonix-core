@@ -40,7 +40,6 @@ import org.cacheonix.impl.clock.Time;
 import org.cacheonix.impl.util.array.HashMap;
 
 import static javax.servlet.http.HttpServletResponse.SC_NOT_MODIFIED;
-import static org.cacheonix.impl.util.CollectionUtils.isEmpty;
 import static org.cacheonix.impl.util.StringUtils.isBlank;
 
 /**
@@ -279,7 +278,7 @@ public final class RequestCacheFilterImpl implements Filter {
                // Check if the cached has a compress-able MIME type.
                final boolean textContentType = cachedResponseValue.isTextContentType();
 
-               // Gzip if not already Gzipped and Gzipis supported
+               // Gzip if not already Gzipped and Gzip is supported
                final boolean compressed = cachedResponseValue.isCompressed();
 
                boolean outputGzip = false;
