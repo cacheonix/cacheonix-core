@@ -12,6 +12,8 @@ import org.cacheonix.impl.util.array.HashMap;
 final class CacheHeadersGenerator {
 
 
+   private static final long SECONDS_IN_YEAR = 31557600L;
+
    static final String LAST_MODIFIED = "Last-Modified";
 
    static final String CACHE_CONTROL = "Cache-Control";
@@ -59,7 +61,24 @@ final class CacheHeadersGenerator {
     */
    private static void addCacheControlHeader(final Map<String, Header> headers, final Time expirationTime) {
 
-      final long maxAgeSeconds = expirationTime == null ? 31557600L : expirationTime.getMillis() / 1000L;
+      // Calculate max age
+      final long maxAgeSeconds;
+      if (expirationTime == null) {
+
+         maxAgeSeconds = SECONDS_IN_YEAR;
+      } else {
+
+         final long expirationTimeSeconds = expirationTime.getMillis() / 1000L;
+         if (expirationTimeSeconds >= SECONDS_IN_YEAR) {
+
+            maxAgeSeconds = SECONDS_IN_YEAR;
+         } else {
+
+            maxAgeSeconds = expirationTimeSeconds;
+         }
+      }
+
+      // Compose cache-control header
       final String cacheControl = "public, max-age=" + maxAgeSeconds;
       headers.put(CACHE_CONTROL, new StringHeader(CACHE_CONTROL, cacheControl));
    }
