@@ -9,7 +9,7 @@
 
    <!-- Version -->
    <property name="release.major" value="2"/>
-   <property name="release.minor" value="2"/>
+   <property name="release.minor" value="3"/>
 
    <!-- Location of source files -->
    <property name="config.dir" value="conf"/>
