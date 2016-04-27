@@ -42,6 +42,12 @@ public final class RequestCacheFilterTest extends TestCase {
    }
 
 
+   public void testoString() {
+
+      assertNotNull(requestCacheFilter.toString());
+   }
+
+
    public String toString() {
 
       return "RequestCacheFilterTest{" +
