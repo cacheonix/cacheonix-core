@@ -21,6 +21,10 @@
    <property name="annotations.classes.dir" value="temp/annotations/core/classes"/>
    <property name="annotations.test.classes.dir" value="temp/annotations/test/classes"/>
 
+   <!-- Site deployment -->
+   <property name="sdar.result" value="temp/deployment/result"/>
+   <property name="sdar.staging" value="temp/deployment/staging"/>
+
    <!-- Working directories -->
    <property name="build.temp.dir" value="temp/build/temp"/>
    <property name="generated.dir" value="temp/generated"/>
@@ -229,12 +233,10 @@
 
       <!-- Generate version file -->
       <property name="release.suffix" value="-${release.build}"/>
-      <property name="release.media" value="cacheonix-${release.version}-${release.suffix}"/>
       <echo message="  Release version : ${release.version}"/>
       <echo message="     Build number : ${release.build}"/>
       <echo message="      Change list : ${release.change}"/>
       <echo message="       Build date : ${release.date}"/>
-      <echo message="    Media pattern : ${release.media}"/>
 
       <echo message="Generate version file"/>
       <propertyfile file="temp/version.properties" comment="Release version">
@@ -245,7 +247,6 @@
          <entry key="release.change" value="${release.change}"/>
          <entry key="release.suffix" value="${release.suffix}"/>
          <entry key="release.version" value="${release.version}"/>
-         <entry key="release.media" value="${release.media}"/>
          <entry key="release.build" value="${release.build}"/>
       </propertyfile>
 
@@ -647,9 +648,11 @@
    </target>
 
 
-   <!--
-   Creates Cacheonix
-   distribution -->
+   <!-- Builds everything -->
+   <target name="all" depends="javac, javadoc, license, lib, bin, src"/>
+
+
+   <!-- Creates Cacheonix distribution -->
    <target name="dist" depends="all">
 
       <!-- Create binary -->
@@ -664,17 +667,13 @@
       </copy>
 
       <!-- Zip binary distribution -->
-      <zip basedir="${dist.bin.staging.dir}" destfile="${dist.result.dir}/cacheonix-binary-${release.version}.zip"/>
+      <property name="dist.bin.zip" value="cacheonix-binary-${release.version}.zip"/>
+      <zip basedir="${dist.bin.staging.dir}" destfile="${dist.result.dir}/${dist.bin.zip}"/>
 
       <!-- Zip source distribution -->
-      <zip basedir="${dist.src.staging.dir}" destfile="${dist.result.dir}/cacheonix-source-${release.version}.zip"/>
+      <property name="dist.src.zip" value="cacheonix-source-${release.version}.zip"/>
+      <zip basedir="${dist.src.staging.dir}" destfile="${dist.result.dir}/${dist.src.zip}"/>
    </target>
-
-   <!--
-   Builds everything
-   -->
-   <target name="all" depends="javac, javadoc, license, lib, bin, src"/>
-
 
    <!--
    Builds everything cleanly
@@ -757,5 +756,218 @@
          <artifact:arg value="-Pgpg"/>
       </artifact:mvn>
    </target>
+
+   <!--
+      Create Secure Downloads Archives (SDARs)
+   -->
+   <target name="sdar" depends="dist">
+
+      <!-- Create source zip SDAR -->
+      <createDownload releaseBuild="${release.build}" releaseVersion="${release.version}"
+                      mediaFile="${dist.result.dir}/${dist.src.zip}"
+                      descriptorTemplate="internal/deployment/cacheonix-single-file-download-descriptor.xml"
+                      stagingDir="${sdar.staging}" resultDir="${sdar.result}"
+                      downloadName="${dist.src.zip}"
+                      groupName="Complete Cacheonix Distribution"
+                      groupOrder="0"
+                      mediaComment="(complete distribution, source .zip)"/>
+
+      <!-- Create binary zip SDAR -->
+      <createDownload releaseBuild="${release.build}" releaseVersion="${release.version}"
+                      mediaFile="${dist.result.dir}/${dist.bin.zip}"
+                      descriptorTemplate="internal/deployment/cacheonix-single-file-download-descriptor.xml"
+                      stagingDir="${sdar.staging}" resultDir="${sdar.result}"
+                      downloadName="${dist.bin.zip}"
+                      groupName="Complete Cacheonix Distribution"
+                      groupOrder="0"
+                      mediaComment="(complete distribution, binary .zip)"/>
+
+
+      <!-- Create jar-only SDAR -->
+      <createDownload releaseBuild="${release.build}" releaseVersion="${release.version}"
+                      mediaFile="${dist.result.dir}/cacheonix.jar"
+                      descriptorTemplate="internal/deployment/cacheonix-single-file-download-descriptor.xml"
+                      stagingDir="${sdar.staging}" resultDir="${sdar.result}"
+                      downloadName="cacheonix.jar"
+                      groupName="Cacheonix Jar only and Javadocs"
+                      groupOrder="2"
+                      mediaComment="(Cacheonix jar only)"/>
+
+      <!-- Create javadocs-only SDAR -->
+      <createDownload releaseBuild="${release.build}" releaseVersion="${release.version}"
+                      mediaFile="${dist.javadoc.dir}"
+                      descriptorTemplate="internal/deployment/cacheonix-html-directory-download-descriptor.xml"
+                      stagingDir="${sdar.staging}" resultDir="${sdar.result}"
+                      downloadName="cacheonix-javadocs"
+                      groupName="Cacheonix Jar only and Javadocs"
+                      groupOrder="2"
+                      mediaComment="(Cacheonix Javadocs only)"/>
+   </target>
+
+   <!-- Deploys build to www.cacheonix.org -->
+   <target name="deploy" depends="sdar">
+
+      <property name="deploy.to.downloads" value="${env.DEPLOY_TO_DOWNLOADS}"/>
+      <if name="deploy.to.downloads" value="Yes">
+
+         <!-- Set up upload properties -->
+         <property name="remote.staging.dir" value="/home/tomcat/downloads_staging"/>
+         <property name="remote.destination.dir" value="/opt/sd/WEB-INF/content/downloads"/>
+         <property name="remote.user.host" value="tomcat@downloads.cacheonix.org"/>
+
+         <!-- Prepare paths -->
+         <pathconvert targetos="unix" property="unix.result.distrib">
+            <path location="${sdar.result}"/>
+         </pathconvert>
+
+         <!-- Create directories -->
+         <echo message="Create directories"/>
+         <exec failonerror="true" executable="ssh">
+            <arg value="${remote.user.host}"/>
+            <arg value="mkdir -p ${remote.staging.dir} ${remote.destination.dir}"/>
+         </exec>
+
+         <!-- Copy to the downloads website's staging -->
+         <echo message="Copy to the downloads website staging"/>
+         <echo message="unix.result.distrib: ${unix.result.distrib}"/>
+         <echo message="Copy files"/>
+         <exec failonerror="true" executable="sh">
+            <arg value="-c"/>
+            <arg value="scp -Crpqv ${unix.result.distrib}/* ${remote.user.host}:${remote.staging.dir}/"/>
+         </exec>
+
+         <!-- Clear destination -->
+         <echo message="Clear destination"/>
+         <echo message="Destination directory to clear: ${remote.destination.dir}"/>
+         <exec failonerror="true" executable="ssh">
+            <arg value="${remote.user.host}"/>
+            <arg value="rm -rf ${remote.destination.dir}/*"/>
+         </exec>
+
+         <!-- Copy from staging to downloads -->
+         <echo message="Copy from staging to destination"/>
+         <exec failonerror="true" executable="ssh">
+            <arg value="${remote.user.host}"/>
+            <arg value="cp -rp ${remote.staging.dir}/* ${remote.destination.dir}/; chmod -R ag+r ${remote.destination.dir}"/>
+         </exec>
+
+         <!-- Cleanup staging -->
+         <echo message="Cleanup staging"/>
+         <exec failonerror="true" executable="ssh">
+            <arg value="${remote.user.host}"/>
+            <arg value="rm -rf ${remote.staging.dir}"/>
+         </exec>
+      </if>
+   </target>
+
+
+   <!-- A macro responsible for creading SDAR files -->
+   <macrodef name="createDownload" description="Creates a Secure Downloads Archive">
+
+      <!-- Attribute definitions -->
+      <attribute name="resultDir"/>
+      <attribute name="stagingDir"/>
+      <attribute name="mediaFile"/>
+      <attribute name="descriptorTemplate"/>
+      <attribute name="downloadName"/>
+      <attribute name="groupName"/>
+      <attribute name="groupOrder"/>
+      <attribute name="releaseVersion"/>
+      <attribute name="releaseBuild"/>
+      <attribute name="mediaComment"/>
+      <attribute name="format" default="exploded"/>
+
+      <sequential>
+
+         <!-- Used to re-set properties sdar.file.name and sdar.file.size and set in this macrodef -->
+         <taskdef name="unset" classname="ise.antelope.tasks.Unset" classpath="${antelope.jar}"/>
+
+         <!-- Prepare directories -->
+         <delete dir="@{stagingDir}"/>
+         <mkdir dir="@{stagingDir}"/>
+         <mkdir dir="@{stagingDir}/META-INF"/>
+         <mkdir dir="@{resultDir}"/>
+
+         <!-- Populate SDAR directory -->
+         <unset name="sdar.file.size"/>
+         <unset name="sdar.file.name"/>
+         <basename file="@{mediaFile}" property="sdar.file.name"/>
+         <if>
+            <bool>
+               <available file="@{mediaFile}" type="file"/>
+            </bool>
+
+            <!-- Calculate file length -->
+            <length file="@{mediaFile}" property="sdar.file.size"/>
+
+            <!-- Copy file -->
+            <copy file="@{mediaFile}" todir="@{stagingDir}"/>
+            <else>
+               <if>
+                  <bool>
+                     <available file="@{mediaFile}" type="dir"/>
+                  </bool>
+
+                  <!-- Calculate directory length -->
+                  <length property="sdar.file.size" mode="all">
+                     <fileset dir="@{mediaFile}"/>
+                  </length>
+
+                  <!-- Copy directory -->
+                  <mkdir dir="@{stagingDir}/${sdar.file.name}"/>
+                  <copy todir="@{stagingDir}/${sdar.file.name}">
+                     <fileset dir="@{mediaFile}"/>
+                  </copy>
+                  <else>
+                     <fail message="Media file not found: @{mediaFile}"/>
+                  </else>
+               </if>
+            </else>
+         </if>
+
+         <!-- Create SDAR descriptor -->
+         <copy file="@{descriptorTemplate}" tofile="@{stagingDir}/META-INF/secure-download-descriptor.xml">
+            <filterset begintoken="@" endtoken="@">
+               <filter token="cacheonix.download.name" value="@{downloadName}"/>
+               <filter token="cacheonix.download.display.name" value="@{downloadName}"/>
+               <filter token="cacheonix.download.description"
+                       value="Cacheonix @{releaseVersion}, build @{releaseBuild} @{mediaComment}."/>
+               <filter token="cacheonix.download.group.name" value="@{groupName}"/>
+               <filter token="cacheonix.download.group.order" value="@{groupOrder}"/>
+               <filter token="cacheonix.download.file.name" value="${sdar.file.name}"/>
+               <filter token="cacheonix.download.file.size" value="${sdar.file.size}"/>
+            </filterset>
+         </copy>
+
+         <!-- Create SDAR -->
+         <if>
+            <bool>
+               <equals arg1="@{format}" arg2="zip"/>
+            </bool>
+
+            <!-- Zip format -->
+            <zip basedir="@{stagingDir}" destfile="@{resultDir}/@{downloadName}.sdar" update="true"/>
+
+            <else>
+               <if>
+                  <bool>
+                     <equals arg1="@{format}" arg2="exploded"/>
+                  </bool>
+
+                  <!-- Exploded format -->
+                  <mkdir dir="@{resultDir}/@{downloadName}.sdar"/>
+                  <copy todir="@{resultDir}/@{downloadName}.sdar">
+                     <fileset dir="@{stagingDir}"/>
+                  </copy>
+
+                  <else>
+                     <!-- Unknown format -->
+                     <fail message="Unknown download format: @format"/>
+                  </else>
+               </if>
+            </else>
+         </if>
+      </sequential>
+   </macrodef>
 
 </project>

@@ -1,0 +1,8 @@
+<secure-content name="@cacheonix.download.name@" displayName="@cacheonix.download.display.name@"
+                description="@cacheonix.download.description@" secure="false">
+
+   <htmlDirectory name="@cacheonix.download.file.name@" sizeBytes="@cacheonix.download.file.size@"
+                  indexFile="index.html"/>
+
+   <displayGroup name="@cacheonix.download.group.name@" order="@cacheonix.download.group.order@"/>
+</secure-content>
