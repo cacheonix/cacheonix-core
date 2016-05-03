@@ -436,6 +436,7 @@
         <option name="nonThreadSafeTypes" value="java.text.DateFormat,java.util.Calendar" />
       </inspection_tool>
       <inspection_tool class="AccessToStaticFieldLockedOnInstance" enabled="true" level="WARNING" enabled_by_default="true" />
+      <inspection_tool class="AlphaUnsortedPropertiesFile" enabled="true" level="INFO" enabled_by_default="true" />
       <inspection_tool class="AmbiguousFieldAccess" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="AmbiguousMethodCall" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="AnonymousClassVariableHidesContainingMethodVariable" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -531,6 +532,13 @@
         <option name="ignoreMethodCalls" value="false" />
       </inspection_tool>
       <inspection_tool class="DuplicateConditionJS" enabled="true" level="WARNING" enabled_by_default="true" />
+      <inspection_tool class="DuplicatePropertyInspection" enabled="true" level="WARNING" enabled_by_default="true">
+        <option name="CURRENT_FILE" value="true" />
+        <option name="MODULE_WITH_DEPENDENCIES" value="false" />
+        <option name="CHECK_DUPLICATE_VALUES" value="true" />
+        <option name="CHECK_DUPLICATE_KEYS" value="true" />
+        <option name="CHECK_DUPLICATE_KEYS_WITH_DIFFERENT_VALUES" value="true" />
+      </inspection_tool>
       <inspection_tool class="DynamicRegexReplaceableByCompiledPattern" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="EmptyClass" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="ignorableAnnotations">
@@ -580,6 +588,7 @@
       </inspection_tool>
       <inspection_tool class="IfStatementWithIdenticalBranches" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="IfStatementWithIdenticalBranchesJS" enabled="true" level="WARNING" enabled_by_default="true" />
+      <inspection_tool class="InconsistentLineSeparators" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="InnerClassMayBeStatic" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="InnerClassOnInterface" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="m_ignoreInnerInterfaces" value="false" />
@@ -597,6 +606,16 @@
       </inspection_tool>
       <inspection_tool class="JNDIResource" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="insideTryAllowed" value="true" />
+      </inspection_tool>
+      <inspection_tool class="JUnitAbstractTestClassNamingConvention" enabled="true" level="WARNING" enabled_by_default="true">
+        <option name="m_regex" value="[A-Z][A-Za-z\d]*TestCase" />
+        <option name="m_minLength" value="12" />
+        <option name="m_maxLength" value="64" />
+      </inspection_tool>
+      <inspection_tool class="JUnitTestClassNamingConvention" enabled="true" level="WARNING" enabled_by_default="true">
+        <option name="m_regex" value="[A-Z][A-Za-z\d]*Test" />
+        <option name="m_minLength" value="8" />
+        <option name="m_maxLength" value="64" />
       </inspection_tool>
       <inspection_tool class="JavaDoc" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="TOP_LEVEL_CLASS_OPTIONS">
@@ -786,6 +805,7 @@
       </inspection_tool>
       <inspection_tool class="PointlessIndexOfComparison" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="PointlessNullCheck" enabled="true" level="WARNING" enabled_by_default="true" />
+      <inspection_tool class="ProblematicWhitespace" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="PublicConstructorInNonPublicClass" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="PublicFieldAccessedInSynchronizedContext" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="RandomDoubleForRandomInteger" enabled="true" level="WARNING" enabled_by_default="true" />
