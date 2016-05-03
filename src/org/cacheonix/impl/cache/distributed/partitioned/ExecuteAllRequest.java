@@ -31,7 +31,6 @@ import org.cacheonix.cache.executor.Aggregator;
 import org.cacheonix.cache.executor.Executable;
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.cache.item.InvalidObjectException;
-import org.cacheonix.impl.cache.store.BinaryStoreUtils;
 import org.cacheonix.impl.cache.store.ReadableElement;
 import org.cacheonix.impl.clock.Time;
 import org.cacheonix.impl.net.serializer.SerializerUtils;
@@ -41,6 +40,10 @@ import org.cacheonix.impl.util.IOUtils;
 import org.cacheonix.impl.util.array.HashSet;
 import org.cacheonix.impl.util.array.ObjectProcedure;
 import org.cacheonix.impl.util.logging.Logger;
+
+import static org.cacheonix.impl.cache.store.BinaryStoreUtils.getCreatedTime;
+import static org.cacheonix.impl.cache.store.BinaryStoreUtils.getExpirationTime;
+import static org.cacheonix.impl.cache.store.BinaryStoreUtils.getValue;
 
 /**
  * ExecuteAllRequest invokes an executable against a set of keys.
@@ -124,13 +127,12 @@ public final class ExecuteAllRequest extends KeySetRequest {
             public boolean execute(final Binary key) {
 
                if (bucket.containsKey(key)) {
-                  final Binary value;
                   try {
 
                      final ReadableElement element = bucket.get(key);
-                     value = BinaryStoreUtils.getValue(element);
-                     final Time expirationTime = element.getExpirationTime();
-                     final Time createdTime = element.getCreatedTime();
+                     final Time expirationTime = getExpirationTime(element);
+                     final Time createdTime = getCreatedTime(element);
+                     final Binary value = getValue(element);
                      final DistributedCacheEntry distributedCacheEntry = new DistributedCacheEntry(key, value,
                              createdTime, expirationTime);
                      cacheEntries.add(distributedCacheEntry);

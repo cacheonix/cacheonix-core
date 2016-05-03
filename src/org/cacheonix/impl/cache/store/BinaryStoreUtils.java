@@ -15,6 +15,7 @@ package org.cacheonix.impl.cache.store;
 
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.cache.storage.disk.StorageException;
+import org.cacheonix.impl.clock.Time;
 
 /**
  * Utility methods for binary store.
@@ -32,11 +33,23 @@ public final class BinaryStoreUtils {
     *
     * @param element the element to get the value from.
     * @return the value encapsulated by the <code>element</code> or <code>null</code> if the <code>element</code> is
-    *         null.
+    * null.
     * @throws StorageException if the storage error occured.
     */
    public static Binary getValue(final ReadableElement element) throws StorageException {
 
       return element == null ? null : element.getValue();
+   }
+
+
+   public static Time getCreatedTime(final ReadableElement element) {
+
+      return element == null ? null : element.getCreatedTime();
+   }
+
+
+   public static Time getExpirationTime(final ReadableElement element) {
+
+      return element == null ? null : element.getExpirationTime();
    }
 }
