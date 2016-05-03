@@ -17,7 +17,6 @@ import org.cacheonix.CacheonixException;
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.cache.item.InvalidObjectException;
 import org.cacheonix.impl.cache.storage.disk.StorageException;
-import org.cacheonix.impl.cache.store.BinaryStoreUtils;
 import org.cacheonix.impl.cache.store.ReadableElement;
 import org.cacheonix.impl.clock.Time;
 import org.cacheonix.impl.net.processor.PrepareResult;
@@ -25,6 +24,10 @@ import org.cacheonix.impl.net.processor.Response;
 import org.cacheonix.impl.net.serializer.Wireable;
 import org.cacheonix.impl.net.serializer.WireableBuilder;
 import org.cacheonix.impl.util.logging.Logger;
+
+import static org.cacheonix.impl.cache.store.BinaryStoreUtils.getCreatedTime;
+import static org.cacheonix.impl.cache.store.BinaryStoreUtils.getExpirationTime;
+import static org.cacheonix.impl.cache.store.BinaryStoreUtils.getValue;
 
 /**
  * Cache get request is sent by the distributed cache when the key is stored remotely.
@@ -85,7 +88,7 @@ public final class GetRequest extends KeyRequest {
                // Respond with found cached value
                final Time expirationTime = element.getExpirationTime();
                final Time createdTime = element.getCreatedTime();
-               result = new CacheableValue(BinaryStoreUtils.getValue(element), null, createdTime, expirationTime);
+               result = new CacheableValue(getValue(element), null, createdTime, expirationTime);
             }
          }
 
@@ -102,9 +105,10 @@ public final class GetRequest extends KeyRequest {
 
                   // Has bucket, proceed with returning a key from the bucket
                   final ReadableElement element = bucket.get(getKey());
-                  final Time expirationTime = element.getExpirationTime();
-                  final Time createdTime = element.getCreatedTime();
-                  result = new CacheableValue(BinaryStoreUtils.getValue(element), null, createdTime, expirationTime);
+                  final Time expirationTime = getExpirationTime(element);
+                  final Time createdTime = getCreatedTime(element);
+                  final Binary value = getValue(element);
+                  result = new CacheableValue(value, null, createdTime, expirationTime);
 
 //                  //noinspection ControlFlowStatementWithoutBraces
 //                  if (LOG.isDebugEnabled()) LOG.debug("Found element in storage " + storageNumber); // NOPMD
@@ -152,7 +156,7 @@ public final class GetRequest extends KeyRequest {
          } else {
 
             // The key found
-            final Binary value = BinaryStoreUtils.getValue(element);
+            final Binary value = getValue(element);
 
             // Calculate expiration time
             final Time resultExpirationTime = isWillCache() ? renewLease(bucket, element.getExpirationTime()) : null;

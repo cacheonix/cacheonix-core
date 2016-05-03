@@ -55,6 +55,9 @@ import org.cacheonix.impl.util.array.ObjectProcedure;
 import org.cacheonix.impl.util.exception.ExceptionUtils;
 import org.cacheonix.impl.util.logging.Logger;
 
+import static org.cacheonix.impl.cache.store.BinaryStoreUtils.getExpirationTime;
+import static org.cacheonix.impl.cache.store.BinaryStoreUtils.getValue;
+
 /**
  * Implementation of cache with LRU eviction policy.
  *
@@ -405,7 +408,7 @@ public final class BinaryStore implements Wireable {
 
             // Get cache element
             final BinaryStoreElement element = entry.getValue();
-            final Binary binaryValue = BinaryStoreUtils.getValue(element);
+            final Binary binaryValue = getValue(element);
 
             // Compare
             if (value != null && binaryValue != null && value.equals(binaryValue)
@@ -458,7 +461,7 @@ public final class BinaryStore implements Wireable {
                   element.setIdleTime(idleTime);
 
                   // Set value
-                  final Binary binaryValue = BinaryStoreUtils.getValue(element);
+                  final Binary binaryValue = getValue(element);
                   result.add(binaryValue);
 
                   return true;
@@ -854,7 +857,7 @@ public final class BinaryStore implements Wireable {
                   element.setIdleTime(idleTime);
 
                   // Put the entry in the result
-                  final Binary binaryValue = BinaryStoreUtils.getValue(element);
+                  final Binary binaryValue = getValue(element);
                   result.add(new BinaryStoreEntry(element.getKey(), binaryValue));
 
                   return true;
@@ -1038,7 +1041,7 @@ public final class BinaryStore implements Wireable {
             byteCounter.subtract(element.getSizeBytes());
             elementCounter.decrement();
 
-            final Binary binaryValue = BinaryStoreUtils.getValue(element);
+            final Binary binaryValue = getValue(element);
 
             element.notifyModificationSubscribers(element, EntryModifiedEventType.REMOVE); // Self means 'remove'
             element.removeFromLRUList();
@@ -1240,7 +1243,7 @@ public final class BinaryStore implements Wireable {
 
          final ReadableElement replacedElement = put(key, value, expirationTime, true, null);
 
-         return BinaryStoreUtils.getValue(replacedElement);
+         return getValue(replacedElement);
 
       } catch (final StorageException e) {
 
@@ -1471,7 +1474,7 @@ public final class BinaryStore implements Wireable {
             try {
 
                final Binary binaryKey = element.getKey();
-               final Binary binaryValue = BinaryStoreUtils.getValue(element);
+               final Binary binaryValue = getValue(element);
                return procedure.processEntry(binaryKey, binaryValue);
             } catch (final StorageException e) {
 
@@ -1503,8 +1506,8 @@ public final class BinaryStore implements Wireable {
             try {
 
                // Create a copy of the element
-               final Binary binaryValue = BinaryStoreUtils.getValue(element);
-               final Time expirationTime = element.getExpirationTime();
+               final Time expirationTime = getExpirationTime(element);
+               final Binary binaryValue = getValue(element);
                final Time idleTime = element.getIdleTime();
                final BinaryStoreElement newElement = new BinaryStoreElement(binaryKey, binaryValue, clock.currentTime(),
                        expirationTime, idleTime);
