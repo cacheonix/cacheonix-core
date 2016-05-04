@@ -201,7 +201,7 @@ public final class LocalCache<K extends Serializable, V extends Serializable> im
          newBinaryStore.setContext(binaryStoreContext);
 
          // Load
-         final LoadableBinaryStoreAdapter loadableAdapter = new LoadableBinaryStoreAdapter(newBinaryStore);
+         final LoadableBinaryStoreAdapter loadableAdapter = new LoadableBinaryStoreAdapter(clock, newBinaryStore);
          loader.load(loadableAdapter);
 
          // Set the atomic reference

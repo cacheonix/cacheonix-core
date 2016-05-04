@@ -17,9 +17,11 @@ import java.io.IOException;
 import java.io.Serializable;
 
 import org.cacheonix.cache.loader.Loadable;
-import org.cacheonix.impl.cache.item.BinaryUtils;
 import org.cacheonix.impl.cache.storage.disk.StorageException;
+import org.cacheonix.impl.clock.Clock;
 import org.cacheonix.impl.clock.Time;
+
+import static org.cacheonix.impl.cache.item.BinaryUtils.toBinary;
 
 /**
  */
@@ -27,10 +29,13 @@ public class LoadableBinaryStoreAdapter implements Loadable {
 
    private final BinaryStore binaryStore;
 
+   private final Clock clock;
 
-   public LoadableBinaryStoreAdapter(final BinaryStore binaryStore) {
+
+   public LoadableBinaryStoreAdapter(final Clock clock, final BinaryStore binaryStore) {
 
       this.binaryStore = binaryStore;
+      this.clock = clock;
    }
 
 
@@ -46,6 +51,7 @@ public class LoadableBinaryStoreAdapter implements Loadable {
 
       final Time expirationInterval = binaryStore.getExpirationInterval();
       final Time expirationTime = binaryStore.calculateExpirationTime(expirationInterval);
-      binaryStore.put(BinaryUtils.toBinary(key), BinaryUtils.toBinary(value), expirationTime, false, null);
+      final Time createdTime = clock.currentTime();
+      binaryStore.put(toBinary(key), toBinary(value), createdTime, expirationTime, false, null);
    }
 }

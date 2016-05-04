@@ -508,8 +508,8 @@ public final class BinaryStore implements Wireable {
             final Binary key = entry.getKey();
             final Binary value = entry.getValue();
             final Time expirationTime = calculateExpirationTime(expirationInterval);
-
-            put(key, value, expirationTime, false, null);
+            final Time createdTime = clock.currentTime();
+            put(key, value, createdTime, expirationTime, false, null);
          }
       } catch (final StorageException e) {
          throw new RuntimeStorageException(e);
@@ -524,6 +524,7 @@ public final class BinaryStore implements Wireable {
     *
     * @param key                          to put
     * @param value                        to put
+    * @param createdTime
     * @param expirationTime
     * @param returnReplacedValue          <code>true</code> if value should be returned.  @return replaced value or null
     *                                     if was requested not to return value.
@@ -532,12 +533,11 @@ public final class BinaryStore implements Wireable {
     * @throws StorageException
     * @noinspection ParameterHidesMemberVariable
     */
-   public ReadableElement put(final Binary key, final Binary value, final Time expirationTime,
+   public ReadableElement put(final Binary key, final Binary value, final Time createdTime, final Time expirationTime,
            final boolean returnReplacedValue, final Time timeTookToReadFromDataSource)
            throws IOException, StorageException {
 
       // Put into the element map
-      final Time createdTime = clock.currentTime();
       final BinaryStoreElement newElement = createElement(key, value, createdTime, expirationTime);
       final BinaryStoreElement replacedElement = elements.put(newElement.getKey(), newElement);
 
@@ -660,9 +660,10 @@ public final class BinaryStore implements Wireable {
 
 
       final Time expirationTime = calculateExpirationTime(expirationInterval);
+      final Time currentTime = clock.currentTime();
       //noinspection ControlFlowStatementWithoutBraces
       if (LOG.isDebugEnabled()) LOG.debug("Updating element: " + element); // NOPMD
-      return put(key, value, expirationTime, true, timeToRead);
+      return put(key, value, currentTime, expirationTime, true, timeToRead);
    }
 
 
@@ -968,10 +969,10 @@ public final class BinaryStore implements Wireable {
 
                // Put found value from the data source to the storage
                final Time timeTookToReadFromDataSource = binaryStoreDataSourceObject.getTimeToRead();
-               final Binary binaryValue = objectToBinary(valueFromDataSource);
                final Time expirationTime = calculateExpirationTime(expirationInterval);
-               final Time createdTime = element == null ? null : element.getCreatedTime();
-               put(key, binaryValue, expirationTime, false, timeTookToReadFromDataSource);
+               final Binary binaryValue = objectToBinary(valueFromDataSource);
+               final Time createdTime = clock.currentTime();
+               put(key, binaryValue, createdTime, expirationTime, false, timeTookToReadFromDataSource);
 
                // Return a new readable element becuase put() above return previous
                // value which is not suitable for returning from get.
@@ -1244,7 +1245,8 @@ public final class BinaryStore implements Wireable {
 
       try {
 
-         final ReadableElement replacedElement = put(key, value, expirationTime, true, null);
+         final Time createdTime = clock.currentTime();
+         final ReadableElement replacedElement = put(key, value, createdTime, expirationTime, true, null);
 
          return getValue(replacedElement);
 
