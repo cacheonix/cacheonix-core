@@ -168,7 +168,7 @@ public final class BinaryStore implements Wireable {
 
    private void initLinkedList() {
 
-      this.header = createElement(null, null, null);
+      this.header = createElement(null, null, clock.currentTime(), null);
       this.header.setBefore(header);
       this.header.setAfter(header);
    }
@@ -537,7 +537,8 @@ public final class BinaryStore implements Wireable {
            throws IOException, StorageException {
 
       // Put into the element map
-      final BinaryStoreElement newElement = createElement(key, value, expirationTime);
+      final Time createdTime = clock.currentTime();
+      final BinaryStoreElement newElement = createElement(key, value, createdTime, expirationTime);
       final BinaryStoreElement replacedElement = elements.put(newElement.getKey(), newElement);
 
       // Calculate new size
@@ -789,15 +790,17 @@ public final class BinaryStore implements Wireable {
     *
     * @param key            of the element.
     * @param value          of the element
+    * @param createdTime
     * @param expirationTime
     * @return created cache element
     * @noinspection ParameterHidesMemberVariable
     */
-   private BinaryStoreElement createElement(final Binary key, final Binary value, final Time expirationTime) {
+   private BinaryStoreElement createElement(final Binary key, final Binary value, final Time createdTime,
+           final Time expirationTime) {
 
       // Create element
       final Time idleTime = idleInterval == null ? null : clock.currentTime().add(idleInterval);
-      final BinaryStoreElement binaryStoreElement = new BinaryStoreElement(key, value, clock.currentTime(),
+      final BinaryStoreElement binaryStoreElement = new BinaryStoreElement(key, value, createdTime,
               expirationTime, idleTime);
 
       // Set context
