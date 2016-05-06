@@ -11,7 +11,7 @@ Cacheonix's Core project contains the distributed caching functionality.
 <dependency>
    <groupId>org.cacheonix</groupId>
    <artifactId>cacheonix-core</artifactId>
-   <version>2.1.2</version>
+   <version>2.2.2</version>
 <dependency>
 ```
 
