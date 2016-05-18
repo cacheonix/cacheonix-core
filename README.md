@@ -38,7 +38,7 @@ Adding Cachenix to your project is easy. Just add the following to the dependenc
 
 ## Cacheonix Downloads
 
-You can aslo add Cacheonix to your project directly by downloading Cacheonix jar, sources and the complete distribution from [htttp://downloads.cacheonix.org](htttp://downloads.cacheonix.org).
+You can aslo add Cacheonix to your project directly by downloading Cacheonix jar, sources and the complete distribution from htttp://downloads.cacheonix.org.
 
 ## Documentation 
 
