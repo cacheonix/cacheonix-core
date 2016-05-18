@@ -43,3 +43,7 @@ You can aslo add Cacheonix to your project directly by downloading Cacheonix jar
 ## Documentation 
 
 Chechk [Cacheonix Wiki](http://wiki.cacheonix.org/display/CCHNX/Cacheonix+Knowledge+Base) for detailed documentation.
+
+## Contact Us
+
+Shoot us an email at simeshev@cacheonix.org
