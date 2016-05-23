@@ -54,6 +54,8 @@ public final class ConfigurationReader {
 
    private static final String JAXP_SCHEMA_SOURCE = "http://java.sun.com/xml/jaxp/properties/schemaSource";
 
+   private static final String META_INF_CACHEONIX_CONFIG_2_0_XSD = "META-INF/cacheonix-config-2.0.xsd";
+
 
    /**
     * Reads configuration defined by the <code>configurationPath</code>. The configuration is first considered as a
@@ -139,7 +141,12 @@ public final class ConfigurationReader {
 
    private Document parseConfiguration(final InputStream is) throws IOException {
 
-      final String xsd = getClass().getClassLoader().getResource("META-INF/cacheonix-config-2.0.xsd").toString();
+      final URL resource = getClass().getClassLoader().getResource(META_INF_CACHEONIX_CONFIG_2_0_XSD);
+      if (resource == null) {
+         throw new IOException("Couldn't find packaged " + META_INF_CACHEONIX_CONFIG_2_0_XSD + " in the classpath");
+      }
+
+      final String xsd = resource.toString();
       try {
 
          // Create parser factory
