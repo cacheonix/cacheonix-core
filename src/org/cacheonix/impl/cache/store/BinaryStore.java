@@ -55,6 +55,11 @@ import org.cacheonix.impl.util.array.ObjectProcedure;
 import org.cacheonix.impl.util.exception.ExceptionUtils;
 import org.cacheonix.impl.util.logging.Logger;
 
+import static org.cacheonix.cache.subscriber.EntryModifiedEventType.ADD;
+import static org.cacheonix.cache.subscriber.EntryModifiedEventType.EVICT;
+import static org.cacheonix.cache.subscriber.EntryModifiedEventType.EXPIRE;
+import static org.cacheonix.cache.subscriber.EntryModifiedEventType.REMOVE;
+import static org.cacheonix.cache.subscriber.EntryModifiedEventType.UPDATE;
 import static org.cacheonix.impl.cache.store.BinaryStoreUtils.getExpirationTime;
 import static org.cacheonix.impl.cache.store.BinaryStoreUtils.getValue;
 
@@ -367,7 +372,7 @@ public final class BinaryStore implements Wireable {
          if (binaryStoreElement.isExpired(clock) || !binaryStoreElement.isValid()) {
 
             // Remove and notify about expiration
-            removeElement(binaryStoreElement, EntryModifiedEventType.EXPIRE);
+            removeElement(binaryStoreElement, EXPIRE);
             return false;
          }
 
@@ -564,7 +569,7 @@ public final class BinaryStore implements Wireable {
          }
 
          // Notify update listeners
-         newElement.notifyModificationSubscribers(null, EntryModifiedEventType.ADD);
+         newElement.notifyModificationSubscribers(null, ADD);
 
       } else {
 
@@ -592,7 +597,7 @@ public final class BinaryStore implements Wireable {
 
 
          // Notify update listeners
-         newElement.notifyModificationSubscribers(replacedElement, EntryModifiedEventType.UPDATE);
+         newElement.notifyModificationSubscribers(replacedElement, UPDATE);
 
          // Remove replaced element
          replacedElement.removeFromLRUList();
@@ -681,7 +686,7 @@ public final class BinaryStore implements Wireable {
 
       // Evict
       final BinaryStoreElement eldestElement = header.getAfter();
-      removeElement(eldestElement, EntryModifiedEventType.EVICT);
+      removeElement(eldestElement, EVICT);
    }
 
 
@@ -715,7 +720,7 @@ public final class BinaryStore implements Wireable {
          if (element.isExpired(clock) || !element.isValid()) {
 
             // Remove element
-            removeElement(element, EntryModifiedEventType.EXPIRE);
+            removeElement(element, EXPIRE);
 
          } else {
 
@@ -750,7 +755,7 @@ public final class BinaryStore implements Wireable {
       element = header.getAfter();
       while (!element.equals(header) && byteCounter.value() > byteCounter.getMaxValue()) {
 
-         removeElement(element, EntryModifiedEventType.EVICT);
+         removeElement(element, EVICT);
          element = header.getAfter();
       }
    }
@@ -761,7 +766,7 @@ public final class BinaryStore implements Wireable {
 
 
       // Notify listeners
-      assert EntryModifiedEventType.EVICT.equals(eventType) || EntryModifiedEventType.EXPIRE.equals(eventType);
+      assert EVICT.equals(eventType) || EXPIRE.equals(eventType);
       element.notifyModificationSubscribers(element, eventType);
 
       elements.remove(element.getKey());
@@ -1047,7 +1052,7 @@ public final class BinaryStore implements Wireable {
 
             final Binary binaryValue = getValue(element);
 
-            element.notifyModificationSubscribers(element, EntryModifiedEventType.REMOVE); // Self means 'remove'
+            element.notifyModificationSubscribers(element, REMOVE); // Self means 'remove'
             element.removeFromLRUList();
             removeFromDiskStorage(element);
 
@@ -1097,7 +1102,7 @@ public final class BinaryStore implements Wireable {
          elementCounter.decrement();
 
          // Notify
-         element.notifyModificationSubscribers(element, EntryModifiedEventType.REMOVE); // Self means 'remove'
+         element.notifyModificationSubscribers(element, REMOVE); // Self means 'remove'
          element.removeFromLRUList();
 
          // Remove from disk storage
@@ -1590,7 +1595,7 @@ public final class BinaryStore implements Wireable {
 
 //         //noinspection ControlFlowStatementWithoutBraces
 //         if (LOG.isDebugEnabled()) LOG.debug("Element expired: " + element.getExpirationTime()); // NOPMD
-         removeElement(element, EntryModifiedEventType.EXPIRE);
+         removeElement(element, EXPIRE);
 
          return null;
       }
