@@ -145,7 +145,7 @@ public final class OptionConverter {
 
    public
    static Object instantiateByKey(final Properties props, final String key, final Class superClass,
-                                  final Object defaultValue) {
+           final Object defaultValue) {
 
       // Get the value of the property in string form
       final String className = findAndSubst(key, props);
@@ -300,13 +300,12 @@ public final class OptionConverter {
          multiplier = (long) (1024 << 10 << 10);
          s = s.substring(0, index);
       }
-      if (s != null) {
-         try {
-            return Long.valueOf(s) * multiplier;
-         } catch (final NumberFormatException e) {
-            LogLog.error('[' + s + "] is not in proper int form.");
-            LogLog.error('[' + value + "] not in expected format.", e);
-         }
+
+      try {
+         return Long.valueOf(s) * multiplier;
+      } catch (final NumberFormatException e) {
+         LogLog.error('[' + s + "] is not in proper int form.");
+         LogLog.error('[' + value + "] not in expected format.", e);
       }
       return dEfault;
    }
@@ -343,7 +342,7 @@ public final class OptionConverter {
     * @param defaultValue The object to return in case of non-fulfillment
     */
    public static Object instantiateByClassName(final String className, final Class superClass,
-                                               final Object defaultValue) {
+           final Object defaultValue) {
 
       if (className != null) {
          try {
@@ -481,7 +480,7 @@ public final class OptionConverter {
     */
 
    public static void selectAndConfigure(final URL url, String clazz,
-                                         final LoggerRepository hierarchy) {
+           final LoggerRepository hierarchy) {
 
       final String filename = url.getFile();
 
