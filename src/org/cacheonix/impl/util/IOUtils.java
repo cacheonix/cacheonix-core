@@ -31,6 +31,7 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 import java.io.RandomAccessFile;
 import java.io.Reader;
+import java.io.Serializable;
 import java.io.Writer;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -1223,7 +1224,7 @@ public final class IOUtils {
     * @throws IOException
     * @throws ClassNotFoundException
     */
-   public static Object copy(final Object o) throws IOException, ClassNotFoundException {
+   public static Object copy(final Serializable o) throws IOException, ClassNotFoundException {
 
       if (o == null) {
          return null;
