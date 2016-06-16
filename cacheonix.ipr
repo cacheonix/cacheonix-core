@@ -429,6 +429,7 @@
     <profile version="1.0">
       <option name="myName" value="Project Default" />
       <option name="myLocal" value="true" />
+      <inspection_tool class="AbstractMethodCallInConstructor" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="AccessToNonThreadSafeStaticFieldFromInstance" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="nonThreadSafeClasses">
           <value />
@@ -480,6 +481,9 @@
       </inspection_tool>
       <inspection_tool class="CallToStringConcatCanBeReplacedByOperator" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="CastConflictsWithInstanceof" enabled="true" level="WARNING" enabled_by_default="true" />
+      <inspection_tool class="CastThatLosesPrecision" enabled="true" level="WARNING" enabled_by_default="true">
+        <option name="ignoreIntegerCharCasts" value="false" />
+      </inspection_tool>
       <inspection_tool class="CastToIncompatibleInterface" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ChainedEquality" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ChainedEqualityJS" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -745,6 +749,7 @@
       <inspection_tool class="NonAtomicOperationOnVolatileField" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="NonFinalFieldInEnum" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="NonFinalFieldOfException" enabled="true" level="WARNING" enabled_by_default="true" />
+      <inspection_tool class="NonFinalStaticVariableUsedInClassInitialization" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="NonFinalUtilityClass" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="NonSerializableFieldInSerializableClass" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="ignorableAnnotations">
@@ -765,16 +770,6 @@
       <inspection_tool class="NotifyNotInSynchronizedContext" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="NotifyWithoutCorrespondingWait" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="NullThrown" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="NullableProblems" enabled="false" level="WARNING" enabled_by_default="false">
-        <option name="REPORT_NULLABLE_METHOD_OVERRIDES_NOTNULL" value="true" />
-        <option name="REPORT_NOT_ANNOTATED_METHOD_OVERRIDES_NOTNULL" value="true" />
-        <option name="REPORT_NOTNULL_PARAMETER_OVERRIDES_NULLABLE" value="true" />
-        <option name="REPORT_NOT_ANNOTATED_PARAMETER_OVERRIDES_NOTNULL" value="true" />
-        <option name="REPORT_NOT_ANNOTATED_GETTER" value="true" />
-        <option name="REPORT_NOT_ANNOTATED_SETTER_PARAMETER" value="true" />
-        <option name="REPORT_ANNOTATION_NOT_PROPAGATED_TO_OVERRIDERS" value="true" />
-        <option name="REPORT_NULLS_PASSED_TO_NON_ANNOTATED_METHOD" value="true" />
-      </inspection_tool>
       <inspection_tool class="ObjectEquality" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="m_ignoreEnums" value="true" />
         <option name="m_ignoreClassObjects" value="false" />
@@ -791,6 +786,8 @@
       <inspection_tool class="OverlyStrongTypeCast" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="ignoreInMatchingInstanceof" value="false" />
       </inspection_tool>
+      <inspection_tool class="OverridableMethodCallDuringObjectConstruction" enabled="true" level="WARNING" enabled_by_default="true" />
+      <inspection_tool class="OverriddenMethodCallDuringObjectConstruction" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="PackageVisibleField" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="PackageVisibleInnerClass" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="ignoreEnums" value="false" />
@@ -809,6 +806,7 @@
       <inspection_tool class="PublicConstructorInNonPublicClass" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="PublicFieldAccessedInSynchronizedContext" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="RandomDoubleForRandomInteger" enabled="true" level="WARNING" enabled_by_default="true" />
+      <inspection_tool class="RawUseOfParameterizedType" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ReadObjectAndWriteObjectPrivate" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ReadResolveAndWriteReplaceProtected" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="RedundantImplements" enabled="true" level="WARNING" enabled_by_default="true">
@@ -818,6 +816,9 @@
       <inspection_tool class="RedundantImport" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="RedundantMethodOverride" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="RedundantThrowsDeclaration" enabled="true" level="WARNING" enabled_by_default="true" />
+      <inspection_tool class="RefusedBequest" enabled="true" level="WARNING" enabled_by_default="true">
+        <option name="ignoreEmptySuperMethods" value="false" />
+      </inspection_tool>
       <inspection_tool class="ReplaceAssignmentWithOperatorAssignment" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="ignoreLazyOperators" value="true" />
         <option name="ignoreObscureOperators" value="false" />
@@ -909,6 +910,7 @@
       <inspection_tool class="TestCaseWithConstructor" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="TestMethodIsPublicVoidNoArg" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="TextLabelInSwitchStatement" enabled="true" level="WARNING" enabled_by_default="true" />
+      <inspection_tool class="ThisEscapedInConstructor" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ThreadDeathRethrown" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ThreadDumpStack" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ThreadLocalNotStaticFinal" enabled="true" level="WARNING" enabled_by_default="true" />
