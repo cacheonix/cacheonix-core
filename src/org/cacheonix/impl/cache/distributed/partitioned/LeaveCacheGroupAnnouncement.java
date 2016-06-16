@@ -123,7 +123,7 @@ public final class LeaveCacheGroupAnnouncement extends GroupMessage {
       final GroupMember groupMember = group.getGroupMember(leavingAddress);
 
       // Check if already left
-      if (!groupMember.isActive()) {
+      if (groupMember == null || !groupMember.isActive()) {
          return;
       }
 
