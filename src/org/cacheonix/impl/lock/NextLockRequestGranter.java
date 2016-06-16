@@ -50,8 +50,9 @@ public final class NextLockRequestGranter {
    public void grantNextLockRequests() {
 
       // Grant next lock request(s) while possible.
-      do {
-      } while (grantNextLockRequest());
+      //noinspection StatementWithEmptyBody
+      while (grantNextLockRequest()) {
+      }
    }
 
 
