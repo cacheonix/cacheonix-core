@@ -44,22 +44,10 @@ public final class PropertyPrinter implements PropertyCallback {
 
    protected final PrintWriter out;
 
-   protected final boolean doCapitalize;
-
 
    public PropertyPrinter(final PrintWriter out) {
 
-      this(out, false);
-   }
-
-
-   public PropertyPrinter(final PrintWriter out, final boolean doCapitalize) {
-
       this.out = out;
-      this.doCapitalize = doCapitalize;
-
-      print(out);
-      out.flush();
    }
 
 
@@ -93,7 +81,7 @@ public final class PropertyPrinter implements PropertyCallback {
     * <p/>
     * <p>N.B. print() can be invoked only once!
     */
-   public final void print(final PrintWriter out) {
+   public final void print() {
 
       printOptions(out, Logger.getRootLogger());
 
@@ -156,34 +144,21 @@ public final class PropertyPrinter implements PropertyCallback {
 
 
    public void foundProperty(final Object obj, final String prefix, String name,
-                             final Object value) {
+           final Object value) {
       // XXX: Properties encode value.toString()
       if (obj instanceof Appender && "name".equals(name)) {
          return;
       }
-      if (doCapitalize) {
-         name = capitalize(name);
-      }
       out.println(prefix + name + '=' + value.toString());
-   }
-
-
-   public static String capitalize(final String name) {
-
-      if (Character.isLowerCase(name.charAt(0))) {
-         if (name.length() == 1 || Character.isLowerCase(name.charAt(1))) {
-            final StringBuilder newname = new StringBuilder(name);
-            newname.setCharAt(0, Character.toUpperCase(name.charAt(0)));
-            return newname.toString();
-         }
-      }
-      return name;
    }
 
 
    // for testing
    public static void main(final String[] args) {
 
-      new PropertyPrinter(new PrintWriter(System.out));
+      final PrintWriter out = new PrintWriter(System.out);
+      final PropertyPrinter propertyPrinter = new PropertyPrinter(out);
+      propertyPrinter.print();
+      out.flush();
    }
 }
