@@ -112,7 +112,7 @@ final class MyTableModel
                for (final Object mPendingEvent : mPendingEvents) {
                   final EventDetails event = (EventDetails) mPendingEvent;
                   mAllEvents.add(event);
-                  toHead = toHead && event == mAllEvents.first();
+                  toHead = toHead && event.equals(mAllEvents.first());
                   needUpdate = needUpdate || matchFilter(event);
                }
                mPendingEvents.clear();
