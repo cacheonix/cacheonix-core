@@ -130,7 +130,7 @@ public final class PropertyPrinter implements PropertyCallback {
          }
          appenderString.append(", ").append(name);
       }
-      final String catKey = cat == Logger.getRootLogger()
+      final String catKey = cat.equals(Logger.getRootLogger())
               ? "log4j.rootLogger"
               : "log4j.logger." + cat.getName();
       if (appenderString.length() != 0) {
