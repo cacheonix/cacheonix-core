@@ -436,7 +436,13 @@
         </option>
         <option name="nonThreadSafeTypes" value="java.text.DateFormat,java.util.Calendar" />
       </inspection_tool>
-      <inspection_tool class="AccessToStaticFieldLockedOnInstance" enabled="true" level="WARNING" enabled_by_default="true" />
+      <inspection_tool class="AccessToStaticFieldLockedOnInstance" enabled="true" level="WARNING" enabled_by_default="true">
+        <option name="ignoredClasses">
+          <set>
+            <option value="org.cacheonix.impl.util.logging.Logger" />
+          </set>
+        </option>
+      </inspection_tool>
       <inspection_tool class="AlphaUnsortedPropertiesFile" enabled="true" level="INFO" enabled_by_default="true" />
       <inspection_tool class="AmbiguousFieldAccess" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="AmbiguousMethodCall" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -1467,6 +1473,7 @@
         <w>precalculated</w>
         <w>prefetching</w>
         <w>prepareable</w>
+        <w>primefaces</w>
         <w>proc</w>
         <w>rboat</w>
         <w>rebalance</w>
@@ -1669,6 +1676,15 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$PROJECT_DIR$/3rdparty/mybatis-3.0.5/mybatis-3.0.5-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Primefaces">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/3rdparty/primefaces-6.0/primefaces-6.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$PROJECT_DIR$/3rdparty/primefaces-6.0/primefaces-6.0-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Servlets">
