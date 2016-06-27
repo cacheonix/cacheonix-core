@@ -55,7 +55,7 @@
    <property name="catalina-7.0.30.jar" value="3rdparty/apache-tomcat-7.0.30/lib/catalina.jar"/>
    <property name="findbugs.home" value="3rdparty/findbugs-2.0.3"/>
    <property name="checkstyle-all.jar" value="3rdparty/checkstyle-5.3/checkstyle-5.3-all.jar"/>
-   <property name="primefaces.jar" value="3rdparty/primefaces-6.0.jar/primefaces-6.0.jar"/>
+   <property name="primefaces.jar" value="3rdparty/primefaces-6.0/primefaces-6.0.jar"/>
 
    <!-- Maven snapshots and staging repository id and url -->
    <property name="ossrh-snapshots-repository-url" value="https://oss.sonatype.org/content/repositories/snapshots/"/>
