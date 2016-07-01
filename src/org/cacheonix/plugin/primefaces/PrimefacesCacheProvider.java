@@ -25,7 +25,70 @@ import org.cacheonix.cache.Cache;
 import org.primefaces.cache.CacheProvider;
 
 /**
- * Cacheonix cache provider for <a href="http://primefaces.org/">Primefaces</a>.
+ * Cacheonix offers a cache provider for PrimeFaces, a UI framework for Java EE. The PrimeFaces cache provider allows
+ * developers to increase performance and scalability of their web applications by avoiding repeatedly generating
+ * content that changes infrequently. Instead, Cacheonix serves the read-mostly content from a fast in-memory cache.
+ * Switching between local and distributed cache configurations is done by simply changing Cacheonix' configuration
+ * file. Cache provider for PrimeFaces is available beginning with Cacheonix 2.3.0
+ * <p/>
+ * <strong>Adding Cache Provider to PrimeFaces Application</strong>
+ * <p/>
+ * <strong>First</strong>, add Cacheonix to your Maven project by adding the following code to the dependencies section
+ * of your <i>pom.xml</i>:
+ * <pre>
+ * &lt;dependency&gt;
+ *    &lt;groupId&gt;org.cacheonix&lt;/groupId&gt;
+ *    &lt;artifactId&gt;cacheonix-core&lt;/artifactId&gt;
+ *    &lt;version&gt;2.3.0&lt;/version&gt;
+ * &lt;dependency&gt;
+ * </pre>
+ * Alternatively, you can add Cacheonix to your project manually by downloading Cacheonix jar directly from <a
+ * href="http://downloads.cacheonix.org">Cacheonix downloads website</a>.
+ * <p/>
+ * <strong>Second</strong>, set up the cache provider in _web.xml_ by setting context parameter
+ * <i>primefaces.CACHE_PROVIDER</i> to <i>org.cacheonix.plugin.primefaces.PrimefacesCacheProvider</i>:
+ * <p/>
+ * <pre>
+ * &lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt;
+ * &lt;web-app xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+ * xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ * version="3.0"xmlns="http://java.sun.com/xml/ns/j2ee"&gt;
+ *    &lt;display-name&gt;PrimeFaces Cache Provider Example&lt;/display-name&gt;
+ *    &lt;context-param&gt;
+ *       &lt;param-name&gt;primefaces.CACHE_PROVIDER&lt;/param-name&gt;
+ *       &lt;param-value&gt;org.cacheonix.plugin.primefaces.PrimefacesCacheProvider&lt;/param-value&gt;
+ *    &lt;/context-param&gt;
+ *    &lt;servlet&gt;
+ *       &lt;servlet-name&gt;FacesServlet&lt;/servlet-name&gt;
+ *       &lt;servlet-class&gt;javax.faces.webapp.FacesServlet&lt;/servlet-class&gt;
+ *       &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
+ *    &lt;/servlet&gt;
+ *    &lt;servlet-mapping&gt;
+ *       &lt;servlet-name&gt;FacesServlet&lt;/servlet-name&gt;
+ *       &lt;url-pattern&gt;/faces/*&lt;/url-pattern&gt;
+ *    &lt;/servlet-mapping&gt;
+ *    &lt;servlet-mapping&gt;
+ *       &lt;servlet-name&gt;FacesServlet&lt;/servlet-name&gt;
+ *       &lt;url-pattern&gt;*.xhtml&lt;/url-pattern&gt;
+ *    &lt;/servlet-mapping&gt;
+ * &lt;/web-app&gt;
+ * </pre>
+ * <p/>
+ * <strong>Third</strong>, enable caching a segment of your PrimeFaces code by wrapping the PrimeFaces code in the
+ * &lt;cache&gt; tag. It's important that the key attribute identifies the cached segment of code uniquely:
+ * <p/>
+ * <pre>
+ * &lt;h:form&gt;
+ *    &lt;p:cache region="primefaces" key="toolbar"&gt;
+ *       &lt;p:toolbar&gt;
+ *       &lt;p:toolbarGroup align="left"&gt;
+ *       &lt;p:commandButton type="button" value="Save"/&gt;
+ *       &lt;p:commandButton type="button" value="Cancel"/&gt;
+ *       &lt;/p:toolbarGroup&gt;
+ *       &lt;/p:toolbar&gt;
+ *       &lt;/p:cache&gt;
+ * &lt;/h:form&gt;
+ * </pre>
  */
 public final class PrimefacesCacheProvider implements CacheProvider {
 
