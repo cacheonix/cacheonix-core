@@ -31,7 +31,7 @@ import org.primefaces.cache.CacheProvider;
  * Switching between local and distributed cache configurations is done by simply changing Cacheonix' configuration
  * file. Cache provider for PrimeFaces is available beginning with Cacheonix 2.3.0
  * <p/>
- * <strong>Adding Cache Provider to PrimeFaces Application</strong>
+ * <strong>Adding Cache to PrimeFaces Application</strong>
  * <p/>
  * <strong>First</strong>, add Cacheonix to your Maven project by adding the following code to the dependencies section
  * of your <i>pom.xml</i>:
