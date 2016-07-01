@@ -25,7 +25,7 @@ import org.cacheonix.cache.Cache;
 import org.primefaces.cache.CacheProvider;
 
 /**
- * Primefaces cache provider.
+ * Cacheonix cache provider for <a href="http://primefaces.org/">Primefaces</a>.
  */
 public final class PrimefacesCacheProvider implements CacheProvider {
 
