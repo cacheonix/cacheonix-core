@@ -214,7 +214,7 @@
          <else>
             <property name="release.build" value="0"/>
             <property name="release.change" value="0"/>
-            <property name="release.patch" value="3"/>
+            <property name="release.patch" value="0"/>
             <tstamp>
                <format property="release.date" pattern="yyyyMMddHHmmss" locale="en"/>
             </tstamp>
