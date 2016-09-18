@@ -42,6 +42,7 @@ import static org.cacheonix.impl.net.serializer.SerializerUtils.writeByteArray;
 import static org.cacheonix.impl.net.serializer.SerializerUtils.writeObject;
 import static org.cacheonix.impl.net.serializer.SerializerUtils.writeString;
 import static org.cacheonix.impl.net.serializer.SerializerUtils.writeWireable;
+import static org.cacheonix.impl.util.ArrayUtils.copy;
 
 /**
  * A cached response value.
@@ -97,7 +98,7 @@ public final class CachedResponseValue implements Wireable, Serializable, Immuta
 
       this.contentLength = contentLength;
       this.statusMessage = statusMessage;
-      this.byteResponse = byteResponse;
+      this.byteResponse = copy(byteResponse);
       this.redirectUrl = redirectUrl;
       this.contentType = contentType;
       this.statusCode = statusCode;
