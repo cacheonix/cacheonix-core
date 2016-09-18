@@ -33,7 +33,6 @@ import org.cacheonix.cache.ConfigurationException;
 import org.cacheonix.impl.cache.CacheonixCache;
 import org.cacheonix.impl.cache.datasource.PrefetchScheduler;
 import org.cacheonix.impl.cache.datasource.PrefetchStageThreadPoolAdapter;
-import org.cacheonix.impl.cache.storage.disk.StorageException;
 import org.cacheonix.impl.clock.Clock;
 import org.cacheonix.impl.clock.ClockImpl;
 import org.cacheonix.impl.config.CacheonixConfiguration;
@@ -196,8 +195,6 @@ public abstract class AbstractCacheonix extends Cacheonix {
    /**
     * Performs actual startup. This is a template method that is called by {@link #startup()}. This method is called
     * inside the cache manager's write lock.
-    *
-    * @throws StorageException
     */
    protected abstract void doStartup();
 
@@ -206,7 +203,7 @@ public abstract class AbstractCacheonix extends Cacheonix {
     * This method is called once during Cacheonix construction.
     *
     * @param configuration the cacheonix configuration.
-    * @return
+    * @return a new map of cache names and their configurations.
     */
    protected abstract Map createCacheConfigMap(CacheonixConfiguration configuration);
 
