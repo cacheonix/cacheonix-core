@@ -36,12 +36,6 @@ import java.net.UnknownHostException;
 public final class SyslogWriter extends Writer {
 
    static final int SYSLOG_PORT = 514;
-   /**
-    * Host string from last constructed SyslogWriter.
-    */
-   @SuppressWarnings("StaticNonFinalField")
-   static String syslogHost;
-
    private InetAddress address = null;
    private final int port;
    private DatagramSocket ds = null;
@@ -55,7 +49,6 @@ public final class SyslogWriter extends Writer {
     *                   the IPv6 address in square brackets before appending the colon and decimal port number.
     */
    public SyslogWriter(final String syslogHost) {
-      SyslogWriter.syslogHost = syslogHost;
       if (syslogHost == null) {
          throw new NullPointerException("syslogHost");
       }
