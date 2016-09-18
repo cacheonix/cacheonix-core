@@ -25,6 +25,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Apr 4, 2008 2:15:27 AM
  */
+@SuppressWarnings("VariableNotUsedInsideIf")
 public final class Assert {
 
    /**
