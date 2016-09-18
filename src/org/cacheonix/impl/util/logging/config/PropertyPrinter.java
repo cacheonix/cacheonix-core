@@ -143,7 +143,7 @@ public final class PropertyPrinter implements PropertyCallback {
    }
 
 
-   public void foundProperty(final Object obj, final String prefix, String name,
+   public void foundProperty(final Object obj, final String prefix, final String name,
            final Object value) {
       // XXX: Properties encode value.toString()
       if (obj instanceof Appender && "name".equals(name)) {
