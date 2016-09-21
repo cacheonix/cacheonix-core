@@ -237,13 +237,7 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
       // Limit broadcast to the local host
       final BroadcastConfiguration broadcastConfiguration = serverConfig.getBroadcastConfiguration();
       final MulticastBroadcastConfiguration multicastConfiguration = broadcastConfiguration.getMulticast();
-      if (multicastConfiguration != null) {
-
-         // This is multicast 
-         return new PlainMulticastSender(multicastConfiguration.getMulticastAddress(),
-                 multicastConfiguration.getMulticastPort(),
-                 multicastConfiguration.getMulticastTTL());
-      } else {
+      if (multicastConfiguration == null) {
 
          // Known addresses must be set
          final List<KnownAddressBroadcastConfiguration> knownAddressConfigs = broadcastConfiguration.getKnownAddresses();
@@ -264,6 +258,12 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
          }
 
          return new TCPMulticastSender(router, localAddress, knownReceiverAddresses);
+      } else {
+
+         // This is multicast
+         return new PlainMulticastSender(multicastConfiguration.getMulticastAddress(),
+                 multicastConfiguration.getMulticastPort(),
+                 multicastConfiguration.getMulticastTTL());
       }
    }
 
