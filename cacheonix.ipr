@@ -1366,6 +1366,7 @@
         <w>abee</w>
         <w>addr</w>
         <w>api's</w>
+        <w>appenders</w>
         <w>assert's</w>
         <w>async</w>
         <w>autocreate</w>
@@ -1419,6 +1420,7 @@
         <w>fourbyte</w>
         <w>functor</w>
         <w>hashcode</w>
+        <w>hhmts</w>
         <w>hsqdb</w>
         <w>imeshev</w>
         <w>imlements</w>

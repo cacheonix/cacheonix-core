@@ -115,7 +115,7 @@ public class AbsoluteTimeDateFormat extends DateFormat {
          sbuf.append(secs);
          sbuf.append(',');
 
-         // store the time string for next time to avoid recomputation
+         // store the time string for next time to avoid recalculation
          sbuf.getChars(start, sbuf.length(), previousTimeWithoutMillis, 0);
 
          previousTime = now - (long) millis;
