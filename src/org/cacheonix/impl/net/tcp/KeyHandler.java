@@ -22,7 +22,7 @@ import org.cacheonix.impl.util.time.Timeout;
 import org.cacheonix.impl.util.time.TimeoutImpl;
 
 /**
- * A handler of key events.
+ * A handler of NIO key events.
  */
 abstract class KeyHandler {
 
