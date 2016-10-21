@@ -23,8 +23,9 @@ import org.cacheonix.impl.net.processor.AbstractProcessor;
 import org.cacheonix.impl.net.processor.Command;
 import org.cacheonix.impl.net.processor.Message;
 import org.cacheonix.impl.net.processor.Router;
-import org.cacheonix.impl.util.Assert;
 import org.cacheonix.impl.util.logging.Logger;
+
+import static org.cacheonix.impl.util.Assert.assertNotNull;
 
 /**
  * MessageSender  is a processor that is responsible for sending messages to the outside network. In other words,
@@ -111,7 +112,7 @@ public final class Sender extends AbstractProcessor {
 //      //noinspection ControlFlowStatementWithoutBraces
 //      if (LOG.isDebugEnabled()) LOG.debug("Enqueueing (queue size is " + queue.size() + ") : " + message); // NOPMD
 
-      Assert.assertNotNull(message.getClusterUUID(), "Cluster UUID must be set, message: {0}", message);
+      assertNotNull(message.getClusterUUID(), "Cluster UUID must be set, message: {0}", message);
 
       // Enqueue
       queue.add(message);
