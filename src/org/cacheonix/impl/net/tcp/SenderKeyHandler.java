@@ -131,6 +131,30 @@ final class SenderKeyHandler extends KeyHandler {
    }
 
 
+   public void handleKey(final SelectionKey key) throws InterruptedException {
+
+      if (key.isConnectable()) {
+
+         // Channel is ready to finish connection
+         handleFinishConnect(key);
+
+      } else if (key.isWritable()) { // NOPMD
+
+         // Socket channel is ready for write
+         handleWrite(key);
+
+      } else if (key.isReadable()) { // NOPMD
+
+         // Socket channel is ready for write
+         handleRead(key);
+
+      } else {
+         //noinspection ObjectToString
+         throw new IllegalArgumentException("Key is not supported: " + key);
+      }
+   }
+
+
    /**
     * Processes readiness for OP_CONNECT
     *
@@ -204,7 +228,7 @@ final class SenderKeyHandler extends KeyHandler {
     * <p/>
     * This implementation writes messages or writes leftover.
     */
-   public void handleWrite(final SelectionKey key) throws InterruptedException {
+   private void handleWrite(final SelectionKey key) throws InterruptedException {
 
       switch (state) {
 
@@ -259,6 +283,55 @@ final class SenderKeyHandler extends KeyHandler {
    }
 
 
+   /**
+    * {@inheritDoc}
+    * <p/>
+    * The sender is interested in read only for the purpose of detecting this channel closed by the other side.
+    *
+    * @param key the key to process.
+    */
+   public void handleRead(final SelectionKey key) {
+
+      switch (state) {
+
+         case WRITING:
+
+            // Read
+            final SocketChannel channel = socketChannel(key);
+            final ByteBuffer buffer = ByteBuffer.allocate(1);
+            String error = null;
+            try {
+
+               if (channel.read(buffer) == -1) {
+
+                  error = "Connection was broken";
+               }
+            } catch (final IOException e) {
+
+               error = e.toString();
+            }
+
+            // Handle if error
+            if (error != null) {
+
+               // Close the channel formally so that the server side knows
+               // that there won't be valid input from this side on this channel.
+               IOUtils.closeHard(socketChannel(key));
+
+               // Clear partial message
+               leftover = null;
+
+               state = INIT;
+
+               respondToAllWithFailure(error);
+            }
+            break;
+         default:
+            throw new IllegalStateException("Read readiness should not be received in this state " + state);
+      }
+   }
+
+
    public void handleIdle(final SelectionKey idleKey) throws InterruptedException {
 
       switch (state) {
@@ -280,8 +353,8 @@ final class SenderKeyHandler extends KeyHandler {
    /**
     * {@inheritDoc}
     * <p/>
-    * 1. Connection timeout occurs after the connection was initiated but before OP_CONNECT is ready, (SenderKeyHandler is in the
-    * CONNECTING state) but did not complete in time. Actions on the connection timeout:
+    * 1. Connection timeout occurs after the connection was initiated but before OP_CONNECT is ready, (SenderKeyHandler
+    * is in the CONNECTING state) but did not complete in time. Actions on the connection timeout:
     * <p/>
     * a) Close the channel
     * <p/>
@@ -289,12 +362,12 @@ final class SenderKeyHandler extends KeyHandler {
     * <p/>
     * c) Respond to requests in the queue with an error
     * <p/>
-    * 2. Write timeout occurs when the SenderKeyHandler is in the Writing state and there are messages in the send queue. The
-    * write timeout means that the write channel, that should be ready for write almost always, has slowed down to a
-    * halt. The slow down is indistinguishable from a failure of the receiving host. In general, the write timeout
-    * defines a minimum acceptable write throughput. For instance, if there wasn't write activity for 1 second, it means
-    * that the write throughput dropped under 1 Byte/sec. In Cacheonix, in addition to the network conditions,  the
-    * slowdown may be caused by garbage collection (GC) on the receiver side. During GC the receiver may become
+    * 2. Write timeout occurs when the SenderKeyHandler is in the Writing state and there are messages in the send
+    * queue. The write timeout means that the write channel, that should be ready for write almost always, has slowed
+    * down to a halt. The slow down is indistinguishable from a failure of the receiving host. In general, the write
+    * timeout defines a minimum acceptable write throughput. For instance, if there wasn't write activity for 1 second,
+    * it means that the write throughput dropped under 1 Byte/sec. In Cacheonix, in addition to the network conditions,
+    * the slowdown may be caused by garbage collection (GC) on the receiver side. During GC the receiver may become
     * unresponsive which is indistinguishable from network slowdown. The GC can reach tens of seconds. This means that
     * the timeout should be set to the maximum expected time for GC. The default timeout should be set to 30 secs.
     * <p/>
@@ -367,55 +440,6 @@ final class SenderKeyHandler extends KeyHandler {
 
 
    /**
-    * {@inheritDoc}
-    * <p/>
-    * The sender is interested in read only for the purpose of detecting this channel closed by the other side.
-    *
-    * @param key the key to process.
-    */
-   public void handleRead(final SelectionKey key) {
-
-      switch (state) {
-
-         case WRITING:
-
-            // Read
-            final SocketChannel channel = socketChannel(key);
-            final ByteBuffer buffer = ByteBuffer.allocate(1);
-            String error = null;
-            try {
-
-               if (channel.read(buffer) == -1) {
-
-                  error = "Connection was broken";
-               }
-            } catch (final IOException e) {
-
-               error = e.toString();
-            }
-
-            // Handle if error
-            if (error != null) {
-
-               // Close the channel formally so that the server side knows
-               // that there won't be valid input from this side on this channel.
-               IOUtils.closeHard(socketChannel(key));
-
-               // Clear partial message
-               leftover = null;
-
-               state = INIT;
-
-               respondToAllWithFailure(error);
-            }
-            break;
-         default:
-            throw new IllegalStateException("Read readiness should not be received in this state " + state);
-      }
-   }
-
-
-   /**
     * Puts the message into an internal queue for actual sending.
     *
     * @param message the message to enqueue.
@@ -433,30 +457,6 @@ final class SenderKeyHandler extends KeyHandler {
 
          // Create a non-blocking socket channel and register the channel and the sender
          beginConnecting(true);
-      }
-   }
-
-
-   public void handleKey(final SelectionKey key) throws InterruptedException {
-
-      if (key.isConnectable()) {
-
-         // Channel is ready to finish connection
-         handleFinishConnect(key);
-
-      } else if (key.isWritable()) { // NOPMD
-
-         // Socket channel is ready for write
-         handleWrite(key);
-
-      } else if (key.isReadable()) { // NOPMD
-
-         // Socket channel is ready for write
-         handleRead(key);
-
-      } else {
-         //noinspection ObjectToString
-         throw new IllegalArgumentException("Key is not supported: " + key);
       }
    }
 
