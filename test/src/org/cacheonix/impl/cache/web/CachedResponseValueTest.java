@@ -1,6 +1,7 @@
 package org.cacheonix.impl.cache.web;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
@@ -85,7 +86,7 @@ public final class CachedResponseValueTest extends TestCase {
 
    public void testGetByteResponse() throws Exception {
 
-      assertEquals(TEST_BYTE_RESPONSE, cachedResponseValue.getByteResponse());
+      assertEquals(true, Arrays.equals(TEST_BYTE_RESPONSE, cachedResponseValue.getByteResponse()));
    }
 
 
