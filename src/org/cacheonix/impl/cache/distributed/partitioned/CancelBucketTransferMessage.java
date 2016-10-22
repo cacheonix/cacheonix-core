@@ -152,12 +152,14 @@ public final class CancelBucketTransferMessage extends LocalCacheMessage {
 
                //noinspection ControlFlowStatementWithoutBraces
                if (LOG.isDebugEnabled()) {
-                  LOG.debug("Bucket " + bucketNumber + " is supposed to be at the previous owner, but it is not. It is possible that the previous owner called the cancel itself.");
+                  LOG.debug(
+                          "Bucket " + bucketNumber + '@' + sourceStorageNumber + " is supposed to be at the previous owner, but it is not. It is possible that the previous owner called the cancel itself.");
                }
             } else {
 
                if (LOG.isDebugEnabled() && !bucket.isReconfiguring()) {
-                  LOG.debug("Bucket " + bucketNumber + " is supposed to be in the reconfiguring state at the previous owner, but it is not. It is possible that the previous owner called the cancel itself.");
+                  LOG.debug(
+                          "Bucket " + bucketNumber + '@' + sourceStorageNumber + " is supposed to be in the reconfiguring state at the previous owner, but it is not. It is possible that the previous owner called the cancel itself.");
                }
                bucket.setReconfiguring(false);
             }

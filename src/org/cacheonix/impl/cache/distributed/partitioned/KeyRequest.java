@@ -276,7 +276,8 @@ public abstract class KeyRequest extends CacheDataRequest implements Prepareable
 
          // Not our bucket
          if (LOG.isDebugEnabled()) {
-            LOG.debug(">>>>>>>>>>> " + this.getClass().getSimpleName() + ": Not our bucket " + bucketNumber);
+            LOG.debug(
+                    ">>>>>>>>>>> " + this.getClass().getSimpleName() + ": Not our bucket " + bucketNumber + '@' + storageNumber);
          }
          cacheProcessor.post(createResponse(RESULT_RETRY));
          return;
@@ -289,7 +290,7 @@ public abstract class KeyRequest extends CacheDataRequest implements Prepareable
       if (bucket == null || !lockReconfiguringBucket && bucket.isReconfiguring()) {
 
          if (LOG.isDebugEnabled()) {
-            LOG.debug("Bucket " + bucketNumber + " is reconfiguring, asking to retry: " + this);
+            LOG.debug("Bucket " + bucketNumber + '@' + storageNumber + " is reconfiguring, asking to retry: " + this);
          }
 
          cacheProcessor.post(createResponse(RESULT_RETRY));
