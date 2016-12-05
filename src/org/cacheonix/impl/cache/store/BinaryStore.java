@@ -126,11 +126,6 @@ public final class BinaryStore implements Wireable {
    private Time idleInterval;
 
    /**
-    * Secondary storage for this cache.
-    */
-//   private DiskStorage diskStorage;
-
-   /**
     * Maximum number of elements stored in memory.
     */
    private SharedCounter elementCounter;
@@ -197,6 +192,7 @@ public final class BinaryStore implements Wireable {
     *
     * @param elementCounter the element counter to attach to.
     */
+   @SuppressWarnings("ParameterHidesMemberVariable")
    public void attachToElementCounter(final SharedCounter elementCounter) {
 
       this.elementCounter = elementCounter;
@@ -217,6 +213,7 @@ public final class BinaryStore implements Wireable {
     *
     * @param byteCounter the shared byte counter to attach to.
     */
+   @SuppressWarnings("ParameterHidesMemberVariable")
    public void attachToByteCounter(final SharedCounter byteCounter) {
 
       this.byteCounter = byteCounter;
@@ -690,6 +687,7 @@ public final class BinaryStore implements Wireable {
    }
 
 
+   @SuppressWarnings("ReuseOfLocalVariable")
    private void guardByteSize() throws IOException, StorageException {
 
       // Check if unlimited size
@@ -1664,6 +1662,7 @@ public final class BinaryStore implements Wireable {
    }
 
 
+   @SuppressWarnings("ParameterHidesMemberVariable")
    private Time calculateIdleTime(final Time idleInterval) {
 
       if (idleInterval == null) {
@@ -1677,7 +1676,7 @@ public final class BinaryStore implements Wireable {
    }
 
 
-   public Time calculateExpirationTime(final Time expirationInterval) {
+   Time calculateExpirationTime(final Time expirationInterval) {
 
       if (expirationInterval == null) {
 
