@@ -149,7 +149,7 @@ public final class PropertyPrinter implements PropertyCallback {
       if (obj instanceof Appender && "name".equals(name)) {
          return;
       }
-      out.println(prefix + name + '=' + value.toString());
+      out.println(prefix + name + '=' + value);
    }
 
 
