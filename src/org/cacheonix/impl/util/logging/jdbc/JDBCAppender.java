@@ -28,6 +28,8 @@ import org.cacheonix.impl.util.logging.PatternLayout;
 import org.cacheonix.impl.util.logging.spi.ErrorCode;
 import org.cacheonix.impl.util.logging.spi.LoggingEvent;
 
+import static org.cacheonix.impl.util.IOUtils.closeHard;
+
 
 /**
  * <p><b><font color="#FF2222">WARNING: This version of JDBCAppender is very likely to be completely replaced in the
@@ -166,11 +168,10 @@ public final class JDBCAppender extends AppenderSkeleton {
             stmt.close();
          }
          throw e;
+      } finally {
+         closeHard(stmt);
+         closeHard(con);
       }
-      IOUtils.closeHard(stmt);
-      IOUtils.closeHard(con);
-
-      //System.out.println("Execute: " + sql);
    }
 
 
