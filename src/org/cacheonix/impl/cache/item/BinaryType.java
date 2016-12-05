@@ -26,7 +26,7 @@ public final class BinaryType {
 
    private static final byte CODE_BY_COMPRESSED_COPY = (byte) 3;
 
-   public static final BinaryType BY_REFERERENCE = new BinaryType(CODE_BY_REFERENCE);
+   public static final BinaryType BY_REFERENCE = new BinaryType(CODE_BY_REFERENCE);
 
    public static final BinaryType BY_COPY = new BinaryType(CODE_BY_COPY);
 

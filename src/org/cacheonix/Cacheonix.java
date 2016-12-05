@@ -46,7 +46,7 @@ import static org.cacheonix.impl.config.SystemProperty.NAME_CACHEONIX_FALLBACK_C
 
 /**
  * A singleton that creates and provides access to various Cacheonix features such as caching, parallel computing and
- * distrbuted locks. <h1>Accessing a Cache</h1> Each cache in Cacheonix is uniquely identified by its name within
+ * distributed locks. <h1>Accessing a Cache</h1> Each cache in Cacheonix is uniquely identified by its name within
  * Cacheonix configuration. To get a cache from Cacheonix instance use method <code>getCache()</code>. <p/>
  * <b>Example:</b>
  * <pre>

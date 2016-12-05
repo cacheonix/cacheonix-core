@@ -481,7 +481,7 @@ public interface Cache<K extends Serializable, V extends Serializable> extends C
 
 
    /**
-    * Returns a cluster-wide lock. This method is equavalent of <code>getReadWriteLock("default")</code>. The created
+    * Returns a cluster-wide lock. This method is equivalent of <code>getReadWriteLock("default")</code>. The created
     * lock is distributed and accessible by all members of the cluster.
     *
     * @return the created lock.

@@ -122,7 +122,7 @@ final class ControlPanel extends JPanel {
          }
 
 
-         public void removeUpdate(final DocumentEvent aEvente) {
+         public void removeUpdate(final DocumentEvent aEvent) {
 
             aModel.setThreadFilter(threadField.getText());
          }

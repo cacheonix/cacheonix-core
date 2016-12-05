@@ -21,7 +21,7 @@ import org.cacheonix.impl.util.logging.Level;
 import org.cacheonix.impl.util.logging.Logger;
 import org.cacheonix.impl.util.logging.helpers.LogLog;
 
-// Contibutors: Mathias Bogaert
+// Contributors: Mathias Bogaert
 
 /**
  * RootLogger sits at the top of the logger hierachy. It is a regular logger except that it provides

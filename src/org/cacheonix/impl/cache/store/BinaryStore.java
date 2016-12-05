@@ -1638,7 +1638,7 @@ public final class BinaryStore implements Wireable {
       byteCounter.add(sizeChangeBytes);
 
       // Decrement statistics
-      statistics.descrementCountOnDisk();
+      statistics.decrementCountOnDisk();
    }
 
 
@@ -1658,7 +1658,7 @@ public final class BinaryStore implements Wireable {
       element.discard();
 
       // Decrement count on disk
-      statistics.descrementCountOnDisk();
+      statistics.decrementCountOnDisk();
    }
 
 

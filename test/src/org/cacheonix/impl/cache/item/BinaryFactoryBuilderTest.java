@@ -35,7 +35,7 @@ public final class BinaryFactoryBuilderTest extends TestCase {
 
    public final void testCreateCopyByReferenceFactory() throws Exception {
 
-      final BinaryFactory factory = binaryFactoryBuilder.createFactory(BY_REFERERENCE);
+      final BinaryFactory factory = binaryFactoryBuilder.createFactory(BY_REFERENCE);
       assertEquals(new PassObjectByReferenceBinary(SERIALIZABLE_ARRAY_0), factory.createBinary(SERIALIZABLE_ARRAY_1));
    }
 

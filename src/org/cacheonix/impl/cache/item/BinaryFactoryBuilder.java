@@ -35,7 +35,7 @@ public final class BinaryFactoryBuilder {
       } else if (storageType.equals(BinaryType.BY_COPY)) {
 
          return decorateAsImmutable(new PassByCopyBinaryFactory());
-      } else if (storageType.equals(BinaryType.BY_REFERERENCE)) {
+      } else if (storageType.equals(BinaryType.BY_REFERENCE)) {
 
          return decorateAsImmutable(new ImmutableBinaryFactory());
       } else {

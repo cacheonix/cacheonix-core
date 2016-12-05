@@ -21,7 +21,7 @@ import org.cacheonix.impl.util.logging.Logger;
 import static org.cacheonix.impl.util.CollectionUtils.copyProperties;
 
 /**
- * An implmenetation of CacheLoaderContext.
+ * An implementation of CacheLoaderContext.
  * <p/>
  *
  * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>

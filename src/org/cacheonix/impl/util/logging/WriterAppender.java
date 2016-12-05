@@ -27,7 +27,7 @@ import org.cacheonix.impl.util.logging.helpers.QuietWriter;
 import org.cacheonix.impl.util.logging.spi.ErrorHandler;
 import org.cacheonix.impl.util.logging.spi.LoggingEvent;
 
-// Contibutors: Jens Uwe Pipka <jens.pipka@gmx.de>
+// Contributors: Jens Uwe Pipka <jens.pipka@gmx.de>
 //              Ben Sandee
 
 /**

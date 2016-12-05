@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-// Contibutors: "Luke Blanshard" <Luke@quiq.com>
+// Contributors: "Luke Blanshard" <Luke@quiq.com>
 //              "Mark DONSZELMANN" <Mark.Donszelmann@cern.ch>
 //               Anders Kristensen <akristensen@dynamicsoft.com>
 

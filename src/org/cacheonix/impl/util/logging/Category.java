@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-// Contibutors: Alex Blewitt <Alex.Blewitt@ioshq.com>
+// Contributors: Alex Blewitt <Alex.Blewitt@ioshq.com>
 //              Markus Oestreicher <oes@zurich.ibm.com>
 //              Frank Hoering <fhr@zurich.ibm.com>
 //              Nelson Minar <nelson@media.mit.edu>
@@ -605,7 +605,7 @@ public class Category implements AppenderAttachable {
 
 
    /**
-    * Returns the string resource coresponding to <code>key</code> in this category's inherited resource bundle. See
+    * Returns the string resource corresponding to <code>key</code> in this category's inherited resource bundle. See
     * also {@link #getResourceBundle}.
     * <p/>
     * <p>If the resource cannot be found, then an {@link #error error} message will be logged complaining about the
@@ -704,7 +704,7 @@ public class Category implements AppenderAttachable {
     *      cat.debug("This is entry number: " + i );
     *  </pre>
     * <p/>
-    * <p>You incur the cost constructing the message, concatenatiion in this case, regardless of whether the message is
+    * <p>You incur the cost constructing the message, concatenation in this case, regardless of whether the message is
     * logged or not.
     * <p/>
     * <p>If you are worried about speed, then you should write
@@ -936,7 +936,7 @@ public class Category implements AppenderAttachable {
 
 
    /**
-    * Only the Hiearchy class can set the hiearchy of a category. Default package access is MANDATORY here.
+    * Only the hierarchy class can set the hiearchy of a category. Default package access is MANDATORY here.
     */
    final void setHierarchy(final LoggerRepository repository) {
 
@@ -987,7 +987,7 @@ public class Category implements AppenderAttachable {
 
    /**
     * Calling this method will <em>safely</em> close and remove all appenders in all the categories including root
-    * contained in the default hierachy.
+    * contained in the default hierarchy.
     * <p/>
     * <p>Some appenders such as {@link SocketAppender} and {@link AsyncAppender} need to be closed before the
     * application exists. Otherwise, pending logging events might be lost.
@@ -1011,7 +1011,7 @@ public class Category implements AppenderAttachable {
     * <p>This method first checks if this category is <code>WARN</code> enabled by comparing the level of this category
     * with {@link Level#WARN WARN} Level. If the category is <code>WARN</code> enabled, then it converts the message
     * object passed as parameter to a string by invoking the appropriate {@link ObjectRenderer}. It proceeds to call all
-    * the registered appenders in this category and also higher in the hieararchy depending on the value of the
+    * the registered appenders in this category and also higher in the hierarchy depending on the value of the
     * additivity flag.
     * <p/>
     * <p><b>WARNING</b> Note that passing a {@link Throwable} to this method will print the name of the Throwable but no

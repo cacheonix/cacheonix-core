@@ -33,7 +33,7 @@ import org.cacheonix.impl.util.CollectionUtils;
 import org.cacheonix.impl.util.exception.ExceptionUtils;
 
 import static org.cacheonix.TestConstants.PORT_7676;
-import static org.cacheonix.impl.cache.item.BinaryType.BY_REFERERENCE;
+import static org.cacheonix.impl.cache.item.BinaryType.BY_REFERENCE;
 import static org.cacheonix.impl.util.IOUtils.closeHard;
 
 /**
@@ -44,7 +44,7 @@ public final class TestUtils {
 
    private static final BinaryFactoryBuilder BINARY_FACTORY_BUILDER = new BinaryFactoryBuilder();
 
-   private static final BinaryFactory BINARY_FACTORY = BINARY_FACTORY_BUILDER.createFactory(BY_REFERERENCE);
+   private static final BinaryFactory BINARY_FACTORY = BINARY_FACTORY_BUILDER.createFactory(BY_REFERENCE);
 
 
    /**

@@ -202,9 +202,9 @@ public interface ClusterProcessorState extends ProcessorState {
    Queue<List<Frame>> getSubmittalQueue();
 
    /**
-    * Retusn the last operational cluster view. Can return null if the cluster have never been
+    * Returns the last operational cluster view. Can return null if the cluster have never been operational.
     *
-    * @return
+    * @return  the last operational cluster view. Can return null if the cluster have never been operational.
     */
    ClusterView getLastOperationalClusterView();
 

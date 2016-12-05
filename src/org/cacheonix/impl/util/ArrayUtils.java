@@ -26,18 +26,18 @@ public final class ArrayUtils {
    private static final int HASHCODE_SHIFT = 29;
 
    /**
-    * Reuseable zero length byte array.
+    * Reusable zero length byte array.
     */
    public static final byte[] EMPTY_BYTE_ARRAY = {};
 
    /**
-    * Resuseable string array.
+    * Reusable string array.
     */
    public static final String[] EMPTY_STRING_ARRAY = {};
 
 
    /**
-    * Utilicy class constructor.
+    * Utility class constructor.
     */
    private ArrayUtils() {
 

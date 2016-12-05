@@ -376,7 +376,6 @@
     <option name="USE_PER_PROJECT_SETTINGS" value="true" />
   </component>
   <component name="CompilerConfiguration">
-    <option name="DEFAULT_COMPILER" value="Javac" />
     <resourceExtensions>
       <entry name=".+\.(properties|xml|html|dtd|tld)" />
       <entry name=".+\.(gif|png|jpeg|jpg)" />
@@ -392,11 +391,6 @@
       <entry name="?*.dtd" />
       <entry name="?*.tld" />
     </wildcardResourcePatterns>
-    <annotationProcessing>
-      <profile default="true" name="Default" enabled="false">
-        <processorPath useClasspath="true" />
-      </profile>
-    </annotationProcessing>
   </component>
   <component name="CopyrightManager" default="" />
   <component name="DependenciesAnalyzeManager">
@@ -411,9 +405,6 @@
   </component>
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
     <file url="PROJECT" charset="UTF-8" />
-  </component>
-  <component name="EntryPointsManager">
-    <entry_points version="2.0" />
   </component>
   <component name="ExportToHTMLSettings">
     <option name="PRINT_LINE_NUMBERS" value="false" />
@@ -1000,16 +991,15 @@
         <option name="ignoreNonEmtpyLoops" value="false" />
       </inspection_tool>
     </profile>
-    <option name="PROJECT_PROFILE" value="Project Default" />
-    <option name="USE_PROJECT_PROFILE" value="true" />
     <version value="1.0" />
-    <list size="6">
-      <item index="0" class="java.lang.String" itemvalue="SERVER PROBLEM" />
-      <item index="1" class="java.lang.String" itemvalue="WEAK WARNING" />
-      <item index="2" class="java.lang.String" itemvalue="INFO" />
-      <item index="3" class="java.lang.String" itemvalue="TYPO" />
-      <item index="4" class="java.lang.String" itemvalue="WARNING" />
-      <item index="5" class="java.lang.String" itemvalue="ERROR" />
+    <list size="7">
+      <item index="0" class="java.lang.String" itemvalue="INFORMATION" />
+      <item index="1" class="java.lang.String" itemvalue="SERVER PROBLEM" />
+      <item index="2" class="java.lang.String" itemvalue="WEAK WARNING" />
+      <item index="3" class="java.lang.String" itemvalue="INFO" />
+      <item index="4" class="java.lang.String" itemvalue="TYPO" />
+      <item index="5" class="java.lang.String" itemvalue="WARNING" />
+      <item index="6" class="java.lang.String" itemvalue="ERROR" />
     </list>
   </component>
   <component name="JavacSettings">
@@ -1365,6 +1355,7 @@
       <words>
         <w>&amp;amp</w>
         <w>abee</w>
+        <w>additivity</w>
         <w>addr</w>
         <w>api's</w>
         <w>appenders</w>
@@ -1376,21 +1367,31 @@
         <w>baos</w>
         <w>baselength</w>
         <w>batis</w>
+        <w>bbbbbbbbbbbbbbbbbb</w>
         <w>becuase</w>
         <w>blahblah</w>
+        <w>blanshard</w>
+        <w>blewitt</w>
+        <w>bogaert</w>
         <w>caba</w>
         <w>cachable</w>
         <w>cacheable</w>
         <w>cachemanager</w>
         <w>cacheonix</w>
         <w>cacheonix's</w>
+        <w>cakalic</w>
         <w>calc</w>
         <w>cchnx</w>
+        <w>channelexplorer</w>
+        <w>chnode</w>
         <w>chunked</w>
+        <w>ciaran</w>
+        <w>colorlevel</w>
         <w>comcast</w>
         <w>conf</w>
         <w>configurator</w>
         <w>crlf</w>
+        <w>daos</w>
         <w>datagram</w>
         <w>datasource</w>
         <w>datasource's</w>
@@ -1403,6 +1404,8 @@
         <w>deserializes</w>
         <w>djava</w>
         <w>doesnt</w>
+        <w>donszelmann</w>
+        <w>dont</w>
         <w>downstream's</w>
         <w>dtest</w>
         <w>eddcc</w>
@@ -1413,15 +1416,22 @@
         <w>enqueued</w>
         <w>enqueueing</w>
         <w>enqueues</w>
+        <w>equavalent</w>
         <w>executables</w>
         <w>expirable</w>
         <w>externalizable</w>
         <w>findbugs</w>
         <w>fixme</w>
+        <w>flowlayout</w>
         <w>fourbyte</w>
         <w>functor</w>
+        <w>gridbag</w>
         <w>hashcode</w>
+        <w>hcode</w>
         <w>hhmts</w>
+        <w>hiearchy</w>
+        <w>hoering</w>
+        <w>horwitz</w>
         <w>hsqdb</w>
         <w>imeshev</w>
         <w>imlements</w>
@@ -1446,6 +1456,9 @@
         <w>lamport</w>
         <w>lgpl</w>
         <w>llllllllllllllllllllll</w>
+        <w>loglevelcolors</w>
+        <w>loglevels</w>
+        <w>logtablecolumns</w>
         <w>lookuplength</w>
         <w>loooback</w>
         <w>loopback</w>
@@ -1453,22 +1466,31 @@
         <w>mcast</w>
         <w>microbenchmark</w>
         <w>millis</w>
+        <w>minar</w>
         <w>mins</w>
         <w>multi</w>
         <w>multicast</w>
         <w>multipart</w>
+        <w>muly</w>
         <w>mybatis</w>
         <w>nanos</w>
+        <w>ndctextfilter</w>
+        <w>nodechanged</w>
         <w>nopmd</w>
         <w>nreplicas</w>
+        <w>nullary</w>
         <w>occured</w>
         <w>octect</w>
         <w>octects</w>
+        <w>oestreicher</w>
+        <w>ooooooooooooooo</w>
         <w>ooooooooooooooooooooooooooooo</w>
         <w>optimizeme</w>
         <w>orphanable</w>
+        <w>oved</w>
         <w>owne</w>
         <w>param</w>
+        <w>parameterized</w>
         <w>partitioner</w>
         <w>passivate</w>
         <w>passthrough</w>
@@ -1484,14 +1506,20 @@
         <w>rebalancing</w>
         <w>reentrancy</w>
         <w>reentrant</w>
+        <w>renderers</w>
         <w>repartitining</w>
         <w>repartitions</w>
         <w>request's</w>
+        <w>resends</w>
         <w>retrier</w>
         <w>retryable</w>
         <w>reuired</w>
         <w>reviewme</w>
+        <w>sampaleanu</w>
         <w>sbin</w>
+        <w>sbuf</w>
+        <w>searchtext</w>
+        <w>sharell</w>
         <w>shutdownable</w>
         <w>signum</w>
         <w>simeshev</w>
@@ -1522,8 +1550,11 @@
         <w>tmpdir</w>
         <w>transfer's</w>
         <w>traverser</w>
+        <w>treanor</w>
         <w>twentyfourbitgroup</w>
         <w>unboxing</w>
+        <w>unconfigured</w>
+        <w>uncopied</w>
         <w>undeleted</w>
         <w>underload</w>
         <w>unicast</w>
@@ -1531,7 +1562,13 @@
         <w>unregistering</w>
         <w>unregisters</w>
         <w>unsecure</w>
+        <w>unselect</w>
+        <w>unsubscribe</w>
+        <w>unsubscribed</w>
+        <w>unsubscribes</w>
+        <w>unsubscribing</w>
         <w>uuid</w>
+        <w>vimeshev</w>
         <w>wireable</w>
       </words>
     </dictionary>
@@ -1549,7 +1586,7 @@
   <component name="ProjectResources">
     <default-html-doctype>http://www.w3.org/1999/xhtml</default-html-doctype>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_5" assert-keyword="true" jdk-15="true" project-jdk-name="1.6" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_5" project-jdk-name="1.6" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/temp" />
   </component>
   <component name="ResourceManagerContainer">

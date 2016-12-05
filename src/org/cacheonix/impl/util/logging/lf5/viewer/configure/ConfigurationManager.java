@@ -48,7 +48,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * <p>ConfigurationManager handles the storage and retrival of the state of the CategoryExplorer
+ * <p>ConfigurationManager handles the storage and retrieval of the state of the CategoryExplorer
  *
  * @author Richard Hurst
  * @author Brad Marlborough
@@ -221,7 +221,7 @@ public final class ConfigurationManager {
       // determine where the starting node is
       NamedNodeMap map = nodeList.item(0).getAttributes();
       final int j = getValue(map, NAME).equalsIgnoreCase(FIRST_CATEGORY_NAME) ? 1 : 0;
-      // iterate backwards throught the nodeList so that expansion of the
+      // iterate backwards through the nodeList so that expansion of the
       // list can occur
       for (int i = nodeList.getLength() - 1; i >= j; i--) {
          final Node n = nodeList.item(i);

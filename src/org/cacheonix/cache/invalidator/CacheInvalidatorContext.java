@@ -41,7 +41,7 @@ public interface CacheInvalidatorContext {
     * <pre>
     *   &lt;cache name="my.cache" maxSize="1000"
     *          invalidator="my.project.DataBaseTimeStampInvalidator"
-    *          <b>invalidatorProperties</b>="table.name=MY_TABLE;colum.name=TIMESTAMP"/&gt;
+    *          <b>invalidatorProperties</b>="table.name=MY_TABLE;column.name=TIMESTAMP"/&gt;
     * </pre>
     *
     * @return a copy of the configuration properties for <code>CacheInvalidator</code> instance.

@@ -73,7 +73,7 @@ public final class BoundedFIFO {
 
    /**
     * Place a {@link LoggingEvent} in the buffer. If the buffer is full then the event is <b>silently dropped</b>. It is
-    * the caller's responsability to make sure that the buffer has free space.
+    * the caller's responsibility to make sure that the buffer has free space.
     */
    public void put(final LoggingEvent o) {
       if (numElements != maxSize) {

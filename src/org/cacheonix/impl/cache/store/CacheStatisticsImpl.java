@@ -256,7 +256,7 @@ public final class CacheStatisticsImpl implements CacheStatistics, Wireable {
    /**
     * Decrements size on disk.
     */
-   public void descrementCountOnDisk() {
+   public void decrementCountOnDisk() {
 
       elementsOnDiskCount--;
    }

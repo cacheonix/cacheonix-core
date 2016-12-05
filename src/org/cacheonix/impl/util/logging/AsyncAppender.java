@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-// Contibutors:  Aaron Greenhouse <aarong@cs.cmu.edu>
+// Contributors:  Aaron Greenhouse <aarong@cs.cmu.edu>
 //               Thomas Tuft Muller <ttm@online.no>
 package org.cacheonix.impl.util.logging;
 
@@ -54,7 +54,7 @@ public final class AsyncAppender extends AppenderSkeleton
    public static final int DEFAULT_BUFFER_SIZE = 128;
 
    /**
-    * Event buffer, also used as monitor to protect itself and discardMap from simulatenous modifications.
+    * Event buffer, also used as monitor to protect itself and discardMap from simultaneous modifications.
     */
    private final List buffer = new ArrayList(5);
 

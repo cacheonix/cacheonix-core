@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-// Contibutors: "Luke Blanshard" <Luke@quiq.com>
+// Contributors: "Luke Blanshard" <Luke@quiq.com>
 //              "Mark DONSZELMANN" <Mark.Donszelmann@cern.ch>
 //              "Muly Oved" <mulyoved@hotmail.com>
 
@@ -62,7 +62,7 @@ public final class BasicConfigurator {
 
 
    /**
-    * Reset the default hierarchy to its defaut. It is equivalent to calling <code>Category.getDefaultHierarchy().resetConfiguration()</code>.
+    * Reset the default hierarchy to its default. It is equivalent to calling <code>Category.getDefaultHierarchy().resetConfiguration()</code>.
     * <p/>
     * See {@link Hierarchy#resetConfiguration()} for more details.
     */
