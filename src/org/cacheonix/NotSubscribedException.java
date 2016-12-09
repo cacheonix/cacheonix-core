@@ -38,12 +38,4 @@ public final class NotSubscribedException extends CacheonixException {
 
       super(message);
    }
-
-
-   /**
-    * Creates a new <code>NotSubscribedException</code>.
-    */
-   public NotSubscribedException() {
-
-   }
 }

@@ -1203,7 +1203,7 @@ public final class BinaryStore implements Wireable {
 
          if (!atLeastOneUnSubscribed) {
 
-            throw new NotSubscribedException();
+            throw new NotSubscribedException("Subscriber ID '" + subscriberIdentity + "' is not subscribed to any events");
          }
       } catch (final RuntimeException e) {
 
