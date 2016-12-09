@@ -707,7 +707,7 @@ public final class ClusterProcessorImpl extends AbstractRequestProcessor impleme
             throw shutdownCause;
          } else {
 
-            throw new ShutdownException();
+            throw new ShutdownException(createShutdownMessage(command, getClass()));
          }
       }
 

@@ -60,6 +60,13 @@ public class SimpleProcessor extends AbstractProcessor {
    }
 
 
+   protected static String createShutdownMessage(final Command command, final Class<? extends SimpleProcessor> aClass) {
+
+      return "Command '" + command.getClass() + "' cannot be enqueued becuase processor '"
+              + aClass + "' has already been shutdown";
+   }
+
+
    /**
     * The exec thread calls this method after pulling a message from the input queue. This method executes the request
     * with the processor's context and notifies the waiter list that a message was received.
@@ -95,7 +102,7 @@ public class SimpleProcessor extends AbstractProcessor {
 
       // Check if already shutdown
       if (isShutdown()) {
-         throw new ShutdownException();
+         throw new ShutdownException(createShutdownMessage(command, getClass()));
       }
 
       // Enqueue

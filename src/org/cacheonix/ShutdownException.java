@@ -22,14 +22,6 @@ public final class ShutdownException extends CacheonixException {
 
 
    /**
-    * Creates a new exception with <code>null</code> as its detail message.  The cause is not initialized, and may
-    * subsequently be initialized by a call to {@link #initCause}.
-    */
-   public ShutdownException() { // NOPMD
-   }
-
-
-   /**
     * Creates a new exception with the specified detail message. The cause is not initialized, and may subsequently be
     * initialized by a call to {@link #initCause}.
     *

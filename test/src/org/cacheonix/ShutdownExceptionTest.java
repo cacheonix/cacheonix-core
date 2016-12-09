@@ -24,15 +24,10 @@ public final class ShutdownExceptionTest extends TestCase {
    private static final String TEST_MESSAGE = "Test message";
 
 
-   public void testDefaultConstructor() {
-
-      assertNotNull(new ShutdownException().toString());
-   }
-
-
    public void testConstructor() {
 
       final ShutdownException exception = new ShutdownException(TEST_MESSAGE);
       assertTrue(exception.getMessage().contains(TEST_MESSAGE));
+      assertNotNull(exception.toString());
    }
 }
