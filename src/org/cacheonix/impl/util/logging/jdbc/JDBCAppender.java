@@ -22,7 +22,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import org.cacheonix.impl.util.IOUtils;
 import org.cacheonix.impl.util.logging.AppenderSkeleton;
 import org.cacheonix.impl.util.logging.PatternLayout;
 import org.cacheonix.impl.util.logging.spi.ErrorCode;
