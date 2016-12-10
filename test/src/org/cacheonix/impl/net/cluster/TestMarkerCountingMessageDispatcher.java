@@ -16,21 +16,21 @@ package org.cacheonix.impl.net.cluster;
 import org.cacheonix.ShutdownException;
 import org.cacheonix.impl.net.processor.Message;
 import org.cacheonix.impl.net.serializer.Wireable;
-import org.cacheonix.impl.net.tcp.RequestDispatcher;
+import org.cacheonix.impl.net.tcp.MessageDispatcher;
 import org.cacheonix.impl.util.exception.ExceptionUtils;
 import org.cacheonix.impl.util.logging.Logger;
 
 /**
  * This message handler just delegates processing to the actual handler. It also counts recevied tokens.
  */
-final class TestMarkerCountingRequestDispatcher implements RequestDispatcher {
+final class TestMarkerCountingMessageDispatcher implements MessageDispatcher {
 
    /**
     * Logger.
     *
     * @noinspection UNUSED_SYMBOL, UnusedDeclaration
     */
-   private static final Logger LOG = Logger.getLogger(TestMarkerCountingRequestDispatcher.class); // NOPMD
+   private static final Logger LOG = Logger.getLogger(TestMarkerCountingMessageDispatcher.class); // NOPMD
 
    private final ClusterProcessor delegate;
 
@@ -39,7 +39,7 @@ final class TestMarkerCountingRequestDispatcher implements RequestDispatcher {
    private int tokenCount = 0;
 
 
-   public TestMarkerCountingRequestDispatcher(final int connectionIndex, final ClusterProcessor processor) {
+   public TestMarkerCountingMessageDispatcher(final int connectionIndex, final ClusterProcessor processor) {
 
       this.connectionIndex = connectionIndex;
       this.delegate = processor;

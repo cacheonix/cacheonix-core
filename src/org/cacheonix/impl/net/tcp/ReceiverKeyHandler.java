@@ -86,14 +86,14 @@ final class ReceiverKeyHandler extends KeyHandler {
    private final ChunkedBuffer chunkedBuffer = new ChunkedBuffer();
 
 
-   private final RequestDispatcher requestDispatcher;
+   private final MessageDispatcher messageDispatcher;
 
 
-   ReceiverKeyHandler(final Selector selector, final RequestDispatcher requestDispatcher, final Clock clock,
+   ReceiverKeyHandler(final Selector selector, final MessageDispatcher messageDispatcher, final Clock clock,
            final long socketTimeoutMillis) {
 
       super(selector, socketTimeoutMillis, clock);
-      this.requestDispatcher = requestDispatcher;
+      this.messageDispatcher = messageDispatcher;
    }
 
 
@@ -127,7 +127,7 @@ final class ReceiverKeyHandler extends KeyHandler {
          if (socketChannel != null) {
 
             // Create receiverKeyHandler
-            final ReceiverKeyHandler receiverKeyHandler = new ReceiverKeyHandler(selector, requestDispatcher, clock,
+            final ReceiverKeyHandler receiverKeyHandler = new ReceiverKeyHandler(selector, messageDispatcher, clock,
                     getNetworkTimeoutMillis());
 
             // Configure channel for non-blocking operation
@@ -278,7 +278,7 @@ final class ReceiverKeyHandler extends KeyHandler {
                         // Dispatch
 //                        //noinspection ControlFlowStatementWithoutBraces
 //                        if (LOG.isDebugEnabled()) LOG.debug("Received: " + message); // NOPMD
-                        requestDispatcher.dispatch(message);
+                        messageDispatcher.dispatch(message);
 
                         // Begin reading new frame
                         state = READING_SIGNATURE;

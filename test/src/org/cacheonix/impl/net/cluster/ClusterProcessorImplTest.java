@@ -97,7 +97,7 @@ public final class ClusterProcessorImplTest extends CacheonixTestCase {
 
    private final List<Receiver> servers = new ArrayList<Receiver>(PROCESS_COUNT);
 
-   private final List<TestMarkerCountingRequestDispatcher> messageHandlers = new ArrayList<TestMarkerCountingRequestDispatcher>(
+   private final List<TestMarkerCountingMessageDispatcher> messageHandlers = new ArrayList<TestMarkerCountingMessageDispatcher>(
            PROCESS_COUNT);
 
    private final List<TestMulticastMessageListener> mcastMessageListeners = new ArrayList<TestMulticastMessageListener>(
@@ -182,7 +182,7 @@ public final class ClusterProcessorImplTest extends CacheonixTestCase {
       clusterProcessors.add(newProcessor);
 
       // Create TCP server that handles TCP communications for multicast connection
-      final TestMarkerCountingRequestDispatcher messageHandler = new TestMarkerCountingRequestDispatcher(
+      final TestMarkerCountingMessageDispatcher messageHandler = new TestMarkerCountingMessageDispatcher(
               joinProcessIndex, getClusterProcessor(joinProcessIndex));
       messageHandlers.add(messageHandler);
 
@@ -245,7 +245,7 @@ public final class ClusterProcessorImplTest extends CacheonixTestCase {
       }
 
       // Assert token counter
-      final TestMarkerCountingRequestDispatcher handler = getHandler(joinProcessIndex);
+      final TestMarkerCountingMessageDispatcher handler = getHandler(joinProcessIndex);
       final int tokenCount = handler.getMarkerCount();
       LOG.debug(
               "tokenCount: " + tokenCount + " for joining process index: " + joinProcessIndex + ", handler index: " + handler
@@ -379,7 +379,7 @@ public final class ClusterProcessorImplTest extends CacheonixTestCase {
          sender.startup();
 
          // Create TCP server that handle TCP communications
-         final TestMarkerCountingRequestDispatcher messageHandler = new TestMarkerCountingRequestDispatcher(i,
+         final TestMarkerCountingMessageDispatcher messageHandler = new TestMarkerCountingMessageDispatcher(i,
                  clusterProcessors.get(i));
          messageHandlers.add(messageHandler);
          final Receiver receiver = new Receiver(clock, LOCALHOST, nodeAddress.getTcpPort(), messageHandler,
@@ -485,7 +485,7 @@ public final class ClusterProcessorImplTest extends CacheonixTestCase {
    }
 
 
-   private TestMarkerCountingRequestDispatcher getHandler(final int i) {
+   private TestMarkerCountingMessageDispatcher getHandler(final int i) {
 
       return messageHandlers.get(i);
    }

@@ -314,7 +314,7 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
          final String tcpAddress = tcpInetAddress == null ? "" : StringUtils.toString(tcpInetAddress);
          final int tcpPort = tcpListenerConfiguration.getPort();
 
-         final RequestDispatcherImpl requestDispatcher = new RequestDispatcherImpl(router);
+         final MessageDispatcherImpl requestDispatcher = new MessageDispatcherImpl(router);
          receiver = new Receiver(getClock(), tcpAddress, tcpPort, requestDispatcher, socketTimeoutMillis,
                  selectorTimeoutMillis);
          receiver.startup();

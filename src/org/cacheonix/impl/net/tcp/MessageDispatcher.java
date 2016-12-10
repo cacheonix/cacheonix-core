@@ -22,7 +22,7 @@ import org.cacheonix.impl.net.processor.Message;
  * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Mar 27, 2008 11:08:40 AM
  */
-public interface RequestDispatcher {
+public interface MessageDispatcher {
 
    void dispatch(final Message message) throws InterruptedException;
 }

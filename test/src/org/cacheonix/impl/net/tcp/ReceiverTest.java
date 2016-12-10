@@ -142,7 +142,7 @@ public final class ReceiverTest extends CacheonixTestCase {
       serializer = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
 
       // Initialize server
-      final RequestDispatcher requestDispatcher = new RequestDispatcher() {
+      final MessageDispatcher messageDispatcher = new MessageDispatcher() {
 
          public void dispatch(final Message message) {
 
@@ -160,7 +160,8 @@ public final class ReceiverTest extends CacheonixTestCase {
             }
          }
       };
-      server = new Receiver(getClock(), LOCALHOST, PORT, requestDispatcher, SOCKET_TIMEOUT_MILLIS, SELECTOR_TIMEOUT_MILLIS);
+      server = new Receiver(getClock(), LOCALHOST, PORT, messageDispatcher, SOCKET_TIMEOUT_MILLIS,
+              SELECTOR_TIMEOUT_MILLIS);
       server.startup();
    }
 

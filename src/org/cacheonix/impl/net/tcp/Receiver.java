@@ -94,7 +94,7 @@ public final class Receiver implements Shutdownable {
     * @param clock                 the cluster clock.
     * @param address               an IP address this server accepts requests at
     * @param port                  a TCP tcpPort this server accepts requests at
-    * @param requestDispatcher     the request dispatcher.
+    * @param messageDispatcher     the request dispatcher.
     * @param socketTimeoutMillis   a network timeout in milliseconds.
     * @param selectorTimeoutMillis a time the selector should block for while waiting for a channel to become ready,
     *                              must be greater than zero.
@@ -102,7 +102,7 @@ public final class Receiver implements Shutdownable {
     * @noinspection SocketOpenedButNotSafelyClosed, OverlyBroadCatchBlock
     */
    public Receiver(final Clock clock, final String address, final int port,
-           final RequestDispatcher requestDispatcher, final long socketTimeoutMillis,
+           final MessageDispatcher messageDispatcher, final long socketTimeoutMillis,
            final long selectorTimeoutMillis) throws IOException {
 
       this.endpoint = createEndpoint(address, port);
@@ -117,7 +117,7 @@ public final class Receiver implements Shutdownable {
       try {
 
          // Create receiver key handler
-         final ReceiverKeyHandler receiverKeyHandler = new ReceiverKeyHandler(selector, requestDispatcher, clock,
+         final ReceiverKeyHandler receiverKeyHandler = new ReceiverKeyHandler(selector, messageDispatcher, clock,
                  socketTimeoutMillis);
 
          // Configure it as non-locking

@@ -16,7 +16,7 @@ package org.cacheonix.impl;
 import org.cacheonix.ShutdownException;
 import org.cacheonix.impl.net.processor.Message;
 import org.cacheonix.impl.net.processor.Router;
-import org.cacheonix.impl.net.tcp.RequestDispatcher;
+import org.cacheonix.impl.net.tcp.MessageDispatcher;
 import org.cacheonix.impl.util.exception.ExceptionUtils;
 import org.cacheonix.impl.util.logging.Logger;
 
@@ -25,17 +25,17 @@ import org.cacheonix.impl.util.logging.Logger;
  *
  * @noinspection NonStaticInnerClassInSecureContext
  */
-final class RequestDispatcherImpl implements RequestDispatcher {
+final class MessageDispatcherImpl implements MessageDispatcher {
 
    /**
     * @noinspection UNUSED_SYMBOL, UnusedDeclaration
     */
-   private static final Logger LOG = Logger.getLogger(RequestDispatcherImpl.class); // NOPMD
+   private static final Logger LOG = Logger.getLogger(MessageDispatcherImpl.class); // NOPMD
 
    private final Router router;
 
 
-   RequestDispatcherImpl(final Router router) {
+   MessageDispatcherImpl(final Router router) {
 
       this.router = router;
    }
