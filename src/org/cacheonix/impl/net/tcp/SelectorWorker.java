@@ -25,7 +25,7 @@ import org.cacheonix.impl.util.exception.ExceptionUtils;
 import org.cacheonix.impl.util.logging.Logger;
 
 /**
- * A runner of a channel selection cycle.
+ * A Runnable that wait for a channel selector to become ready and processes selection.
  */
 class SelectorWorker implements Runnable {
 
@@ -77,11 +77,11 @@ class SelectorWorker implements Runnable {
 
          while (!Thread.currentThread().isInterrupted()) {
 
-            // Wait for channel readiness
-            selector.select(selectorTimeoutMillis);
+            // Get the number of keys, possibly zero, whose ready-operation sets were updated.
+            final int selectedKeyCount = selector.select(selectorTimeoutMillis);
 
             // Process selection
-            processSelection();
+            processSelection(selectedKeyCount);
          }
       } catch (final InterruptedException e) {
 
@@ -104,34 +104,31 @@ class SelectorWorker implements Runnable {
    /**
     * Processes the selected keys.
     *
+    * @param selectedKeyCount the number of keys, possibly zero, whose ready-operation sets were updated.
     * @throws InterruptedException         if the processor thread was interrupted.
     * @throws UnrecoverableAcceptException if an unrecoverable error occurred.
     */
    @SuppressWarnings("TooBroadScope")
-   protected void processSelection() throws InterruptedException, UnrecoverableAcceptException {
+   protected void processSelection(final int selectedKeyCount) throws InterruptedException,
+           UnrecoverableAcceptException {
 
-      //
-      // Get keys
-      //
+      final HashSet<SelectionKey> idleKeys;
+      if (selectedKeyCount <= 0) {
 
-      final Set<SelectionKey> selectedKeys = selector.selectedKeys();
-      final Set<SelectionKey> selectorKeys = selector.keys();
+         // Optimization: no keys selected, idle keys are all selector keys
 
-      //
-      // Calculate idle keys
-      //
-      HashSet<SelectionKey> idleKeys = null;
-      if (selectorKeys.size() != selectedKeys.size()) {
+         idleKeys = new HashSet<SelectionKey>(selector.keys());
+      } else {
 
+         // Get keys
+         final Set<SelectionKey> selectedKeys = selector.selectedKeys();
+         final Set<SelectionKey> selectorKeys = selector.keys();
+
+         // Calculate idle keys
          idleKeys = new HashSet<SelectionKey>(selectorKeys);
          idleKeys.removeAll(selectedKeys);
-      }
 
-      //
-      // Handle ready keys to clear the buffers
-      //
-      if (!selectedKeys.isEmpty()) {
-
+         // Process ready keys to clear the buffers
          for (final Iterator<SelectionKey> iterator = selectedKeys.iterator(); iterator.hasNext(); ) {
 
             // Get next key
@@ -152,11 +149,12 @@ class SelectorWorker implements Runnable {
          }
       }
 
+
       //
       // Handle idle keys
       //
 
-      if (idleKeys != null && !idleKeys.isEmpty()) {
+      if (!idleKeys.isEmpty()) {
 
          final InterruptedException[] interrupted = new InterruptedException[1];
          idleKeys.forEach(new ObjectProcedure<SelectionKey>() {

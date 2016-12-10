@@ -82,14 +82,15 @@ final class SenderSelectorWorker extends SelectorWorker {
     * <p/>
     * This implementation pre-processes selection call by dispatching messages in the input queue to corresponding
     * message senders.
+    * @param selectedKeyCount
     */
-   protected final void processSelection() throws InterruptedException {
+   protected final void processSelection(final int selectedKeyCount) throws InterruptedException {
 
       // Dispatch messages from the input queue to senders.
       dispatchToSenders();
 
       // Process selection
-      super.processSelection();
+      super.processSelection(selectedKeyCount);
    }
 
 
