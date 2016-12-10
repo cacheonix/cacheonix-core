@@ -27,7 +27,7 @@ import org.cacheonix.impl.util.logging.Logger;
 /**
  * A runner of a channel selection cycle.
  */
-public class SelectorWorker implements Runnable {
+class SelectorWorker implements Runnable {
 
    /**
     * Logger.
