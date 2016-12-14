@@ -273,12 +273,6 @@ public final class BucketOwnershipAssignment implements Wireable {
    }
 
 
-   public Set<ClusterNodeAddress> getBucketOwnersAddresses(final int storageNumber) {
-
-      return bucketOwners[storageNumber].keySet();
-   }
-
-
    /**
     * Returns number of replicas.
     *
@@ -326,25 +320,6 @@ public final class BucketOwnershipAssignment implements Wireable {
       for (final Entry<ClusterNodeAddress, BucketOwner> entry : bucketOwners[storageNumber].entrySet()) {
          final BucketOwner bucketOwner = entry.getValue();
          result = Math.max(result, bucketOwner.ownedBucketCount());
-      }
-      return result;
-   }
-
-
-   /**
-    * Calculates the minimum number of buckets owned by an owner in a given storage.
-    *
-    * @param storageNumber storage number.
-    * @return minimum number of buckets owned by an owner in a given storage.
-    */
-   int calculateMinOwnedBucketCount(final byte storageNumber) {
-
-      final Iterator<Entry<ClusterNodeAddress, BucketOwner>> iter = bucketOwners[storageNumber].entrySet().iterator();
-      int result = iter.next().getValue().ownedBucketCount();
-      while (iter.hasNext()) {
-         final Entry<ClusterNodeAddress, BucketOwner> entry = iter.next();
-         final BucketOwner bucketOwner = entry.getValue();
-         result = Math.min(result, bucketOwner.ownedBucketCount());
       }
       return result;
    }

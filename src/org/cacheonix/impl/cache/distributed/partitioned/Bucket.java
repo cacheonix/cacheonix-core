@@ -22,7 +22,6 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import org.cacheonix.CacheonixException;
@@ -281,12 +280,6 @@ public final class Bucket implements Wireable {
    public int size() {
 
       return keyStore.size();
-   }
-
-
-   public Lock getWriteLock() {
-
-      return lock.writeLock();
    }
 
 

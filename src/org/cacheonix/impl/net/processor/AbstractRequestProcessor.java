@@ -45,11 +45,6 @@ public abstract class AbstractRequestProcessor extends SimpleProcessor implement
    private static final Logger LOG = Logger.getLogger(AbstractRequestProcessor.class); // NOPMD
 
    /**
-    * Stateless no-waiter waiter.
-    */
-   protected static final NowaitWaiter NOWAIT_WAITER = new NowaitWaiter();
-
-   /**
     * Process ID of this cluster member.
     */
    private final ClusterNodeAddress address;

@@ -31,14 +31,6 @@ public final class AssignBucketMessage extends LocalCacheMessage {
 
 
    /**
-    * Required by Wireable.
-    */
-   public AssignBucketMessage() {
-
-   }
-
-
-   /**
     * Creates a new AssignBucketMessage.
     *
     * @param cacheName     a cache name.

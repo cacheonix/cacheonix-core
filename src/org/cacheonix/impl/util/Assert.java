@@ -15,7 +15,6 @@ package org.cacheonix.impl.util;
 
 import java.text.MessageFormat;
 
-import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.util.logging.Logger;
 
 /**
@@ -81,28 +80,6 @@ public final class Assert {
    }
 
 
-   public static void assertNull(final Object value, final String description, final Object[] parameters) {
-
-      if (value != null) {
-
-         final String[] stringParameters = new String[parameters.length];
-         for (int i = 0; i < parameters.length; i++) {
-            stringParameters[i] = safeToString(parameters[i]);
-
-         }
-         throw new AssertionException(MessageFormat.format(description, stringParameters));
-      }
-   }
-
-
-   public static void assertNull(final Object value, final String description) {
-
-      if (value != null) {
-         throw new AssertionException(description);
-      }
-   }
-
-
    public static void assertNotNull(final Object value, final String description) {
 
       if (value == null) {
@@ -157,15 +134,6 @@ public final class Assert {
    }
 
 
-   public static void assertNotNull(final Object value, final String description, final int param1,
-           final Object param2) {
-
-      if (value == null) {
-         throw new AssertionException(MessageFormat.format(description, Integer.valueOf(param1), safeToString(param2)));
-      }
-   }
-
-
    public static void assertTrue(final boolean value, final String description, final int parameter) {
 
       if (!value) {
@@ -183,37 +151,11 @@ public final class Assert {
    }
 
 
-   public static void assertNull(final Object object, final String description, final Object param1,
-           final Object param2) {
-
-      if (object != null) {
-         throw new AssertionException(MessageFormat.format(description, safeToString(param1), safeToString(param2)));
-      }
-   }
-
-
    public static void assertEquals(final byte expected, final byte actual) {
 
       if (expected != actual) {
          throw new AssertionException(MessageFormat.format("Expected: {0}, actual {1}",
                  Byte.toString(expected), Byte.toString(actual)));
-      }
-   }
-
-
-   public static void assertEquals(final ClusterNodeAddress a1, final ClusterNodeAddress a2,
-           final String description) throws AssertionException {
-
-      if (a1 == null) {
-         throw new AssertionException("First address is null");
-      }
-
-      if (a2 == null) {
-         throw new AssertionException("Second address is null");
-      }
-
-      if (!a1.equals(a2)) {
-         throw new AssertionException(MessageFormat.format(description, a1, a2));
       }
    }
 
@@ -237,16 +179,6 @@ public final class Assert {
       }
 
       throw new AssertionException(MessageFormat.format(description, param1, param2));
-   }
-
-
-   public static void assertNull(final Object object, final String message, final Object m1, final Object m2,
-           final Object m3) {
-
-      if (object != null) {
-         throw new AssertionException(MessageFormat.format(message, safeToString(m1), safeToString(m2), safeToString(m3)
-         ));
-      }
    }
 
 

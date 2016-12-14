@@ -396,12 +396,6 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
    }
 
 
-   public PrefetchCommand getPrefetchCommand() {
-
-      return prefetchCommand;
-   }
-
-
    public void cancelPrefetch() {
 
       if (prefetchCommand != null) {

@@ -75,12 +75,6 @@ public final class BucketTransferRejectedAnnouncement extends GroupMessage {
    }
 
 
-   public byte getSourceStorageNumber() {
-
-      return sourceStorageNumber;
-   }
-
-
    /**
     * Sets bucket numbers.
     *
@@ -93,27 +87,9 @@ public final class BucketTransferRejectedAnnouncement extends GroupMessage {
    }
 
 
-   public ClusterNodeAddress getPreviousOwner() {
-
-      return previousOwner;
-   }
-
-
-   public ClusterNodeAddress getNewOwner() {
-
-      return newOwner;
-   }
-
-
    public void setSourceStorageNumber(final byte sourceStorageNumber) {
 
       this.sourceStorageNumber = sourceStorageNumber;
-   }
-
-
-   public byte getDestinationStorageNumber() {
-
-      return destinationStorageNumber;
    }
 
 

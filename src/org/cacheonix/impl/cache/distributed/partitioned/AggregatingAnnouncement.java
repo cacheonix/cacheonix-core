@@ -297,12 +297,6 @@ public abstract class AggregatingAnnouncement extends Request implements Prepare
    protected abstract Object aggregate(final List<Response> partialResponses);
 
 
-   /**
-    * Clears unprocessed data that this request still holds.
-    */
-   abstract void clear();
-
-
    public final Response createResponse(final int resultCode) {
 
       final AggregatingAnnouncementResponse response = new AggregatingAnnouncementResponse();
