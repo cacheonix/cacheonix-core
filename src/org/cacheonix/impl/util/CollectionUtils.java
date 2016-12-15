@@ -15,14 +15,11 @@ package org.cacheonix.impl.util;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import java.util.Set;
 
 import org.cacheonix.impl.util.array.IntArrayList;
-import org.cacheonix.impl.util.array.IntHashSet;
 import org.cacheonix.impl.util.logging.Logger;
 
 /**
@@ -81,38 +78,6 @@ public final class CollectionUtils {
    }
 
 
-   /**
-    * Returns <code>true</code> if both lists are the same?
-    *
-    * @param set1
-    * @param set2
-    * @return
-    */
-   @SuppressWarnings("ObjectEquality")
-   public static boolean same(final Set set1, final Set set2) {
-
-      if (set1 == null || set2 == null) {
-         return false;
-      }
-      if (set1.size() != set2.size()) {
-         return false;
-      }
-      if (set1 == set2) {
-         return true;
-      }
-      final Iterator iter1 = set1.iterator();
-      final Iterator iter2 = set2.iterator();
-      while (iter1.hasNext()) {
-         final Object o1 = iter1.next();
-         final Object o2 = iter2.next();
-         if (!o1.equals(o2)) {
-            return false;
-         }
-      }
-      return true;
-   }
-
-
    @SuppressWarnings("UseOfPropertiesAsHashtable")
    public static Properties copyProperties(final Properties source) {
 
@@ -143,20 +108,6 @@ public final class CollectionUtils {
 
 
    /**
-    * Creates a list with one object.
-    *
-    * @param i to add to the list
-    * @return list with one object.
-    */
-   public static IntArrayList createIntArrayList(final int i) {
-
-      final IntArrayList list = new IntArrayList(1);
-      list.add(i);
-      return list;
-   }
-
-
-   /**
     * Returns <code>true</code> if a map is null or empty.
     *
     * @param map the map to check for emptiness.
@@ -177,38 +128,6 @@ public final class CollectionUtils {
    public static boolean isEmpty(final IntArrayList collection) {
 
       return collection == null || collection.isEmpty();
-   }
-
-
-   public static IntArrayList createIntArrayList(final Collection<Integer> collection) {
-
-      //
-      if (isEmpty(collection)) {
-
-         return new IntArrayList(0);
-      }
-
-      //
-      final IntArrayList result = new IntArrayList(collection.size());
-      for (final Integer i : collection) {
-
-         result.add(i);
-      }
-
-      return result;
-   }
-
-
-   public static IntHashSet toIntHashSet(final IntArrayList list) {
-
-      if (isEmpty(list)) {
-
-         return new IntHashSet(0);
-      }
-
-      final IntHashSet result = new IntHashSet();
-      result.addAll(list.toNativeArray());
-      return result;
    }
 
 

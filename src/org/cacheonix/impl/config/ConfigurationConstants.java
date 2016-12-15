@@ -51,12 +51,6 @@ public final class ConfigurationConstants {
 
 
    /**
-    * Lock unlock if not set.
-    */
-   public static final long DEFAULT_UNLOCK_TIMEOUT_MILLIS = StringUtils.readTime("30s");
-
-
-   /**
     * Fall-back configuration resource.
     */
    public static final String FALLBACK_CACHEONIX_XML_RESOURCE = "/META-INF/cacheonix-config.xml";
@@ -82,11 +76,6 @@ public final class ConfigurationConstants {
     * Storage file prefix.
     */
    public static final String STORAGE_FILE_PREFIX = "storage-";
-
-   /**
-    * Prefix for internal local cache.
-    */
-   public static final String LOCAL_CACHE_NAME_SUFFIX = "-local"; // NOPMD
 
    public static final String JAVA_IO_TEMP = System.getProperty(SystemProperty.JAVA_IO_TEMP, ".");
 
