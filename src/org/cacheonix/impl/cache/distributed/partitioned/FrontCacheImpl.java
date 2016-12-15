@@ -68,7 +68,7 @@ public final class FrontCacheImpl implements FrontCache {
    private final BinaryStoreContext binaryStoreContext;
 
 
-   public FrontCacheImpl(final Clock clock, final FrontCacheConfiguration frontCacheConfiguration) {
+   FrontCacheImpl(final Clock clock, final FrontCacheConfiguration frontCacheConfiguration) {
 
       // Basic fields
       this.clock = clock;
