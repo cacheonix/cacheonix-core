@@ -39,17 +39,6 @@ public final class ListenerConfiguration extends DocumentReader {
    }
 
 
-   /**
-    * Sets the value of field 'tcp'.
-    *
-    * @param tcp the value of field 'tcp'.
-    */
-   public void setTcp(final TCPListenerConfiguration tcp) {
-
-      this.tcp = tcp;
-   }
-
-
    protected void readNode(final String nodeName, final Node childNode) {
 
       if ("tcp".equals(nodeName)) {

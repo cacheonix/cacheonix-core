@@ -60,17 +60,6 @@ public final class LeaseConfiguration extends DocumentReader {
    }
 
 
-   /**
-    * Sets the value of field 'leaseTime'.
-    *
-    * @param leaseTimeMillis the value of field 'leaseTime'.
-    */
-   public void setLeaseTimeMillis(final long leaseTimeMillis) {
-
-      this.leaseTimeMillis = leaseTimeMillis;
-   }
-
-
    protected void readNode(final String nodeName, final Node childNode) {
 
       // This element doesn't have child elements yet

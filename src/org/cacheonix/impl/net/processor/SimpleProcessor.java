@@ -82,16 +82,6 @@ public class SimpleProcessor extends AbstractProcessor {
 
 
    /**
-    * @return an input queue.
-    * @noinspection ReturnOfCollectionOrArrayField
-    */
-   protected final BlockingQueue<Command> getInputQueue() {
-
-      return inputQueue;
-   }
-
-
-   /**
     * Enqueues the command for execution by this processor.
     *
     * @param command the command to enqueue.

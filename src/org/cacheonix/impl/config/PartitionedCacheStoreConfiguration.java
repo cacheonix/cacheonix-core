@@ -82,28 +82,6 @@ public final class PartitionedCacheStoreConfiguration extends CacheStoreConfigur
    }
 
 
-   /**
-    * Sets the value of field 'coherence'.
-    *
-    * @param coherence the value of field 'coherence'.
-    */
-   public void setCoherence(final CoherenceConfiguration coherence) {
-
-      this.coherence = coherence;
-   }
-
-
-   /**
-    * Sets the value of field 'replication'.
-    *
-    * @param replication the value of field 'replication'.
-    */
-   public void setReplication(final ReplicationConfiguration replication) {
-
-      this.replication = replication;
-   }
-
-
    protected void readNode(final String nodeName, final Node childNode) {
 
       if ("replication".equals(nodeName)) {

@@ -137,27 +137,6 @@ public abstract class KeySetAnnouncement extends AggregatingAnnouncement {
 
 
    /**
-    * Calculates a total number of keys stored in the key set.
-    *
-    * @return the total number of keys stored in the key set.
-    */
-   protected final int getKeysSize() {
-
-      final int[] size = {0};
-
-      final IntObjectHashMap<HashSet<Binary>> hashSetIntObjectHashMap = getKeySet();
-      hashSetIntObjectHashMap.forEachValue(new ObjectProcedure<HashSet<Binary>>() {
-
-         public boolean execute(final HashSet<Binary> keys) { // NOPMD
-            size[0] += keys.size();
-            return true;
-         }
-      });
-      return size[0];
-   }
-
-
-   /**
     * {@inheritDoc}
     */
    public void execute() throws InterruptedException {

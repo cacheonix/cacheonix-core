@@ -228,7 +228,7 @@ public final class RemoveEntryModifiedSubscriberRequest extends LocalCacheReques
 
       public Wireable create() {
 
-         return new RemoveRemoteEntryModifiedSubscriberMessage();
+         return new RemoveEntryModifiedSubscriberRequest();
       }
    }
 }

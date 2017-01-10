@@ -135,17 +135,6 @@ public final class RecoveryMarker extends MarkerRequest {
    }
 
 
-   /**
-    * Returns a new cluster UUID to be used when recovery is complete.
-    *
-    * @return the new cluster UUID to be used when recovery is complete.
-    */
-   public UUID getNewClusterUUID() {
-
-      return newClusterUUID;
-   }
-
-
    public void validate() throws InvalidMessageException {
 
       super.validate();

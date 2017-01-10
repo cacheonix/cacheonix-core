@@ -13,8 +13,6 @@
  */
 package org.cacheonix.locks;
 
-import java.io.Serializable;
-
 /**
  * A <tt>ReadWriteLock</tt> maintains a pair of associated {@link Lock locks}, one for read-only operations and one for
  * writing. The {@link #readLock read lock} may be held simultaneously by multiple reader threads, so long as there are
@@ -98,10 +96,4 @@ public interface ReadWriteLock extends java.util.concurrent.locks.ReadWriteLock 
    Lock writeLock();
 
 
-   /**
-    * Returns a lock key.
-    *
-    * @return the lock key.
-    */
-   Serializable getLockKey();
 }

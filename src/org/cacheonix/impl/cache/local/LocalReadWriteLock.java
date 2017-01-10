@@ -55,12 +55,6 @@ public final class LocalReadWriteLock implements ReadWriteLock {
    }
 
 
-   public Serializable getLockKey() {
-
-      return lockKey;
-   }
-
-
    public String toString() {
 
       return "LocalReadWriteLock{" +

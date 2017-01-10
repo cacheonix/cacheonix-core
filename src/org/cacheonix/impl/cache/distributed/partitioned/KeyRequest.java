@@ -124,19 +124,6 @@ public abstract class KeyRequest extends CacheDataRequest implements Prepareable
    }
 
 
-   /**
-    * Storage number to that the request is addressed.
-    *
-    * @return Storage number to that the request is addressed. The storage number can be zero, which means that this is
-    *         a request to a primary bucket owner. It can be between one and the number of replicas which means that
-    *         this is a request to a replica owner.
-    */
-   public int getStorageNumber() {
-
-      return storageNumber;
-   }
-
-
    public final void setKey(final Binary key) {
 
       this.key = key;
@@ -146,19 +133,6 @@ public abstract class KeyRequest extends CacheDataRequest implements Prepareable
    public final Binary getKey() {
 
       return key;
-   }
-
-
-   /**
-    * Returns a bucket number for the request key.
-    *
-    * @return the bucket number for the request key. The bucket number is initialized when the request is prepared which
-    *         occurs at <code>prepare()</code> which is called right after the requests is posted.
-    * @see #prepare()
-    */
-   public final Integer getBucketNumber() {
-
-      return bucketNumber;
    }
 
 

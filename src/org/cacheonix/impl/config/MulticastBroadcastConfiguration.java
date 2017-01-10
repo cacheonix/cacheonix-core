@@ -153,28 +153,6 @@ public final class MulticastBroadcastConfiguration extends DocumentReader {
 
 
    /**
-    * Sets the value of field 'multicastAddress'.
-    *
-    * @param multicastAddress the value of field 'multicastAddress'
-    */
-   public void setMulticastAddress(final InetAddress multicastAddress) {
-
-      this.multicastAddress = multicastAddress;
-   }
-
-
-   /**
-    * Sets the multicast port.
-    *
-    * @param multicastPort the multicast port.
-    */
-   public void setMulticastPort(final int multicastPort) {
-
-      this.multicastPort = multicastPort;
-   }
-
-
-   /**
     * Sets the value of field 'multicastTTL'. The field 'multicastTTL' has the following description: Multicast TTL
     * defines multicast TTL that is used to control how far the multicast messages can propagate.
     * <p/>

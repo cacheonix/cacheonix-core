@@ -38,17 +38,6 @@ public final class ReplicationConfiguration extends DocumentReader {
    }
 
 
-   /**
-    * Sets the number of backup copies to be made for each element of this cache.
-    *
-    * @param replicaCount the number of backup copies to be made for each element of this cache.
-    */
-   public void setReplicaCount(final int replicaCount) {
-
-      this.replicaCount = replicaCount;
-   }
-
-
    protected void readNode(final String nodeName, final Node childNode) {
 
       // This element doesn't have child elements yet

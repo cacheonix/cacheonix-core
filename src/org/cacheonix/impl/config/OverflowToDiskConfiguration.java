@@ -39,17 +39,6 @@ public final class OverflowToDiskConfiguration extends DocumentReader {
    }
 
 
-   /**
-    * Sets the mandatory size of the disk storage cache in bytes.
-    *
-    * @param maxOverflowBytes mandatory size of the disk storage cache in bytes.
-    */
-   public void setMaxOverflowBytes(final long maxOverflowBytes) {
-
-      this.maxOverflowBytes = maxOverflowBytes;
-   }
-
-
    protected void readNode(final String nodeName, final Node childNode) {
 
       // This element doesn't have child elements yet

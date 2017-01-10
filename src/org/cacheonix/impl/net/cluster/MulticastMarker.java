@@ -168,18 +168,6 @@ public final class MulticastMarker extends OperationalMarker {
    }
 
 
-   public Long getLeaveSeqNum() {
-
-      return leaveSeqNum;
-   }
-
-
-   public Long getJoinSeqNum() {
-
-      return joinSeqNum;
-   }
-
-
    void setJoinSeqNum(final Long joinSeqNum) {
 
       this.joinSeqNum = joinSeqNum;

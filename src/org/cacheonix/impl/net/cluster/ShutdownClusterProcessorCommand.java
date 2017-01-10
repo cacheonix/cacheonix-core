@@ -54,14 +54,4 @@ public final class ShutdownClusterProcessorCommand implements Command {
    }
 
 
-   /**
-    * Sets the shutdown reason. If set, attempts to enqueue messages to the shutdown cluster processor will throw an
-    * exception.
-    *
-    * @param shutdownReason a shutdown reason.
-    */
-   public void setShutdownCause(final CacheonixException shutdownReason) {
-
-      this.shutdownCause = shutdownReason;
-   }
 }

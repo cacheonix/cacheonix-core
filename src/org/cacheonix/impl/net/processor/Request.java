@@ -80,17 +80,6 @@ public abstract class Request extends Message {
 
 
    /**
-    * This method should be only used for copying the message.
-    *
-    * @param uuid a message UUID to set.
-    */
-   protected final void setUuid(final UUID uuid) {
-
-      this.uuid = uuid;
-   }
-
-
-   /**
     * @return <code>true</code> if the receiver has to acknowledge the receiving by sending responce with a result code.
     */
    public final boolean isResponseRequired() {
@@ -201,17 +190,6 @@ public abstract class Request extends Message {
          waiter = createWaiter();
       }
       return waiter;
-   }
-
-
-   /**
-    * Returns true if this request already has a waiter set.
-    *
-    * @return true if this request already has a waiter set.
-    */
-   public final boolean isWaiterSet() {
-
-      return waiter != null;
    }
 
 

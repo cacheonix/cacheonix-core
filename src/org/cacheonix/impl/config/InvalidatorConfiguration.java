@@ -14,7 +14,6 @@
 package org.cacheonix.impl.config;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.w3c.dom.Attr;
@@ -44,27 +43,6 @@ public final class InvalidatorConfiguration extends DocumentReader {
 
 
    /**
-    * @param vParam
-    * @throws IndexOutOfBoundsException if the index given is outside the bounds of the collection
-    */
-   public void addParam(final PropertyConfiguration vParam) throws IndexOutOfBoundsException {
-
-      this.paramList.add(vParam);
-   }
-
-
-   /**
-    * @param index
-    * @param vParam
-    * @throws IndexOutOfBoundsException if the index given is outside the bounds of the collection
-    */
-   public void addParam(final int index, final PropertyConfiguration vParam) throws IndexOutOfBoundsException {
-
-      this.paramList.add(index, vParam);
-   }
-
-
-   /**
     * Returns a copy of the configuration properties for the cache invalidator.
     *
     * @return a copy of the configuration properties for the cache invalidator.
@@ -83,115 +61,6 @@ public final class InvalidatorConfiguration extends DocumentReader {
    public String getClassName() {
 
       return this.className;
-   }
-
-
-   /**
-    * Method getParam.
-    *
-    * @param index
-    * @return the value of the org.cacheonix.impl.configuration.PropertyConfiguration at the given index
-    * @throws IndexOutOfBoundsException if the index given is outside the bounds of the collection
-    */
-   public PropertyConfiguration getParam(final int index) throws IndexOutOfBoundsException {
-      // check bounds for index
-      if (index < 0 || index >= this.paramList.size()) {
-         throw new IndexOutOfBoundsException("getParam: Index value '" + index + "' not in range [0.." + (this.paramList.size() - 1) + ']');
-      }
-
-      return paramList.get(index);
-   }
-
-
-   /**
-    * Returns a copy of the configuration properties for the cache invalidator.
-    *
-    * @return the copy of the configuration properties for the cache invalidator.
-    */
-   public PropertyConfiguration[] getParam() {
-
-      final PropertyConfiguration[] array = new PropertyConfiguration[0];
-      return this.paramList.toArray(array);
-   }
-
-
-   /**
-    * Method getParamCount.
-    *
-    * @return the size of this collection
-    */
-   public int getParamCount() {
-
-      return this.paramList.size();
-   }
-
-
-   /**
-    */
-   public void removeAllParam() {
-
-      this.paramList.clear();
-   }
-
-
-   /**
-    * Method removeParam.
-    *
-    * @param vParam
-    * @return true if the object was removed from the collection.
-    */
-   public boolean removeParam(final PropertyConfiguration vParam) {
-
-      return paramList.remove(vParam);
-   }
-
-
-   /**
-    * Method removeParamAt.
-    *
-    * @param index
-    * @return the element removed from the collection
-    */
-   public PropertyConfiguration removeParamAt(final int index) {
-
-      return this.paramList.remove(index);
-   }
-
-
-   /**
-    * Sets the name of the cache invalidator class.
-    *
-    * @param className the name of the cache invalidator class.
-    */
-   public void setClassName(final String className) {
-
-      this.className = className;
-   }
-
-
-   /**
-    * @param index
-    * @param vParam
-    * @throws IndexOutOfBoundsException if the index given is outside the bounds of the collection
-    */
-   public void setParam(final int index, final PropertyConfiguration vParam) throws IndexOutOfBoundsException {
-      // check bounds for index
-      if (index < 0 || index >= this.paramList.size()) {
-         throw new IndexOutOfBoundsException("setParam: Index value '" + index + "' not in range [0.." + (this.paramList.size() - 1) + ']');
-      }
-
-      this.paramList.set(index, vParam);
-   }
-
-
-   /**
-    * @param vParamArray
-    */
-   public void setParam(final PropertyConfiguration[] vParamArray) {
-      //-- copy array
-      paramList.clear();
-
-      this.paramList.addAll(Arrays.asList(vParamArray));
    }
 
 

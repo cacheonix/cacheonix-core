@@ -515,17 +515,6 @@ public final class Group implements Wireable {
    }
 
 
-   /**
-    * Return version of this group.
-    *
-    * @return version of this group.
-    */
-   public long getVersion() {
-
-      return version;
-   }
-
-
    public void reattachGroupEventSubscriberList(final GroupEventSubscriberList groupEventSubscriberList) {
 
       this.groupEventSubscriberList = groupEventSubscriberList;

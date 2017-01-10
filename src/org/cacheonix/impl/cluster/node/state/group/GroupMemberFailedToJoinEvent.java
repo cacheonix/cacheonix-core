@@ -49,18 +49,6 @@ public final class GroupMemberFailedToJoinEvent {
    }
 
 
-   public String getError() {
-
-      return error;
-   }
-
-
-   public JoinGroupMessage getJoinMessage() {
-
-      return joinMessage;
-   }
-
-
    public String toString() {
 
       return "GroupMemberFailedToJoinEvent{" +

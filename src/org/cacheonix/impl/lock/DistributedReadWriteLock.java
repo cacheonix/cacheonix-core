@@ -13,8 +13,6 @@
  */
 package org.cacheonix.impl.lock;
 
-import java.io.Serializable;
-
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.net.cluster.ClusterProcessor;
 import org.cacheonix.locks.Lock;
@@ -76,12 +74,6 @@ public final class DistributedReadWriteLock implements ReadWriteLock {
    public Lock writeLock() {
 
       return new DistributedLock(false, clusterProcessor, lockRegionName, lockKey, defaultUnlockTimeoutMillis);
-   }
-
-
-   public Serializable getLockKey() {
-
-      return lockKey;
    }
 
 

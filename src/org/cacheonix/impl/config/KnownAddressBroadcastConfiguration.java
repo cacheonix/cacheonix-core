@@ -38,17 +38,6 @@ public final class KnownAddressBroadcastConfiguration extends DocumentReader {
    }
 
 
-   /**
-    * Returns true if the server may only to talk to local addresses.
-    *
-    * @return true if the server may only to talk to local addresses.
-    */
-   public boolean isLimitedToLocalAddresses() {
-
-      return limitedToLocalAddresses;
-   }
-
-
    public TCPListenerConfiguration getAddressConfiguration() {
 
       return addressConfiguration;

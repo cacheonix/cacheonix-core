@@ -109,17 +109,6 @@ public final class MarkerListRequest extends ClusterRequest {
 
 
    /**
-    * Returns replicated state of the sender.
-    *
-    * @return replicated state of the sender.
-    */
-   public ReplicatedState getReplicatedState() {
-
-      return replicatedState;
-   }
-
-
-   /**
     * Returns a reference to an internal list with frames present in the message assembler at the time of creating
     * MarkerListRequest.
     *

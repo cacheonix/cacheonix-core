@@ -14,7 +14,6 @@
 package org.cacheonix.impl.config;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.w3c.dom.Attr;
@@ -64,38 +63,6 @@ public final class PartitionedCacheConfiguration extends DocumentReader {
 
 
    /**
-    * @param vProperty
-    * @throws IndexOutOfBoundsException if the index given is outside the bounds of the collection
-    */
-   public void addProperty(final PropertyConfiguration vProperty) throws IndexOutOfBoundsException {
-
-      this.propertyList.add(vProperty);
-   }
-
-
-   /**
-    * @param index
-    * @param vProperty
-    * @throws IndexOutOfBoundsException if the index given is outside the bounds of the collection
-    */
-   public void addProperty(final int index, final PropertyConfiguration vProperty) throws IndexOutOfBoundsException {
-
-      this.propertyList.add(index, vProperty);
-   }
-
-
-   /**
-    * Method enumerateProperty.
-    *
-    * @return an Enumeration over all org.cacheonix.impl.configuration.PropertyConfiguration elements
-    */
-   public List<? extends PropertyConfiguration> enumerateProperty() {
-
-      return new ArrayList<PropertyConfiguration>(this.propertyList);
-   }
-
-
-   /**
     * Returns the value of field 'frontCache'.
     *
     * @return the value of field 'FrontCache'.
@@ -114,49 +81,6 @@ public final class PartitionedCacheConfiguration extends DocumentReader {
    public String getName() {
 
       return this.name;
-   }
-
-
-   /**
-    * Method getProperty.
-    *
-    * @param index
-    * @return the value of the org.cacheonix.impl.configuration.PropertyConfiguration at the given index
-    * @throws IndexOutOfBoundsException if the index given is outside the bounds of the collection
-    */
-   public PropertyConfiguration getProperty(final int index) throws IndexOutOfBoundsException {
-
-      // check bounds for index
-      if (index < 0 || index >= this.propertyList.size()) {
-         throw new IndexOutOfBoundsException("getProperty: Index value '" + index + "' not in range [0.." + (this.propertyList.size() - 1) + ']');
-      }
-
-      return propertyList.get(index);
-   }
-
-
-   /**
-    * Method getProperty.Returns the contents of the collection in an Array.  <p>Note:  Just in case the collection
-    * contents are changing in another thread, we pass a 0-length Array of the correct type into the API call.  This way
-    * we <i>know</i> that the Array returned is of exactly the correct length.
-    *
-    * @return this collection as an Array
-    */
-   public PropertyConfiguration[] getProperty() {
-
-      final PropertyConfiguration[] array = new PropertyConfiguration[0];
-      return this.propertyList.toArray(array);
-   }
-
-
-   /**
-    * Method getPropertyCount.
-    *
-    * @return the size of this collection
-    */
-   public int getPropertyCount() {
-
-      return this.propertyList.size();
    }
 
 
@@ -199,110 +123,6 @@ public final class PartitionedCacheConfiguration extends DocumentReader {
    public boolean isTemplate() {
 
       return this.template;
-   }
-
-
-   /**
-    */
-   public void removeAllProperty() {
-
-      this.propertyList.clear();
-   }
-
-
-   /**
-    * Method removeProperty.
-    *
-    * @param vProperty
-    * @return true if the object was removed from the collection.
-    */
-   public boolean removeProperty(final PropertyConfiguration vProperty) {
-
-      return propertyList.remove(vProperty);
-   }
-
-
-   /**
-    * Method removePropertyAt.
-    *
-    * @param index
-    * @return the element removed from the collection
-    */
-   public PropertyConfiguration removePropertyAt(final int index) {
-
-      return this.propertyList.remove(index);
-   }
-
-
-   /**
-    * Sets the value of field 'frontCache'.
-    *
-    * @param frontCacheConfiguration the value of field 'frontCache'.
-    */
-   public void setFrontCacheConfiguration(final FrontCacheConfiguration frontCacheConfiguration) {
-
-      this.frontCacheConfiguration = frontCacheConfiguration;
-   }
-
-
-   /**
-    * Sets the unique cache name.
-    *
-    * @param name the unique cache name.
-    */
-   public void setName(final String name) {
-
-      this.name = name;
-   }
-
-
-   /**
-    * @param index
-    * @param vProperty
-    * @throws IndexOutOfBoundsException if the index given is outside the bounds of the collection
-    */
-   public void setProperty(final int index, final PropertyConfiguration vProperty) throws IndexOutOfBoundsException {
-
-      // check bounds for index
-      if (index < 0 || index >= this.propertyList.size()) {
-         throw new IndexOutOfBoundsException("setProperty: Index value '" + index + "' not in range [0.." + (this.propertyList.size() - 1) + ']');
-      }
-
-      this.propertyList.set(index, vProperty);
-   }
-
-
-   /**
-    * @param vPropertyArray
-    */
-   public void setProperty(final PropertyConfiguration[] vPropertyArray) {
-
-      //-- copy array
-      propertyList.clear();
-
-      this.propertyList.addAll(Arrays.asList(vPropertyArray));
-   }
-
-
-   /**
-    * Sets the value of field 'store'.
-    *
-    * @param store the value of field 'store'.
-    */
-   public void setStore(final PartitionedCacheStoreConfiguration store) {
-
-      this.store = store;
-   }
-
-
-   /**
-    * Sets the value of field 'template'.
-    *
-    * @param template the value of field 'template'.
-    */
-   public void setTemplate(final boolean template) {
-
-      this.template = template;
    }
 
 

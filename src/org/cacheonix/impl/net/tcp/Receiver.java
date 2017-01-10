@@ -213,15 +213,6 @@ public final class Receiver implements Shutdownable {
    }
 
 
-   /**
-    * @return IP address this server accepts requests at.
-    */
-   final String getAddress() {
-
-      return endpoint.getHostName();
-   }
-
-
    private void verifyStartable() {
 
       if (operationalStatus.get() == OPERATIONAL_STATUS_SHUTDOWN) {

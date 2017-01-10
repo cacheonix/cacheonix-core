@@ -38,17 +38,6 @@ public final class FrontCacheConfiguration extends DocumentReader {
    }
 
 
-   /**
-    * Sets the value of field 'store'.
-    *
-    * @param store the value of field 'store'.
-    */
-   public void setStore(final CacheStoreConfiguration store) {
-
-      this.store = store;
-   }
-
-
    protected void readNode(final String nodeName, final Node childNode) {
 
       if ("store".equals(nodeName)) {

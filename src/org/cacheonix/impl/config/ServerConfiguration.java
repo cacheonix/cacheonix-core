@@ -14,7 +14,6 @@
 package org.cacheonix.impl.config;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.w3c.dom.Attr;
@@ -173,28 +172,6 @@ public final class ServerConfiguration extends DocumentReader {
 
 
    /**
-    * Returns a list of WebSessionReplicaConfigurations.
-    *
-    * @return an Enumeration over all org.cacheonix.impl.configuration.PartitionedCacheConfiguration elements
-    */
-   public List<? extends WebSessionReplicaConfiguration> enumerateWebSessionReplicas() {
-
-      return new ArrayList<WebSessionReplicaConfiguration>(this.webSessionReplicaList);
-   }
-
-
-   /**
-    * Method enumerateProperty.
-    *
-    * @return an Enumeration over all org.cacheonix.impl.configuration.PropertyConfiguration elements
-    */
-   public List<? extends PropertyConfiguration> enumerateProperty() {
-
-      return new ArrayList<PropertyConfiguration>(this.propertyList);
-   }
-
-
-   /**
     * Returns the value of field 'broadcast'.
     *
     * @return the value of field 'Broadcast'.
@@ -217,28 +194,6 @@ public final class ServerConfiguration extends DocumentReader {
 
 
    /**
-    * Returns the value of field 'continentName'.
-    *
-    * @return the value of field 'ContinentName'.
-    */
-   public String getContinentName() {
-
-      return this.continentName;
-   }
-
-
-   /**
-    * Returns the value of field 'countryName'.
-    *
-    * @return the value of field 'CountryName'.
-    */
-   public String getCountryName() {
-
-      return this.countryName;
-   }
-
-
-   /**
     * Returns the value of field 'listener'.
     *
     * @return the value of field 'Listener'.
@@ -246,199 +201,6 @@ public final class ServerConfiguration extends DocumentReader {
    public ListenerConfiguration getListener() {
 
       return this.listener;
-   }
-
-
-   /**
-    * Returns the value of field 'machineName'.
-    *
-    * @return the value of field 'MachineName'.
-    */
-   public String getMachineName() {
-
-      return this.machineName;
-   }
-
-
-   /**
-    * Method getPartitionedCacheCount.
-    *
-    * @return the size of this collection
-    */
-   public int getPartitionedCacheCount() {
-
-      return this.partitionedCacheList.size();
-   }
-
-
-   /**
-    * Method getProperty.
-    *
-    * @param index
-    * @return the value of the org.cacheonix.impl.configuration.PropertyConfiguration at the given index
-    * @throws IndexOutOfBoundsException if the index given is outside the bounds of the collection
-    */
-   public PropertyConfiguration getProperty(final int index) throws IndexOutOfBoundsException {
-      // check bounds for index
-      if (index < 0 || index >= this.propertyList.size()) {
-         throw new IndexOutOfBoundsException(
-                 "getProperty: Index value '" + index + "' not in range [0.." + (this.propertyList.size() - 1) + ']');
-      }
-
-      return propertyList.get(index);
-   }
-
-
-   /**
-    * Method getProperty.Returns the contents of the collection in an Array.  <p>Note:  Just in case the collection
-    * contents are changing in another thread, we pass a 0-length Array of the correct type into the API call.  This way
-    * we <i>know</i> that the Array returned is of exactly the correct length.
-    *
-    * @return this collection as an Array
-    */
-   public PropertyConfiguration[] getProperty() {
-
-      final PropertyConfiguration[] array = new PropertyConfiguration[0];
-      return this.propertyList.toArray(array);
-   }
-
-
-   /**
-    * Returns the value of field 'rackName'.
-    *
-    * @return the value of field 'RackName'.
-    */
-   public String getRackName() {
-
-      return this.rackName;
-   }
-
-
-   /**
-    * Returns the value of field 'territoryName'.
-    *
-    * @return the value of field 'TerritoryName'.
-    */
-   public String getTerritoryName() {
-
-      return this.territoryName;
-   }
-
-
-   /**
-    * Sets the value of field 'broadcast'.
-    *
-    * @param broadcastConfiguration the value of field 'broadcast'.
-    */
-   public void setBroadcastConfiguration(final BroadcastConfiguration broadcastConfiguration) {
-
-      this.broadcastConfiguration = broadcastConfiguration;
-   }
-
-
-   /**
-    * Sets the value of field 'cluster'.
-    *
-    * @param cluster the value of field 'cluster'.
-    */
-   public void setCluster(final ClusterConfiguration cluster) {
-
-      this.cluster = cluster;
-   }
-
-
-   /**
-    * Sets the value of field 'continentName'.
-    *
-    * @param continentName the value of field 'continentName'.
-    */
-   public void setContinentName(final String continentName) {
-
-      this.continentName = continentName;
-   }
-
-
-   /**
-    * Sets the value of field 'countryName'.
-    *
-    * @param countryName the value of field 'countryName'.
-    */
-   public void setCountryName(final String countryName) {
-
-      this.countryName = countryName;
-   }
-
-
-   /**
-    * Sets the value of field 'listener'.
-    *
-    * @param listener the value of field 'listener'.
-    */
-   public void setListener(final ListenerConfiguration listener) {
-
-      this.listener = listener;
-   }
-
-
-   /**
-    * Sets the value of field 'machineName'.
-    *
-    * @param machineName the value of field 'machineName'.
-    */
-   public void setMachineName(final String machineName) {
-
-      this.machineName = machineName;
-   }
-
-
-   /**
-    * @param vPropertyArray
-    */
-   public void setProperty(final PropertyConfiguration[] vPropertyArray) {
-      //-- copy array
-      propertyList.clear();
-
-      this.propertyList.addAll(Arrays.asList(vPropertyArray));
-   }
-
-
-   /**
-    * Sets the value of field 'rackName'.
-    *
-    * @param rackName the value of field 'rackName'.
-    */
-   public void setRackName(final String rackName) {
-
-      this.rackName = rackName;
-   }
-
-
-   /**
-    * Sets the value of field 'territoryName'.
-    *
-    * @param territoryName the value of field 'territoryName'.
-    */
-   public void setTerritoryName(final String territoryName) {
-
-      this.territoryName = territoryName;
-   }
-
-
-   /**
-    * Returns <code>true</code> if create-all template is present.
-    *
-    * @return <code>true</code> if create-all template is present.
-    */
-   public boolean isCreateAllTemplatePresent() {
-
-      for (final PartitionedCacheConfiguration partitionedCacheConfig : partitionedCacheList) {
-
-         if (partitionedCacheConfig.isTemplate() && "*".equals(partitionedCacheConfig.getName())) {
-
-            return true;
-         }
-      }
-      return false;
    }
 
 
@@ -454,17 +216,6 @@ public final class ServerConfiguration extends DocumentReader {
 
 
    /**
-    * Sets the default unlock timeout in milliseconds.
-    *
-    * @param defaultUnlockTimeoutMillis the default unlock timeout in milliseconds.
-    */
-   public void setDefaultUnlockTimeoutMillis(final long defaultUnlockTimeoutMillis) {
-
-      this.defaultUnlockTimeoutMillis = defaultUnlockTimeoutMillis;
-   }
-
-
-   /**
     * Returns the default lock timeout in milliseconds. Cacheonix uses the default lock timeout for a lock that was
     * acquired without setting the timeout explicitly.  This value can be overridden by the system property
     * <code>cacheonix.default.lock.timeout</code>.
@@ -476,19 +227,6 @@ public final class ServerConfiguration extends DocumentReader {
    public long getDefaultLockTimeoutMillis() {
 
       return defaultLockTimeoutMillis;
-   }
-
-
-   /**
-    * Sets the default lock timeout in milliseconds. Cacheonix uses the default lock timeout for a lock that was
-    * acquired without setting the timeout explicitly.  This value can be overridden by the system property
-    * <code>cacheonix.default.lock.timeout</code>.
-    *
-    * @param defaultLockTimeoutMillis the default lock timeout in milliseconds.
-    */
-   public void setDefaultLockTimeoutMillis(final long defaultLockTimeoutMillis) {
-
-      this.defaultLockTimeoutMillis = defaultLockTimeoutMillis;
    }
 
 
@@ -517,21 +255,6 @@ public final class ServerConfiguration extends DocumentReader {
    public long getGracefulShutdownTimeoutMillis() {
 
       return gracefulShutdownTimeoutMillis;
-   }
-
-
-   /**
-    * Sets the default lease time. Cacheonix uses the default lease time for lease configurations that don't define
-    * lease time. This value can be overridden from the command line by setting the system property
-    * <code>cacheonix.default.lease.time</code>.
-    *
-    * @param defaultLeaseTimeMillis the default lease time. Cacheonix uses the default lease time for lease
-    *                               configurations that don't define lease time. This value can be overridden from the
-    *                               command line by setting the system property <code>cacheonix.default.lease.time</code>.
-    */
-   public void setDefaultLeaseTimeMillis(final long defaultLeaseTimeMillis) {
-
-      this.defaultLeaseTimeMillis = defaultLeaseTimeMillis;
    }
 
 
@@ -644,20 +367,6 @@ public final class ServerConfiguration extends DocumentReader {
       }
 
       return null;
-   }
-
-
-   public boolean isPartitionedCacheTypeExists(final String cacheName) {
-
-      for (final PartitionedCacheConfiguration partitionedCacheConfiguration : partitionedCacheList) {
-
-         if (!partitionedCacheConfiguration.isTemplate() && partitionedCacheConfiguration.getName().equals(cacheName)) {
-
-            return true;
-         }
-      }
-
-      return false;
    }
 
 

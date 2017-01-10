@@ -422,15 +422,6 @@ public class Router {
    }
 
 
-   protected void initSender(final Message message) {
-
-      if (!message.isSenderSet()) {
-
-         message.setSender(localAddress);
-      }
-   }
-
-
    private static boolean isReliableMcast(final Message message) {
 
       switch (message.getDestination()) {

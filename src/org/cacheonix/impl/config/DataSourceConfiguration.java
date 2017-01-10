@@ -94,23 +94,6 @@ public final class DataSourceConfiguration extends DocumentReader {
 
 
    /**
-    * Method getParam.
-    *
-    * @param index
-    * @return the value of the org.cacheonix.impl.configuration.PropertyConfiguration at the given index
-    * @throws IndexOutOfBoundsException if the index given is outside the bounds of the collection
-    */
-   public PropertyConfiguration getParam(final int index) throws IndexOutOfBoundsException {
-      // check bounds for index
-      if (index < 0 || index >= this.paramList.size()) {
-         throw new IndexOutOfBoundsException("getParam: Index value '" + index + "' not in range [0.." + (this.paramList.size() - 1) + ']');
-      }
-
-      return paramList.get(index);
-   }
-
-
-   /**
     * Returns a copy of the configuration properties for the cache data source.
     *
     * @return the copy of the configuration properties for the cache data source.
@@ -119,49 +102,6 @@ public final class DataSourceConfiguration extends DocumentReader {
 
       final PropertyConfiguration[] array = new PropertyConfiguration[0];
       return this.paramList.toArray(array);
-   }
-
-
-   /**
-    * Method getParamCount.
-    *
-    * @return the size of this collection
-    */
-   public int getParamCount() {
-
-      return this.paramList.size();
-   }
-
-
-   /**
-    */
-   public void removeAllParam() {
-
-      this.paramList.clear();
-   }
-
-
-   /**
-    * Method removeParam.
-    *
-    * @param vParam
-    * @return true if the object was removed from the collection.
-    */
-   public boolean removeParam(final PropertyConfiguration vParam) {
-
-      return paramList.remove(vParam);
-   }
-
-
-   /**
-    * Method removeParamAt.
-    *
-    * @param index
-    * @return the element removed from the collection
-    */
-   public PropertyConfiguration removeParamAt(final int index) {
-
-      return this.paramList.remove(index);
    }
 
 

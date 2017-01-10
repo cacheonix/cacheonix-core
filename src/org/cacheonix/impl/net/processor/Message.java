@@ -211,12 +211,6 @@ public abstract class Message implements Command, Wireable {
    }
 
 
-   public final boolean isContextSet() {
-
-      return processor != null;
-   }
-
-
    /**
     * Validates the message. This callback method is executed right after when this message is posted to message
     * processor. The main purpose of this method to provide a formal protection from predictable programmer's errors.
