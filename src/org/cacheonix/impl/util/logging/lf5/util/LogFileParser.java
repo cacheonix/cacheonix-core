@@ -196,7 +196,6 @@ public final class LogFileParser implements Runnable {
       }
 
       br.close();
-      br = null;
       return sb.toString();
 
    }
