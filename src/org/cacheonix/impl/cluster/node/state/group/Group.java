@@ -270,8 +270,7 @@ public final class Group implements Wireable {
          GroupMember foundMember = null;
          for (final GroupMember member : members) {
 
-            foundMember = member;
-            if (foundMember.getAddress().equals(leftAddress)) {
+            if (member.getAddress().equals(leftAddress)) {
 
                // NOTE: simeshev@cacheonix.org - 2010-09-10 - It is possible that
                // remove for the member is called more than once.
@@ -281,17 +280,11 @@ public final class Group implements Wireable {
                //   Step 2. ClusterProcessor leaves.
                if (member.isActive()) {
 
+                  foundMember = member;
                   foundMember.setActive(false);
                   foundMember.setLeaving(false);
-               } else {
-
-                  // Though is there, it has already left
-                  foundMember = null;
                }
                break;
-            } else {
-
-               foundMember = null;
             }
          }
 
