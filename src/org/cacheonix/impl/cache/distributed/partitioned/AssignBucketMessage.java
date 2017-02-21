@@ -21,13 +21,13 @@ public final class AssignBucketMessage extends LocalCacheMessage {
    /**
     * A storage number that the bucket to assign belongs to.
     */
-   private byte storageNumber;
+   private final byte storageNumber;
 
 
    /**
     * A bucket number to assign.
     */
-   private Integer bucketNumber;
+   private final Integer bucketNumber;
 
 
    /**
