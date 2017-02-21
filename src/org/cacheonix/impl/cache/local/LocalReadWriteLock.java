@@ -13,7 +13,6 @@
  */
 package org.cacheonix.impl.cache.local;
 
-import java.io.Serializable;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
@@ -34,12 +33,9 @@ public final class LocalReadWriteLock implements ReadWriteLock {
     */
    private final ReentrantReadWriteLock delegate = new ReentrantReadWriteLock();
 
-   private final Serializable lockKey;
 
+   public LocalReadWriteLock() {
 
-   public LocalReadWriteLock(final Serializable lockKey) {
-
-      this.lockKey = lockKey;
    }
 
 

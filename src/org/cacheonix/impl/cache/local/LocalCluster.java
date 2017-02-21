@@ -20,8 +20,8 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import org.cacheonix.cluster.Cluster;
 import org.cacheonix.cluster.ClusterEventSubscriber;
-import org.cacheonix.locks.ReadWriteLock;
 import org.cacheonix.impl.util.array.HashMap;
+import org.cacheonix.locks.ReadWriteLock;
 
 /**
  * An implementation of the cluster object specific to the local Cacheonix.
@@ -71,7 +71,7 @@ public final class LocalCluster implements Cluster {
 
          if (lock == null) {
 
-            lock = new LocalReadWriteLock(lockKey);
+            lock = new LocalReadWriteLock();
             lockRegistry.put(lockKey, lock);
          }
          return lock;

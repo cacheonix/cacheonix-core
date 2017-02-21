@@ -1178,7 +1178,7 @@ public final class LocalCache<K extends Serializable, V extends Serializable> im
 
          if (lock == null) {
 
-            lock = new LocalReadWriteLock(lockKey);
+            lock = new LocalReadWriteLock();
             lockRegistry.put(lockKey, lock);
          }
          return lock;
