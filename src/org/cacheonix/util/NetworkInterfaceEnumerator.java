@@ -97,8 +97,8 @@ public final class NetworkInterfaceEnumerator {
     * @param stream to print to
     * @throws SocketException
     */
-   void printInterfaces(final PrintStream stream) throws SocketException, NoSuchMethodException,
-           IllegalAccessException, InvocationTargetException {
+   void printInterfaces(final PrintStream stream) throws SocketException, IllegalAccessException,
+           InvocationTargetException {
 
       stream.println(Version.getVersion() + ". Available network interfaces: ");
       stream.println();
