@@ -43,9 +43,9 @@ import org.cacheonix.impl.util.array.ObjectProcedure;
 import org.cacheonix.impl.util.logging.Logger;
 
 /**
- * KeySetRequest is sent to owners of a set of keys.
+ * KeySetAnnouncement is sent to owners of a set of keys.
  * <p/>
- * KeySetRequest completes when all owners respond.
+ * KeySetAnnouncement completes when all owners respond.
  *
  * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @since Apr 22, 2010 2:29:40 PM
