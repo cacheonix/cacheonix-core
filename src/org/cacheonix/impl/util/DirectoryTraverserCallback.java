@@ -20,7 +20,6 @@ import java.io.IOException;
  * This interface defines a callback method used when traversing a directories and files under the drirectories. For
  * aeach File object callback is called once.
  *
- * @see IoUtils#traverseDir
  * @see File
  */
 public interface DirectoryTraverserCallback {
@@ -31,7 +30,6 @@ public interface DirectoryTraverserCallback {
     * @param file
     * @return <code>true</code> if traversal should continue;
     * @throws IOException
-    * @see IoUtils#traverseDir
     */
    boolean callback(File file) throws IOException;
 }

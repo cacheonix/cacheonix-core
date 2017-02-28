@@ -38,8 +38,6 @@ public final class DummyDiskStorage implements DiskStorage {
    /**
     * @param startupInfo - object (container) which could carry Storage specific initialization information
     * @return <code>true</code> if <b>Storage</b> successfully initialized and <code>false</code> in case of failure
-    * @throws org.cacheonix.storage.StorageException
-    *
     */
    public boolean initialize(final Object startupInfo) {
 

@@ -714,7 +714,7 @@ public final class StorageCellsManager {
 
 
    /**
-    * ClearCells record {@link StorageConstants.STORAGE_CELL_FREE} control byte for cells previously allocated for
+    * ClearCells record {@link StorageConstants#STORAGE_CELL_FREE} control byte for cells previously allocated for
     * writing. <p/> It has presumption, that if writing got IOError this IOError will appear while recording control
     * byte. System will do best effort recording (Ignore error and continue writing)
     *

@@ -86,7 +86,6 @@ public abstract class Response extends Message {
     * Creates a RetryException while setting the exception message to the response's result if the response carries a
     * String result. A utility method.
     *
-    * @param response the response to use.
     * @return RetryException with the exception message set to the response's result if the response carries a String
     *         result.
     */

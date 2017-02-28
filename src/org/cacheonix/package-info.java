@@ -39,7 +39,7 @@
  *    <tr><td> {@link org.cacheonix.util} </td><td> Provides useful utility classes for testing network environment </td></tr>
  * </table>
  *
- * <p>Package <code>cacheonix</code> itself contains class {@link Version} the provides information about Cacheonix version.</p>
+ * <p>Package <code>cacheonix</code> itself contains class {@link org.cacheonix.Version} the provides information about Cacheonix version.</p>
  *
  * <p><strong>See Also:</strong>
  *

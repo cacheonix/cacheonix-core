@@ -18,6 +18,7 @@
 package org.cacheonix.impl.util.logging.spi;
 
 import org.cacheonix.impl.util.logging.AppenderSkeleton;
+import org.cacheonix.impl.util.logging.Category;
 import org.cacheonix.impl.util.logging.PropertyConfigurator;
 import org.cacheonix.impl.util.logging.xml.DOMConfigurator;
 

@@ -40,10 +40,6 @@ public final class DummyObjectSizeCalculator implements ObjectSizeCalculator {
 
    /**
     * Calculates cached object size.
-    *
-    * @param value3
-    * @param key    object's key
-    * @param value  object's value
     * @return object size
     */
    public long sum(final long sizeOfKey, final long value2, final long value3) {
