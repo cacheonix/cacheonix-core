@@ -7,11 +7,15 @@ import junit.framework.TestCase;
  */
 public class GroupKeyTest extends TestCase {
 
+   @SuppressWarnings("ObjectEqualsNull")
    public void testEquals() throws Exception {
 
       assertEquals(new GroupKey(1, "test"), new GroupKey(1, "test"));
       assertFalse(new GroupKey(1, "test").equals(new GroupKey(2, "test")));
       assertFalse(new GroupKey(1, "test").equals(new GroupKey(1, "test2")));
+      assertFalse(new GroupKey(1, "test").equals(null));
+      final GroupKey same = new GroupKey(1, "test");
+      assertEquals(same, same);
    }
 
 
