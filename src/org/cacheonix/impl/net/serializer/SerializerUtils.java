@@ -591,7 +591,7 @@ public final class SerializerUtils {
          out.writeBoolean(true);
       } else {
          out.writeBoolean(false);
-         out.writeInt(integer.intValue());
+         out.writeInt(integer);
       }
    }
 
@@ -718,7 +718,7 @@ public final class SerializerUtils {
          out.writeBoolean(true);
       } else {
          out.writeBoolean(false);
-         out.writeLong(aLong.longValue());
+         out.writeLong(aLong);
       }
    }
 
@@ -833,7 +833,7 @@ public final class SerializerUtils {
          out.writeInt(list.size());
          for (int i = 0; i < list.size(); i++) {
 
-            out.writeInt(list.get(i).intValue());
+            out.writeInt(list.get(i));
          }
       }
    }
@@ -868,7 +868,7 @@ public final class SerializerUtils {
          out.writeInt(list.size());
          for (int i = 0; i < list.size(); i++) {
 
-            out.writeShort(list.get(i).intValue());
+            out.writeShort(list.get(i));
          }
       }
    }
@@ -905,7 +905,7 @@ public final class SerializerUtils {
       } else {
 
          out.writeBoolean(false);
-         out.writeBoolean(aBoolean.booleanValue());
+         out.writeBoolean(aBoolean);
       }
    }
 
