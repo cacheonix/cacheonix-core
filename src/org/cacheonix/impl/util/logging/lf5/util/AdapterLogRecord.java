@@ -106,9 +106,7 @@ public final class AdapterLogRecord extends LogRecord {
       if (index == -1) {
          return null;
       }
-      trace = trace.substring(index);
-      trace = trace.substring(0, trace.indexOf(')') + 1);
-      return trace;
+      return trace.substring(index).substring(0, trace.indexOf(')') + 1);
    }
    //--------------------------------------------------------------------------
    //   Private Methods:
