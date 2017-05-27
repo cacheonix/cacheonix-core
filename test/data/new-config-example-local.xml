@@ -7,7 +7,7 @@
    <!--
       Configuration for a directory where Cacheonix stores temporary files.
    -->
-   <tempDir path="${java.io.temp}"/>
+   <tempDir path="${java.io.tmpdir}"/>
 
    <!--
       Configuration for a local Cacheonix.

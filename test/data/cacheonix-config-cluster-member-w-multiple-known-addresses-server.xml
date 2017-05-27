@@ -5,7 +5,7 @@
            xsi:schemaLocation="http://www.cacheonix.org/schema/configuration http://www.cacheonix.org/schema/cacheonix-config-2.0.xsd">
 
 
-   <tempDir path="${java.io.temp}"/>
+   <tempDir path="${java.io.tmpdir}"/>
 
    <server>
 
