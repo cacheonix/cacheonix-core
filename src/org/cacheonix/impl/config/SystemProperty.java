@@ -76,9 +76,9 @@ public final class SystemProperty {
    public static final String NAME_CACHEONIX_FALLBACK_CONFIGURATION = "cacheonix.fallback.configuration";
 
    /**
-    * java.io.temp
+    * java.io.tmpdir
     */
-   public static final String JAVA_IO_TEMP = "java.io.temp";
+   public static final String JAVA_IO_TEMP = "java.io.tmpdir";
 
    /**
     * Enables automatic creating of a cache from a default template. Default is enabled.

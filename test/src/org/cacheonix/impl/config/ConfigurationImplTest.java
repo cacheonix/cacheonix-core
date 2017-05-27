@@ -13,6 +13,7 @@
  */
 package org.cacheonix.impl.config;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -196,7 +197,11 @@ public final class ConfigurationImplTest extends TestCase {
     */
    public void testTempDir() throws IOException {
 
-      assertNotNull(read(TestConstants.CACHEONIX_CLUSTER_XML).getTempDir());
+      final TemporaryDirectoryConfiguration tempDirConf = read(TestConstants.CACHEONIX_CLUSTER_XML).getTempDir();
+      final String path = tempDirConf.getPath();
+      final File pathFile = new File(path);
+      assertTrue(pathFile.exists());
+      assertNotNull(tempDirConf);
    }
 
 

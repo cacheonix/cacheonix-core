@@ -69,7 +69,7 @@ public final class TemporaryDirectoryConfiguration extends DocumentReader {
 
       if ("path".equals(attributeName)) {
 
-         if ("${java.io.temp}".equals(attributeValue)) {
+         if ("${java.io.tmpdir}".equals(attributeValue)) {
 
             setPath(ConfigurationConstants.JAVA_IO_TEMP);
          } else {

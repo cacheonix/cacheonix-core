@@ -9,7 +9,7 @@
 
    <logging level="DEBUG"/>
 
-   <tempDir path="${java.io.temp}"/>
+   <tempDir path="${java.io.tmpdir}"/>
 
    <server>
 
