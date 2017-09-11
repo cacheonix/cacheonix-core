@@ -136,6 +136,7 @@ public final class LogFileParser implements Runnable {
          }
 
          if (!isLogFile) {
+            //noinspection ThrowCaughtLocally
             throw new RuntimeException("Invalid log file format");
          }
          SwingUtilities.invokeLater(new Runnable() {

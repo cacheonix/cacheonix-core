@@ -179,6 +179,7 @@ public final class SocketHubAppender extends AppenderSkeleton {
       for (int streamCount = 0; streamCount < oosList.size(); streamCount++) {
 
          ObjectOutputStream oos = null;
+         //noinspection ProhibitedExceptionCaught
          try {
             oos = (ObjectOutputStream) oosList.elementAt(streamCount);
          } catch (final ArrayIndexOutOfBoundsException ignored) {
