@@ -101,16 +101,15 @@ public final class ClusterNodeJoinedAnnouncement extends Message {
       if (LOG.isDebugEnabled()) LOG.debug("Executing cluster node joined message: " + joined); // NOPMD
 
       final ClusterProcessor processor = (ClusterProcessor) getProcessor();
-      final MulticastMessageListenerList multicastMessageListeners = processor.getMulticastMessageListeners();
 
       // Request reset of the joined node is self
       if (processor.getAddress().equals(joined)) {
 
-         multicastMessageListeners.notifyReset();
+         processor.notifyReset();
       }
 
       // Notify mcast listeners about join
-      multicastMessageListeners.notifyNodesJoined(singletonList(joined));
+      processor.notifyNodesJoined(singletonList(joined));
 
       // Notify cluster event subscribers
       notifyClusterEventSubscribersMemberJoined();
@@ -120,7 +119,7 @@ public final class ClusterNodeJoinedAnnouncement extends Message {
 
          // REVIEWME: simeshev@cacheonix.org - 2011-12-12 -> Not necessarily
          // was blocked, for instance, moved from a smaller cluster.
-         multicastMessageListeners.notifyNodeUnblocked();
+         processor.notifyNodeUnblocked();
       }
    }
 

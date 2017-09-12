@@ -615,7 +615,7 @@ public final class BlockedMarker extends OperationalMarker {
          processor.getProcessorState().setState(newState);
 
          processor.getProcessorState().setTargetMajoritySize(targetMajorityClusterSize);
-         processor.getMulticastMessageListeners().notifyNodeBlocked();
+         processor.notifyNodeBlocked();
 
          processor.getProcessorState().getHomeAloneTimeout().reset();
 

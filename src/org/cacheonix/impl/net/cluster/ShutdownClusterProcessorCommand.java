@@ -25,13 +25,6 @@ public final class ShutdownClusterProcessorCommand implements Command {
 
    private final ClusterProcessor processor;
 
-   /**
-    * An optional shutdown reason. If set, attempts to enqueue messages to the shutdown cluster processor will throw an
-    * exception.
-    */
-   private CacheonixException shutdownCause = null;
-
-
    public ShutdownClusterProcessorCommand(final ClusterProcessor processor) {
 
       this.processor = processor;
@@ -47,11 +40,10 @@ public final class ShutdownClusterProcessorCommand implements Command {
 
       // REVIEWME: simeshev@cacheonix.org - 2011-02-25 - Not sure if
       // we need it. Maybe we should have a shutdown notification?
-      processor.getMulticastMessageListeners().notifyNodesLeft(Collections.singletonList(processor.getAddress()));
+      processor.notifyNodesLeft(Collections.singletonList(processor.getAddress()));
 
       // Shutdown
-      processor.forceShutdown(shutdownCause);
+      processor.forceShutdown(null);
    }
-
 
 }

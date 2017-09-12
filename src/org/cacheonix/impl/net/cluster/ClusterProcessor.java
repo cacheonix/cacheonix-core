@@ -14,11 +14,13 @@
 package org.cacheonix.impl.net.cluster;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Queue;
 
 import org.cacheonix.CacheonixException;
 import org.cacheonix.ShutdownMode;
 import org.cacheonix.impl.cache.distributed.partitioned.CacheProcessor;
+import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.multicast.server.MulticastServerListener;
 import org.cacheonix.impl.net.processor.Frame;
 import org.cacheonix.impl.net.processor.RequestProcessor;
@@ -54,7 +56,8 @@ public interface ClusterProcessor extends RequestProcessor, MulticastServerListe
     * Shuts down cluster service without waiting. This method is called by a {@link ShutdownClusterProcessorCommand}
     * which is a last command the processor is going to execute.
     *
-    * @param shutdownCause the exception that caused the shutdown.
+    * @param shutdownCause the exception that caused the shutdown. Can be <code>null</code> if the shutdown is initiated
+    *                      for reasons other than an exception.
     * @see MulticastMarker#forward()
     * @see BlockedMarker#forward()
     * @see ShutdownClusterProcessorCommand#execute()
@@ -98,10 +101,6 @@ public interface ClusterProcessor extends RequestProcessor, MulticastServerListe
     */
    void notifyDeliveredToAll(long frameNumbersAllDeliveredUpTo);
 
-   // REVIEWME: 2015-10-16 - simeshev@cacheonix.org - Consider why MulticastMessageListenerList is accessed
-   // outside of the ClusterProcessor. Can the use be incapsulated inside the ClusterProcessor?
-   MulticastMessageListenerList getMulticastMessageListeners();
-
    void registerCacheProcessor(CacheProcessor cacheProcessor);
 
    /**
@@ -122,4 +121,38 @@ public interface ClusterProcessor extends RequestProcessor, MulticastServerListe
     * @see ShutdownClusterProcessorCommand#execute()
     */
    void beginForcedShutdown();
+
+   /**
+    * Notifies subscribers that a collection of nodes joined the cluster
+    *
+    * @param nodes a collection of nodes
+    */
+   void notifyNodesJoined(Collection<ClusterNodeAddress> nodes);
+
+   /**
+    * Notifies that a collection of nodes left the cluster.
+    *
+    * @param nodes a collection of nodes.
+    */
+   void notifyNodesLeft(Collection<ClusterNodeAddress> nodes);
+
+   /**
+    * Notifies that this node entered a blocked state.
+    *
+    * @see MulticastMessageListener#notifyClusterNodeBlocked()
+    */
+   void notifyNodeBlocked();
+
+   /**
+    * Notifies subscribers that this node entered exited a blocked state.
+    *
+    * @see MulticastMessageListener#notifyClusterNodeUnblocked() ()
+    * @see #notifyNodeBlocked()
+    */
+   void notifyNodeUnblocked();
+
+   /**
+    * Notifies that this processor has been reset.
+    */
+   void notifyReset();
 }

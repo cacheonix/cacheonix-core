@@ -14,6 +14,7 @@
 package org.cacheonix.impl.net.cluster;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -387,6 +388,46 @@ public final class ClusterProcessorImpl extends AbstractRequestProcessor impleme
    /**
     * {@inheritDoc}
     */
+   @Override
+   public void notifyNodesJoined(final Collection<ClusterNodeAddress> nodes) {
+
+      multicastMessageListeners.notifyNodesJoined(nodes);
+   }
+
+
+   /**
+    * {@inheritDoc}
+    */
+   @Override
+   public void notifyNodeBlocked() {
+
+      multicastMessageListeners.notifyNodeBlocked();
+   }
+
+
+   /**
+    * {@inheritDoc}
+    */
+   @Override
+   public void notifyNodeUnblocked() {
+
+      multicastMessageListeners.notifyNodeUnblocked();
+   }
+
+
+   /**
+    * {@inheritDoc}
+    */
+   @Override
+   public void notifyReset() {
+
+      multicastMessageListeners.notifyReset();
+   }
+
+
+   /**
+    * {@inheritDoc}
+    */
    public void forceShutdown(final CacheonixException shutdownCause) {
 
       Assert.assertTrue(isProcessorThread(), "This method may be called only from the processor thread");
@@ -669,12 +710,6 @@ public final class ClusterProcessorImpl extends AbstractRequestProcessor impleme
             waiter.notifyDelivered();
          }
       }
-   }
-
-
-   public MulticastMessageListenerList getMulticastMessageListeners() {
-
-      return multicastMessageListeners;
    }
 
 

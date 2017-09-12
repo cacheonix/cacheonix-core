@@ -110,7 +110,7 @@ public final class ClusterNodeLeftAnnouncement extends Message {
       final ClusterProcessor processor = (ClusterProcessor) getProcessor();
 
       processor.getProcessorState().getReplicatedState().notifyClusterNodesLeft(nodesLeft);
-      processor.getMulticastMessageListeners().notifyNodesLeft(nodesLeft);
+      processor.notifyNodesLeft(nodesLeft);
 
       // Notify event subscribers
       notifyClusterEventSubscribersMemberLeft();

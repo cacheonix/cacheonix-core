@@ -569,7 +569,7 @@ public final class RecoveryMarker extends MarkerRequest {
       processor.getProcessorState().setState(newState);
 
       processor.getProcessorState().setTargetMajoritySize(targetMajorityMarkerListSize);
-      processor.getMulticastMessageListeners().notifyNodeBlocked();
+      processor.notifyNodeBlocked();
 
       processor.getProcessorState().getHomeAloneTimeout().reset();
 

@@ -981,7 +981,7 @@ public final class MulticastMarker extends OperationalMarker {
          LOG.debug("+++++++++++++++++++++++++++++++++ Node " + self.getTcpPort() + " joining another cluster: " + this);
       }
 
-//      context.getMulticastMessageListeners().notifyReset();
+//      context.notifyReset();
 //
       processor.reset();
       processor.getProcessorState().setHighestSequenceNumberDelivered(marker.previous);
@@ -1018,8 +1018,8 @@ public final class MulticastMarker extends OperationalMarker {
 //      final Set<ClusterNodeAddress> nodesJoined = new HashSet<ClusterNodeAddress>(nodesJoinedSize);
 //      nodesJoined.addAll(currentClusterView.getClusterNodeList());
 //
-//      context.getMulticastMessageListeners().notifyNodesLeft(nodesLeft);
-//      context.getMulticastMessageListeners().notifyNodesJoined(nodesJoined);
+//      context.notifyNodesLeft(nodesLeft);
+//      context.notifyNodesJoined(nodesJoined);
 
       sendJoinedToSelf(marker.joinSeqNum, marker.getJoiningNode().getAddress());
 
@@ -1136,8 +1136,8 @@ public final class MulticastMarker extends OperationalMarker {
 //         nodesJoined.addAll(currentClusterView.getClusterNodeList());
 
          // Notify
-//         context.getMulticastMessageListeners().notifyNodesLeft(nodesLeft);
-//         context.getMulticastMessageListeners().notifyNodesJoined(nodesJoined);
+//         context.notifyNodesLeft(nodesLeft);
+//         context.notifyNodesJoined(nodesJoined);
 
          sendJoinedToSelf(marker.joinSeqNum, marker.getJoiningNode().getAddress());
 

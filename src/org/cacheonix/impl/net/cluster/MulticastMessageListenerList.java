@@ -11,7 +11,6 @@ import org.cacheonix.impl.net.processor.Message;
  * <p/>
  *
  * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
- * @see ClusterProcessor#getMulticastMessageListeners()
  * @see MulticastMessageListener
  * @since Jan 20, 2009 7:08:57 PM
  */
