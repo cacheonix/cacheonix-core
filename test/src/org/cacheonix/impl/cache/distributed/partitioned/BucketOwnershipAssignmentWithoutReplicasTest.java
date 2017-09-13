@@ -148,11 +148,11 @@ public final class BucketOwnershipAssignmentWithoutReplicasTest extends TestCase
       completeTransfers(eventListener);
 
       // Assert transfer complete
-      assertEquals(BUCKET_COUNT / 3 + 2, boat.getOwnedBuckets(0, address0).size());
-      assertEquals(BUCKET_COUNT / 3 + 2, boat.getOwnedBuckets(0, address1).size());
-      assertEquals(BUCKET_COUNT / 3 - 2, boat.getOwnedBuckets(0, address2).size());
-      assertEquals(BUCKET_COUNT, boat.getOwnedBuckets(0, address0).size() + boat.getOwnedBuckets(0,
-              address1).size() + boat.getOwnedBuckets(0, address2).size());
+      assertEquals(BUCKET_COUNT / 3 + 2, boat.getOwnedBucketCount(0, address0));
+      assertEquals(BUCKET_COUNT / 3 + 2, boat.getOwnedBucketCount(0, address1));
+      assertEquals(BUCKET_COUNT / 3 - 2, boat.getOwnedBucketCount(0, address2));
+      assertEquals(BUCKET_COUNT, boat.getOwnedBucketCount(0, address0) + boat.getOwnedBucketCount(0,
+              address1) + boat.getOwnedBucketCount(0, address2));
 
       // Assert there were not other commands issued
       assertEquals(3, boat.getBucketOwnerCount());
@@ -199,13 +199,13 @@ public final class BucketOwnershipAssignmentWithoutReplicasTest extends TestCase
       // This complete transfer will [naturally create an unbalanced ownership 
       completeTransfers(eventListener);
       assertEquals("First bucket owner has a third because it was a source all the time", BUCKET_COUNT / 3 + 2,
-              boat.getOwnedBuckets(0, address0).size());
+              boat.getOwnedBucketCount(0, address0));
       assertEquals("Second bucket owner has a half because it was second", (BUCKET_COUNT / 3) + 2,
-              boat.getOwnedBuckets(0, address1).size());
+              boat.getOwnedBucketCount(0, address1));
       assertEquals("Third has gotten what ever left within fair distribution", (BUCKET_COUNT / 3) - 2,
-              boat.getOwnedBuckets(0, address2).size());
-      assertEquals(BUCKET_COUNT, boat.getOwnedBuckets(0, address0).size() + boat.getOwnedBuckets(0,
-              address1).size() + boat.getOwnedBuckets(0, address2).size());
+              boat.getOwnedBucketCount(0, address2));
+      assertEquals(BUCKET_COUNT, boat.getOwnedBucketCount(0, address0) + boat.getOwnedBucketCount(0,
+              address1) + boat.getOwnedBucketCount(0, address2));
       assertEquals(3, boat.getBucketOwnerCount());
       assertNoPendingCommands();
 
@@ -213,13 +213,13 @@ public final class BucketOwnershipAssignmentWithoutReplicasTest extends TestCase
       boat.repartition();
       completeTransfers(eventListener);
       assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 3) + 2,
-              boat.getOwnedBuckets(0, address0).size());
+              boat.getOwnedBucketCount(0, address0));
       assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 3) + 2,
-              boat.getOwnedBuckets(0, address1).size());
+              boat.getOwnedBucketCount(0, address1));
       assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 3) - 2,
-              boat.getOwnedBuckets(0, address2).size());
-      assertEquals(BUCKET_COUNT, boat.getOwnedBuckets(0, address0).size() + boat.getOwnedBuckets(0,
-              address1).size() + boat.getOwnedBuckets(0, address2).size());
+              boat.getOwnedBucketCount(0, address2));
+      assertEquals(BUCKET_COUNT, boat.getOwnedBucketCount(0, address0) + boat.getOwnedBucketCount(0,
+              address1) + boat.getOwnedBucketCount(0, address2));
 
       assertEquals(3, boat.getBucketOwnerCount());
       assertNoPendingCommands();
@@ -254,13 +254,13 @@ public final class BucketOwnershipAssignmentWithoutReplicasTest extends TestCase
       // Assert - all joined at once when there wasn't any owners
       assertNoPendingCommands();
       assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 3) + 2,
-              boat.getOwnedBuckets(0, address0).size());
+              boat.getOwnedBucketCount(0, address0));
       assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 3) + 2,
-              boat.getOwnedBuckets(0, address1).size());
+              boat.getOwnedBucketCount(0, address1));
       assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 3) - 2,
-              boat.getOwnedBuckets(0, address2).size());
-      assertEquals(BUCKET_COUNT, boat.getOwnedBuckets(0, address0).size() + boat.getOwnedBuckets(0,
-              address1).size() + boat.getOwnedBuckets(0, address2).size());
+              boat.getOwnedBucketCount(0, address2));
+      assertEquals(BUCKET_COUNT, boat.getOwnedBucketCount(0, address0) + boat.getOwnedBucketCount(0,
+              address1) + boat.getOwnedBucketCount(0, address2));
       assertEquals(3, boat.getBucketOwnerCount());
    }
 
@@ -312,13 +312,13 @@ public final class BucketOwnershipAssignmentWithoutReplicasTest extends TestCase
       assertNoPendingCommands();
 
       assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 3) + 2,
-              boat.getOwnedBuckets(0, address0).size());
+              boat.getOwnedBucketCount(0, address0));
       assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 3) + 2,
-              boat.getOwnedBuckets(0, address1).size());
+              boat.getOwnedBucketCount(0, address1));
       assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 3) - 2,
-              boat.getOwnedBuckets(0, address2).size());
-      assertEquals(BUCKET_COUNT, boat.getOwnedBuckets(0, address0).size() + boat.getOwnedBuckets(0,
-              address1).size() + boat.getOwnedBuckets(0, address2).size());
+              boat.getOwnedBucketCount(0, address2));
+      assertEquals(BUCKET_COUNT, boat.getOwnedBucketCount(0, address0) + boat.getOwnedBucketCount(0,
+              address1) + boat.getOwnedBucketCount(0, address2));
       assertEquals(3, boat.getBucketOwnerCount());
    }
 
@@ -344,13 +344,13 @@ public final class BucketOwnershipAssignmentWithoutReplicasTest extends TestCase
 
       // Just in case, assure proper distribution
       assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 3) + 2,
-              boat.getOwnedBuckets(0, address0).size());
+              boat.getOwnedBucketCount(0, address0));
       assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 3) + 2,
-              boat.getOwnedBuckets(0, address1).size());
+              boat.getOwnedBucketCount(0, address1));
       assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 3) - 2,
-              boat.getOwnedBuckets(0, address2).size());
-      assertEquals(BUCKET_COUNT, boat.getOwnedBuckets(0, address0).size() + boat.getOwnedBuckets(0,
-              address1).size() + boat.getOwnedBuckets(0, address2).size());
+              boat.getOwnedBucketCount(0, address2));
+      assertEquals(BUCKET_COUNT, boat.getOwnedBucketCount(0, address0) + boat.getOwnedBucketCount(0,
+              address1) + boat.getOwnedBucketCount(0, address2));
       assertEquals(3, boat.getBucketOwnerCount());
 
       // Remove
@@ -359,11 +359,11 @@ public final class BucketOwnershipAssignmentWithoutReplicasTest extends TestCase
       // Assert
       assertNoPendingCommands(); // Because there is no replica
       assertEquals(2, boat.getBucketOwnerCount());
-      assertEquals(BUCKET_COUNT, boat.getOwnedBuckets(0, address0).size() + boat.getOwnedBuckets(0, address2).size());
+      assertEquals(BUCKET_COUNT, boat.getOwnedBucketCount(0, address0) + boat.getOwnedBucketCount(0, address2));
       assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 2) + 1,
-              boat.getOwnedBuckets(0, address0).size());
+              boat.getOwnedBucketCount(0, address0));
       assertEquals("All should receive roughly the same number of buckets", (BUCKET_COUNT / 2),
-              boat.getOwnedBuckets(0, address2).size());
+              boat.getOwnedBucketCount(0, address2));
    }
 
 

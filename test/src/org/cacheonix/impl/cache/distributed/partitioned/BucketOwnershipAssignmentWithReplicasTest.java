@@ -194,11 +194,11 @@ public final class BucketOwnershipAssignmentWithReplicasTest extends TestCase {
       assertEquals(0, eventListener.getFinishTransferCommands().size());
       assertEquals(0, eventListener.getBeginTransferCommands().size());
       assertEquals(515, bucketOwnershipAssignment.calculateMaxOwnedBucketCount((byte) 0));
-      assertEquals(506, bucketOwnershipAssignment.getOwnedBuckets(0, newAddress).size());
+      assertEquals(506, bucketOwnershipAssignment.getOwnedBucketCount(0, newAddress));
 
-      assertEquals(506, bucketOwnershipAssignment.getOwnedBuckets(1, newAddress).size());
+      assertEquals(506, bucketOwnershipAssignment.getOwnedBucketCount(1, newAddress));
 
-      assertEquals(349, bucketOwnershipAssignment.getOwnedBuckets(2, newAddress).size());
+      assertEquals(349, bucketOwnershipAssignment.getOwnedBucketCount(2, newAddress));
    }
 
 

@@ -35,7 +35,6 @@ import org.cacheonix.impl.net.serializer.WireableBuilder;
 import org.cacheonix.impl.util.Assert;
 import org.cacheonix.impl.util.IntegerUtils;
 import org.cacheonix.impl.util.array.HashMap;
-import org.cacheonix.impl.util.array.IntArrayList;
 import org.cacheonix.impl.util.array.IntObjectHashMap;
 import org.cacheonix.impl.util.array.IntObjectProcedure;
 import org.cacheonix.impl.util.logging.Logger;
@@ -259,17 +258,11 @@ public final class BucketOwnershipAssignment implements Wireable {
     * @param ownerAddress  an owner address.
     * @return the copy of a list of buckets owned by a given address.
     */
-   public IntArrayList getOwnedBuckets(final int storageNumber, final ClusterNodeAddress ownerAddress) {
+   int getOwnedBucketCount(final int storageNumber, final ClusterNodeAddress ownerAddress) {
 
-      // REVIEWME: simeshev@cacheonix.org - 2010-03-16 -> Synchronization on the internal list of owned buckets
       final BucketOwner bucketOwner = bucketOwners[storageNumber].get(ownerAddress);
       final Collection<Integer> ownedBuckets = bucketOwner.getOwnedBuckets();
-      final IntArrayList result = new IntArrayList(ownedBuckets.size());
-      for (final Integer ownedBucket : ownedBuckets) {
-
-         result.add(ownedBucket);
-      }
-      return result;
+      return ownedBuckets.size();
    }
 
 
