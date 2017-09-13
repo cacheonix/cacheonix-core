@@ -23,7 +23,6 @@ import org.cacheonix.impl.util.logging.Logger;
  * <p/>
  *
  * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
- * @noinspection RedundantIfStatement
  * @since Jul 13, 2009 10:34:17 PM
  */
 public final class CacheNodeJoinedMessage extends LocalCacheMessage {
