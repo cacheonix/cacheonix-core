@@ -876,7 +876,7 @@ public class Category implements AppenderAttachable {
 
       if (aai != null) {
          final Vector appenders = new Vector(11);
-         for (final Enumeration iter = aai.getAllAppenders(); iter.hasMoreElements();) {
+         for (final Enumeration iter = aai.getAllAppenders(); iter != null && iter.hasMoreElements();) {
             appenders.add(iter.nextElement());
          }
          aai.removeAllAppenders();
