@@ -357,24 +357,6 @@ public final class IOUtils {
    }
 
 
-   /**
-    * Deletes content of a directory
-    */
-   public static void emptyDir(final File dir) {
-      // REVIEWME: Should we check if the dir is writable and throw an exception?
-      if (!dir.exists()) {
-         return;
-      }
-      if (!dir.canWrite()) {
-         LOG.warn("Trying to empty read-only or inaccessible directory " + dir);
-      }
-      final File[] files = toUNC(dir).listFiles();
-      for (final File file : files) {
-         deleteFileHard(file);
-      }
-   }
-
-
    private static File toUNC(final File file) {
 
       final String absolutePath = file.getAbsolutePath();
