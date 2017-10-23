@@ -100,7 +100,7 @@ public final class AdapterLogRecord extends LogRecord {
    }
 
 
-   final String parseLine(String trace, final String category) {
+   final String parseLine(final String trace, final String category) {
 
       final int index = trace.indexOf(category);
       if (index == -1) {

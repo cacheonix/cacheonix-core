@@ -180,7 +180,7 @@ public final class LogFileParser implements Runnable {
     * Loads a log file from a web server into the LogFactor5 GUI.
     */
    private String loadLogFile(final InputStream stream) throws IOException {
-      BufferedInputStream br = new BufferedInputStream(stream);
+      final BufferedInputStream br = new BufferedInputStream(stream);
 
       final int size = br.available();
 
