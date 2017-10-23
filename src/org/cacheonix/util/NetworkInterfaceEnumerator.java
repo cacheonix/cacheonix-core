@@ -85,7 +85,7 @@ public final class NetworkInterfaceEnumerator {
     * @noinspection UseOfSystemOutOrSystemErr
     */
    public static void main(final String[] args) throws SocketException,
-           IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+           IllegalAccessException, InvocationTargetException {
 
       new NetworkInterfaceEnumerator().printInterfaces(System.out);
    }
