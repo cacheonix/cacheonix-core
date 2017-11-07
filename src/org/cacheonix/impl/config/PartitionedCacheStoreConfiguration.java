@@ -100,12 +100,6 @@ public final class PartitionedCacheStoreConfiguration extends CacheStoreConfigur
    }
 
 
-   protected void readAttribute(final String attributeName, final Attr attributeNode, final String attributeValue) {
-
-      super.readAttribute(attributeName, attributeNode, attributeValue);
-   }
-
-
    protected void postProcessRead() {
 
       super.postProcessRead();
