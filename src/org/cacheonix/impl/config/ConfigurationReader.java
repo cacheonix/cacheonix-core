@@ -141,18 +141,17 @@ public final class ConfigurationReader {
 
    private Document parseConfiguration(final InputStream is) throws IOException {
 
-      final URL resource = getClass().getClassLoader().getResource(META_INF_CACHEONIX_CONFIG_2_0_XSD);
-      if (resource == null) {
+      final URL xsdUrl = getClass().getClassLoader().getResource(META_INF_CACHEONIX_CONFIG_2_0_XSD);
+      if (xsdUrl == null) {
          throw new IOException("Couldn't find packaged " + META_INF_CACHEONIX_CONFIG_2_0_XSD + " in the classpath");
       }
 
-      final String xsd = resource.toString();
       try {
 
          // Create parser factory
          final DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
          documentBuilderFactory.setAttribute(JAXP_SCHEMA_LANGUAGE, W3C_XML_SCHEMA);
-         documentBuilderFactory.setAttribute(JAXP_SCHEMA_SOURCE, xsd);
+         documentBuilderFactory.setAttribute(JAXP_SCHEMA_SOURCE, xsdUrl.toString());
          documentBuilderFactory.setIgnoringComments(true);
          documentBuilderFactory.setNamespaceAware(true);
          documentBuilderFactory.setValidating(true);
