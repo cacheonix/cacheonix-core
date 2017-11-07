@@ -275,9 +275,8 @@ public final class ConfigurationManager {
             final int red = Integer.parseInt(getValue(map, RED));
             final int green = Integer.parseInt(getValue(map, GREEN));
             final int blue = Integer.parseInt(getValue(map, BLUE));
-            final Color c = new Color(red, green, blue);
             if (level != null) {
-               level.setLogLevelColorMap(level, c);
+               level.setLogLevelColorMap(level, new Color(red, green, blue));
             }
 
          } catch (final LogLevelFormatException ignored) {
