@@ -72,7 +72,7 @@ public final class TransferBucketRequest extends CacheRequest {
    }
 
 
-   public TransferBucketRequest(final String cacheName) {
+   TransferBucketRequest(final String cacheName) {
 
       super(TYPE_CACHE_TRANSFER_BUCKET_REQUEST, cacheName);
    }
@@ -84,7 +84,7 @@ public final class TransferBucketRequest extends CacheRequest {
     *
     * @param bucket to transfer.
     */
-   public void addBucket(final Bucket bucket) {
+   void addBucket(final Bucket bucket) {
 
       getOrCreateBuckets(1).add(bucket);
    }
@@ -95,7 +95,7 @@ public final class TransferBucketRequest extends CacheRequest {
     *
     * @param bucketsToAdd a collection of buckets to add
     */
-   public void addBuckets(final Collection<Bucket> bucketsToAdd) {
+   void addBuckets(final Collection<Bucket> bucketsToAdd) {
 
       getOrCreateBuckets(bucketsToAdd.size()).addAll(bucketsToAdd);
    }
@@ -125,7 +125,7 @@ public final class TransferBucketRequest extends CacheRequest {
     * @param createSize size of the new list
     * @return the list of existing buckets or initializes it if it has not been initialized yet.
     */
-   public List<Bucket> getOrCreateBuckets(final int createSize) {
+   List<Bucket> getOrCreateBuckets(final int createSize) {
 
       if (buckets == null) {
          buckets = new ArrayList<Bucket>(createSize);
@@ -170,7 +170,7 @@ public final class TransferBucketRequest extends CacheRequest {
    }
 
 
-   public void setCurrentOwner(final ClusterNodeAddress currentOwner) {
+   void setCurrentOwner(final ClusterNodeAddress currentOwner) {
 
       this.currentOwner = currentOwner;
    }
