@@ -78,7 +78,7 @@ public final class HashCodeType implements Serializable {
       if (this == obj) {
          return true;
       }
-      if (obj == null || getClass() != obj.getClass()) {
+      if (obj == null || !obj.getClass().equals(getClass())) {
          return false;
       }
 

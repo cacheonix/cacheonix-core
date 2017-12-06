@@ -117,7 +117,7 @@ public final class LockQueueKey implements Wireable {
       if (this == o) {
          return true;
       }
-      if (o == null || getClass() != o.getClass()) {
+      if (o == null || !o.getClass().equals(getClass())) {
          return false;
       }
 

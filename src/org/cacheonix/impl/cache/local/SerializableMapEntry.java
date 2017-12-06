@@ -59,7 +59,7 @@ final class SerializableMapEntry<K extends Serializable, V extends Serializable>
       if (this == o) {
          return true;
       }
-      if (o == null || getClass() != o.getClass()) {
+      if (o == null || !o.getClass().equals(getClass())) {
          return false;
       }
 

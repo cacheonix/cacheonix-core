@@ -71,7 +71,7 @@ final class QueryKey implements Serializable {
       if (this == obj) {
          return true;
       }
-      if (obj == null || getClass() != obj.getClass()) {
+      if (obj == null || !obj.getClass().equals(getClass())) {
          return false;
       }
       final QueryKey query = (QueryKey) obj;

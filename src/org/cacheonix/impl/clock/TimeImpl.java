@@ -162,7 +162,7 @@ public final class TimeImpl implements Time {
       if (this == o) {
          return true;
       }
-      if (o == null || getClass() != o.getClass()) {
+      if (o == null || !o.getClass().equals(getClass())) {
          return false;
       }
 

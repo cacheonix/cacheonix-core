@@ -128,7 +128,7 @@ public final class CacheableEntry implements Wireable {
          return true;
       }
 
-      if (o == null || getClass() != o.getClass()) {
+      if (o == null || !o.getClass().equals(getClass())) {
          return false;
       }
 

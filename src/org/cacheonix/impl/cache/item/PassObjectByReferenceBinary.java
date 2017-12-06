@@ -119,7 +119,7 @@ public final class PassObjectByReferenceBinary implements Binary {
       if (this == obj) {
          return true;
       }
-      if (obj == null || getClass() != obj.getClass()) {
+      if (obj == null || !obj.getClass().equals(getClass())) {
          return false;
       }
 

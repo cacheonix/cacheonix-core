@@ -52,7 +52,7 @@ import org.cacheonix.impl.util.logging.Logger;
  *   }
  *   public boolean equals(final Object o) {
  *      if (this == o) return true;
- *      if (o == null || getClass() != o.getClass()) return false;
+ *      if (o == null || !o.getClass().equals(getClass())) return false;
  *      final ProductKey that = (ProductKey)o;
  *      if (id != that.id) return false;
  *      if (!name.equals(that.name)) return false;

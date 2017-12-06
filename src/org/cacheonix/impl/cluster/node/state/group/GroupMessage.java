@@ -163,7 +163,7 @@ public abstract class GroupMessage extends Message {
       if (this == obj) {
          return true;
       }
-      if (obj == null || getClass() != obj.getClass()) {
+      if (obj == null || !obj.getClass().equals(getClass())) {
          return false;
       }
       if (!super.equals(obj)) {

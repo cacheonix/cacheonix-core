@@ -479,7 +479,7 @@ public final class MyBatisCache implements Cache {
       if (this == obj) {
          return true;
       }
-      if (obj == null || getClass() != obj.getClass()) {
+      if (obj == null || !obj.getClass().equals(getClass())) {
          return false;
       }
 

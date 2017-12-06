@@ -253,7 +253,7 @@ public final class ReplicatedState implements Wireable {
       if (this == obj) {
          return true;
       }
-      if (obj == null || getClass() != obj.getClass()) {
+      if (obj == null || !obj.getClass().equals(getClass())) {
          return false;
       }
 

@@ -90,7 +90,7 @@ public final class EvictionPolicy implements Serializable {
       if (this == obj) {
          return true;
       }
-      if (obj == null || getClass() != obj.getClass()) {
+      if (obj == null || !obj.getClass().equals(getClass())) {
          return false;
       }
       return code == ((EvictionPolicy) obj).code;

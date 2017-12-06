@@ -185,7 +185,7 @@ public final class EntryModifiedNotificationMessage extends CacheMessage {
       if (this == o) {
          return true;
       }
-      if (o == null || getClass() != o.getClass()) {
+      if (o == null || !o.getClass().equals(getClass())) {
          return false;
       }
       if (!super.equals(o)) {

@@ -672,7 +672,7 @@ public final class RecoveryMarker extends MarkerRequest {
       if (this == o) {
          return true;
       }
-      if (o == null || getClass() != o.getClass()) {
+      if (o == null || !o.getClass().equals(getClass())) {
          return false;
       }
       if (!super.equals(o)) {
