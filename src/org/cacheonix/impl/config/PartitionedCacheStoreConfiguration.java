@@ -13,7 +13,6 @@
  */
 package org.cacheonix.impl.config;
 
-import org.w3c.dom.Attr;
 import org.w3c.dom.Node;
 
 /**
