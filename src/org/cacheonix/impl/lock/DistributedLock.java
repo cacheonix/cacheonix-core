@@ -134,7 +134,7 @@ public final class DistributedLock implements Lock {
       final int ownerThreadID = System.identityHashCode(thread);
       final ClusterNodeAddress ownerAddress = clusterProcessor.getAddress();
 
-      final Integer result = (Integer) retrier.retryUntilDone(new Retryable() {
+      final Integer result = (Integer) retrier.retryUntilDone(new Retryable("acquireLock") {
 
          public Object execute() throws RetryException {
 
@@ -147,12 +147,6 @@ public final class DistributedLock implements Lock {
             }
 
             return clusterProcessor.execute(request);
-         }
-
-
-         public String description() {
-
-            return "acquireLock";
          }
       });
 
@@ -175,19 +169,13 @@ public final class DistributedLock implements Lock {
       final String threadName = thread.getName();
 
       // Request
-      final Integer result = (Integer) retrier.retryUntilDone(new Retryable() {
+      final Integer result = (Integer) retrier.retryUntilDone(new Retryable("unlock") {
 
          public Object execute() throws RetryException {
 
             final ReleaseLockRequest request = new ReleaseLockRequest(lockRegionName, lockKey, clusterProcessor.getAddress(),
                     threadID, threadName, readLock);
             return clusterProcessor.execute(request);
-         }
-
-
-         public String description() {
-
-            return "unlock";
          }
       });
 
@@ -217,7 +205,7 @@ public final class DistributedLock implements Lock {
       final int threadID = System.identityHashCode(thread);
       final String threadName = thread.getName();
 
-      return (Integer) retrier.retryUntilDone(new Retryable() {
+      return (Integer) retrier.retryUntilDone(new Retryable("entryCount") {
 
          public Object execute() throws RetryException {
 
@@ -225,12 +213,6 @@ public final class DistributedLock implements Lock {
                     threadID, threadName, readLock);
             request.setReceiver(clusterProcessor.getAddress()); // Set receiver to self.
             return clusterProcessor.execute(request);
-         }
-
-
-         public String description() {
-
-            return "entryCount";
          }
       });
    }

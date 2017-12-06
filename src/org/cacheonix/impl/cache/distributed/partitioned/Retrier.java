@@ -63,7 +63,7 @@ public final class Retrier {
          } catch (final RetryException e) {
 
             if (LOG.isDebugEnabled() && retryCount % 100 == 0) {
-               LOG.debug("Retrying " + (retryable.hasDescription() ? retryable.description() : "") + ", retry count: " + retryCount);
+               LOG.debug("Retrying " + retryable.description()+ ", retry count: " + retryCount);
             }
             retryCount++;
             lastRetryException = e;

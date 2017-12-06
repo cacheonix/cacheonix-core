@@ -36,6 +36,7 @@ import static org.cacheonix.impl.config.SystemProperty.BUFFER_SIZE;
 /**
  * Handles a readable channel by reading Messages from it.
  */
+@SuppressWarnings("AssignmentToForLoopParameter")
 final class ReceiverKeyHandler extends KeyHandler {
 
    /**

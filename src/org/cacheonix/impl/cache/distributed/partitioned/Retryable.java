@@ -17,17 +17,37 @@ import org.cacheonix.impl.net.processor.RetryException;
 import org.cacheonix.impl.util.StringUtils;
 
 
+@SuppressWarnings("PublicMethodNotExposedInInterface")
 public abstract class Retryable {
-
-   public abstract String description();
-
 
    public abstract Object execute() throws RetryException;
 
 
-   public boolean hasDescription() {
+   /**
+    * Creates {@link Retryable}.
+    *
+    * @param description a description of the action to be re-tried.
+    */
+   protected Retryable(final String description) {
 
-      return !StringUtils.isBlank(description());
+      this.description = description;
+   }
+
+
+   /**
+    * A description of the action to be re-tried.
+    */
+   private final String description;
+
+
+   /**
+    * Returns a description of the action to be re-tried.
+    *
+    * @return description of the action to be re-tried.
+    */
+   public final String description() {
+
+      return StringUtils.isBlank(description) ? "" : description;
    }
 
 

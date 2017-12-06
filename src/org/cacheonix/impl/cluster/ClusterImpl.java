@@ -85,7 +85,7 @@ public final class ClusterImpl implements Cluster {
 
       // Execute request
       final Retrier retrier = new Retrier();
-      retrier.retryUntilDone(new Retryable() {
+      retrier.retryUntilDone(new Retryable("addClusterEventSubscriber") {
 
          public Object execute() throws RetryException {
 
@@ -97,12 +97,6 @@ public final class ClusterImpl implements Cluster {
 
             // This method doesn't return a result
             return null;
-         }
-
-
-         public String description() {
-
-            return "addClusterEventSubscriber";
          }
       });
    }
@@ -118,7 +112,7 @@ public final class ClusterImpl implements Cluster {
       ArgumentValidator.validateArgumentNotNull(clusterEventSubscriber, "clusterEventSubscriber");
 
       final Retrier retrier = new Retrier();
-      retrier.retryUntilDone(new Retryable() {
+      retrier.retryUntilDone(new Retryable("removeClusterEventSubscriber") {
 
          public Object execute() throws RetryException {
 
@@ -130,12 +124,6 @@ public final class ClusterImpl implements Cluster {
 
             // This method doesn't return a result
             return null;
-         }
-
-
-         public String description() {
-
-            return "removeClusterEventSubscriber";
          }
       });
    }

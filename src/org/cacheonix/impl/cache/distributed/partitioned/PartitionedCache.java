@@ -152,7 +152,7 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
     */
    public List getKeyOwners() {
 
-      return (List) retrier.retryUntilDone(new Retryable() {
+      return (List) retrier.retryUntilDone(new Retryable("getKeyOwners") {
 
          public Object execute() throws RetryException {
 
@@ -165,12 +165,6 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
                result.add(new CacheMemberImpl(contributorAddress, cacheName));
             }
             return result;
-         }
-
-
-         public String description() {
-
-            return "getKeyOwners";
          }
       });
    }
@@ -190,7 +184,7 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
       final EntryFilter entryFilterCopy = copy(entryFilter);
 
       // Execute
-      return (Serializable) retrier.retryUntilDone(new Retryable() {
+      return (Serializable) retrier.retryUntilDone(new Retryable("execute") {
 
          public Object execute() throws RetryException {
 
@@ -200,12 +194,6 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
 
             final Collection<Serializable> partialResults = clusterProcessor.execute(request);
             return aggregator.aggregate(partialResults);
-         }
-
-
-         public String description() {
-
-            return "execute";
          }
       });
    }
@@ -222,7 +210,7 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
       // Run
       @SuppressWarnings("unchecked")
       final Collection<Serializable> partialResults = (Collection<Serializable>) retrier.retryUntilDone(
-              new Retryable() {
+              new Retryable("removeAll") {
 
                  public Object execute() throws RetryException {
 
@@ -232,12 +220,6 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
                     request.setExecutable(executable);
                     return clusterProcessor.execute(request);
                  }
-
-
-                 public String description() {
-
-                    return "removeAll";
-                 }
               });
       return aggregator.aggregate(partialResults);
    }
@@ -245,7 +227,7 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
 
    public int size() {
 
-      return ((Number) retrier.retryUntilDone(new Retryable() {
+      return ((Number) retrier.retryUntilDone(new Retryable("size") {
 
          public Object execute() throws RetryException {
 
@@ -253,19 +235,13 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
             final SizeRequest request = new SizeRequest(cacheName);
             return clusterProcessor.execute(request);
          }
-
-
-         public String description() {
-
-            return "size";
-         }
       })).intValue();
    }
 
 
    public void clear() {
 
-      retrier.retryUntilDone(new Retryable() {
+      retrier.retryUntilDone(new Retryable("clear") {
 
          public Object execute() throws RetryException {
             // NOTE: simeshev@cacheonix.org - 2010-03-16 - ClearRequest
@@ -274,12 +250,6 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
             final ClusterProcessor clusterProcessor = PartitionedCache.this.clusterProcessor;
             final ClearRequest request = new ClearRequest(cacheName);
             return clusterProcessor.execute(request);
-         }
-
-
-         public String description() {
-
-            return "clear";
          }
       });
    }
@@ -293,7 +263,7 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
 
    public boolean containsKey(final Object key) {
 
-      return (Boolean) retrier.retryUntilDone(new Retryable() {
+      return (Boolean) retrier.retryUntilDone(new Retryable("containsKey") {
 
          public Object execute() throws RetryException {
 
@@ -303,19 +273,13 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
             final ClusterProcessor clusterProcessor = PartitionedCache.this.clusterProcessor;
             return clusterProcessor.execute(request);
          }
-
-
-         public String description() {
-
-            return "containsKey";
-         }
       });
    }
 
 
    public boolean containsValue(final Object value) {
 
-      return result((Boolean) retrier.retryUntilDone(new Retryable() {
+      return result((Boolean) retrier.retryUntilDone(new Retryable("containsValue") {
 
          public Object execute() throws RetryException {
 
@@ -325,12 +289,6 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
             final ContainsValueRequest request = new ContainsValueRequest(cacheName, binaryValue);
             return clusterProcessor.execute(request);
          }
-
-
-         public String description() {
-
-            return "containsValue";
-         }
       }));
    }
 
@@ -338,7 +296,7 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
    public Collection<V> values() {
 
       //noinspection unchecked
-      return (Collection<V>) retrier.retryUntilDone(new Retryable() {
+      return (Collection<V>) retrier.retryUntilDone(new Retryable("values") {
 
          @SuppressWarnings("unchecked")
          public Object execute() throws RetryException {
@@ -355,12 +313,6 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
                result.add(binaryValues.removeFirst().getValue());
             }
             return result;
-         }
-
-
-         public String description() {
-
-            return "values";
          }
       });
    }
@@ -396,7 +348,7 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
       }
 
       // Put
-      retrier.retryUntilDone(new Retryable() {
+      retrier.retryUntilDone(new Retryable("putAll") {
 
          public Object execute() throws RetryException {
 
@@ -405,12 +357,6 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
 
             return clusterProcessor.execute(request);
          }
-
-
-         public String description() {
-
-            return "putAll";
-         }
       });
    }
 
@@ -418,7 +364,7 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
    public Set<Entry<K, V>> entrySet() {
 
       //noinspection unchecked
-      return (Set<Entry<K, V>>) retrier.retryUntilDone(new Retryable() {
+      return (Set<Entry<K, V>>) retrier.retryUntilDone(new Retryable("entrySet") {
 
          @SuppressWarnings("unchecked")
          public Object execute() throws RetryException {
@@ -440,12 +386,6 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
             }
             return result;
          }
-
-
-         public String description() {
-
-            return "entrySet";
-         }
       });
    }
 
@@ -453,7 +393,7 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
    public Set<K> keySet() {
 
       //noinspection unchecked
-      return (Set<K>) retrier.retryUntilDone(new Retryable() {
+      return (Set<K>) retrier.retryUntilDone(new Retryable("keySet") {
 
          @SuppressWarnings("unchecked")
          public Object execute() throws RetryException {
@@ -471,12 +411,6 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
             }
             return result;
          }
-
-
-         public String description() {
-
-            return "keySet";
-         }
       });
    }
 
@@ -484,7 +418,7 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
    public V get(final Object key) {
 
       //noinspection unchecked
-      return (V) retrier.retryUntilDone(new Retryable() {
+      return (V) retrier.retryUntilDone(new Retryable("get") {
 
 
          public Object execute() throws RetryException {
@@ -495,12 +429,6 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
             final ClusterProcessor clusterProcessor = PartitionedCache.this.clusterProcessor;
             final CacheableValue cacheableValue = clusterProcessor.execute(request);
             return result(cacheableValue);
-         }
-
-
-         public String description() {
-
-            return "get";
          }
       });
    }
@@ -518,7 +446,7 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
    public CacheEntry entry(final K key) {
 
       //noinspection unchecked
-      return (CacheEntry) retrier.retryUntilDone(new Retryable() {
+      return (CacheEntry) retrier.retryUntilDone(new Retryable("entry") {
 
 
          public Object execute() throws RetryException {
@@ -538,12 +466,6 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
             final Time createdTime = cacheableValue.getCreatedTime();
             return new CacheEntryImpl(key, value, createdTime, expirationTime);
          }
-
-
-         public String description() {
-
-            return "entry";
-         }
       });
    }
 
@@ -560,7 +482,7 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
     */
    public boolean remove(final Object key, final Object value) {
 
-      return (Boolean) retrier.retryUntilDone(new Retryable() {
+      return (Boolean) retrier.retryUntilDone(new Retryable("remove") {
 
          public Object execute() throws RetryException {
 
@@ -569,12 +491,6 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
             final Binary binaryValue = createBinary(value);
             final AtomicRemoveRequest request = new AtomicRemoveRequest(address, cacheName, binaryKey, binaryValue);
             return clusterProcessor.execute(request);
-         }
-
-
-         public String description() {
-
-            return "remove";
          }
       });
    }
@@ -585,7 +501,7 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
     */
    public final boolean replace(final K key, final V oldValue, final V newValue) {
 
-      return (Boolean) retrier.retryUntilDone(new Retryable() {
+      return (Boolean) retrier.retryUntilDone(new Retryable("replace") {
 
          public Object execute() throws RetryException {
 
@@ -597,12 +513,6 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
                     binaryKey, binaryOldValue, binaryNewValue);
             return clusterProcessor.execute(request);
          }
-
-
-         public String description() {
-
-            return "replace";
-         }
       });
    }
 
@@ -610,7 +520,7 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
    public V replace(final K key, final V value) {
 
       //noinspection unchecked
-      return (V) retrier.retryUntilDone(new Retryable() {
+      return (V) retrier.retryUntilDone(new Retryable("replace") {
 
          public Object execute() throws RetryException {
 
@@ -620,12 +530,6 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
             final ReplaceIfMappedRequest request = new ReplaceIfMappedRequest(address, cacheName, binaryKey,
                     binaryValue);
             return result((Binary) clusterProcessor.execute(request));
-         }
-
-
-         public String description() {
-
-            return "replace";
          }
       });
    }
@@ -639,7 +543,7 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
     */
    private Binary doRemove(final Object key) {
 
-      return (Binary) retrier.retryUntilDone(new Retryable() {
+      return (Binary) retrier.retryUntilDone(new Retryable("remove") {
 
          public Object execute() throws RetryException {
 
@@ -647,12 +551,6 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
             final Binary binaryKey = createBinary(key);
             final RemoveRequest request = new RemoveRequest(address, cacheName, binaryKey);
             return clusterProcessor.execute(request);
-         }
-
-
-         public String description() {
-
-            return "remove";
          }
       });
    }
@@ -680,7 +578,7 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
       }
 
       // Run
-      return (Boolean) retrier.retryUntilDone(new Retryable() {
+      return (Boolean) retrier.retryUntilDone(new Retryable("removeAll") {
 
          public Object execute() throws RetryException {
 
@@ -688,12 +586,6 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
             final RemoveAllRequest request = new RemoveAllRequest(cacheName);
             request.setKeySet(toBinaryKeySet(keys));
             return clusterProcessor.execute(request);
-         }
-
-
-         public String description() {
-
-            return "removeAll";
          }
       });
    }
@@ -718,7 +610,7 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
 
       // Run
       //noinspection unchecked
-      return (Map<K, V>) retrier.retryUntilDone(new Retryable() {
+      return (Map<K, V>) retrier.retryUntilDone(new Retryable("getAll") {
 
          public Object execute() throws RetryException {
 
@@ -732,12 +624,6 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
                result.put(result(cacheableEntry.getKey()), result(cacheableEntry.getValue()));
             }
             return result;
-         }
-
-
-         public String description() {
-
-            return "getAll";
          }
       });
    }
@@ -769,7 +655,7 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
       final HashSet<Binary> binaryKeySet = BinaryUtils.toBinarySet(keySet);
 
       // Run
-      return (Boolean) retrier.retryUntilDone(new Retryable() {
+      return (Boolean) retrier.retryUntilDone(new Retryable("retainAll") {
 
          public Object execute() throws RetryException {
 
@@ -777,12 +663,6 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
             final RetainAllRequest request = new RetainAllRequest(cacheName);
             request.setKeySet(binaryKeySet);
             return clusterProcessor.execute(request);
-         }
-
-
-         public String description() {
-
-            return "retainAll";
          }
       });
 
@@ -798,7 +678,7 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
    public V put(final K key, final V value, final long delay, final TimeUnit timeUnit) {
 
       //noinspection unchecked
-      return (V) retrier.retryUntilDone(new Retryable() {
+      return (V) retrier.retryUntilDone(new Retryable("put") {
 
          public Object execute() throws RetryException {
 
@@ -812,12 +692,6 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
             final CacheableValue cacheableValue = clusterProcessor.execute(request);
             return result(cacheableValue);
          }
-
-
-         public String description() {
-
-            return "put";
-         }
       });
    }
 
@@ -828,7 +702,7 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
    public V putIfAbsent(final K key, final V value) {
 
       //noinspection unchecked
-      return (V) retrier.retryUntilDone(new Retryable() {
+      return (V) retrier.retryUntilDone(new Retryable("putIfAbsent") {
 
          public Object execute() throws RetryException {
 
@@ -839,12 +713,6 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
             final ClusterProcessor clusterProcessor = PartitionedCache.this.clusterProcessor;
             final CacheableValue cacheableValue = clusterProcessor.execute(request);
             return result(cacheableValue);
-         }
-
-
-         public String description() {
-
-            return "putIfAbsent";
          }
       });
    }
@@ -881,19 +749,13 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
 
    public CacheStatistics getStatistics() {
 
-      return (CacheStatistics) retrier.retryUntilDone(new Retryable() {
+      return (CacheStatistics) retrier.retryUntilDone(new Retryable("getStatistics") {
 
          public Object execute() throws RetryException {
 
             final ClusterProcessor clusterProcessor = PartitionedCache.this.clusterProcessor;
             final GetStatisticsRequest request = new GetStatisticsRequest(cacheName);
             return clusterProcessor.execute(request);
-         }
-
-
-         public String description() {
-
-            return "getStatistics";
          }
       });
 
@@ -914,7 +776,7 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
     */
    public long getMaxSize() {
 
-      return (Long) retrier.retryUntilDone(new Retryable() {
+      return (Long) retrier.retryUntilDone(new Retryable("getMaxSize") {
 
          public Object execute() throws RetryException {
 
@@ -923,12 +785,6 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
             request.setReceiver(address);
 
             return clusterProcessor.execute(request);
-         }
-
-
-         public String description() {
-
-            return "getMaxSize";
          }
       });
    }
@@ -957,7 +813,7 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
     */
    public CacheMember getKeyOwner(final K key) {
 
-      return (CacheMember) retrier.retryUntilDone(new Retryable() {
+      return (CacheMember) retrier.retryUntilDone(new Retryable("retainAll") {
 
          public Object execute() throws RetryException {
 
@@ -967,12 +823,6 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
             request.setReceiver(address);
             final ClusterNodeAddress owner = clusterProcessor.execute(request);
             return new CacheMemberImpl(owner, cacheName);
-         }
-
-
-         public String description() {
-
-            return "retainAll";
          }
       });
 
@@ -1007,7 +857,7 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
 
       final ClusterProcessor clusterProcessor = this.clusterProcessor;
 
-      retrier.retryUntilDone(new Retryable() {
+      retrier.retryUntilDone(new Retryable("addEventSubscriber") {
 
          public Object execute() throws RetryException {
 
@@ -1023,12 +873,6 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
 
             // Done
             return null;
-         }
-
-
-         public String description() {
-
-            return "addEventSubscriber";
          }
       });
    }
@@ -1058,7 +902,7 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
 
       final ClusterProcessor clusterProcessor = this.clusterProcessor;
 
-      retrier.retryUntilDone(new Retryable() {
+      retrier.retryUntilDone(new Retryable("removeEventSubscriber") {
 
          public Object execute() throws RetryException {
 
@@ -1074,12 +918,6 @@ public final class PartitionedCache<K extends Serializable, V extends Serializab
 
             // Done
             return null;
-         }
-
-
-         public String description() {
-
-            return "removeEventSubscriber";
          }
       });
    }

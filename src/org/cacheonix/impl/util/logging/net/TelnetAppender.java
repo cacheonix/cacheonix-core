@@ -17,6 +17,7 @@
 
 package org.cacheonix.impl.util.logging.net;
 
+import java.io.Closeable;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
@@ -151,7 +152,7 @@ public final class TelnetAppender extends AppenderSkeleton {
 
          for (final Enumeration e = connections.elements(); e.hasMoreElements();) {
             try {
-               ((Socket) e.nextElement()).close();
+               ((Closeable) e.nextElement()).close();
             } catch (final Exception ignored) {
             }
          }
