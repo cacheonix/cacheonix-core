@@ -561,25 +561,28 @@ public final class SerializerUtils {
 
          final byte[] addr = inetAddress.getAddress();
          out.writeByte(addr.length);
-         if (addr.length == 4) {
+         switch (addr.length) {
+            case 4:
 
-            int address = addr[3] & 0xFF;
-            address |= addr[2] << 8 & 0xFF00;
-            address |= addr[1] << 16 & 0xFF0000;
-            address |= addr[0] << 24 & 0xFF000000;
+               int address = addr[3] & 0xFF;
+               address |= addr[2] << 8 & 0xFF00;
+               address |= addr[1] << 16 & 0xFF0000;
+               address |= addr[0] << 24 & 0xFF000000;
 
-            out.writeInt(address);
+               out.writeInt(address);
 
-            if (fixedLength) {
-               out.writeInt(0);
-               out.writeLong(0);
-            }
-         } else if (addr.length == 16) {
+               if (fixedLength) {
+                  out.writeInt(0);
+                  out.writeLong(0);
+               }
+               break;
+            case 16:
 
-            out.write(addr);
-         } else {
+               out.write(addr);
+               break;
+            default:
 
-            throw new IOException("Unknown address format: " + inetAddress);
+               throw new IOException("Unknown address format: " + inetAddress);
          }
       }
    }
