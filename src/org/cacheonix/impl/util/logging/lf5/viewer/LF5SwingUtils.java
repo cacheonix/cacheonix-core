@@ -55,9 +55,9 @@ public final class LF5SwingUtils {
 
 
    /**
-    * Selects a the specified row in the specified JTable and scrolls the specified JScrollpane to the newly selected
+    * Selects a the specified row in the specified JTable and scrolls the specified JScrollable to the newly selected
     * row. More importantly, the call to repaint() delayed long enough to have the table properly paint the newly
-    * selected row which may be offscre
+    * selected row which may be offscreen.
     *
     * @param table should belong to the specified JScrollPane
     */

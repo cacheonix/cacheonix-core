@@ -22,7 +22,7 @@ import org.cacheonix.impl.util.exception.StackTraceAtCreate;
 import org.cacheonix.impl.util.logging.Logger;
 
 /**
- * Serilizer to handle unknown serilization types. This serilizer throws an expection with an expalation of the problem
+ * Serializer to handle unknown serialization types. This serializer throws an exception with an explanation of the problem
  * and a stack trace showing when it was created.
  * <p/>
  *
@@ -88,7 +88,7 @@ final class UnknownTypeSerializer implements Serializer {
 
    public String toString() {
 
-      return "UnknowTypeSerializer{" +
+      return "UnknownTypeSerializer{" +
               "stackTraceAtCreate=" + stackTraceAtCreate +
               ", typeAtCreate=" + typeAtCreate +
               '}';

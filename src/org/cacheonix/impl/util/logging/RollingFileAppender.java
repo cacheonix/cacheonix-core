@@ -58,9 +58,9 @@ public class RollingFileAppender extends FileAppender {
 
    /**
     * Instantiate a RollingFileAppender and open the file designated by <code>filename</code>. The opened filename will
-    * become the ouput destination for this appender.
+    * become the output destination for this appender.
     * <p/>
-    * <p>If the <code>append</code> parameter is true, the file will be appended to. Otherwise, the file desginated by
+    * <p>If the <code>append</code> parameter is true, the file will be appended to. Otherwise, the file designated by
     * <code>filename</code> will be truncated before being opened.
     */
    public RollingFileAppender(final Layout layout, final String filename, final boolean append)
@@ -109,7 +109,7 @@ public class RollingFileAppender extends FileAppender {
     * <p>If <code>MaxBackupIndex</code> is equal to zero, then the <code>File</code> is truncated with no backup files
     * created.
     */
-   public final // synchronization not necessary since doAppend is alreasy synched
+   public final // synchronization not necessary since doAppend is already synced
    void rollOver() {
 
       if (qw != null) {

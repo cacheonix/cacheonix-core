@@ -132,7 +132,6 @@ public final class RendererMap {
     * acceptable in the vast majority of circumstances.
     */
    public final ObjectRenderer get(final Class clazz) {
-      //System.out.println("\nget: "+clazz);
       ObjectRenderer r = null;
       for (Class c = clazz; c != null; c = c.getSuperclass()) {
          //System.out.println("Searching for class: "+c);

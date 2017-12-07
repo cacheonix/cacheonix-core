@@ -157,7 +157,7 @@ public final class LogTable extends JTable {
 
    // default view if a view is not set and saved
    public final void setDetailedView() {
-      //TODO: Defineable Views.
+      //TODO: Definable Views.
       final TableColumnModel model = getColumnModel();
       // Remove all the columns:
       for (int f = 0; f < _numCols; f++) {
@@ -280,7 +280,7 @@ public final class LogTable extends JTable {
 
 //               if( i == _colSequence)
 //               {
-//                  buf.append("\t\t\t"); // pad out the Sequnce.
+//                  buf.append("\t\t\t"); // pad out the Sequence.
 //               }
 
                buf.append(value);

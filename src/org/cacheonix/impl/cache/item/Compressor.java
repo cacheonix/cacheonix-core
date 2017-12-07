@@ -81,7 +81,7 @@ final class Compressor {
          // Create entry as required by ZipOutputStream
          final ZipEntry entry = new ZipEntry(OBJECT_ZIP_ENTRY);
          zos.putNextEntry(entry);
-         IOUtils.copyInputToOuputStream(bais, zos);
+         IOUtils.copyInputToOutputStream(bais, zos);
          zos.flush();
          baos.flush();
          zos.closeEntry();
@@ -112,7 +112,7 @@ final class Compressor {
          // Get entry so that we can start reading.
          zis.getNextEntry();
          baos = new ByteArrayOutputStream(compressedBytes.length);
-         IOUtils.copyInputToOuputStream(zis, baos);
+         IOUtils.copyInputToOutputStream(zis, baos);
          baos.flush();
          return baos.toByteArray();
       } finally {

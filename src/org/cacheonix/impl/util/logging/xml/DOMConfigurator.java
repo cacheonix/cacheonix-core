@@ -419,7 +419,7 @@ problem: we can't create an Appender */ catch (final Exception oops) {
 
 
       if (EMPTY_STR.equals(className)) {
-         LogLog.debug("Retreiving an instance of org.cacheonix.impl.util.logging.Logger.");
+         LogLog.debug("Retrieving an instance of org.cacheonix.impl.util.logging.Logger.");
          cat = catFactory == null ? repository.getLogger(catName) : repository.getLogger(catName, catFactory);
       } else {
          LogLog.debug("Desired logger sub-class: [" + className + ']');
@@ -494,7 +494,7 @@ problem: we can't create an Appender */ catch (final Exception oops) {
 
 
    /**
-    * Used internally to parse the roor category element.
+    * Used internally to parse the root category element.
     */
    protected final void parseRoot(final Element rootElement) {
 
@@ -688,9 +688,9 @@ problem: we can't create an Appender */ catch (final Exception oops) {
     */
    public static void configureAndWatch(final String configFilename, final long delay) {
 
-      final XMLWatchdog xdog = new XMLWatchdog(configFilename);
-      xdog.setDelay(delay);
-      xdog.start();
+      final XMLWatchdog xmlWatchdog = new XMLWatchdog(configFilename);
+      xmlWatchdog.setDelay(delay);
+      xmlWatchdog.start();
    }
 
 
@@ -827,7 +827,7 @@ problem: we can't create an Appender */ catch (final Exception oops) {
                  OptionConverter.getSystemProperty(dbfKey,
                          null));
          dbf = DocumentBuilderFactory.newInstance();
-         LogLog.debug("Standard DocumentBuilderFactory search succeded.");
+         LogLog.debug("Standard DocumentBuilderFactory search succeed.");
          LogLog.debug("DocumentBuilderFactory is: " + dbf.getClass().getName());
       } catch (final FactoryConfigurationError fce) {
          final Exception e = fce.getException();

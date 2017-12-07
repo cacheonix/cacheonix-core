@@ -389,7 +389,7 @@ public final class SyslogAppender extends AppenderSkeleton {
 
       // We must not attempt to append if sqw is null.
       if (sqw == null) {
-         errorHandler.error("No syslog host is set for SyslogAppedender named \"" +
+         errorHandler.error("No syslog host is set for SyslogAppender named \"" +
                  this.name + "\".");
          return;
       }

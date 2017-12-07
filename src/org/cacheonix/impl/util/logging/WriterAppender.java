@@ -202,24 +202,24 @@ public class WriterAppender extends AppenderSkeleton {
    /**
     * Returns an OutputStreamWriter when passed an OutputStream.  The encoding used will depend on the value of the
     * <code>encoding</code> property.  If the encoding value is specified incorrectly the writer will be opened using
-    * the default system encoding (an error message will be printed to the loglog.
+    * the default system encoding (an error message will be printed to the log.
     */
    protected final OutputStreamWriter createWriter(final OutputStream os) {
-      OutputStreamWriter retval = null;
+      OutputStreamWriter result = null;
 
       final String enc = encoding;
       if (enc != null) {
          try {
-            retval = new OutputStreamWriter(os, enc);
+            result = new OutputStreamWriter(os, enc);
          } catch (final IOException ignored) {
             LogLog.warn("Error initializing output writer.");
             LogLog.warn("Unsupported encoding?");
          }
       }
-      if (retval == null) {
-         retval = new OutputStreamWriter(os);
+      if (result == null) {
+         result = new OutputStreamWriter(os);
       }
-      return retval;
+      return result;
    }
 
 

@@ -95,7 +95,7 @@ import org.cacheonix.impl.util.logging.spi.LoggingEvent;
  * </table>
  * <p/>
  * <p>Do not use the colon ":" character in anywhere in the <b>DatePattern</b> option. The text before the colon is
- * interpeted as the protocol specificaion of a URL which is probably not what you want.
+ * interpreted as the protocol specification of a URL which is probably not what you want.
  *
  * @author Eirik Lygre
  * @author Ceki G&uuml;lc&uuml;
@@ -159,7 +159,7 @@ public final class DailyRollingFileAppender extends FileAppender {
 
    /**
     * Instantiate a <code>DailyRollingFileAppender</code> and open the file designated by <code>filename</code>. The
-    * opened filename will become the ouput destination for this appender.
+    * opened filename will become the output destination for this appender.
     */
    public DailyRollingFileAppender(final Layout layout, final String filename,
                                    final String datePattern) throws IOException {

@@ -124,9 +124,9 @@ public final class JMSSink implements MessageListener {
             logger.warn("Received message is of type " + message.getJMSType()
                     + ", was expecting ObjectMessage.");
          }
-      } catch (final JMSException jmse) {
+      } catch (final JMSException e) {
          logger.error("Exception thrown while processing incoming message.",
-                 jmse);
+                 e);
       }
    }
 

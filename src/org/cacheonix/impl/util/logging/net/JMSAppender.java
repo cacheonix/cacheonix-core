@@ -41,7 +41,7 @@ import org.cacheonix.impl.util.logging.spi.LoggingEvent;
  * {@link ObjectMessage}.
  * <p/>
  * <p>JMS {@link Topic topics} and {@link TopicConnectionFactory topic connection factories} are administered objects
- * that are retrieved using JNDI messaging which in turn requires the retreival of a JNDI {@link Context}.
+ * that are retrieved using JNDI messaging which in turn requires the retrieval of a JNDI {@link Context}.
  * <p/>
  * <p>There are two common methods for retrieving a JNDI {@link Context}. If a file resource named
  * <em>jndi.properties</em> is available to the JNDI API, it will use the information found therein to retrieve an
@@ -56,7 +56,7 @@ import org.cacheonix.impl.util.logging.spi.LoggingEvent;
  * context (ENC).
  * <p/>
  * <p>In the second approach, several predetermined properties are set and these properties are passed to the
- * <code>InitialContext</code> contructor to connect to the naming service provider. For example, to connect to JBoss
+ * <code>InitialContext</code> constructor to connect to the naming service provider. For example, to connect to JBoss
  * naming service one would write:
  * <p/>
  * <pre>
@@ -67,9 +67,9 @@ import org.cacheonix.impl.util.logging.spi.LoggingEvent;
  * InitialContext jndiContext = new InitialContext(env);
  * </pre>
  * <p/>
- * where <em>hostname</em> is the host where the JBoss applicaiton server is running.
+ * where <em>hostname</em> is the host where the JBoss application server is running.
  * <p/>
- * <p>To connect to the the naming service of Weblogic application server one would write:
+ * <p>To connect to the the naming service of WebLogic application server one would write:
  * <p/>
  * <pre>
  * Properties env = new Properties( );
@@ -393,7 +393,7 @@ public final class JMSAppender extends AppenderSkeleton {
 
 
    /**
-    * The paswword to use when creating a topic session.
+    * The password to use when creating a topic session.
     */
    public void setPassword(final String password) {
       this.password = password;

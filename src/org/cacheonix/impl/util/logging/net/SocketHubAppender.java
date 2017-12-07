@@ -74,7 +74,7 @@ import org.cacheonix.impl.util.logging.spi.LoggingEvent;
  * the slowest link.
  * <p/>
  * <p><li>If the JVM hosting the <code>SocketHubAppender</code> exits before the <code>SocketHubAppender</code> is
- * closed either explicitly or subsequent to garbage collection, then there might be untransmitted data in the pipe
+ * closed either explicitly or subsequent to garbage collection, then there might be un-transmitted data in the pipe
  * which might be lost. This is a common problem on Windows based systems.
  * <p/>
  * <p>To avoid lost data, it is usually sufficient to {@link #close} the <code>SocketHubAppender</code> either

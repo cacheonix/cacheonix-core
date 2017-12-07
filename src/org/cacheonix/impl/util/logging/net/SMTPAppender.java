@@ -160,12 +160,12 @@ public final class SMTPAppender extends AppenderSkeleton
          msg.setRecipients(RecipientType.TO, parseAddress(to));
       }
 
-      //Add CC receipients if defined.
+      //Add CC recipients if defined.
       if (cc != null && !cc.isEmpty()) {
          msg.setRecipients(RecipientType.CC, parseAddress(cc));
       }
 
-      //Add BCC receipients if defined.
+      //Add BCC recipients if defined.
       if (bcc != null && !bcc.isEmpty()) {
          msg.setRecipients(RecipientType.BCC, parseAddress(bcc));
       }
@@ -558,7 +558,7 @@ public final class SMTPAppender extends AppenderSkeleton
 
    /**
     * Setting the <b>SmtpDebug</b> option to <code>true</code> will cause the mail session to log its server interaction
-    * to stdout. This can be useful when debuging the appender but should not be used during production because username
+    * to stdout. This can be useful when debugging the appender but should not be used during production because username
     * and password information is included in the output.
     *
     * @param debug debug flag.

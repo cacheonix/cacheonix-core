@@ -13,7 +13,6 @@
  */
 package org.cacheonix.impl.net;
 
-import java.io.IOException;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
@@ -41,10 +40,10 @@ public final class NetUtils {
     * Returns a list of local addresses on this machine.
     *
     * @return a list of local addresses on this machine.
-    * @throws IOException if there is problem geting local address
+    * @throws CacheonixException if there is problem getting local address
     * @see InetAddress
     */
-   public static Set<InetAddress> getLocalInetAddresses() {
+   public static Set<InetAddress> getLocalInetAddresses() throws CacheonixException {
 
       try {
 

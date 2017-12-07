@@ -6,7 +6,7 @@
  * <p>Cacheonix is a coherent distributed Java cache and in-memory data grid for mission-critical applications that
  * require reliable operation in presence of server failures. Cacheonix provides a clean, extensive API for backend
  * reads and writes and notifications about updates to cache keys. Cacheonix offers an ability to process cache data
- * with data affinity in parallel using executor API. Cacheonix fully supports clustered distrbuted mutual exclusions
+ * with data affinity in parallel using executor API. Cacheonix fully supports clustered distributed mutual exclusions
  * and distributed nested read-write locks. Cacheonix also provides plugins for Hibernate, MyBatis and iBatis.</p>
  *
  * <h1>Cacheonix in Three Lines</h1>

@@ -26,7 +26,7 @@ import org.cacheonix.impl.util.logging.Logger;
 
 /**
  * No-operation implementation of LoggerRepository which is used when LogManager.repositorySelector is erroneously
- * nulled during class reloading.
+ * nilled during class reloading.
  *
  * @since 1.2.15
  */

@@ -30,7 +30,7 @@ import java.util.LinkedList;
 
 
 /**
- * <p>MRUFileManager handles the storage and retrival the most recently opened log files.
+ * <p>MRUFileManager handles the storage and retrieval the most recently opened log files.
  *
  * @author Brad Marlborough
  * @author Richard Hurst

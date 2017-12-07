@@ -30,7 +30,7 @@ public abstract class Request extends Message {
 
 
    /**
-    * <code>true</code> if the receiver has to acknowledge the receiving by sending responce with a result code.
+    * <code>true</code> if the receiver has to acknowledge the receiving by sending response with a result code.
     */
    private boolean responseRequired = true;
 
@@ -80,7 +80,7 @@ public abstract class Request extends Message {
 
 
    /**
-    * @return <code>true</code> if the receiver has to acknowledge the receiving by sending responce with a result code.
+    * @return <code>true</code> if the receiver has to acknowledge the receiving by sending response with a result code.
     */
    public final boolean isResponseRequired() {
 

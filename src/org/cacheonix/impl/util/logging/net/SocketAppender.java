@@ -49,7 +49,7 @@ import org.cacheonix.impl.util.logging.spi.LoggingEvent;
  * eventually arrive at the server.
  * <p/>
  * <p><li>If the remote server is down, the logging requests are simply dropped. However, if and when the server comes
- * back up, then event transmission is resumed transparently. This transparent reconneciton is performed by a
+ * back up, then event transmission is resumed transparently. This transparent reconnection is performed by a
  * <em>connector</em> thread which periodically attempts to connect to the server.
  * <p/>
  * <p><li>Logging events are automatically <em>buffered</em> by the native TCP implementation. This means that if the
@@ -70,7 +70,7 @@ import org.cacheonix.impl.util.logging.spi.LoggingEvent;
  * garbage collection problem. Most other applications can safely ignore it.
  * <p/>
  * <p><li>If the JVM hosting the <code>SocketAppender</code> exits before the <code>SocketAppender</code> is closed
- * either explicitly or subsequent to garbage collection, then there might be untransmitted data in the pipe which might
+ * either explicitly or subsequent to garbage collection, then there might be un-transmitted data in the pipe which might
  * be lost. This is a common problem on Windows based systems.
  * <p/>
  * <p>To avoid lost data, it is usually sufficient to {@link #close} the <code>SocketAppender</code> either explicitly
@@ -405,7 +405,7 @@ public final class SocketAppender extends AppenderSkeleton {
     * connection every <code>reconnectionDelay</code> milliseconds.
     * <p/>
     * <p>It stops trying whenever a connection is established. It will restart to try reconnect to the server when
-    * previpously open connection is droppped.
+    * previously open connection is dropped.
     *
     * @author Ceki G&uuml;lc&uuml;
     * @since 0.8.4

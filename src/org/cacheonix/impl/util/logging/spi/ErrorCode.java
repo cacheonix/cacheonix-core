@@ -19,7 +19,7 @@ package org.cacheonix.impl.util.logging.spi;
 
 
 /**
- * This interface defines commonly encoutered error codes.
+ * This interface defines commonly encountered error codes.
  *
  * @author Ceki G&uuml;lc&uuml;
  * @since 0.9.0

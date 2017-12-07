@@ -97,7 +97,7 @@ public final class NDC {
    // The number of times we allow push to be called before we call lazyRemove
    // 5 is a relatively small number. As such, lazyRemove is not called too
    // frequently. We thus avoid the cost of creating an Enumeration too often.
-   // The higher this number, the longer is the avarage period for which all
+   // The higher this number, the longer is the average period for which all
    // logging calls in all threads are blocked.
    static final int REAP_THRESHOLD = 5;
 
@@ -243,7 +243,7 @@ public final class NDC {
 
          v = new Vector(ht.size());
          final Enumeration enumeration = ht.keys();
-         // We give up after 4 straigt missses. That is 4 consecutive
+         // We give up after 4 straight misses. That is 4 consecutive
          // inspected threads in 'ht' that turn out to be alive.
          // The higher the proportion on dead threads in ht, the higher the
          // chances of removal.

@@ -87,14 +87,14 @@ public final class SocketNode implements Runnable {
             }
          }
       } catch (final EOFException ignored) {
-         logger.info("Caught java.io.EOFException closing conneciton.");
+         logger.info("Caught java.io.EOFException closing connection.");
       } catch (final SocketException ignored) {
-         logger.info("Caught java.net.SocketException closing conneciton.");
+         logger.info("Caught java.net.SocketException closing connection.");
       } catch (final IOException e) {
          logger.info("Caught java.io.IOException: " + e);
          logger.info("Closing connection.");
       } catch (final Exception e) {
-         logger.error("Unexpected exception. Closing conneciton.", e);
+         logger.error("Unexpected exception. Closing connection.", e);
       } finally {
          if (ois != null) {
             try {

@@ -43,7 +43,7 @@ import org.cacheonix.impl.util.logging.spi.ErrorCode;
 public class FileAppender extends WriterAppender {
 
    /**
-    * Controls file truncatation. The default value for this variable is <code>true</code>, meaning that by default a
+    * Controls file truncation. The default value for this variable is <code>true</code>, meaning that by default a
     * <code>FileAppender</code> will append to an existing file and not truncate it.
     * <p/>
     * <p>This option is meaningful only if the FileAppender opens the file.
@@ -198,7 +198,7 @@ public class FileAppender extends WriterAppender {
    /**
     * Get the value of the <b>BufferedIO</b> option.
     * <p/>
-    * <p>BufferedIO will significatnly increase performance on heavily loaded systems.
+    * <p>BufferedIO will significantly increase performance on heavily loaded systems.
     */
    public synchronized boolean getBufferedIO() {
 
@@ -233,7 +233,7 @@ public class FileAppender extends WriterAppender {
     * The <b>BufferedIO</b> option takes a boolean value. It is set to <code>false</code> by default. If true, then
     * <code>File</code> will be opened and the resulting {@link Writer} wrapped around a {@link BufferedWriter}.
     * <p/>
-    * BufferedIO will significatnly increase performance on heavily loaded systems.
+    * BufferedIO will significantly increase performance on heavily loaded systems.
     */
    public synchronized void setBufferedIO(final boolean bufferedIO) {
 
@@ -318,7 +318,7 @@ public class FileAppender extends WriterAppender {
    /**
     * Sets the quiet writer being used.
     * <p/>
-    * This method is overriden by {@link RollingFileAppender}.
+    * This method is overridden by {@link RollingFileAppender}.
     */
    protected void setQWForFiles(final Writer writer) {
 

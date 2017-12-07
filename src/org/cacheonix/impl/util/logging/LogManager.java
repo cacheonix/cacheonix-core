@@ -34,9 +34,9 @@ import org.cacheonix.impl.util.logging.spi.RepositorySelector;
 import org.cacheonix.impl.util.logging.spi.RootLogger;
 
 /**
- * Use the <code>LogManager</code> class to retreive {@link Logger} instances or to operate on the current {@link
- * LoggerRepository}. When the <code>LogManager</code> class is loaded into memory the default initalzation procedure is
- * inititated. The default intialization procedure</a> is described in the <a href="../../../../manual.html#defaultInit">short
+ * Use the <code>LogManager</code> class to retrieve {@link Logger} instances or to operate on the current {@link
+ * LoggerRepository}. When the <code>LogManager</code> class is loaded into memory the default initialization procedure is
+ * initiated. The default initialization procedure</a> is described in the <a href="../../../../manual.html#defaultInit">short
  * log4j manual</a>.
  *
  * @author Ceki G&uuml;lc&uuml;
@@ -136,7 +136,7 @@ public final class LogManager {
    /**
     * Sets <code>LoggerFactory</code> but only if the correct <em>guard</em> is passed as parameter.
     * <p/>
-    * <p>Initally the guard is null.  If the guard is <code>null</code>, then invoking this method sets the logger
+    * <p>Initially the guard is null.  If the guard is <code>null</code>, then invoking this method sets the logger
     * factory and the guard. Following invocations will throw a {@link IllegalArgumentException}, unless the previously
     * set <code>guard</code> is passed as the second parameter.
     * <p/>
@@ -168,7 +168,7 @@ public final class LogManager {
       if (repositorySelector == null) {
          repositorySelector = new DefaultRepositorySelector(new NOPLoggerRepository());
          guard = null;
-         LogLog.error("LogMananger.repositorySelector was null likely due to error in class reloading, using NOPLoggerRepository.");
+         LogLog.error("LogManager.repositorySelector was null likely due to error in class reloading, using NOPLoggerRepository.");
       }
       return repositorySelector.getLoggerRepository();
    }

@@ -20,7 +20,7 @@ package org.cacheonix.impl.util.logging.spi;
 import org.cacheonix.impl.util.logging.net.SMTPAppender;
 
 /**
- * Implementions of this interface allow certain appenders to decide when to perform an appender
+ * Implementations of this interface allow certain appenders to decide when to perform an appender
  * specific action.
  * <p/>
  * <p>For example the {@link SMTPAppender} sends an email when the {@link #isTriggeringEvent} method

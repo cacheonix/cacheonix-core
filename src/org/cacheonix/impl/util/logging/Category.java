@@ -177,7 +177,7 @@ public class Category implements AppenderAttachable {
 
 
    /**
-    * Call the appenders in the hierrachy starting at <code>this</code>.  If no appenders could be found, emit a
+    * Call the appenders in the hierarchy starting at <code>this</code>.  If no appenders could be found, emit a
     * warning.
     * <p/>
     * <p>This method calls all the appenders inherited from the hierarchy circumventing any evaluation of whether to log

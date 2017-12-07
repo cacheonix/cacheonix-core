@@ -32,11 +32,11 @@ public interface OptionHandler {
    /**
     * Activate the options that were previously set with calls to option setters.
     * <p/>
-    * <p>This allows to defer activiation of the options until all options have been set. This is
-    * required for components which have related options that remain ambigous until all are set.
+    * <p>This allows to defer activation of the options until all options have been set. This is
+    * required for components which have related options that remain ambiguous until all are set.
     * <p/>
     * <p>For example, the FileAppender has the {@link FileAppender#setFile File} and {@link
-    * FileAppender#setAppend Append} options both of which are ambigous until the other is also
+    * FileAppender#setAppend Append} options both of which are ambiguous until the other is also
     * set.
     */
    void activateOptions();

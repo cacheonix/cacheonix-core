@@ -144,8 +144,8 @@ public final class PlainMulticastSender implements MulticastSender {
                     || exceptionMessage.endsWith(NO_ROUTE_TO_HOST)) {
 
                final NetworkInterface networkInterface = mcastSocket.getNetworkInterface();
-               final InetAddress intf = mcastSocket.getInterface();
-               LOG.warn(createIgnoredWarning(exceptionMessage, networkInterface, intf));
+               final InetAddress mcastSocketInterface = mcastSocket.getInterface();
+               LOG.warn(createIgnoredWarning(exceptionMessage, networkInterface, mcastSocketInterface));
             } else {
 
                throw e;

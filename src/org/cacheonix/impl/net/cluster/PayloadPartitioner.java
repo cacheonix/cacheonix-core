@@ -53,7 +53,7 @@ final class PayloadPartitioner {
     * @return a list of {@link Frame} objects.
     * @throws NotPartitionableException if the message cannot be partitioned.
     */
-   public List<Frame> partition(final Message message) {
+   public List<Frame> partition(final Message message) throws NotPartitionableException {
 
       try {
          // Check for null

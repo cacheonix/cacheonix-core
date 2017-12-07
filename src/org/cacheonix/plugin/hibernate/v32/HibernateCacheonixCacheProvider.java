@@ -123,7 +123,7 @@ public final class HibernateCacheonixCacheProvider implements CacheProvider {
             final String cacheonixConfigPath = properties.getProperty(Environment.CACHE_PROVIDER_CONFIG, Cacheonix.CACHEONIX_XML);
             LOG.info("Using path to cacheonix configuration file or resource: " + cacheonixConfigPath);
             cacheonix = Cacheonix.getInstance(cacheonixConfigPath);
-            LOG.info("Started Cacheonix cache provider using path to confiuration file: " + cacheonixConfigPath);
+            LOG.info("Started Cacheonix cache provider using path to configuration file: " + cacheonixConfigPath);
          } else {
             LOG.warn("Cacheonix cache provider has been started already");
          }

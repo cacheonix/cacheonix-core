@@ -286,7 +286,7 @@ public final class PatternLayout extends Layout {
     * Produces a formatted string as specified by the conversion pattern.
     */
    public String format(final LoggingEvent event) {
-      // Reset working stringbuffer
+      // Reset working string buffer
       if (sbuf.capacity() > MAX_CAPACITY) {
          sbuf = new StringBuffer(BUF_SIZE);
       } else {

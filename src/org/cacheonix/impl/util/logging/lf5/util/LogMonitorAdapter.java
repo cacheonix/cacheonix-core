@@ -69,8 +69,8 @@ public final class LogMonitorAdapter {
 
 
    /**
-    * <p>Creates an instance of LogMonitorAdapter using the log levels inticated by the parameter. Log4J and JDK1.4 both
-    * have default LogLevels which are set but these levels can be overriden.<p>
+    * <p>Creates an instance of LogMonitorAdapter using the log levels indicated by the parameter. Log4J and JDK1.4 both
+    * have default LogLevels which are set but these levels can be overridden.<p>
     *
     * @param loglevels An integer representing either Log4J or JDK1.4 logging levels
     * @return LogMonitorAdapter

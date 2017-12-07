@@ -146,7 +146,7 @@ public abstract class LogRecord implements Serializable {
 
 
    /**
-    * Get the category asscociated with this LogRecord.  For a more detailed description of what a category is see
+    * Get the category associated with this LogRecord.  For a more detailed description of what a category is see
     * setCategory().
     *
     * @return The category of this record.
@@ -161,8 +161,8 @@ public abstract class LogRecord implements Serializable {
    /**
     * Set the category associated with this LogRecord. A category represents a hierarchical dot (".") separated
     * namespace for messages. The definition of a category is application specific, but a common convention is as
-    * follows: <p/> <p/> When logging messages for a particluar class you can use its class name:
-    * com.thoughtworks.framework.servlet.ServletServiceBroker.<br><br> Futhermore, to log a message for a particular
+    * follows: <p/> <p/> When logging messages for a particular class you can use its class name:
+    * com.thoughtworks.framework.servlet.ServletServiceBroker.<br><br> Furthermore, to log a message for a particular
     * method in a class add the method name: com.thoughtworks.framework.servlet.ServletServiceBroker.init(). </p>
     *
     * @param category The category for this record.
@@ -175,7 +175,7 @@ public abstract class LogRecord implements Serializable {
 
 
    /**
-    * Get the message asscociated with this LogRecord.
+    * Get the message associated with this LogRecord.
     *
     * @return The message of this record.
     * @see #setMessage(String)
@@ -200,7 +200,7 @@ public abstract class LogRecord implements Serializable {
 
    /**
     * Get the sequence number associated with this LogRecord.  Sequence numbers are generally assigned when a LogRecord
-    * is constructed.  Sequence numbers start at 0 and increase with each newly constructed LogRocord.
+    * is constructed.  Sequence numbers start at 0 and increase with each newly constructed LogRecord.
     *
     * @return The sequence number of this record.
     * @see #setSequenceNumber(long)
@@ -212,7 +212,7 @@ public abstract class LogRecord implements Serializable {
 
 
    /**
-    * Set the sequence number assocsiated with this LogRecord.  A sequence number will automatically be assigned to evey
+    * Set the sequence number associated with this LogRecord.  A sequence number will automatically be assigned to evey
     * newly constructed LogRecord, however, this method can override the value.
     *
     * @param number The sequence number.
@@ -251,7 +251,7 @@ public abstract class LogRecord implements Serializable {
 
 
    /**
-    * Get the thread description asscociated with this LogRecord.  When a LogRecord is constructed, the thread
+    * Get the thread description associated with this LogRecord.  When a LogRecord is constructed, the thread
     * description is set by calling: Thread.currentThread().toString().  You may supply a thread description of your own
     * by calling the setThreadDescription(String) method.
     *
@@ -285,7 +285,7 @@ public abstract class LogRecord implements Serializable {
     * however, a String representation of it is.  Users of LogRecords should generally call this method over getThrown()
     * for the reasons of serialization. </p>
     *
-    * @return The Stack Trace for the asscoiated Throwable of this LogRecord.
+    * @return The Stack Trace for the associated Throwable of this LogRecord.
     * @see #setThrown(Throwable)
     * @see #getThrown()
     */

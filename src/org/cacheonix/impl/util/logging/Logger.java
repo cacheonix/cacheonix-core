@@ -91,7 +91,7 @@ public class Logger extends Category {
     * logger already exists, then the existing instance will be returned. Otherwise, a new instance
     * is created.
     * <p/>
-    * <p>By default, loggers do not have a set level but inherit it from their neareast ancestor with
+    * <p>By default, loggers do not have a set level but inherit it from their nearest ancestor with
     * a set level. This is one of the central features of log4j.
     *
     * @param name The name of the logger to retrieve.
@@ -115,7 +115,7 @@ public class Logger extends Category {
    /**
     * Return the root logger for the current logger repository.
     * <p/>
-    * The {@link #getName Logger.getName()} method for the root logger always returns stirng value:
+    * The {@link #getName Logger.getName()} method for the root logger always returns string value:
     * "root". However, calling <code>Logger.getLogger("root")</code> does not retrieve the root
     * logger but a logger just under root named "root".
     * <p/>

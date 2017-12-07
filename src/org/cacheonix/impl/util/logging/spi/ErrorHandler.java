@@ -46,7 +46,7 @@ public interface ErrorHandler extends OptionHandler {
 
 
    /**
-    * Equivalent to the {@link #error(String, Exception, int, LoggingEvent event)} with the the event parameteter set to
+    * Equivalent to the {@link #error(String, Exception, int, LoggingEvent event)} with the the event parameter set to
     * <code>null</code>.
     */
    void error(String message, Exception e, int errorCode);
@@ -61,8 +61,8 @@ public interface ErrorHandler extends OptionHandler {
    /**
     * This method is invoked to handle the error.
     *
-    * @param message   The message assoicated with the error.
-    * @param e         The Exption that was thrown when the error occurred.
+    * @param message   The message associated with the error.
+    * @param e         The Exception that was thrown when the error occurred.
     * @param errorCode The error code associated with the error.
     * @param event     The logging event that the failing appender is asked to log.
     * @since 1.2
@@ -80,7 +80,7 @@ public interface ErrorHandler extends OptionHandler {
 
 
    /**
-    * Set the appender to falkback upon in case of failure.
+    * Set the appender to fallback upon in case of failure.
     *
     * @since 1.2
     */

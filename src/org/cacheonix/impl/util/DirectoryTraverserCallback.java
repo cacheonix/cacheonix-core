@@ -17,8 +17,8 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * This interface defines a callback method used when traversing a directories and files under the drirectories. For
- * aeach File object callback is called once.
+ * This interface defines a callback method used when traversing a directories and files under the directories. For
+ * each File object callback is called once.
  *
  * @see File
  */

@@ -118,7 +118,7 @@ final class SenderSelectorWorker extends SelectorWorker {
 
 
    /**
-    * Dispatches a message by equeuing it to senders according to it receiver list.
+    * Dispatches a message by enqueuing it to senders according to it receiver list.
     *
     * @param message a message to dispatch.
     */

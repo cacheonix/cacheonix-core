@@ -238,14 +238,14 @@ public final class Level extends Priority implements Serializable {
 
 
    /**
-    * Resolved deserialized level to one of the stock instances. May be overriden in classes derived from Level.
+    * Resolved deserialized level to one of the stock instances. May be overridden in classes derived from Level.
     *
     * @return resolved object.
     * @throws ObjectStreamException if exception during resolution.
     */
    protected Object readResolve() {
       //
-      //  if the deserizalized object is exactly an instance of Level
+      //  if the deserialized object is exactly an instance of Level
       //
       if (Level.class.equals(getClass())) {
          return toLevel(level);

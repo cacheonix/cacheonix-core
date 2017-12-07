@@ -25,7 +25,7 @@ import org.cacheonix.impl.util.logging.LogManager;
  * The <code>LogManager</code> uses one (and only one) <code>RepositorySelector</code>
  * implementation to select the {@link LoggerRepository} for a particular application context.
  * <p/>
- * <p>It is the responsability of the <code>RepositorySelector</code> implementation to track the
+ * <p>It is the responsibility of the <code>RepositorySelector</code> implementation to track the
  * application context. Log4j makes no assumptions about the application context or on its
  * management.
  * <p/>

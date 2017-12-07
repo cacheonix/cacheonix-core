@@ -76,10 +76,10 @@ public final class LoggingEvent implements Serializable {
    public final String categoryName;
 
    /**
-    * Level of logging event. Level cannot be serializable because it is a flyweight.  Due to its special seralization
+    * Level of logging event. Level cannot be serializable because it is a flyweight.  Due to its special serialization
     * it cannot be declared final either.
     * <p/>
-    * <p> This field should not be accessed directly. You shoud use the {@link #getLevel} method instead.
+    * <p> This field should not be accessed directly. You should use the {@link #getLevel} method instead.
     *
     * @deprecated This field will be marked as private in future releases. Please do not access it directly. Use the
     *             {@link #getLevel} method instead.
@@ -117,7 +117,7 @@ public final class LoggingEvent implements Serializable {
    private final transient Object message;
 
    /**
-    * The application supplied message rendered through the log4j objet rendering mechanism.
+    * The application supplied message rendered through the log4j object rendering mechanism.
     */
    private String renderedMessage = null;
 
@@ -424,7 +424,7 @@ public final class LoggingEvent implements Serializable {
 
 
    /**
-    * Return this event's throwable's string[] representaion.
+    * Return this event's throwable's string[] representation.
     */
    public final String[] getThrowableStrRep() {
 
@@ -555,11 +555,11 @@ public final class LoggingEvent implements Serializable {
    public final String getProperty(final String key) {
 
       final Object value = getMDC(key);
-      String retval = null;
+      String result = null;
       if (value != null) {
-         retval = value.toString();
+         result = value.toString();
       }
-      return retval;
+      return result;
    }
 
 

@@ -290,7 +290,7 @@ public final class IOUtils {
    }
 
 
-   public static void copyInputToOuputStream(final InputStream in,
+   public static void copyInputToOutputStream(final InputStream in,
            final OutputStream out) throws IOException {
 
       int bytesRead;
@@ -396,7 +396,7 @@ public final class IOUtils {
          }
          is = new FileInputStream(source);
          os = new FileOutputStream(destination);
-         copyInputToOuputStream(is, os);
+         copyInputToOutputStream(is, os);
       } finally {
          closeHard(is);
          closeHard(os);
@@ -691,7 +691,7 @@ public final class IOUtils {
          anEntry.setTime(f.lastModified());
          // place the zip entry in the ZipOutputStream object
          zos.putNextEntry(anEntry);
-         copyInputToOuputStream(fis, zos);
+         copyInputToOutputStream(fis, zos);
          // now write the content of the file to the ZipOutputStream
          fis.close();
       } finally {
@@ -757,7 +757,7 @@ public final class IOUtils {
       try {
          bis = new BufferedInputStream(new FileInputStream(errorFile));
          bos = new BufferedOutputStream(new FileOutputStream(destination));
-         copyInputToOuputStream(bis, bos);
+         copyInputToOutputStream(bis, bos);
          closeHard(bos);
          closeHard(bis);
          deleteFileHard(errorFile.getCanonicalFile());

@@ -16,7 +16,7 @@
  */
 
 // WARNING This class MUST not have references to the Category or
-// WARNING RootCategory classes in its static initiliazation neither
+// WARNING RootCategory classes in its static initialization neither
 // WARNING directly nor indirectly.
 
 // Contributors:
@@ -290,14 +290,14 @@ public final class Hierarchy implements LoggerRepository, RendererSupport {
     * <p>The root logger is <em>not</em> included in the returned {@link Enumeration}.
     */
    public final Enumeration getCurrentLoggers() {
-      // The accumlation in v is necessary because not all elements in
+      // The accumulation in v is necessary because not all elements in
       // ht are Logger objects as there might be some ProvisionNodes
       // as well.
       final Vector v = new Vector(ht.size());
 
-      final Enumeration elems = ht.elements();
-      while (elems.hasMoreElements()) {
-         final Object o = elems.nextElement();
+      final Enumeration elements = ht.elements();
+      while (elements.hasMoreElements()) {
+         final Object o = elements.nextElement();
          if (o instanceof Logger) {
             v.addElement(o);
          }
@@ -337,7 +337,7 @@ public final class Hierarchy implements LoggerRepository, RendererSupport {
 
    /**
     * This method will return <code>true</code> if this repository is disabled for <code>level</code> object passed as
-    * parameter and <code>false</code> otherwise. See also the {@link #setThreshold(Level) threshold} emthod.
+    * parameter and <code>false</code> otherwise. See also the {@link #setThreshold(Level) threshold} method.
     */
    public boolean isDisabled(final int level) {
 
@@ -387,7 +387,7 @@ public final class Hierarchy implements LoggerRepository, RendererSupport {
 
 
    /**
-    * Does mothing.
+    * Does nothing.
     *
     * @deprecated Deprecated with no replacement.
     */
@@ -467,13 +467,13 @@ public final class Hierarchy implements LoggerRepository, RendererSupport {
 
       //System.out.println("UpdateParents called for " + name);
 
-      // if name = "w.x.y.z", loop thourgh "w.x.y", "w.x" and "w", but not "w.x.y.z"
+      // if name = "w.x.y.z", loop though "w.x.y", "w.x" and "w", but not "w.x.y.z"
       for (int i = name.lastIndexOf((int) '.', length - 1); i >= 0;
            i = name.lastIndexOf((int) '.', i - 1)) {
-         final String substr = name.substring(0, i);
+         final String substring = name.substring(0, i);
 
          //System.out.println("Updating parent : " + substr);
-         final CategoryKey key = new CategoryKey(substr); // simple constructor
+         final CategoryKey key = new CategoryKey(substring); // simple constructor
          final Object o = ht.get(key);
          // Create a provision node for a future parent.
          if (o == null) {

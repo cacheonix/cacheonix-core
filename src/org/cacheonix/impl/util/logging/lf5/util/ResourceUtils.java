@@ -59,7 +59,7 @@ public final class ResourceUtils {
     * InputStreamReader(InputStream).
     *
     * @param object   The object to grab the Classloader from. This parameter is quite important from a visibility of
-    *                 resources standpoint as the hierarchy of Classloaders plays a role.
+    *                 resources standpoint as the hierarchy of classloaders plays a role.
     * @param resource The resource to load.
     * @return If the Resource was found, the InputStream, otherwise null.
     * @see Resource
@@ -85,7 +85,7 @@ public final class ResourceUtils {
     * Get the URL for this resource.
     *
     * @param object   The object to grab the Classloader from. This parameter is quite important from a visibility of
-    *                 resources standpoint as the hierarchy of Classloaders plays a role.
+    *                 resources standpoint as the hierarchy of classloaders plays a role.
     * @param resource The resource to load.
     * @return If the Resource was found, the URL, otherwise null.
     * @see Resource

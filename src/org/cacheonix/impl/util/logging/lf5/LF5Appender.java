@@ -26,7 +26,7 @@ import org.cacheonix.impl.util.logging.spi.LoggingEvent;
 
 /**
  * <code>LF5Appender</code> logs events to a swing based logging console. The swing console supports turning categories
- * on and off, multiple detail level views, as well as full text searching and many other capabilties.
+ * on and off, multiple detail level views, as well as full text searching and many other capabilities.
  *
  * @author Brent Sprecher
  */

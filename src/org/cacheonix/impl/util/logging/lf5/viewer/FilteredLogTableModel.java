@@ -132,7 +132,7 @@ public final class FilteredLogTableModel extends AbstractTableModel {
 
 
    /**
-    * Forces the LogTableModel to requery its filters to determine which records to display.
+    * Forces the LogTableModel to require its filters to determine which records to display.
     */
    public final synchronized void refresh() {
       _filteredRecords = createFilteredRecordsList();

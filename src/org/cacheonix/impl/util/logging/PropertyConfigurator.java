@@ -225,7 +225,7 @@ public final class PropertyConfigurator implements Configurator {
     * # milliseconds, followed by the level of the log request,
     * # followed by the two rightmost components of the logger name,
     * # followed by the callers method name, followed by the line number,
-    * # the nested disgnostic context and finally the message itself.
+    * # the nested diagnostic context and finally the message itself.
     * # Refer to the documentation of {@link PatternLayout} for further information
     * # on the syntax of the ConversionPattern key.
     * log4j.appender.A1.layout=org.cacheonix.impl.util.logging.PatternLayout
@@ -474,12 +474,12 @@ public final class PropertyConfigurator implements Configurator {
 
 
    final void configureRootCategory(final Properties props, final LoggerRepository hierarchy) {
-      String effectiveFrefix = ROOT_LOGGER_PREFIX;
+      String effectivePrefix = ROOT_LOGGER_PREFIX;
       String value = OptionConverter.findAndSubst(ROOT_LOGGER_PREFIX, props);
 
       if (value == null) {
          value = OptionConverter.findAndSubst(ROOT_CATEGORY_PREFIX, props);
-         effectiveFrefix = ROOT_CATEGORY_PREFIX;
+         effectivePrefix = ROOT_CATEGORY_PREFIX;
       }
 
       if (value == null) {
@@ -488,7 +488,7 @@ public final class PropertyConfigurator implements Configurator {
          final Logger root = hierarchy.getRootLogger();
          //noinspection SynchronizationOnLocalVariableOrMethodParameter
          synchronized (root) {
-            parseCategory(props, root, effectiveFrefix, INTERNAL_ROOT_NAME, value);
+            parseCategory(props, root, effectivePrefix, INTERNAL_ROOT_NAME, value);
          }
       }
    }

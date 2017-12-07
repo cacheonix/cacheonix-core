@@ -24,7 +24,7 @@ import org.cacheonix.impl.util.logging.helpers.LogLog;
 // Contributors: Mathias Bogaert
 
 /**
- * RootLogger sits at the top of the logger hierachy. It is a regular logger except that it provides
+ * RootLogger sits at the top of the logger hiearchy. It is a regular logger except that it provides
  * several guarantees.
  * <p/>
  * <p>First, it cannot be assigned a <code>null</code> level. Second, since root logger cannot have

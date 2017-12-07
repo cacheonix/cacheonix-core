@@ -57,7 +57,7 @@ public final class LogFactor5InputDialog extends LogFactor5Dialog {
 
 
    /**
-    * Configures an input dialog box using a defualt size for the text field. param jframe the frame where the dialog
+    * Configures an input dialog box using a default size for the text field. param jframe the frame where the dialog
     * will be loaded from. param title the title of the dialog box. param label the label to be put in the dialog box.
     */
    public LogFactor5InputDialog(final JFrame jframe, final String title, final String label) {
