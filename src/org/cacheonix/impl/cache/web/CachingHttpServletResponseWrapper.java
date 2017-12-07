@@ -50,29 +50,29 @@ final class CachingHttpServletResponseWrapper extends HttpServletResponseWrapper
 
    private final ServletOutputWrapperFactory outputWrapperFactory;
 
-   private ServletOutputStreamWrapper outputStreamWrapper;
+   private ServletOutputStreamWrapper outputStreamWrapper = null;
 
-   private ServletPrintWriterWrapper writerWrapper;
+   private ServletPrintWriterWrapper writerWrapper = null;
 
    /**
     * If true this means that the response has been committed. Changes to status codes, headers, redirects and cookies
     * must be ignored.
     */
-   private String statusMessage;
+   private String statusMessage = null;
 
-   private String errorMessage;
+   private String errorMessage = null;
 
-   private String redirectUrl;
+   private String redirectUrl = null;
 
-   private String contentType;
+   private String contentType = null;
 
-   private int contentLength;
+   private int contentLength = 0;
 
-   private int statusCode;
+   private int statusCode = 0;
 
-   private Locale locale;
+   private Locale locale = null;
 
-   private Integer error;
+   private Integer error = null;
 
 
    /**

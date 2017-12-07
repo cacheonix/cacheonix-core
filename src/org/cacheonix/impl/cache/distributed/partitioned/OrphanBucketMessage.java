@@ -37,13 +37,13 @@ public final class OrphanBucketMessage extends LocalCacheMessage {
    /**
     * A storage number that the bucket to orphan belongs to.
     */
-   private byte storageNumber;
+   private byte storageNumber = (byte) 0;
 
 
    /**
     * A bucket number to orphan.
     */
-   private Integer bucketNumber;
+   private Integer bucketNumber = null;
 
 
    /**

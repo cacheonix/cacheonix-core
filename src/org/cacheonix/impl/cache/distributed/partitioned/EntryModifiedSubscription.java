@@ -55,14 +55,14 @@ public final class EntryModifiedSubscription implements Wireable {
    /**
     * Event flags.
     */
-   private List<EntryModifiedEventContentFlag> eventContentFlags;
+   private List<EntryModifiedEventContentFlag> eventContentFlags = null;
 
    /**
     * Subscriber object's identity as returned by {@link System#identityHashCode(Object)}.
     */
    private int subscriberIdentity = 0;
 
-   private HashSet<EntryModifiedEventType> modificationTypes; // NOPMD
+   private HashSet<EntryModifiedEventType> modificationTypes = null; // NOPMD
 
 
    /**

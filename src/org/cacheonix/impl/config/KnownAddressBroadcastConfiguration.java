@@ -26,7 +26,7 @@ public final class KnownAddressBroadcastConfiguration extends DocumentReader {
     */
    private boolean limitedToLocalAddresses = false;
 
-   private TCPListenerConfiguration addressConfiguration;
+   private TCPListenerConfiguration addressConfiguration = null;
 
 
    /**

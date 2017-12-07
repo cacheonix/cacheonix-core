@@ -50,7 +50,7 @@ public class Router {
 
    private final ClusterNodeAddress localAddress;
 
-   private Processor output;
+   private Processor output = null;
 
 
    public Router(final ClusterNodeAddress address) {

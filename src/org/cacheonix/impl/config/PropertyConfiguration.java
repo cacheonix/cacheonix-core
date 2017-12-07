@@ -27,12 +27,12 @@ public final class PropertyConfiguration extends DocumentReader {
    /**
     * Field name.
     */
-   private String name;
+   private String name = null;
 
    /**
     * Field value.
     */
-   private String value;
+   private String value = null;
 
 
    public static Properties toProperties(final List<? extends PropertyConfiguration> params) {

@@ -54,7 +54,7 @@ public final class PutRequest extends KeyRequest {
 
    private Time expirationTime = null;
 
-   private boolean putOnlyIfAbsent;
+   private boolean putOnlyIfAbsent = false;
 
 
    /**

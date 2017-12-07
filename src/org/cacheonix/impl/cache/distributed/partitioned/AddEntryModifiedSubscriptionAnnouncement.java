@@ -262,7 +262,7 @@ public final class AddEntryModifiedSubscriptionAnnouncement extends KeySetAnnoun
        *
        * This a transient field.
        */
-      private Request parentRequest;
+      private Request parentRequest = null;
 
 
       /**

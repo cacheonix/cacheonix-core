@@ -29,7 +29,7 @@ public final class LoaderConfiguration extends DocumentReader {
    /**
     * Field className.
     */
-   private String className;
+   private String className = null;
 
    /**
     * Field paramList.

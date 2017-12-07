@@ -35,7 +35,7 @@ public abstract class AbstractProcessor implements Processor {
    /**
     * Exec thread.
     */
-   protected Thread thread;
+   protected Thread thread = null;
 
    /**
     * Time the processor started.

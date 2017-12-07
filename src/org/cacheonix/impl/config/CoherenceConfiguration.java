@@ -24,12 +24,12 @@ public final class CoherenceConfiguration extends DocumentReader {
    /**
     * A parent.
     */
-   private PartitionedCacheStoreConfiguration partitionedCacheStoreConfiguration;
+   private PartitionedCacheStoreConfiguration partitionedCacheStoreConfiguration = null;
 
    /**
     * Field lease.
     */
-   private LeaseConfiguration lease;
+   private LeaseConfiguration lease = null;
 
 
    /**

@@ -47,7 +47,7 @@ public final class RemoteEntryModifiedSubscriber implements BinaryEntryModifiedS
    /**
     * Subscription description.
     */
-   private EntryModifiedSubscription subscription;
+   private EntryModifiedSubscription subscription = null;
 
 
    /**

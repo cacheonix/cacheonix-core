@@ -51,11 +51,11 @@ public class GetKeyOwnerRequest extends ClusterRequest {
 
    private static final String CLUSTER_IS_BLOCKED = "Cluster is blocked";
 
-   private String cacheName;
+   private String cacheName = null;
 
-   private int storageNumber;
+   private int storageNumber = 0;
 
-   private int bucketNumber;
+   private int bucketNumber = 0;
 
 
    /**

@@ -37,7 +37,7 @@ public final class PassBooleanByValueBinary implements Binary {
 
    private static final long serialVersionUID = 0L;
 
-   private boolean value;
+   private boolean value = false;
 
 
    public PassBooleanByValueBinary() {

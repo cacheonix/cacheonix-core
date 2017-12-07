@@ -26,44 +26,44 @@ public class CacheStoreConfiguration extends DocumentReader {
    /**
     * Field lru.
     */
-   private LRUConfiguration lru;
+   private LRUConfiguration lru = null;
 
    /**
     * Field fixed.
     */
-   private FixedSizeConfiguration fixed;
+   private FixedSizeConfiguration fixed = null;
 
 
    /**
     * Field fixed.
     */
-   private OverflowToDiskConfiguration overflowToDiskConfiguration;
+   private OverflowToDiskConfiguration overflowToDiskConfiguration = null;
 
 
    /**
     * Field expiration.
     */
-   private ExpirationConfiguration expiration;
+   private ExpirationConfiguration expiration = null;
 
    /**
     * Field dataSource.
     */
-   private DataSourceConfiguration dataSource;
+   private DataSourceConfiguration dataSource = null;
 
    /**
     * Field dataStore.
     */
-   private DataStoreConfiguration dataStore;
+   private DataStoreConfiguration dataStore = null;
 
    /**
     * Field invalidator.
     */
-   private InvalidatorConfiguration invalidator;
+   private InvalidatorConfiguration invalidator = null;
 
    /**
     * An optional configuration for a loader of cache data used to populate Cacheonix at startup.
     */
-   private LoaderConfiguration loader;
+   private LoaderConfiguration loader = null;
 
 
    /**

@@ -24,7 +24,7 @@ public final class ReplicationConfiguration extends DocumentReader {
    /**
     * A number of backup copies to be made for each element of this cache.
     */
-   private int replicaCount;
+   private int replicaCount = 0;
 
 
    /**

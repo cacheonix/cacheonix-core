@@ -76,12 +76,12 @@ public final class ClockImpl implements Clock {
     */
    private long adjustmentMillis = 0L;
 
-   private long lastReturnedClockMillis;
+   private long lastReturnedClockMillis = 0L;
 
    /**
     * Event count used to advance the monotonic clock in cases repeated reads of the wall clock return the same value.
     */
-   private long count;
+   private long count = 0L;
 
 
    ClockImpl(final long minimalInterProcessDelayNanos, final long jumpDetectionPeriodMillis,

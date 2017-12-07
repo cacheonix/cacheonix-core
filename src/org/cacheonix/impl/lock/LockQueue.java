@@ -40,7 +40,7 @@ public final class LockQueue implements Wireable {
    /**
     * A write lock owner.
     */
-   private LockOwner writeLockOwner;
+   private LockOwner writeLockOwner = null;
 
    /**
     * A List of read lock owners.

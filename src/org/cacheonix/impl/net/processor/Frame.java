@@ -99,7 +99,7 @@ public final class Frame {
     * An IP address of the machine that sent this frame. This field is set only if this is a received frame and it was
     * received from a remote machine.
     */
-   private InetAddress senderInetAddress;
+   private InetAddress senderInetAddress = null;
 
 
    /**

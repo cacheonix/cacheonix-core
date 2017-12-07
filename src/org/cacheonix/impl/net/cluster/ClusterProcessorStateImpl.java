@@ -74,22 +74,22 @@ final class ClusterProcessorStateImpl implements ClusterProcessorState {
     */
    private boolean recoveryOriginator = false;
 
-   private ClusterNodeAddress address;
+   private ClusterNodeAddress address = null;
 
 
-   private String clusterName;
+   private String clusterName = null;
 
    /**
     * Worst case latency for a host-to-host communication, in milliseconds.
     */
-   private long worstCaseLatencyMillis;
+   private long worstCaseLatencyMillis = 0L;
 
 
    /**
     * Time interval that defines how often Cacheonix cluster announces itself using multicast. Use system property
     * 'cacheonix.cluster.announcement.timeout' to override clusterAnnouncementTimeout from the command line.
     */
-   private long clusterAnnouncementTimeoutMillis;
+   private long clusterAnnouncementTimeoutMillis = 0L;
 
 
    /**
@@ -134,7 +134,7 @@ final class ClusterProcessorStateImpl implements ClusterProcessorState {
     * Join status. A node in NORMAL_STATE may join other cluster if the other cluster is bigger or if its representative
     * is greater then ours.
     */
-   private JoinStatus joinStatus;
+   private JoinStatus joinStatus = null;
 
    /**
     * Join requests we are handling. Empty means there are no join requests.
@@ -216,7 +216,7 @@ final class ClusterProcessorStateImpl implements ClusterProcessorState {
     * <p/>
     * The default value is 30000 milliseconds or 30 seconds.
     */
-   private Timeout homeAloneTimeout;
+   private Timeout homeAloneTimeout = null;
 
 
    /**

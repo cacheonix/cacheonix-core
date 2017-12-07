@@ -36,12 +36,12 @@ public final class LockQueueKey implements Wireable {
     * A name of the region where this lock is going to be placed. The region name is used to separate cluster-wide and
     * cache-specific locks.
     */
-   private String lockRegionName;
+   private String lockRegionName = null;
 
    /**
     * A lock identifier.
     */
-   private Binary lockKey;
+   private Binary lockKey = null;
 
 
    /**

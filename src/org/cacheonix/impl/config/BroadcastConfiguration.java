@@ -28,12 +28,12 @@ public final class BroadcastConfiguration extends DocumentReader {
    /**
     * Field multicast.
     */
-   private MulticastBroadcastConfiguration multicast;
+   private MulticastBroadcastConfiguration multicast = null;
 
    /**
     * Field knownAddresses.
     */
-   private List<KnownAddressBroadcastConfiguration> knownAddresses;
+   private List<KnownAddressBroadcastConfiguration> knownAddresses = null;
 
 
    /**

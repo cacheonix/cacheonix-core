@@ -37,9 +37,9 @@ public final class ReceiverAddress implements Wireable, Immutable {
     */
    public static final WireableBuilder BUILDER = new Builder();
 
-   private int tcpPort;
+   private int tcpPort = 0;
 
-   private InetAddress[] addresses;
+   private InetAddress[] addresses = null;
 
 
    public ReceiverAddress(final InetAddress tcpAddress, final int tcpPort) {

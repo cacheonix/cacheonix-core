@@ -67,7 +67,7 @@ public final class RequestCacheFilterImpl implements Filter {
    /**
     * A request cache.
     */
-   private Cache<CachedResponseKey, CachedResponseValue> cache;
+   private Cache<CachedResponseKey, CachedResponseValue> cache = null;
 
 
    public void init(final FilterConfig filterConfig) {

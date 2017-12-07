@@ -51,12 +51,12 @@ public final class CacheableValue implements Wireable {
    /**
     * Time the element was created.
     */
-   private Time createdTime;
+   private Time createdTime = null;
 
    /**
     * Time to expire.
     */
-   private Time expirationTime;
+   private Time expirationTime = null;
 
 
    public CacheableValue() {

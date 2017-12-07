@@ -50,7 +50,7 @@ public final class RemoveEntryModifiedSubscriberRequest extends LocalCacheReques
 
    private HashSet<Binary> keys = null; // NOPMD
 
-   private ClusterNodeAddress subscriberAddress;
+   private ClusterNodeAddress subscriberAddress = null;
 
    private transient EntryModifiedSubscriber subscriber = null;
 

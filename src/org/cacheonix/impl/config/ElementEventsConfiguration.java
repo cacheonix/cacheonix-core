@@ -11,7 +11,7 @@ import org.w3c.dom.Node;
  */
 public final class ElementEventsConfiguration extends DocumentReader {
 
-   private ElementEventNotification notification;
+   private ElementEventNotification notification = null;
 
 
    public ElementEventNotification getNotification() {

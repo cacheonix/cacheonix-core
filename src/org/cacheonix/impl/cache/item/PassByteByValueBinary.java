@@ -37,7 +37,7 @@ public final class PassByteByValueBinary implements Binary {
 
    private static final long serialVersionUID = 0L;
 
-   private byte value;
+   private byte value = (byte) 0;
 
 
    public PassByteByValueBinary() {

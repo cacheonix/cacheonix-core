@@ -38,27 +38,27 @@ abstract class LockRequest extends Request {
    /**
     * A key identifying the lock.
     */
-   private Binary lockKey;
+   private Binary lockKey = null;
 
    /**
     * An ID of a sender-local thread sending this lock request.
     */
-   private int ownerThreadID;
+   private int ownerThreadID = 0;
 
    /**
     * A name of a sender-local thread sending this lock request.
     */
-   private String ownerThreadName;
+   private String ownerThreadName = null;
 
    /**
     * A name of the lock region. The region name is used to separate cluster-wide and cache-specific locks.
     */
-   private String lockRegionName;
+   private String lockRegionName = null;
 
    /**
     * Lock owner's address.
     */
-   private ClusterNodeAddress ownerAddress;
+   private ClusterNodeAddress ownerAddress = null;
 
 
    /**

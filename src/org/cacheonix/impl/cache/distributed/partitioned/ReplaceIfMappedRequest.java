@@ -52,7 +52,7 @@ public final class ReplaceIfMappedRequest extends KeyRequest {
    /**
     * A value required to be associated with the specified key for the remove to proceed.
     */
-   private Binary value;
+   private Binary value = null;
 
 
    /**

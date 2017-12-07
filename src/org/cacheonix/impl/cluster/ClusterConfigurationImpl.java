@@ -31,11 +31,11 @@ final class ClusterConfigurationImpl implements ClusterConfiguration {
 
    private static final long serialVersionUID = 4356310544242603491L;
 
-   private Collection<ClusterMember> clusterMembers;
+   private Collection<ClusterMember> clusterMembers = null;
 
-   private ClusterState clusterState;
+   private ClusterState clusterState = null;
 
-   private String uuid;
+   private String uuid = null;
 
 
    /**

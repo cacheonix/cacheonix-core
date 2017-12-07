@@ -35,12 +35,12 @@ public final class PartitionedSessionReplicaStoreConfiguration extends DocumentR
     * Cacheonix will throw an out-of-memory exception. Example: maxBytes="5mb". Important: Cacheonix recommends setting
     * 'maxBytes' so that total summa of sizes of all session stores and caches doesn't exceed 40% of JVM heap.
     */
-   private long maxBytes;
+   private long maxBytes = 0L;
 
    /**
     * A number of backup copies to be made for each session attribute.
     */
-   private int replicaCount;
+   private int replicaCount = 0;
 
 
    /**

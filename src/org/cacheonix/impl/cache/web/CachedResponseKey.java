@@ -50,11 +50,11 @@ public final class CachedResponseKey implements Wireable, Serializable, Immutabl
       }
    };
 
-   private Map<String, List<String>> parameterMap;
+   private Map<String, List<String>> parameterMap = null;
 
-   private List<Cookie> cookies;
+   private List<Cookie> cookies = null;
 
-   private String requestURI;
+   private String requestURI = null;
 
 
    public CachedResponseKey() {

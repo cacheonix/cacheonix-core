@@ -72,19 +72,19 @@ public final class CachedResponseValue implements Wireable, Serializable, Immuta
    private final Map<String, Collection<Header>> headers = new TreeMap<String, Collection<Header>>(
            CASE_INSENSITIVE_ORDER);
 
-   private String statusMessage;
+   private String statusMessage = null;
 
-   private byte[] byteResponse;
+   private byte[] byteResponse = null;
 
-   private String redirectUrl;
+   private String redirectUrl = null;
 
-   private String contentType;
+   private String contentType = null;
 
-   private int contentLength;
+   private int contentLength = 0;
 
-   private int statusCode;
+   private int statusCode = 0;
 
-   private Locale locale;
+   private Locale locale = null;
 
 
    public CachedResponseValue() {

@@ -48,7 +48,7 @@ public final class CompressedBinary implements Binary {
     */
    private final Compressor compressor = Compressor.getInstance();
 
-   private String valueClassName;
+   private String valueClassName = null;
 
    /**
     * REVIEWME: slava@cacheonix.org - this should be made a configuration parameter.

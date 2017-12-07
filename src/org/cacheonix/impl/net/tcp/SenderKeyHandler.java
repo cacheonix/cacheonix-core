@@ -110,7 +110,7 @@ final class SenderKeyHandler extends KeyHandler {
    /**
     * A byte buffer containing an unfinished write.
     */
-   private ByteBuffer leftover;
+   private ByteBuffer leftover = null;
 
 
    /**

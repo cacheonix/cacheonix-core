@@ -37,7 +37,7 @@ public final class PassFloatByReferenceBinary implements Binary {
 
    private static final long serialVersionUID = 0L;
 
-   private float value;
+   private float value = 0.0F;
 
 
    public PassFloatByReferenceBinary() {

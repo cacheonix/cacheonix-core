@@ -40,12 +40,12 @@ public final class CacheableEntry implements Wireable {
    /**
     * A key.
     */
-   private Binary key;
+   private Binary key = null;
 
    /**
     * A cacheable value.
     */
-   private CacheableValue value;
+   private CacheableValue value = null;
 
 
    /**

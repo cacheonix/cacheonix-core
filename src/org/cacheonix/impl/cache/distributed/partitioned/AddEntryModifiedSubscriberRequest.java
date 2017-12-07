@@ -59,9 +59,9 @@ public final class AddEntryModifiedSubscriberRequest extends LocalCacheRequest i
    /**
     * A local subscriber as provided by the client. This is a transient field.
     */
-   private EntryModifiedSubscriber localSubscriber;
+   private EntryModifiedSubscriber localSubscriber = null;
 
-   private ClusterNodeAddress subscriberAddress;
+   private ClusterNodeAddress subscriberAddress = null;
 
 
    private AddEntryModifiedSubscriberRequest() {

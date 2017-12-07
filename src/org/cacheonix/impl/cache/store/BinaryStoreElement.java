@@ -83,7 +83,7 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
    /**
     * Key.
     */
-   private Binary key;
+   private Binary key = null;
 
    /**
     * Cache value or StoredObject is the value of the element is stored in the second storage.
@@ -96,42 +96,42 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
    /**
     * Time the element was created.
     */
-   private Time createdTime;
+   private Time createdTime = null;
 
    /**
     * Time to expire.
     */
-   private Time expirationTime;
+   private Time expirationTime = null;
 
    /**
     * Time to idle
     */
-   private Time idleTime;
+   private Time idleTime = null;
 
    /**
     * Element before.
     */
-   private transient BinaryStoreElement before;
+   private transient BinaryStoreElement before = null;
 
    /**
     * Element after.
     */
-   private transient BinaryStoreElement after;
+   private transient BinaryStoreElement after = null;
 
    /**
     * Recorder size in bytes.
     */
-   private long elementSizeBytes;
+   private long elementSizeBytes = 0L;
 
    /**
     * Key size.
     */
-   private long keySizeBytes;
+   private long keySizeBytes = 0L;
 
    /**
     * Value size.
     */
-   private long valueSizeBytes;
+   private long valueSizeBytes = 0L;
 
    /**
     * Update counter.
@@ -146,14 +146,14 @@ public final class BinaryStoreElement implements Invalidateable, Wireable, Reada
    /**
     * A prefetch order.
     */
-   private transient PrefetchCommand prefetchCommand;
+   private transient PrefetchCommand prefetchCommand = null;
 
    /**
     * Boolean flags.
     */
-   private byte flags;
+   private byte flags = (byte) 0;
 
-   private BinaryStoreElementContext context;
+   private BinaryStoreElementContext context = null;
 
 
    /**

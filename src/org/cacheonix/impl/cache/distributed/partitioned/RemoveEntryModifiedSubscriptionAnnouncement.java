@@ -62,7 +62,7 @@ public final class RemoveEntryModifiedSubscriptionAnnouncement extends KeySetAnn
    /**
     * Identity of the subscriber to un-subscribe.
     */
-   private int subscriberIdentity;
+   private int subscriberIdentity = 0;
 
 
    /**
@@ -253,7 +253,7 @@ public final class RemoveEntryModifiedSubscriptionAnnouncement extends KeySetAnn
       /**
        * An originator request that should be responded to after this announcement finishes.
        */
-      private transient Request parentRequest;
+      private transient Request parentRequest = null;
 
 
       /**

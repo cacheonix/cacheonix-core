@@ -24,7 +24,7 @@ public final class FrontCacheConfiguration extends DocumentReader {
    /**
     * Field store.
     */
-   private CacheStoreConfiguration store;
+   private CacheStoreConfiguration store = null;
 
 
    /**

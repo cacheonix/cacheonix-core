@@ -46,9 +46,9 @@ public final class TestMessage extends Message {
     */
    private static final Logger LOG = Logger.getLogger(TestMessage.class); // NOPMD
 
-   private int senderID;
+   private int senderID = 0;
 
-   private int messageNumber;
+   private int messageNumber = 0;
 
    private String payload = null;
 

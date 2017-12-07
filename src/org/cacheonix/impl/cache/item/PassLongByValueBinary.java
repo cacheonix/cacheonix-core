@@ -37,7 +37,7 @@ public final class PassLongByValueBinary implements Binary {
 
    private static final long serialVersionUID = 0L;
 
-   private long value;
+   private long value = 0L;
 
 
    public PassLongByValueBinary() {

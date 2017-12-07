@@ -28,7 +28,7 @@ public final class TemporaryDirectoryConfiguration extends DocumentReader {
    /**
     * Field path.
     */
-   private String path;
+   private String path = null;
 
 
    /**

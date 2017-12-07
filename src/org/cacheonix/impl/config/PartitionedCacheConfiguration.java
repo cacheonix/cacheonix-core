@@ -27,12 +27,12 @@ public final class PartitionedCacheConfiguration extends DocumentReader {
    /**
     * Parent server configuration.
     */
-   private ServerConfiguration serverConfiguration;
+   private ServerConfiguration serverConfiguration = null;
 
    /**
     * A unique cache name.
     */
-   private String name;
+   private String name = null;
 
    /**
     * Field template.
@@ -47,12 +47,12 @@ public final class PartitionedCacheConfiguration extends DocumentReader {
    /**
     * Field store.
     */
-   private PartitionedCacheStoreConfiguration store;
+   private PartitionedCacheStoreConfiguration store = null;
 
    /**
     * Field frontCache.
     */
-   private FrontCacheConfiguration frontCacheConfiguration;
+   private FrontCacheConfiguration frontCacheConfiguration = null;
 
 
    @SuppressWarnings("WeakerAccess")

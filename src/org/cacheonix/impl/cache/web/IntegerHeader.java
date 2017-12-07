@@ -42,12 +42,12 @@ public final class IntegerHeader implements Header {
    /**
     * The name of the header.
     */
-   private String name;
+   private String name = null;
 
    /**
     * The integer value.
     */
-   private int value;
+   private int value = 0;
 
 
    public IntegerHeader() {

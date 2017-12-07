@@ -40,7 +40,7 @@ final class FNV1A32HashCodeCalculator implements HashCodeCalculator {
    /**
     * Calculated hash code.
     */
-   private long hash;
+   private long hash = 0L;
 
 
    /**

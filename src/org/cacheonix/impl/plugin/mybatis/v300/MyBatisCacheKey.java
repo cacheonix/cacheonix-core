@@ -42,13 +42,13 @@ public final class MyBatisCacheKey implements Externalizable {
    private static final Field UPDATE_LIST_FIELD = getField("updateList");
 
 
-   private int hashcode;
+   private int hashcode = 0;
 
-   private long checksum;
+   private long checksum = 0L;
 
-   private int count;
+   private int count = 0;
 
-   private List<Object> updateList;
+   private List<Object> updateList = null;
 
 
    /**

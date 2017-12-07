@@ -40,39 +40,39 @@ public final class ServerConfiguration extends DocumentReader {
    /**
     * The parent.
     */
-   private CacheonixConfiguration cacheonixConfiguration;
+   private CacheonixConfiguration cacheonixConfiguration = null;
 
    /**
     * Field machineName.
     */
-   private String machineName;
+   private String machineName = null;
 
    /**
     * Field rackName.
     */
-   private String rackName;
+   private String rackName = null;
 
    /**
     * Field territoryName.
     */
-   private String territoryName;
+   private String territoryName = null;
 
    /**
     * Field countryName.
     */
-   private String countryName;
+   private String countryName = null;
 
    /**
     * Field continentName.
     */
-   private String continentName;
+   private String continentName = null;
 
    /**
     * Default lock timeout in milliseconds. Cacheonix uses the default lock timeout for a lock that was acquired without
     * setting the timeout explicitly.  This value can be overridden by the system property
     * <code>cacheonix.default.lock.timeout</code>.
     */
-   private long defaultLockTimeoutMillis;
+   private long defaultLockTimeoutMillis = 0L;
 
 
    /**
@@ -80,12 +80,12 @@ public final class ServerConfiguration extends DocumentReader {
     * Partition contributors use this timeout to move their to other nodes to try to avoid loss of data or recovery
     * overhead that may result from the forced shutdown.
     */
-   private long gracefulShutdownTimeoutMillis;
+   private long gracefulShutdownTimeoutMillis = 0L;
 
    /**
     * Default unlock timeout in milliseconds.
     */
-   private long defaultUnlockTimeoutMillis;
+   private long defaultUnlockTimeoutMillis = 0L;
 
 
    /**
@@ -93,13 +93,13 @@ public final class ServerConfiguration extends DocumentReader {
     * This value can be overridden from the command line by setting the system property
     * <code>cacheonix.default.lease.time</code>.
     */
-   private long defaultLeaseTimeMillis;
+   private long defaultLeaseTimeMillis = 0L;
 
    /**
     * Time the NIO selector should block for while waiting for a channel to become ready, must be greater than zero.
     * Majority of Cacheonix configuration should leave 'selectorTimeout' default.
     */
-   private long selectorTimeoutMillis;
+   private long selectorTimeoutMillis = 0L;
 
    private boolean hasSelectorTimeoutMillis = false;
 
@@ -112,17 +112,17 @@ public final class ServerConfiguration extends DocumentReader {
    /**
     * Field cluster.
     */
-   private ClusterConfiguration cluster;
+   private ClusterConfiguration cluster = null;
 
    /**
     * Field listener.
     */
-   private ListenerConfiguration listener;
+   private ListenerConfiguration listener = null;
 
    /**
     * Field broadcast.
     */
-   private BroadcastConfiguration broadcastConfiguration;
+   private BroadcastConfiguration broadcastConfiguration = null;
 
    /**
     * Field partitionedCacheList.
@@ -146,7 +146,7 @@ public final class ServerConfiguration extends DocumentReader {
    /**
     * SO_TIMEOUT.
     */
-   private long socketTimeoutMillis;
+   private long socketTimeoutMillis = 0L;
 
    private boolean hasSocketTimeoutMillis = false;
 

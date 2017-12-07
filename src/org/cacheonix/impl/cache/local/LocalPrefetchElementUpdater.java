@@ -26,7 +26,7 @@ import org.cacheonix.impl.util.exception.ExceptionUtils;
  */
 public final class LocalPrefetchElementUpdater implements PrefetchElementUpdater {
 
-   private LocalCache localCache;
+   private LocalCache localCache = null;
 
 
    public void setLocalCache(final LocalCache localCache) {

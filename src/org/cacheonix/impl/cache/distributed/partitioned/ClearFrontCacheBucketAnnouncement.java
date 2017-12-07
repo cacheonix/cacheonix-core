@@ -44,9 +44,9 @@ public final class ClearFrontCacheBucketAnnouncement extends Request {
     */
    public static final WireableBuilder BUILDER = new Builder();
 
-   private String cacheName;
+   private String cacheName = null;
 
-   private int[] bucketNumbers;
+   private int[] bucketNumbers = null;
 
 
    /**

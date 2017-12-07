@@ -38,7 +38,7 @@ public final class AddClusterEventSubscriberRequest extends LocalClusterRequest 
     */
    public static final WireableBuilder BUILDER = new Builder();
 
-   private ClusterEventSubscriber clusterEventSubscriber;
+   private ClusterEventSubscriber clusterEventSubscriber = null;
 
 
    /**

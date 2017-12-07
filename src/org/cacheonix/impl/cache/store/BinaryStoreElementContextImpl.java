@@ -12,17 +12,17 @@ public final class BinaryStoreElementContextImpl implements BinaryStoreElementCo
    /**
     * Object size calculator.
     */
-   private ObjectSizeCalculator objectSizeCalculator;
+   private ObjectSizeCalculator objectSizeCalculator = null;
 
    /**
     * Cache element invalidator.
     */
-   private CacheInvalidator invalidator;
+   private CacheInvalidator invalidator = null;
 
    /**
     * Storage used to store this element.
     */
-   private DiskStorage diskStorage;
+   private DiskStorage diskStorage = null;
 
 
    public ObjectSizeCalculator getObjectSizeCalculator() {

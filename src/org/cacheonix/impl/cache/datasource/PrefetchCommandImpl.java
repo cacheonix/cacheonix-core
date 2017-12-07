@@ -55,7 +55,7 @@ public final class PrefetchCommandImpl implements PrefetchCommand {
    /**
     * Current prefetch stage.
     */
-   private PrefetchStage currentStage;
+   private PrefetchStage currentStage = null;
 
    /**
     * A flag indicating that the prefetch was closed early.
@@ -85,7 +85,7 @@ public final class PrefetchCommandImpl implements PrefetchCommand {
    /**
     * Current stage's context.
     */
-   private Object stageContext;
+   private Object stageContext = null;
 
 
    /**

@@ -37,7 +37,7 @@ public final class PassIntegerByValueBinary implements Binary {
 
    private static final long serialVersionUID = 0L;
 
-   private int value;
+   private int value = 0;
 
 
    public PassIntegerByValueBinary() {

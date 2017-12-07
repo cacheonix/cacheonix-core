@@ -37,7 +37,7 @@ public final class PassDoubleByValueBinary implements Binary {
 
    private static final long serialVersionUID = 0L;
 
-   private double value;
+   private double value = 0.0;
 
 
    public PassDoubleByValueBinary() {

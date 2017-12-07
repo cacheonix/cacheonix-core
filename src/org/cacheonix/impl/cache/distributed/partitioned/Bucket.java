@@ -84,7 +84,7 @@ public final class Bucket implements Wireable {
    /**
     * Expiration time of the read lease.
     */
-   private Time leaseExpirationTime;
+   private Time leaseExpirationTime = null;
 
    /**
     * Key store.

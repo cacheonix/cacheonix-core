@@ -25,7 +25,7 @@ public final class ListenerConfiguration extends DocumentReader {
    /**
     * Field tcp.
     */
-   private TCPListenerConfiguration tcp;
+   private TCPListenerConfiguration tcp = null;
 
 
    /**

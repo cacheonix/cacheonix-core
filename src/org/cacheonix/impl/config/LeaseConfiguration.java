@@ -25,7 +25,7 @@ public final class LeaseConfiguration extends DocumentReader {
    /**
     * A parent node.
     */
-   private CoherenceConfiguration coherenceConfiguration;
+   private CoherenceConfiguration coherenceConfiguration = null;
 
    /**
     * Field leaseTime.
@@ -35,7 +35,7 @@ public final class LeaseConfiguration extends DocumentReader {
    /**
     * True if the lease time was read.
     */
-   private boolean hasLeaseTime;
+   private boolean hasLeaseTime = false;
 
 
    /**

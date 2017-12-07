@@ -27,7 +27,7 @@ public final class LocalConfiguration extends DocumentReader {
    /**
     * A parent of this element.
     */
-   private CacheonixConfiguration cacheonixConfiguration;
+   private CacheonixConfiguration cacheonixConfiguration = null;
 
 
    /**

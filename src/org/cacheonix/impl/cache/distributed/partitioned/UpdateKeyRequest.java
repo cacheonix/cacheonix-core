@@ -35,11 +35,11 @@ public final class UpdateKeyRequest extends KeyRequest {
     */
    public static final WireableBuilder BUILDER = new Builder();
 
-   private Binary value;
+   private Binary value = null;
 
-   private Time timeToRead;
+   private Time timeToRead = null;
 
-   private long expectedElementUpdateCounter;
+   private long expectedElementUpdateCounter = 0L;
 
 
    /**

@@ -69,9 +69,9 @@ public final class ClusterState implements Externalizable {
     */
    public static final ClusterState RECONFIGURING = new ClusterState(RECONFIGURING_CODE, "Reconfiguring");
 
-   private byte code;
+   private byte code = (byte) 0;
 
-   private String name;
+   private String name = null;
 
 
    private ClusterState(final byte code, final String name) {

@@ -75,12 +75,12 @@ public final class BinaryEntryModifiedEvent implements Wireable {
    /**
     * Time of the last update of the element according to the element's local clock.
     */
-   private Time lastUpdateTime;
+   private Time lastUpdateTime = null;
 
    /**
     * Version of the element. The version is equivalent of an update counter.
     */
-   private long version;
+   private long version = 0L;
 
 
    /**

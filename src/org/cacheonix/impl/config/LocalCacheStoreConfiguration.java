@@ -7,7 +7,7 @@ import org.w3c.dom.Node;
  */
 public class LocalCacheStoreConfiguration extends CacheStoreConfiguration {
 
-   private ElementEventsConfiguration elementEvents;
+   private ElementEventsConfiguration elementEvents = null;
 
 
    public ElementEventsConfiguration getElementEvents() {

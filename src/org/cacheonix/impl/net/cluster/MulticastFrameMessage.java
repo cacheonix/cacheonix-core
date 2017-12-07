@@ -56,12 +56,12 @@ public final class MulticastFrameMessage extends Message implements SenderInetAd
     *
     * @see SenderInetAddressAware
     */
-   private transient InetAddress senderInetAddress;
+   private transient InetAddress senderInetAddress = null;
 
    /**
     * A flag indicating that this message comes from the originator of the frame.
     */
-   private boolean originator;
+   private boolean originator = false;
 
    /**
     * The multicast frame carries by this MulticastFrameMessage.

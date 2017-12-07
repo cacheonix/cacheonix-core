@@ -28,7 +28,7 @@ public final class DataStoreConfiguration extends DocumentReader {
    /**
     * A name of the cache data store class.
     */
-   private String className;
+   private String className = null;
 
    /**
     * Configuration properties for the cache data store.

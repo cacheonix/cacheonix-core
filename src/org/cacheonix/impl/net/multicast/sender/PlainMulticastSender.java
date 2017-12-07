@@ -70,7 +70,7 @@ public final class PlainMulticastSender implements MulticastSender {
    /**
     * Sent messages.
     */
-   private long sentMessages;
+   private long sentMessages = 0L;
 
 
    /**

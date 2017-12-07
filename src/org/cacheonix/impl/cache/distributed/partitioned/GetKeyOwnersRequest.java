@@ -38,7 +38,7 @@ public final class GetKeyOwnersRequest extends ClusterRequest {
     */
    public static final WireableBuilder BUILDER = new Builder();
 
-   private String cacheName;
+   private String cacheName = null;
 
 
    /**

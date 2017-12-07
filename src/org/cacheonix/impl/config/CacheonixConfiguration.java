@@ -25,13 +25,13 @@ public final class CacheonixConfiguration extends DocumentReader {
    /**
     * Field tempDir.
     */
-   private TemporaryDirectoryConfiguration tempDir;
+   private TemporaryDirectoryConfiguration tempDir = null;
 
 
    /**
     * Logging configuration.
     */
-   private LoggingConfiguration loggingConfiguration;
+   private LoggingConfiguration loggingConfiguration = null;
 
 
    /**
@@ -59,12 +59,12 @@ public final class CacheonixConfiguration extends DocumentReader {
    /**
     * Field server.
     */
-   private ServerConfiguration server;
+   private ServerConfiguration server = null;
 
    /**
     * Field local.
     */
-   private LocalConfiguration local;
+   private LocalConfiguration local = null;
 
 
    /**

@@ -69,9 +69,9 @@ public final class EntryModifiedEventContentFlag implements Externalizable {
     */
    public static final EntryModifiedEventContentFlag NEED_ALL = new EntryModifiedEventContentFlag(CODE_NEED_ALL, "Need all");
 
-   private int code;
+   private int code = 0;
 
-   private String description;
+   private String description = null;
 
 
    /**

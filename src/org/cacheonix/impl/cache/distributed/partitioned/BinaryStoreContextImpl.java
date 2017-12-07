@@ -14,27 +14,27 @@ public class BinaryStoreContextImpl implements BinaryStoreContext {
    /**
     * Object size calculator.
     */
-   private ObjectSizeCalculator objectSizeCalculator;
+   private ObjectSizeCalculator objectSizeCalculator = null;
 
    /**
     * Cache element invalidator.
     */
-   private CacheInvalidator invalidator;
+   private CacheInvalidator invalidator = null;
 
    /**
     * Storage used to store this element.
     */
-   private DiskStorage diskStorage;
+   private DiskStorage diskStorage = null;
 
    /**
     * A supplier of data to the cache for the case when a key is not in the cache (a cache miss)
     */
-   private BinaryStoreDataSource dataSource;
+   private BinaryStoreDataSource dataSource = null;
 
    /**
     * A write-through data store that isolates the application from the details of how the data is stored.
     */
-   private DataStore dataStore;
+   private DataStore dataStore = null;
 
 
    public ObjectSizeCalculator getObjectSizeCalculator() {

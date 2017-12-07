@@ -27,13 +27,13 @@ public final class LRUConfiguration extends DocumentReader {
     * The mandatory maximum number of bytes stored in the cache. If the number of elements in cache exceeds maxBytes,
     * Cacheonix will evict the least recently used elements.
     */
-   private long maxBytes;
+   private long maxBytes = 0L;
 
    /**
     * The size of the cache in number of elements. Cacheonix does not limit the number of elements in cache if the
     * maximum number of elements is not set or if it is set to zero.
     */
-   private long maxElements;
+   private long maxElements = 0L;
 
 
    /**

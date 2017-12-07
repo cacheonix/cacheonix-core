@@ -43,7 +43,7 @@ public final class MarkerTimeoutMessage extends ClusterMessage {
     * Timeout after that this message is supposed to be kick-in by {@link MarkerTimeoutAction#run()}. This field here is
     * for information purposes only, to use it in the debug print.
     */
-   private long timeoutMillis;
+   private long timeoutMillis = 0L;
 
    /**
     * Holds the number of markers received by the cluster node at the time the timeout was created. When the processor

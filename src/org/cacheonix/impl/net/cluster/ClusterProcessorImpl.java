@@ -126,7 +126,7 @@ public final class ClusterProcessorImpl extends AbstractRequestProcessor impleme
    /**
     * An optional cause of shutdown.
     */
-   private CacheonixException shutdownCause;
+   private CacheonixException shutdownCause = null;
 
    /**
     * Cache processors owned by this cluster node.

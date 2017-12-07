@@ -25,7 +25,7 @@ public final class OverflowToDiskConfiguration extends DocumentReader {
    /**
     * The mandatory size of the disk storage cache in bytes.
     */
-   private long maxOverflowBytes;
+   private long maxOverflowBytes = 0L;
 
 
    /**

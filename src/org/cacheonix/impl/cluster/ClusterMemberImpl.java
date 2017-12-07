@@ -34,18 +34,18 @@ final class ClusterMemberImpl implements ClusterMember {
    /**
     * A name of the cluster this member belongs to.
     */
-   private String clusterName;
+   private String clusterName = null;
 
    /**
     * A list of ClusterMemberAddress object that this cluster member may listen on.
     */
-   private List<ClusterMemberAddress> clusterMemberAddresses;
+   private List<ClusterMemberAddress> clusterMemberAddresses = null;
 
 
    /**
     * Cacheonix port.
     */
-   private int clusterMemberPort;
+   private int clusterMemberPort = 0;
 
 
    /**

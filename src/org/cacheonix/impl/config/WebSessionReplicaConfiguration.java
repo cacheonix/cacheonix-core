@@ -29,7 +29,7 @@ public final class WebSessionReplicaConfiguration extends DocumentReader {
    /**
     * A unique cache name.
     */
-   private String name;
+   private String name = null;
 
 
    /**
@@ -41,7 +41,7 @@ public final class WebSessionReplicaConfiguration extends DocumentReader {
    /**
     * A configuration for a partitioned session store.
     */
-   private PartitionedSessionReplicaStoreConfiguration partitionedSessionReplicaStoreConfiguration;
+   private PartitionedSessionReplicaStoreConfiguration partitionedSessionReplicaStoreConfiguration = null;
 
 
    /**

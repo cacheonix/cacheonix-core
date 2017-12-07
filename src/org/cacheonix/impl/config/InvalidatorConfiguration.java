@@ -27,7 +27,7 @@ public final class InvalidatorConfiguration extends DocumentReader {
    /**
     * A name of the cache invalidator class.
     */
-   private String className;
+   private String className = null;
 
    /**
     * Configuration properties for the cache invalidator.

@@ -29,13 +29,13 @@ final class DeliveryNotificationEntry {
     * The start frame number of the message as it was send while having been partitioned into frames. Valid only if
     * <code>hasFrameNumber</code> set to true.
     */
-   private long startFrameNumber;
+   private long startFrameNumber = 0L;
 
    /**
     * Indicates that the <code>startFrameNumber</code> contains a meaningful value. This flag is raised when the start
     * frame number is set by calling <code>setStartFrameNumber()</code>.
     */
-   private boolean hasStartFrameNumber;
+   private boolean hasStartFrameNumber = false;
 
 
    /**

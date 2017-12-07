@@ -95,7 +95,7 @@ public final class BinaryStore implements Wireable {
    /**
     * System clock.
     */
-   private transient Clock clock;
+   private transient Clock clock = null;
 
 
    private final BinaryFactory binaryFactory = BINARY_FACTORY_BUILDER.createFactory(BinaryType.BY_COPY);
@@ -103,12 +103,12 @@ public final class BinaryStore implements Wireable {
    /**
     * Map the holds cache entries.
     */
-   private HashMap<Binary, BinaryStoreElement> elements; // NOPMD
+   private HashMap<Binary, BinaryStoreElement> elements = null; // NOPMD
 
    /**
     * The head of the doubly linked list.
     */
-   private BinaryStoreElement header;
+   private BinaryStoreElement header = null;
 
    /**
     * Cache statistics.
@@ -118,22 +118,22 @@ public final class BinaryStore implements Wireable {
    /**
     * Number of milliseconds since the element was put into cache before an element is discarded from the cache.
     */
-   private Time expirationInterval;
+   private Time expirationInterval = null;
 
    /**
     * Number milliseconds since the element was accessed last time before an element is discarded from the cache.
     */
-   private Time idleInterval;
+   private Time idleInterval = null;
 
    /**
     * Maximum number of elements stored in memory.
     */
-   private SharedCounter elementCounter;
+   private SharedCounter elementCounter = null;
 
    /**
     * Max size of elements stored in memory, bytes.
     */
-   private SharedCounter byteCounter;
+   private SharedCounter byteCounter = null;
 
    /**
     * A list of subscribers for the event when an element is updated. The BinaryStore needs to keep track of subscribers
@@ -142,9 +142,9 @@ public final class BinaryStore implements Wireable {
    private final transient Map<Binary, List<BinaryEntryModifiedSubscriber>> updateSubscribers = new HashMap<Binary, List<BinaryEntryModifiedSubscriber>>(
            1); // NOPMD
 
-   private BinaryStoreContext binaryStoreContext;
+   private BinaryStoreContext binaryStoreContext = null;
 
-   private BinaryStoreElementContext binaryStoreElementContext;
+   private BinaryStoreElementContext binaryStoreElementContext = null;
 
 
    public BinaryStore() {

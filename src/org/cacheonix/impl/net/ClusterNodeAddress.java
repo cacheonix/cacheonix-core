@@ -75,7 +75,7 @@ public final class ClusterNodeAddress implements Comparable, Wireable {
    /**
     * Core count.
     */
-   private int coreCount;
+   private int coreCount = 0;
 
    /**
     * Hashcode calculated at object creation.

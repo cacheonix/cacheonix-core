@@ -64,7 +64,7 @@ public final class MarkerListRequest extends ClusterRequest {
     * A last operational cluster view to send to the joining node. Having the same last operational cluster view ensures
     * that all nodes produce the same left and joined lists on recovery and join.
     */
-   private ClusterView lastOperationalClusterView;
+   private ClusterView lastOperationalClusterView = null;
 
 
    /**

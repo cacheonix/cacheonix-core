@@ -113,7 +113,7 @@ public final class MyBatisCache implements Cache {
    /**
     * A namespace cache adapter.
     */
-   private MyBatisCacheAdapter namespaceCacheAdapter;
+   private MyBatisCacheAdapter namespaceCacheAdapter = null;
 
    /**
     * Read-write lock.

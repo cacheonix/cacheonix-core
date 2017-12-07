@@ -26,7 +26,7 @@ public final class LoggingConfiguration extends DocumentReader {
     * <code>cacheonix</code> element in <code>cacheonix-config.xml</code>. The logging level can be overridden by
     * setting JVM system parameter <code>cacheonix.logging.level</code>.
     */
-   private LoggingLevel loggingLevel;
+   private LoggingLevel loggingLevel = null;
 
 
    /**

@@ -61,7 +61,7 @@ public final class LeaveCacheGroupAnnouncement extends GroupMessage {
    /**
     * Address of the cache processor leaving the cache group.
     */
-   private ClusterNodeAddress leavingAddress;
+   private ClusterNodeAddress leavingAddress = null;
 
    /**
     * Flag indicating if this is a request for a graceful leave. If <code>false</code>, this is a forced leave.

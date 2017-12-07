@@ -88,9 +88,9 @@ public final class EntryModifiedEventType implements Externalizable {
     */
    public static final EntryModifiedEventType EXPIRE = new EntryModifiedEventType(EXPIRE_CODE, "Expire");
 
-   private int code;
+   private int code = 0;
 
-   private String description;
+   private String description = null;
 
 
    /**

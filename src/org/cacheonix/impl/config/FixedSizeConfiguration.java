@@ -31,7 +31,7 @@ public final class FixedSizeConfiguration extends DocumentReader {
     * Important: Cacheonix recommends setting 'maxBytes' so that total summa of sizes  of all caches doesn't exceed 40%
     * of JVM heap.
     */
-   private long maxBytes;
+   private long maxBytes = 0L;
 
 
    /**

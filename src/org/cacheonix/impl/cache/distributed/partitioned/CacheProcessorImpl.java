@@ -143,7 +143,7 @@ public final class CacheProcessorImpl extends AbstractRequestProcessor implement
     *
     * @see PartitionedCache#addEventSubscriber(HashSet, EntryModifiedSubscriber)
     */
-   private Map<Integer, LocalSubscription> localEntryModifiedSubscriptions;
+   private Map<Integer, LocalSubscription> localEntryModifiedSubscriptions = null;
 
 
    /**

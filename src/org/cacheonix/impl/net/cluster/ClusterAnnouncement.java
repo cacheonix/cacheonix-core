@@ -67,7 +67,7 @@ public final class ClusterAnnouncement extends ClusterMessage implements SenderI
    /**
     * Marker list size.
     */
-   private int markerListSize;
+   private int markerListSize = 0;
 
    /**
     * An IP address of the machine that sent this frame. This field is set only if this is a received frame and it was

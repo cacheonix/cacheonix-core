@@ -24,17 +24,17 @@ public final class PartitionedCacheStoreConfiguration extends CacheStoreConfigur
    /**
     * Field replication.
     */
-   private ReplicationConfiguration replication;
+   private ReplicationConfiguration replication = null;
 
    /**
     * Field coherence.
     */
-   private CoherenceConfiguration coherence;
+   private CoherenceConfiguration coherence = null;
 
    /**
     * The parent node.
     */
-   private PartitionedCacheConfiguration partitionedCacheConfiguration;
+   private PartitionedCacheConfiguration partitionedCacheConfiguration = null;
 
 
    /**

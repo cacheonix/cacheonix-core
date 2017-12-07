@@ -55,7 +55,7 @@ public final class MD5HashCodeCalculator implements HashCodeCalculator, Wireable
    /**
     * Hash.
     */
-   private int hash;
+   private int hash = 0;
 
    /**
     * Indicates if the hash code was calculated.

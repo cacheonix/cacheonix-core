@@ -28,13 +28,13 @@ public final class LocalCacheConfiguration extends DocumentReader {
    /**
     * Parent.
     */
-   private LocalConfiguration localConfiguration;
+   private LocalConfiguration localConfiguration = null;
 
 
    /**
     * A unique cache name.
     */
-   private String name;
+   private String name = null;
 
    /**
     * A flag indicating if this cache configuration is a template configuration. The template cache configuration is
@@ -50,7 +50,7 @@ public final class LocalCacheConfiguration extends DocumentReader {
    /**
     * Field store.
     */
-   private LocalCacheStoreConfiguration store;
+   private LocalCacheStoreConfiguration store = null;
 
 
    @SuppressWarnings("WeakerAccess")

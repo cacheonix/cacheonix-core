@@ -33,7 +33,7 @@ public final class JoiningNode implements Wireable {
     */
    public static final WireableBuilder BUILDER = new Builder();
 
-   private ClusterNodeAddress address;
+   private ClusterNodeAddress address = null;
 
 
    public JoiningNode() {

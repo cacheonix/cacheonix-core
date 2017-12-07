@@ -41,17 +41,17 @@ public final class AddRemoteEntryModifiedSubscriberMessage extends LocalCacheMes
    /**
     * A bucket number used for quick bucket lookup.
     */
-   private int bucketNumber;
+   private int bucketNumber = 0;
 
    /**
     * A key of interest.
     */
-   private Binary key;
+   private Binary key = null;
 
    /**
     * A subscription information.
     */
-   private EntryModifiedSubscription subscription;
+   private EntryModifiedSubscription subscription = null;
 
 
    /**

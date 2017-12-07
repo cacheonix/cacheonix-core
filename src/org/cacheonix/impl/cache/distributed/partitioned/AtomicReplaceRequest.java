@@ -51,12 +51,12 @@ public final class AtomicReplaceRequest extends KeyRequest {
    /**
     * A value required to be associated with the specified key for the remove to proceed.
     */
-   private Binary oldValue;
+   private Binary oldValue = null;
 
    /**
     * A value to set.
     */
-   private Binary newValue;
+   private Binary newValue = null;
 
 
    /**

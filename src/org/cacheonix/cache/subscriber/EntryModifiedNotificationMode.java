@@ -58,9 +58,9 @@ public final class EntryModifiedNotificationMode implements Externalizable {
     */
    public static final EntryModifiedNotificationMode BATCH = new EntryModifiedNotificationMode(CODE_BATCH_UPDATE, "Batch update");
 
-   private int code;
+   private int code = 0;
 
-   private String description;
+   private String description = null;
 
 
    /**

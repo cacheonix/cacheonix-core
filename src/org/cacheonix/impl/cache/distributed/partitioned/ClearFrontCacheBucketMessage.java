@@ -32,7 +32,7 @@ public final class ClearFrontCacheBucketMessage extends LocalCacheMessage {
     */
    public static final WireableBuilder BUILDER = new Builder();
 
-   private int[] bucketNumbers;
+   private int[] bucketNumbers = null;
 
 
    private ClearFrontCacheBucketMessage() {

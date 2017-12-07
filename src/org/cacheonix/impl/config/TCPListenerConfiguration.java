@@ -33,7 +33,7 @@ public final class TCPListenerConfiguration extends DocumentReader {
     * connections only on a single interface. Do not set this attribute unless there is a reason for limiting addresses
     * that Cacheonix should listen on.
     */
-   private InetAddress address;
+   private InetAddress address = null;
 
    /**
     * A mandatory TCP port. Cacheonix uses the TCP port to listen on for network requests. Default is 8777.

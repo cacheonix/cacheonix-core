@@ -32,7 +32,7 @@ final class ClusterMemberAddressImpl implements ClusterMemberAddress {
    /**
     * An inet address of the cluster member.
     */
-   private InetAddress inetAddress;
+   private InetAddress inetAddress = null;
 
 
    /**

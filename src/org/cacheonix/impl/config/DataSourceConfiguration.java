@@ -28,7 +28,7 @@ public final class DataSourceConfiguration extends DocumentReader {
    /**
     * A name of the cache data source class.
     */
-   private String className;
+   private String className = null;
 
 
    /**

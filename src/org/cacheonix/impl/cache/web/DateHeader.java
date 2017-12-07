@@ -42,12 +42,12 @@ public final class DateHeader implements Header {
    /**
     * The name of the header.
     */
-   private String name;
+   private String name = null;
 
    /**
     * A time value.
     */
-   private long value;
+   private long value = 0L;
 
 
    public DateHeader() {

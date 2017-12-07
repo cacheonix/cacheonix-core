@@ -42,12 +42,12 @@ public final class StringHeader implements Header {
    /**
     * The name of the header.
     */
-   private String name;
+   private String name = null;
 
    /**
     * The string value.
     */
-   private String value;
+   private String value = null;
 
 
    public StringHeader() {
