@@ -714,7 +714,8 @@ public final class BlockedMarker extends OperationalMarker {
    private BlockedMarker copy() {
 
       final BlockedMarker result = new BlockedMarker();
-      result.setTargetMajorityClusterSize(targetMajorityClusterSize);
+
+      result.targetMajorityClusterSize = targetMajorityClusterSize;
       result.setNextAnnouncementTime(getNextAnnouncementTime());
       result.setRequiresSameCluster(isRequiresSameCluster());
       result.setPredecessor(getPredecessor());
