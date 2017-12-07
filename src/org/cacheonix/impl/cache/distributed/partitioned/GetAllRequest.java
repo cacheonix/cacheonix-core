@@ -156,13 +156,7 @@ public final class GetAllRequest extends KeySetRequest {
                   }
                }
 
-               if (keys.isEmpty()) {
-                  return false;
-               }
-
-
-               // Continue
-               return true;
+               return !keys.isEmpty();
             }
          });
 
