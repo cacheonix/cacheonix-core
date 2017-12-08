@@ -228,7 +228,7 @@ public final class JMSAppender extends AppenderSkeleton {
    }
 
 
-   protected final Object lookup(final Context ctx, final String name) throws NamingException {
+   private final Object lookup(final Context ctx, final String name) throws NamingException {
       try {
          return ctx.lookup(name);
       } catch (final NameNotFoundException e) {
@@ -238,7 +238,7 @@ public final class JMSAppender extends AppenderSkeleton {
    }
 
 
-   protected final boolean checkEntryConditions() {
+   private final boolean checkEntryConditions() {
       String fail = null;
 
       if (this.topicConnection == null) {
@@ -412,7 +412,7 @@ public final class JMSAppender extends AppenderSkeleton {
    /**
     * Returns the TopicConnection used for this appender.  Only valid after activateOptions() method has been invoked.
     */
-   protected TopicConnection getTopicConnection() {
+   private TopicConnection getTopicConnection() {
       return topicConnection;
    }
 
@@ -420,7 +420,7 @@ public final class JMSAppender extends AppenderSkeleton {
    /**
     * Returns the TopicSession used for this appender.  Only valid after activateOptions() method has been invoked.
     */
-   protected TopicSession getTopicSession() {
+   private TopicSession getTopicSession() {
       return topicSession;
    }
 
@@ -428,7 +428,7 @@ public final class JMSAppender extends AppenderSkeleton {
    /**
     * Returns the TopicPublisher used for this appender.  Only valid after activateOptions() method has been invoked.
     */
-   protected TopicPublisher getTopicPublisher() {
+   private TopicPublisher getTopicPublisher() {
       return topicPublisher;
    }
 

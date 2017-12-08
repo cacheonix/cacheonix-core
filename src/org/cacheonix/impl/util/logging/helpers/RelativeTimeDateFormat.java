@@ -34,7 +34,7 @@ public final class RelativeTimeDateFormat extends DateFormat {
    private static final long serialVersionUID = 7055751607085611984L;
 
 
-   protected final long startTime;
+   private final long startTime;
 
 
    public RelativeTimeDateFormat() {

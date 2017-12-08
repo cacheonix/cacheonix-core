@@ -56,8 +56,8 @@ public final class PropertySetter {
 
    private static final PropertyDescriptor[] ZERO_LENGTH_PROPERTY_DESCRIPTOR_ARRAY = new PropertyDescriptor[0];
 
-   protected final Object obj;
-   protected PropertyDescriptor[] props = null;
+   private final Object obj;
+   private PropertyDescriptor[] props = null;
 
 
    /**
@@ -74,7 +74,7 @@ public final class PropertySetter {
    /**
     * Uses JavaBeans {@link Introspector} to computer setters of object to be configured.
     */
-   protected final void introspect() {
+   private final void introspect() {
       try {
          final BeanInfo bi = Introspector.getBeanInfo(obj.getClass());
          props = bi.getPropertyDescriptors();
@@ -207,7 +207,7 @@ public final class PropertySetter {
    /**
     * Convert <code>val</code> a String parameter to an object of a given type.
     */
-   protected final Object convertArg(final String val, final Class type) {
+   private final Object convertArg(final String val, final Class type) {
       if (val == null) {
          return null;
       }
@@ -238,7 +238,7 @@ public final class PropertySetter {
    }
 
 
-   protected final PropertyDescriptor getPropertyDescriptor(final String name) {
+   private final PropertyDescriptor getPropertyDescriptor(final String name) {
       if (props == null) {
          introspect();
       }

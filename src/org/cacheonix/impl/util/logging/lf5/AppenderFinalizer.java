@@ -37,7 +37,7 @@ public final class AppenderFinalizer {
    // Protected Variables:
    //--------------------------------------------------------------------------
 
-   protected LogBrokerMonitor _defaultMonitor = null;
+   private LogBrokerMonitor _defaultMonitor = null;
 
    //--------------------------------------------------------------------------
    // Private Variables:

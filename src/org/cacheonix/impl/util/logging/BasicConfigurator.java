@@ -35,7 +35,7 @@ import org.cacheonix.impl.util.logging.xml.DOMConfigurator;
  */
 public final class BasicConfigurator {
 
-   protected BasicConfigurator() {
+   private BasicConfigurator() {
    }
 
 

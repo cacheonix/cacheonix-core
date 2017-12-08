@@ -36,13 +36,13 @@ import org.cacheonix.impl.util.logging.config.PropertyGetter.PropertyCallback;
  */
 public final class PropertyPrinter implements PropertyCallback {
 
-   protected int numAppenders = 0;
+   private int numAppenders = 0;
 
-   protected final Hashtable appenderNames = new Hashtable(3);
+   private final Hashtable appenderNames = new Hashtable(3);
 
-   protected Hashtable layoutNames = new Hashtable(3);
+   private Hashtable layoutNames = new Hashtable(3);
 
-   protected final PrintWriter out;
+   private final PrintWriter out;
 
 
    public PropertyPrinter(final PrintWriter out) {
@@ -51,7 +51,7 @@ public final class PropertyPrinter implements PropertyCallback {
    }
 
 
-   protected final String genAppName() {
+   private final String genAppName() {
 
       return "A" + numAppenders++;
    }
@@ -61,7 +61,7 @@ public final class PropertyPrinter implements PropertyCallback {
     * Returns <code>true</code> if the specified appender name is considered to have been generated, that is, if it is
     * of the form A[0-9]+.
     */
-   protected final boolean isGenAppName(final String name) {
+   private final boolean isGenAppName(final String name) {
 
       if (name.length() < 2 || name.charAt(0) != 'A') {
          return false;
@@ -92,7 +92,7 @@ public final class PropertyPrinter implements PropertyCallback {
    }
 
 
-   protected final void printOptions(final PrintWriter out, final Category cat) {
+   private final void printOptions(final PrintWriter out, final Category cat) {
 
       final Enumeration appenders = cat.getAllAppenders();
       final Level prio = cat.getLevel();
@@ -130,13 +130,13 @@ public final class PropertyPrinter implements PropertyCallback {
    }
 
 
-   protected final void printOptions(final PrintWriter out, final Logger cat) {
+   private final void printOptions(final PrintWriter out, final Logger cat) {
 
       printOptions(out, (Category) cat);
    }
 
 
-   protected final void printOptions(final PrintWriter out, final Object obj, final String fullname) {
+   private final void printOptions(final PrintWriter out, final Object obj, final String fullname) {
 
       out.println(fullname + '=' + obj.getClass().getName());
       PropertyGetter.getProperties(obj, this, fullname + '.');

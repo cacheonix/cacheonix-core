@@ -263,7 +263,7 @@ public final class LogMonitorAdapter {
     * @return the screen width from Toolkit.getScreenSize() if possible, otherwise returns 800
     * @see Toolkit
     */
-   protected static int getScreenWidth() {
+   private static int getScreenWidth() {
       try {
          return Toolkit.getDefaultToolkit().getScreenSize().width;
       } catch (final Throwable ignored) {
@@ -276,7 +276,7 @@ public final class LogMonitorAdapter {
     * @return the screen height from Toolkit.getScreenSize() if possible, otherwise returns 600
     * @see Toolkit
     */
-   protected static int getScreenHeight() {
+   private static int getScreenHeight() {
       try {
          return Toolkit.getDefaultToolkit().getScreenSize().height;
       } catch (final Throwable ignored) {
@@ -285,12 +285,12 @@ public final class LogMonitorAdapter {
    }
 
 
-   protected static int getDefaultMonitorWidth() {
+   private static int getDefaultMonitorWidth() {
       return 3 * getScreenWidth() >> 2;
    }
 
 
-   protected static int getDefaultMonitorHeight() {
+   private static int getDefaultMonitorHeight() {
       return 3 * getScreenHeight() >> 2;
    }
    //--------------------------------------------------------------------------

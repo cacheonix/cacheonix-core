@@ -73,9 +73,9 @@ public final class LogLevel implements Serializable {
    //--------------------------------------------------------------------------
    //   Protected Variables:
    //--------------------------------------------------------------------------
-   protected final String _label;
+   private final String _label;
 
-   protected final int _precedence;
+   private final int _precedence;
 
    //--------------------------------------------------------------------------
    //   Private Variables:
@@ -299,7 +299,7 @@ public final class LogLevel implements Serializable {
    //--------------------------------------------------------------------------
 
 
-   protected final int getPrecedence() {
+   private final int getPrecedence() {
 
       return _precedence;
    }

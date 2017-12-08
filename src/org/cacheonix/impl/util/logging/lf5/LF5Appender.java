@@ -43,7 +43,7 @@ public final class LF5Appender extends AppenderSkeleton {
    // Protected Variables:
    //--------------------------------------------------------------------------
 
-   protected LogBrokerMonitor _logMonitor = null;
+   private LogBrokerMonitor _logMonitor = null;
 
    @SuppressWarnings("StaticNonFinalField")
    private static LogBrokerMonitor _defaultLogMonitor;
@@ -225,7 +225,7 @@ public final class LF5Appender extends AppenderSkeleton {
    /**
     * @return The default instance of the <code>LogBrokerMonitor</code>.
     */
-   protected static synchronized LogBrokerMonitor getDefaultInstance() {
+   private static synchronized LogBrokerMonitor getDefaultInstance() {
 
       if (_defaultLogMonitor == null) {
          try {
@@ -251,7 +251,7 @@ public final class LF5Appender extends AppenderSkeleton {
     * @return the screen width from Toolkit.getScreenSize() if possible, otherwise returns 800
     * @see Toolkit
     */
-   protected static int getScreenWidth() {
+   private static int getScreenWidth() {
 
       try {
          return Toolkit.getDefaultToolkit().getScreenSize().width;
@@ -265,7 +265,7 @@ public final class LF5Appender extends AppenderSkeleton {
     * @return the screen height from Toolkit.getScreenSize() if possible, otherwise returns 600
     * @see Toolkit
     */
-   protected static int getScreenHeight() {
+   private static int getScreenHeight() {
 
       try {
          return Toolkit.getDefaultToolkit().getScreenSize().height;

@@ -73,24 +73,24 @@ public final class JDBCAppender extends AppenderSkeleton {
    /**
     * URL of the DB for default connection handling
     */
-   protected String databaseURL = "jdbc:odbc:myDB";
+   private String databaseURL = "jdbc:odbc:myDB";
 
    /**
     * User to connect as for default connection handling
     */
-   protected String databaseUser = "me";
+   private String databaseUser = "me";
 
    /**
     * User to use for default connection handling
     */
-   protected String databasePassword = "mypassword";
+   private String databasePassword = "mypassword";
 
    /**
     * Connection used by default.  The connection is opened the first time it is needed and then held open until the
     * appender is closed (usually at garbage collection).  This behavior is best modified by creating a sub-class and
     * overriding the <code>getConnection</code> and <code>closeConnection</code> methods.
     */
-   protected Connection connection = null;
+   private Connection connection = null;
 
    /**
     * Stores the string given to the pattern layout for conversion into a SQL statement, eg: insert into LogTable
@@ -100,22 +100,22 @@ public final class JDBCAppender extends AppenderSkeleton {
     * <p/>
     * Also see PatternLayout.
     */
-   protected String sqlStatement = "";
+   private String sqlStatement = "";
 
    /**
     * size of LoggingEvent buffer before writting to the database. Default is 1.
     */
-   protected int bufferSize = 1;
+   private int bufferSize = 1;
 
    /**
     * ArrayList holding the buffer of Logging Events.
     */
-   protected final ArrayList buffer;
+   private final ArrayList buffer;
 
    /**
     * Helper object for clearing out the buffer
     */
-   protected final ArrayList removes;
+   private final ArrayList removes;
 
 
    public JDBCAppender() {
@@ -142,7 +142,7 @@ public final class JDBCAppender extends AppenderSkeleton {
     * <p/>
     * Overriding this provides direct access to the LoggingEvent when constructing the logging statement.
     */
-   protected final String getLogStatement(final LoggingEvent event) {
+   private final String getLogStatement(final LoggingEvent event) {
       return getLayout().format(event);
    }
 
@@ -152,7 +152,7 @@ public final class JDBCAppender extends AppenderSkeleton {
     * to open connections at the start of flushBuffer() and close them at the end.  I use a connection pool outside of
     * JDBCAppender which is accessed in an override of this method.
     */
-   protected final void execute(final String sql) throws SQLException {
+   private final void execute(final String sql) throws SQLException {
 
       Connection con = null;
       Statement stmt = null;
@@ -179,7 +179,7 @@ public final class JDBCAppender extends AppenderSkeleton {
     * <p/>
     * By default this creates a single connection which is held open until the object is garbage collected.
     */
-   protected final Connection getConnection() throws SQLException {
+   private final Connection getConnection() throws SQLException {
       if (!DriverManager.getDrivers().hasMoreElements()) {
          setDriver("sun.jdbc.odbc.JdbcOdbcDriver");
       }

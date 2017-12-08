@@ -161,7 +161,7 @@ public final class LogFileParser implements Runnable {
    //--------------------------------------------------------------------------
    //   Protected Methods:
    //--------------------------------------------------------------------------
-   protected final void displayError(final String message) {
+   private final void displayError(final String message) {
       new LogFactor5ErrorDialog(_monitor.getBaseFrame(), message);
 
    }

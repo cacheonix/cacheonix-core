@@ -160,7 +160,7 @@ public final class ClusterNodeLeftAnnouncement extends Message {
     *
     * @param nodesLeft a collection of addresses of nodes that left the cluster.
     */
-   protected void removeFromLockQueue(final Collection<ClusterNodeAddress> nodesLeft) {
+   private void removeFromLockQueue(final Collection<ClusterNodeAddress> nodesLeft) {
 
       final ClusterProcessor processor = (ClusterProcessor) getProcessor();
 

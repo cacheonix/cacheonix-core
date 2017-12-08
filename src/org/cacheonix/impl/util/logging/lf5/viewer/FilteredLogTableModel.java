@@ -46,11 +46,11 @@ public final class FilteredLogTableModel extends AbstractTableModel {
    //   Protected Variables:
    //--------------------------------------------------------------------------
 
-   protected LogRecordFilter _filter = new PassingLogRecordFilter();
-   protected final List _allRecords = new ArrayList(11);
-   protected List _filteredRecords = null;
+   private LogRecordFilter _filter = new PassingLogRecordFilter();
+   private final List _allRecords = new ArrayList(11);
+   private List _filteredRecords = null;
    protected int _maxNumberOfLogRecords = 5000;
-   protected final String[] _colNames = {"Date",
+   private final String[] _colNames = {"Date",
            "Thread",
            "Message #",
            "Level",
@@ -168,7 +168,7 @@ public final class FilteredLogTableModel extends AbstractTableModel {
    }
 
 
-   protected final List createFilteredRecordsList() {
+   private final List createFilteredRecordsList() {
       final List result = new ArrayList(_allRecords.size());
       for (final Object _allRecord : _allRecords) {
          final LogRecord current = (LogRecord) _allRecord;
@@ -195,7 +195,7 @@ public final class FilteredLogTableModel extends AbstractTableModel {
    }
 
 
-   protected final Object getColumn(final int col, final LogRecord lr) {
+   private final Object getColumn(final int col, final LogRecord lr) {
       if (lr == null) {
          return "NULL Column";
       }
@@ -234,19 +234,19 @@ public final class FilteredLogTableModel extends AbstractTableModel {
    // delete rows that don't exist.
 
 
-   protected final void trimRecords() {
+   private final void trimRecords() {
       if (needsTrimming()) {
          trimOldestRecords();
       }
    }
 
 
-   protected final boolean needsTrimming() {
+   private final boolean needsTrimming() {
       return _allRecords.size() > _maxNumberOfLogRecords;
    }
 
 
-   protected final void trimOldestRecords() {
+   private final void trimOldestRecords() {
       synchronized (_allRecords) {
          final int trim = numberOfRecordsToTrim();
          if (trim > 1) {

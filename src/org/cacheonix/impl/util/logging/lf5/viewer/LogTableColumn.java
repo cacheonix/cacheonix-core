@@ -58,7 +58,7 @@ public final class LogTableColumn implements Serializable {
    //--------------------------------------------------------------------------
    //   Protected Variables:
    //--------------------------------------------------------------------------
-   protected final String _label;
+   private final String _label;
 
    //--------------------------------------------------------------------------
    //   Private Variables:

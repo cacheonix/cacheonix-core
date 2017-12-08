@@ -255,7 +255,7 @@ public final class StandardObjectSizeCalculator implements ObjectSizeCalculator 
    }
 
 
-   protected long sizeOfArray(final Object obj, final Map<Object, Object> visited, final List<Object> stack) {
+   private long sizeOfArray(final Object obj, final Map<Object, Object> visited, final List<Object> stack) {
 
       long result = 16;
       final int length = Array.getLength(obj);

@@ -209,7 +209,7 @@ public final class MRUFileManager {
     * @param file The file to create the input stream from.
     * @return InputStream
     */
-   protected final InputStream getInputStream(final File file) throws IOException {
+   private final InputStream getInputStream(final File file) throws IOException {
       return new BufferedInputStream(new FileInputStream(file));
    }
 
@@ -220,7 +220,7 @@ public final class MRUFileManager {
     * @param url The url to create the input stream from.
     * @return InputStream
     */
-   protected final InputStream getInputStream(final URL url) throws IOException {
+   private final InputStream getInputStream(final URL url) throws IOException {
       return url.openStream();
    }
 
@@ -228,7 +228,7 @@ public final class MRUFileManager {
    /**
     * Adds an object to the mru.
     */
-   protected final void setMRU(final Object o) {
+   private final void setMRU(final Object o) {
       final int index = _mruFileList.indexOf(o);
 
       if (index == -1) {
@@ -244,7 +244,7 @@ public final class MRUFileManager {
     * Loads the MRU file list in from a file and stores it in a LinkedList. If no file exists, a new LinkedList is
     * created.
     */
-   protected final void load() {
+   private final void load() {
       createConfigurationDirectory();
       final File file = new File(getFilename());
       if (file.exists()) {
@@ -272,7 +272,7 @@ public final class MRUFileManager {
    }
 
 
-   protected final String getFilename() {
+   private final String getFilename() {
       final String home = System.getProperty("user.home");
       final String sep = System.getProperty("file.separator");
 
@@ -283,7 +283,7 @@ public final class MRUFileManager {
    /**
     * Ensures that the MRU list will have a MaxSize.
     */
-   protected final void setMaxSize(final int maxSize) {
+   private final void setMaxSize(final int maxSize) {
       if (maxSize < _mruFileList.size()) {
          for (int i = 0; i < _mruFileList.size() - maxSize; i++) {
             _mruFileList.removeLast();

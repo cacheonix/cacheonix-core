@@ -34,9 +34,9 @@ import org.cacheonix.impl.util.logging.spi.LoggingEvent;
  */
 public final class HTMLLayout extends Layout {
 
-   protected static final int BUF_SIZE = 256;
+   private static final int BUF_SIZE = 256;
 
-   protected static final int MAX_CAPACITY = 1024;
+   private static final int MAX_CAPACITY = 1024;
 
    static final String TRACE_PREFIX = "<br>&nbsp;&nbsp;&nbsp;&nbsp;";
 

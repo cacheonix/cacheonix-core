@@ -104,7 +104,7 @@ public final class LF5SwingUtils {
    //--------------------------------------------------------------------------
    //   Protected Methods:
    //--------------------------------------------------------------------------
-   protected static boolean contains(final int row, final TableModel model) {
+   private static boolean contains(final int row, final TableModel model) {
 
       if (model == null) {
          return false;
@@ -113,7 +113,7 @@ public final class LF5SwingUtils {
    }
 
 
-   protected static void selectRow(final int row, final ListSelectionModel model) {
+   private static void selectRow(final int row, final ListSelectionModel model) {
       if (model == null) {
          return;
       }
@@ -121,7 +121,7 @@ public final class LF5SwingUtils {
    }
 
 
-   protected static void moveAdjustable(final int location, final Adjustable scrollBar) {
+   private static void moveAdjustable(final int location, final Adjustable scrollBar) {
       if (scrollBar == null) {
          return;
       }
@@ -134,7 +134,7 @@ public final class LF5SwingUtils {
     *
     * @link http://developer.java.sun.com/developer/bugParade/bugs/4205145.html
     */
-   protected static void repaintLater(final JComponent component) {
+   private static void repaintLater(final JComponent component) {
       SwingUtilities.invokeLater(new Runnable() {
          public void run() {
             component.repaint();

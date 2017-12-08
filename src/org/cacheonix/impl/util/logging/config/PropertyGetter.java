@@ -34,11 +34,11 @@ import org.cacheonix.impl.util.logging.helpers.LogLog;
  */
 public final class PropertyGetter {
 
-   protected static final Object[] NULL_ARG = {};
+   private static final Object[] NULL_ARG = {};
 
-   protected Object obj;
+   private Object obj;
 
-   protected PropertyDescriptor[] props;
+   private PropertyDescriptor[] props;
 
    public interface PropertyCallback {
 
@@ -97,7 +97,7 @@ public final class PropertyGetter {
    }
 
 
-   protected final boolean isHandledType(final Class type) {
+   private final boolean isHandledType(final Class type) {
 
       return String.class.isAssignableFrom(type) ||
               Integer.TYPE.isAssignableFrom(type) ||

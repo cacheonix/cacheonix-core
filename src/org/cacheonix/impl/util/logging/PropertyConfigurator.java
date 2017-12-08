@@ -76,8 +76,8 @@ public final class PropertyConfigurator implements Configurator {
    /**
     * Used internally to keep track of configured appenders.
     */
-   protected final Hashtable registry = new Hashtable(11);
-   protected LoggerFactory loggerFactory = new DefaultCategoryFactory();
+   private final Hashtable registry = new Hashtable(11);
+   private LoggerFactory loggerFactory = new DefaultCategoryFactory();
 
    static final String CATEGORY_PREFIX = "log4j.category.";
    static final String LOGGER_PREFIX = "log4j.logger.";
@@ -437,7 +437,7 @@ public final class PropertyConfigurator implements Configurator {
     *
     * @see #parseCatsAndRenderers
     */
-   protected final void configureLoggerFactory(final Properties props) {
+   private final void configureLoggerFactory(final Properties props) {
       final String factoryClassName = OptionConverter.findAndSubst(LOGGER_FACTORY_KEY,
               props);
       if (factoryClassName != null) {
@@ -497,7 +497,7 @@ public final class PropertyConfigurator implements Configurator {
    /**
     * Parse non-root elements, such non-root categories and renderers.
     */
-   protected final void parseCatsAndRenderers(final Properties props, final LoggerRepository hierarchy) {
+   private final void parseCatsAndRenderers(final Properties props, final LoggerRepository hierarchy) {
       final Enumeration enumeration = props.propertyNames();
       while (enumeration.hasMoreElements()) {
          final String key = (String) enumeration.nextElement();

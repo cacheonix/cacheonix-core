@@ -153,7 +153,7 @@ public final class DOMConfigurator implements Configurator {
 
    LoggerRepository repository = null;
 
-   protected LoggerFactory catFactory = null;
+   private LoggerFactory catFactory = null;
 
 
    /**
@@ -168,7 +168,7 @@ public final class DOMConfigurator implements Configurator {
    /**
     * Used internally to parse appenders by IDREF name.
     */
-   protected final Appender findAppenderByName(final Document doc, final String appenderName) {
+   private final Appender findAppenderByName(final Document doc, final String appenderName) {
 
       Appender appender = (Appender) appenderBag.get(appenderName);
 
@@ -207,7 +207,7 @@ public final class DOMConfigurator implements Configurator {
    /**
     * Used internally to parse appenders by IDREF element.
     */
-   protected final Appender findAppenderByReference(final Element appenderRef) {
+   private final Appender findAppenderByReference(final Element appenderRef) {
 
       final String appenderName = subst(appenderRef.getAttribute(REF_ATTR));
       final Document doc = appenderRef.getOwnerDocument();
@@ -263,7 +263,7 @@ public final class DOMConfigurator implements Configurator {
    /**
     * Used internally to parse an appender element.
     */
-   protected final Appender parseAppender(final Element appenderElement) {
+   private final Appender parseAppender(final Element appenderElement) {
 
       final String className = subst(appenderElement.getAttribute(CLASS_ATTR));
       LogLog.debug("Class name: [" + className + ']');
@@ -329,7 +329,7 @@ problem: we can't create an Appender */ catch (final Exception oops) {
    /**
     * Used internally to parse an {@link ErrorHandler} element.
     */
-   protected final void parseErrorHandler(final Element element, final Appender appender) {
+   private final void parseErrorHandler(final Element element, final Appender appender) {
 
       final ErrorHandler eh = (ErrorHandler) OptionConverter.instantiateByClassName(
               subst(element.getAttribute(CLASS_ATTR)),
@@ -374,7 +374,7 @@ problem: we can't create an Appender */ catch (final Exception oops) {
    /**
     * Used internally to parse a filter element.
     */
-   protected final void parseFilters(final Element element, final Appender appender) {
+   private final void parseFilters(final Element element, final Appender appender) {
 
       final String clazz = subst(element.getAttribute(CLASS_ATTR));
       final Filter filter = (Filter) OptionConverter.instantiateByClassName(clazz,
@@ -409,7 +409,7 @@ problem: we can't create an Appender */ catch (final Exception oops) {
     * Used internally to parse an category element.
     */
    @SuppressWarnings("RedundantArrayCreation")
-   protected final void parseCategory(final Element loggerElement) {
+   private final void parseCategory(final Element loggerElement) {
       // Create a new org.cacheonix.impl.util.logging.Category object from the <category> element.
       final String catName = subst(loggerElement.getAttribute(NAME_ATTR));
 
@@ -454,7 +454,7 @@ problem: we can't create an Appender */ catch (final Exception oops) {
    /**
     * Used internally to parse the category factory element.
     */
-   protected final void parseCategoryFactory(final Element factoryElement) {
+   private final void parseCategoryFactory(final Element factoryElement) {
 
       final String className = subst(factoryElement.getAttribute(CLASS_ATTR));
 
@@ -496,7 +496,7 @@ problem: we can't create an Appender */ catch (final Exception oops) {
    /**
     * Used internally to parse the root category element.
     */
-   protected final void parseRoot(final Element rootElement) {
+   private final void parseRoot(final Element rootElement) {
 
       final Logger root = repository.getRootLogger();
       // category configuration needs to be atomic
@@ -510,8 +510,8 @@ problem: we can't create an Appender */ catch (final Exception oops) {
    /**
     * Used internally to parse the children of a category element.
     */
-   protected final void parseChildrenOfLoggerElement(final Element catElement,
-                                                     final Logger cat, final boolean isRoot) {
+   private final void parseChildrenOfLoggerElement(final Element catElement,
+           final Logger cat, final boolean isRoot) {
 
       final PropertySetter propSetter = new PropertySetter(cat);
 
@@ -559,7 +559,7 @@ problem: we can't create an Appender */ catch (final Exception oops) {
    /**
     * Used internally to parse a layout element.
     */
-   protected final Layout parseLayout(final Element layout_element) {
+   private final Layout parseLayout(final Element layout_element) {
 
       final String className = subst(layout_element.getAttribute(CLASS_ATTR));
       LogLog.debug("Parsing layout of class: \"" + className + '\"');
@@ -594,7 +594,7 @@ problem: we can't create an Appender */ catch (final Exception oops) {
    }
 
 
-   protected final void parseRenderer(final Element element) {
+   private final void parseRenderer(final Element element) {
 
       final String renderingClass = subst(element.getAttribute(RENDERING_CLASS_ATTR));
       final String renderedClass = subst(element.getAttribute(RENDERED_CLASS_ATTR));
@@ -609,7 +609,7 @@ problem: we can't create an Appender */ catch (final Exception oops) {
     * Used internally to parse a level  element.
     */
    @SuppressWarnings("RedundantArrayCreation")
-   protected final void parseLevel(final Element element, final Logger logger, final boolean isRoot) {
+   private final void parseLevel(final Element element, final Logger logger, final boolean isRoot) {
 
       String catName = logger.getName();
       if (isRoot) {
@@ -649,7 +649,7 @@ problem: we can't create an Appender */ catch (final Exception oops) {
    }
 
 
-   protected final void setParameter(final Element elem, final PropertySetter propSetter) {
+   private final void setParameter(final Element elem, final PropertySetter propSetter) {
 
       setParameter(elem, propSetter, props);
    }
@@ -793,7 +793,7 @@ problem: we can't create an Appender */ catch (final Exception oops) {
    /**
     * Configure log4j by reading in a log4j.dtd compliant XML configuration file.
     */
-   protected void doConfigure(final InputSource inputSource, final LoggerRepository repository)
+   private void doConfigure(final InputSource inputSource, final LoggerRepository repository)
            throws FactoryConfigurationError {
 
       if (inputSource.getSystemId() == null) {
@@ -885,7 +885,7 @@ problem: we can't create an Appender */ catch (final Exception oops) {
     * Used internally to configure the log4j framework by parsing a DOM tree of XML elements based on <a
     * href="doc-files/log4j.dtd">log4j.dtd</a>.
     */
-   protected final void parse(final Element element) {
+   private final void parse(final Element element) {
 
       final String rootElementName = element.getTagName();
 
@@ -987,7 +987,7 @@ problem: we can't create an Appender */ catch (final Exception oops) {
    }
 
 
-   protected final String subst(final String value) {
+   private final String subst(final String value) {
 
       return subst(value, props);
    }

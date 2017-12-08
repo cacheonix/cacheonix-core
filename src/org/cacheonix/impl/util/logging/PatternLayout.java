@@ -195,9 +195,9 @@ public final class PatternLayout extends Layout {
            = "%r [%t] %p %c %x - %m%n";
 
 
-   protected static final int BUF_SIZE = 256;
+   private static final int BUF_SIZE = 256;
 
-   protected static final int MAX_CAPACITY = 1024;
+   private static final int MAX_CAPACITY = 1024;
 
 
    // output buffer appended to when format() is invoked
@@ -276,7 +276,7 @@ public final class PatternLayout extends Layout {
     *
     * @since 0.9.0
     */
-   protected final PatternParser createPatternParser(final String pattern) {
+   private final PatternParser createPatternParser(final String pattern) {
 
       return new PatternParser(pattern);
    }

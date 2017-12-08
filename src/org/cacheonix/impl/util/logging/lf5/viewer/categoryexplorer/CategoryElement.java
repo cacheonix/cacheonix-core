@@ -33,7 +33,7 @@ public final class CategoryElement {
    //--------------------------------------------------------------------------
    //   Protected Variables:
    //--------------------------------------------------------------------------
-   protected String _categoryTitle = null;
+   private String _categoryTitle = null;
 
    //--------------------------------------------------------------------------
    //   Private Variables:

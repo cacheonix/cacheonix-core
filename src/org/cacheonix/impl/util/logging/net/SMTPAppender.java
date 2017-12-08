@@ -93,11 +93,11 @@ public final class SMTPAppender extends AppenderSkeleton
 
    private boolean locationInfo = false;
 
-   protected final CyclicBuffer cb = new CyclicBuffer(bufferSize);
+   private final CyclicBuffer cb = new CyclicBuffer(bufferSize);
 
-   protected Message msg = null;
+   private Message msg = null;
 
-   protected TriggeringEventEvaluator evaluator;
+   private TriggeringEventEvaluator evaluator;
 
 
    /**
@@ -148,7 +148,7 @@ public final class SMTPAppender extends AppenderSkeleton
     * @param msg message, may not be null.
     * @throws MessagingException thrown if error addressing message.
     */
-   protected final void addressMessage(final Message msg) throws MessagingException {
+   private final void addressMessage(final Message msg) throws MessagingException {
 
       if (from != null) {
          msg.setFrom(getAddress(from));
@@ -177,7 +177,7 @@ public final class SMTPAppender extends AppenderSkeleton
     *
     * @return mail session, may not be null.
     */
-   protected final Session createSession() {
+   private final Session createSession() {
 
       Properties props = null;
       try {
@@ -237,7 +237,7 @@ public final class SMTPAppender extends AppenderSkeleton
     * <p>It checks whether there is a set output target and also if there is a set layout. If these checks fail, then
     * the boolean value <code>false</code> is returned.
     */
-   protected final boolean checkEntryConditions() {
+   private final boolean checkEntryConditions() {
 
       if (this.msg == null) {
          errorHandler.error("Message object not configured.");
@@ -310,7 +310,7 @@ public final class SMTPAppender extends AppenderSkeleton
    /**
     * Send the contents of the cyclic buffer as an e-mail message.
     */
-   protected final void sendBuffer() {
+   private final void sendBuffer() {
 
       // Note: this code already owns the monitor for this
       // appender. This frees us from needing to synchronize on 'cb'.

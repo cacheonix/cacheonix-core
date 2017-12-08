@@ -43,8 +43,8 @@ public final class LogTableRowRenderer extends DefaultTableCellRenderer {
    //--------------------------------------------------------------------------
    //   Protected Variables:
    //--------------------------------------------------------------------------
-   protected boolean _highlightFatal = true;
-   protected final Color _color = new Color(230, 230, 230);
+   private boolean _highlightFatal = true;
+   private final Color _color = new Color(230, 230, 230);
 
    //--------------------------------------------------------------------------
    //   Private Variables:
@@ -84,7 +84,7 @@ public final class LogTableRowRenderer extends DefaultTableCellRenderer {
    //--------------------------------------------------------------------------
    //   Protected Methods:
    //--------------------------------------------------------------------------
-   protected final Color getLogLevelColor(final LogLevel level) {
+   private final Color getLogLevelColor(final LogLevel level) {
       return (Color) LogLevel.getLogLevelColorMap().get(level);
    }
 

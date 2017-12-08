@@ -31,7 +31,7 @@ import org.cacheonix.impl.util.logging.spi.ErrorHandler;
  */
 public final class CountingQuietWriter extends QuietWriter {
 
-   protected long count = 0L;
+   private long count = 0L;
 
 
    public CountingQuietWriter(final Writer writer, final ErrorHandler eh) {

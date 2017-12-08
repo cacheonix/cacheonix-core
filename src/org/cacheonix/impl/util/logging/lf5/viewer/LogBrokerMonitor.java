@@ -71,61 +71,61 @@ public final class LogBrokerMonitor {
    //--------------------------------------------------------------------------
    //   Protected Variables:
    //--------------------------------------------------------------------------
-   protected JFrame _logMonitorFrame = null;
+   private JFrame _logMonitorFrame = null;
 
-   protected int _logMonitorFrameWidth = 550;
+   private int _logMonitorFrameWidth = 550;
 
-   protected int _logMonitorFrameHeight = 500;
+   private int _logMonitorFrameHeight = 500;
 
-   protected LogTable _table = null;
+   private LogTable _table = null;
 
-   protected CategoryExplorerTree _categoryExplorerTree = null;
+   private CategoryExplorerTree _categoryExplorerTree = null;
 
-   protected String _searchText = null;
+   private String _searchText = null;
 
-   protected String _NDCTextFilter = "";
+   private String _NDCTextFilter = "";
 
-   protected LogLevel _leastSevereDisplayedLogLevel = LogLevel.DEBUG;
+   private LogLevel _leastSevereDisplayedLogLevel = LogLevel.DEBUG;
 
-   protected JScrollPane _logTableScrollPane = null;
+   private JScrollPane _logTableScrollPane = null;
 
-   protected JLabel _statusLabel = null;
+   private JLabel _statusLabel = null;
 
-   protected Object _lock = new Object();
+   private Object _lock = new Object();
 
-   protected JComboBox _fontSizeCombo = null;
+   private JComboBox _fontSizeCombo = null;
 
-   protected int _fontSize = 10;
+   private int _fontSize = 10;
 
-   protected String _fontName = "Dialog";
+   private String _fontName = "Dialog";
 
-   protected String _currentView = DETAILED_VIEW;
+   private String _currentView = DETAILED_VIEW;
 
-   protected final boolean _loadSystemFonts = false;
+   private final boolean _loadSystemFonts = false;
 
-   protected final boolean _trackTableScrollPane = true;
+   private final boolean _trackTableScrollPane = true;
 
-   protected Dimension _lastTableViewportSize = null;
+   private Dimension _lastTableViewportSize = null;
 
-   protected boolean _callSystemExitOnClose = false;
+   private boolean _callSystemExitOnClose = false;
 
-   protected final List _displayedLogBrokerProperties = new Vector(3);
+   private final List _displayedLogBrokerProperties = new Vector(3);
 
-   protected final Map _logLevelMenuItems = new HashMap(11);
+   private final Map _logLevelMenuItems = new HashMap(11);
 
-   protected final Map _logTableColumnMenuItems = new HashMap(11);
+   private final Map _logTableColumnMenuItems = new HashMap(11);
 
-   protected List _levels = null;
+   private List _levels = null;
 
-   protected List _columns = null;
+   private List _columns = null;
 
-   protected boolean _isDisposed = false;
+   private boolean _isDisposed = false;
 
-   protected ConfigurationManager _configurationManager = null;
+   private ConfigurationManager _configurationManager = null;
 
-   protected MRUFileManager _mruFileManager = null;
+   private MRUFileManager _mruFileManager = null;
 
-   protected File _fileLocation = null;
+   private File _fileLocation = null;
 
    //--------------------------------------------------------------------------
    //   Private Variables:
@@ -370,14 +370,14 @@ public final class LogBrokerMonitor {
    //--------------------------------------------------------------------------
 
 
-   protected final void setSearchText(final String text) {
+   private final void setSearchText(final String text) {
 
       _searchText = text;
    }
 
 
    // Added in version 1.2 - Sets the text filter for the NDC
-   protected final void setNDCTextFilter(final String text) {
+   private final void setNDCTextFilter(final String text) {
       // if no value is set, set it to a blank string
       // otherwise use the value provided
       if (text == null) {
@@ -391,7 +391,7 @@ public final class LogBrokerMonitor {
    // Added in version 1.2 - Uses a different filter that sorts
    // based on an NDC string passed in by the user.  If the string
    // is null or is an empty string, we do nothing.
-   protected final void sortByNDC() {
+   private final void sortByNDC() {
 
       final String text = _NDCTextFilter;
       if (text == null || text.isEmpty()) {
@@ -404,7 +404,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final void findSearchText() {
+   private final void findSearchText() {
 
       final String text = _searchText;
       if (text == null || text.isEmpty()) {
@@ -420,13 +420,13 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final int getFirstSelectedRow() {
+   private final int getFirstSelectedRow() {
 
       return _table.getSelectionModel().getMinSelectionIndex();
    }
 
 
-   protected final void selectRow(final int foundRow) {
+   private final void selectRow(final int foundRow) {
 
       if (foundRow == -1) {
          final String message = _searchText + " not found.";
@@ -442,7 +442,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final int findRecord(
+   private final int findRecord(
            int startRow,
            final String searchText,
            final List records
@@ -475,7 +475,7 @@ public final class LogBrokerMonitor {
    /**
     * Check to see if the any records contain the search string. Searching now supports NDC messages and date.
     */
-   protected final boolean matches(final LogRecord record, final String text) {
+   private final boolean matches(final LogRecord record, final String text) {
 
       final String message = record.getMessage();
       final String NDC = record.getNDC();
@@ -490,7 +490,7 @@ public final class LogBrokerMonitor {
     * When the fontsize of a JTextArea is changed, the word-wrapped lines may become garbled.  This method clears and
     * resets the text of the text area.
     */
-   protected final void refresh(final JTextArea textArea) {
+   private final void refresh(final JTextArea textArea) {
 
       final String text = textArea.getText();
       textArea.setText("");
@@ -498,13 +498,13 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final void refreshDetailTextArea() {
+   private final void refreshDetailTextArea() {
 
       refresh(_table._detailTextArea);
    }
 
 
-   protected final void clearDetailTextArea() {
+   private final void clearDetailTextArea() {
 
       _table._detailTextArea.setText("");
    }
@@ -515,7 +515,7 @@ public final class LogBrokerMonitor {
     *
     * @return -1 if unable to select an appropriate font
     */
-   protected final int changeFontSizeCombo(final JComboBox box, final int requestedSize) {
+   private final int changeFontSizeCombo(final JComboBox box, final int requestedSize) {
 
       final int len = box.getItemCount();
       Object selectedObject = box.getItemAt(0);
@@ -536,7 +536,7 @@ public final class LogBrokerMonitor {
    /**
     * Does not update gui or cause any events to be fired.
     */
-   protected final void setFontSizeSilently(final int fontSize) {
+   private final void setFontSizeSilently(final int fontSize) {
 
       _fontSize = fontSize;
       setFontSize(_table._detailTextArea, fontSize);
@@ -545,7 +545,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final void setFontSize(final Component component, final int fontSize) {
+   private final void setFontSize(final Component component, final int fontSize) {
 
       final Font oldFont = component.getFont();
       final Font newFont =
@@ -554,14 +554,14 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final void updateFrameSize() {
+   private final void updateFrameSize() {
 
       _logMonitorFrame.setSize(_logMonitorFrameWidth, _logMonitorFrameHeight);
       centerFrame(_logMonitorFrame);
    }
 
 
-   protected final void pause(final int millis) {
+   private final void pause(final int millis) {
 
       try {
          Thread.sleep((long) millis);
@@ -571,7 +571,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final void initComponents() {
+   private final void initComponents() {
       //
       // Configure the Frame.
       //
@@ -668,7 +668,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final LogRecordFilter createLogRecordFilter() {
+   private final LogRecordFilter createLogRecordFilter() {
 
       return new LogRecordFilter() {
 
@@ -685,7 +685,7 @@ public final class LogBrokerMonitor {
 
    // Added in version 1.2 - Creates a new filter that sorts records based on
    // an NDC string passed in by the user.
-   protected final LogRecordFilter createNDCLogRecordFilter(final String text) {
+   private final LogRecordFilter createNDCLogRecordFilter(final String text) {
 
       _NDCTextFilter = text;
 
@@ -707,20 +707,20 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final void updateStatusLabel() {
+   private final void updateStatusLabel() {
 
       _statusLabel.setText(getRecordsDisplayedMessage());
    }
 
 
-   protected final String getRecordsDisplayedMessage() {
+   private final String getRecordsDisplayedMessage() {
 
       final FilteredLogTableModel model = _table.getFilteredLogTableModel();
       return getStatusText(model.getRowCount(), model.getTotalRowCount());
    }
 
 
-   protected final void addTableModelProperties() {
+   private final void addTableModelProperties() {
 
       final FilteredLogTableModel model = _table.getFilteredLogTableModel();
 
@@ -742,13 +742,13 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final String getStatusText(final int displayedRows, final int totalRows) {
+   private final String getStatusText(final int displayedRows, final int totalRows) {
 
       return "Displaying: " + displayedRows + " records out of a total of: " + totalRows + " records.";
    }
 
 
-   protected final void makeLogTableListenToCategoryExplorer() {
+   private final void makeLogTableListenToCategoryExplorer() {
 
       final ActionListener listener = new ActionListener() {
 
@@ -762,7 +762,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final JPanel createStatusArea() {
+   private final JPanel createStatusArea() {
 
       final JPanel statusArea = new JPanel();
       final JLabel status =
@@ -778,7 +778,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final JTextArea createDetailTextArea() {
+   private final JTextArea createDetailTextArea() {
 
       final JTextArea detailTA = new JTextArea();
       detailTA.setFont(new Font("Monospaced", Font.PLAIN, 14));
@@ -789,7 +789,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final JMenuBar createMenuBar() {
+   private final JMenuBar createMenuBar() {
 
       final JMenuBar menuBar = new JMenuBar();
       menuBar.add(createFileMenu());
@@ -803,7 +803,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final JMenu createLogLevelMenu() {
+   private final JMenu createLogLevelMenu() {
 
       final JMenu result = new JMenu("Log Level");
       result.setMnemonic('l');
@@ -823,7 +823,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final JMenuItem createAllLogLevelsMenuItem() {
+   private final JMenuItem createAllLogLevelsMenuItem() {
 
       final JMenuItem result = new JMenuItem("Show all LogLevels");
       result.setMnemonic('s');
@@ -840,7 +840,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final JMenuItem createNoLogLevelsMenuItem() {
+   private final JMenuItem createNoLogLevelsMenuItem() {
 
       final JMenuItem result = new JMenuItem("Hide all LogLevels");
       result.setMnemonic('h');
@@ -857,7 +857,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final JMenu createLogLevelColorMenu() {
+   private final JMenu createLogLevelColorMenu() {
 
       final JMenu colorMenu = new JMenu("Configure LogLevel Colors");
       colorMenu.setMnemonic('c');
@@ -870,7 +870,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final JMenuItem createResetLogLevelColorMenuItem() {
+   private final JMenuItem createResetLogLevelColorMenuItem() {
 
       final JMenuItem result = new JMenuItem("Reset LogLevel Colors");
       result.setMnemonic('r');
@@ -888,7 +888,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final void selectAllLogLevels(final boolean selected) {
+   private final void selectAllLogLevels(final boolean selected) {
 
       final Iterator levels = getLogLevels();
       while (levels.hasNext()) {
@@ -897,7 +897,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final JCheckBoxMenuItem getMenuItem(final LogLevel level) {
+   private final JCheckBoxMenuItem getMenuItem(final LogLevel level) {
 
       JCheckBoxMenuItem result = (JCheckBoxMenuItem) _logLevelMenuItems.get(level);
       if (result == null) {
@@ -908,7 +908,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final JMenuItem createSubMenuItem(final LogLevel level) {
+   private final JMenuItem createSubMenuItem(final LogLevel level) {
 
       final JMenuItem result = new JMenuItem(level.toString());
       result.setMnemonic(level.toString().charAt(0));
@@ -925,7 +925,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final void showLogLevelColorChangeDialog(final JMenuItem result, final LogLevel level) {
+   private final void showLogLevelColorChangeDialog(final JMenuItem result, final LogLevel level) {
 
       final Color newColor = JColorChooser.showDialog(
               _logMonitorFrame,
@@ -941,7 +941,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final JCheckBoxMenuItem createMenuItem(final LogLevel level) {
+   private final JCheckBoxMenuItem createMenuItem(final LogLevel level) {
 
       final JCheckBoxMenuItem result = new JCheckBoxMenuItem(level.toString());
       result.setSelected(true);
@@ -959,7 +959,7 @@ public final class LogBrokerMonitor {
 
 
    // view menu
-   protected final JMenu createViewMenu() {
+   private final JMenu createViewMenu() {
 
       final JMenu result = new JMenu("View");
       result.setMnemonic('v');
@@ -975,7 +975,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final JCheckBoxMenuItem getLogTableColumnMenuItem(final LogTableColumn column) {
+   private final JCheckBoxMenuItem getLogTableColumnMenuItem(final LogTableColumn column) {
 
       JCheckBoxMenuItem result = (JCheckBoxMenuItem) _logTableColumnMenuItems.get(column);
       if (result == null) {
@@ -986,7 +986,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final JCheckBoxMenuItem createLogTableColumnMenuItem(final LogTableColumn column) {
+   private final JCheckBoxMenuItem createLogTableColumnMenuItem(final LogTableColumn column) {
 
       final JCheckBoxMenuItem result = new JCheckBoxMenuItem(column.toString());
 
@@ -1004,7 +1004,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final List updateView() {
+   private final List updateView() {
 
       final ArrayList updatedList = new ArrayList(3);
       for (final Object _column : _columns) {
@@ -1020,7 +1020,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final JMenuItem createAllLogTableColumnsMenuItem() {
+   private final JMenuItem createAllLogTableColumnsMenuItem() {
 
       final JMenuItem result = new JMenuItem("Show all Columns");
       result.setMnemonic('s');
@@ -1038,7 +1038,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final JMenuItem createNoLogTableColumnsMenuItem() {
+   private final JMenuItem createNoLogTableColumnsMenuItem() {
 
       final JMenuItem result = new JMenuItem("Hide all Columns");
       result.setMnemonic('h');
@@ -1056,7 +1056,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final void selectAllLogTableColumns(final boolean selected) {
+   private final void selectAllLogTableColumns(final boolean selected) {
 
       final Iterator columns = getLogTableColumns();
       while (columns.hasNext()) {
@@ -1065,7 +1065,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final JMenu createFileMenu() {
+   private final JMenu createFileMenu() {
 
       final JMenu fileMenu = new JMenu("File");
       fileMenu.setMnemonic('f');
@@ -1083,7 +1083,7 @@ public final class LogBrokerMonitor {
    /**
     * Menu item added to allow log files to be opened with the LF5 GUI.
     */
-   protected final JMenuItem createOpenMI() {
+   private final JMenuItem createOpenMI() {
 
       final JMenuItem result = new JMenuItem("Open...");
       result.setMnemonic('o');
@@ -1101,7 +1101,7 @@ public final class LogBrokerMonitor {
    /**
     * Menu item added to allow log files loaded from a URL to be opened by the LF5 GUI.
     */
-   protected final JMenuItem createOpenURLMI() {
+   private final JMenuItem createOpenURLMI() {
 
       final JMenuItem result = new JMenuItem("Open URL...");
       result.setMnemonic('u');
@@ -1116,7 +1116,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final JMenuItem createCloseMI() {
+   private final JMenuItem createCloseMI() {
 
       final JMenuItem result = new JMenuItem("Close");
       result.setMnemonic('c');
@@ -1135,7 +1135,7 @@ public final class LogBrokerMonitor {
    /**
     * Creates a Most Recently Used file list to be displayed in the File menu
     */
-   protected final void createMRUFileListMI(final JMenu menu) {
+   private final void createMRUFileListMI(final JMenu menu) {
 
       final String[] files = _mruFileManager.getMRUFileList();
 
@@ -1157,7 +1157,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final JMenuItem createExitMI() {
+   private final JMenuItem createExitMI() {
 
       final JMenuItem result = new JMenuItem("Exit");
       result.setMnemonic('x');
@@ -1172,7 +1172,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final JMenu createConfigureMenu() {
+   private final JMenu createConfigureMenu() {
 
       final JMenu configureMenu = new JMenu("Configure");
       configureMenu.setMnemonic('c');
@@ -1184,7 +1184,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final JMenuItem createConfigureSave() {
+   private final JMenuItem createConfigureSave() {
 
       final JMenuItem result = new JMenuItem("Save");
       result.setMnemonic('s');
@@ -1200,7 +1200,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final JMenuItem createConfigureReset() {
+   private final JMenuItem createConfigureReset() {
 
       final JMenuItem result = new JMenuItem("Reset");
       result.setMnemonic('r');
@@ -1216,7 +1216,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final JMenuItem createConfigureMaxRecords() {
+   private final JMenuItem createConfigureMaxRecords() {
 
       final JMenuItem result = new JMenuItem("Set Max Number of Records");
       result.setMnemonic('m');
@@ -1232,19 +1232,19 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final void saveConfiguration() {
+   private final void saveConfiguration() {
 
       _configurationManager.save();
    }
 
 
-   protected final void resetConfiguration() {
+   private final void resetConfiguration() {
 
       _configurationManager.reset();
    }
 
 
-   protected final void setMaxRecordConfiguration() {
+   private final void setMaxRecordConfiguration() {
 
       final LogFactor5InputDialog inputDialog = new LogFactor5InputDialog(
               _logMonitorFrame, "Set Max Number of Records", "", 10);
@@ -1263,7 +1263,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final JMenu createHelpMenu() {
+   private final JMenu createHelpMenu() {
 
       final JMenu helpMenu = new JMenu("Help");
       helpMenu.setMnemonic('h');
@@ -1272,7 +1272,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final JMenuItem createHelpProperties() {
+   private final JMenuItem createHelpProperties() {
 
       final String title = "LogFactor5 Properties";
       final JMenuItem result = new JMenuItem(title);
@@ -1288,7 +1288,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final void showPropertiesDialog(final String title) {
+   private final void showPropertiesDialog(final String title) {
 
       JOptionPane.showMessageDialog(
               _logMonitorFrame,
@@ -1299,7 +1299,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final JMenu createEditMenu() {
+   private final JMenu createEditMenu() {
 
       final JMenu editMenu = new JMenu("Edit");
       editMenu.setMnemonic('e');
@@ -1312,7 +1312,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final JMenuItem createEditFindNextMI() {
+   private final JMenuItem createEditFindNextMI() {
 
       final JMenuItem editFindNextMI = new JMenuItem("Find Next");
       editFindNextMI.setMnemonic('n');
@@ -1328,7 +1328,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final JMenuItem createEditFindMI() {
+   private final JMenuItem createEditFindMI() {
 
       final JMenuItem editFindMI = new JMenuItem("Find");
       editFindMI.setMnemonic('f');
@@ -1359,7 +1359,7 @@ public final class LogBrokerMonitor {
    // Added version 1.2 - Allows users to Sort Log Records by an
    // NDC text filter. A new LogRecordFilter was created to
    // sort the records.
-   protected final JMenuItem createEditSortNDCMI() {
+   private final JMenuItem createEditSortNDCMI() {
 
       final JMenuItem editSortNDCMI = new JMenuItem("Sort by NDC");
       editSortNDCMI.setMnemonic('s');
@@ -1389,7 +1389,7 @@ public final class LogBrokerMonitor {
 
    // Added in version 1.2 - Resets the LogRecordFilter back to default
    // filter.
-   protected final JMenuItem createEditRestoreAllNDCMI() {
+   private final JMenuItem createEditRestoreAllNDCMI() {
 
       final JMenuItem editRestoreAllNDCMI = new JMenuItem("Restore all NDCs");
       editRestoreAllNDCMI.setMnemonic('r');
@@ -1410,7 +1410,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final JToolBar createToolBar() {
+   private final JToolBar createToolBar() {
 
       final JToolBar tb = new JToolBar();
       tb.putClientProperty("JToolBar.isRollover", Boolean.TRUE);
@@ -1544,7 +1544,7 @@ public final class LogBrokerMonitor {
 //    }
 
 
-   protected final void setView(final String viewString, final LogTable table) {
+   private final void setView(final String viewString, final LogTable table) {
 
       if (DETAILED_VIEW.equals(viewString)) {
          table.setDetailedView();
@@ -1556,7 +1556,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected JComboBox createLogLevelCombo() {
+   private JComboBox createLogLevelCombo() {
 
       final JComboBox result = new JComboBox();
       final Iterator levels = getLogLevels();
@@ -1580,7 +1580,7 @@ public final class LogBrokerMonitor {
 
 
    @SuppressWarnings("ObjectEquality")
-   protected final void setLeastSevereDisplayedLogLevel(final LogLevel level) {
+   private final void setLeastSevereDisplayedLogLevel(final LogLevel level) {
 
       if (level == null || _leastSevereDisplayedLogLevel == level) {
          return; // nothing to do
@@ -1600,12 +1600,12 @@ public final class LogBrokerMonitor {
     *
     * @deprecated tracking is now done automatically.
     */
-   protected void trackTableScrollPane() {
+   private void trackTableScrollPane() {
       // do nothing
    }
 
 
-   protected final void centerFrame(final JFrame frame) {
+   private final void centerFrame(final JFrame frame) {
 
       final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
       final Dimension comp = frame.getSize();
@@ -1619,7 +1619,7 @@ public final class LogBrokerMonitor {
    /**
     * Uses a JFileChooser to select a file to opened with the LF5 GUI.
     */
-   protected final void requestOpen() {
+   private final void requestOpen() {
 
       final JFileChooser chooser;
 
@@ -1644,7 +1644,7 @@ public final class LogBrokerMonitor {
    /**
     * Uses a Dialog box to accept a URL to a file to be opened with the LF5 GUI.
     */
-   protected final void requestOpenURL() {
+   private final void requestOpenURL() {
 
       final LogFactor5InputDialog inputDialog = new LogFactor5InputDialog(
               _logMonitorFrame, "Open URL", "URL:");
@@ -1671,7 +1671,7 @@ public final class LogBrokerMonitor {
    /**
     * Removes old file list and creates a new file list with the updated MRU list.
     */
-   protected final void updateMRUList() {
+   private final void updateMRUList() {
 
       final JMenu menu = _logMonitorFrame.getJMenuBar().getMenu(0);
       menu.removeAll();
@@ -1685,7 +1685,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final void requestClose() {
+   private final void requestClose() {
 
       _callSystemExitOnClose = false;
       closeAfterConfirm();
@@ -1695,7 +1695,7 @@ public final class LogBrokerMonitor {
    /**
     * Opens a file in the MRU list.
     */
-   protected final void requestOpenMRU(final ActionEvent e) {
+   private final void requestOpenMRU(final ActionEvent e) {
 
       String file = e.getActionCommand();
       final StringTokenizer st = new StringTokenizer(file);
@@ -1719,7 +1719,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final void requestExit() {
+   private final void requestExit() {
 
       _mruFileManager.save();
       _callSystemExitOnClose = true;
@@ -1727,7 +1727,7 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final void closeAfterConfirm() {
+   private final void closeAfterConfirm() {
 
       final StringBuilder message = new StringBuilder(150);
 
@@ -1762,13 +1762,13 @@ public final class LogBrokerMonitor {
    }
 
 
-   protected final Iterator getLogLevels() {
+   private final Iterator getLogLevels() {
 
       return _levels.iterator();
    }
 
 
-   protected final Iterator getLogTableColumns() {
+   private final Iterator getLogTableColumns() {
 
       return _columns.iterator();
    }
@@ -1777,7 +1777,7 @@ public final class LogBrokerMonitor {
    /**
     * Loads and parses a log file.
     */
-   protected final boolean loadLogFile(final File file) {
+   private final boolean loadLogFile(final File file) {
 
       boolean ok = false;
       try {
@@ -1795,7 +1795,7 @@ public final class LogBrokerMonitor {
    /**
     * Loads a parses a log file running on a server.
     */
-   protected final boolean loadLogFile(final URL url) {
+   private final boolean loadLogFile(final URL url) {
 
       boolean ok = false;
       try {
@@ -1817,7 +1817,7 @@ public final class LogBrokerMonitor {
 
    static final class LogBrokerMonitorWindowAdaptor extends WindowAdapter {
 
-      protected final LogBrokerMonitor _monitor;
+      private final LogBrokerMonitor _monitor;
 
 
       LogBrokerMonitorWindowAdaptor(final LogBrokerMonitor monitor) {

@@ -36,7 +36,7 @@ public final class ConsoleAppender extends WriterAppender {
 
    public static final String SYSTEM_ERR = "System.err";
 
-   protected String target = SYSTEM_OUT;
+   private String target = SYSTEM_OUT;
 
    /**
     * Determines if the appender honors reassignments of System.out or System.err made after configuration.

@@ -44,11 +44,11 @@ public final class CategoryNodeEditor extends CategoryAbstractCellEditor {
    //--------------------------------------------------------------------------
    //   Protected Variables:
    //--------------------------------------------------------------------------
-   protected final CategoryNodeEditorRenderer _renderer;
-   protected CategoryNode _lastEditedNode = null;
-   protected final JCheckBox _checkBox;
-   protected final CategoryExplorerModel _categoryModel;
-   protected JTree _tree = null;
+   private final CategoryNodeEditorRenderer _renderer;
+   private CategoryNode _lastEditedNode = null;
+   private final JCheckBox _checkBox;
+   private final CategoryExplorerModel _categoryModel;
+   private JTree _tree = null;
 
    //--------------------------------------------------------------------------
    //   Private Variables:
@@ -108,7 +108,7 @@ public final class CategoryNodeEditor extends CategoryAbstractCellEditor {
    //--------------------------------------------------------------------------
 
 
-   protected final JMenuItem createPropertiesMenuItem(final CategoryNode node) {
+   private final JMenuItem createPropertiesMenuItem(final CategoryNode node) {
       final JMenuItem result = new JMenuItem("Properties");
       result.addActionListener(new ActionListener() {
          public void actionPerformed(final ActionEvent e) {
@@ -119,7 +119,7 @@ public final class CategoryNodeEditor extends CategoryAbstractCellEditor {
    }
 
 
-   protected final void showPropertiesDialog(final CategoryNode node) {
+   private final void showPropertiesDialog(final CategoryNode node) {
       JOptionPane.showMessageDialog(
               _tree,
               getDisplayedProperties(node),
@@ -129,7 +129,7 @@ public final class CategoryNodeEditor extends CategoryAbstractCellEditor {
    }
 
 
-   protected final Object getDisplayedProperties(final CategoryNode node) {
+   private final Object getDisplayedProperties(final CategoryNode node) {
       final ArrayList result = new ArrayList(5);
       result.add("Category: " + node.getTitle());
       if (node.hasFatalRecords()) {
@@ -148,7 +148,7 @@ public final class CategoryNodeEditor extends CategoryAbstractCellEditor {
    }
 
 
-   protected final void showPopup(final CategoryNode node, final int x, final int y) {
+   private final void showPopup(final CategoryNode node, final int x, final int y) {
       final JPopupMenu popup = new JPopupMenu();
       popup.setSize(150, 400);
       //
@@ -169,7 +169,7 @@ public final class CategoryNodeEditor extends CategoryAbstractCellEditor {
    }
 
 
-   protected final JMenuItem createSelectDescendantsMenuItem(final CategoryNode node) {
+   private final JMenuItem createSelectDescendantsMenuItem(final CategoryNode node) {
       final JMenuItem selectDescendants =
               new JMenuItem("Select All Descendant Categories");
       selectDescendants.addActionListener(
@@ -183,7 +183,7 @@ public final class CategoryNodeEditor extends CategoryAbstractCellEditor {
    }
 
 
-   protected final JMenuItem createUnselectDescendantsMenuItem(final CategoryNode node) {
+   private final JMenuItem createUnselectDescendantsMenuItem(final CategoryNode node) {
       final JMenuItem unselectDescendants =
               new JMenuItem("Deselect All Descendant Categories");
       unselectDescendants.addActionListener(
@@ -199,7 +199,7 @@ public final class CategoryNodeEditor extends CategoryAbstractCellEditor {
    }
 
 
-   protected final JMenuItem createExpandMenuItem(final CategoryNode node) {
+   private final JMenuItem createExpandMenuItem(final CategoryNode node) {
       final JMenuItem result = new JMenuItem("Expand All Descendant Categories");
       result.addActionListener(new ActionListener() {
          public void actionPerformed(final ActionEvent e) {
@@ -210,7 +210,7 @@ public final class CategoryNodeEditor extends CategoryAbstractCellEditor {
    }
 
 
-   protected final JMenuItem createCollapseMenuItem(final CategoryNode node) {
+   private final JMenuItem createCollapseMenuItem(final CategoryNode node) {
       final JMenuItem result = new JMenuItem("Collapse All Descendant Categories");
       result.addActionListener(new ActionListener() {
          public void actionPerformed(final ActionEvent e) {
@@ -228,7 +228,7 @@ public final class CategoryNodeEditor extends CategoryAbstractCellEditor {
     * <p/>
     * See removeUnusedNodes()
     */
-   protected final JMenuItem createRemoveMenuItem() {
+   private final JMenuItem createRemoveMenuItem() {
       final JMenuItem result = new JMenuItem("Remove All Empty Categories");
       result.addActionListener(new ActionListener() {
          public void actionPerformed(final ActionEvent e) {
@@ -240,7 +240,7 @@ public final class CategoryNodeEditor extends CategoryAbstractCellEditor {
    }
 
 
-   protected final void expandDescendants(final CategoryNode node) {
+   private final void expandDescendants(final CategoryNode node) {
       final Enumeration descendants = node.depthFirstEnumeration();
       while (descendants.hasMoreElements()) {
          final CategoryNode current = (CategoryNode) descendants.nextElement();
@@ -249,7 +249,7 @@ public final class CategoryNodeEditor extends CategoryAbstractCellEditor {
    }
 
 
-   protected final void collapseDescendants(final CategoryNode node) {
+   private final void collapseDescendants(final CategoryNode node) {
       final Enumeration descendants = node.depthFirstEnumeration();
       while (descendants.hasMoreElements()) {
          final CategoryNode current = (CategoryNode) descendants.nextElement();
@@ -261,7 +261,7 @@ public final class CategoryNodeEditor extends CategoryAbstractCellEditor {
    /**
     * Removes any inactive nodes from the Category tree.
     */
-   protected final int removeUnusedNodes() {
+   private final int removeUnusedNodes() {
       int count = 0;
       final CategoryNode root = _categoryModel.getRootCategoryNode();
       final Enumeration enumeration = root.depthFirstEnumeration();
@@ -278,17 +278,17 @@ public final class CategoryNodeEditor extends CategoryAbstractCellEditor {
    }
 
 
-   protected final void expand(final CategoryNode node) {
+   private final void expand(final CategoryNode node) {
       _tree.expandPath(getTreePath(node));
    }
 
 
-   protected final TreePath getTreePath(final CategoryNode node) {
+   private final TreePath getTreePath(final CategoryNode node) {
       return new TreePath(node.getPath());
    }
 
 
-   protected final void collapse(final CategoryNode node) {
+   private final void collapse(final CategoryNode node) {
       _tree.collapsePath(getTreePath(node));
    }
 

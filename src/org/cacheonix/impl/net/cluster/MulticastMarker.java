@@ -508,7 +508,7 @@ public final class MulticastMarker extends OperationalMarker {
 
 
    @SuppressWarnings("ForLoopReplaceableByForEach")
-   protected void processNormalNormal() throws IOException, InterruptedException {
+   private void processNormalNormal() throws IOException, InterruptedException {
 
       final ClusterProcessor clusterProcessor = getClusterProcessor();
       final ClusterNodeAddress self = clusterProcessor.getAddress();

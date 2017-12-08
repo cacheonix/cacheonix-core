@@ -40,11 +40,11 @@ public final class CategoryNode extends DefaultMutableTreeNode {
    //--------------------------------------------------------------------------
    //   Protected Variables:
    //--------------------------------------------------------------------------
-   protected boolean _selected = true;
-   protected int _numberOfContainedRecords = 0;
-   protected int _numberOfRecordsFromChildren = 0;
-   protected boolean _hasFatalChildren = false;
-   protected boolean _hasFatalRecords = false;
+   private boolean _selected = true;
+   private int _numberOfContainedRecords = 0;
+   private int _numberOfRecordsFromChildren = 0;
+   private boolean _hasFatalChildren = false;
+   private boolean _hasFatalRecords = false;
 
    //--------------------------------------------------------------------------
    //   Private Variables:
@@ -184,7 +184,7 @@ public final class CategoryNode extends DefaultMutableTreeNode {
    /**
     * Passes up the addition from child to parent
     */
-   protected final void addRecordFromChild() {
+   private final void addRecordFromChild() {
       _numberOfRecordsFromChildren++;
       addRecordToParent();
    }
@@ -195,7 +195,7 @@ public final class CategoryNode extends DefaultMutableTreeNode {
    }
 
 
-   protected final void addRecordToParent() {
+   private final void addRecordToParent() {
       final TreeNode parent = getParent();
       if (parent == null) {
          return;

@@ -36,7 +36,7 @@ public final class CategoryPath {
    //--------------------------------------------------------------------------
    //   Protected Variables:
    //--------------------------------------------------------------------------
-   protected final LinkedList _categoryElements = new LinkedList();
+   private final LinkedList _categoryElements = new LinkedList();
 
    //--------------------------------------------------------------------------
    //   Private Variables:

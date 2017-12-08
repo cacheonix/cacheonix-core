@@ -38,7 +38,7 @@ public final class CategoryExplorerLogRecordFilter implements LogRecordFilter {
    //   Protected Variables:
    //--------------------------------------------------------------------------
 
-   protected final CategoryExplorerModel _model;
+   private final CategoryExplorerModel _model;
 
    //--------------------------------------------------------------------------
    //   Private Variables:
@@ -84,7 +84,7 @@ public final class CategoryExplorerLogRecordFilter implements LogRecordFilter {
    //--------------------------------------------------------------------------
 
 
-   protected final void resetAllNodes() {
+   private final void resetAllNodes() {
 
       final Enumeration nodes = _model.getRootCategoryNode().depthFirstEnumeration();
       while (nodes.hasMoreElements()) {

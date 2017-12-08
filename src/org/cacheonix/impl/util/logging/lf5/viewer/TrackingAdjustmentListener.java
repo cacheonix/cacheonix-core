@@ -40,7 +40,7 @@ public final class TrackingAdjustmentListener implements AdjustmentListener {
    //   Protected Variables:
    //--------------------------------------------------------------------------
 
-   protected int _lastMaximum = -1;
+   private int _lastMaximum = -1;
 
    //--------------------------------------------------------------------------
    //   Private Variables:

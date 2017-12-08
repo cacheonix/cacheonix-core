@@ -50,9 +50,9 @@ public final class CategoryExplorerModel extends DefaultTreeModel {
    //   Protected Variables:
    //--------------------------------------------------------------------------
 
-   protected ActionListener _listener = null;
+   private ActionListener _listener = null;
 
-   protected final ActionEvent _event = new ActionEvent(this,
+   private final ActionEvent _event = new ActionEvent(this,
            ActionEvent.ACTION_PERFORMED,
            "Nodes Selection changed");
 
@@ -331,7 +331,7 @@ public final class CategoryExplorerModel extends DefaultTreeModel {
    //--------------------------------------------------------------------------
    //   Protected Methods:
    //--------------------------------------------------------------------------
-   protected final void notifyActionListeners() {
+   private final void notifyActionListeners() {
 
       if (_listener != null) {
          _listener.actionPerformed(_event);
@@ -342,7 +342,7 @@ public final class CategoryExplorerModel extends DefaultTreeModel {
    /**
     * Fires a nodechanged event on the SwingThread.
     */
-   protected final void refresh(final CategoryNode node) {
+   private final void refresh(final CategoryNode node) {
 
       SwingUtilities.invokeLater(new Runnable() {
 

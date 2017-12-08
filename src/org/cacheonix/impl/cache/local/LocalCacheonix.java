@@ -125,7 +125,7 @@ public final class LocalCacheonix extends AbstractCacheonix {
    }
 
 
-   protected Cache createAndRegisterCache(final String cacheName, final LocalCacheConfiguration cacheConfig,
+   private Cache createAndRegisterCache(final String cacheName, final LocalCacheConfiguration cacheConfig,
            final boolean useConfigurationAsTemplate) {
 
       if (cacheConfig.isTemplate() && !useConfigurationAsTemplate) {

@@ -78,7 +78,7 @@ public final class TTCCLayout extends DateLayout {
    private boolean contextPrinting = true;
 
 
-   protected final StringBuffer buf = new StringBuffer(256);
+   private final StringBuffer buf = new StringBuffer(256);
 
 
    /**

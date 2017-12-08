@@ -42,8 +42,8 @@ public final class CategoryExplorerTree extends JTree {
    //--------------------------------------------------------------------------
    //   Protected Variables:
    //--------------------------------------------------------------------------
-   protected final CategoryExplorerModel _model;
-   protected boolean _rootAlreadyExpanded = false;
+   private final CategoryExplorerModel _model;
+   private boolean _rootAlreadyExpanded = false;
 
    //--------------------------------------------------------------------------
    //   Private Variables:
@@ -104,7 +104,7 @@ public final class CategoryExplorerTree extends JTree {
    //--------------------------------------------------------------------------
 
 
-   protected final void init() {
+   private final void init() {
       // Put visible lines on the JTree.
       putClientProperty("JTree.lineStyle", "Angled");
 
@@ -128,7 +128,7 @@ public final class CategoryExplorerTree extends JTree {
    }
 
 
-   protected final void expandRootNode() {
+   private final void expandRootNode() {
       if (_rootAlreadyExpanded) {
          return;
       }
@@ -138,7 +138,7 @@ public final class CategoryExplorerTree extends JTree {
    }
 
 
-   protected final void ensureRootExpansion() {
+   private final void ensureRootExpansion() {
       _model.addTreeModelListener(new TreeModelAdapter() {
          public void treeNodesInserted(final TreeModelEvent e) {
             expandRootNode();

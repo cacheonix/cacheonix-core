@@ -131,7 +131,7 @@ public final class JMSSink implements MessageListener {
    }
 
 
-   protected static Object lookup(final Context ctx, final String name) throws NamingException {
+   private static Object lookup(final Context ctx, final String name) throws NamingException {
       try {
          return ctx.lookup(name);
       } catch (final NameNotFoundException e) {

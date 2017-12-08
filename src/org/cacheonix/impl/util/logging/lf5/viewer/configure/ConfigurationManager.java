@@ -160,7 +160,7 @@ public final class ConfigurationManager {
    //--------------------------------------------------------------------------
    //   Protected Methods:
    //--------------------------------------------------------------------------
-   protected final void load() {
+   private final void load() {
 
       final File file = new File(getFilename());
       if (file.exists()) {
@@ -190,7 +190,7 @@ public final class ConfigurationManager {
    // or an empty string ("") then the manager will set the LogBrokerMonitor's
    // LogRecordFilter to use the NDC LogRecordFilter.  Otherwise, the
    // LogBrokerMonitor will use the default LogRecordFilter.
-   protected final void processRecordFilter(final Document doc) {
+   private final void processRecordFilter(final Document doc) {
 
       final NodeList nodeList = doc.getElementsByTagName(NDCTEXTFILTER);
 
@@ -212,7 +212,7 @@ public final class ConfigurationManager {
    }
 
 
-   protected final void processCategories(final Document doc) {
+   private final void processCategories(final Document doc) {
 
       final CategoryExplorerTree tree = _monitor.getCategoryExplorerTree();
       final CategoryExplorerModel model = tree.getExplorerModel();
@@ -235,7 +235,7 @@ public final class ConfigurationManager {
    }
 
 
-   protected final void processLogLevels(final Document doc) {
+   private final void processLogLevels(final Document doc) {
 
       final NodeList nodeList = doc.getElementsByTagName(LEVEL);
       final Map menuItems = _monitor.getLogLevelMenuItems();
@@ -255,7 +255,7 @@ public final class ConfigurationManager {
    }
 
 
-   protected final void processLogLevelColors(final Document doc) {
+   private final void processLogLevelColors(final Document doc) {
 
       final NodeList nodeList = doc.getElementsByTagName(COLORLEVEL);
       LogLevel.getLogLevelColorMap();
@@ -286,7 +286,7 @@ public final class ConfigurationManager {
    }
 
 
-   protected final void processLogTableColumns(final Document doc) {
+   private final void processLogTableColumns(final Document doc) {
 
       final NodeList nodeList = doc.getElementsByTagName(COLUMN);
       final Map menuItems = _monitor.getLogTableColumnMenuItems();
@@ -323,14 +323,14 @@ public final class ConfigurationManager {
    }
 
 
-   protected final String getValue(final NamedNodeMap map, final String attr) {
+   private final String getValue(final NamedNodeMap map, final String attr) {
 
       final Node n = map.getNamedItem(attr);
       return n.getNodeValue();
    }
 
 
-   protected final void collapseTree() {
+   private final void collapseTree() {
       // collapse everything except the first category
       final CategoryExplorerTree tree = _monitor.getCategoryExplorerTree();
       for (int i = tree.getRowCount() - 1; i > 0; i--) {
@@ -339,7 +339,7 @@ public final class ConfigurationManager {
    }
 
 
-   protected final void selectAllNodes() {
+   private final void selectAllNodes() {
 
       final CategoryExplorerModel model = _monitor.getCategoryExplorerTree().getExplorerModel();
       final CategoryNode root = model.getRootCategoryNode();
@@ -352,7 +352,7 @@ public final class ConfigurationManager {
    }
 
 
-   protected final void store(final String s) {
+   private final void store(final String s) {
 
       PrintWriter writer = null;
       try {
@@ -368,7 +368,7 @@ public final class ConfigurationManager {
    }
 
 
-   protected final void deleteConfigurationFile() {
+   private final void deleteConfigurationFile() {
 
       try {
          final File f = new File(getFilename());
@@ -382,7 +382,7 @@ public final class ConfigurationManager {
    }
 
 
-   protected final String getFilename() {
+   private final String getFilename() {
 
       final String home = System.getProperty("user.home");
       final String sep = System.getProperty("file.separator");

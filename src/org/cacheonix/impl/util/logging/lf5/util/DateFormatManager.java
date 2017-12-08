@@ -54,60 +54,6 @@ public final class DateFormatManager {
    private DateFormat _dateFormat = null;
 
 
-   //--------------------------------------------------------------------------
-   //   Constructors:
-   //--------------------------------------------------------------------------
-   public DateFormatManager() {
-
-      configure();
-   }
-
-
-   public DateFormatManager(final TimeZone timeZone) {
-
-      _timeZone = timeZone;
-      configure();
-   }
-
-
-   public DateFormatManager(final Locale locale) {
-
-      _locale = locale;
-      configure();
-   }
-
-
-   public DateFormatManager(final String pattern) {
-
-      _pattern = pattern;
-      configure();
-   }
-
-
-   public DateFormatManager(final TimeZone timeZone, final Locale locale) {
-
-      _timeZone = timeZone;
-      _locale = locale;
-      configure();
-   }
-
-
-   public DateFormatManager(final TimeZone timeZone, final String pattern) {
-
-      _timeZone = timeZone;
-      _pattern = pattern;
-      configure();
-   }
-
-
-   public DateFormatManager(final Locale locale, final String pattern) {
-
-      _locale = locale;
-      _pattern = pattern;
-      configure();
-   }
-
-
    public DateFormatManager(final TimeZone timeZone, final Locale locale, final String pattern) {
 
       _timeZone = timeZone;

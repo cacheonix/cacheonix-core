@@ -147,9 +147,9 @@ public final class SyslogAppender extends AppenderSkeleton {
     */
    public static final int LOG_LOCAL7 = 23 << 3;
 
-   protected static final int SYSLOG_HOST_OI = 0;
+   private static final int SYSLOG_HOST_OI = 0;
 
-   protected static final int FACILITY_OI = 1;
+   private static final int FACILITY_OI = 1;
 
    static final String TAB = "    ";
 

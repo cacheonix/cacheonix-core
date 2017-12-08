@@ -35,7 +35,7 @@ public final class AppenderAttachableImpl implements AppenderAttachable {
    /**
     * Array of appenders.
     */
-   protected Vector<Appender> appenderList = null;
+   private Vector<Appender> appenderList = null;
 
 
    /**

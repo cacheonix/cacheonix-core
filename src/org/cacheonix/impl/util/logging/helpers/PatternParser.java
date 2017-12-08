@@ -77,19 +77,19 @@ public final class PatternParser {
 
    int state;
 
-   protected final StringBuffer currentLiteral = new StringBuffer(32);
+   private final StringBuffer currentLiteral = new StringBuffer(32);
 
-   protected final int patternLength;
+   private final int patternLength;
 
-   protected int i = 0;
+   private int i = 0;
 
    PatternConverter head = null;
 
    PatternConverter tail = null;
 
-   protected final FormattingInfo formattingInfo = new FormattingInfo();
+   private final FormattingInfo formattingInfo = new FormattingInfo();
 
-   protected final String pattern;
+   private final String pattern;
 
 
    public PatternParser(final String pattern) {
@@ -111,7 +111,7 @@ public final class PatternParser {
    }
 
 
-   protected final String extractOption() {
+   private final String extractOption() {
 
       if (i < patternLength && pattern.charAt(i) == '{') {
          final int end = pattern.indexOf((int) '}', i);
@@ -128,7 +128,7 @@ public final class PatternParser {
    /**
     * The option is expected to be in decimal and positive. In case of error, zero is returned.
     */
-   protected final int extractPrecisionOption() {
+   private final int extractPrecisionOption() {
 
       final String opt = extractOption();
       int r = 0;
@@ -245,7 +245,7 @@ public final class PatternParser {
    }
 
 
-   protected final void finalizeConverter(final char c) {
+   private final void finalizeConverter(final char c) {
 
       PatternConverter pc = null;
       switch (c) {
@@ -384,7 +384,7 @@ public final class PatternParser {
    }
 
 
-   protected final void addConverter(final PatternConverter pc) {
+   private final void addConverter(final PatternConverter pc) {
 
       currentLiteral.setLength(0);
       // Add the pattern converter to the list.

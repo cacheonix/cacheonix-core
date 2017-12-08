@@ -50,38 +50,38 @@ public final class LogTable extends JTable {
    //--------------------------------------------------------------------------
    //   Protected Variables:
    //--------------------------------------------------------------------------
-   protected int _rowHeight = 30;
+   private int _rowHeight = 30;
 
    protected final JTextArea _detailTextArea;
 
    // For the columns:
-   protected final int _numCols = 9;
+   private final int _numCols = 9;
 
-   protected final TableColumn[] _tableColumns = new TableColumn[_numCols];
+   private final TableColumn[] _tableColumns = new TableColumn[_numCols];
 
-   protected final int[] _colWidths = {40, 40, 40, 70, 70, 360, 440, 200, 60};
+   private final int[] _colWidths = {40, 40, 40, 70, 70, 360, 440, 200, 60};
 
-   protected final LogTableColumn[] _colNames = LogTableColumn.getLogTableColumnArray();
+   private final LogTableColumn[] _colNames = LogTableColumn.getLogTableColumnArray();
 
-   protected final int _colDate = 0;
+   private final int _colDate = 0;
 
-   protected final int _colThread = 1;
+   private final int _colThread = 1;
 
-   protected int _colMessageNum = 2;
+   private int _colMessageNum = 2;
 
-   protected final int _colLevel = 3;
+   private final int _colLevel = 3;
 
-   protected final int _colNDC = 4;
+   private final int _colNDC = 4;
 
-   protected int _colCategory = 5;
+   private int _colCategory = 5;
 
-   protected final int _colMessage = 6;
+   private final int _colMessage = 6;
 
-   protected int _colLocation = 7;
+   private int _colLocation = 7;
 
-   protected int _colThrown = 8;
+   private int _colThrown = 8;
 
-   protected DateFormatManager _dateFormatManager = null;
+   private DateFormatManager _dateFormatManager = null;
 
    //--------------------------------------------------------------------------
    //   Private Variables:
@@ -211,7 +211,7 @@ public final class LogTable extends JTable {
    //--------------------------------------------------------------------------
 
 
-   protected final void init() {
+   private final void init() {
 
       setRowHeight(_rowHeight);
       setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -219,7 +219,7 @@ public final class LogTable extends JTable {
 
 
    // assign a column number to a column name
-   protected final Vector getColumnNameAndNumber() {
+   private final Vector getColumnNameAndNumber() {
 
       final Vector columnNameAndNumber = new Vector(_colNames.length);
       for (int i = 0; i < _colNames.length; i++) {
@@ -238,7 +238,7 @@ public final class LogTable extends JTable {
 
    final class LogTableListSelectionListener implements ListSelectionListener {
 
-      protected final JTable _table;
+      private final JTable _table;
 
 
       LogTableListSelectionListener(final JTable table) {

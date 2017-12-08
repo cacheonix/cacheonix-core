@@ -243,7 +243,7 @@ public final class Level extends Priority implements Serializable {
     * @return resolved object.
     * @throws ObjectStreamException if exception during resolution.
     */
-   protected Object readResolve() {
+   private Object readResolve() {
       //
       //  if the deserialized object is exactly an instance of Level
       //
