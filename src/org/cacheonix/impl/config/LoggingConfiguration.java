@@ -87,6 +87,12 @@ public final class LoggingConfiguration extends DocumentReader {
    }
 
 
+   @Override
+   void postProcessRead() {
+
+   }
+
+
    public void setUpDefaults() {
 
       loggingLevel = ConfigurationConstants.DEFAULT_LOGGING_LEVEL;

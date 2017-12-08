@@ -110,8 +110,6 @@ public final class CoherenceConfiguration extends DocumentReader {
 
    protected void postProcessRead() {
 
-      super.postProcessRead();
-
       if (lease == null) {
 
          setUpDefaultLease();

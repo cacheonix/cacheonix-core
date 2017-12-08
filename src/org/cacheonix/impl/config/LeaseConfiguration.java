@@ -78,8 +78,6 @@ public final class LeaseConfiguration extends DocumentReader {
 
    protected void postProcessRead() {
 
-      super.postProcessRead();
-
       // Set lease time
       if (!hasLeaseTime) {
 

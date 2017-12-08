@@ -78,6 +78,12 @@ public final class LRUConfiguration extends DocumentReader {
    }
 
 
+   @Override
+   void postProcessRead() {
+
+   }
+
+
    public String toString() {
 
       return "LRUConfiguration{" +

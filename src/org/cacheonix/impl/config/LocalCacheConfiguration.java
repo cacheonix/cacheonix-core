@@ -328,6 +328,12 @@ public final class LocalCacheConfiguration extends DocumentReader {
    }
 
 
+   @Override
+   void postProcessRead() {
+
+   }
+
+
    public String toString() {
 
       return "LocalCacheConfiguration{" +

@@ -103,6 +103,12 @@ public final class ExpirationConfiguration extends DocumentReader {
    }
 
 
+   @Override
+   void postProcessRead() {
+
+   }
+
+
    public void setUpDefaults() {
 
       timeToLiveMillis = 0L;

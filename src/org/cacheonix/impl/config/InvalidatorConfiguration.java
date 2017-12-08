@@ -84,6 +84,12 @@ public final class InvalidatorConfiguration extends DocumentReader {
    }
 
 
+   @Override
+   void postProcessRead() {
+
+   }
+
+
    public String toString() {
 
       return "InvalidatorConfiguration{" +

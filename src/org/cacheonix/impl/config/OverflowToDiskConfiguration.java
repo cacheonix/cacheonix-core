@@ -54,6 +54,12 @@ public final class OverflowToDiskConfiguration extends DocumentReader {
    }
 
 
+   @Override
+   void postProcessRead() {
+
+   }
+
+
    public String toString() {
 
       return "OverflowToDiskConfiguration{" +

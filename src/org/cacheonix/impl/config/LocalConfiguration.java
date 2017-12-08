@@ -102,6 +102,12 @@ public final class LocalConfiguration extends DocumentReader {
    }
 
 
+   @Override
+   void postProcessRead() {
+
+   }
+
+
    public String toString() {
 
       return "LocalConfiguration{" +

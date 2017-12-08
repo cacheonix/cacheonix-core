@@ -53,6 +53,12 @@ public final class ReplicationConfiguration extends DocumentReader {
    }
 
 
+   @Override
+   void postProcessRead() {
+
+   }
+
+
    /**
     * Sets up default values to attributes and to children.
     */

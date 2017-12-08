@@ -89,6 +89,12 @@ public final class WebSessionReplicaConfiguration extends DocumentReader {
    }
 
 
+   @Override
+   void postProcessRead() {
+
+   }
+
+
    public String toString() {
 
       return "WebSessionReplicaConfiguration{" +

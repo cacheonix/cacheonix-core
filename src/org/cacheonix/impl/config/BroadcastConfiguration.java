@@ -85,6 +85,12 @@ public final class BroadcastConfiguration extends DocumentReader {
    }
 
 
+   @Override
+   void postProcessRead() {
+
+   }
+
+
    public String toString() {
 
       return "BroadcastConfiguration{" +

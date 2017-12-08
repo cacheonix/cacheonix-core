@@ -149,8 +149,6 @@ public final class CacheonixConfiguration extends DocumentReader {
 
    protected void postProcessRead() {
 
-      super.postProcessRead();
-
       if (loggingConfiguration == null) {
 
          loggingConfiguration = new LoggingConfiguration();

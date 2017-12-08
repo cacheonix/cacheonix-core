@@ -148,6 +148,12 @@ public final class TCPListenerConfiguration extends DocumentReader {
    }
 
 
+   @Override
+   void postProcessRead() {
+
+   }
+
+
    public String toString() {
 
       return "TCPListenerConfiguration{" +

@@ -80,6 +80,12 @@ public final class TemporaryDirectoryConfiguration extends DocumentReader {
    }
 
 
+   @Override
+   void postProcessRead() {
+
+   }
+
+
    public void setUpDefaults() {
 
       if (StringUtils.isBlank(path)) {

@@ -430,8 +430,6 @@ public final class ClusterConfiguration extends DocumentReader {
 
    protected void postProcessRead() {
 
-      super.postProcessRead();
-
       applyCommandLineOverwriteToHomeAloneTimeoutMillis();
    }
 

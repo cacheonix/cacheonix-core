@@ -217,6 +217,12 @@ public final class DataStoreConfiguration extends DocumentReader {
    }
 
 
+   @Override
+   void postProcessRead() {
+
+   }
+
+
    public String toString() {
 
       return "DataStoreConfiguration{" +

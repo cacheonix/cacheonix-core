@@ -47,4 +47,10 @@ public final class PrefetchConfiguration extends DocumentReader {
          enabled = Boolean.parseBoolean(attributeValue);
       }
    }
+
+
+   @Override
+   void postProcessRead() {
+
+   }
 }

@@ -61,9 +61,7 @@ public abstract class DocumentReader {
    /**
     *
     */
-   protected void postProcessRead() {
-
-   }
+   abstract void postProcessRead();
 
 
    protected static long systemOrAttribute(final Long systemSettingValue, final String attributeValue) {

@@ -178,6 +178,12 @@ public final class DataSourceConfiguration extends DocumentReader {
    }
 
 
+   @Override
+   void postProcessRead() {
+
+   }
+
+
    public String toString() {
 
       return "DataSourceConfiguration{" +

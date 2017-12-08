@@ -34,6 +34,12 @@ public final class ElementEventsConfiguration extends DocumentReader {
    }
 
 
+   @Override
+   void postProcessRead() {
+
+   }
+
+
    /**
     * Converts an attribute value to ElementEventNotification.
     *

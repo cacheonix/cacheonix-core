@@ -109,6 +109,12 @@ public final class PropertyConfiguration extends DocumentReader {
    }
 
 
+   @Override
+   void postProcessRead() {
+
+   }
+
+
    public String toString() {
 
       return "PropertyConfiguration{" +

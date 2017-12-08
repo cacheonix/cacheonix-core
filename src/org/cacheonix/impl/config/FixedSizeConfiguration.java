@@ -81,6 +81,12 @@ public final class FixedSizeConfiguration extends DocumentReader {
    }
 
 
+   @Override
+   void postProcessRead() {
+
+   }
+
+
    public String toString() {
 
       return "FixedSizeConfiguration{" +

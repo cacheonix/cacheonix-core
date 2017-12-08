@@ -285,8 +285,6 @@ public class CacheStoreConfiguration extends DocumentReader {
 
    protected void postProcessRead() {
 
-      super.postProcessRead();
-
       if (expiration == null) {
 
          expiration = new ExpirationConfiguration();

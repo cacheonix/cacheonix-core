@@ -55,6 +55,12 @@ public final class ListenerConfiguration extends DocumentReader {
    }
 
 
+   @Override
+   void postProcessRead() {
+
+   }
+
+
    public String toString() {
 
       return "ListenerConfiguration{" +

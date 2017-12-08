@@ -224,6 +224,12 @@ public final class MulticastBroadcastConfiguration extends DocumentReader {
    }
 
 
+   @Override
+   void postProcessRead() {
+
+   }
+
+
    public String toString() {
 
       return "MulticastBroadcastConfiguration{" +

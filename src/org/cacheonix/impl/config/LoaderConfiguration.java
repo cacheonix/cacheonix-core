@@ -219,6 +219,12 @@ public final class LoaderConfiguration extends DocumentReader {
    }
 
 
+   @Override
+   void postProcessRead() {
+
+   }
+
+
    public String toString() {
 
       return "LoaderConfiguration{" +

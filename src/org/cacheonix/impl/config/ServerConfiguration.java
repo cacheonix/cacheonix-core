@@ -485,9 +485,6 @@ public final class ServerConfiguration extends DocumentReader {
 
    protected void postProcessRead() {
 
-      super.postProcessRead();
-
-
       // Override the default lease time
 
       if (CACHEONIX_DEFAULT_LEASE_TIME_MILLIS != null) {

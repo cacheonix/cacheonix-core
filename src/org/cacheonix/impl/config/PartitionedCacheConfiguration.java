@@ -186,6 +186,12 @@ public final class PartitionedCacheConfiguration extends DocumentReader {
    }
 
 
+   @Override
+   void postProcessRead() {
+
+   }
+
+
    public String toString() {
 
       return "PartitionedCacheConfiguration{" +

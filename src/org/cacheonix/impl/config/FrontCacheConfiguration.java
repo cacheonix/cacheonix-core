@@ -54,6 +54,12 @@ public final class FrontCacheConfiguration extends DocumentReader {
    }
 
 
+   @Override
+   void postProcessRead() {
+
+   }
+
+
    public String toString() {
 
       return "FrontCacheConfiguration{" +

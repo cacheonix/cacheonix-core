@@ -106,6 +106,12 @@ public final class PartitionedSessionReplicaStoreConfiguration extends DocumentR
    }
 
 
+   @Override
+   void postProcessRead() {
+
+   }
+
+
    public String toString() {
 
       return "PartitionedSessionReplicaStoreConfiguration{" +
