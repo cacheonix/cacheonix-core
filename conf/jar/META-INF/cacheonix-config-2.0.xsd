@@ -718,6 +718,9 @@
                The mandatory size of the cache in bytes. If the size of the elements of elements in cache exceeds
                maxBytes, Cacheonix will evict the least recently used elements. Example: maxBytes="5mb".
 
+               Cacheonix does not limit the number of elements in cache based on the memory occupied by the cache
+               elements if the size of the cache in bytes is set to zero.
+
                Important: Cacheonix recommends setting 'maxBytes' so that total summa of sizes of all caches
                doesn't exceed 40% of JVM heap.
             </xsd:documentation>
