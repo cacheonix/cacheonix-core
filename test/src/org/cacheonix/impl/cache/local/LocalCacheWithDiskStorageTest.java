@@ -13,32 +13,29 @@
  */
 package org.cacheonix.impl.cache.local;
 
-import java.io.Externalizable;
 import java.io.File;
 import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectOutput;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 import org.cacheonix.CacheonixTestCase;
-import org.cacheonix.TestConstants;
 import org.cacheonix.TestUtils;
+import org.cacheonix.impl.cache.CacheonixCache;
 import org.cacheonix.impl.cache.datasource.DummyBinaryStoreDataSource;
 import org.cacheonix.impl.cache.datastore.DummyDataStore;
 import org.cacheonix.impl.cache.invalidator.DummyCacheInvalidator;
 import org.cacheonix.impl.cache.loader.DummyCacheLoader;
 import org.cacheonix.impl.cache.storage.disk.DiskStorage;
+import org.cacheonix.impl.cache.storage.disk.StorageException;
 import org.cacheonix.impl.cache.storage.disk.StorageFactory;
 import org.cacheonix.impl.cache.util.StandardObjectSizeCalculator;
-import org.cacheonix.impl.config.ElementEventNotification;
-import org.cacheonix.impl.net.serializer.SerializerUtils;
-import org.cacheonix.impl.util.ArrayUtils;
 import org.cacheonix.impl.util.array.HashMap;
 import org.cacheonix.impl.util.exception.ExceptionUtils;
 import org.cacheonix.impl.util.logging.Logger;
+
+import static org.cacheonix.TestConstants.LOCAL_TEST_CACHE;
+import static org.cacheonix.impl.config.ElementEventNotification.SYNCHRONOUS;
 
 /**
  * Tests {@link LocalCacheWithDiskStorageTest}
@@ -69,16 +66,14 @@ public final class LocalCacheWithDiskStorageTest extends CacheonixTestCase {
 
    private static final String SUFFIX_TWO = "_2";
 
-   private static final int MAX_SIZE_BYTES = 10000000; // 10 million bytes
+   private static final int MAX_SIZE_BYTES_ON_DISK = 10000000; // 10 million bytes
+
+   public static final int MAX_SIZE_BYTES = MAX_SIZE_BYTES_ON_DISK * 3;
 
    /**
     * Max size allows for twice more than allowed bytes.
     */
-   private static final int MAX_SIZE = MAX_SIZE_BYTES / ESTIMATED_ENTRY_SIZE * 2;
-
-   private LocalCache<ByteArrayKey, byte[]> cache = null;
-
-   private DiskStorage diskStorage = null;
+   private static final int MAX_SIZE_ELEMENTS = MAX_SIZE_BYTES_ON_DISK / ESTIMATED_ENTRY_SIZE * 2;
 
 
    private static final int ZERO_EXPIRATION_TIME_MILLIS = 0;
@@ -89,134 +84,236 @@ public final class LocalCacheWithDiskStorageTest extends CacheonixTestCase {
    /**
     * Tests {@link LocalCache#put(Object, Object)} evicts to disk
     */
-   public void testPut() {
+   public void testPut() throws StorageException {
 
-      if (LOG.isDebugEnabled()) {
-         LOG.debug("Cache size: " + MAX_SIZE);
+      final LocalCache<ByteArrayKey, byte[]> cache = createLocalCache(MAX_SIZE_ELEMENTS, MAX_SIZE_BYTES);
+      try {
+         if (LOG.isDebugEnabled()) {
+            LOG.debug("Cache size: " + MAX_SIZE_ELEMENTS);
+         }
+
+         for (int i = 0; i < MAX_SIZE_ELEMENTS; i++) {
+
+            final ByteArrayKey key = makeKey(i);
+            final byte[] valueOne = makeValue(i, SUFFIX_ONE);
+            assertNull(cache.put(key, makeValue(i, SUFFIX_ONE)));
+            assertEquals(valueOne, cache.get(key));
+            assertEquals(valueOne, cache.put(key, makeValue(i, SUFFIX_TWO)));
+         }
+
+         assertEquals(MAX_SIZE_ELEMENTS, cache.size());
+
+         assertEquals("Number of elements evicted to disk", 21925, cache.getSizeOnDisk());
+      } finally {
+         cache.shutdown();
       }
-
-      for (int i = 0; i < MAX_SIZE; i++) {
-
-         final ByteArrayKey key = makeKey(i);
-         final byte[] valueOne = makeValue(i, SUFFIX_ONE);
-         assertNull(cache.put(key, makeValue(i, SUFFIX_ONE)));
-         assertEquals(valueOne, cache.get(key));
-         assertEquals(valueOne, cache.put(key, makeValue(i, SUFFIX_TWO)));
-      }
-
-      assertEquals(MAX_SIZE, cache.size());
-
-      assertEquals("Number of elements evicted to disk", 21925, cache.getSizeOnDisk());
    }
 
 
    /**
-    * Tests {@link LocalCache#get(Object)}
+    * Tests local cache behaviour with zero max element size and bytes passed to the constructor. The expect behaviour is that all
+    * data goes to memory and on to disk becuase zero max element size means 'unlimited'.
     */
-   public void testGet() {
+   public void testGetZeroMaxElementsCache() throws StorageException {
 
-      final List<Entry<ByteArrayKey, byte[]>> entries = populate(MAX_SIZE);
-      for (int i = 0; i < MAX_SIZE; i++) {
-         final Entry<ByteArrayKey, byte[]> e = entries.get(i);
-         assertEquals(e.getValue(), cache.get(e.getKey()));
+
+      // Create a cache with zero max elements
+      final LocalCache<ByteArrayKey, byte[]> cache = createLocalCache(0, 0);
+      try {
+
+         final List<Entry<ByteArrayKey, byte[]>> entries = populate(MAX_SIZE_ELEMENTS, cache);
+         for (int i = 0; i < MAX_SIZE_ELEMENTS; i++) {
+            final Entry<ByteArrayKey, byte[]> e = entries.get(i);
+            assertEquals(e.getValue(), cache.get(e.getKey()));
+         }
+
+         // Size on disk should be zero
+         final long sizeOnDisk = cache.getSizeOnDisk();
+         assertEquals("Size on disk", 0L, sizeOnDisk);
+
+         assertNull(cache.get(makeKey(999999999)));
+
+      } finally {
+
+         cache.shutdown();
       }
-      assertNull(cache.get(makeKey(999999999)));
    }
 
 
    /**
     * Tests {@link LocalCache#clear()}
     */
-   public void testClear() {
+   public void testClear() throws StorageException {
 
-      populate(MAX_SIZE);
-      assertEquals(MAX_SIZE, cache.size());
-      cache.clear();
-      assertEquals(0, cache.size());
+      final LocalCache<ByteArrayKey, byte[]> cache = createLocalCache(MAX_SIZE_ELEMENTS, MAX_SIZE_BYTES);
+      try {
+         populate(MAX_SIZE_ELEMENTS, cache);
+         assertEquals(MAX_SIZE_ELEMENTS, cache.size());
+         cache.clear();
+         assertEquals(0, cache.size());
+      } finally {
+
+         cache.shutdown();
+      }
    }
 
 
    /**
     * Tests {@link LocalCache#clear()}
     */
-   public void testContainsKey() {
+   public void testContainsKey() throws StorageException {
 
-      populate(MAX_SIZE);
-      assertTrue(cache.containsKey(makeKey(0)));
+      final LocalCache<ByteArrayKey, byte[]> cache = createLocalCache(MAX_SIZE_ELEMENTS, MAX_SIZE_BYTES);
 
-      cache.clear();
-      assertTrue(cache.isEmpty());
+      try {
+         populate(MAX_SIZE_ELEMENTS, cache);
+         assertTrue(cache.containsKey(makeKey(0)));
 
-      cache.put(makeKey(0), makeValue(0));
-      assertTrue(cache.containsKey(makeKey(0)));
-      assertFalse(cache.containsKey(makeKey(999999999)));
-   }
+         cache.clear();
+         assertTrue(cache.isEmpty());
 
+         cache.put(makeKey(0), makeValue(0));
+         assertTrue(cache.containsKey(makeKey(0)));
+         assertFalse(cache.containsKey(makeKey(999999999)));
+      } finally {
 
-   public void testEntrySet() {
-
-      populate(MAX_SIZE);
-      assertEquals(MAX_SIZE, cache.entrySet().size());
-   }
-
-
-   public void testIsEmpty() {
-
-      assertTrue(cache.isEmpty());
-      populate(MAX_SIZE);
-      assertFalse(cache.isEmpty());
-   }
-
-
-   public void testKeySet() {
-
-      populate(MAX_SIZE);
-      assertEquals(MAX_SIZE, cache.keySet().size());
-   }
-
-
-   public void testPutAll() {
-
-      final int overflownMaxSize = MAX_SIZE + 1;
-      final Map<ByteArrayKey, byte[]> entries = new HashMap<ByteArrayKey, byte[]>(overflownMaxSize);
-      for (int i = 0; i < overflownMaxSize; i++) {
-         entries.put(makeKey(i), makeValue(i));
+         cache.shutdown();
       }
-      cache.putAll(entries);
-      assertEquals(MAX_SIZE, cache.size());
    }
 
 
-   public void testRemove() {
+   public void testEntrySet() throws StorageException {
 
-      populate(MAX_SIZE);
-      final ByteArrayKey key = makeKey(0);
-      final byte[] value = makeValue(0);
-      assertEquals(value, cache.remove(key));
-      assertEquals(MAX_SIZE - 1, cache.size());
-      assertNull(cache.get(key));
+      final LocalCache<ByteArrayKey, byte[]> cache = createLocalCache(MAX_SIZE_ELEMENTS, MAX_SIZE_BYTES);
+
+      try {
+         populate(MAX_SIZE_ELEMENTS, cache);
+         assertEquals(MAX_SIZE_ELEMENTS, cache.entrySet().size());
+      } finally {
+
+         cache.shutdown();
+      }
    }
 
 
-   public void testSize() {
+   public void testIsEmpty() throws StorageException {
 
-      populate(MAX_SIZE);
-      assertEquals(MAX_SIZE, cache.size());
-      cache.put(makeKey(MAX_SIZE + 1), makeValue(MAX_SIZE + 1));
-      assertEquals(MAX_SIZE, cache.size());
+      final LocalCache<ByteArrayKey, byte[]> cache = createLocalCache(MAX_SIZE_ELEMENTS, MAX_SIZE_BYTES);
+
+      try {
+         assertTrue(cache.isEmpty());
+         populate(MAX_SIZE_ELEMENTS, cache);
+         assertFalse(cache.isEmpty());
+      } finally {
+
+         cache.shutdown();
+      }
    }
 
 
-   public void testValues() {
+   public void testKeySet() throws StorageException {
 
-      populate(MAX_SIZE);
-      assertEquals(MAX_SIZE, cache.values().size());
-      cache.put(makeKey(MAX_SIZE + 1), makeValue(MAX_SIZE + 1));
-      assertEquals(MAX_SIZE, cache.values().size());
+      final LocalCache<ByteArrayKey, byte[]> cache = createLocalCache(MAX_SIZE_ELEMENTS, MAX_SIZE_BYTES);
+
+      try {
+         populate(MAX_SIZE_ELEMENTS, cache);
+         assertEquals(MAX_SIZE_ELEMENTS, cache.keySet().size());
+      } finally {
+
+         cache.shutdown();
+      }
    }
 
 
-   private List<Entry<ByteArrayKey, byte[]>> populate(final int maxSize) {
+   public void testPutAll() throws StorageException {
+
+      final LocalCache<ByteArrayKey, byte[]> cache = createLocalCache(MAX_SIZE_ELEMENTS, MAX_SIZE_BYTES);
+
+      try {
+         final int overflownMaxSize = MAX_SIZE_ELEMENTS + 1;
+         final Map<ByteArrayKey, byte[]> entries = new HashMap<ByteArrayKey, byte[]>(overflownMaxSize);
+         for (int i = 0; i < overflownMaxSize; i++) {
+            entries.put(makeKey(i), makeValue(i));
+         }
+         cache.putAll(entries);
+         assertEquals(MAX_SIZE_ELEMENTS, cache.size());
+      } finally {
+
+         cache.shutdown();
+      }
+   }
+
+
+   public void testRemove() throws StorageException {
+
+      final LocalCache<ByteArrayKey, byte[]> cache = createLocalCache(MAX_SIZE_ELEMENTS, MAX_SIZE_BYTES);
+      try {
+         populate(MAX_SIZE_ELEMENTS, cache);
+         final ByteArrayKey key = makeKey(0);
+         final byte[] value = makeValue(0);
+         assertEquals(value, cache.remove(key));
+         assertEquals(MAX_SIZE_ELEMENTS - 1, cache.size());
+         assertNull(cache.get(key));
+      } finally {
+
+         cache.shutdown();
+      }
+   }
+
+
+   public void testSize() throws StorageException {
+
+      final LocalCache<ByteArrayKey, byte[]> cache = createLocalCache(MAX_SIZE_ELEMENTS, MAX_SIZE_BYTES);
+
+      try {
+         populate(MAX_SIZE_ELEMENTS, cache);
+         assertEquals(MAX_SIZE_ELEMENTS, cache.size());
+         cache.put(makeKey(MAX_SIZE_ELEMENTS + 1), makeValue(MAX_SIZE_ELEMENTS + 1));
+         assertEquals(MAX_SIZE_ELEMENTS, cache.size());
+      } finally {
+
+         cache.shutdown();
+      }
+   }
+
+
+   public void testValues() throws StorageException {
+
+      final LocalCache<ByteArrayKey, byte[]> cache = createLocalCache(MAX_SIZE_ELEMENTS, MAX_SIZE_BYTES);
+      try {
+         populate(MAX_SIZE_ELEMENTS, cache);
+         assertEquals(MAX_SIZE_ELEMENTS, cache.values().size());
+         cache.put(makeKey(MAX_SIZE_ELEMENTS + 1), makeValue(MAX_SIZE_ELEMENTS + 1));
+         assertEquals(MAX_SIZE_ELEMENTS, cache.values().size());
+
+      } finally {
+
+         cache.shutdown();
+      }
+   }
+
+
+   protected void setUp() throws Exception {
+
+      super.setUp();
+   }
+
+
+   private LocalCache<ByteArrayKey, byte[]> createLocalCache(final int maxSizeElements,
+           final int maxSizeBytes) throws StorageException {
+
+      final DiskStorage diskStorage = StorageFactory.createStorage(LOCAL_TEST_CACHE, (long) MAX_SIZE_BYTES_ON_DISK,
+              STORAGE_PATH);
+
+      return new LocalCache<ByteArrayKey, byte[]>(LOCAL_TEST_CACHE, maxSizeElements, maxSizeBytes,
+              ZERO_EXPIRATION_TIME_MILLIS, ZERO_IDLE_TIME_MILLIS, getClock(), getEventNotificationExecutor(),
+              diskStorage, new StandardObjectSizeCalculator(), new DummyBinaryStoreDataSource(), new DummyDataStore(),
+              new DummyCacheInvalidator(), new DummyCacheLoader(), SYNCHRONOUS);
+   }
+
+
+   private static List<Entry<ByteArrayKey, byte[]>> populate(final int maxSize,
+           final CacheonixCache<ByteArrayKey, byte[]> cache) {
 
       final List<Entry<ByteArrayKey, byte[]>> entries = new ArrayList<Entry<ByteArrayKey, byte[]>>(maxSize);
       for (int i = 0; i < maxSize; i++) {
@@ -246,29 +343,6 @@ public final class LocalCacheWithDiskStorageTest extends CacheonixTestCase {
    }
 
 
-   protected void setUp() throws Exception {
-
-      super.setUp();
-
-      diskStorage = StorageFactory.createStorage(TestConstants.LOCAL_TEST_CACHE, (long) MAX_SIZE_BYTES, STORAGE_PATH);
-
-      cache = new LocalCache<ByteArrayKey, byte[]>(TestConstants.LOCAL_TEST_CACHE, MAX_SIZE, MAX_SIZE_BYTES * 3,
-              ZERO_EXPIRATION_TIME_MILLIS, ZERO_IDLE_TIME_MILLIS, getClock(), getEventNotificationExecutor(),
-              diskStorage, new StandardObjectSizeCalculator(), new DummyBinaryStoreDataSource(), new DummyDataStore(),
-              new DummyCacheInvalidator(), new DummyCacheLoader(), ElementEventNotification.SYNCHRONOUS);
-   }
-
-
-   /**
-    * Tears down the fixture, for example, close a network connection. This method is called after a test is executed.
-    */
-   protected void tearDown() throws Exception {
-
-      cache.shutdown();
-      super.tearDown();
-   }
-
-
    private static File getTestFile(final String name) {
 
       try {
@@ -279,88 +353,9 @@ public final class LocalCacheWithDiskStorageTest extends CacheonixTestCase {
    }
 
 
-   public String toString() {
-
-      return "LocalCacheTest{" +
-              "cache=" + cache +
-              '}';
-   }
-
-
    private static int calculateEstimatedEntrySize() {
 
       final StandardObjectSizeCalculator sizeCalculator = new StandardObjectSizeCalculator();
       return (int) sizeCalculator.sum(0L, sizeCalculator.sizeOf(makeKey(1)), sizeCalculator.sizeOf(makeValue(1)));
-   }
-
-
-   @SuppressWarnings("RedundantIfStatement")
-   private static final class ByteArrayKey implements Externalizable {
-
-      private static final long serialVersionUID = 3595907779192315311L;
-
-      private byte[] content;
-
-
-      public ByteArrayKey(final byte[] content) {
-
-         this.content = ArrayUtils.copy(content);
-      }
-
-
-      public ByteArrayKey() {
-
-      }
-
-
-      public byte[] getContent() {
-
-         return ArrayUtils.copy(content);
-      }
-
-
-      public void writeExternal(final ObjectOutput out) throws IOException {
-
-         SerializerUtils.writeByteArray(out, content);
-      }
-
-
-      public void readExternal(final ObjectInput in) throws IOException {
-
-         content = SerializerUtils.readByteArray(in);
-      }
-
-
-      public boolean equals(final Object o) {
-
-         if (this == o) {
-            return true;
-         }
-         if (o == null || !o.getClass().equals(getClass())) {
-            return false;
-         }
-
-         final ByteArrayKey testKey = (ByteArrayKey) o;
-
-         if (!Arrays.equals(content, testKey.content)) {
-            return false;
-         }
-
-         return true;
-      }
-
-
-      public int hashCode() {
-
-         return Arrays.hashCode(content);
-      }
-
-
-      public String toString() {
-
-         return "ByteArrayKey{" +
-                 "content=" + Arrays.toString(content) +
-                 '}';
-      }
    }
 }
