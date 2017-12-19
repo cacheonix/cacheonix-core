@@ -117,12 +117,4 @@ public final class LocalCacheReadPerformanceTest extends CacheonixTestCase {
 
       cache = null;
    }
-
-
-   public String toString() {
-
-      return "LocalCachePerformanceTest{" +
-              "cache=" + cache +
-              '}';
-   }
 }

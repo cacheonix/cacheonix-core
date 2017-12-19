@@ -55,15 +55,6 @@ public final class LocalCacheByteSizeEvictionTest extends CacheonixTestCase {
 
    private static final int ESTIMATED_ENTRY_SIZE = calculateEstimatedEntrySize();
 
-
-   private static int calculateEstimatedEntrySize() {
-
-      final StandardObjectSizeCalculator sizeCalculator = new StandardObjectSizeCalculator();
-      return (int) sizeCalculator.sum(0L, sizeCalculator.sizeOf(KEY + Integer.toString(1)),
-              sizeCalculator.sizeOf(VALUE + Integer.toString(2)));
-   }
-
-
    /**
     * Twice bigger than max size bytes, guarantees eviction based on the object size
     */
@@ -87,7 +78,29 @@ public final class LocalCacheByteSizeEvictionTest extends CacheonixTestCase {
 
    private static final int EXPECTED_SIZE_1225 = 1225;
 
-   private LocalCache cache = null;
+   private LocalCache<String, String> cache = null;
+
+
+   @SuppressWarnings("RedundantStringConstructorCall")
+   private static int calculateEstimatedEntrySize() {
+
+      final StandardObjectSizeCalculator sizeCalculator = new StandardObjectSizeCalculator();
+      final long keySize = sizeCalculator.sizeOf(new String(KEY + 1));
+      final long valueSize = sizeCalculator.sizeOf(new String(VALUE + 1));
+      return (int) sizeCalculator.sum(0L, keySize, valueSize);
+   }
+
+
+   private static String makeKey(final int i) {
+
+      return KEY + i;
+   }
+
+
+   private static String makeValue(final int i) {
+
+      return VALUE + i;
+   }
 
 
    /**
@@ -116,9 +129,9 @@ public final class LocalCacheByteSizeEvictionTest extends CacheonixTestCase {
     */
    public void testGet() {
 
-      final List entries = populate(CACHE_SMALL_MAX_SIZE);
+      final List<Entry<String, String>> entries = populate(CACHE_SMALL_MAX_SIZE);
       for (int i = 0; i < CACHE_SMALL_MAX_SIZE; i++) {
-         final Entry e = (Entry) entries.get(i);
+         final Entry<String, String> e = entries.get(i);
          assertEquals(e.getValue(), cache.get(e.getKey()));
       }
       assertNull(cache.get(KEY + "never existed"));
@@ -182,7 +195,7 @@ public final class LocalCacheByteSizeEvictionTest extends CacheonixTestCase {
    public void testPutAll() {
 
       final int overflownMaxSize = PUT_SIZE + 1;
-      final Map entries = new HashMap(overflownMaxSize);
+      final Map<String, String> entries = new HashMap<String, String>(overflownMaxSize);
       for (int i = 0; i < overflownMaxSize; i++) {
          entries.put(makeKey(i), makeValue(i));
       }
@@ -220,27 +233,15 @@ public final class LocalCacheByteSizeEvictionTest extends CacheonixTestCase {
    }
 
 
-   private List populate(final int maxSize) {
+   private List<Entry<String, String>> populate(final int maxSize) {
 
-      final List entries = new ArrayList(maxSize);
+      final List<Entry<String, String>> entries = new ArrayList<Entry<String, String>>(maxSize);
       for (int i = 0; i < maxSize; i++) {
-         final Entry e = new Entry(makeKey(i), makeValue(i));
+         final Entry<String, String> e = new Entry<String, String>(makeKey(i), makeValue(i));
          cache.put(e.getKey(), e.getValue());
          entries.add(e);
       }
       return entries;
-   }
-
-
-   private static String makeKey(final int i) {
-
-      return KEY + i;
-   }
-
-
-   private static String makeValue(final int i) {
-
-      return VALUE + i;
    }
 
 
@@ -249,7 +250,7 @@ public final class LocalCacheByteSizeEvictionTest extends CacheonixTestCase {
       super.setUp();
       final DiskStorage diskStorage = new DummyDiskStorage(TestConstants.LOCAL_TEST_CACHE);
       final ObjectSizeCalculator objectSizeCalculator = new StandardObjectSizeCalculator();
-      cache = new LocalCache(TestConstants.LOCAL_TEST_CACHE, CACHE_MAX_SIZE, MAX_SIZE_BYTES,
+      cache = new LocalCache<String, String>(TestConstants.LOCAL_TEST_CACHE, CACHE_MAX_SIZE, MAX_SIZE_BYTES,
               ZERO_EXPIRATION_TIME_MILLIS, ZERO_IDLE_TIME_MILLIS, getClock(), getEventNotificationExecutor(),
               diskStorage, objectSizeCalculator, new DummyBinaryStoreDataSource(), new DummyDataStore(),
               new DummyCacheInvalidator(), new DummyCacheLoader(), ElementEventNotification.SYNCHRONOUS);
@@ -263,13 +264,5 @@ public final class LocalCacheByteSizeEvictionTest extends CacheonixTestCase {
 
       cache.shutdown();
       super.tearDown();
-   }
-
-
-   public String toString() {
-
-      return "LocalCacheTest{" +
-              "cache=" + cache +
-              '}';
    }
 }

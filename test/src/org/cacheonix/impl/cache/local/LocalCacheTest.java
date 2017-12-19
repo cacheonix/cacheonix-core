@@ -663,15 +663,6 @@ public final class LocalCacheTest extends CacheonixTestCase {
       super.tearDown();
    }
 
-
-   public String toString() {
-
-      return "LocalCacheTest{" +
-              "cache=" + cache +
-              '}';
-   }
-
-
    /**
     *
     */
@@ -692,14 +683,6 @@ public final class LocalCacheTest extends CacheonixTestCase {
       public boolean isCalled() {
 
          return called;
-      }
-
-
-      public final String toString() {
-
-         return "TestEntryEvictedSubscriber{" +
-                 "called=" + called +
-                 '}';
       }
 
 

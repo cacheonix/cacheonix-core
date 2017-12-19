@@ -1227,18 +1227,18 @@ public final class LocalCache<K extends Serializable, V extends Serializable> im
    }
 
 
-   public String toString() {
-
-      return "LocalCache{" +
-              "name='" + name + '\'' +
-              ", elementCounter=" + elementCounter +
-              ", byteCounter=" + byteCounter +
-              ", binaryStore=" + binaryStore +
-              ", readWriteLock=" + readWriteLock +
-              ", readLock=" + readLock +
-              ", writeLock=" + writeLock +
-              ", overflowDiskStorage=" + overflowDiskStorage +
-              '}';
-   }
+//   public String toString() {
+//
+//      return "LocalCache{" +
+//              "name='" + name + '\'' +
+//              ", elementCounter=" + elementCounter +
+//              ", byteCounter=" + byteCounter +
+//              ", binaryStore=" + binaryStore +
+//              ", readWriteLock=" + readWriteLock +
+//              ", readLock=" + readLock +
+//              ", writeLock=" + writeLock +
+//              ", overflowDiskStorage=" + overflowDiskStorage +
+//              '}';
+//   }
 
 }

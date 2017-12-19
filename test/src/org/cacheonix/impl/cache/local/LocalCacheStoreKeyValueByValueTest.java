@@ -55,6 +55,18 @@ public final class LocalCacheStoreKeyValueByValueTest extends CacheonixTestCase 
    private LocalCache<String, String> cache;
 
 
+   private static String makeKey(final int i) {
+
+      return KEY + i;
+   }
+
+
+   private static String makeValue(final int i) {
+
+      return VALUE + i;
+   }
+
+
    /**
     * Tests {@link LocalCache#put(Object, Object)}
     *
@@ -240,18 +252,6 @@ public final class LocalCacheStoreKeyValueByValueTest extends CacheonixTestCase 
    }
 
 
-   private static String makeKey(final int i) {
-
-      return KEY + i;
-   }
-
-
-   private static String makeValue(final int i) {
-
-      return VALUE + i;
-   }
-
-
    /**
     * Helper method.
     *
@@ -286,14 +286,6 @@ public final class LocalCacheStoreKeyValueByValueTest extends CacheonixTestCase 
 
       cache.shutdown();
       super.tearDown();
-   }
-
-
-   public String toString() {
-
-      return "LocalCacheTest{" +
-              "cache=" + cache +
-              '}';
    }
 
 

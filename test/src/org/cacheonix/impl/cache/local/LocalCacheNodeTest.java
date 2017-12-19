@@ -39,12 +39,4 @@ public final class LocalCacheNodeTest extends TestCase {
       super.setUp();
       localCacheNode = new LocalCacheMember(TestConstants.CACHEONIX_XML);
    }
-
-
-   public String toString() {
-
-      return "LocalCacheNodeTest{" +
-              "localCacheNode=" + localCacheNode +
-              "} " + super.toString();
-   }
 }

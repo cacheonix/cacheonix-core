@@ -129,12 +129,4 @@ public final class LocalCachePerformanceTest extends CacheonixTestCase {
 
       super.tearDown();
    }
-
-
-   public String toString() {
-
-      return "LocalCachePerformanceTest{" +
-              "cache=" + cache +
-              '}';
-   }
 }

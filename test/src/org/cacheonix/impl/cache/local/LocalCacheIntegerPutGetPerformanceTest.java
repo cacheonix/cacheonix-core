@@ -91,12 +91,4 @@ public final class LocalCacheIntegerPutGetPerformanceTest extends CacheonixTestC
 
       cache = null;
    }
-
-
-   public String toString() {
-
-      return "LocalCacheIntegerPutGetPerformanceTest{" +
-              "cache=" + cache +
-              '}';
-   }
 }

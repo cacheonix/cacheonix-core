@@ -306,14 +306,6 @@ public final class EntryModifiedSubscriberLocalTest extends CacheonixTestCase {
    }
 
 
-   public String toString() {
-
-      return "EntryModifiedSubscriberLocalTest{" +
-              "cache=" + cache +
-              "} " + super.toString();
-   }
-
-
    private static class TestEntryModifiedSubscriber implements EntryModifiedSubscriber {
 
       private final List<EntryModifiedEvent> receivedEvents = new ArrayList<EntryModifiedEvent>(1);

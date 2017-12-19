@@ -131,12 +131,4 @@ public final class LocalCacheIdleTest extends CacheonixTestCase {
               ElementEventNotification.SYNCHRONOUS);
       cache.put(KEY, VALUE);
    }
-
-
-   public String toString() {
-
-      return "LocalCacheIdleTest{" +
-              "cache=" + cache +
-              "} " + super.toString();
-   }
 }

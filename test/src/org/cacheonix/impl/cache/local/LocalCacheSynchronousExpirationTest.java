@@ -127,12 +127,4 @@ public final class LocalCacheSynchronousExpirationTest extends CacheonixTestCase
               new DummyCacheInvalidator(), new DummyCacheLoader(), ElementEventNotification.SYNCHRONOUS);
       cache.put(KEY, VALUE);
    }
-
-
-   public String toString() {
-
-      return "LocalCacheSynchronousExpirationTest{" +
-              "cache=" + cache +
-              "} " + super.toString();
-   }
 }

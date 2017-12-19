@@ -110,15 +110,6 @@ public final class LocalDataStoreTest extends CacheonixTestCase {
    }
 
 
-   public String toString() {
-
-      return "LocalDataStoreTest{" +
-              "dataStore=" + dataStore +
-              ", cache=" + cache +
-              "} " + super.toString();
-   }
-
-
    /**
     * Test data store. It just records the last saved key and value.
     */
@@ -129,15 +120,6 @@ public final class LocalDataStoreTest extends CacheonixTestCase {
       private Object storedKey;
 
       private Object storedValue;
-
-
-      /**
-       * {@inheritDoc}
-       */
-      public void setContext(final DataStoreContext context) {
-
-         this.context = context;
-      }
 
 
       /**
@@ -192,6 +174,15 @@ public final class LocalDataStoreTest extends CacheonixTestCase {
       public DataStoreContext getContext() {
 
          return context;
+      }
+
+
+      /**
+       * {@inheritDoc}
+       */
+      public void setContext(final DataStoreContext context) {
+
+         this.context = context;
       }
 
 

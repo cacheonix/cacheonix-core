@@ -77,13 +77,4 @@ public final class LocalCachePrefetchTest extends CacheonixTestCase {
       //
       super.tearDown();
    }
-
-
-   public String toString() {
-
-      return "LocalCachePrefetchTest{" +
-              "cache=" + cache +
-              ", cacheonix=" + cacheonix +
-              "} " + super.toString();
-   }
 }

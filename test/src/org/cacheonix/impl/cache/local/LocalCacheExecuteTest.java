@@ -138,14 +138,6 @@ public final class LocalCacheExecuteTest extends CacheonixTestCase {
    }
 
 
-   public String toString() {
-
-      return "LocalCacheTest{" +
-              "cache=" + cache +
-              '}';
-   }
-
-
    @SuppressWarnings("ClassNameSameAsAncestorName")
    private static final class TestExecutable implements Executable {
 
