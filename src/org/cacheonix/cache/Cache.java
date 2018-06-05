@@ -22,7 +22,6 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.TimeUnit;
 
 import org.cacheonix.Cacheonix;
-import org.cacheonix.NotSubscribedException;
 import org.cacheonix.cache.entry.CacheEntry;
 import org.cacheonix.cache.entry.EntryFilter;
 import org.cacheonix.cache.executor.Aggregator;

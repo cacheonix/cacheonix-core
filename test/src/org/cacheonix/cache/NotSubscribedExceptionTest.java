@@ -1,4 +1,4 @@
-package org.cacheonix;
+package org.cacheonix.cache;
 
 import junit.framework.TestCase;
 

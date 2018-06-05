@@ -18,8 +18,8 @@ import java.util.List;
 import java.util.Set;
 
 import org.cacheonix.CacheonixTestCase;
-import org.cacheonix.NotSubscribedException;
 import org.cacheonix.TestConstants;
+import org.cacheonix.cache.NotSubscribedException;
 import org.cacheonix.cache.subscriber.EntryModifiedEvent;
 import org.cacheonix.cache.subscriber.EntryModifiedEventContentFlag;
 import org.cacheonix.cache.subscriber.EntryModifiedEventType;

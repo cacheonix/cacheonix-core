@@ -29,9 +29,9 @@ import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import org.cacheonix.CacheonixException;
-import org.cacheonix.NotSubscribedException;
 import org.cacheonix.ShutdownException;
 import org.cacheonix.cache.CacheStatistics;
+import org.cacheonix.cache.NotSubscribedException;
 import org.cacheonix.cache.datastore.DataStore;
 import org.cacheonix.cache.entry.CacheEntry;
 import org.cacheonix.cache.entry.EntryFilter;

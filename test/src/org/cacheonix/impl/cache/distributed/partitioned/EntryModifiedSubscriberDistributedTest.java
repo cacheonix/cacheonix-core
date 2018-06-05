@@ -20,10 +20,10 @@ import java.util.concurrent.CountDownLatch;
 
 import org.cacheonix.Cacheonix;
 import org.cacheonix.CacheonixTestCase;
-import org.cacheonix.NotSubscribedException;
 import org.cacheonix.ShutdownMode;
 import org.cacheonix.TestUtils;
 import org.cacheonix.cache.Cache;
+import org.cacheonix.cache.NotSubscribedException;
 import org.cacheonix.cache.subscriber.EntryModifiedEvent;
 import org.cacheonix.cache.subscriber.EntryModifiedEventContentFlag;
 import org.cacheonix.cache.subscriber.EntryModifiedEventType;

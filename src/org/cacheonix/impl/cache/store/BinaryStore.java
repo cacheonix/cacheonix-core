@@ -26,8 +26,8 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import org.cacheonix.CacheonixException;
-import org.cacheonix.NotSubscribedException;
 import org.cacheonix.cache.CacheStatistics;
+import org.cacheonix.cache.NotSubscribedException;
 import org.cacheonix.cache.datastore.DataStore;
 import org.cacheonix.cache.subscriber.EntryModifiedEventType;
 import org.cacheonix.impl.RuntimeIOException;

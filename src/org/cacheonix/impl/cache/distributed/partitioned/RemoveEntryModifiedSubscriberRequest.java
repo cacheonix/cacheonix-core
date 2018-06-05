@@ -16,7 +16,7 @@ package org.cacheonix.impl.cache.distributed.partitioned;
 import java.util.Map;
 import java.util.Set;
 
-import org.cacheonix.NotSubscribedException;
+import org.cacheonix.cache.NotSubscribedException;
 import org.cacheonix.cache.subscriber.EntryModifiedSubscriber;
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.net.ClusterNodeAddress;
