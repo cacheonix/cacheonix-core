@@ -293,12 +293,6 @@ public final class LocalCacheWithDiskStorageTest extends CacheonixTestCase {
    }
 
 
-   protected void setUp() throws Exception {
-
-      super.setUp();
-   }
-
-
    private LocalCache<ByteArrayKey, byte[]> createLocalCache(final int maxSizeElements,
            final int maxSizeBytes) throws StorageException {
 
