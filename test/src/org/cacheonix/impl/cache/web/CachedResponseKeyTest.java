@@ -15,6 +15,7 @@ package org.cacheonix.impl.cache.web;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.http.Cookie;
 
 import junit.framework.TestCase;
@@ -32,7 +33,7 @@ public final class CachedResponseKeyTest extends TestCase {
 
    private static final String TEST_URI = "test/uri";
 
-   private static final HashMap<String, List<String>> PARAMETER_MAP = createParameterMap(10, 10);
+   private static final Map<String, List<String>> PARAMETER_MAP = createParameterMap(10, 10);
 
    private static final List<Cookie> COOKIES = createCookies(10);
 
@@ -107,9 +108,9 @@ public final class CachedResponseKeyTest extends TestCase {
    }
 
 
-   private static HashMap<String, List<String>> createParameterMap(final int paramCount, final int paramValueCount) {
+   private static Map<String, List<String>> createParameterMap(final int paramCount, final int paramValueCount) {
 
-      final HashMap<String, List<String>> result = new HashMap<String, List<String>>(3);
+      final Map<String, List<String>> result = new HashMap<String, List<String>>(3);
       for (int i = 0; i < paramCount; i++) {
 
          final List<String> paramArray = new ArrayList<String>(paramValueCount);
