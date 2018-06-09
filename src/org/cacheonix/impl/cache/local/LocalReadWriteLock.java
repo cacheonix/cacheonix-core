@@ -34,11 +34,6 @@ public final class LocalReadWriteLock implements ReadWriteLock {
    private final ReentrantReadWriteLock delegate = new ReentrantReadWriteLock();
 
 
-   public LocalReadWriteLock() {
-
-   }
-
-
    public Lock readLock() {
 
       return new LocalLock(delegate.readLock());
