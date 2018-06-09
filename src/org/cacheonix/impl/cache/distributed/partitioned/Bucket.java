@@ -22,7 +22,6 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import org.cacheonix.CacheonixException;
 import org.cacheonix.cache.CacheStatistics;
@@ -66,8 +65,6 @@ public final class Bucket implements Wireable {
    private static final Logger LOG = Logger.getLogger(Bucket.class); // NOPMD
 
    private transient volatile boolean reconfiguring = false;
-
-   private final transient ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
 
    /**
     * Bucket number.
