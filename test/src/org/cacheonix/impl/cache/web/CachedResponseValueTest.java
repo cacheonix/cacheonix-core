@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import javax.servlet.http.Cookie;
 
 import junit.framework.TestCase;
@@ -40,9 +41,9 @@ public final class CachedResponseValueTest extends TestCase {
 
    private static final byte[] TEST_BYTE_RESPONSE = new byte[]{6, 7, 8, 9, 10};
 
-   private static final HashMap<String, Collection<Header>> TEST_HEADERS = createHeaders();
+   private static final Map<String, Collection<Header>> TEST_HEADERS = createHeaders();
 
-   private static final HashMap<String, Cookie> TEEST_COOKIES = createCookies();
+   private static final Map<String, Cookie> TEEST_COOKIES = createCookies();
 
 
    private CachedResponseValue cachedResponseValue;
@@ -148,9 +149,9 @@ public final class CachedResponseValueTest extends TestCase {
    }
 
 
-   private static HashMap<String, Cookie> createCookies() {
+   private static Map<String, Cookie> createCookies() {
 
-      final HashMap<String, Cookie> result = new HashMap<String, Cookie>();
+      final Map<String, Cookie> result = new HashMap<String, Cookie>();
       final int cookieCount = 10;
       for (int i = 0; i < cookieCount; i++) {
 
@@ -163,9 +164,9 @@ public final class CachedResponseValueTest extends TestCase {
    }
 
 
-   private static HashMap<String, Collection<Header>> createHeaders() {
+   private static Map<String, Collection<Header>> createHeaders() {
 
-      final HashMap<String, Collection<Header>> result = new HashMap<String, Collection<Header>>();
+      final Map<String, Collection<Header>> result = new HashMap<String, Collection<Header>>();
       final int headerValueCount = 10;
       final int headerCount = 10;
 
