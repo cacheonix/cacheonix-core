@@ -24,8 +24,6 @@ import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
 import org.cacheonix.impl.util.logging.Logger;
 
-import static org.cacheonix.impl.util.IOUtils.closeHard;
-
 /**
  * Tester for CompressedPartitionElementValue.
  */
