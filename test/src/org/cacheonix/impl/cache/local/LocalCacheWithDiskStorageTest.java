@@ -68,7 +68,7 @@ public final class LocalCacheWithDiskStorageTest extends CacheonixTestCase {
 
    private static final int MAX_SIZE_BYTES_ON_DISK = 10000000; // 10 million bytes
 
-   public static final int MAX_SIZE_BYTES = MAX_SIZE_BYTES_ON_DISK * 3;
+   private static final int MAX_SIZE_BYTES = MAX_SIZE_BYTES_ON_DISK * 3;
 
    /**
     * Max size allows for twice more than allowed bytes.

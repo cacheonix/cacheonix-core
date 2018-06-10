@@ -699,7 +699,9 @@
         <option name="ignoreCloneable" value="false" />
       </inspection_tool>
       <inspection_tool class="RedundantImport" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="RedundantMethodOverride" enabled="true" level="WARNING" enabled_by_default="true" />
+      <inspection_tool class="RedundantMethodOverride" enabled="true" level="WARNING" enabled_by_default="false">
+        <scope name="Project Files" level="WARNING" enabled="true" />
+      </inspection_tool>
       <inspection_tool class="RedundantThrowsDeclaration" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ReplaceAssignmentWithOperatorAssignment" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="ignoreLazyOperators" value="true" />

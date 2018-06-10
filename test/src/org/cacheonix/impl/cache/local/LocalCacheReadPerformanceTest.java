@@ -44,7 +44,7 @@ public final class LocalCacheReadPerformanceTest extends CacheonixTestCase {
 
    private static final int MAX_SIZE = 100000;
 
-   public final static int SIZE = 50000;
+   private final static int SIZE = 50000;
 
    private LocalCache<String, String> cache;
 

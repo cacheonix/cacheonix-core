@@ -552,7 +552,7 @@ public final class EntryModifiedSubscriberDistributedTest extends CacheonixTestC
    }
 
 
-   Cache<String, String> getCache(final int cacheIndex) {
+   private Cache<String, String> getCache(final int cacheIndex) {
 
       return cacheList.get(cacheIndex);
    }
@@ -629,8 +629,8 @@ public final class EntryModifiedSubscriberDistributedTest extends CacheonixTestC
       private final int expectedNumberOfEvents;
 
 
-      public TestEntryModifiedSubscriber(final List<EntryModifiedEventContentFlag> eventContentFlags,
-                                         final int expectedNumberOfEvents) {
+      TestEntryModifiedSubscriber(final List<EntryModifiedEventContentFlag> eventContentFlags,
+              final int expectedNumberOfEvents) {
 
          this.eventContentFlags = new ArrayList<EntryModifiedEventContentFlag>(eventContentFlags);
          this.expectedNumberOfEvents = expectedNumberOfEvents;
@@ -669,7 +669,7 @@ public final class EntryModifiedSubscriberDistributedTest extends CacheonixTestC
       }
 
 
-      public List<EntryModifiedEvent> getReceivedEvents() throws InterruptedException {
+      List<EntryModifiedEvent> getReceivedEvents() throws InterruptedException {
 
          if (!latch.await(5000, MILLISECONDS)) {
 

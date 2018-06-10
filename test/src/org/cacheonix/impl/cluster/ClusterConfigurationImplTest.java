@@ -36,7 +36,7 @@ public final class ClusterConfigurationImplTest extends TestCase {
 
    private static final int PORT = 7777;
 
-   public static final String UUID = "test-UUID";
+   private static final String UUID = "test-UUID";
 
    private List<ClusterMember> clusterMembers;
 

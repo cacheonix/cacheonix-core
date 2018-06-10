@@ -66,17 +66,17 @@ public final class LocalCacheTest extends CacheonixTestCase {
 
    private static final int MAX_SIZE = 1000;
 
-   public static final DummyDiskStorage DUMMY_DISK_STORAGE = new DummyDiskStorage(LOCAL_TEST_CACHE);
+   private static final DummyDiskStorage DUMMY_DISK_STORAGE = new DummyDiskStorage(LOCAL_TEST_CACHE);
 
-   public static final DummyObjectSizeCalculator DUMMY_OBJECT_SIZE_CALCULATOR = new DummyObjectSizeCalculator();
+   private static final DummyObjectSizeCalculator DUMMY_OBJECT_SIZE_CALCULATOR = new DummyObjectSizeCalculator();
 
-   public static final DummyBinaryStoreDataSource DUMMY_BINARY_STORE_DATA_SOURCE = new DummyBinaryStoreDataSource();
+   private static final DummyBinaryStoreDataSource DUMMY_BINARY_STORE_DATA_SOURCE = new DummyBinaryStoreDataSource();
 
-   public static final DummyDataStore DUMMY_DATA_STORE = new DummyDataStore();
+   private static final DummyDataStore DUMMY_DATA_STORE = new DummyDataStore();
 
-   public static final DummyCacheInvalidator DUMMY_CACHE_INVALIDATOR = new DummyCacheInvalidator();
+   private static final DummyCacheInvalidator DUMMY_CACHE_INVALIDATOR = new DummyCacheInvalidator();
 
-   public static final DummyCacheLoader DUMMY_CACHE_LOADER = new DummyCacheLoader();
+   private static final DummyCacheLoader DUMMY_CACHE_LOADER = new DummyCacheLoader();
 
 
    private LocalCache<String, String> cache;
@@ -719,13 +719,13 @@ public final class LocalCacheTest extends CacheonixTestCase {
       }
 
 
-      public Object getEvictedValue() {
+      Object getEvictedValue() {
 
          return evictedValue;
       }
 
 
-      public Object getEvictedKey() {
+      Object getEvictedKey() {
 
          return evictedKey;
       }

@@ -187,7 +187,7 @@ public final class LocalReadWriteLockTest extends CacheonixTestCase {
 
 
       @SuppressWarnings("AssignmentToCollectionOrArrayFieldFromParameter")
-      public MyRunnable(final CountDownLatch startupLatch, final Lock lock,
+      MyRunnable(final CountDownLatch startupLatch, final Lock lock,
               final Collection<Exception> errors) {
 
          this.startupLatch = startupLatch;

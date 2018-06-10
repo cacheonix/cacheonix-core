@@ -115,7 +115,7 @@ public final class LocalDataStoreTest extends CacheonixTestCase {
     */
    private static class TestDataStore implements DataStore {
 
-      public DataStoreContext context = null;
+      DataStoreContext context = null;
 
       private Object storedKey = null;
 
@@ -154,7 +154,7 @@ public final class LocalDataStoreTest extends CacheonixTestCase {
        *
        * @return the key set by {@link #store(Storable)}.
        */
-      public Object getStoredKey() {
+      Object getStoredKey() {
 
          return storedKey;
       }
@@ -165,7 +165,7 @@ public final class LocalDataStoreTest extends CacheonixTestCase {
        *
        * @return the value set by {@link #store(Storable)}.
        */
-      public Object getStoredValue() {
+      Object getStoredValue() {
 
          return storedValue;
       }

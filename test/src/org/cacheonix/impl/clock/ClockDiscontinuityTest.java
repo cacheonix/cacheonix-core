@@ -128,7 +128,7 @@ public final class ClockDiscontinuityTest extends CacheonixTestCase {
       }
 
 
-      public void setCurrentTimeMillis(final long currentTimeMillis) {
+      void setCurrentTimeMillis(final long currentTimeMillis) {
 
          this.currentTimeMillis = currentTimeMillis;
       }

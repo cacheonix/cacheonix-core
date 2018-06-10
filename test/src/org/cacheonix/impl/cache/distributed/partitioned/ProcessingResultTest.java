@@ -11,7 +11,7 @@ import org.cacheonix.impl.cache.item.Binary;
 public final class ProcessingResultTest extends TestCase {
 
 
-   public static final Object RESULT = new Object();
+   private static final Object RESULT = new Object();
 
    private ProcessingResult processingResult;
 

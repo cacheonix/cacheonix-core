@@ -65,23 +65,23 @@ public abstract class PartitionedCacheTestCase extends CacheonixTestCase {
     */
    private static final Logger LOG = Logger.getLogger(PartitionedCacheTestCase.class); // NOPMD
 
-   protected static final String DISTRIBUTED_CACHE_NAME = "partitioned.distributed.cache";
+   static final String DISTRIBUTED_CACHE_NAME = "partitioned.distributed.cache";
 
-   protected static final String KEY_0 = createTestKey(0);
+   static final String KEY_0 = createTestKey(0);
 
-   protected static final String KEY_1 = createTestKey(1);
+   static final String KEY_1 = createTestKey(1);
 
-   protected static final String OBJECT_0 = createTestObject(0);
+   static final String OBJECT_0 = createTestObject(0);
 
-   protected static final String OBJECT_1 = createTestObject(1);
+   static final String OBJECT_1 = createTestObject(1);
 
-   protected static final String OBJECT_2 = createTestObject(2);
+   static final String OBJECT_2 = createTestObject(2);
 
-   protected static final String NEVER_EXISTED_KEY = createTestKey(Long.MAX_VALUE);
+   static final String NEVER_EXISTED_KEY = createTestKey(Long.MAX_VALUE);
 
-   protected static final String TEST_KEY = createTestKey();
+   static final String TEST_KEY = createTestKey();
 
-   protected static final String TEST_OBJECT = createTestObject();
+   static final String TEST_OBJECT = createTestObject();
 
    static final int MAX_SIZE = 100000;
 
@@ -535,7 +535,7 @@ public abstract class PartitionedCacheTestCase extends CacheonixTestCase {
     * @see #testGetSingleKeyPerformance()
     * @see #testGetSingleKeyParallelPerformance()
     */
-   public final void setSingleKeyPerformanceCount(final int singleKeyPerformanceCount) {
+   final void setSingleKeyPerformanceCount(final int singleKeyPerformanceCount) {
 
       ArgumentValidator.validateArgumentGTZero(singleKeyPerformanceCount, "singleKeyPerformanceCount");
 
@@ -2191,7 +2191,7 @@ public abstract class PartitionedCacheTestCase extends CacheonixTestCase {
       }
    }
 
-   protected static final class Aggregator implements org.cacheonix.cache.executor.Aggregator {
+   static final class Aggregator implements org.cacheonix.cache.executor.Aggregator {
 
       public Serializable aggregate(final Collection<Serializable> partialResults) {
 
@@ -2220,7 +2220,7 @@ public abstract class PartitionedCacheTestCase extends CacheonixTestCase {
       private final Collection<Exception> errors;
 
 
-      public MyRunnable(final CountDownLatch startupLatch, final Lock lock,
+      MyRunnable(final CountDownLatch startupLatch, final Lock lock,
               final Collection<Exception> errors) {
 
          this.startupLatch = startupLatch;

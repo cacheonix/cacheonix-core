@@ -50,7 +50,7 @@ public abstract class CacheonixTestCase extends TestCase {
 
    protected static final String TEST_OBJECT_PREFIX = "test_object";
 
-   public static final long CLUSTER_FORMATION_TIMEOUT = 30000L;
+   private static final long CLUSTER_FORMATION_TIMEOUT = 30000L;
 
    private Timer timer;
 
@@ -213,7 +213,7 @@ public abstract class CacheonixTestCase extends TestCase {
 
 
    @SuppressWarnings("SameParameterValue")
-   public static void assertEquals(final InetAddress addressOne, final InetAddress addressTwo) {
+   protected static void assertEquals(final InetAddress addressOne, final InetAddress addressTwo) {
 
       if (!addressOne.equals(addressTwo)) {
          throw new AssertionFailedError("Addresses are not equal");
@@ -322,7 +322,7 @@ public abstract class CacheonixTestCase extends TestCase {
    }
 
 
-   public Executor getEventNotificationExecutor() {
+   protected Executor getEventNotificationExecutor() {
 
       return eventNotificationExecutor;
    }

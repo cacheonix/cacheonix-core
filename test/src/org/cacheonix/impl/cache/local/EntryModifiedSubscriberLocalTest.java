@@ -313,7 +313,7 @@ public final class EntryModifiedSubscriberLocalTest extends CacheonixTestCase {
       private final List<EntryModifiedEventContentFlag> contentFlags;
 
 
-      public TestEntryModifiedSubscriber(final List<EntryModifiedEventContentFlag> contentFlags) {
+      TestEntryModifiedSubscriber(final List<EntryModifiedEventContentFlag> contentFlags) {
 
          //noinspection AssignmentToCollectionOrArrayFieldFromParameter
          this.contentFlags = contentFlags;
@@ -350,7 +350,7 @@ public final class EntryModifiedSubscriberLocalTest extends CacheonixTestCase {
       }
 
 
-      public List<EntryModifiedEvent> getReceivedEvents() {
+      List<EntryModifiedEvent> getReceivedEvents() {
 
          return new ArrayList<EntryModifiedEvent>(receivedEvents);
       }

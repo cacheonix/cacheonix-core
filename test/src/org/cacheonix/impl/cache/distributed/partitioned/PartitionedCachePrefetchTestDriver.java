@@ -58,7 +58,7 @@ public abstract class PartitionedCachePrefetchTestDriver extends CacheonixTestCa
    /**
     * List of clustered caches.
     */
-   final List<Cache<String, String>> cacheList = new ArrayList<Cache<String, String>>(5);
+   private final List<Cache<String, String>> cacheList = new ArrayList<Cache<String, String>>(5);
 
 
    /**
@@ -113,7 +113,7 @@ public abstract class PartitionedCachePrefetchTestDriver extends CacheonixTestCa
    }
 
 
-   final CacheonixCache<String, String> cache(final int index) {
+   private CacheonixCache<String, String> cache(final int index) {
 
       return (CacheonixCache<String, String>) cacheList.get(index);
    }

@@ -92,7 +92,7 @@ public final class ClusterAnnouncerTest extends CacheonixTestCase {
       }
 
 
-      public final Frame getFrame() {
+      final Frame getFrame() {
 
          return frame;
       }

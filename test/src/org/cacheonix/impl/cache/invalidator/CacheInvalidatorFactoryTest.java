@@ -12,11 +12,11 @@ import org.cacheonix.cache.invalidator.CacheInvalidatorContext;
 public final class CacheInvalidatorFactoryTest extends TestCase {
 
 
-   public static final String PROPERTY_VALUE = "test.property.value";
+   private static final String PROPERTY_VALUE = "test.property.value";
 
-   public static final String PROPERTY_NAME = "test.property";
+   private static final String PROPERTY_NAME = "test.property";
 
-   public static final String CACHE_NAME = "test.cache";
+   private static final String CACHE_NAME = "test.cache";
 
    private CacheInvalidatorFactory cacheInvalidatorFactory;
 

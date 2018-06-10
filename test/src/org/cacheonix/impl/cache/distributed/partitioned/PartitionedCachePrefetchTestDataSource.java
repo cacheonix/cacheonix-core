@@ -28,7 +28,7 @@ import org.cacheonix.cache.datasource.SimpleDataSourceObject;
  * <p/>
  * Simply returns the key with a 50 milliseconds delay.
  */
-public final class PartitionedCachePrefetchTestDataSource implements DataSource {
+final class PartitionedCachePrefetchTestDataSource implements DataSource {
 
 
    private static final long DELAY_MILLIS = 50L;

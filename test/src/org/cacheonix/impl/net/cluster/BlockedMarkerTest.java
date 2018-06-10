@@ -43,13 +43,13 @@ import static org.mockito.Mockito.when;
  */
 public final class BlockedMarkerTest extends CacheonixTestCase {
 
-   public static final int TARGET_MAJORITY_CLUSTER_SIZE = 2;
+   private static final int TARGET_MAJORITY_CLUSTER_SIZE = 2;
 
-   public static final UUID CLUSTER_UUID = UUID.randomUUID();
+   private static final UUID CLUSTER_UUID = UUID.randomUUID();
 
-   public static final ClusterNodeAddress ADDRESS_7676 = createTestAddress(PORT_7676);
+   private static final ClusterNodeAddress ADDRESS_7676 = createTestAddress(PORT_7676);
 
-   public static final ClusterNodeAddress ADDRESS_7677 = createTestAddress(PORT_7677);
+   private static final ClusterNodeAddress ADDRESS_7677 = createTestAddress(PORT_7677);
 
    public static final ClusterNodeAddress ADDRESS_7678 = createTestAddress(PORT_7678);
 

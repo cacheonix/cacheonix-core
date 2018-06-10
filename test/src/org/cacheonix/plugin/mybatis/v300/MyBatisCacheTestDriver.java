@@ -28,7 +28,7 @@ public abstract class MyBatisCacheTestDriver extends CacheonixTestCase {
 
    private static final String TEST_VALUE = "Test Value";
 
-   protected MyBatisCache myBatisCache;
+   MyBatisCache myBatisCache;
 
    private Cacheonix cacheonix;
 

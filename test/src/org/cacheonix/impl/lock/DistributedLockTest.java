@@ -672,8 +672,8 @@ public final class DistributedLockTest extends CacheonixTestCase {
 
 
       @SuppressWarnings("AssignmentToCollectionOrArrayFieldFromParameter")
-      public MyRunnable(final CountDownLatch startupLatch, final Lock lock,
-                        final Collection<Exception> errors) {
+      MyRunnable(final CountDownLatch startupLatch, final Lock lock,
+              final Collection<Exception> errors) {
 
          this.startupLatch = startupLatch;
          this.lock = lock;

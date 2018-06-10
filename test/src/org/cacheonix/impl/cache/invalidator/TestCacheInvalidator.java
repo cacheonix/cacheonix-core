@@ -10,7 +10,7 @@ import org.cacheonix.cache.invalidator.Invalidateable;
  * A test cache invalidator that allos to verify that ptoper methods are called when {@link
  * CacheInvalidatorFactory#createInvalidator(String, String, Properties)} is called.
  */
-public final class TestCacheInvalidator implements CacheInvalidator {
+final class TestCacheInvalidator implements CacheInvalidator {
 
    private CacheInvalidatorContext context = null;
 

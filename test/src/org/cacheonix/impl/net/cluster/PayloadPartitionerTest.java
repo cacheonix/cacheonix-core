@@ -63,7 +63,7 @@ public final class PayloadPartitionerTest extends TestCase {
    }
 
 
-   void runPartitionTest(final int objectSize, final int expectedPartCount)
+   private void runPartitionTest(final int objectSize, final int expectedPartCount)
            throws IOException {
 
       final TestMessage objectToPartition = makeObject(objectSize);

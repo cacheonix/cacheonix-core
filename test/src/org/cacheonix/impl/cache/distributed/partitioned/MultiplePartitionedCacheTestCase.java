@@ -63,7 +63,7 @@ public abstract class MultiplePartitionedCacheTestCase extends PartitionedCacheT
    /**
     * List of clustered caches.
     */
-   protected List<Cache<String, String>> cacheList = new ArrayList<Cache<String, String>>(5);
+   List<Cache<String, String>> cacheList = new ArrayList<Cache<String, String>>(5);
 
 
    MultiplePartitionedCacheTestCase(final String[] configurations) {

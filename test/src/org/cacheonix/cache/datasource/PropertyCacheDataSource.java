@@ -22,7 +22,7 @@ import java.util.Properties;
 /**
  * A data source representing a property file.
  */
-public final class PropertyCacheDataSource implements DataSource {
+final class PropertyCacheDataSource implements DataSource {
 
    private static final String PROPERTY_FILE = "/CacheDataSourceTest.properties";
 
