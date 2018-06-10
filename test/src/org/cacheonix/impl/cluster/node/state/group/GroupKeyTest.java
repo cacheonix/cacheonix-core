@@ -8,7 +8,7 @@ import junit.framework.TestCase;
 public class GroupKeyTest extends TestCase {
 
    @SuppressWarnings("ObjectEqualsNull")
-   public void testEquals() throws Exception {
+   public void testEquals() {
 
       assertEquals(new GroupKey(1, "test"), new GroupKey(1, "test"));
       assertFalse(new GroupKey(1, "test").equals(new GroupKey(2, "test")));
@@ -18,13 +18,13 @@ public class GroupKeyTest extends TestCase {
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(new GroupKey(1, "test").toString());
    }
 
 
-   public void testHashCode() throws Exception {
+   public void testHashCode() {
 
       assertEquals(3556527, new GroupKey(1, "test").hashCode());
    }

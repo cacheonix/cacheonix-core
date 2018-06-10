@@ -41,7 +41,7 @@ public class LockRegistryTest extends CacheonixTestCase {
    private static final ClusterNodeAddress OWNER_ADDRESS = TestUtils.createTestAddress(1);
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(registry.toString());
    }
@@ -56,7 +56,7 @@ public class LockRegistryTest extends CacheonixTestCase {
    }
 
 
-   public void testHashCode() throws IOException, ClassNotFoundException {
+   public void testHashCode() {
 
       final LockQueue lockQueue = registry.getLockQueue(TEST_LOCK_REGION, toBinary(TEST_LOCK));
 
@@ -67,14 +67,14 @@ public class LockRegistryTest extends CacheonixTestCase {
    }
 
 
-   public void testSerializeDeserializeEmpty() throws IOException, ClassNotFoundException {
+   public void testSerializeDeserializeEmpty() throws IOException {
 
       final Serializer ser = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
       assertEquals(registry, ser.deserialize(ser.serialize(registry)));
    }
 
 
-   public void testSerializeDeserializeWithQueue() throws IOException, ClassNotFoundException {
+   public void testSerializeDeserializeWithQueue() throws IOException {
 
       final LockQueue lockQueue = registry.getLockQueue(TEST_LOCK_REGION, toBinary(TEST_LOCK));
 

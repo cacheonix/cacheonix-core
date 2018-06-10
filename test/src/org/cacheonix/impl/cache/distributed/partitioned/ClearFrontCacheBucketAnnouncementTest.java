@@ -43,13 +43,13 @@ public final class ClearFrontCacheBucketAnnouncementTest extends CacheonixTestCa
    }
 
 
-   public void testHashCode() throws Exception {
+   public void testHashCode() {
 
       assertTrue(announcement.hashCode() != 0);
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(announcement.toString());
    }

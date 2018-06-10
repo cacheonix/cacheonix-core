@@ -167,13 +167,13 @@ public final class BinaryStoreTest extends CacheonixTestCase {
    }
 
 
-   public void testGetWireableType() throws Exception {
+   public void testGetWireableType() {
 
       assertEquals(Wireable.TYPE_BINARY_STORE, binaryStore.getWireableType());
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(binaryStore.toString());
    }

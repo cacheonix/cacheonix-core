@@ -30,7 +30,7 @@ public final class ClockDiscontinuityTest extends CacheonixTestCase {
 
 
    @SuppressWarnings("SimplifiableJUnitAssertion")
-   public void testCurrentTimeProgressesWithStoppedClock() throws Exception {
+   public void testCurrentTimeProgressesWithStoppedClock() {
 
       wallClock.setCurrentTimeMillis(0);
 
@@ -47,7 +47,7 @@ public final class ClockDiscontinuityTest extends CacheonixTestCase {
 
 
    @SuppressWarnings("SimplifiableJUnitAssertion")
-   public void testCurrentTimeToleratesForwardWallClockJumps() throws Exception {
+   public void testCurrentTimeToleratesForwardWallClockJumps() {
 
       final long startWallTimeMillis = 10000;
       wallClock.setCurrentTimeMillis(startWallTimeMillis);
@@ -70,7 +70,7 @@ public final class ClockDiscontinuityTest extends CacheonixTestCase {
 
 
    @SuppressWarnings("SimplifiableJUnitAssertion")
-   public void testCurrentTimeToleratesBackwardWallClockJumps() throws Exception {
+   public void testCurrentTimeToleratesBackwardWallClockJumps() {
 
       final long startWallTimeMillis = 10000L;
       wallClock.setCurrentTimeMillis(startWallTimeMillis);
@@ -99,7 +99,7 @@ public final class ClockDiscontinuityTest extends CacheonixTestCase {
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(clock.toString());
    }

@@ -37,7 +37,7 @@ public final class JoinStatusImplTest extends CacheonixTestCase {
    private JoinStatusImpl joinStatus = null;
 
 
-   public void testSetGetJoiningTo() throws Exception {
+   public void testSetGetJoiningTo() {
 
       final ClusterNodeAddress clusterNodeAddress = TestUtils.createTestAddress();
       joinStatus.setJoiningTo(clusterNodeAddress);
@@ -45,7 +45,7 @@ public final class JoinStatusImplTest extends CacheonixTestCase {
    }
 
 
-   public void testSetGetJoiningToMarkerList() throws Exception {
+   public void testSetGetJoiningToMarkerList() {
 
       final ClusterView clusterView = createClusterView();
       joinStatus.setJoiningToCluster(clusterView);
@@ -61,7 +61,7 @@ public final class JoinStatusImplTest extends CacheonixTestCase {
    }
 
 
-   public void testGetTimeout() throws Exception {
+   public void testGetTimeout() {
 
       assertEquals(DEFAULT_JOIN_TIMEOUT_MILLIS, joinStatus.getTimeout().getDuration());
    }

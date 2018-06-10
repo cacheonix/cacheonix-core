@@ -27,7 +27,7 @@ public final class HashCodeStrongTest extends TestCase {
    private HashCode hashCode = null;
 
 
-   public void testAdd() throws Exception {
+   public void testAdd() {
 
       hashCode.add((byte) 1);
       hashCode.add(1);

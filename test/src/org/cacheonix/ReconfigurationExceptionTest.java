@@ -20,14 +20,14 @@ import junit.framework.TestCase;
 @SuppressWarnings("ThrowableInstanceNeverThrown")
 public final class ReconfigurationExceptionTest extends TestCase {
 
-   public void testDefaultConstructor() throws Exception {
+   public void testDefaultConstructor() {
 
       assertNotNull(new ReconfigurationException().toString());
    }
 
 
    @SuppressWarnings("ConstantConditions")
-   public void testInstanceOfRuntimeException() throws Exception {
+   public void testInstanceOfRuntimeException() {
 
       assertTrue(RuntimeException.class.isAssignableFrom(ReconfigurationException.class));
    }

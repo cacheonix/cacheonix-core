@@ -38,7 +38,7 @@ public final class RemoveEntryModifiedSubscriptionAnnouncementTest extends Cache
    private RemoveEntryModifiedSubscriptionAnnouncement announcement;
 
 
-   public void testSetSubscriberIdentity() throws Exception {
+   public void testSetSubscriberIdentity() {
 
       assertEquals(SUBSCRIBER_IDENTITY, announcement.getSubscriberIdentity());
    }
@@ -57,7 +57,7 @@ public final class RemoveEntryModifiedSubscriptionAnnouncementTest extends Cache
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(announcement.toString());
    }

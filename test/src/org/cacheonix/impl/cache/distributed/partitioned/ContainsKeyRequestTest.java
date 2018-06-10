@@ -49,19 +49,19 @@ public final class ContainsKeyRequestTest extends CacheonixTestCase {
    }
 
 
-   public void testGetCacheName() throws Exception {
+   public void testGetCacheName() {
 
       assertEquals(CACHE_NAME, request.getCacheName());
    }
 
 
-   public void testGetKey() throws Exception {
+   public void testGetKey() {
 
       assertEquals(KEY, request.getKey());
    }
 
 
-   public void testGetSender() throws Exception {
+   public void testGetSender() {
 
       assertEquals(address, request.getSender());
    }

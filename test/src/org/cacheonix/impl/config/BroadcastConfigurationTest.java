@@ -30,7 +30,7 @@ public final class BroadcastConfigurationTest extends TestCase {
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(new BroadcastConfiguration().toString());
    }

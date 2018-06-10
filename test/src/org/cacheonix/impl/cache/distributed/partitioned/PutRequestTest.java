@@ -52,7 +52,7 @@ public final class PutRequestTest extends CacheonixTestCase {
    }
 
 
-   public void testSetGetKey() throws Exception {
+   public void testSetGetKey() {
 
       request.setKey(KEY);
       assertEquals(KEY, request.getKey());
@@ -65,14 +65,14 @@ public final class PutRequestTest extends CacheonixTestCase {
    }
 
 
-   public void testSetGetValue() throws Exception {
+   public void testSetGetValue() {
 
       request.setValue(VALUE);
       assertEquals(VALUE, request.getValue());
    }
 
 
-   public void testSetGetProcessID() throws Exception {
+   public void testSetGetProcessID() {
 
       final ClusterNodeAddress clusterNodeAddress = TestUtils.createTestAddress();
       request.setSender(clusterNodeAddress);

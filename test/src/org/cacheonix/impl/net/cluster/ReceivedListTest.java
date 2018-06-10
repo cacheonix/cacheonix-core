@@ -36,7 +36,7 @@ public final class ReceivedListTest extends TestCase {
    private static final byte SERIALIZER_TYPE = (byte) 1;
 
 
-   public void testGetHighestSequenceNumberReceived() throws Exception {
+   public void testGetHighestSequenceNumberReceived() {
 
       receivedList.add(makePacket(0));
       assertEquals(Long.valueOf(0L), receivedList.getHighestContinuousNumberReceived());
@@ -46,7 +46,7 @@ public final class ReceivedListTest extends TestCase {
    }
 
 
-   public void testGetMessage() throws Exception {
+   public void testGetMessage() {
       // Create packets
       final Frame frame1 = makePacket(1);
       final Frame frame2 = makePacket(2);
@@ -64,7 +64,7 @@ public final class ReceivedListTest extends TestCase {
    }
 
 
-   public void testGetSmallestNumberReceivedButIndelivered() throws Exception {
+   public void testGetSmallestNumberReceivedButIndelivered() {
       // Add first
       receivedList.add(makePacket(1));
       assertEquals(Long.valueOf(1L), receivedList.getSmallestNumberReceivedButNotDelivered());
@@ -76,7 +76,7 @@ public final class ReceivedListTest extends TestCase {
    }
 
 
-   public void testHighestContinuousNumberReceviedButUndelivered() throws Exception {
+   public void testHighestContinuousNumberReceviedButUndelivered() {
       // Add first
       receivedList.add(makePacket(1));
       assertEquals(Long.valueOf(1L), receivedList.getHighestContinuousNumberReceivedButNotDelivered());

@@ -41,25 +41,25 @@ public final class AddRemoteEntryModifiedSubscriberMessageTest extends Cacheonix
    private AddRemoteEntryModifiedSubscriberMessage message;
 
 
-   public void testSetBucketNumber() throws Exception {
+   public void testSetBucketNumber() {
 
       assertEquals(BUCKET_NUMBER, message.getBucketNumber());
    }
 
 
-   public void testSetKey() throws Exception {
+   public void testSetKey() {
 
       assertEquals(KEY, message.getKey());
    }
 
 
-   public void testSetSubscription() throws Exception {
+   public void testSetSubscription() {
 
       assertSame(SUBSCRIPTION, message.getSubscription());
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(message.toString());
    }

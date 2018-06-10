@@ -16,8 +16,8 @@ package org.cacheonix.impl.util;
 import java.util.Collections;
 import java.util.Map;
 
-import org.cacheonix.impl.util.array.HashMap;
 import junit.framework.TestCase;
+import org.cacheonix.impl.util.array.HashMap;
 
 /**
  * Tester for CollectionUtils.
@@ -25,14 +25,14 @@ import junit.framework.TestCase;
 public final class CollectionUtilsTest extends TestCase {
 
    @SuppressWarnings("RedundantCast")
-   public void testIsEmptyDetectsEmptyMaps() throws Exception {
+   public void testIsEmptyDetectsEmptyMaps() {
 
       assertTrue(CollectionUtils.isEmpty((Map) null));
       assertTrue(CollectionUtils.isEmpty(Collections.emptyMap()));
    }
 
 
-   public void testIsEmptyDetectsNonEmptyMaps() throws Exception {
+   public void testIsEmptyDetectsNonEmptyMaps() {
 
       final Map<Integer, Integer> nonEmptyMap = new HashMap<Integer, Integer>(1);
       nonEmptyMap.put(1, 1);

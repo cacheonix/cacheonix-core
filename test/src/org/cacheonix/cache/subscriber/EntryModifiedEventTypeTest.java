@@ -13,21 +13,21 @@
  */
 package org.cacheonix.cache.subscriber;
 
+import junit.framework.TestCase;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
-import junit.framework.TestCase;
 
 /**
  */
 public class EntryModifiedEventTypeTest extends TestCase {
 
-   public void testEquals() throws Exception {
+   public void testEquals() {
 
       assertEquals(EntryModifiedEventType.ADD, EntryModifiedEventType.ADD);
    }
 
 
-   public void testHashCode() throws Exception {
+   public void testHashCode() {
 
       assertEquals(1, EntryModifiedEventType.ADD.hashCode());
    }
@@ -40,7 +40,7 @@ public class EntryModifiedEventTypeTest extends TestCase {
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(EntryModifiedEventType.ADD.toString());
    }

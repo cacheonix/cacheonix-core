@@ -40,7 +40,7 @@ public final class WaitForLockExpiredAnnouncementTest extends CacheonixTestCase 
    private static final ClusterNodeAddress OWNER_ADDRESS = TestUtils.createTestAddress(1);
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(request.toString());
    }

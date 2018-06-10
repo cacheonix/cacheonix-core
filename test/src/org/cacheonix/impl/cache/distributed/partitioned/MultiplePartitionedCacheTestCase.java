@@ -72,7 +72,7 @@ public abstract class MultiplePartitionedCacheTestCase extends PartitionedCacheT
    }
 
 
-   public void testGetCache() throws InterruptedException {
+   public void testGetCache() {
 
       for (int i = 0; i < cacheManagerList.size(); i++) {
          final Cacheonix cacheonix = cacheManagerList.get(i);
@@ -565,7 +565,7 @@ public abstract class MultiplePartitionedCacheTestCase extends PartitionedCacheT
    }
 
 
-   public void testCoherenceClear() throws Exception {
+   public void testCoherenceClear() {
 
       // Set up
       final int keyCount = 5000;
@@ -601,7 +601,7 @@ public abstract class MultiplePartitionedCacheTestCase extends PartitionedCacheT
    }
 
 
-   public void testCoherenceRetainAll() throws Exception {
+   public void testCoherenceRetainAll() {
 
       // Set up
       final int keyCount = 5000;
@@ -699,7 +699,7 @@ public abstract class MultiplePartitionedCacheTestCase extends PartitionedCacheT
    }
 
 
-   public void testCoherenceRemoveAll() throws Exception {
+   public void testCoherenceRemoveAll() {
 
       // Set up
       final int keyCount = 5000;
@@ -742,7 +742,7 @@ public abstract class MultiplePartitionedCacheTestCase extends PartitionedCacheT
    }
 
 
-   public void testCoherenceRemove() throws Exception {
+   public void testCoherenceRemove() {
 
       // Populate
       final String key = createKey(0);

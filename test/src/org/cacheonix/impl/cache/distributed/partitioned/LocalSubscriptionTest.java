@@ -27,7 +27,7 @@ public final class LocalSubscriptionTest extends CacheonixTestCase {
    private LocalSubscription subscription;
 
 
-   public void testSetGetSubscriber() throws Exception {
+   public void testSetGetSubscriber() {
 
       final BinaryEntryModifiedSubscriber subscriber = Mockito.mock(BinaryEntryModifiedSubscriber.class);
       subscription.setSubscriber(subscriber);
@@ -35,7 +35,7 @@ public final class LocalSubscriptionTest extends CacheonixTestCase {
    }
 
 
-   public void testAddKeys() throws Exception {
+   public void testAddKeys() {
 
       final HashSet<Binary> keys = new HashSet<Binary>(1);
       final Binary key = toBinary("key");
@@ -45,7 +45,7 @@ public final class LocalSubscriptionTest extends CacheonixTestCase {
    }
 
 
-   public void testContainsKey() throws Exception {
+   public void testContainsKey() {
 
       final HashSet<Binary> keys = new HashSet<Binary>(1);
       final Binary key = toBinary("key");
@@ -55,7 +55,7 @@ public final class LocalSubscriptionTest extends CacheonixTestCase {
    }
 
 
-   public void testRemoveKey() throws Exception {
+   public void testRemoveKey() {
 
       final HashSet<Binary> keys = new HashSet<Binary>(1);
       final Binary key = toBinary("key");
@@ -66,7 +66,7 @@ public final class LocalSubscriptionTest extends CacheonixTestCase {
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(subscription.toString());
    }

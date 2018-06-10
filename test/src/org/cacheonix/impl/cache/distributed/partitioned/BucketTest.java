@@ -142,7 +142,7 @@ public final class BucketTest extends CacheonixTestCase {
    }
 
 
-   public void testUpdate() throws Exception {
+   public void testUpdate() {
 
       bucket.put(key, value, expirationTime);
 

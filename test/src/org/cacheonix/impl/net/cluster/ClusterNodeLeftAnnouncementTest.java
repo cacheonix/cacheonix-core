@@ -31,7 +31,7 @@ public final class ClusterNodeLeftAnnouncementTest extends CacheonixTestCase {
    private ClusterNodeLeftAnnouncement message;
 
 
-   public void testSetLeave() throws Exception {
+   public void testSetLeave() {
 
       assertEquals(LEAVE, message.getLeave());
    }
@@ -46,7 +46,7 @@ public final class ClusterNodeLeftAnnouncementTest extends CacheonixTestCase {
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(message.toString());
    }

@@ -81,7 +81,7 @@ public final class StringUtilsTest extends TestCase {
    }
 
 
-   public void testSizeToString() throws Exception {
+   public void testSizeToString() {
 
       assertEquals("null", StringUtils.sizeToString((Collection) null));
       assertEquals("0", StringUtils.sizeToString(new ArrayList(0)));

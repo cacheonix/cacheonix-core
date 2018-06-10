@@ -46,7 +46,7 @@ public final class BinaryStoreDataSourceImplTest extends CacheonixTestCase {
    private PrefetchStage prefetchStage;
 
 
-   public void testGetFoundKey() throws Exception {
+   public void testGetFoundKey() {
 
       // Mock user datasource that always returns TEST_VALUE
       when(userDataSource.get(TEST_KEY)).thenReturn(new SimpleDataSourceObject(TEST_VALUE));
@@ -59,7 +59,7 @@ public final class BinaryStoreDataSourceImplTest extends CacheonixTestCase {
    }
 
 
-   public void testGetNotFoundKey() throws Exception {
+   public void testGetNotFoundKey() {
 
       // Mock user datasource that always returns TEST_VALUE
       when(userDataSource.get(TEST_KEY)).thenReturn(null);
@@ -70,7 +70,7 @@ public final class BinaryStoreDataSourceImplTest extends CacheonixTestCase {
    }
 
 
-   public void testSchedulePrefetch() throws Exception {
+   public void testSchedulePrefetch() {
 
       // Do-nothing objects
       final DummyObjectSizeCalculator sizeCalculator = new DummyObjectSizeCalculator();
@@ -98,7 +98,7 @@ public final class BinaryStoreDataSourceImplTest extends CacheonixTestCase {
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(binaryStoreDataSource.toString());
    }

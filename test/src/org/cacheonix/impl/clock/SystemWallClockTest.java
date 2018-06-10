@@ -25,7 +25,7 @@ public final class SystemWallClockTest extends CacheonixTestCase {
    private SystemWallClock clock;
 
 
-   public void testCurrentTimeMillis() throws Exception {
+   public void testCurrentTimeMillis() {
 
       // Check that it returns a meaningful value
       assertTrue(clock.currentTimeMillis() > 0);

@@ -13,10 +13,10 @@
  */
 package org.cacheonix.impl.plugin.mybatis.v300;
 
+import org.apache.ibatis.cache.CacheKey;
 import org.cacheonix.CacheonixTestCase;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
-import org.apache.ibatis.cache.CacheKey;
 
 /**
  *
@@ -35,7 +35,7 @@ public class MyBatisCacheKeyTest extends CacheonixTestCase {
    }
 
 
-   public void testEquals() throws Exception {
+   public void testEquals() {
 
       final CacheKey cacheKey = new CacheKey();
       cacheKey.update("Object 1");
@@ -44,13 +44,13 @@ public class MyBatisCacheKeyTest extends CacheonixTestCase {
    }
 
 
-   public void testHashCode() throws Exception {
+   public void testHashCode() {
 
       assertEquals(1755436731, myBatisCacheKey.hashCode());
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(myBatisCacheKey.toString());
    }

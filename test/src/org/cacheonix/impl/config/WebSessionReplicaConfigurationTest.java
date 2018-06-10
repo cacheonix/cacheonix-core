@@ -24,7 +24,7 @@ public final class WebSessionReplicaConfigurationTest extends TestCase {
    private WebSessionReplicaConfiguration configuration;
 
 
-   public void testGetPartitionedSessionReplicaStoreConfiguration() throws Exception {
+   public void testGetPartitionedSessionReplicaStoreConfiguration() {
 
       assertNotNull(configuration.getPartitionedSessionReplicaStoreConfiguration());
    }

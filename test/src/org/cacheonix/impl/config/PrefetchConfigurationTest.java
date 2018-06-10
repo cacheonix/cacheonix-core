@@ -24,7 +24,7 @@ public final class PrefetchConfigurationTest extends TestCase {
    private LocalConfiguration local;
 
 
-   public void testDefaultPrefetch() throws Exception {
+   public void testDefaultPrefetch() {
 
       final DataSourceConfiguration dataSourceConfiguration = new DataSourceConfiguration();
       assertFalse("Default should be 'disabled'",
@@ -32,7 +32,7 @@ public final class PrefetchConfigurationTest extends TestCase {
    }
 
 
-   public void testReadPrefetch() throws Exception {
+   public void testReadPrefetch() {
 
       final LocalCacheConfiguration localCacheConfiguration = local.getLocalCache(0);
       final LocalCacheStoreConfiguration localCacheConfigurationStore = localCacheConfiguration.getStore();

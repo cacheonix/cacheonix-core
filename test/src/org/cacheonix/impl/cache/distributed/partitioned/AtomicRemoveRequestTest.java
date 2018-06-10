@@ -51,19 +51,19 @@ public final class AtomicRemoveRequestTest extends CacheonixTestCase {
    }
 
 
-   public void testGetPartitionName() throws Exception {
+   public void testGetPartitionName() {
 
       assertEquals(CACHE_NAME, request.getCacheName());
    }
 
 
-   public void testGetKey() throws Exception {
+   public void testGetKey() {
 
       assertEquals(KEY, request.getKey());
    }
 
 
-   public void testGetValue() throws Exception {
+   public void testGetValue() {
 
       assertEquals(VALUE, request.getValue());
    }
@@ -75,7 +75,7 @@ public final class AtomicRemoveRequestTest extends CacheonixTestCase {
    }
 
 
-   public void testGetProcessID() throws Exception {
+   public void testGetProcessID() {
 
       assertEquals(clusterNodeAddress, request.getSender());
    }

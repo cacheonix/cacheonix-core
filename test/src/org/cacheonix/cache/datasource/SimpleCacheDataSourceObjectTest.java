@@ -31,7 +31,7 @@ public final class SimpleCacheDataSourceObjectTest extends TestCase {
    private SimpleDataSourceObject cacheDataSourceObject = null;
 
 
-   public void testGetObject() throws Exception {
+   public void testGetObject() {
 
       assertEquals(OBJECT, cacheDataSourceObject.getObject());
    }

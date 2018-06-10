@@ -28,13 +28,13 @@ public final class DummyBinaryStoreDataSourceTest extends CacheonixTestCase {
    private DummyBinaryStoreDataSource dummyBinaryStoreDataSource;
 
 
-   public void testGet() throws Exception {
+   public void testGet() {
 
       assertNull(dummyBinaryStoreDataSource.get(toBinary("key")));
    }
 
 
-   public void testGetCollection() throws Exception {
+   public void testGetCollection() {
 
       final Collection<Binary> keys = new ArrayList<Binary>(2);
       keys.add(toBinary("key.0"));
@@ -51,7 +51,7 @@ public final class DummyBinaryStoreDataSourceTest extends CacheonixTestCase {
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(dummyBinaryStoreDataSource.toString());
    }

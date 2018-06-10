@@ -11,17 +11,17 @@ public final class RequestCacheFilterTest extends TestCase {
    private RequestCacheFilter requestCacheFilter;
 
 
-   public void testInit() throws Exception {
+   public void testInit() {
 
    }
 
 
-   public void testDoFilter() throws Exception {
+   public void testDoFilter() {
 
    }
 
 
-   public void testDestroy() throws Exception {
+   public void testDestroy() {
 
    }
 

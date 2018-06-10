@@ -44,13 +44,13 @@ public final class GetClusterViewSizeRequestTest extends TestCase {
    }
 
 
-   public void testSetGetSender() throws Exception {
+   public void testSetGetSender() {
 
       assertEquals(message.getSender(), address);
    }
 
 
-   public void testSetGetReceiver() throws Exception {
+   public void testSetGetReceiver() {
 
       assertTrue(message.getReceiver().isAddressOf(address));
    }

@@ -38,13 +38,13 @@ public final class EntryModifiedNotificationMessageTest extends CacheonixTestCas
    private static final List<BinaryEntryModifiedEvent> EVENTS = createEvents();
 
 
-   public void testSetSubscriberIdentity() throws Exception {
+   public void testSetSubscriberIdentity() {
 
       assertEquals(SUBSCRIBER_IDENTITY, message.getSubscriberIdentity());
    }
 
 
-   public void testSetEvents() throws Exception {
+   public void testSetEvents() {
 
       assertEquals(EVENTS, message.getEvents());
    }
@@ -57,7 +57,7 @@ public final class EntryModifiedNotificationMessageTest extends CacheonixTestCas
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(message.toString());
    }

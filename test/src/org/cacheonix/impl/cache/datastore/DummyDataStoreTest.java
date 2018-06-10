@@ -36,7 +36,7 @@ public final class DummyDataStoreTest extends CacheonixTestCase {
    private DummyDataStore dataStore = null;
 
 
-   public void testSetContext() throws Exception {
+   public void testSetContext() {
       // Just make sure nothing happens
       final Properties properties = new Properties();
       final DataStoreContextImpl context = new DataStoreContextImpl(TestConstants.LOCAL_TEST_CACHE, properties);

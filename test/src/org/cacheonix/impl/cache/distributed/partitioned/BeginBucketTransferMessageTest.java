@@ -61,37 +61,37 @@ public final class BeginBucketTransferMessageTest extends CacheonixTestCase {
    }
 
 
-   public void testGetBucketNumber() throws Exception {
+   public void testGetBucketNumber() {
 
       assertEquals(BUCKET_NUMBER, message.getBucketNumbers().iterator().next());
    }
 
 
-   public void testGetCurrentOwner() throws Exception {
+   public void testGetCurrentOwner() {
 
       assertEquals(CURRENT_OWNER, message.getCurrentOwner());
    }
 
 
-   public void testNewOwner() throws Exception {
+   public void testNewOwner() {
 
       assertEquals(NEW_OWNER, message.getNewOwner());
    }
 
 
-   public void testGetSourceStorageNumber() throws Exception {
+   public void testGetSourceStorageNumber() {
 
       assertEquals(SOURCE_STORAGE_NUMBER, message.getSourceStorageNumber());
    }
 
 
-   public void testGetDestinationStorageNumber() throws Exception {
+   public void testGetDestinationStorageNumber() {
 
       assertEquals(DESTINATION_STORAGE_NUMBER, message.getDestinationStorageNumber());
    }
 
 
-   public void testGetType() throws Exception {
+   public void testGetType() {
 
       assertEquals(Wireable.TYPE_CACHE_BEGIN_BUCKET_TRANSFER_MESSAGE, message.getWireableType());
    }

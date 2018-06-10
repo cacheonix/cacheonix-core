@@ -38,38 +38,38 @@ public class LockOwnerTest extends CacheonixTestCase {
    private Time unlockTime;
 
 
-   public void testGetThreadID() throws Exception {
+   public void testGetThreadID() {
 
       assertEquals(threadID, lockOwner.getThreadID());
    }
 
 
-   public void testGetAddress() throws Exception {
+   public void testGetAddress() {
 
       assertEquals(address, lockOwner.getAddress());
    }
 
 
-   public void testGetThreadName() throws Exception {
+   public void testGetThreadName() {
 
       assertEquals(threadName, lockOwner.getThreadName());
    }
 
 
-   public void testGetEntryCount() throws Exception {
+   public void testGetEntryCount() {
 
       assertEquals(0, lockOwner.getEntryCount());
    }
 
 
-   public void testIncrementEntryCount() throws Exception {
+   public void testIncrementEntryCount() {
 
       lockOwner.incrementEntryCount();
       assertEquals(1, lockOwner.getEntryCount());
    }
 
 
-   public void testDecrementEntryCount() throws Exception {
+   public void testDecrementEntryCount() {
 
       lockOwner.incrementEntryCount();
       lockOwner.incrementEntryCount();
@@ -78,7 +78,7 @@ public class LockOwnerTest extends CacheonixTestCase {
    }
 
 
-   public void testGetWireableType() throws Exception {
+   public void testGetWireableType() {
 
       assertEquals(Wireable.TYPE_LOCK_OWNER, lockOwner.getWireableType());
    }
@@ -90,26 +90,26 @@ public class LockOwnerTest extends CacheonixTestCase {
    }
 
 
-   public void testIsReadLock() throws Exception {
+   public void testIsReadLock() {
 
       assertTrue(lockOwner.isReadLock());
    }
 
 
-   public void testWriteReadWire() throws IOException, ClassNotFoundException {
+   public void testWriteReadWire() throws IOException {
 
       final Serializer ser = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
       assertEquals(lockOwner, ser.deserialize(ser.serialize(lockOwner)));
    }
 
 
-   public void testHashCode() throws Exception {
+   public void testHashCode() {
 
       assertTrue(lockOwner.hashCode() != 0);
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(lockOwner.toString());
    }

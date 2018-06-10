@@ -25,7 +25,7 @@ public class MyBatisCacheNamespaceOnlyTest extends MyBatisCacheTestDriver {
    private static final String SELECT_CACHE_TEMPLATE_NAME = "SelectCacheTemplateName";
 
 
-   public void testSetGetEnableNamespaceCaching() throws Exception {
+   public void testSetGetEnableNamespaceCaching() {
 
       assertEquals("Default should be 'true'", TRUE_STRING, myBatisCache.getEnableNamespaceCaching());
       myBatisCache.setEnableNamespaceCaching(FALSE_STRING);
@@ -33,7 +33,7 @@ public class MyBatisCacheNamespaceOnlyTest extends MyBatisCacheTestDriver {
    }
 
 
-   public void testSetGetNamespaceUpdatesInvalidateSelectCaches() throws Exception {
+   public void testSetGetNamespaceUpdatesInvalidateSelectCaches() {
 
       assertEquals("Default should be 'true'", TRUE_STRING, myBatisCache.getNamespaceUpdatesInvalidateSelectCaches());
       myBatisCache.setNamespaceUpdatesInvalidateSelectCaches(FALSE_STRING);
@@ -41,7 +41,7 @@ public class MyBatisCacheNamespaceOnlyTest extends MyBatisCacheTestDriver {
    }
 
 
-   public void testSetGetEnableSelectCaching() throws Exception {
+   public void testSetGetEnableSelectCaching() {
 
       assertEquals("Default should be 'false'", FALSE_STRING, myBatisCache.getEnablePerSelectCaching());
       myBatisCache.setEnablePerSelectCaching(TRUE_STRING);
@@ -49,7 +49,7 @@ public class MyBatisCacheNamespaceOnlyTest extends MyBatisCacheTestDriver {
    }
 
 
-   public void testSetGetSelectCacheTemplateName() throws Exception {
+   public void testSetGetSelectCacheTemplateName() {
 
       assertNull("Default should be 'null'", myBatisCache.getSelectCacheTemplateName());
       myBatisCache.setSelectCacheTemplateName(SELECT_CACHE_TEMPLATE_NAME);

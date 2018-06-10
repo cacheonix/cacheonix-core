@@ -33,14 +33,14 @@ public class ClusterMemberLeftEventImplTest extends TestCase {
    private ClusterMemberLeftEventImpl clusterMemberLeftEvent;
 
 
-   public void testGetLeftMembers() throws Exception {
+   public void testGetLeftMembers() {
 
       final Collection<ClusterMember> leftMembers = clusterMemberLeftEvent.getLeftMembers();
       assertEquals(clusterMember, leftMembers.iterator().next());
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(clusterMemberLeftEvent.toString());
    }

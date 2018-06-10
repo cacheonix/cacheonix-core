@@ -48,39 +48,39 @@ public final class CachedResponseKeyTest extends TestCase {
    }
 
 
-   public void testEquals() throws Exception {
+   public void testEquals() {
 
       assertEquals(responseKey, new CachedResponseKey(TEST_URI, createParameterMap(10, 10), createCookies(10)));
    }
 
 
-   public void testEqualsEmptyParams() throws Exception {
+   public void testEqualsEmptyParams() {
 
       assertEquals(new CachedResponseKey(TEST_URI, createParameterMap(0, 0), createCookies(0)),
               new CachedResponseKey(TEST_URI, createParameterMap(0, 0), createCookies(0)));
    }
 
 
-   public void testEqualsEmptyParamValues() throws Exception {
+   public void testEqualsEmptyParamValues() {
 
       assertEquals(new CachedResponseKey(TEST_URI, createParameterMap(10, 0), createCookies(0)),
               new CachedResponseKey(TEST_URI, createParameterMap(10, 0), createCookies(0)));
    }
 
 
-   public void testEqualsNullParam() throws Exception {
+   public void testEqualsNullParam() {
 
       assertEquals(new CachedResponseKey(TEST_URI, null, null), new CachedResponseKey(TEST_URI, null, null));
    }
 
 
-   public void testHashCode() throws Exception {
+   public void testHashCode() {
 
       assertEquals(1130273223, responseKey.hashCode());
    }
 
 
-   public void testGetWireableType() throws Exception {
+   public void testGetWireableType() {
 
       assertEquals(TYPE_CACHED_RESPONSE_KEY, responseKey.getWireableType());
    }
@@ -102,7 +102,7 @@ public final class CachedResponseKeyTest extends TestCase {
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(responseKey.toString());
    }

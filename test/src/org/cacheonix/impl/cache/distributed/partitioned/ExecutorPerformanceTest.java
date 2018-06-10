@@ -48,7 +48,7 @@ public final class ExecutorPerformanceTest extends TestCase {
 
       final Callable<Object> callable = new Callable<Object>() {
 
-         public Object call() throws Exception {
+         public Object call() {
 
             return null;
          }

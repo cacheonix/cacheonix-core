@@ -417,7 +417,7 @@ public abstract class PartitionedCacheTestCase extends CacheonixTestCase {
    }
 
 
-   public void testPutAll() throws InterruptedException {
+   public void testPutAll() {
 
       // Set up
       final int keyCount = 5000;
@@ -873,7 +873,7 @@ public abstract class PartitionedCacheTestCase extends CacheonixTestCase {
    /**
     * @throws InterruptedException if the execution was interrupted.
     */
-   public void testGetAllHandlesNullValues() throws InterruptedException {
+   public void testGetAllHandlesNullValues() {
 
       // Put element into cache
       final int keyCount = 5000;
@@ -1894,7 +1894,7 @@ public abstract class PartitionedCacheTestCase extends CacheonixTestCase {
    }
 
 
-   public void testCoherenceClear() throws Exception {
+   public void testCoherenceClear() {
 
       // Set up
       final int keyCount = 5000;
@@ -1924,7 +1924,7 @@ public abstract class PartitionedCacheTestCase extends CacheonixTestCase {
    }
 
 
-   public void testCoherenceRetainAll() throws Exception {
+   public void testCoherenceRetainAll() {
 
       // Set up
       final int keyCount = 5000;
@@ -2002,7 +2002,7 @@ public abstract class PartitionedCacheTestCase extends CacheonixTestCase {
    }
 
 
-   public void testCoherenceRemoveAll() throws Exception {
+   public void testCoherenceRemoveAll() {
 
       // Set up
       final int keyCount = 5000;
@@ -2039,7 +2039,7 @@ public abstract class PartitionedCacheTestCase extends CacheonixTestCase {
    }
 
 
-   public void testCoherenceRemove() throws Exception {
+   public void testCoherenceRemove() {
 
       // Populate
       final String key = createKey(0);

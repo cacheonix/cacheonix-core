@@ -27,26 +27,26 @@ public final class SimpleDataSourceObjectTest extends CacheonixTestCase {
    private static final String OBJECT_1 = createTestObject(1);
 
 
-   public void testGetObject() throws Exception {
+   public void testGetObject() {
 
       assertEquals(OBJECT_1, dataSourceObject.getObject());
    }
 
 
-   public void testEquals() throws Exception {
+   public void testEquals() {
 
       assertEquals(dataSourceObject, new SimpleDataSourceObject(OBJECT_1));
       assertTrue(!new SimpleDataSourceObject(OBJECT_2).equals(dataSourceObject));
    }
 
 
-   public void testHashCode() throws Exception {
+   public void testHashCode() {
 
       assertTrue(dataSourceObject.hashCode() != 0);
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(dataSourceObject.toString());
    }

@@ -27,21 +27,21 @@ public final class AggregatingAnnouncementResponseTest extends CacheonixTestCase
    private AggregatingAnnouncementResponse response;
 
 
-   public void testHandOffRejectedBuckets() throws Exception {
+   public void testHandOffRejectedBuckets() {
 
       assertEquals(PROCESSED_BUCKETS, response.handOffProcessedBuckets());
       assertTrue(response.isProcessedBucketsEmpty());
    }
 
 
-   public void testIsRejectedBucketsEmpty() throws Exception {
+   public void testIsRejectedBucketsEmpty() {
 
       response.handOffProcessedBuckets();
       assertTrue(response.isProcessedBucketsEmpty());
    }
 
 
-   public void testSetRejectedBuckets() throws Exception {
+   public void testSetRejectedBuckets() {
 
       assertEquals(PROCESSED_BUCKETS, response.handOffProcessedBuckets());
    }
@@ -54,13 +54,13 @@ public final class AggregatingAnnouncementResponseTest extends CacheonixTestCase
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(response.toString());
    }
 
 
-   public void testHashCode() throws Exception {
+   public void testHashCode() {
 
       assertTrue(response.hashCode() != 0);
    }

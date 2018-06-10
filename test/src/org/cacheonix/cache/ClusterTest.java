@@ -49,13 +49,13 @@ public final class ClusterTest extends CacheonixTestCase {
    private final List<Cacheonix> cacheManagerList = new ArrayList<Cacheonix>(5);
 
 
-   public void testGetCluster() throws Exception {
+   public void testGetCluster() {
 
       assertNotNull(cacheManagerList.get(0).getCluster());
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(cacheManagerList.get(0).getCluster().toString());
    }

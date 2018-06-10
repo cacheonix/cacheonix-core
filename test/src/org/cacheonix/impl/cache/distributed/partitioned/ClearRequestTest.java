@@ -49,7 +49,7 @@ public final class ClearRequestTest extends CacheonixTestCase {
    }
 
 
-   public void testSetGetSender() throws Exception {
+   public void testSetGetSender() {
 
       final ClusterNodeAddress clusterNodeAddress = TestUtils.createTestAddress();
       request.setSender(clusterNodeAddress);

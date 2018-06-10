@@ -43,7 +43,7 @@ public final class RequestCacheFilterImplTest extends TestCase {
    private RequestCacheFilterImpl requestCacheFilter;
 
 
-   public void testInit() throws Exception {
+   public void testInit() {
 
       // Prepare FilterConfig
       final FilterConfig filterConfig = mockFilterConfig();
@@ -152,7 +152,7 @@ public final class RequestCacheFilterImplTest extends TestCase {
    }
 
 
-   public void testDestroy() throws Exception {
+   public void testDestroy() {
 
 
       // Init
@@ -217,7 +217,7 @@ public final class RequestCacheFilterImplTest extends TestCase {
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(requestCacheFilter.toString());
 

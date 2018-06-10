@@ -44,7 +44,7 @@ public class LockQueueTest extends CacheonixTestCase {
    private ClusterNodeAddress ownerAddress;
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(lockQueue.toString());
    }
@@ -59,27 +59,27 @@ public class LockQueueTest extends CacheonixTestCase {
    }
 
 
-   public void testHashCode() throws IOException, ClassNotFoundException {
+   public void testHashCode() {
 
       assertTrue(lockQueue.hashCode() != 0);
    }
 
 
-   public void testSerializeDeserializeEmpty() throws IOException, ClassNotFoundException {
+   public void testSerializeDeserializeEmpty() throws IOException {
 
       final Serializer ser = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
       assertEquals(lockQueue, ser.deserialize(ser.serialize(lockQueue)));
    }
 
 
-   public void testAddLockRequest() throws IOException, ClassNotFoundException {
+   public void testAddLockRequest() {
 
       lockQueue.getPendingRequests().add(request);
       assertEquals(request, lockQueue.getPendingRequests().peek());
    }
 
 
-   public void testSerializeDeserializeWithQueue() throws IOException, ClassNotFoundException {
+   public void testSerializeDeserializeWithQueue() throws IOException {
 
       lockQueue.getPendingRequests().add(request);
       final Serializer ser = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
@@ -95,7 +95,7 @@ public class LockQueueTest extends CacheonixTestCase {
    }
 
 
-   public void testRegisterForcedRelease() throws Exception {
+   public void testRegisterForcedRelease() {
 
       // Grant read
       lockQueue.grantLockRequest(request);

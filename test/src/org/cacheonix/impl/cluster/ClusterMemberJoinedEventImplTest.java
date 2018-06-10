@@ -33,14 +33,14 @@ public class ClusterMemberJoinedEventImplTest extends TestCase {
    private ClusterMemberImpl clusterMember;
 
 
-   public void testGetJoinedMembers() throws Exception {
+   public void testGetJoinedMembers() {
 
       final Collection<ClusterMember> joinedMembers = clusterMemberJoinedEvent.getJoinedMembers();
       assertEquals(clusterMember, joinedMembers.iterator().next());
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(clusterMemberJoinedEvent.toString());
    }

@@ -31,13 +31,13 @@ public final class StorableImplTest extends CacheonixTestCase {
    private StorableImpl storable = null;
 
 
-   public void testGetValue() throws Exception {
+   public void testGetValue() {
 
       assertEquals(storable.getValue(), VALUE);
    }
 
 
-   public void testGetKey() throws Exception {
+   public void testGetKey() {
 
       assertEquals(storable.getKey(), KEY);
    }

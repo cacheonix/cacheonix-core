@@ -52,7 +52,7 @@ public final class ClusterViewImplTest extends CacheonixTestCase {
    private static final ClusterNodeAddress REPRESENTATIVE = PROCESS_ID_0;
 
 
-   public void testGetList() throws Exception {
+   public void testGetList() {
 
       final List<ClusterNodeAddress> clusterNodeList = new ArrayList<ClusterNodeAddress>(list.size());
       for (final JoiningNode joiningNode : list) {
@@ -63,7 +63,7 @@ public final class ClusterViewImplTest extends CacheonixTestCase {
    }
 
 
-   public void testCreateEmpty() throws Exception {
+   public void testCreateEmpty() {
 
       try {
          new ClusterViewImpl(UUID.randomUUID(), PROCESS_ID_0, Collections.<JoiningNode>emptyList(), PROCESS_ID_0);
@@ -73,7 +73,7 @@ public final class ClusterViewImplTest extends CacheonixTestCase {
    }
 
 
-   public void testCreateSingle() throws Exception {
+   public void testCreateSingle() {
 
       assertNotNull(new ClusterViewImpl(UUID.randomUUID(), PROCESS_ID_0));
    }
@@ -85,7 +85,7 @@ public final class ClusterViewImplTest extends CacheonixTestCase {
    }
 
 
-   public void testRemove() throws Exception {
+   public void testRemove() {
 
       final int initial = clusterView.getSize();
       clusterView.remove(PROCESS_ID_1);
@@ -93,7 +93,7 @@ public final class ClusterViewImplTest extends CacheonixTestCase {
    }
 
 
-   public void testInsert() throws Exception {
+   public void testInsert() {
 
       final JoiningNode joiningNode = new JoiningNode(PROCESS_ID_2);
       clusterView.insert(PROCESS_ID_0, joiningNode.getAddress());
@@ -101,13 +101,13 @@ public final class ClusterViewImplTest extends CacheonixTestCase {
    }
 
 
-   public void testIsRepresentative() throws Exception {
+   public void testIsRepresentative() {
 
       assertTrue(clusterView.isRepresentative());
    }
 
 
-   public void testInsertAfter() throws Exception {
+   public void testInsertAfter() {
 
       final JoiningNode joiningNode = new JoiningNode(PROCESS_ID_2);
       clusterView.insert(PROCESS_ID_0, joiningNode.getAddress());
@@ -115,7 +115,7 @@ public final class ClusterViewImplTest extends CacheonixTestCase {
    }
 
 
-   public void testGetNextElement() throws Exception {
+   public void testGetNextElement() {
 
       assertEquals(PROCESS_ID_1, clusterView.getNextElement());
       assertEquals(PROCESS_ID_1, clusterView.getNextElement(PROCESS_ID_0));
@@ -128,7 +128,7 @@ public final class ClusterViewImplTest extends CacheonixTestCase {
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(clusterView.toString());
    }
@@ -141,7 +141,7 @@ public final class ClusterViewImplTest extends CacheonixTestCase {
    }
 
 
-   public void testCalculateNodesLeft() throws Exception {
+   public void testCalculateNodesLeft() {
       //
       assertEmpty("Nodes left should be empty when previous view is  null", clusterView.calculateNodesLeft(null));
 
@@ -157,7 +157,7 @@ public final class ClusterViewImplTest extends CacheonixTestCase {
    }
 
 
-   public void testCalculateNodesJoined() throws Exception {
+   public void testCalculateNodesJoined() {
       //
       assertEquals(clusterView.getSize(), clusterView.calculateNodesJoined(null).size());
 
@@ -172,7 +172,7 @@ public final class ClusterViewImplTest extends CacheonixTestCase {
    }
 
 
-   public void testConstructorPreservesOrder() throws Exception {
+   public void testConstructorPreservesOrder() {
 
       //
       // Prepare

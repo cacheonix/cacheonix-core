@@ -40,7 +40,7 @@ public class ClusterResponseTest extends TestCase {
    private ClusterResponse response = null;
 
 
-   public void testSetGetValue() throws Exception {
+   public void testSetGetValue() {
 
       response.setResult(value);
       assertEquals(value, response.getResult());
@@ -60,14 +60,14 @@ public class ClusterResponseTest extends TestCase {
    }
 
 
-   public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+   public void testSerializeDeserialize() throws IOException {
 
       response.setResult(value);
       assertSerializedEquals(response);
    }
 
 
-   public void testSerializeDeserializeWithTimestamp() throws IOException, ClassNotFoundException {
+   public void testSerializeDeserializeWithTimestamp() throws IOException {
 
       response.setResult(value);
       response.setTimestamp(new TimeImpl(1000L, 2000L));
@@ -75,7 +75,7 @@ public class ClusterResponseTest extends TestCase {
    }
 
 
-   public void testSetTimestamp() throws Exception {
+   public void testSetTimestamp() {
 
       final TimeImpl timestamp = new TimeImpl(1000L, 2000L);
       response.setTimestamp(timestamp);
@@ -84,7 +84,7 @@ public class ClusterResponseTest extends TestCase {
    }
 
 
-   public void testSerializeDeserializeBinaryArrayList() throws IOException, ClassNotFoundException, InvalidObjectException {
+   public void testSerializeDeserializeBinaryArrayList() throws IOException, InvalidObjectException {
 
       final ArrayList<Binary> result = new ArrayList<Binary>(1);
       result.add(new PassByCopyBinary("value1"));
@@ -94,7 +94,7 @@ public class ClusterResponseTest extends TestCase {
    }
 
 
-   public void testSerializeDeserializeBinaryEntry() throws IOException, ClassNotFoundException, InvalidObjectException {
+   public void testSerializeDeserializeBinaryEntry() throws IOException, InvalidObjectException {
 
       final EntryImpl entry = new EntryImpl(new PassByCopyBinary("key"), new PassByCopyBinary("value"));
       response.setResult(entry);
@@ -102,7 +102,7 @@ public class ClusterResponseTest extends TestCase {
    }
 
 
-   public void testSerializeDeserializeBinarySetAsValue() throws IOException, ClassNotFoundException, InvalidObjectException {
+   public void testSerializeDeserializeBinarySetAsValue() throws IOException, InvalidObjectException {
 
       setBinary(new PassObjectByReferenceBinary("value"));
       setBinary(new PassByCopyBinary("value"));

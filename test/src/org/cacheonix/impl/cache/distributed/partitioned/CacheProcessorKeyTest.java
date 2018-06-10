@@ -25,20 +25,20 @@ public final class CacheProcessorKeyTest extends TestCase {
    private CacheProcessorKey key;
 
 
-   public void testEquals() throws Exception {
+   public void testEquals() {
 
       assertEquals(key, new CacheProcessorKey(TEST_CACHE));
       assertTrue(!new CacheProcessorKey("some.other.name").equals(key));
    }
 
 
-   public void testHashCode() throws Exception {
+   public void testHashCode() {
 
       assertTrue(key.hashCode() != 0);
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(key.toString());
    }

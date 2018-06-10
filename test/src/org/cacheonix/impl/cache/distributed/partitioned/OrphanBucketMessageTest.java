@@ -29,19 +29,19 @@ public final class OrphanBucketMessageTest extends TestCase {
    private OrphanBucketMessage message;
 
 
-   public void testGetStorageNumber() throws Exception {
+   public void testGetStorageNumber() {
 
       assertEquals(STORAGE_NUMBER, message.getStorageNumber());
    }
 
 
-   public void testGetBucketNumber() throws Exception {
+   public void testGetBucketNumber() {
 
       assertEquals(BUCKET_NUMBER, message.getBucketNumber());
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(message.toString());
    }

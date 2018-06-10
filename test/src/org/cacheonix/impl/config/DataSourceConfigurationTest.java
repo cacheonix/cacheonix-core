@@ -24,14 +24,14 @@ public final class DataSourceConfigurationTest extends TestCase {
    private LocalConfiguration local;
 
 
-   public void testDefaultPrefetch() throws Exception {
+   public void testDefaultPrefetch() {
 
       assertFalse("Default should be 'false'",
               new DataSourceConfiguration().isPrefetchConfigurationSet() && new DataSourceConfiguration().getPrefetchConfiguration().isEnabled());
    }
 
 
-   public void testReadPrefetch() throws Exception {
+   public void testReadPrefetch() {
 
       final LocalCacheConfiguration localCacheConfiguration = local.getLocalCache(0);
       final LocalCacheStoreConfiguration localCacheConfigurationStore = localCacheConfiguration.getStore();

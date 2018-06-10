@@ -13,11 +13,11 @@
  */
 package org.cacheonix.impl.cache.distributed.partitioned;
 
+import junit.framework.TestCase;
 import org.cacheonix.TestUtils;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
-import junit.framework.TestCase;
 
 /**
  * Tester for LeaveCacheGroupAnnouncement.
@@ -31,19 +31,19 @@ public final class LeaveCacheGroupAnnouncementTest extends TestCase {
    private LeaveCacheGroupAnnouncement announcement = null;
 
 
-   public void testDefaultConstructor() throws Exception {
+   public void testDefaultConstructor() {
 
       assertNotNull(new LeaveCacheGroupAnnouncement().toString());
    }
 
 
-   public void testGetLeavingAddress() throws Exception {
+   public void testGetLeavingAddress() {
 
       assertEquals(LEAVING_ADDRESS, announcement.getLeavingAddress());
    }
 
 
-   public void testIsGracefulLeave() throws Exception {
+   public void testIsGracefulLeave() {
 
       assertFalse(announcement.isGracefulLeave());
    }

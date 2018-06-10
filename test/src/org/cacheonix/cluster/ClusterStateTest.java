@@ -9,9 +9,16 @@ import junit.framework.TestCase;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
 
-import static org.cacheonix.cluster.ClusterState.*;
+import static org.cacheonix.cluster.ClusterState.BLOCKED;
+import static org.cacheonix.cluster.ClusterState.BLOCKED_CODE;
+import static org.cacheonix.cluster.ClusterState.OPERATIONAL;
+import static org.cacheonix.cluster.ClusterState.OPERATIONAL_CODE;
+import static org.cacheonix.cluster.ClusterState.RECONFIGURING;
+import static org.cacheonix.cluster.ClusterState.RECONFIGURING_CODE;
 import static org.cacheonix.impl.net.serializer.Serializer.TYPE_JAVA;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  * A Tester for {@link ClusterState}.
@@ -133,7 +140,7 @@ public final class ClusterStateTest extends TestCase {
    /**
     * Tests that {@link ClusterState#writeExternal(ObjectOutput)} works as expected.
     */
-   public void testWriteReadExternal() throws IOException, ClassNotFoundException {
+   public void testWriteReadExternal() throws IOException {
 
       writeReadCompare(RECONFIGURING);
       writeReadCompare(OPERATIONAL);

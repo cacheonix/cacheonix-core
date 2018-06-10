@@ -28,7 +28,7 @@ public final class ClockImplTest extends CacheonixTestCase {
 
 
    @SuppressWarnings("SimplifiableJUnitAssertion")
-   public void testCurrentTime() throws Exception {
+   public void testCurrentTime() {
 
       final Time time1 = clock.currentTime();
       final Time time2 = clock.currentTime();
@@ -40,7 +40,7 @@ public final class ClockImplTest extends CacheonixTestCase {
    }
 
 
-   public void testAdjust() throws Exception {
+   public void testAdjust() {
 
       final Time timeBeforeAdjustment = clock.currentTime();
       final Time newTime = timeBeforeAdjustment.add(1000);
@@ -50,7 +50,7 @@ public final class ClockImplTest extends CacheonixTestCase {
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(clock.toString());
    }

@@ -23,7 +23,7 @@ public final class CacheHeadersGeneratorTest extends TestCase {
    private CacheHeadersGenerator cacheHeadersGenerator;
 
 
-   public void testCreateHeaders() throws Exception {
+   public void testCreateHeaders() {
 
       // "Expires" header
       final TimeImpl createdTime = new TimeImpl(CREATE_TIME_MILLIS, 0);

@@ -40,7 +40,7 @@ public final class ServletOutputStreamWrapperTest extends TestCase {
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(servletOutputStreamWrapper.toString());
 

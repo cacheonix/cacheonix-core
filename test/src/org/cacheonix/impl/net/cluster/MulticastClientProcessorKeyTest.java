@@ -23,25 +23,25 @@ public final class MulticastClientProcessorKeyTest extends TestCase {
    private MulticastClientProcessorKey instance;
 
 
-   public void testGetInstance() throws Exception {
+   public void testGetInstance() {
 
       assertNotNull(instance);
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(instance.toString());
    }
 
 
-   public void testEquals() throws Exception {
+   public void testEquals() {
 
       assertEquals(instance, MulticastClientProcessorKey.getInstance());
    }
 
 
-   public void testHashCode() throws Exception {
+   public void testHashCode() {
 
       assertTrue(instance.hashCode() != 0);
    }

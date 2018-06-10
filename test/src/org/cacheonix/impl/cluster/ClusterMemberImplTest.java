@@ -38,7 +38,7 @@ public final class ClusterMemberImplTest extends TestCase {
    private ClusterMemberImpl clusterMember;
 
 
-   public void testGetClusterName() throws Exception {
+   public void testGetClusterName() {
 
       assertEquals(CLUSTER_NAME, clusterMember.getClusterName());
    }
@@ -65,13 +65,13 @@ public final class ClusterMemberImplTest extends TestCase {
    }
 
 
-   public void testHashCode() throws Exception {
+   public void testHashCode() {
 
       assertTrue(clusterMember.hashCode() != 0);
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(clusterMember.toString());
    }

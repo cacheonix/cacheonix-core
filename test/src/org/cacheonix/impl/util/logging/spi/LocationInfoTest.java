@@ -24,25 +24,25 @@ public final class LocationInfoTest extends TestCase {
    private LocationInfo locationInfo;
 
 
-   public void testGetClassName() throws Exception {
+   public void testGetClassName() {
 
       assertEquals("junit.framework.TestCase", locationInfo.getClassName());
    }
 
 
-   public void testGetFileName() throws Exception {
+   public void testGetFileName() {
 
       assertEquals("TestCase.java", locationInfo.getFileName());
    }
 
 
-   public void testGetLineNumber() throws Exception {
+   public void testGetLineNumber() {
 
       assertEquals("128", locationInfo.getLineNumber());
    }
 
 
-   public void testGetMethodName() throws Exception {
+   public void testGetMethodName() {
 
       assertEquals("runBare", locationInfo.getMethodName());
    }

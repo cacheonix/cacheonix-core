@@ -30,7 +30,7 @@ public final class PrimefacesCacheProviderTest extends TestCase {
    private PrimefacesCacheProvider provider;
 
 
-   public void testGet() throws Exception {
+   public void testGet() {
 
       provider.put(REGION, KEY, OBJECT);
       final Object obj = provider.get(REGION, KEY);
@@ -38,7 +38,7 @@ public final class PrimefacesCacheProviderTest extends TestCase {
    }
 
 
-   public void testPut() throws Exception {
+   public void testPut() {
 
       provider.put(REGION, KEY, OBJECT);
       final Object obj = provider.get(REGION, KEY);
@@ -46,7 +46,7 @@ public final class PrimefacesCacheProviderTest extends TestCase {
    }
 
 
-   public void testRemove() throws Exception {
+   public void testRemove() {
 
       provider.put(REGION, KEY, OBJECT);
       provider.remove(REGION, KEY);
@@ -55,7 +55,7 @@ public final class PrimefacesCacheProviderTest extends TestCase {
    }
 
 
-   public void testClear() throws Exception {
+   public void testClear() {
 
       provider.put(REGION, KEY, OBJECT);
       provider.clear();

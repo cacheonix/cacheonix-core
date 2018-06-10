@@ -18,9 +18,9 @@ import java.io.PrintStream;
 import java.lang.reflect.InvocationTargetException;
 import java.net.SocketException;
 
+import junit.framework.TestCase;
 import org.cacheonix.impl.util.IOUtils;
 import org.cacheonix.impl.util.logging.Logger;
-import junit.framework.TestCase;
 
 public final class NetworkInterfaceEnumeratorTest extends TestCase {
 
@@ -35,7 +35,7 @@ public final class NetworkInterfaceEnumeratorTest extends TestCase {
 
 
    public void testPrintInterfaces() throws SocketException, IllegalAccessException,
-           NoSuchMethodException, InvocationTargetException {
+           InvocationTargetException {
 
       final ByteArrayOutputStream baos = new ByteArrayOutputStream();
       PrintStream ps = null;

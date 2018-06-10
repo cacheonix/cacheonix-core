@@ -20,7 +20,7 @@ import junit.framework.TestCase;
  */
 public final class PrepareResultTest extends TestCase {
 
-   public void testEquals() throws Exception {
+   public void testEquals() {
 
       assertEquals(PrepareResult.BREAK, PrepareResult.BREAK);
       assertEquals(PrepareResult.EXECUTE, PrepareResult.EXECUTE);
@@ -32,7 +32,7 @@ public final class PrepareResultTest extends TestCase {
    }
 
 
-   public void testHashCode() throws Exception {
+   public void testHashCode() {
 
       assertEquals(PrepareResult.BREAK, PrepareResult.BREAK);
       assertEquals(PrepareResult.EXECUTE, PrepareResult.EXECUTE);
@@ -44,7 +44,7 @@ public final class PrepareResultTest extends TestCase {
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(PrepareResult.BREAK.toString());
       assertNotNull(PrepareResult.EXECUTE.toString());

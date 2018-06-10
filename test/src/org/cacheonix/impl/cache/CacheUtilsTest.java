@@ -38,7 +38,7 @@ public final class CacheUtilsTest extends TestCase {
    /**
     * Tests that {@link CacheUtils#createExpirationTime(Clock, long, TimeUnit)} when the delay is set to -1L.
     */
-   public void testCreateNoExpirationTime() throws Exception {
+   public void testCreateNoExpirationTime() {
 
       final Clock clock = Mockito.mock(Clock.class);
 

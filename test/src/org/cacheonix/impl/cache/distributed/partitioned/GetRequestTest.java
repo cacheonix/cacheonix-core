@@ -47,13 +47,13 @@ public final class GetRequestTest extends CacheonixTestCase {
    }
 
 
-   public void testGetPartitionName() throws Exception {
+   public void testGetPartitionName() {
 
       assertEquals(CACHE_NAME, request.getCacheName());
    }
 
 
-   public void testSetGetKey() throws Exception {
+   public void testSetGetKey() {
 
       request.setKey(KEY);
       assertEquals(KEY, request.getKey());
@@ -66,7 +66,7 @@ public final class GetRequestTest extends CacheonixTestCase {
    }
 
 
-   public void testSetGetProcessID() throws Exception {
+   public void testSetGetProcessID() {
 
       final ClusterNodeAddress clusterNodeAddress = TestUtils.createTestAddress();
       request.setSender(clusterNodeAddress);

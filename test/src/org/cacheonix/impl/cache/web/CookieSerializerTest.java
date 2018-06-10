@@ -15,7 +15,7 @@ public final class CookieSerializerTest extends TestCase {
    private static final String VALUE = "value";
 
 
-   public void testEquals() throws Exception {
+   public void testEquals() {
 
       final Cookie thisCookie = new Cookie(NAME, VALUE);
       final Cookie thatCookie = new Cookie(NAME, VALUE);
@@ -24,7 +24,7 @@ public final class CookieSerializerTest extends TestCase {
    }
 
 
-   public void testNoEquals() throws Exception {
+   public void testNoEquals() {
 
       final Cookie thisCookie = new Cookie(NAME, VALUE);
       final Cookie thatCookie = new Cookie("other_name", "other_value");
@@ -33,7 +33,7 @@ public final class CookieSerializerTest extends TestCase {
    }
 
 
-   public void testNotEqualsWithPathSet() throws Exception {
+   public void testNotEqualsWithPathSet() {
 
       final Cookie thisCookie = new Cookie(NAME, VALUE);
       thisCookie.setPath("test/path");

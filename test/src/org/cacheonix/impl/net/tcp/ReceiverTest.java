@@ -121,14 +121,14 @@ public final class ReceiverTest extends CacheonixTestCase {
    }
 
 
-   public void testShutdown() throws Exception {
+   public void testShutdown() {
 
       server.shutdown();
       assertTrue(server.isShutDown());
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(server.toString());
    }

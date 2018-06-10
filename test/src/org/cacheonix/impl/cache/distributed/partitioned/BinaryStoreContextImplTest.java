@@ -18,7 +18,7 @@ public final class BinaryStoreContextImplTest extends TestCase {
    private BinaryStoreContextImpl binaryStoreContext;
 
 
-   public void testGetObjectSizeCalculator() throws Exception {
+   public void testGetObjectSizeCalculator() {
 
       final ObjectSizeCalculator objectSizeCalculator = mock(ObjectSizeCalculator.class);
       binaryStoreContext.setObjectSizeCalculator(objectSizeCalculator);
@@ -27,7 +27,7 @@ public final class BinaryStoreContextImplTest extends TestCase {
    }
 
 
-   public void testGetInvalidator() throws Exception {
+   public void testGetInvalidator() {
 
       final CacheInvalidator invalidator = mock(CacheInvalidator.class);
       binaryStoreContext.setInvalidator(invalidator);
@@ -36,7 +36,7 @@ public final class BinaryStoreContextImplTest extends TestCase {
    }
 
 
-   public void testGetDiskStorage() throws Exception {
+   public void testGetDiskStorage() {
 
       final DiskStorage diskStorage = mock(DiskStorage.class);
       binaryStoreContext.setDiskStorage(diskStorage);
@@ -45,7 +45,7 @@ public final class BinaryStoreContextImplTest extends TestCase {
    }
 
 
-   public void testGetDataSource() throws Exception {
+   public void testGetDataSource() {
 
       final BinaryStoreDataSource dataSource = mock(BinaryStoreDataSource.class);
       binaryStoreContext.setDataSource(dataSource);
@@ -54,7 +54,7 @@ public final class BinaryStoreContextImplTest extends TestCase {
    }
 
 
-   public void testGetDataStore() throws Exception {
+   public void testGetDataStore() {
 
       final DataStore dataStore = mock(DataStore.class);
       binaryStoreContext.setDataStore(dataStore);

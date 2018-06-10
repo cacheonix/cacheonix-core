@@ -54,7 +54,7 @@ public final class JoinRequestTest extends CacheonixTestCase {
    }
 
 
-   public void testDefaultConstructor() throws Exception {
+   public void testDefaultConstructor() {
 
       assertNotNull(new JoinRequest().toString());
    }

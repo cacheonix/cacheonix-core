@@ -55,7 +55,7 @@ public final class ClusterAnnouncementTest extends TestCase {
    }
 
 
-   public void testGetMember() throws Exception {
+   public void testGetMember() {
 
       assertEquals(process, clusterAnnouncement.getSender());
    }
@@ -73,7 +73,7 @@ public final class ClusterAnnouncementTest extends TestCase {
    }
 
 
-   public void testIsMajority() throws Exception {
+   public void testIsMajority() {
 
       assertTrue(clusterAnnouncement.isOperationalCluster());
    }

@@ -24,14 +24,14 @@ public class MulticastBroadcastConfigurationTest extends TestCase {
    private MulticastBroadcastConfiguration multicastBroadcastConfiguration;
 
 
-   public void testDefaultMulticastTTLValue() throws Exception {
+   public void testDefaultMulticastTTLValue() {
 
       final int defaultValue = 1;
       assertEquals("Default value should be " + defaultValue, defaultValue, multicastBroadcastConfiguration.getMulticastTTL());
    }
 
 
-   public void testSetGetMulticastTTL() throws Exception {
+   public void testSetGetMulticastTTL() {
 
       multicastBroadcastConfiguration.setMulticastTTL(2);
       assertEquals(2, multicastBroadcastConfiguration.getMulticastTTL());

@@ -30,7 +30,7 @@ public class TimeImplTest extends TestCase {
    private TimeImpl time;
 
 
-   public void testDefaultConstructor() throws Exception {
+   public void testDefaultConstructor() {
 
       final Time defaultContructorTime = new TimeImpl();
       assertEquals(0, defaultContructorTime.getMillis());
@@ -38,19 +38,19 @@ public class TimeImplTest extends TestCase {
    }
 
 
-   public void testGetMillis() throws Exception {
+   public void testGetMillis() {
 
       assertEquals(MILLIS, time.getMillis());
    }
 
 
-   public void testGetCount() throws Exception {
+   public void testGetCount() {
 
       assertEquals(COUNT, time.getCount());
    }
 
 
-   public void testCompareTo() throws Exception {
+   public void testCompareTo() {
 
       assertEquals(0, time.compareTo(new TimeImpl(MILLIS, COUNT)));
 
@@ -67,7 +67,7 @@ public class TimeImplTest extends TestCase {
 
 
    @SuppressWarnings({"ObjectEqualsNull", "EqualsWithItself"})
-   public void testEquals() throws Exception {
+   public void testEquals() {
 
       assertEquals(time, new TimeImpl(MILLIS, COUNT));
       assertFalse(new TimeImpl(MILLIS + 1, COUNT).equals(time));
@@ -78,7 +78,7 @@ public class TimeImplTest extends TestCase {
    }
 
 
-   public void testSubtract() throws Exception {
+   public void testSubtract() {
 
       assertEquals(new TimeImpl(0, 0), time.subtract(new TimeImpl(MILLIS, COUNT)));
       assertEquals(new TimeImpl(-1, -1), time.subtract(new TimeImpl(MILLIS + 1, COUNT + 1)));
@@ -86,7 +86,7 @@ public class TimeImplTest extends TestCase {
    }
 
 
-   public void testDivide() throws Exception {
+   public void testDivide() {
 
       assertEquals(new TimeImpl(3, 2), new TimeImpl(6, 4).divide(2));
    }
@@ -123,13 +123,13 @@ public class TimeImplTest extends TestCase {
    }
 
 
-   public void testHashCode() throws Exception {
+   public void testHashCode() {
 
       assertTrue(time.hashCode() != 0);
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(time.toString());
    }

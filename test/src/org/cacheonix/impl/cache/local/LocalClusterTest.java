@@ -13,10 +13,10 @@
  */
 package org.cacheonix.impl.cache.local;
 
+import junit.framework.TestCase;
+import org.cacheonix.impl.util.logging.Logger;
 import org.cacheonix.locks.Lock;
 import org.cacheonix.locks.ReadWriteLock;
-import org.cacheonix.impl.util.logging.Logger;
-import junit.framework.TestCase;
 
 /**
  * Tester for LocalCluster.
@@ -35,7 +35,7 @@ public final class LocalClusterTest extends TestCase {
 
 
    @SuppressWarnings("EmptyTryBlock")
-   public void testGetNamedReadWriteReadLock() throws Exception {
+   public void testGetNamedReadWriteReadLock() {
 
       final ReadWriteLock readWriteLock = localCluster.getReadWriteLock();
       final Lock readLock = readWriteLock.readLock();
@@ -57,7 +57,7 @@ public final class LocalClusterTest extends TestCase {
 
 
    @SuppressWarnings("EmptyTryBlock")
-   public void testGetNamedReadWriteWriteLock() throws Exception {
+   public void testGetNamedReadWriteWriteLock() {
 
       final ReadWriteLock readWriteLock = localCluster.getReadWriteLock();
       final Lock writeLock = readWriteLock.readLock();

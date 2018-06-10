@@ -16,10 +16,10 @@ package org.cacheonix.impl.cache.distributed.partitioned;
 import java.util.ArrayList;
 import java.util.List;
 
+import junit.framework.TestCase;
 import org.cacheonix.TestUtils;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.util.logging.Logger;
-import junit.framework.TestCase;
 
 /**
  * CancelBucketTransferMessageTest
@@ -52,25 +52,25 @@ public final class CancelBucketTransferMessageTest extends TestCase {
    private List<Integer> bucketNumbers;
 
 
-   public void testGetNewOwner() throws Exception {
+   public void testGetNewOwner() {
 
       assertEquals(NEW_OWNER, message.getNewOwner());
    }
 
 
-   public void testGetPreviousOwner() throws Exception {
+   public void testGetPreviousOwner() {
 
       assertEquals(PREVIOUS_OWNER, message.getPreviousOwner());
    }
 
 
-   public void testGetSourceStorageNumber() throws Exception {
+   public void testGetSourceStorageNumber() {
 
       assertEquals(SOURCE_STORAGE_NUMBER, message.getSourceStorageNumber());
    }
 
 
-   public void testGetDestinationStorageNumber() throws Exception {
+   public void testGetDestinationStorageNumber() {
 
       assertEquals(DESTINATION_STORAGE_NUMBER, message.getDestinationStorageNumber());
    }

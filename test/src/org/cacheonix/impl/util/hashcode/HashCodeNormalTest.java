@@ -27,7 +27,7 @@ public final class HashCodeNormalTest extends TestCase {
    private HashCode hashCode = null;
 
 
-   public void testAdd() throws Exception {
+   public void testAdd() {
 
       hashCode.add((byte) 1);
       hashCode.add(1);
@@ -41,7 +41,7 @@ public final class HashCodeNormalTest extends TestCase {
    }
 
 
-   public void testAddBooleanTrue() throws Exception {
+   public void testAddBooleanTrue() {
 
       hashCode.add(true);
       final int value = hashCode.getValue();
@@ -50,7 +50,7 @@ public final class HashCodeNormalTest extends TestCase {
    }
 
 
-   public void testAddBooleanFalse() throws Exception {
+   public void testAddBooleanFalse() {
 
       hashCode.add(false);
       final int value = hashCode.getValue();

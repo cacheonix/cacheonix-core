@@ -15,11 +15,11 @@ package org.cacheonix.impl.cache.distributed.partitioned;
 
 import java.util.List;
 
+import junit.framework.TestCase;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
 import org.cacheonix.impl.net.serializer.Wireable;
 import org.cacheonix.impl.util.CollectionUtils;
-import junit.framework.TestCase;
 
 /**
  * Tester for TransferBucketResult.
@@ -34,19 +34,19 @@ public final class TransferBucketResultTest extends TestCase {
    private List<Integer> rejected;
 
 
-   public void testSetGetRejectedBucketNumbers() throws Exception {
+   public void testSetGetRejectedBucketNumbers() {
 
       assertEquals(rejected, result.getRejectedBucketNumbers());
    }
 
 
-   public void testSetGetCompletedBucketNumbers() throws Exception {
+   public void testSetGetCompletedBucketNumbers() {
 
       assertEquals(completed, result.getTransferredBucketNumbers());
    }
 
 
-   public void testGetWireableType() throws Exception {
+   public void testGetWireableType() {
 
       assertEquals(Wireable.TYPE_TRANSFER_BUCKET_RESULT, result.getWireableType());
    }
@@ -59,7 +59,7 @@ public final class TransferBucketResultTest extends TestCase {
    }
 
 
-   public void testEquals() throws Exception {
+   public void testEquals() {
 
       final List<Integer> completed1 = CollectionUtils.createList(1);
       final List<Integer> rejected1 = CollectionUtils.createList(2);
@@ -71,7 +71,7 @@ public final class TransferBucketResultTest extends TestCase {
    }
 
 
-   public void testNotEquals() throws Exception {
+   public void testNotEquals() {
 
       final List<Integer> completed1 = CollectionUtils.createList(555);
       final List<Integer> rejected1 = CollectionUtils.createList(777);
@@ -83,13 +83,13 @@ public final class TransferBucketResultTest extends TestCase {
    }
 
 
-   public void testHashCode() throws Exception {
+   public void testHashCode() {
 
       assertTrue(result.hashCode() != 0);
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(result.toString());
    }

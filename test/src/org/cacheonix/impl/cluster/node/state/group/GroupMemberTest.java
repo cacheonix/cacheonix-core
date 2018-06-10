@@ -15,11 +15,11 @@ package org.cacheonix.impl.cluster.node.state.group;
 
 import java.io.IOException;
 
+import junit.framework.TestCase;
 import org.cacheonix.TestUtils;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
-import junit.framework.TestCase;
 
 /**
  * CacheGroupMember Tester.
@@ -41,19 +41,19 @@ public final class GroupMemberTest extends TestCase {
    private static final long HEAP_SIZE_BYTES = 1000L;
 
 
-   public void testGetAddress() throws Exception {
+   public void testGetAddress() {
 
       assertEquals(testAddress, member.getAddress());
    }
 
 
-   public void testSetPartitionContibutor() throws Exception {
+   public void testSetPartitionContibutor() {
 
       assertTrue(member.isPartitionContributor());
    }
 
 
-   public void testGetHeapSizeBytes() throws Exception {
+   public void testGetHeapSizeBytes() {
 
       assertEquals(HEAP_SIZE_BYTES, member.getHeapSizeBytes());
    }

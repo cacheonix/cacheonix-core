@@ -31,7 +31,7 @@ public final class ClusterNodeJoinedAnnouncementTest extends CacheonixTestCase {
    private ClusterNodeJoinedAnnouncement message;
 
 
-   public void testSetJoin() throws Exception {
+   public void testSetJoin() {
 
       assertEquals(JOIN, message.getJoined());
    }
@@ -46,7 +46,7 @@ public final class ClusterNodeJoinedAnnouncementTest extends CacheonixTestCase {
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(message.toString());
    }

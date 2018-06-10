@@ -26,7 +26,7 @@ public final class FrontCacheImplTest extends CacheonixTestCase {
    private FrontCache frontCache;
 
 
-   public void testPut() throws Exception {
+   public void testPut() {
 
       frontCache.put(toBinary("key"), toBinary("value"), getClock().currentTime().add(10));
    }

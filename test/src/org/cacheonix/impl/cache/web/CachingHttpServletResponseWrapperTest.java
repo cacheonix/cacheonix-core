@@ -55,7 +55,7 @@ public final class CachingHttpServletResponseWrapperTest extends TestCase {
    private HttpServletResponse httpServletResponse;
 
 
-   public void testAddCookie() throws Exception {
+   public void testAddCookie() {
 
       final String test_cookie_name = "test_cookie_name";
       final Cookie cookie = new Cookie(test_cookie_name, "test_cookie_value");
@@ -88,7 +88,7 @@ public final class CachingHttpServletResponseWrapperTest extends TestCase {
    }
 
 
-   public void testSetDateHeader() throws Exception {
+   public void testSetDateHeader() {
 
       cachingHttpServletResponseWrapper.setDateHeader(DATE_HEADER, DATE_HEADER_VALUE);
 
@@ -100,7 +100,7 @@ public final class CachingHttpServletResponseWrapperTest extends TestCase {
    }
 
 
-   public void testAddDateHeader() throws Exception {
+   public void testAddDateHeader() {
 
       cachingHttpServletResponseWrapper.addDateHeader(DATE_HEADER, DATE_HEADER_VALUE);
 
@@ -112,7 +112,7 @@ public final class CachingHttpServletResponseWrapperTest extends TestCase {
    }
 
 
-   public void testSetStringHeader() throws Exception {
+   public void testSetStringHeader() {
 
       cachingHttpServletResponseWrapper.setHeader(STRING_HEADER, STRING_HEADER_VALUE);
 
@@ -124,7 +124,7 @@ public final class CachingHttpServletResponseWrapperTest extends TestCase {
    }
 
 
-   public void testAddStringHeader() throws Exception {
+   public void testAddStringHeader() {
 
       cachingHttpServletResponseWrapper.addHeader(STRING_HEADER, STRING_HEADER_VALUE);
 
@@ -136,7 +136,7 @@ public final class CachingHttpServletResponseWrapperTest extends TestCase {
    }
 
 
-   public void testSetIntHeader() throws Exception {
+   public void testSetIntHeader() {
 
       cachingHttpServletResponseWrapper.setIntHeader(INT_HEADER, INT_HEADER_VALUE);
 
@@ -148,7 +148,7 @@ public final class CachingHttpServletResponseWrapperTest extends TestCase {
    }
 
 
-   public void testAddIntHeader() throws Exception {
+   public void testAddIntHeader() {
 
       cachingHttpServletResponseWrapper.addIntHeader(INT_HEADER, INT_HEADER_VALUE);
 
@@ -160,14 +160,14 @@ public final class CachingHttpServletResponseWrapperTest extends TestCase {
    }
 
 
-   public void testSetStatus() throws Exception {
+   public void testSetStatus() {
 
       cachingHttpServletResponseWrapper.setStatus(SC_OK);
       assertEquals(SC_OK, cachingHttpServletResponseWrapper.getStatusCode());
    }
 
 
-   public void testSetStatusAndMessage() throws Exception {
+   public void testSetStatusAndMessage() {
 
       cachingHttpServletResponseWrapper.setStatus(SC_OK, STATUS_MESSAGE);
       assertEquals(SC_OK, cachingHttpServletResponseWrapper.getStatusCode());
@@ -191,14 +191,14 @@ public final class CachingHttpServletResponseWrapperTest extends TestCase {
    }
 
 
-   public void testSetContentLength() throws Exception {
+   public void testSetContentLength() {
 
       cachingHttpServletResponseWrapper.setContentLength(CONTENT_LENGTH);
       assertEquals(CONTENT_LENGTH, cachingHttpServletResponseWrapper.getContentLength());
    }
 
 
-   public void testSetContentType() throws Exception {
+   public void testSetContentType() {
 
       cachingHttpServletResponseWrapper.setContentType(CONTENT_TYPE);
       assertEquals(CONTENT_TYPE, cachingHttpServletResponseWrapper.getContentType());
@@ -212,7 +212,7 @@ public final class CachingHttpServletResponseWrapperTest extends TestCase {
    }
 
 
-   public void testResetBuffer() throws Exception {
+   public void testResetBuffer() {
 
       cachingHttpServletResponseWrapper.resetBuffer();
       verify(httpServletResponse).resetBuffer();
@@ -227,19 +227,19 @@ public final class CachingHttpServletResponseWrapperTest extends TestCase {
    }
 
 
-   public void testSetLocale() throws Exception {
+   public void testSetLocale() {
 
       cachingHttpServletResponseWrapper.setLocale(LOCALE);
       assertEquals(LOCALE, cachingHttpServletResponseWrapper.getLocale());
    }
 
 
-   public void testGetByteOutput() throws Exception {
+   public void testGetByteOutput() {
 
    }
 
 
-   public void testGetCharOutput() throws Exception {
+   public void testGetCharOutput() {
 
    }
 

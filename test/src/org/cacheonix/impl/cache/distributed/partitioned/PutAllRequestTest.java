@@ -62,7 +62,7 @@ public final class PutAllRequestTest extends CacheonixTestCase {
    }
 
 
-   public void testGetExpirationTimeMillis() throws Exception {
+   public void testGetExpirationTimeMillis() {
 
       assertEquals(EXPIRATION_TIME_MILLIS, request.getExpirationTime());
    }

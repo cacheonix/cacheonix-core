@@ -46,7 +46,7 @@ public final class RegisterSubscriptionAnnouncementTest extends CacheonixTestCas
    private AddEntryModifiedSubscriptionAnnouncement announcement;
 
 
-   public void testSetSubscription() throws Exception {
+   public void testSetSubscription() {
 
       assertEquals(SUBSCRIPTION, announcement.getSubscription());
    }
@@ -59,7 +59,7 @@ public final class RegisterSubscriptionAnnouncementTest extends CacheonixTestCas
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(announcement.toString());
    }

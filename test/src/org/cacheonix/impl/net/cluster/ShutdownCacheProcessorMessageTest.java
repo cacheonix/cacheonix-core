@@ -19,8 +19,8 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.NotSerializableException;
 
-import org.cacheonix.impl.cache.distributed.partitioned.ShutdownCacheProcessorMessage;
 import junit.framework.TestCase;
+import org.cacheonix.impl.cache.distributed.partitioned.ShutdownCacheProcessorMessage;
 
 /**
  * Tester for ShutdownCacheProcessorMessage.
@@ -58,7 +58,7 @@ public final class ShutdownCacheProcessorMessageTest extends TestCase {
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(message.toString());
    }

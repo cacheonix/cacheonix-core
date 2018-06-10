@@ -27,7 +27,7 @@ import static org.mockito.Mockito.mock;
 public final class NextLockRequestGranterTest extends CacheonixTestCase {
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       final LockQueue lockQueue = new LockQueue();
       final ClusterNodeAddress testAddress = TestUtils.createTestAddress(1);

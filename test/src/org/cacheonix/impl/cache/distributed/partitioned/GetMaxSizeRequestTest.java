@@ -25,7 +25,7 @@ public class GetMaxSizeRequestTest extends TestCase {
    private GetMaxSizeRequest request;
 
 
-   public void testCreate() throws Exception {
+   public void testCreate() {
 
       assertNotNull(request.toString());
       assertEquals(CACHE_NAME, request.getCacheName());

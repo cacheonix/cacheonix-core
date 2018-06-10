@@ -18,31 +18,31 @@ public final class ProcessingResultTest extends TestCase {
    private Binary modifiedKey;
 
 
-   public void testHasModifiedKey() throws Exception {
+   public void testHasModifiedKey() {
 
       assertTrue(processingResult.hasModifiedKey());
    }
 
 
-   public void testDoesntHaveNullModifiedKey() throws Exception {
+   public void testDoesntHaveNullModifiedKey() {
 
       assertFalse(new ProcessingResult(RESULT, null).hasModifiedKey());
    }
 
 
-   public void testGetResult() throws Exception {
+   public void testGetResult() {
 
       assertEquals(RESULT, processingResult.getResult());
    }
 
 
-   public void testGetModifiedKey() throws Exception {
+   public void testGetModifiedKey() {
 
       assertEquals(modifiedKey, processingResult.getModifiedKey());
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(processingResult.toString());
    }

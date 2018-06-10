@@ -87,7 +87,7 @@ public final class MultiplePartitionedCacheWithFrontCacheTest extends MultiplePa
    }
 
 
-   public void testGetFromFrontCacheIsFasterThanFromRemote() throws Exception {
+   public void testGetFromFrontCacheIsFasterThanFromRemote() {
 
       // Set up
       final int keyCount = 5000;

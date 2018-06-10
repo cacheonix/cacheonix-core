@@ -13,9 +13,9 @@
  */
 package org.cacheonix.impl.net.cluster;
 
+import junit.framework.TestCase;
 import org.cacheonix.impl.cache.distributed.partitioned.ClearFrontCacheBucketAnnouncement;
 import org.cacheonix.impl.net.processor.Request;
-import junit.framework.TestCase;
 
 /**
  * Tester for DeliverNotificationEntry.
@@ -29,7 +29,7 @@ public final class DeliveryNotificationEntryTest extends TestCase {
    private DeliveryNotificationEntry entry;
 
 
-   public void testGetCreate() throws Exception {
+   public void testGetCreate() {
 
       assertEquals(request, entry.getRequest());
       assertFalse(entry.hasStartFrameNumber());
@@ -38,7 +38,7 @@ public final class DeliveryNotificationEntryTest extends TestCase {
    }
 
 
-   public void testSetGetStartFrameNumber() throws Exception {
+   public void testSetGetStartFrameNumber() {
 
       entry.setStartFrameNumber(START_FRAME_NUMBER);
       assertTrue(entry.hasStartFrameNumber());

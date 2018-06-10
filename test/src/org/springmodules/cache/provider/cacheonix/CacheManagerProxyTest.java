@@ -32,7 +32,7 @@ public final class CacheManagerProxyTest extends CacheonixTestCase {
    private Cacheonix cacheonix;
 
 
-   public void testGetInstance() throws Exception {
+   public void testGetInstance() {
 
       final Object instance = CacheManagerProxy.getInstance();
       assertEquals(instance, cacheonix);

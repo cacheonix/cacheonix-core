@@ -15,8 +15,8 @@ package org.cacheonix.impl.cache.datastore;
 
 import java.util.Properties;
 
-import org.cacheonix.TestConstants;
 import junit.framework.TestCase;
+import org.cacheonix.TestConstants;
 
 /**
  * DataStoreContextImpl Tester.
@@ -34,13 +34,13 @@ public final class DataStoreContextImplTest extends TestCase {
    private static final String TEST_CACHE = TestConstants.LOCAL_TEST_CACHE;
 
 
-   public void testGetCacheName() throws Exception {
+   public void testGetCacheName() {
 
       assertEquals(TEST_CACHE, context.getCacheName());
    }
 
 
-   public void testGetProperties() throws Exception {
+   public void testGetProperties() {
 
       assertEquals(properties, context.getProperties());
    }

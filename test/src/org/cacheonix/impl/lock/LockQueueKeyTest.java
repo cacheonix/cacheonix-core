@@ -30,13 +30,13 @@ public final class LockQueueKeyTest extends CacheonixTestCase {
    private LockQueueKey lockQueueKey;
 
 
-   public void testGetLockRegionName() throws Exception {
+   public void testGetLockRegionName() {
 
       assertEquals(TEST_REGION, lockQueueKey.getLockRegionName());
    }
 
 
-   public void testGetLockKey() throws Exception {
+   public void testGetLockKey() {
 
       assertEquals(toBinary(KEY), lockQueueKey.getLockKey());
    }
@@ -49,25 +49,25 @@ public final class LockQueueKeyTest extends CacheonixTestCase {
    }
 
 
-   public void testGetWireableType() throws Exception {
+   public void testGetWireableType() {
 
       assertEquals(Wireable.TYPE_LOCK_QUEUE_KEY, lockQueueKey.getWireableType());
    }
 
 
-   public void testEquals() throws Exception {
+   public void testEquals() {
 
       assertEquals(lockQueueKey, new LockQueueKey(TEST_REGION, toBinary(KEY)));
    }
 
 
-   public void testHashCode() throws Exception {
+   public void testHashCode() {
 
       assertTrue(lockQueueKey.hashCode() != 0);
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(lockQueueKey.toString());
    }

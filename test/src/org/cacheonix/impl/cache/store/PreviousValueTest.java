@@ -24,7 +24,7 @@ public final class PreviousValueTest extends CacheonixTestCase {
    private static final String OBJECT = "Previous value";
 
 
-   public void testGetValue() throws Exception {
+   public void testGetValue() {
 
       final Binary binaryValue = toBinary(OBJECT);
       final PreviousValue previousValue = new PreviousValue(binaryValue, true);
@@ -32,7 +32,7 @@ public final class PreviousValueTest extends CacheonixTestCase {
    }
 
 
-   public void testIsPreviousValuePresent() throws Exception {
+   public void testIsPreviousValuePresent() {
 
       final Binary binaryValue = toBinary(OBJECT);
       final PreviousValue previousValue = new PreviousValue(binaryValue, true);
@@ -40,7 +40,7 @@ public final class PreviousValueTest extends CacheonixTestCase {
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       final Binary binaryValue = toBinary(OBJECT);
       final PreviousValue previousValue = new PreviousValue(binaryValue, true);
@@ -48,7 +48,7 @@ public final class PreviousValueTest extends CacheonixTestCase {
    }
 
 
-   public void testIsPreviousValueNotPresent() throws Exception {
+   public void testIsPreviousValueNotPresent() {
 
       final PreviousValue previousValue = new PreviousValue(null, false);
       assertTrue(!previousValue.isPreviousValuePresent());

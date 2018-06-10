@@ -15,8 +15,8 @@ package org.cacheonix.impl.cache.datasource;
 
 import java.util.Properties;
 
-import org.cacheonix.TestConstants;
 import junit.framework.TestCase;
+import org.cacheonix.TestConstants;
 
 /**
  * DataSourceContextImpl Tester.
@@ -34,13 +34,13 @@ public final class DataSourceContextImplTest extends TestCase {
    private DataSourceContextImpl context = null;
 
 
-   public void testGetCacheName() throws Exception {
+   public void testGetCacheName() {
 
       assertEquals(LOCAL_TEST_CACHE, context.getCacheName());
    }
 
 
-   public void testGetProperties() throws Exception {
+   public void testGetProperties() {
 
       assertEquals(properties, context.getProperties());
    }

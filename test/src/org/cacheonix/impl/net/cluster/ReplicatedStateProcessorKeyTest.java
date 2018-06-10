@@ -22,25 +22,25 @@ public final class ReplicatedStateProcessorKeyTest extends TestCase {
    private ReplicatedStateProcessorKey instance;
 
 
-   public void testGetInstance() throws Exception {
+   public void testGetInstance() {
 
       assertNotNull(instance);
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(instance.toString());
    }
 
 
-   public void testEquals() throws Exception {
+   public void testEquals() {
 
       assertEquals(instance, ReplicatedStateProcessorKey.getInstance());
    }
 
 
-   public void testHashCode() throws Exception {
+   public void testHashCode() {
 
       assertTrue(instance.hashCode() != 0);
    }

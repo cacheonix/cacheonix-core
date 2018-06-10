@@ -29,19 +29,19 @@ public class BinaryStoreDataSourceObjectImplTest extends CacheonixTestCase {
    private TimeImpl timeToRead;
 
 
-   public void testGetObject() throws Exception {
+   public void testGetObject() {
 
       assertEquals(TEST_OBJECT, binaryStoreDataSourceObject.getObject());
    }
 
 
-   public void testGetTimeToRead() throws Exception {
+   public void testGetTimeToRead() {
 
       assertEquals(timeToRead, binaryStoreDataSourceObject.getTimeToRead());
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(binaryStoreDataSourceObject.toString());
    }

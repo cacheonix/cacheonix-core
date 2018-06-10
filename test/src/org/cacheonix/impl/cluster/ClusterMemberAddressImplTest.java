@@ -30,7 +30,7 @@ public final class ClusterMemberAddressImplTest extends TestCase {
    private ClusterMemberAddressImpl clusterMemberAddress;
 
 
-   public void testGetInetAddress() throws Exception {
+   public void testGetInetAddress() {
 
       assertEquals(inetAddress, clusterMemberAddress.getInetAddress());
    }
@@ -44,19 +44,19 @@ public final class ClusterMemberAddressImplTest extends TestCase {
    }
 
 
-   public void testEquals() throws Exception {
+   public void testEquals() {
 
       assertEquals(clusterMemberAddress, new ClusterMemberAddressImpl(inetAddress));
    }
 
 
-   public void testHashCode() throws Exception {
+   public void testHashCode() {
 
       assertTrue(clusterMemberAddress.hashCode() != 0);
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(clusterMemberAddress.toString());
    }

@@ -35,7 +35,7 @@ public final class GroupEventSubscriberListTest extends CacheonixTestCase {
    private GroupEventSubscriberList list;
 
 
-   public void testSize() throws Exception {
+   public void testSize() {
 
       list.add(new GroupEventSubscriber() {
 

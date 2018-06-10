@@ -50,43 +50,43 @@ public final class BinaryEntryModifiedEventTest extends CacheonixTestCase {
    private BinaryEntryModifiedEvent event = null;
 
 
-   public void testGetUpdateType() throws Exception {
+   public void testGetUpdateType() {
 
       assertEquals(UPDATE_TYPE, event.getUpdateType());
    }
 
 
-   public void testGetKey() throws Exception {
+   public void testGetKey() {
 
       assertEquals(BINARY_KEY, event.getUpdatedKey());
    }
 
 
-   public void testGetValue() throws Exception {
+   public void testGetValue() {
 
       assertEquals(BINARY_NEW_VALUE, event.getNewValue());
    }
 
 
-   public void testGetPreviousValue() throws Exception {
+   public void testGetPreviousValue() {
 
       assertEquals(BINARY_PREVIOUS_VALUE, event.getPreviousValue());
    }
 
 
-   public void testGetLastUpdateTimeMillis() throws Exception {
+   public void testGetLastUpdateTimeMillis() {
 
       assertEquals(LAST_UPDATE_TIME_MILLIS, event.getLastUpdateTime());
    }
 
 
-   public void testGetVersion() throws Exception {
+   public void testGetVersion() {
 
       assertEquals(VERSION, event.getVersion());
    }
 
 
-   public void testGetUpdater() throws Exception {
+   public void testGetUpdater() {
 
       assertEquals(UPDATER, event.getUpdater());
    }

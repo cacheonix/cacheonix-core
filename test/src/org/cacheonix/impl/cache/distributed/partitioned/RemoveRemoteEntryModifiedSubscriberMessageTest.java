@@ -36,7 +36,7 @@ public final class RemoveRemoteEntryModifiedSubscriberMessageTest extends Cacheo
    private RemoveRemoteEntryModifiedSubscriberMessage message;
 
 
-   public void testSetBucketNumber() throws Exception {
+   public void testSetBucketNumber() {
 
       assertEquals(BUCKET_NUMBER, message.getBucketNumber());
    }
@@ -48,13 +48,13 @@ public final class RemoveRemoteEntryModifiedSubscriberMessageTest extends Cacheo
    }
 
 
-   public void testSetKey() throws Exception {
+   public void testSetKey() {
 
       assertEquals(KEY, message.getKey());
    }
 
 
-   public void testSetSubscriberIdentity() throws Exception {
+   public void testSetSubscriberIdentity() {
 
       assertEquals(SUBSCRIBER_IDENTITY, message.getSubscriberIdentity());
    }
@@ -73,7 +73,7 @@ public final class RemoveRemoteEntryModifiedSubscriberMessageTest extends Cacheo
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(message.toString());
    }

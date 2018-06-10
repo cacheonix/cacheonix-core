@@ -16,8 +16,8 @@ package org.cacheonix.impl.net.processor;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-import org.cacheonix.impl.util.logging.Logger;
 import junit.framework.TestCase;
+import org.cacheonix.impl.util.logging.Logger;
 
 /**
  * Tester for Processor
@@ -53,14 +53,14 @@ public final class ProcessorTest extends TestCase {
    }
 
 
-   public void testStartup() throws Exception {
+   public void testStartup() {
 
       // Assert
       assertTrue(processor.isAlive());
    }
 
 
-   public void testShutdown() throws Exception {
+   public void testShutdown() {
 
       // Shutdown
       processor.shutdown();
@@ -70,7 +70,7 @@ public final class ProcessorTest extends TestCase {
    }
 
 
-   public void testIsProcessorThread() throws Exception {
+   public void testIsProcessorThread() {
 
       assertFalse(processor.isProcessorThread());
    }
@@ -92,7 +92,7 @@ public final class ProcessorTest extends TestCase {
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(processor.toString());
    }

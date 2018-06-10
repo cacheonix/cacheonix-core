@@ -23,25 +23,25 @@ public final class ClusterProcessorKeyTest extends TestCase {
    private ClusterProcessorKey instance;
 
 
-   public void testGetInstance() throws Exception {
+   public void testGetInstance() {
 
       assertNotNull(instance);
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(instance.toString());
    }
 
 
-   public void testEquals() throws Exception {
+   public void testEquals() {
 
       assertEquals(instance, ClusterProcessorKey.getInstance());
    }
 
 
-   public void testHashCode() throws Exception {
+   public void testHashCode() {
 
       assertTrue(instance.hashCode() != 0);
    }

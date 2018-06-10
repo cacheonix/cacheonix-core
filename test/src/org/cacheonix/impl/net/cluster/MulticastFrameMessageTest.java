@@ -29,7 +29,7 @@ public class MulticastFrameMessageTest extends CacheonixTestCase {
    private MulticastFrameMessage message;
 
 
-   public void testSetFrame() throws Exception {
+   public void testSetFrame() {
 
       assertNull("Default should be 'null'", message.getFrame());
       final Frame frame = new Frame();
@@ -44,7 +44,7 @@ public class MulticastFrameMessageTest extends CacheonixTestCase {
    }
 
 
-   public void testSetOriginator() throws Exception {
+   public void testSetOriginator() {
 
       assertFalse("Default should be 'false'", message.isOriginator());
       message.setOriginator(true);
@@ -76,13 +76,13 @@ public class MulticastFrameMessageTest extends CacheonixTestCase {
    }
 
 
-   public void testHashCode() throws Exception {
+   public void testHashCode() {
 
       assertTrue(message.hashCode() != 0);
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(message.toString());
    }

@@ -14,7 +14,7 @@ import static org.mockito.Mockito.verify;
  */
 public final class ShutdownClusterProcessorCommandTest extends TestCase {
 
-   public void testExecute() throws Exception {
+   public void testExecute() {
 
       // Prepare
       final ClusterProcessor processor = mock(ClusterProcessor.class);

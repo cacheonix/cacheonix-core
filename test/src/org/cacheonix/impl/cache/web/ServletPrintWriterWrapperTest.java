@@ -33,7 +33,7 @@ public final class ServletPrintWriterWrapperTest extends TestCase {
    private ServletPrintWriterWrapper servletPrintWriterWrapper;
 
 
-   public void testPrintln() throws Exception {
+   public void testPrintln() {
 
       servletPrintWriterWrapper.println(TEST_STRING);
       servletPrintWriterWrapper.flush();
@@ -41,7 +41,7 @@ public final class ServletPrintWriterWrapperTest extends TestCase {
    }
 
 
-   public void testPrint() throws Exception {
+   public void testPrint() {
 
       servletPrintWriterWrapper.print(TEST_STRING);
       servletPrintWriterWrapper.flush();
@@ -49,7 +49,7 @@ public final class ServletPrintWriterWrapperTest extends TestCase {
    }
 
 
-   public void testPrintf() throws Exception {
+   public void testPrintf() {
 
       servletPrintWriterWrapper.printf("This is a %s", TEST_STRING);
       servletPrintWriterWrapper.flush();

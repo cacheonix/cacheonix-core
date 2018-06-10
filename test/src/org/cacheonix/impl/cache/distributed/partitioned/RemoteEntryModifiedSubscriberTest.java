@@ -20,7 +20,7 @@ import junit.framework.TestCase;
  */
 public final class RemoteEntryModifiedSubscriberTest extends TestCase {
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(new RemoteEntryModifiedSubscriber().toString());
    }

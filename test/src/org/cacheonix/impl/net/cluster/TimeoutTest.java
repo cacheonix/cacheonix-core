@@ -32,7 +32,7 @@ public final class TimeoutTest extends TestCase {
    private TimeoutImpl timeout = null;
 
 
-   public void testSetGetDuration() throws Exception {
+   public void testSetGetDuration() {
       // Tests duration set at construction
       assertEquals((long) TIMEOUT_DURATION, timeout.getDuration());
    }

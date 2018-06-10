@@ -18,13 +18,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import junit.framework.TestCase;
 import org.cacheonix.TestUtils;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.processor.UUID;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
 import org.cacheonix.impl.net.serializer.Wireable;
-import junit.framework.TestCase;
 
 /**
  * RecoveryMarker Tester.
@@ -44,7 +44,7 @@ public final class RecoveryMarkerTest extends TestCase {
    private List previousList;
 
 
-   public void testSetGetOriginator() throws Exception {
+   public void testSetGetOriginator() {
 
       assertEquals(originator, recoveryMarker.getOriginator());
       final ClusterNodeAddress clusterNodeAddress = TestUtils.createTestAddress();
@@ -53,13 +53,13 @@ public final class RecoveryMarkerTest extends TestCase {
    }
 
 
-   public void testGetCurrentList() throws Exception {
+   public void testGetCurrentList() {
 
          assertEquals(currentList, recoveryMarker.getCurrentList());
    }
 
 
-   public void testGetPreviousList() throws Exception {
+   public void testGetPreviousList() {
 
       assertEquals(previousList, recoveryMarker.getPreviousList());
    }

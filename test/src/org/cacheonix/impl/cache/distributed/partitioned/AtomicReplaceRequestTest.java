@@ -53,25 +53,25 @@ public final class AtomicReplaceRequestTest extends CacheonixTestCase {
    }
 
 
-   public void testGetPartitionName() throws Exception {
+   public void testGetPartitionName() {
 
       assertEquals(CACHE_NAME, request.getCacheName());
    }
 
 
-   public void testGetKey() throws Exception {
+   public void testGetKey() {
 
       assertEquals(KEY, request.getKey());
    }
 
 
-   public void testGetOldValue() throws Exception {
+   public void testGetOldValue() {
 
       assertEquals(OLD_VALUE, request.getOldValue());
    }
 
 
-   public void testGetNewValue() throws Exception {
+   public void testGetNewValue() {
 
       assertEquals(NEW_VALUE, request.getNewValue());
    }
@@ -83,7 +83,7 @@ public final class AtomicReplaceRequestTest extends CacheonixTestCase {
    }
 
 
-   public void testGetProcessID() throws Exception {
+   public void testGetProcessID() {
 
       assertEquals(clusterNodeAddress, request.getSender());
    }

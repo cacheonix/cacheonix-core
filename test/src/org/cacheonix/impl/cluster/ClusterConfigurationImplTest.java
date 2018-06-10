@@ -43,7 +43,7 @@ public final class ClusterConfigurationImplTest extends TestCase {
    private ClusterConfigurationImpl clusterConfiguration;
 
 
-   public void testGetClusterMembers() throws Exception {
+   public void testGetClusterMembers() {
 
       assertEquals(clusterMembers, clusterConfiguration.getClusterMembers());
    }
@@ -63,13 +63,13 @@ public final class ClusterConfigurationImplTest extends TestCase {
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(clusterConfiguration.toString());
    }
 
 
-   public void testGetClusterState() throws Exception {
+   public void testGetClusterState() {
 
       assertEquals(CLUSTER_STATE, clusterConfiguration.getClusterState());
    }
@@ -81,14 +81,14 @@ public final class ClusterConfigurationImplTest extends TestCase {
 
 
    @SuppressWarnings("ObjectEqualsNull")
-   public void testEquals() throws Exception {
+   public void testEquals() {
 
       assertEquals(new ClusterConfigurationImpl("test-UUID", OPERATIONAL, clusterMembers), clusterConfiguration);
       assertFalse(clusterConfiguration.equals(null)); // NOPMD
    }
 
 
-   public void testHashCode() throws Exception {
+   public void testHashCode() {
 
       assertEquals(906371477, clusterConfiguration.hashCode());
    }

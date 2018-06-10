@@ -32,19 +32,19 @@ public class CacheableEntryTest extends CacheonixTestCase {
    private CacheableValue value = null;
 
 
-   public void testGetKey() throws Exception {
+   public void testGetKey() {
 
       assertEquals(key, cacheableEntry.getKey());
    }
 
 
-   public void testGetValue() throws Exception {
+   public void testGetValue() {
 
       assertEquals(value, cacheableEntry.getValue());
    }
 
 
-   public void testGetWireableType() throws Exception {
+   public void testGetWireableType() {
 
       assertEquals(Wireable.TYPE_CACHEABLE_ENTRY, cacheableEntry.getWireableType());
    }
@@ -57,7 +57,7 @@ public class CacheableEntryTest extends CacheonixTestCase {
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(cacheableEntry.toString());
    }

@@ -42,7 +42,7 @@ public final class UpdateKeyRequestTest extends CacheonixTestCase {
    private UpdateKeyRequest request;
 
 
-   public void testCreate() throws Exception {
+   public void testCreate() {
 
       assertEquals(EXPECTED_ELEMENT_UPDATE_COUNTER, request.getExpectedElementUpdateCounter());
       assertEquals(TIME_TO_READ, request.getTimeToRead());
@@ -50,7 +50,7 @@ public final class UpdateKeyRequestTest extends CacheonixTestCase {
    }
 
 
-   public void testCreateRequest() throws Exception {
+   public void testCreateRequest() {
 
       final KeyRequest copy = request.createRequest();
       assertTrue(copy instanceof UpdateKeyRequest);

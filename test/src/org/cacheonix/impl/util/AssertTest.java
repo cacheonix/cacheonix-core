@@ -34,7 +34,7 @@ public final class AssertTest extends CacheonixTestCase {
    private static final Logger LOG = Logger.getLogger(AssertTest.class); // NOPMD
 
 
-   public void testAssertEquals() throws Exception {
+   public void testAssertEquals() {
 
       Assert.assertEquals((byte) 0, (byte) 0);
       try {

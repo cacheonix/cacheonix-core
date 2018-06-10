@@ -16,7 +16,6 @@ package org.cacheonix.impl;
 import org.cacheonix.CacheonixTestCase;
 import org.cacheonix.TestUtils;
 import org.cacheonix.cache.Cache;
-import org.cacheonix.impl.cache.storage.disk.StorageException;
 import org.cacheonix.impl.config.CacheonixConfiguration;
 import org.cacheonix.impl.config.ConfigurationReader;
 import org.cacheonix.impl.config.PartitionedCacheConfiguration;
@@ -59,7 +58,7 @@ public class DistributedCacheonixTCPMulticastTest extends CacheonixTestCase {
 
    /**
     */
-   public void testGetCache() throws InterruptedException, StorageException {
+   public void testGetCache() {
 
       Cache<String, String> cache = null;
       boolean timeoutReached = false;

@@ -29,19 +29,19 @@ public final class AssembledMessageImplTest extends TestCase {
    private AssembledMessageImpl assembledMessage;
 
 
-   public void testGetMessage() throws Exception {
+   public void testGetMessage() {
 
       assertEquals(message, assembledMessage.getMessage());
    }
 
 
-   public void testGetStartFrameNumber() throws Exception {
+   public void testGetStartFrameNumber() {
 
       assertEquals(START_FRAME, assembledMessage.getStartFrameNumber());
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(assembledMessage.toString());
    }

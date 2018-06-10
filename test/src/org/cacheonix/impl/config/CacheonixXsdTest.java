@@ -130,7 +130,7 @@ public final class CacheonixXsdTest extends CacheonixTestCase {
 
    public static class ErrorHandler implements org.xml.sax.ErrorHandler {
 
-      public void warning(final SAXParseException exception) throws SAXException {
+      public void warning(final SAXParseException exception) {
 
          LOG.warn(exception.toString());
 

@@ -13,11 +13,11 @@
  */
 package org.cacheonix.plugin.mybatis.v300;
 
+import org.apache.ibatis.cache.CacheKey;
 import org.cacheonix.Cacheonix;
 import org.cacheonix.CacheonixTestCase;
 import org.cacheonix.ShutdownMode;
 import org.cacheonix.TestUtils;
-import org.apache.ibatis.cache.CacheKey;
 
 public abstract class MyBatisCacheTestDriver extends CacheonixTestCase {
 
@@ -33,7 +33,7 @@ public abstract class MyBatisCacheTestDriver extends CacheonixTestCase {
    private Cacheonix cacheonix;
 
 
-   public void testClear() throws Exception {
+   public void testClear() {
 
       final CacheKey cacheKey = createKey();
       myBatisCache.putObject(cacheKey, TEST_VALUE);
@@ -42,13 +42,13 @@ public abstract class MyBatisCacheTestDriver extends CacheonixTestCase {
    }
 
 
-   public void testGetId() throws Exception {
+   public void testGetId() {
 
       assertEquals(ID, myBatisCache.getId());
    }
 
 
-   public void testGetObject() throws Exception {
+   public void testGetObject() {
 
       final CacheKey cacheKey = createKey();
       myBatisCache.putObject(cacheKey, TEST_VALUE);
@@ -56,13 +56,13 @@ public abstract class MyBatisCacheTestDriver extends CacheonixTestCase {
    }
 
 
-   public void testGetReadWriteLock() throws Exception {
+   public void testGetReadWriteLock() {
 
       assertNotNull(myBatisCache.getReadWriteLock());
    }
 
 
-   public void testGetSize() throws Exception {
+   public void testGetSize() {
 
       final CacheKey cacheKey = createKey();
       myBatisCache.putObject(cacheKey, TEST_VALUE);
@@ -70,7 +70,7 @@ public abstract class MyBatisCacheTestDriver extends CacheonixTestCase {
    }
 
 
-   public void testPutObject() throws Exception {
+   public void testPutObject() {
 
       final CacheKey cacheKey = createKey();
       myBatisCache.putObject(cacheKey, TEST_VALUE);
@@ -78,7 +78,7 @@ public abstract class MyBatisCacheTestDriver extends CacheonixTestCase {
    }
 
 
-   public void testRemoveObject() throws Exception {
+   public void testRemoveObject() {
 
       final CacheKey cacheKey = createKey();
       myBatisCache.putObject(cacheKey, TEST_VALUE);
@@ -87,19 +87,19 @@ public abstract class MyBatisCacheTestDriver extends CacheonixTestCase {
    }
 
 
-   public void testEquals() throws Exception {
+   public void testEquals() {
 
       assertEquals(myBatisCache, createMyBatisCache(cacheonix));
    }
 
 
-   public void testHashCode() throws Exception {
+   public void testHashCode() {
 
       assertTrue(myBatisCache.hashCode() != 0);
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(myBatisCache.toString());
    }

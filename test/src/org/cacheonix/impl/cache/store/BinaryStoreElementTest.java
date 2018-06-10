@@ -59,19 +59,19 @@ public final class BinaryStoreElementTest extends CacheonixTestCase {
    }
 
 
-   public void testGetCreatedTimeMillis() throws Exception {
+   public void testGetCreatedTimeMillis() {
 
       assertTrue(element.getCreatedTime().compareTo(getClock().currentTime()) < 0);
    }
 
 
-   public void testGetLastTimeAccessedMillis() throws Exception {
+   public void testGetLastTimeAccessedMillis() {
 
       assertTrue(element.getIdleTime().compareTo(getClock().currentTime()) < 0);
    }
 
 
-   public void testSetLastTimeAccessedMillis() throws Exception {
+   public void testSetLastTimeAccessedMillis() {
 
       element.setIdleTime(new TimeImpl(EXPIRATION_TIME_MILLIS, 0));
 
@@ -87,13 +87,13 @@ public final class BinaryStoreElementTest extends CacheonixTestCase {
    }
 
 
-   public void testInitialBeforeIsNull() throws Exception {
+   public void testInitialBeforeIsNull() {
 
       assertNull(element.getBefore());
    }
 
 
-   public void testSetBefore() throws Exception {
+   public void testSetBefore() {
 
       final BinaryStoreElement before = new BinaryStoreElement();
       element.setBefore(before);
@@ -101,14 +101,14 @@ public final class BinaryStoreElementTest extends CacheonixTestCase {
    }
 
 
-   public void testInitialAfterIsNull() throws Exception {
+   public void testInitialAfterIsNull() {
 
 
       assertNull(element.getAfter());
    }
 
 
-   public void testSetAfter() throws Exception {
+   public void testSetAfter() {
 
       final BinaryStoreElement after = new BinaryStoreElement();
       element.setAfter(after);
@@ -116,14 +116,14 @@ public final class BinaryStoreElementTest extends CacheonixTestCase {
    }
 
 
-   public void testInvalidate() throws Exception {
+   public void testInvalidate() {
 
       element.invalidate();
       assertFalse(element.isValid());
    }
 
 
-   public void testIsInvalid() throws Exception {
+   public void testIsInvalid() {
 
       assertTrue(element.isValid());
    }

@@ -19,7 +19,7 @@ public final class BinaryStoreDataSourceFactoryTest extends TestCase {
    /**
     * Confirms that supplying null DataSource class results in a dummy datasource.
     */
-   public final void testCreateDummyDataSource() throws Exception {
+   public final void testCreateDummyDataSource() {
 
       final BinaryStoreDataSource binaryStoreDataSource = binaryStoreDataSourceFactory.createDataSource(clock,
               "test-cache-name", null, new Properties(), false, null, null);

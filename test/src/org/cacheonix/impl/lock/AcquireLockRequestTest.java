@@ -47,7 +47,7 @@ public class AcquireLockRequestTest extends CacheonixTestCase {
    private Time forcedUnlockTime;
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(request.toString());
    }
@@ -62,13 +62,13 @@ public class AcquireLockRequestTest extends CacheonixTestCase {
    }
 
 
-   public void testHashCode() throws IOException, ClassNotFoundException {
+   public void testHashCode() {
 
       assertTrue(request.hashCode() != 0);
    }
 
 
-   public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+   public void testSerializeDeserialize() throws IOException {
 
       final Serializer ser = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);
       assertEquals(request, ser.deserialize(ser.serialize(request)));

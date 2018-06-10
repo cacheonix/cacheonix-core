@@ -21,13 +21,13 @@ public final class ReceiverAddressTest extends CacheonixTestCase {
    private InetAddress tcpAddress;
 
 
-   public void testGetTcpPort() throws Exception {
+   public void testGetTcpPort() {
 
       assertEquals(PORT_7676, receiverAddress.getTcpPort());
    }
 
 
-   public void testGetAddresses() throws Exception {
+   public void testGetAddresses() {
 
       assertEquals(new InetAddress[]{tcpAddress}, receiverAddress.getAddresses());
    }
@@ -40,19 +40,19 @@ public final class ReceiverAddressTest extends CacheonixTestCase {
    }
 
 
-   public void testGetWireableType() throws Exception {
+   public void testGetWireableType() {
 
       assertWireableTypeEquals(291, receiverAddress);
    }
 
 
-   public void testEquals() throws Exception {
+   public void testEquals() {
 
       assertEquals(receiverAddress, new ReceiverAddress(tcpAddress, PORT_7676));
    }
 
 
-   public void testHashCode() throws Exception {
+   public void testHashCode() {
 
       assertEquals(2130944420, receiverAddress.hashCode());
 
@@ -66,7 +66,7 @@ public final class ReceiverAddressTest extends CacheonixTestCase {
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(receiverAddress.toString());
    }

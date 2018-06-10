@@ -24,13 +24,13 @@ public final class PartitionedSessionReplicaStoreConfigurationTest extends TestC
    private PartitionedSessionReplicaStoreConfiguration configuration;
 
 
-   public void testGetReplicaCount() throws Exception {
+   public void testGetReplicaCount() {
 
       assertEquals(1, configuration.getReplicaCount());
    }
 
 
-   public void testMaxBytes() throws Exception {
+   public void testMaxBytes() {
 
       assertEquals(1048576, configuration.getMaxBytes());
    }

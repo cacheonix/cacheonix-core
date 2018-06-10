@@ -31,13 +31,13 @@ public final class EntryImplTest extends TestCase {
    private EntryImpl entry = null;
 
 
-   public void testGetKey() throws Exception {
+   public void testGetKey() {
 
       assertEquals(KEY, entry.getKey());
    }
 
 
-   public void testSetGetValue() throws Exception {
+   public void testSetGetValue() {
 
       assertEquals(VALUE, entry.getValue());
    }

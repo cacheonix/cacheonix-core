@@ -13,9 +13,9 @@
  */
 package org.cacheonix.impl.net.cluster;
 
+import junit.framework.TestCase;
 import org.cacheonix.impl.net.processor.SimpleProcessorKey;
 import org.cacheonix.impl.net.serializer.Wireable;
-import junit.framework.TestCase;
 
 /**
  * Tester for SimpleProcessorKey.
@@ -25,20 +25,20 @@ public final class SimpleProcessorKeyTest extends TestCase {
    private SimpleProcessorKey key;
 
 
-   public void testEquals() throws Exception {
+   public void testEquals() {
 
       assertEquals(key, ClusterProcessorKey.getInstance());
       assertTrue(!key.equals(new SimpleProcessorKey(Wireable.DESTINATION_CACHE_PROCESSOR)));
    }
 
 
-   public void testHashCode() throws Exception {
+   public void testHashCode() {
 
       assertTrue(key.hashCode() != 0);
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(key.toString());
    }

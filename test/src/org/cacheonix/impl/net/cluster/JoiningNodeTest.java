@@ -31,7 +31,7 @@ public class JoiningNodeTest extends CacheonixTestCase {
    private ClusterNodeAddress address;
 
 
-   public void testGetAddress() throws Exception {
+   public void testGetAddress() {
 
       assertEquals(address, node.getAddress());
    }
@@ -44,25 +44,25 @@ public class JoiningNodeTest extends CacheonixTestCase {
    }
 
 
-   public void testGetWireableType() throws Exception {
+   public void testGetWireableType() {
 
       assertEquals(Wireable.TYPE_JOINING_NODE, node.getWireableType());
    }
 
 
-   public void testEquals() throws Exception {
+   public void testEquals() {
 
       assertEquals(node, new JoiningNode(address));
    }
 
 
-   public void testHashCode() throws Exception {
+   public void testHashCode() {
 
       assertTrue(node.hashCode() != 0);
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(node.toString());
    }

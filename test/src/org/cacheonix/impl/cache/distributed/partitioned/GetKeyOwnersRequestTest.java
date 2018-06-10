@@ -15,10 +15,10 @@ package org.cacheonix.impl.cache.distributed.partitioned;
 
 import java.io.IOException;
 
+import junit.framework.TestCase;
 import org.cacheonix.TestUtils;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
-import junit.framework.TestCase;
 
 /**
  * Tester for GetKeyOwnersRequest.
@@ -30,14 +30,14 @@ public class GetKeyOwnersRequestTest extends TestCase {
    private static final String TEST_CACHE = "test.cache";
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(request.toString());
 
    }
 
 
-   public void testSerializeDeserialize() throws IOException, ClassNotFoundException {
+   public void testSerializeDeserialize() throws IOException {
 
       request.setSender(TestUtils.createTestAddress());
       final Serializer ser = SerializerFactory.getInstance().getSerializer(Serializer.TYPE_JAVA);

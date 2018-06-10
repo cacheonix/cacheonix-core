@@ -56,7 +56,7 @@ public final class BlockedMarkerTest extends CacheonixTestCase {
    private BlockedMarker blockedMarker;
 
 
-   public void testSetGetNextAnnouncementTimeout() throws Exception {
+   public void testSetGetNextAnnouncementTimeout() {
 
       final Time nextAnnouncementTime = getClock().currentTime();
       blockedMarker.setNextAnnouncementTime(nextAnnouncementTime);
@@ -70,7 +70,7 @@ public final class BlockedMarkerTest extends CacheonixTestCase {
    }
 
 
-   public void testSetGetJoin() throws Exception {
+   public void testSetGetJoin() {
 
       final ClusterNodeAddress clusterNodeAddress = createTestAddress();
 
@@ -80,7 +80,7 @@ public final class BlockedMarkerTest extends CacheonixTestCase {
    }
 
 
-   public void testSetGetLeave() throws Exception {
+   public void testSetGetLeave() {
 
       final ClusterNodeAddress clusterNodeAddress = createTestAddress();
       blockedMarker.setLeave(clusterNodeAddress);
@@ -88,7 +88,7 @@ public final class BlockedMarkerTest extends CacheonixTestCase {
    }
 
 
-   public void testSetGetPredecessor() throws Exception {
+   public void testSetGetPredecessor() {
 
       final ClusterNodeAddress clusterNodeAddress = createTestAddress();
       blockedMarker.setPredecessor(clusterNodeAddress);
@@ -96,7 +96,7 @@ public final class BlockedMarkerTest extends CacheonixTestCase {
    }
 
 
-   public void testSetGetTargetMajorityMarkerListSize() throws Exception {
+   public void testSetGetTargetMajorityMarkerListSize() {
 
       blockedMarker.setTargetMajorityClusterSize(TARGET_MAJORITY_CLUSTER_SIZE);
       assertEquals(TARGET_MAJORITY_CLUSTER_SIZE, blockedMarker.getTargetMajorityClusterSize());

@@ -15,8 +15,8 @@ package org.cacheonix.impl.cache.invalidator;
 
 import java.util.Properties;
 
-import org.cacheonix.TestConstants;
 import junit.framework.TestCase;
+import org.cacheonix.TestConstants;
 
 /**
  * CacheInvalidatorContextImpl Tester.
@@ -34,13 +34,13 @@ public final class CacheInvalidatorContextImplTest extends TestCase {
    private Properties properties = null;
 
 
-   public void testGetCacheName() throws Exception {
+   public void testGetCacheName() {
 
       assertEquals(TEST_CACHE_NAME, context.getCacheName());
    }
 
 
-   public void testGetProperties() throws Exception {
+   public void testGetProperties() {
 
       assertEquals(properties, context.getProperties());
    }

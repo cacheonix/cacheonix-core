@@ -27,7 +27,7 @@ public final class DummyDataSourceTest extends CacheonixTestCase {
    private DummyBinaryStoreDataSource dummyBinaryStoreDataSource = null;
 
 
-   public void testGet() throws Exception {
+   public void testGet() {
 
       assertNull(dummyBinaryStoreDataSource.get(toBinary("key")));
    }

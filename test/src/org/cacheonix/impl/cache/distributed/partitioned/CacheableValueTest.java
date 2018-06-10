@@ -38,13 +38,13 @@ public final class CacheableValueTest extends CacheonixTestCase {
    private CacheableValue cacheableValue;
 
 
-   public void testGetValue() throws Exception {
+   public void testGetValue() {
 
       assertEquals(binaryValue, cacheableValue.getBinaryValue());
    }
 
 
-   public void testGetExpirationTime() throws Exception {
+   public void testGetExpirationTime() {
 
       assertEquals(expirationTime, cacheableValue.getTimeToLeave());
    }
@@ -65,37 +65,37 @@ public final class CacheableValueTest extends CacheonixTestCase {
    }
 
 
-   public void testGetWireableType() throws Exception {
+   public void testGetWireableType() {
 
       assertEquals(Wireable.TYPE_CACHEABLE_VALUE, cacheableValue.getWireableType());
    }
 
 
-   public void testEquals() throws Exception {
+   public void testEquals() {
 
       assertEquals(createCacheableValue(new TimeImpl(MILLIS, COUNT)), cacheableValue);
    }
 
 
-   public void testHashCode() throws Exception {
+   public void testHashCode() {
 
       assertTrue(cacheableValue.hashCode() != 0);
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(cacheableValue.toString());
    }
 
 
-   public void testHashCodeNullExpirationTime() throws Exception {
+   public void testHashCodeNullExpirationTime() {
 
       assertTrue(createCacheableValue(null).hashCode() != 0);
    }
 
 
-   public void testToStringNullExpirationTime() throws Exception {
+   public void testToStringNullExpirationTime() {
 
       assertNotNull(createCacheableValue(null).toString());
    }

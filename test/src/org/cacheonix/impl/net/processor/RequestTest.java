@@ -13,9 +13,9 @@
  */
 package org.cacheonix.impl.net.processor;
 
+import junit.framework.TestCase;
 import org.cacheonix.impl.net.cluster.ClusterProcessorKey;
 import org.cacheonix.impl.net.serializer.Wireable;
-import junit.framework.TestCase;
 
 /**
  * Message Tester.
@@ -31,7 +31,7 @@ public final class RequestTest extends TestCase {
    private static final int TYPE = Wireable.TYPE_CLUSTER_MULTICAST_MARKER;
 
 
-   public void testGetType() throws Exception {
+   public void testGetType() {
 
       assertEquals(TYPE, message.getWireableType());
    }

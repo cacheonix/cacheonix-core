@@ -15,8 +15,8 @@ package org.cacheonix.impl.cache.loader;
 
 import java.util.Properties;
 
-import org.cacheonix.TestConstants;
 import junit.framework.TestCase;
+import org.cacheonix.TestConstants;
 
 /**
  * CacheLoaderContextImpl Tester.
@@ -34,13 +34,13 @@ public final class CacheLoaderContextImplTest extends TestCase {
    private Properties properties;
 
 
-   public void testGetCacheName() throws Exception {
+   public void testGetCacheName() {
 
       assertEquals(CACHE_NAME, context.getCacheName());
    }
 
 
-   public void testGetProperties() throws Exception {
+   public void testGetProperties() {
 
       assertEquals(properties, context.getProperties());
       assertNotSame(properties, context.getProperties());

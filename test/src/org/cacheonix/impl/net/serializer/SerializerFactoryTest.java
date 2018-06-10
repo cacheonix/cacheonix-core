@@ -35,7 +35,7 @@ public final class SerializerFactoryTest extends TestCase {
    }
 
 
-   public void testGetJavaSerializer() throws Exception {
+   public void testGetJavaSerializer() {
 
       final Serializer serializer = factory.getSerializer(Serializer.TYPE_JAVA);
       assertTrue(serializer instanceof JavaSerializer);
@@ -43,7 +43,7 @@ public final class SerializerFactoryTest extends TestCase {
    }
 
 
-   public void testGetUnknownSerializer() throws Exception {
+   public void testGetUnknownSerializer() {
 
       final Serializer serializer = factory.getSerializer(UNKNOWN_CODE);
       assertTrue(serializer instanceof UnknownTypeSerializer);
@@ -51,7 +51,7 @@ public final class SerializerFactoryTest extends TestCase {
    }
 
 
-   public void testGetInstance() throws Exception {
+   public void testGetInstance() {
 
       assertNotNull(factory);
    }

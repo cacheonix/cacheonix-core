@@ -49,67 +49,67 @@ public final class CachedResponseValueTest extends TestCase {
    private CachedResponseValue cachedResponseValue;
 
 
-   public void testGetContentType() throws Exception {
+   public void testGetContentType() {
 
       assertEquals(TEST_CONTENT_TYPE, cachedResponseValue.getContentType());
    }
 
 
-   public void testGetContentLength() throws Exception {
+   public void testGetContentLength() {
 
       assertEquals(TEST_CONTENT_LENGTH, cachedResponseValue.getContentLength());
    }
 
 
-   public void testGetLocale() throws Exception {
+   public void testGetLocale() {
 
       assertEquals(TEST_LOCALE, cachedResponseValue.getLocale());
    }
 
 
-   public void testGetStatusMessage() throws Exception {
+   public void testGetStatusMessage() {
 
       assertEquals(TEST_STATUS_MESSAGE, cachedResponseValue.getStatusMessage());
    }
 
 
-   public void testGetRedirectUrl() throws Exception {
+   public void testGetRedirectUrl() {
 
       assertEquals(TEST_REDIRECT_URL, cachedResponseValue.getRedirectUrl());
    }
 
 
-   public void testGetStatusCode() throws Exception {
+   public void testGetStatusCode() {
 
       assertEquals(TEST_STATUS_CODE, cachedResponseValue.getStatusCode());
    }
 
 
-   public void testGetByteResponse() throws Exception {
+   public void testGetByteResponse() {
 
       assertEquals(true, Arrays.equals(TEST_BYTE_RESPONSE, cachedResponseValue.getByteResponse()));
    }
 
 
-   public void testGetCookies() throws Exception {
+   public void testGetCookies() {
 
       assertEquals(TEEST_COOKIES, cachedResponseValue.getCookies());
    }
 
 
-   public void testGetHeaders() throws Exception {
+   public void testGetHeaders() {
 
       assertEquals(TEST_HEADERS, cachedResponseValue.getHeaders());
    }
 
 
-   public void testIsTextContentType() throws Exception {
+   public void testIsTextContentType() {
 
       assertTrue(cachedResponseValue.isTextContentType());
    }
 
 
-   public void testIsCompressed() throws Exception {
+   public void testIsCompressed() {
 
       assertTrue(cachedResponseValue.isCompressed());
    }

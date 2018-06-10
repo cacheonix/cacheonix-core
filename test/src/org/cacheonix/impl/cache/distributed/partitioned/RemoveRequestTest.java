@@ -50,13 +50,13 @@ public final class RemoveRequestTest extends CacheonixTestCase {
    }
 
 
-   public void testGetPartitionName() throws Exception {
+   public void testGetPartitionName() {
 
       assertEquals(CACHE_NAME, request.getCacheName());
    }
 
 
-   public void testGetKey() throws Exception {
+   public void testGetKey() {
 
       assertEquals(KEY, request.getKey());
    }
@@ -68,7 +68,7 @@ public final class RemoveRequestTest extends CacheonixTestCase {
    }
 
 
-   public void testGetProcessID() throws Exception {
+   public void testGetProcessID() {
 
       assertEquals(clusterNodeAddress, request.getSender());
    }

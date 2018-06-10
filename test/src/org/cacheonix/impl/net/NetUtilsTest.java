@@ -9,7 +9,7 @@ import static org.cacheonix.impl.net.NetUtils.getLocalInetAddresses;
  */
 public final class NetUtilsTest extends TestCase {
 
-   public void testGetLocalInetAddresses() throws Exception {
+   public void testGetLocalInetAddresses() {
 
       assertFalse(getLocalInetAddresses().isEmpty());
    }

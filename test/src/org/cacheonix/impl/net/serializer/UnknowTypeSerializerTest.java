@@ -29,7 +29,7 @@ public final class UnknowTypeSerializerTest extends TestCase {
    private UnknownTypeSerializer serializer;
 
 
-   public void testGetType() throws Exception {
+   public void testGetType() {
 
       assertEquals(0, (int) serializer.getType());
    }

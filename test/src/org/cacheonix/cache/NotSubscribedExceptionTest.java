@@ -13,13 +13,13 @@ public final class NotSubscribedExceptionTest extends TestCase {
    private NotSubscribedException exception;
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(exception.toString());
    }
 
 
-   public void testGetMessage() throws Exception {
+   public void testGetMessage() {
 
       assertTrue(exception.getMessage().endsWith(TEST_MESSAGE));
    }

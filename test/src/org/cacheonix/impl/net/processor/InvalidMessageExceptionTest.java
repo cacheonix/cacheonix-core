@@ -24,7 +24,7 @@ public class InvalidMessageExceptionTest extends TestCase {
    private static final String TEST_MESSAGE = "Test message";
 
 
-   public void testCreate() throws Exception {
+   public void testCreate() {
 
       final String exceptionAsString = new InvalidMessageException(TEST_MESSAGE).toString();
       assertNotNull(exceptionAsString);

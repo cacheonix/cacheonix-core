@@ -38,25 +38,25 @@ public final class RemoveEntryModifiedSubscriberRequestTest extends CacheonixTes
    private RemoveEntryModifiedSubscriberRequest request;
 
 
-   public void testSetKeys() throws Exception {
+   public void testSetKeys() {
 
       assertEquals(KEYS, request.getKeys());
    }
 
 
-   public void testSetSubscriber() throws Exception {
+   public void testSetSubscriber() {
 
       assertSame(SUBSCRIBER, request.getSubscriber());
    }
 
 
-   public void testSetSubscriberAddress() throws Exception {
+   public void testSetSubscriberAddress() {
 
       assertEquals(SUBSCRIBER_ADDRESS, request.getSubscriberAddress());
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(request.toString());
    }

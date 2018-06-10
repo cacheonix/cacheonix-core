@@ -37,13 +37,13 @@ public class ReceiverKeyHandlerAddressTest extends CacheonixTestCase {
    private int tcpPort;
 
 
-   public void testGetTcpPort() throws Exception {
+   public void testGetTcpPort() {
 
       assertEquals(tcpPort, receiverAddress.getTcpPort());
    }
 
 
-   public void testGetAddresses() throws Exception {
+   public void testGetAddresses() {
 
       assertEquals(addresses, receiverAddress.getAddresses());
 
@@ -57,31 +57,31 @@ public class ReceiverKeyHandlerAddressTest extends CacheonixTestCase {
    }
 
 
-   public void testGetWireableType() throws Exception {
+   public void testGetWireableType() {
 
       assertEquals(Wireable.TYPE_RECEIVER_ADDRESS, receiverAddress.getWireableType());
    }
 
 
-   public void testEquals() throws Exception {
+   public void testEquals() {
 
       assertEquals(new ReceiverAddress(addresses, tcpPort), receiverAddress);
    }
 
 
-   public void testHashCode() throws Exception {
+   public void testHashCode() {
 
       assertTrue(receiverAddress.hashCode() != 0);
    }
 
 
-   public void testIsAddressOf() throws Exception {
+   public void testIsAddressOf() {
 
       assertTrue(receiverAddress.isAddressOf(clusterNodeAddress));
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(receiverAddress.toString());
       assertNotNull(new ReceiverAddress());

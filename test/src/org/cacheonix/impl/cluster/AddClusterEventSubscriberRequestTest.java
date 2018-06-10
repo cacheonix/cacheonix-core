@@ -59,7 +59,7 @@ public final class AddClusterEventSubscriberRequestTest extends TestCase {
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(request.toString());
    }

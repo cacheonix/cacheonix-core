@@ -17,11 +17,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
 
+import junit.framework.TestCase;
 import org.cacheonix.TestUtils;
 import org.cacheonix.impl.net.processor.Frame;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
-import junit.framework.TestCase;
 
 /**
  * PayloadPartitioner Tester.
@@ -44,7 +44,7 @@ public final class PayloadPartitionerTest extends TestCase {
    }
 
 
-   public void testPartitionMultipart() throws IOException, ClassNotFoundException {
+   public void testPartitionMultipart() throws IOException {
 
       runPartitionTest(MULTIPART_OBJECT_SIZE, 4);
    }
@@ -57,7 +57,7 @@ public final class PayloadPartitionerTest extends TestCase {
    }
 
 
-   public void test() throws IOException, ClassNotFoundException {
+   public void test() throws IOException {
 
       runPartitionTest(SINGLE_PART_OBJECT_SIZE, 1);
    }

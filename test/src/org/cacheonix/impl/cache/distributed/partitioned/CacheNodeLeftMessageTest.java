@@ -37,7 +37,7 @@ public final class CacheNodeLeftMessageTest extends TestCase {
    private static final Logger LOG = Logger.getLogger(CacheNodeLeftMessageTest.class); // NOPMD
 
 
-   public void testClearsFrontCache() throws Exception {
+   public void testClearsFrontCache() {
 
       // Mock front cache
       final FrontCache frontCache = mock(FrontCache.class);

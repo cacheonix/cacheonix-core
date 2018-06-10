@@ -29,7 +29,7 @@ public final class PrefetchCommandTimerTaskAdapterTest extends CacheonixTestCase
    private PrefetchCommand prefetchCommand;
 
 
-   public void testRun() throws Exception {
+   public void testRun() {
 
       prefetchCommandTimerTaskAdapter.run();
       verify(prefetchCommand).run();

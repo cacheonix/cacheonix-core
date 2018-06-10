@@ -22,19 +22,19 @@ public final class AssignBucketMessageTest extends TestCase {
    private CacheProcessor cacheProcessor;
 
 
-   public void testGetStorageNumber() throws Exception {
+   public void testGetStorageNumber() {
 
       assertEquals(STORAGE_NUMBER, assignBucketMessage.getStorageNumber());
    }
 
 
-   public void testGetBucketNumber() throws Exception {
+   public void testGetBucketNumber() {
 
       assertEquals(BUCKET_NUMBER, assignBucketMessage.getBucketNumber());
    }
 
 
-   public void testExecuteOperational() throws Exception {
+   public void testExecuteOperational() {
 
       assignBucketMessage.setProcessor(cacheProcessor);
       assignBucketMessage.executeOperational();
@@ -48,7 +48,7 @@ public final class AssignBucketMessageTest extends TestCase {
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(toString());
    }

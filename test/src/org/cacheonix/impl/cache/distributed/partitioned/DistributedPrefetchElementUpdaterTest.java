@@ -13,9 +13,9 @@
  */
 package org.cacheonix.impl.cache.distributed.partitioned;
 
+import junit.framework.TestCase;
 import org.cacheonix.TestUtils;
 import org.cacheonix.impl.net.processor.Router;
-import junit.framework.TestCase;
 
 /**
  * Tester for DistributedPrefetchElementUpdater.
@@ -28,7 +28,7 @@ public final class DistributedPrefetchElementUpdaterTest extends TestCase {
    private DistributedPrefetchElementUpdater distributedPrefetchElementUpdater;
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(distributedPrefetchElementUpdater.toString());
    }

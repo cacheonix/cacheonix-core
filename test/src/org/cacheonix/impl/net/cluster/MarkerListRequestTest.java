@@ -48,13 +48,13 @@ public final class MarkerListRequestTest extends CacheonixTestCase {
    }
 
 
-   public void testGetRepresentative() throws Exception {
+   public void testGetRepresentative() {
 
       assertEquals(message.getClusterView().getRepresentative(), address);
    }
 
 
-   public void testSetGetSender() throws Exception {
+   public void testSetGetSender() {
 
       assertEquals(message.getSender(), address);
    }

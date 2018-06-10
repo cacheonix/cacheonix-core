@@ -23,13 +23,13 @@ public final class MutableBooleanTest extends CacheonixTestCase {
    private MutableBoolean mutableBoolean;
 
 
-   public void testGet() throws Exception {
+   public void testGet() {
 
       assertFalse("Default initial value should be false", mutableBoolean.get());
    }
 
 
-   public void testSet() throws Exception {
+   public void testSet() {
 
       mutableBoolean.set(true);
       assertTrue(mutableBoolean.get());

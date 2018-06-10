@@ -40,19 +40,19 @@ public final class StringHeaderTest extends TestCase {
    private StringHeader header;
 
 
-   public void testGetValue() throws Exception {
+   public void testGetValue() {
 
       assertEquals(VALUE, header.getValue());
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(header.toString());
    }
 
 
-   public void testAddToResponse() throws Exception {
+   public void testAddToResponse() {
 
       final HttpServletResponse httpServletResponse = mock(HttpServletResponse.class);
       header.addToResponse(httpServletResponse);
@@ -60,13 +60,13 @@ public final class StringHeaderTest extends TestCase {
    }
 
 
-   public void testGetName() throws Exception {
+   public void testGetName() {
 
       assertEquals(NAME, header.getName());
    }
 
 
-   public void testGetWireableType() throws Exception {
+   public void testGetWireableType() {
 
       assertEquals(Wireable.TYPE_STRING_HEADER, header.getWireableType());
    }
@@ -79,13 +79,13 @@ public final class StringHeaderTest extends TestCase {
    }
 
 
-   public void testEquals() throws Exception {
+   public void testEquals() {
 
       assertEquals(header, new StringHeader(NAME, VALUE));
    }
 
 
-   public void testHashCode() throws Exception {
+   public void testHashCode() {
 
       assertEquals(1363273561, header.hashCode());
    }

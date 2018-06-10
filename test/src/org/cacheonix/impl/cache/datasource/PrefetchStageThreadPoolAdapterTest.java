@@ -19,7 +19,10 @@ import java.util.concurrent.TimeUnit;
 
 import org.cacheonix.CacheonixTestCase;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  * Tester for PrefetchStageThreadPoolAdapter.
@@ -32,7 +35,7 @@ public final class PrefetchStageThreadPoolAdapterTest extends CacheonixTestCase 
    private ThreadPoolExecutor threadPool;
 
 
-   public void testSchedule() throws Exception {
+   public void testSchedule() {
 
       // Mock prefetch command
       final PrefetchCommand prefetchCommand = mock(PrefetchCommand.class);
@@ -47,13 +50,13 @@ public final class PrefetchStageThreadPoolAdapterTest extends CacheonixTestCase 
    }
 
 
-   public void testNextStage() throws Exception {
+   public void testNextStage() {
 
       assertNull(prefetchScheduler.nextStage());
    }
 
 
-   public void testCancel() throws Exception {
+   public void testCancel() {
 
       final PrefetchCommandImpl prefetchCommand = new PrefetchCommandImpl(mock(PrefetchElementUpdater.class), mock(BinaryStoreDataSource.class), toBinary("test.key"), getClock().currentTime().add(1000L), 1);
       prefetchScheduler.schedule(prefetchCommand);

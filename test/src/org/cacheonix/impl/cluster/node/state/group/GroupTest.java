@@ -54,7 +54,7 @@ public final class GroupTest extends CacheonixTestCase {
    private ClusterNodeAddress address;
 
 
-   public void testSetGetPartitionSize() throws Exception {
+   public void testSetGetPartitionSize() {
 
       assertEquals(PARTITION_SIZE_BYTES, group.getPartitionSizeBytes());
    }
@@ -73,13 +73,13 @@ public final class GroupTest extends CacheonixTestCase {
    }
 
 
-   public void testGetName() throws Exception {
+   public void testGetName() {
 
       assertEquals(NAME, group.getName());
    }
 
 
-   public void testGetType() throws Exception {
+   public void testGetType() {
 
       assertEquals(Group.GROUP_TYPE_CACHE, group.getGroupType());
    }

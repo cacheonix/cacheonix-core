@@ -46,25 +46,25 @@ public final class EntryModifiedSubscriptionTest extends CacheonixTestCase {
    private static final Set<EntryModifiedEventType> EVENT_TYPES = createEventTypes();
 
 
-   public void testGetSubscriberAddress() throws Exception {
+   public void testGetSubscriberAddress() {
 
       assertEquals(SUBSCRIBER_ADDRESS, subscription.getSubscriberAddress());
    }
 
 
-   public void testGetNotificationMode() throws Exception {
+   public void testGetNotificationMode() {
 
       assertEquals(NOTIFICATION_MODE, subscription.getNotificationMode());
    }
 
 
-   public void testGetEventFlags() throws Exception {
+   public void testGetEventFlags() {
 
       assertEquals(Collections.singletonList(EntryModifiedEventContentFlag.NEED_KEY), subscription.getEventContentFlags());
    }
 
 
-   public void testGetSubscriberIdentity() throws Exception {
+   public void testGetSubscriberIdentity() {
 
       assertEquals(SUBSCRIBER_IDENTITY, subscription.getSubscriberIdentity());
    }
@@ -81,13 +81,13 @@ public final class EntryModifiedSubscriptionTest extends CacheonixTestCase {
    }
 
 
-   public void testGetWireableType() throws Exception {
+   public void testGetWireableType() {
 
       assertEquals(Wireable.TYPE_ENTRY_MODIFICATION_SUBSCRIPTION, subscription.getWireableType());
    }
 
 
-   public void testEquals() throws Exception {
+   public void testEquals() {
 
       assertEquals(subscription, new EntryModifiedSubscription(SUBSCRIBER_IDENTITY, SUBSCRIBER_ADDRESS, NOTIFICATION_MODE, EVENT_CONTENT_FLAGS, EVENT_TYPES));
    }
@@ -103,7 +103,7 @@ public final class EntryModifiedSubscriptionTest extends CacheonixTestCase {
    }
 
 
-   public void testHashCode() throws Exception {
+   public void testHashCode() {
 
       assertEquals(SUBSCRIBER_IDENTITY, subscription.hashCode());
    }

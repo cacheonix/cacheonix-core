@@ -35,7 +35,7 @@ public final class MemorySizeTest extends TestCase {
    private static final int ONE = 1;
 
 
-   public void testGetSizeBytes() throws Exception {
+   public void testGetSizeBytes() {
 
       assertEquals(Runtime.getRuntime().maxMemory() / 2, new MemorySize(TEST_DESCRIPTION, "50%").getSizeBytes());
 

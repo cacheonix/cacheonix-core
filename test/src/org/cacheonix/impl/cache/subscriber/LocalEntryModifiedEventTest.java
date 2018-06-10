@@ -43,49 +43,49 @@ public final class LocalEntryModifiedEventTest extends CacheonixTestCase {
    private CacheMember updater;
 
 
-   public void testGetUpdateType() throws Exception {
+   public void testGetUpdateType() {
 
       assertEquals(UPDATE_TYPE, event.getUpdateType());
    }
 
 
-   public void testGetUpdatedKey() throws Exception {
+   public void testGetUpdatedKey() {
 
       assertEquals(UPDATED_KEY, event.getUpdatedKey());
    }
 
 
-   public void testGetNewValue() throws Exception {
+   public void testGetNewValue() {
 
       assertEquals(NEW_VALUE, event.getNewValue());
    }
 
 
-   public void testGetPreviousValue() throws Exception {
+   public void testGetPreviousValue() {
 
       assertEquals(PREVIOUS_VALUE, event.getPreviousValue());
    }
 
 
-   public void testGetLastUpdateTimeMillis() throws Exception {
+   public void testGetLastUpdateTimeMillis() {
 
       assertEquals(LAST_UPDATE_TIME_MILLIS, event.getLastUpdateTime());
    }
 
 
-   public void testGetVersion() throws Exception {
+   public void testGetVersion() {
 
       assertEquals(VERSION, event.getVersion());
    }
 
 
-   public void testGetUpdater() throws Exception {
+   public void testGetUpdater() {
 
       assertEquals(updater, event.getUpdater());
    }
 
 
-   public void testToString() throws Exception {
+   public void testToString() {
 
       assertNotNull(event.toString());
    }
