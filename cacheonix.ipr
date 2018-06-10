@@ -391,11 +391,6 @@
       <entry name="?*.dtd" />
       <entry name="?*.tld" />
     </wildcardResourcePatterns>
-    <annotationProcessing>
-      <profile default="true" name="Default" enabled="false">
-        <processorPath useClasspath="true" />
-      </profile>
-    </annotationProcessing>
   </component>
   <component name="CopyrightManager" default="" />
   <component name="DependenciesAnalyzeManager">
@@ -408,11 +403,8 @@
     <option name="GENERATE_NO_WARNINGS" value="true" />
     <option name="DEPRECATION" value="false" />
   </component>
-  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
+  <component name="Encoding">
     <file url="PROJECT" charset="UTF-8" />
-  </component>
-  <component name="EntryPointsManager">
-    <entry_points version="2.0" />
   </component>
   <component name="ExportToHTMLSettings">
     <option name="PRINT_LINE_NUMBERS" value="false" />
@@ -427,7 +419,6 @@
   <component name="InspectionProjectProfileManager">
     <profile version="1.0">
       <option name="myName" value="Project Default" />
-      <option name="myLocal" value="true" />
       <inspection_tool class="AccessToNonThreadSafeStaticFieldFromInstance" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="nonThreadSafeClasses">
           <value />
@@ -438,6 +429,7 @@
       <inspection_tool class="AnonymousClassVariableHidesContainingMethodVariable" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ArchaicSystemPropertyAccess" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ArrayEquality" enabled="true" level="WARNING" enabled_by_default="true" />
+      <inspection_tool class="AssignmentOrReturnOfFieldWithMutableType" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="AssignmentToCatchBlockParameter" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="AssignmentToCollectionFieldFromParameter" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="ignorePrivateMethods" value="true" />
@@ -472,7 +464,6 @@
       <inspection_tool class="BooleanMethodIsAlwaysInverted" enabled="false" level="WARNING" enabled_by_default="false" />
       <inspection_tool class="BusyWait" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="CStyleArrayDeclaration" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="CachedNumberConstructorCall" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="CallToNativeMethodWhileLocked" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="CallToSimpleGetterInClass" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="ignoreGetterCallsOnOtherObjects" value="false" />
@@ -485,9 +476,12 @@
       <inspection_tool class="CallToStringConcatCanBeReplacedByOperator" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="CastConflictsWithInstanceof" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="CastToIncompatibleInterface" enabled="true" level="WARNING" enabled_by_default="true" />
+      <inspection_tool class="CatchMayIgnoreException" enabled="true" level="WARNING" enabled_by_default="true">
+        <option name="m_ignoreCatchBlocksWithComments" value="false" />
+        <option name="m_ignoreUsedIgnoredName" value="true" />
+      </inspection_tool>
       <inspection_tool class="ChainedEquality" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ChainedEqualityJS" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="ClassEscapesItsScope" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ClassInitializer" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ClassNewInstance" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="CodeBlock2Expr" enabled="false" level="WARNING" enabled_by_default="false" />
@@ -544,7 +538,7 @@
         <option name="m_ignoreInvisibleFields" value="true" />
       </inspection_tool>
       <inspection_tool class="InstanceVariableInitialization" enabled="true" level="WARNING" enabled_by_default="true">
-        <option name="m_ignorePrimitives" value="false" />
+        <option name="m_ignorePrimitives" value="true" />
       </inspection_tool>
       <inspection_tool class="InstanceofIncompatibleInterface" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="InstantiationOfUtilityClass" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -592,10 +586,6 @@
         <option name="REPORT_VARIABLES" value="true" />
         <option name="REPORT_PARAMETERS" value="true" />
       </inspection_tool>
-      <inspection_tool class="LoggerInitializedWithForeignClass" enabled="false" level="WARNING" enabled_by_default="false">
-        <option name="loggerClassName" value="org.apache.log4j.Logger,org.slf4j.LoggerFactory,org.apache.commons.logging.LogFactory,java.util.logging.Logger" />
-        <option name="loggerFactoryMethodName" value="getLogger,getLogger,getLog,getLogger" />
-      </inspection_tool>
       <inspection_tool class="MapReplaceableByEnumMap" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="MethodMayBeStatic" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="m_onlyPrivateOrFinal" value="false" />
@@ -637,6 +627,9 @@
             <item value="forEach" />
           </value>
         </option>
+        <option name="ignoredClasses">
+          <value />
+        </option>
       </inspection_tool>
       <inspection_tool class="MisspelledCompareTo" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="MisspelledEquals" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -654,7 +647,6 @@
       </inspection_tool>
       <inspection_tool class="NestedAssignment" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="NestedSynchronizedStatement" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="NonAtomicOperationOnVolatileField" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="NonSerializableFieldInSerializableClass" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="ignorableAnnotations">
           <value />
@@ -750,7 +742,6 @@
       <inspection_tool class="SignalWithoutCorrespondingAwait" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="SimplifiableAnnotation" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="SimplifiableIfStatement" enabled="false" level="WARNING" enabled_by_default="false" />
-      <inspection_tool class="SimplifiableJUnitAssertion" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="SizeReplaceableByIsEmpty" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="SleepWhileHoldingLock" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="StaticGuardedByInstance" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -761,9 +752,6 @@
       </inspection_tool>
       <inspection_tool class="StringBufferMustHaveInitialCapacity" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="StringBufferToStringInConcatenation" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="StringConcatenationInLoops" enabled="true" level="WARNING" enabled_by_default="true">
-        <option name="m_ignoreUnlessAssigned" value="true" />
-      </inspection_tool>
       <inspection_tool class="StringConcatenationInMessageFormatCall" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="StringEqualsEmptyString" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="StringReplaceableByStringBuffer" enabled="true" level="WARNING" enabled_by_default="true">
@@ -805,6 +793,7 @@
       <inspection_tool class="UnnecessaryConstantArrayCreationExpression" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="UnnecessaryFullyQualifiedName" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="m_ignoreJavadoc" value="false" />
+        <option name="ignoreInModuleStatements" value="true" />
       </inspection_tool>
       <inspection_tool class="UnnecessarySuperConstructor" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="UnusedCatchParameter" enabled="true" level="WARNING" enabled_by_default="true">
@@ -825,8 +814,6 @@
         <option name="ignoreNonEmtpyLoops" value="false" />
       </inspection_tool>
     </profile>
-    <option name="PROJECT_PROFILE" value="Project Default" />
-    <option name="USE_PROJECT_PROFILE" value="true" />
     <version value="1.0" />
     <list size="7">
       <item index="0" class="java.lang.String" itemvalue="INFORMATION" />
@@ -1022,6 +1009,130 @@
         <default-constraints vsize-policy="6" hsize-policy="0" anchor="0" fill="2" />
       </item>
     </group>
+  </component>
+  <component name="ProjectCodeStyleConfiguration">
+    <option name="USE_PER_PROJECT_SETTINGS" value="true" />
+    <code_scheme name="Project" version="173">
+      <option name="USE_SAME_INDENTS" value="true" />
+      <option name="IGNORE_SAME_INDENTS_FOR_LANGUAGES" value="true" />
+      <option name="OTHER_INDENT_OPTIONS">
+        <value>
+          <option name="INDENT_SIZE" value="3" />
+          <option name="TAB_SIZE" value="3" />
+        </value>
+      </option>
+      <JavaCodeStyleSettings>
+        <option name="GENERATE_FINAL_LOCALS" value="true" />
+        <option name="GENERATE_FINAL_PARAMETERS" value="true" />
+        <option name="INSERT_OVERRIDE_ANNOTATION" value="false" />
+        <option name="CLASS_COUNT_TO_USE_IMPORT_ON_DEMAND" value="99" />
+        <option name="NAMES_COUNT_TO_USE_IMPORT_ON_DEMAND" value="10" />
+        <option name="IMPORT_LAYOUT_TABLE">
+          <value>
+            <package name="java" withSubpackages="true" static="false" />
+            <package name="javax" withSubpackages="true" static="false" />
+            <emptyLine />
+            <package name="" withSubpackages="true" static="false" />
+            <emptyLine />
+            <package name="" withSubpackages="true" static="false" />
+            <emptyLine />
+            <package name="" withSubpackages="true" static="false" />
+            <emptyLine />
+            <package name="" withSubpackages="true" static="false" />
+            <emptyLine />
+            <package name="" withSubpackages="true" static="false" />
+            <emptyLine />
+            <package name="" withSubpackages="true" static="false" />
+            <emptyLine />
+            <package name="" withSubpackages="true" static="false" />
+            <emptyLine />
+            <package name="" withSubpackages="true" static="true" />
+          </value>
+        </option>
+      </JavaCodeStyleSettings>
+      <XML>
+        <option name="XML_TEXT_WRAP" value="0" />
+        <option name="XML_LEGACY_SETTINGS_IMPORTED" value="true" />
+      </XML>
+      <ADDITIONAL_INDENT_OPTIONS fileType="haml">
+        <option name="INDENT_SIZE" value="2" />
+      </ADDITIONAL_INDENT_OPTIONS>
+      <ADDITIONAL_INDENT_OPTIONS fileType="txt">
+        <option name="INDENT_SIZE" value="2" />
+      </ADDITIONAL_INDENT_OPTIONS>
+      <codeStyleSettings language="CoffeeScript">
+        <indentOptions>
+          <option name="INDENT_SIZE" value="3" />
+          <option name="CONTINUATION_INDENT_SIZE" value="8" />
+          <option name="TAB_SIZE" value="3" />
+        </indentOptions>
+      </codeStyleSettings>
+      <codeStyleSettings language="ECMA Script Level 4">
+        <option name="BLANK_LINES_AFTER_PACKAGE" value="1" />
+        <option name="BLANK_LINES_AROUND_METHOD" value="2" />
+        <option name="METHOD_PARAMETERS_WRAP" value="1" />
+      </codeStyleSettings>
+      <codeStyleSettings language="GSP">
+        <indentOptions>
+          <option name="INDENT_SIZE" value="3" />
+          <option name="TAB_SIZE" value="3" />
+        </indentOptions>
+      </codeStyleSettings>
+      <codeStyleSettings language="Gherkin">
+        <indentOptions>
+          <option name="INDENT_SIZE" value="3" />
+          <option name="TAB_SIZE" value="3" />
+        </indentOptions>
+      </codeStyleSettings>
+      <codeStyleSettings language="Groovy">
+        <option name="BLANK_LINES_AROUND_FIELD" value="1" />
+        <option name="BLANK_LINES_AROUND_METHOD" value="2" />
+        <option name="BLANK_LINES_BEFORE_METHOD_BODY" value="1" />
+        <option name="BLANK_LINES_AFTER_CLASS_HEADER" value="1" />
+        <option name="METHOD_PARAMETERS_WRAP" value="1" />
+        <indentOptions>
+          <option name="INDENT_SIZE" value="3" />
+          <option name="TAB_SIZE" value="3" />
+        </indentOptions>
+      </codeStyleSettings>
+      <codeStyleSettings language="JAVA">
+        <option name="BLANK_LINES_AROUND_FIELD" value="1" />
+        <option name="BLANK_LINES_AROUND_METHOD" value="2" />
+        <option name="BLANK_LINES_BEFORE_METHOD_BODY" value="1" />
+        <option name="BLANK_LINES_AROUND_FIELD_IN_INTERFACE" value="1" />
+        <option name="BLANK_LINES_AFTER_CLASS_HEADER" value="1" />
+        <option name="BLANK_LINES_AFTER_ANONYMOUS_CLASS_HEADER" value="1" />
+        <option name="ALIGN_MULTILINE_PARAMETERS" value="false" />
+        <option name="CALL_PARAMETERS_WRAP" value="1" />
+        <option name="METHOD_PARAMETERS_WRAP" value="1" />
+        <option name="WRAP_COMMENTS" value="true" />
+        <indentOptions>
+          <option name="INDENT_SIZE" value="3" />
+          <option name="TAB_SIZE" value="3" />
+        </indentOptions>
+      </codeStyleSettings>
+      <codeStyleSettings language="JavaScript">
+        <option name="METHOD_PARAMETERS_WRAP" value="1" />
+        <indentOptions>
+          <option name="CONTINUATION_INDENT_SIZE" value="8" />
+        </indentOptions>
+      </codeStyleSettings>
+      <codeStyleSettings language="SCSS">
+        <indentOptions>
+          <option name="INDENT_SIZE" value="3" />
+          <option name="TAB_SIZE" value="3" />
+        </indentOptions>
+      </codeStyleSettings>
+      <codeStyleSettings language="TypeScript">
+        <option name="METHOD_PARAMETERS_WRAP" value="1" />
+      </codeStyleSettings>
+      <codeStyleSettings language="XML">
+        <indentOptions>
+          <option name="INDENT_SIZE" value="3" />
+          <option name="TAB_SIZE" value="3" />
+        </indentOptions>
+      </codeStyleSettings>
+    </code_scheme>
   </component>
   <component name="ProjectCodeStyleSettingsManager">
     <option name="PER_PROJECT_SETTINGS">
@@ -1421,7 +1532,7 @@
   <component name="ProjectResources">
     <default-html-doctype>http://www.w3.org/1999/xhtml</default-html-doctype>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" default="false" assert-keyword="true" jdk-15="true" project-jdk-name="1.6" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" default="false" project-jdk-name="1.6" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/temp" />
   </component>
   <component name="ResourceManagerContainer">
@@ -1451,9 +1562,7 @@
         <root url="jar://$PROJECT_DIR$/3rdparty/apache-tomcat-7.0.30/lib/catalina.jar!/" />
       </CLASSES>
       <JAVADOC />
-      <SOURCES>
-        <root url="file://$USER_HOME$/Downloads/apache-tomcat-7.0.30-src/java" />
-      </SOURCES>
+      <SOURCES />
     </library>
     <library name="Clover">
       <CLASSES>

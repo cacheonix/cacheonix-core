@@ -21,14 +21,14 @@
       <!--
          Cluster Configuration
       -->
-      <cluster name="trading-cluster" minimumNodeCount="3" homeAloneTimeout="60s" worstCaseLatency="40s" clusterAnnouncementTimeout="100ms" clusterSurveyTimeout="500ms"/>
+      <cluster name="trading-cluster" minimumNodeCount="3" homeAloneTimeout="60s" worstCaseLatency="40s"/>
 
       <!--
          Configuration for point-to-point communications
       -->
       <listener>
 
-         <tcp port="8879" address="127.0.0.1" buffer="128k"/>
+         <tcp port="8879" address="127.0.0.1"/>
       </listener>
 
       <!--
@@ -36,7 +36,7 @@
       -->
       <broadcast>
 
-         <multicast multicastAddress="225.0.1.2" multicastPort="9998" multicastTTL="0"/>
+         <multicast multicastPort="9998" multicastTTL="0"/>
       </broadcast>
 
       <!--

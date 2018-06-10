@@ -9,15 +9,15 @@
 
    <server>
 
-      <cluster homeAloneTimeout="10s" clusterAnnouncementTimeout="100ms" clusterSurveyTimeout="500ms"
-               worstCaseLatency="10s"/>
+      <cluster homeAloneTimeout="10s"
+      />
 
       <listener>
-         <tcp port="8878" address="127.0.0.1" buffer="128k"/>
+         <tcp port="8878" address="127.0.0.1"/>
       </listener>
 
       <broadcast>
-         <multicast multicastAddress="225.0.1.2" multicastPort="9998" multicastTTL="0"/>
+         <multicast multicastPort="9998" multicastTTL="0"/>
       </broadcast>
 
       <partitionedCache name="partitioned.distributed.cache">
@@ -26,7 +26,7 @@
             <overflowToDisk maxOverflowBytes="1mb"/>
             <expiration timeToLive="100ms"/>
             <dataSource className="org.cacheonix.impl.cache.distributed.partitioned.PartitionedCachePrefetchTestDataSource">
-               <prefetch enabled="true"/>
+               <prefetch/>
             </dataSource>
          </store>
       </partitionedCache>

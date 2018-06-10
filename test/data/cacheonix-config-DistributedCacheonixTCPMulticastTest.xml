@@ -8,11 +8,11 @@
 
    <server>
 
-      <cluster name="test_cluster_name" homeAloneTimeout="5s" clusterAnnouncementTimeout="100ms"
-               clusterSurveyTimeout="500ms"/>
+      <cluster name="test_cluster_name" homeAloneTimeout="5s"
+      />
 
       <listener>
-         <tcp port="8879" address="127.0.0.1" buffer="128k"/>
+         <tcp port="8879" address="127.0.0.1"/>
       </listener>
 
       <broadcast>

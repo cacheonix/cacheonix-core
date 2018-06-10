@@ -9,11 +9,11 @@
 
    <server>
 
-      <cluster homeAloneTimeout="10s" clusterAnnouncementTimeout="100ms" clusterSurveyTimeout="500ms"
-               worstCaseLatency="10s"/>
+      <cluster homeAloneTimeout="10s"
+      />
 
       <listener>
-         <tcp port="8878" address="127.0.0.1" buffer="128k"/>
+         <tcp port="8878" address="127.0.0.1"/>
       </listener>
 
       <broadcast>

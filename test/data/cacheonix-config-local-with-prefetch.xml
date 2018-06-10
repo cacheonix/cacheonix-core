@@ -14,7 +14,7 @@
             <overflowToDisk maxOverflowBytes="1mb"/>
             <expiration timeToLive="100ms"/>
             <dataSource className="org.cacheonix.impl.cache.local.LocalCachePrefetchTestDataSource">
-               <prefetch enabled="true"/>
+               <prefetch/>
             </dataSource>
          </store>
       </localCache>

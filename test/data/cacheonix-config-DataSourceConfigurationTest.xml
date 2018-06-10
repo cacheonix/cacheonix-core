@@ -12,7 +12,7 @@
             <expiration timeToLive="60seconds" idleTime="60seconds"/>
             <dataSource className="com.test.DataSource">
                <param name="driverName" value="test"/>
-               <prefetch enabled="true"/>
+               <prefetch/>
             </dataSource>
          </store>
       </localCache>

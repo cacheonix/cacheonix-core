@@ -8,15 +8,15 @@
 
    <server>
 
-      <cluster homeAloneTimeout="10s" clusterAnnouncementTimeout="100ms" clusterSurveyTimeout="500ms"
-               worstCaseLatency="10s"/>
+      <cluster homeAloneTimeout="10s"
+      />
 
       <listener>
-         <tcp port="8879" buffer="128k"/>
+         <tcp port="8879"/>
       </listener>
 
       <broadcast>
-         <multicast multicastAddress="225.0.1.2" multicastPort="9998" multicastTTL="0"/>
+         <multicast multicastPort="9998" multicastTTL="0"/>
       </broadcast>
 
       <webSessionReplica name="web-app-1">
