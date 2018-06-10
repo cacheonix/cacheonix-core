@@ -501,7 +501,6 @@ public final class DistributedLockTest extends CacheonixTestCase {
    /**
     * Tests timed tryLock().
     *
-    * @throws InterruptedException if interrupt occurred.
     */
    @SuppressWarnings("TooBroadScope")
    public void testUnlockTimeout() {

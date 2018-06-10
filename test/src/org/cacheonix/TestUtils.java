@@ -58,7 +58,6 @@ public final class TestUtils {
    /**
     * Returns a test file. The test file is located under the test/data directory.
     *
-    * @param file
     * @return test file.
     */
    public static File getTestFile(final String file) throws IOException {
@@ -70,7 +69,6 @@ public final class TestUtils {
    /**
     * Returns an InputStream based on the test file. The test file is located under the test/data directory.
     *
-    * @param file
     * @return test file.
     * @throws FileNotFoundException if the test file cannot be found.
     * @noinspection IOResourceOpenedButNotSafelyClosed

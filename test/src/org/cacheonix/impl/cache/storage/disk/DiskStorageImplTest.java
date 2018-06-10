@@ -1,6 +1,3 @@
-/**
- *
- */
 /*
  * Cacheonix Systems licenses this file to You under the LGPL 2.1
  * (the "License"); you may not use this file except in compliance

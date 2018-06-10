@@ -106,7 +106,6 @@ public final class BlockedMarkerTest extends CacheonixTestCase {
    /**
     * Tests that a blocked cluster enters recovery when a node joins a single-node cluster.
     *
-    * @throws InterruptedException
     */
    public void testEnterRecoveryByReachingMajorityClusterSize() throws InterruptedException {
 

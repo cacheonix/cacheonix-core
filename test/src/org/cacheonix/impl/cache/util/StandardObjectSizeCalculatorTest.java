@@ -266,163 +266,163 @@ public class StandardObjectSizeCalculatorTest extends TestCase {
 
    static class ThreeBytes {
 
-      byte b0;
+      byte b0 = (byte) 0;
 
-      byte b1;
+      byte b1 = (byte) 0;
 
-      byte b2;
+      byte b2 = (byte) 0;
    }
 
    private static class ComplexClass {
 
       ComplexClass cc = this;
 
-      boolean z;
+      boolean z = false;
 
-      byte b;
+      byte b = (byte) 0;
 
-      char c;
+      char c = (char) 0;
 
-      double d;
+      double d = 0.0;
 
-      float f;
+      float f = 0.0F;
 
-      int i;
+      int i = 0;
 
-      long l;
+      long l = 0L;
 
-      short s;
+      short s = (short) 0;
    }
 
    private static class SixtyFourBoolean {
 
-      boolean a0;
+      boolean a0 = false;
 
-      boolean a1;
+      boolean a1 = false;
 
-      boolean a2;
+      boolean a2 = false;
 
-      boolean a3;
+      boolean a3 = false;
 
-      boolean a4;
+      boolean a4 = false;
 
-      boolean a5;
+      boolean a5 = false;
 
-      boolean a6;
+      boolean a6 = false;
 
-      boolean a7;
+      boolean a7 = false;
 
-      boolean b0;
+      boolean b0 = false;
 
-      boolean b1;
+      boolean b1 = false;
 
-      boolean b2;
+      boolean b2 = false;
 
-      boolean b3;
+      boolean b3 = false;
 
-      boolean b4;
+      boolean b4 = false;
 
-      boolean b5;
+      boolean b5 = false;
 
-      boolean b6;
+      boolean b6 = false;
 
-      boolean b7;
+      boolean b7 = false;
 
-      boolean c0;
+      boolean c0 = false;
 
-      boolean c1;
+      boolean c1 = false;
 
-      boolean c2;
+      boolean c2 = false;
 
-      boolean c3;
+      boolean c3 = false;
 
-      boolean c4;
+      boolean c4 = false;
 
-      boolean c5;
+      boolean c5 = false;
 
-      boolean c6;
+      boolean c6 = false;
 
-      boolean c7;
+      boolean c7 = false;
 
-      boolean d0;
+      boolean d0 = false;
 
-      boolean d1;
+      boolean d1 = false;
 
-      boolean d2;
+      boolean d2 = false;
 
-      boolean d3;
+      boolean d3 = false;
 
-      boolean d4;
+      boolean d4 = false;
 
-      boolean d5;
+      boolean d5 = false;
 
-      boolean d6;
+      boolean d6 = false;
 
-      boolean d7;
+      boolean d7 = false;
 
-      boolean e0;
+      boolean e0 = false;
 
-      boolean e1;
+      boolean e1 = false;
 
-      boolean e2;
+      boolean e2 = false;
 
-      boolean e3;
+      boolean e3 = false;
 
-      boolean e4;
+      boolean e4 = false;
 
-      boolean e5;
+      boolean e5 = false;
 
-      boolean e6;
+      boolean e6 = false;
 
-      boolean e7;
+      boolean e7 = false;
 
-      boolean f0;
+      boolean f0 = false;
 
-      boolean f1;
+      boolean f1 = false;
 
-      boolean f2;
+      boolean f2 = false;
 
-      boolean f3;
+      boolean f3 = false;
 
-      boolean f4;
+      boolean f4 = false;
 
-      boolean f5;
+      boolean f5 = false;
 
-      boolean f6;
+      boolean f6 = false;
 
-      boolean f7;
+      boolean f7 = false;
 
-      boolean g0;
+      boolean g0 = false;
 
-      boolean g1;
+      boolean g1 = false;
 
-      boolean g2;
+      boolean g2 = false;
 
-      boolean g3;
+      boolean g3 = false;
 
-      boolean g4;
+      boolean g4 = false;
 
-      boolean g5;
+      boolean g5 = false;
 
-      boolean g6;
+      boolean g6 = false;
 
-      boolean g7;
+      boolean g7 = false;
 
-      boolean h0;
+      boolean h0 = false;
 
-      boolean h1;
+      boolean h1 = false;
 
-      boolean h2;
+      boolean h2 = false;
 
-      boolean h3;
+      boolean h3 = false;
 
-      boolean h4;
+      boolean h4 = false;
 
-      boolean h5;
+      boolean h5 = false;
 
-      boolean h6;
+      boolean h6 = false;
 
-      boolean h7;
+      boolean h7 = false;
    }
 }
 

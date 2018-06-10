@@ -119,7 +119,7 @@ public final class ClockDiscontinuityTest extends CacheonixTestCase {
     */
    private static class TestWallClock implements WallClock {
 
-      private long currentTimeMillis;
+      private long currentTimeMillis = 0L;
 
 
       public long currentTimeMillis() {

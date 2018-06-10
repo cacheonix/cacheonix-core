@@ -37,13 +37,13 @@ final class TestMulticastMessageListenerList implements MulticastMessageListener
 
    private ClusterNodeLeftEvent recevedLeftEvent = null;
 
-   private Message receivedMessage;
+   private Message receivedMessage = null;
 
-   private boolean nodeBlockedCalled;
+   private boolean nodeBlockedCalled = false;
 
-   private boolean nodeUnblockedCalled;
+   private boolean nodeUnblockedCalled = false;
 
-   private boolean resetCalled;
+   private boolean resetCalled = false;
 
 
    public ClusterNodeJoinedEvent getRecevedJoinedEvent() {

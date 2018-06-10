@@ -115,11 +115,11 @@ public final class LocalDataStoreTest extends CacheonixTestCase {
     */
    private static class TestDataStore implements DataStore {
 
-      public DataStoreContext context;
+      public DataStoreContext context = null;
 
-      private Object storedKey;
+      private Object storedKey = null;
 
-      private Object storedValue;
+      private Object storedValue = null;
 
 
       /**

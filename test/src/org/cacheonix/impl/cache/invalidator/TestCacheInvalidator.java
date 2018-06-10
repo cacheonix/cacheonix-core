@@ -12,7 +12,7 @@ import org.cacheonix.cache.invalidator.Invalidateable;
  */
 public final class TestCacheInvalidator implements CacheInvalidator {
 
-   private CacheInvalidatorContext context;
+   private CacheInvalidatorContext context = null;
 
 
    public void setContext(final CacheInvalidatorContext context) {

@@ -40,6 +40,7 @@ public final class StaticExceptionTest extends TestCase {
    public void testThrow() {
 
       try {
+         //noinspection ThrowCaughtLocally
          throw EXCEPTION;
       } catch (final RetryException e) {
          assertEquals(EXCEPTION, e);

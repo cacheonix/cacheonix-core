@@ -670,9 +670,9 @@ public final class LocalCacheTest extends CacheonixTestCase {
 
       private boolean called = false;
 
-      private Object evictedValue;
+      private Object evictedValue = null;
 
-      private Object evictedKey;
+      private Object evictedKey = null;
 
 
       /**
