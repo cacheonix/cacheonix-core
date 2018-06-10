@@ -35,11 +35,7 @@ public final class CachedResponseValueTest extends TestCase {
 
    private static final String TEST_STATUS_MESSAGE = "Test status message";
 
-
-   private static final byte[] TEST_CHARACTER_RESPONSE = new byte[]{0, 1, 2, 3, 4, 5};
-
-
-   private static final byte[] TEST_BYTE_RESPONSE = new byte[]{6, 7, 8, 9, 10};
+   private static final byte[] TEST_BYTE_RESPONSE = {6, 7, 8, 9, 10};
 
    private static final Map<String, Collection<Header>> TEST_HEADERS = createHeaders();
 

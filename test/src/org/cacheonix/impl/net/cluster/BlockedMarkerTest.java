@@ -26,7 +26,6 @@ import org.cacheonix.impl.util.time.Timeout;
 
 import static org.cacheonix.TestConstants.PORT_7676;
 import static org.cacheonix.TestConstants.PORT_7677;
-import static org.cacheonix.TestConstants.PORT_7678;
 import static org.cacheonix.TestUtils.createTestAddress;
 import static org.cacheonix.impl.net.cluster.ClusterProcessorState.STATE_BLOCKED;
 import static org.cacheonix.impl.net.cluster.ClusterProcessorState.STATE_CLEANUP;
@@ -50,8 +49,6 @@ public final class BlockedMarkerTest extends CacheonixTestCase {
    private static final ClusterNodeAddress ADDRESS_7676 = createTestAddress(PORT_7676);
 
    private static final ClusterNodeAddress ADDRESS_7677 = createTestAddress(PORT_7677);
-
-   public static final ClusterNodeAddress ADDRESS_7678 = createTestAddress(PORT_7678);
 
    private BlockedMarker blockedMarker;
 

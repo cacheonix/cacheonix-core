@@ -76,12 +76,11 @@ public final class TransferBucketRequestTest extends CacheonixTestCase {
    @SuppressWarnings("TooBroadScope")
    public void testSetGetBucket() {
 
-      final int bucketNumber = BUCKET_NUMBER;
       final BinaryStore keyStore = createKeyStore();
       final Bucket bucket = new Bucket(BUCKET_NUMBER, keyStore, LEASE_DURATION_MILLIS);
       request.addBucket(bucket);
       assertEquals(bucket, request.getOrCreateBuckets(1).get(0));
-      assertEquals(Integer.valueOf(bucketNumber), request.getBucketNumbers().get(0));
+      assertEquals(Integer.valueOf(BUCKET_NUMBER), request.getBucketNumbers().get(0));
    }
 
 

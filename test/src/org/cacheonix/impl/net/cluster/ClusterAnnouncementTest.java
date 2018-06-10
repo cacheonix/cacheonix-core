@@ -124,14 +124,4 @@ public final class ClusterAnnouncementTest extends TestCase {
       clusterUUID = UUID.randomUUID();
       clusterAnnouncement.setClusterUUID(clusterUUID);
    }
-
-
-   public String toString() {
-
-      return "ClusterAnnouncementTest{" +
-              "clusterAnnouncement=" + clusterAnnouncement +
-              ", process=" + process +
-              ", representative=" + representative +
-              "} " + super.toString();
-   }
 }

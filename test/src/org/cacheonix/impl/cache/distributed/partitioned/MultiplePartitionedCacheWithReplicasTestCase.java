@@ -27,10 +27,9 @@ public class MultiplePartitionedCacheWithReplicasTestCase extends MultiplePartit
    public void testGetStatistics() {
 
       // Set up
-      final int keyCount = MAX_SIZE;
       final Map<String, String> map = new HashMap<String, String>(3);
       final Cache<String, String> cache = cacheList.get(0);
-      for (int i = 0; i < keyCount; i++) {
+      for (int i = 0; i < MAX_SIZE; i++) {
          map.put(createKey(i), createValue(i));
       }
 
