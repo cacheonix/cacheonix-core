@@ -23,6 +23,7 @@ import org.cacheonix.impl.util.time.TimeoutImpl;
  * @version 1.0
  * @since <pre>04/26/2008</pre>
  */
+@SuppressWarnings("EmptyMethod")
 public final class TimeoutTest extends TestCase {
 
    private static final int TIMEOUT_DURATION = 100;

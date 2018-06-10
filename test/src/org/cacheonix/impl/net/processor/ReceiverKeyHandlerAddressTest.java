@@ -84,7 +84,7 @@ public class ReceiverKeyHandlerAddressTest extends CacheonixTestCase {
    public void testToString() {
 
       assertNotNull(receiverAddress.toString());
-      assertNotNull(new ReceiverAddress());
+      assertNotNull(new ReceiverAddress().toString());
    }
 
 

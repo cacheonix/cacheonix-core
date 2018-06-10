@@ -27,7 +27,7 @@ import static org.cacheonix.ShutdownMode.GRACEFUL_SHUTDOWN;
  * Tests partitioned cache with a front cache.
  *
  * @noinspection ProhibitedExceptionDeclared, ProhibitedExceptionDeclared, ConstantNamingConvention,
- * ConstantNamingConvention, ConstantNamingConvention, ConstantNamingConvention, ConstantNamingConvention
+ * ConstantNamingConvention, ConstantNamingConvention, ConstantNamingConvention, ConstantNamingConvention, EmptyMethod
  */
 public final class MultiplePartitionedCacheWithFrontCacheTest extends MultiplePartitionedCacheTestCase {
 

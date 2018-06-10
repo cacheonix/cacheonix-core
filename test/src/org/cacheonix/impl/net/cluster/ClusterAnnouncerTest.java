@@ -21,7 +21,6 @@ import org.cacheonix.TestUtils;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.multicast.sender.MulticastSender;
 import org.cacheonix.impl.net.processor.Frame;
-import org.cacheonix.impl.net.processor.Router;
 import org.cacheonix.impl.net.processor.UUID;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
@@ -84,11 +83,6 @@ public final class ClusterAnnouncerTest extends CacheonixTestCase {
       public final void sendFrame(final Frame frame) {
 
          this.frame = frame;
-      }
-
-
-      public void setRouter(final Router router) {
-         // Do nothing
       }
 
 

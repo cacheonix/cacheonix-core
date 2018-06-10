@@ -21,7 +21,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * Tests clustered cache
  *
  * @noinspection ProhibitedExceptionDeclared, ProhibitedExceptionDeclared, ConstantNamingConvention,
- * ConstantNamingConvention, ConstantNamingConvention, ConstantNamingConvention, ConstantNamingConvention
+ * ConstantNamingConvention, ConstantNamingConvention, ConstantNamingConvention, ConstantNamingConvention, EmptyMethod
  */
 public final class MultiplePartitionedCacheTest extends MultiplePartitionedCacheTestCase {
 

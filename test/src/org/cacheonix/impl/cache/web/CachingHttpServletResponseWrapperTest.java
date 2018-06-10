@@ -234,16 +234,6 @@ public final class CachingHttpServletResponseWrapperTest extends TestCase {
    }
 
 
-   public void testGetByteOutput() {
-
-   }
-
-
-   public void testGetCharOutput() {
-
-   }
-
-
    public void setUp() throws Exception {
 
       super.setUp();

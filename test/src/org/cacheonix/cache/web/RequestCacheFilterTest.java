@@ -11,21 +11,6 @@ public final class RequestCacheFilterTest extends TestCase {
    private RequestCacheFilter requestCacheFilter;
 
 
-   public void testInit() {
-
-   }
-
-
-   public void testDoFilter() {
-
-   }
-
-
-   public void testDestroy() {
-
-   }
-
-
    public void tearDown() throws Exception {
 
       requestCacheFilter = null;

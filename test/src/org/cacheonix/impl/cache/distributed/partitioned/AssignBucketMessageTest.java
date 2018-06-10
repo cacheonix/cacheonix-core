@@ -42,7 +42,7 @@ public final class AssignBucketMessageTest extends TestCase {
    }
 
 
-   public void testExecuteBlocked() throws Exception {
+   public void testExecuteBlocked() {
 
       testExecuteOperational();
    }

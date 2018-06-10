@@ -75,7 +75,9 @@ public final class ClusterViewImplTest extends CacheonixTestCase {
 
    public void testCreateSingle() {
 
-      assertNotNull(new ClusterViewImpl(UUID.randomUUID(), PROCESS_ID_0));
+      final UUID clusterUUID = UUID.randomUUID();
+      final ClusterViewImpl clusterView = new ClusterViewImpl(clusterUUID, PROCESS_ID_0);
+      assertEquals(clusterUUID, clusterView.getClusterUUID());
    }
 
 
