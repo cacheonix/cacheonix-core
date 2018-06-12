@@ -413,7 +413,7 @@ public final class BinaryStore implements Wireable {
             final Binary binaryValue = getValue(element);
 
             // Compare
-            if (value != null && binaryValue != null && value.equals(binaryValue)
+            if (value != null && value.equals(binaryValue)
                     || value == null && binaryValue == null) {
 
                return true;
