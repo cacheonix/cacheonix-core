@@ -155,13 +155,23 @@ public final class DateFormatManager {
 
    public String format(final Date date) {
 
-      return getDateFormatInstance().format(date);
+      final DateFormat result;
+
+      synchronized (this) {
+         result = _dateFormat;
+      }
+      return result.format(date);
    }
 
 
    public String format(final Date date, final String pattern) {
 
-      DateFormat formatter = getDateFormatInstance();
+      final DateFormat result;
+
+      synchronized (this) {
+         result = _dateFormat;
+      }
+      DateFormat formatter = result;
       if (formatter instanceof SimpleDateFormat) {
          formatter = (DateFormat) formatter.clone();
          ((SimpleDateFormat) formatter).applyPattern(pattern);
@@ -175,7 +185,12 @@ public final class DateFormatManager {
     */
    public Date parse(final String date) throws ParseException {
 
-      return getDateFormatInstance().parse(date);
+      final DateFormat result;
+
+      synchronized (this) {
+         result = _dateFormat;
+      }
+      return result.parse(date);
    }
 
 
@@ -184,7 +199,12 @@ public final class DateFormatManager {
     */
    public Date parse(final String date, final String pattern) throws ParseException {
 
-      DateFormat formatter = getDateFormatInstance();
+      final DateFormat result;
+
+      synchronized (this) {
+         result = _dateFormat;
+      }
+      DateFormat formatter = result;
       if (formatter instanceof SimpleDateFormat) {
          formatter = (DateFormat) formatter.clone();
          ((SimpleDateFormat) formatter).applyPattern(pattern);
