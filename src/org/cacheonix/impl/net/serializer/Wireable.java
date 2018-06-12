@@ -26,8 +26,8 @@ import java.io.IOException;
  */
 public interface Wireable {
 
-   /**
-    * ++++++++++++++++++++++++++++++++++++++ Wireable objects (non-message) ++++++++++++++++++++++++++++++++++++++
+   /*
+     ++++++++++++++++++++++++++++++++++++++ Wireable objects (non-message) ++++++++++++++++++++++++++++++++++++++
     */
 
    /**
@@ -123,8 +123,8 @@ public interface Wireable {
    int TYPE_STRING_HEADER = DESTINATION_NONE << 8 | 41;
 
 
-   /**
-    * ++++++++++++++++++++++++++++++++++++++ Connection-related messages  ++++++++++++++++++++++++++++++++++++++
+   /*
+     ++++++++++++++++++++++++++++++++++++++ Connection-related messages  ++++++++++++++++++++++++++++++++++++++
     */
 
    /**
@@ -142,8 +142,8 @@ public interface Wireable {
     */
    int TYPE_CONNECTION_CLOSE = DESTINATION_CONNECTION << 8 | 3;
 
-   /**
-    * ++++++++++++++++++++++++++++++++++++++ Cluster processor messages  ++++++++++++++++++++++++++++++++++++++
+   /*
+     ++++++++++++++++++++++++++++++++++++++ Cluster processor messages  ++++++++++++++++++++++++++++++++++++++
     */
 
    /**
@@ -236,8 +236,8 @@ public interface Wireable {
     */
    int TYPE_REMOVE_USER_CLUSTER_EVENT_SUBSCRIBER = DESTINATION_CLUSTER_PROCESSOR << 8 | 18;
 
-   /**
-    * ++++++++++++++++++++++++++++++++++++++ Cache processor messages  ++++++++++++++++++++++++++++++++++++++
+   /*
+     ++++++++++++++++++++++++++++++++++++++ Cache processor messages  ++++++++++++++++++++++++++++++++++++++
     */
 
    /**
@@ -343,8 +343,8 @@ public interface Wireable {
    int TYPE_CACHE_REPLACE_IF_MAPPED_REQUEST = DESTINATION_CACHE_PROCESSOR << 8 | 46;
 
 
-   /**
-    * ++++++++++++++++++++++++++++++++++++++ Replicated state messages  ++++++++++++++++++++++++++++++++++++++
+   /*
+     ++++++++++++++++++++++++++++++++++++++ Replicated state messages  ++++++++++++++++++++++++++++++++++++++
     */
 
    /**

@@ -228,7 +228,7 @@ public final class AsyncAppender extends AppenderSkeleton
     * before exiting.
     */
    public void close() {
-      /**
+      /*
        * Set closed flag and notify all threads to check their conditions.
        * Should result in dispatcher terminating.
        */

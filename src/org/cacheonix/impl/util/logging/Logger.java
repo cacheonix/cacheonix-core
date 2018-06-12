@@ -40,7 +40,7 @@ public class Logger extends Category {
       super(name);
    }
 
-   /**
+   /*
     Log a message object with the {@link Level#FINE FINE} level which
     is just an alias for the {@link Level#DEBUG DEBUG} level.
 
@@ -68,7 +68,7 @@ public class Logger extends Category {
    //  }
    //}
 
-   /**
+   /*
     Log a message object with the <code>FINE</code> level including
     the stack trace of the {@link Throwable} <code>t</code> passed as
     parameter.

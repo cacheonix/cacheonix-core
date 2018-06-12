@@ -80,7 +80,7 @@ public final class LogManager {
       final Hierarchy h = new Hierarchy(new RootLogger(Level.DEBUG));
       repositorySelector = new DefaultRepositorySelector(h);
 
-      /** Search for the properties file log4j.properties in the CLASSPATH.  */
+      /* Search for the properties file log4j.properties in the CLASSPATH.  */
       final String override = OptionConverter.getSystemProperty(DEFAULT_INIT_OVERRIDE_KEY, null);
 
       // if there is no default init override, then get the resource

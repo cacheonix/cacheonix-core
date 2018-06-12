@@ -83,7 +83,7 @@ import org.cacheonix.impl.util.logging.spi.LoggingEvent;
 @SuppressWarnings("FieldAccessedSynchronizedAndUnsynchronized")
 public class Category implements AppenderAttachable {
 
-   /**
+   /*
     The hierarchy where categories are attached to by default.
     */
    //static

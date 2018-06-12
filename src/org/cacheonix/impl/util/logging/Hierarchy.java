@@ -216,7 +216,7 @@ public final class Hierarchy implements LoggerRepository, RendererSupport {
       return threshold;
    }
 
-   /**
+   /*
     Returns an integer representation of the this repository's
     threshold.
 

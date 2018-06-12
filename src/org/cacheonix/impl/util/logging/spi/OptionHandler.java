@@ -41,14 +41,14 @@ public interface OptionHandler {
     */
    void activateOptions();
 
-   /**
+   /*
     Return list of strings that the OptionHandler instance recognizes.
 
     @deprecated We now use JavaBeans style getters/setters.
     */
    //  String[] getOptionStrings();
 
-   /**
+   /*
     Set <code>option</code> to <code>value</code>.
 
     <p>The handling of each option depends on the OptionHandler

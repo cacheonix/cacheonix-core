@@ -442,7 +442,7 @@ public final class SocketAppender extends AppenderSkeleton {
          //LogLog.debug("Exiting Connector.run() method.");
       }
 
-      /**
+      /*
        public
        void finalize() {
        LogLog.debug("Connector finalize() has been called.");
