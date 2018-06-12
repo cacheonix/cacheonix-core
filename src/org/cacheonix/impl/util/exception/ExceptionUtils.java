@@ -27,6 +27,7 @@ import org.cacheonix.impl.util.logging.Logger;
 /**
  * Utility methods for exception handling.
  */
+@SuppressWarnings("UnnecessaryInitCause")
 public final class ExceptionUtils {
 
    private static final Logger LOG = Logger.getLogger(ExceptionUtils.class);

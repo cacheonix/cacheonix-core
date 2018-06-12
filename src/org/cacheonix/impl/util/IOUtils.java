@@ -63,6 +63,7 @@ import static org.cacheonix.impl.util.exception.ExceptionUtils.ignoreException;
 
 /**
  */
+@SuppressWarnings("UnnecessaryInitCause")
 public final class IOUtils {
 
    /**
