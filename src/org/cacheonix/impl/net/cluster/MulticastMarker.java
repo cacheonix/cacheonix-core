@@ -826,7 +826,7 @@ public final class MulticastMarker extends OperationalMarker {
 
       // NOTE: simeshev@cacheonix.org - 2010-08-25 - Join request can be handled only when there
       // is no delivery round or all frames in the current delivery round has been delivered.
-      if (multicastMarker.originator == null || multicastMarker.current != null && multicastMarker.previous != null && multicastMarker.current.equals(
+      if (multicastMarker.originator == null || multicastMarker.current != null && multicastMarker.current.equals(
               multicastMarker.previous)) {
 
          // NOPMD
