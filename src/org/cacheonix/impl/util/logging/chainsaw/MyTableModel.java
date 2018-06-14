@@ -5,9 +5,9 @@
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -78,9 +78,12 @@ final class MyTableModel
       }
    };
 
-   private static final EventDetails[] ZERO_LENGTH_EVENT_DETAIL_ARRAY = new EventDetails[0];
-
    private static final long serialVersionUID = 0L;
+
+   /**
+    * A helper constant used to typify conversation from a list to an array.
+    */
+   private static final EventDetails[] EVENT_DETAILS_ARRAY_TEMPLATE = new EventDetails[0];
 
    /**
     * Helper that actually processes incoming events.
@@ -375,7 +378,7 @@ final class MyTableModel
 
       synchronized (mLock) {
          mAllEvents.clear();
-         mFilteredEvents = ZERO_LENGTH_EVENT_DETAIL_ARRAY;
+         mFilteredEvents = EVENT_DETAILS_ARRAY_TEMPLATE;
          mPendingEvents.clear();
          fireTableDataChanged();
       }
@@ -444,7 +447,7 @@ final class MyTableModel
       final EventDetails lastFirst = mFilteredEvents.length == 0
               ? null
               : mFilteredEvents[0];
-      mFilteredEvents = (EventDetails[]) filtered.toArray(new EventDetails[filtered.size()]);
+      mFilteredEvents = (EventDetails[]) filtered.toArray(EVENT_DETAILS_ARRAY_TEMPLATE);
 
       if (aInsertedToFront && lastFirst != null) {
          final int index = filtered.indexOf(lastFirst);

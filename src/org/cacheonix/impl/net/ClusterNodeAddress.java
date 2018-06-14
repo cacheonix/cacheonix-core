@@ -61,6 +61,11 @@ public final class ClusterNodeAddress implements Comparable, Wireable {
            111); // NOPMD
 
    /**
+    * A helper constant used to typify conversation from a list to an array.
+    */
+   private static final InetAddress[] INET_ADDRESS_ARRAY_TEMPLATE = new InetAddress[0];
+
+   /**
     * TCP tcpPort number of the process.
     */
    private int tcpPort = 0;
@@ -282,7 +287,7 @@ public final class ClusterNodeAddress implements Comparable, Wireable {
          inetAddressList.add(inetAddress);
       }
 
-      final InetAddress[] inetAddresses = inetAddressList.toArray(new InetAddress[inetAddressList.size()]);
+      final InetAddress[] inetAddresses = inetAddressList.toArray(INET_ADDRESS_ARRAY_TEMPLATE);
 
       return new ClusterNodeAddress(port, inetAddresses);
    }

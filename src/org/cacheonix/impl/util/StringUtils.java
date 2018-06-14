@@ -108,6 +108,11 @@ public final class StringUtils {
     */
    private static final Pattern BYTES_PATTERN = Pattern.compile("([0-9]+)(bytes|kilobytes|k|kb|megabytes|mb|m|gigabytes|gb|g|%)");
 
+   /**
+    * A helper constant used to typify conversation from a list to an array.
+    */
+   private static final String[] STRING_ARRAY_TEMPLATE = new String[0];
+
 
    private StringUtils() {
 
@@ -424,7 +429,7 @@ public final class StringUtils {
 
    public static String[] toStringArray(final List stringList) {
 
-      return (String[]) stringList.toArray(new String[stringList.size()]);
+      return (String[]) stringList.toArray(STRING_ARRAY_TEMPLATE);
    }
 
 

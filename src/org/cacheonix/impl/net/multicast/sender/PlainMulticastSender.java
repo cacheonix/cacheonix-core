@@ -48,9 +48,14 @@ public final class PlainMulticastSender implements MulticastSender {
     */
    private static final int SEND_BUFFER_SIZE = 4096 * (Frame.MAXIMUM_MULTICAST_PACKET_SIZE + 1);
 
-   public static final String NO_BUFFER_SPACE_AVAILABLE = "No buffer space available";
+   private static final String NO_BUFFER_SPACE_AVAILABLE = "No buffer space available";
 
-   public static final String NO_ROUTE_TO_HOST = "No route to host";
+   private static final String NO_ROUTE_TO_HOST = "No route to host";
+
+   /**
+    * A helper constant used to typify conversation from a list to an array.
+    */
+   private static final MulticastSocket[] MULTICAST_SOCKET_ARRAY_TEMPLATE = new MulticastSocket[0];
 
    /**
     * Multicast address.
@@ -123,7 +128,7 @@ public final class PlainMulticastSender implements MulticastSender {
       if (socketList.isEmpty()) {
          throw new IOException("Could not create at least one multicast socket. Last error: " + lastException);
       }
-      return socketList.toArray(new MulticastSocket[socketList.size()]);
+      return socketList.toArray(MULTICAST_SOCKET_ARRAY_TEMPLATE);
    }
 
 
