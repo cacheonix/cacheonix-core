@@ -18,7 +18,6 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map.Entry;
-import java.util.Set;
 
 import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.net.processor.Message;
@@ -83,10 +82,7 @@ public final class GetEntrySetRequest extends BucketSetRequest {
       // Collect
       final Collection<Entry<Binary, Binary>> partialEntries = new ArrayList<Entry<Binary, Binary>>(size);
       for (final Bucket bucket : bucketsToProcess) {
-         final Set<Entry<Binary, Binary>> entries = bucket.entrySet();
-         for (final Entry<Binary, Binary> entry : entries) {
-            partialEntries.add(entry);
-         }
+         partialEntries.addAll(bucket.entrySet());
       }
 
       // Return result
