@@ -134,7 +134,7 @@ public final class PassObjectByReferenceBinary implements Binary {
          return false;
       }
 
-      if (reference.getClass() != that.reference.getClass()) {
+      if (!reference.getClass().equals(that.reference.getClass())) {
          return false;
       }
 
