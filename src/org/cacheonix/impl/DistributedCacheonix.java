@@ -87,6 +87,7 @@ import org.cacheonix.impl.net.processor.Command;
 import org.cacheonix.impl.net.processor.Message;
 import org.cacheonix.impl.net.processor.ReceiverAddress;
 import org.cacheonix.impl.net.processor.Router;
+import org.cacheonix.impl.net.processor.RouterImpl;
 import org.cacheonix.impl.net.processor.UUID;
 import org.cacheonix.impl.net.tcp.Receiver;
 import org.cacheonix.impl.net.tcp.Sender;
@@ -194,7 +195,7 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
       this.replicatedState = new ReplicatedState();
       this.serverConfig = serverConfig;
       final UUID initialClusterUUID = UUID.randomUUID();
-      this.router = new Router(address);
+      this.router = new RouterImpl(address);
       this.router.setClusterUUID(initialClusterUUID);
       this.multicastSender = createMulticastSender(router, address, serverConfig);
       this.multicastServer = createMulticastServer(serverConfig);

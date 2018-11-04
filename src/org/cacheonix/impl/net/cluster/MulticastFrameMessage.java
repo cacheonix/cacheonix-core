@@ -221,7 +221,7 @@ public final class MulticastFrameMessage extends Message implements SenderInetAd
     *
     * @return the flag indicating if the receiver of the message must send the message to known addresses.
     */
-   boolean isSendToKnownAddresses() {
+   public boolean isSendToKnownAddresses() {
 
       return sendToKnownAddresses;
    }

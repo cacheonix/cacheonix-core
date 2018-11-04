@@ -45,6 +45,8 @@ public final class TestConstants {
 
    public static final String CACHEONIX_CLUSTER_XML = "cacheonix-config-cluster.xml";
 
+   public static final String OBJECT_TO_MULTICAST = "Test string to multicast";
+
 
    private TestConstants() {
 

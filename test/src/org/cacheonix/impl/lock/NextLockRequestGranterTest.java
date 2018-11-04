@@ -14,11 +14,7 @@
 package org.cacheonix.impl.lock;
 
 import org.cacheonix.CacheonixTestCase;
-import org.cacheonix.TestUtils;
-import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.cluster.ClusterProcessor;
-import org.cacheonix.impl.net.processor.Router;
-import org.cacheonix.impl.net.processor.UUID;
 
 import static org.mockito.Mockito.mock;
 
@@ -30,14 +26,6 @@ public final class NextLockRequestGranterTest extends CacheonixTestCase {
    public void testToString() {
 
       final LockQueue lockQueue = new LockQueue();
-      final ClusterNodeAddress testAddress = TestUtils.createTestAddress(1);
-
-      final UUID initialClusterUUID = UUID.randomUUID();
-
-      //
-      final Router router = new Router(testAddress);
-      router.setClusterUUID(initialClusterUUID);
-
       final ClusterProcessor clusterProcessor = mock(ClusterProcessor.class);
       final NextLockRequestGranter nextLockRequestGranter = new NextLockRequestGranter(clusterProcessor, lockQueue);
       assertNotNull(nextLockRequestGranter.toString());

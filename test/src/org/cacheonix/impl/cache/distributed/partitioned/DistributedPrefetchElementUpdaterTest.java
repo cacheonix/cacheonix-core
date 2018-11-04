@@ -14,8 +14,8 @@
 package org.cacheonix.impl.cache.distributed.partitioned;
 
 import junit.framework.TestCase;
-import org.cacheonix.TestUtils;
 import org.cacheonix.impl.net.processor.Router;
+import org.mockito.Mockito;
 
 /**
  * Tester for DistributedPrefetchElementUpdater.
@@ -38,7 +38,7 @@ public final class DistributedPrefetchElementUpdaterTest extends TestCase {
 
       super.setUp();
 
-      final Router router = new Router(TestUtils.createTestAddress(1));
+      final Router router = Mockito.mock(Router.class);
       distributedPrefetchElementUpdater = new DistributedPrefetchElementUpdater(router, TEST_CACHE_NAME);
    }
 

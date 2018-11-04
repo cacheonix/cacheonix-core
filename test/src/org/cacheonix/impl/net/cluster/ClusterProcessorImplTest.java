@@ -36,7 +36,7 @@ import org.cacheonix.impl.net.multicast.server.MulticastServer;
 import org.cacheonix.impl.net.multicast.server.MulticastServerImpl;
 import org.cacheonix.impl.net.processor.Frame;
 import org.cacheonix.impl.net.processor.Message;
-import org.cacheonix.impl.net.processor.Router;
+import org.cacheonix.impl.net.processor.RouterImpl;
 import org.cacheonix.impl.net.processor.UUID;
 import org.cacheonix.impl.net.tcp.Receiver;
 import org.cacheonix.impl.net.tcp.Sender;
@@ -165,7 +165,7 @@ public final class ClusterProcessorImplTest extends CacheonixTestCase {
       final UUID initialClusterUUID = UUID.randomUUID();
 
       // Create router
-      final Router router = new Router(newAddress);
+      final RouterImpl router = new RouterImpl(newAddress);
       router.setClusterUUID(initialClusterUUID);
 
       // Create connection objects
@@ -346,7 +346,7 @@ public final class ClusterProcessorImplTest extends CacheonixTestCase {
          final UUID initialClusterUUID = UUID.randomUUID();
 
          // Create router
-         final Router router = new Router(nodeAddress);
+         final RouterImpl router = new RouterImpl(nodeAddress);
          router.setClusterUUID(initialClusterUUID);
 
          // Marker list with process # 0 as originator
@@ -505,7 +505,7 @@ public final class ClusterProcessorImplTest extends CacheonixTestCase {
 
    private ClusterProcessor createClusterProcessor(final ClusterNodeAddress newAddress,
            final InetAddress multicastAddress, final int multicastPort,
-           final Router router, final UUID initialClusterUUID) throws IOException {
+           final RouterImpl router, final UUID initialClusterUUID) throws IOException {
 
       final PlainMulticastSender multicastSender = new PlainMulticastSender(multicastAddress, multicastPort,
               MULTICAST_TTL);

@@ -36,8 +36,6 @@ public final class PlainMulticastSenderTest extends TestCase {
     */
    private static final Logger LOG = Logger.getLogger(PlainMulticastSenderTest.class); // NOPMD
 
-   private static final String OBJECT = "Test string to multicast";
-
    private static final String TOO_BIG_OBJECT = buildTooBigObject();
 
    private static final int TOO_BIG_SIZE = Frame.MAXIMUM_MCAST_MESSAGE_LENGTH * 2;
@@ -49,7 +47,7 @@ public final class PlainMulticastSenderTest extends TestCase {
    public void testSendFrame() throws IOException {
 
       final Frame frame = new Frame(Frame.MAXIMUM_MCAST_MESSAGE_LENGTH);
-      frame.setPayload(Serializer.TYPE_JAVA, OBJECT);
+      frame.setPayload(Serializer.TYPE_JAVA, TestConstants.OBJECT_TO_MULTICAST);
       sender.sendFrame(frame);
    }
 
@@ -70,7 +68,7 @@ public final class PlainMulticastSenderTest extends TestCase {
 
       final long end = System.currentTimeMillis() + 1000L;
       do {
-         final String obj = OBJECT;
+         final String obj = TestConstants.OBJECT_TO_MULTICAST;
          final Frame frame = new Frame(Frame.MAXIMUM_MCAST_MESSAGE_LENGTH);
          frame.setPayload(Serializer.TYPE_JAVA, obj);
          sender.sendFrame(frame);
@@ -109,7 +107,7 @@ public final class PlainMulticastSenderTest extends TestCase {
 
       final StringBuilder sb = new StringBuilder(TOO_BIG_SIZE);
       while (sb.length() < TOO_BIG_SIZE) {
-         sb.append(OBJECT).append(' ');
+         sb.append(TestConstants.OBJECT_TO_MULTICAST).append(' ');
       }
 
       return sb.toString();
