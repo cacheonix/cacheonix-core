@@ -128,7 +128,7 @@ public final class PlainMulticastSender implements MulticastSender {
       if (socketList.isEmpty()) {
          throw new IOException("Could not create at least one multicast socket. Last error: " + lastException);
       }
-      return socketList.toArray(MULTICAST_SOCKET_ARRAY_TEMPLATE);
+      return socketList.toArray(new MulticastSocket[socketList.size()]);
    }
 
 
