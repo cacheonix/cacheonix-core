@@ -15,12 +15,12 @@ package org.cacheonix.impl.net.multicast.sender;
 
 import java.io.IOException;
 
+import junit.framework.TestCase;
 import org.cacheonix.TestConstants;
 import org.cacheonix.TestUtils;
 import org.cacheonix.impl.net.processor.Frame;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.util.logging.Logger;
-import junit.framework.TestCase;
 
 /**
  * MulticastSender Tester.
@@ -36,7 +36,46 @@ public final class PlainMulticastSenderTest extends TestCase {
     */
    private static final Logger LOG = Logger.getLogger(PlainMulticastSenderTest.class); // NOPMD
 
+   private static final String OBJECT = "Test string to multicast";
+
+   private static final String TOO_BIG_OBJECT = buildTooBigObject();
+
+   private static final int TOO_BIG_SIZE = Frame.MAXIMUM_MCAST_MESSAGE_LENGTH * 2;
+
+
    private PlainMulticastSender sender;
+
+
+   public void testSendFrame() throws IOException {
+
+      final Frame frame = new Frame(Frame.MAXIMUM_MCAST_MESSAGE_LENGTH);
+      frame.setPayload(Serializer.TYPE_JAVA, OBJECT);
+      sender.sendFrame(frame);
+   }
+
+
+   public void testSendTooBigFails() {
+
+      try {
+         final Frame frame = new Frame(TOO_BIG_SIZE);
+         frame.setPayload(Serializer.TYPE_JAVA, TOO_BIG_OBJECT);
+         sender.sendFrame(frame);
+      } catch (final IOException ignored) {
+      }
+      fail("Expected an exception but it wasn't thrown.");
+   }
+
+
+   public void testSendMany() throws IOException {
+
+      final long end = System.currentTimeMillis() + 1000L;
+      do {
+         final String obj = OBJECT;
+         final Frame frame = new Frame(Frame.MAXIMUM_MCAST_MESSAGE_LENGTH);
+         frame.setPayload(Serializer.TYPE_JAVA, obj);
+         sender.sendFrame(frame);
+      } while (System.currentTimeMillis() <= end);
+   }
 
 
    public void testToString() {
@@ -45,31 +84,35 @@ public final class PlainMulticastSenderTest extends TestCase {
    }
 
 
-   public void testSend() throws IOException {
-
-      final Frame frame = new Frame(Frame.MAXIMUM_MCAST_MESSAGE_LENGTH);
-      frame.setPayload(Serializer.TYPE_JAVA, "test");
-      sender.sendFrame(frame);
-   }
-
-
-   public void testSendMany() throws IOException {
-
-      final long end = System.currentTimeMillis() + 1000L;
-      do {
-         final String obj = "testttttttttttttttttttttttttttttttt";
-         final Frame frame = new Frame(Frame.MAXIMUM_MCAST_MESSAGE_LENGTH);
-         frame.setPayload(Serializer.TYPE_JAVA, obj);
-         sender.sendFrame(frame);
-      } while (System.currentTimeMillis() <= end);
-   }
-
-
    protected void setUp() throws Exception {
 
       super.setUp();
       sender = new PlainMulticastSender(TestUtils.getInetAddress(TestConstants.MULTICAST_ADDRESS),
               TestConstants.MULTICAST_PORT, TestConstants.MULTICAST_TTL);
+   }
+
+
+   public void tearDown() throws Exception {
+
+      sender = null;
+      super.tearDown();
+   }
+
+
+   /**
+    * Builds an object too large to send.
+    *
+    * @return an object too large to send.
+    * @see #TOO_BIG_SIZE
+    */
+   private static String buildTooBigObject() {
+
+      final StringBuilder sb = new StringBuilder(TOO_BIG_SIZE);
+      while (sb.length() < TOO_BIG_SIZE) {
+         sb.append(OBJECT).append(' ');
+      }
+
+      return sb.toString();
    }
 
 
