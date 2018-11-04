@@ -132,9 +132,9 @@ public final class MulticastServerImpl implements Runnable, MulticastServer {
    /**
     * Constructor.
     *
-    * @param multicastAddress
-    * @param multicastPort
-    * @param tcpPort
+    * @param multicastAddress a valid IP multicast address.
+    * @param multicastPort a multicat port
+    * @param tcpPort the TCP port the server listens on. Used only to build a name for thread factory.
     * @throws IllegalArgumentException if not a multicast address.
     */
    public MulticastServerImpl(final InetAddress multicastAddress, final int multicastPort, final int tcpPort) {
