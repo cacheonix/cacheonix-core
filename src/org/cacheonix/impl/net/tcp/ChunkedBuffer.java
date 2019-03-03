@@ -26,7 +26,7 @@ final class ChunkedBuffer {
    private int available = 0;
 
 
-   public void addChunk(final ByteBuffer chunk) {
+   void addChunk(final ByteBuffer chunk) {
 
       chunks.add(chunk);
       available += chunk.remaining();
@@ -45,10 +45,6 @@ final class ChunkedBuffer {
       while (!buffer.hasRemaining()) {
          chunks.removeFirst();
          buffer = chunks.getFirst();
-      }
-
-      if (!buffer.hasRemaining()) {
-         throw new IllegalStateException("Buffer exhausted");
       }
 
       // Decrement availability
