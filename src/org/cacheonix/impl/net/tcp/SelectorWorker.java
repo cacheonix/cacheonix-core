@@ -39,7 +39,7 @@ class SelectorWorker implements Runnable {
    /**
     * Network timeout in milliseconds.
     */
-   protected final long networkTimeoutMillis;
+   final long networkTimeoutMillis;
 
    /**
     * Time the NIO selector should block for while waiting for a channel to become ready, must be greater than zero.
