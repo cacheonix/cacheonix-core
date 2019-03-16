@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module relativePaths="true" type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_6" inherit-compiler-output="false">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_6">
     <output url="file://$MODULE_DIR$/temp/classes" />
     <exclude-output />
     <content url="file://$MODULE_DIR$">
@@ -24,7 +24,6 @@
     <orderEntry type="library" name="Mail" level="project" />
     <orderEntry type="library" name="Commons Math" level="project" />
     <orderEntry type="library" name="Array Utils" level="project" />
-    <orderEntry type="library" name="Mockito" level="project" />
     <orderEntry type="library" name="MyBatis" level="project" />
     <orderEntry type="library" name="catalina" level="project" />
     <orderEntry type="module-library">
@@ -46,6 +45,7 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="Primefaces" level="project" />
+    <orderEntry type="library" name="mockito-core-2.24.5-sources" level="project" />
   </component>
   <component name="org.twodividedbyzero.idea.findbugs">
     <option name="_basePreferences">
