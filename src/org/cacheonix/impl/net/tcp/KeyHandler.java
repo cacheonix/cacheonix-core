@@ -57,8 +57,22 @@ abstract class KeyHandler {
     */
    KeyHandler(final Selector selector, final long networkTimeoutMillis, final Clock clock) {
 
+      this(selector, new TimeoutImpl(networkTimeoutMillis).reset(), clock);
+   }
 
-      this.networkTimeout = new TimeoutImpl(networkTimeoutMillis).reset();
+
+   /**
+    * Creates a Key handler.
+    *
+    * @param selector a selector this key is associated with. The selector is available to implementing classes through
+    *                 {@link #selector}.
+    * @param timeout  a timeout to manage idle and inactivity timeouts.
+    * @param clock    This cluster node's clock. The clock is used to synchronise cluster time by timestamping sent
+    */
+   KeyHandler(final Selector selector, final Timeout timeout, final Clock clock) {
+
+
+      this.networkTimeout = timeout;
       this.selector = selector;
       this.clock = clock;
    }
@@ -79,7 +93,7 @@ abstract class KeyHandler {
    /**
     * Registers the fact that there was an activity on this channel by resetting the timeout.
     */
-   public final void registerActivity() {
+   final void registerActivity() {
 
       // Start the new timeout cycle
       networkTimeout.reset();
