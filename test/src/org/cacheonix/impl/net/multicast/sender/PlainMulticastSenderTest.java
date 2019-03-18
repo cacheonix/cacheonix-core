@@ -52,13 +52,13 @@ public final class PlainMulticastSenderTest extends TestCase {
    }
 
 
-   public void testSendTooBigFails() {
+   public void testSendTooBigFails() throws IOException {
 
       try {
          final Frame frame = new Frame(TOO_BIG_SIZE);
          frame.setPayload(Serializer.TYPE_JAVA, TOO_BIG_OBJECT);
          sender.sendFrame(frame);
-      } catch (final IOException ignored) {
+      } catch (final IllegalArgumentException ignored) {
       }
       fail("Expected an exception but it wasn't thrown.");
    }
