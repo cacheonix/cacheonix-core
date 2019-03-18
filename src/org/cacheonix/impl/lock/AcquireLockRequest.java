@@ -58,7 +58,7 @@ public final class AcquireLockRequest extends LockRequest {
    /**
     * Returned if the lock was granted.
     */
-   public static final Integer RESULT_LOCK_GRANTED = Integer.valueOf(0);
+   static final Integer RESULT_LOCK_GRANTED = Integer.valueOf(0);
 
    /**
     * Returned if lock wait has expired.
@@ -68,7 +68,7 @@ public final class AcquireLockRequest extends LockRequest {
    /**
     * Returned if a deadlock is detected
     */
-   public static final Integer RESULT_DETECTED_DEADLOCK = Integer.valueOf(2);
+   static final Integer RESULT_DETECTED_DEADLOCK = Integer.valueOf(2);
 
 
    /**
@@ -114,7 +114,7 @@ public final class AcquireLockRequest extends LockRequest {
     *
     * @return the time duration after that a cluster representative will begin a forced lock release.
     */
-   public Time getForcedUnlockTime() {
+   Time getForcedUnlockTime() {
 
       return forcedUnlockTime;
    }
