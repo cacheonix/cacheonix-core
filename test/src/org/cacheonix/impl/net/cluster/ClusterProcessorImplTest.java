@@ -29,6 +29,7 @@ import org.cacheonix.impl.clock.Clock;
 import org.cacheonix.impl.clock.ClockImpl;
 import org.cacheonix.impl.clock.Time;
 import org.cacheonix.impl.cluster.node.state.ReplicatedState;
+import org.cacheonix.impl.cluster.node.state.ReplicatedStateImpl;
 import org.cacheonix.impl.config.ConfigurationConstants;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.multicast.sender.PlainMulticastSender;
@@ -171,7 +172,7 @@ public final class ClusterProcessorImplTest extends CacheonixTestCase {
       // Create connection objects
       final ClusterProcessor newProcessor = createClusterProcessor(newAddress, InetAddress.getByName(MULTICAST_ADDRESS),
               MULTICAST_PORT, router, initialClusterUUID);
-      final ReplicatedState replicatedState = new ReplicatedState();
+      final ReplicatedState replicatedState = new ReplicatedStateImpl();
 
 
       newProcessor.getProcessorState().setReplicateState(replicatedState);
@@ -355,7 +356,8 @@ public final class ClusterProcessorImplTest extends CacheonixTestCase {
                  router, initialClusterUUID);
 
 
-         clusterProcessor.getProcessorState().setReplicateState(new ReplicatedState());
+         final ReplicatedState replicatedState = new ReplicatedStateImpl();
+         clusterProcessor.getProcessorState().setReplicateState(replicatedState);
          clusterProcessors.add(clusterProcessor);
          router.register(ClusterProcessorKey.getInstance(), clusterProcessor);
          router.register(MulticastClientProcessorKey.getInstance(), clusterProcessor);

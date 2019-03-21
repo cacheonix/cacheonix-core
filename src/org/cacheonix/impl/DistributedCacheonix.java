@@ -48,6 +48,7 @@ import org.cacheonix.impl.cache.distributed.partitioned.SetCacheNodeStateMessage
 import org.cacheonix.impl.clock.Clock;
 import org.cacheonix.impl.cluster.ClusterImpl;
 import org.cacheonix.impl.cluster.node.state.ReplicatedState;
+import org.cacheonix.impl.cluster.node.state.ReplicatedStateImpl;
 import org.cacheonix.impl.cluster.node.state.group.Group;
 import org.cacheonix.impl.cluster.node.state.group.GroupEventSubscriber;
 import org.cacheonix.impl.cluster.node.state.group.GroupMember;
@@ -192,7 +193,7 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
 
       super(serverConfig.getCacheonixConfiguration());
       this.address = createNodeAddress(serverConfig);
-      this.replicatedState = new ReplicatedState();
+      this.replicatedState = new ReplicatedStateImpl();
       this.serverConfig = serverConfig;
       final UUID initialClusterUUID = UUID.randomUUID();
       this.router = new RouterImpl(address);

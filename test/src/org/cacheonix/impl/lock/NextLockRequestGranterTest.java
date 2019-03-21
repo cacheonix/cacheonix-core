@@ -25,7 +25,7 @@ public final class NextLockRequestGranterTest extends CacheonixTestCase {
 
    public void testToString() {
 
-      final LockQueue lockQueue = new LockQueue();
+      final LockQueue lockQueue = new LockQueueImpl();
       final ClusterProcessor clusterProcessor = mock(ClusterProcessor.class);
       final NextLockRequestGranter nextLockRequestGranter = new NextLockRequestGranter(clusterProcessor, lockQueue);
       assertNotNull(nextLockRequestGranter.toString());

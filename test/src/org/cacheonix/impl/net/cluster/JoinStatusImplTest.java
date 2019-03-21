@@ -20,6 +20,7 @@ import org.cacheonix.CacheonixTestCase;
 import org.cacheonix.TestConstants;
 import org.cacheonix.TestUtils;
 import org.cacheonix.impl.cluster.node.state.ReplicatedState;
+import org.cacheonix.impl.cluster.node.state.ReplicatedStateImpl;
 import org.cacheonix.impl.config.ClusterConfiguration;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.processor.UUID;
@@ -55,7 +56,7 @@ public final class JoinStatusImplTest extends CacheonixTestCase {
 
    public void testSetGetReplicatedState() {
 
-      final ReplicatedState replicatedState = new ReplicatedState();
+      final ReplicatedState replicatedState = new ReplicatedStateImpl();
       joinStatus.setReplicatedState(replicatedState);
       assertEquals(replicatedState, joinStatus.getReplicatedState());
    }

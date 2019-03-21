@@ -17,11 +17,26 @@ import java.io.IOException;
 
 import org.cacheonix.CacheonixTestCase;
 import org.cacheonix.TestUtils;
+import org.cacheonix.impl.cache.item.Binary;
 import org.cacheonix.impl.clock.Time;
+import org.cacheonix.impl.cluster.node.state.ReplicatedState;
 import org.cacheonix.impl.net.ClusterNodeAddress;
+import org.cacheonix.impl.net.cluster.ClusterProcessor;
+import org.cacheonix.impl.net.cluster.ClusterProcessorState;
+import org.cacheonix.impl.net.processor.InvalidMessageException;
+import org.cacheonix.impl.net.processor.Response;
+import org.cacheonix.impl.net.processor.UUID;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
 import org.cacheonix.impl.net.serializer.Wireable;
+
+import static org.cacheonix.impl.lock.AcquireLockRequest.RESULT_LOCK_GRANTED;
+import static org.cacheonix.impl.lock.AcquireLockRequest.RESULT_LOCK_WAIT_EXPIRED;
+import static org.cacheonix.impl.net.ClusterNodeAddress.createAddress;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  * Tester for AcquireLockRequest.
@@ -29,6 +44,8 @@ import org.cacheonix.impl.net.serializer.Wireable;
 public class AcquireLockRequestTest extends CacheonixTestCase {
 
    private static final String TEST_LOCK = "test.lock";
+
+   private static final Binary LOCK_KEY = toBinary(TEST_LOCK);
 
    private static final long UNLOCK_TIMEOUT_MILLIS = 10000L;
 
@@ -95,7 +112,7 @@ public class AcquireLockRequestTest extends CacheonixTestCase {
 
    public void testGetLockKey() {
 
-      assertEquals(toBinary(TEST_LOCK), request.getLockKey());
+      assertEquals(LOCK_KEY, request.getLockKey());
    }
 
 
@@ -117,15 +134,77 @@ public class AcquireLockRequestTest extends CacheonixTestCase {
    }
 
 
+   public void testGetForcedUnlockTime() {
+
+      assertNotNull(request.getForcedUnlockTime());
+   }
+
+
+   public void testValidateFailsIfReceiverSet() throws IOException {
+
+      try {
+         request.setReceiver(createAddress("127.0.0.1", 9999));
+         request.validate();
+      } catch (final InvalidMessageException expected) {
+         return;
+      }
+
+      fail("Expected " + InvalidMessageException.class + ", but it wasn't thrown");
+   }
+
+
+   public void testCreateLockGrantedResponse() {
+
+      final Response lockGrantedResponse = request.createLockGrantedResponse();
+      assertEquals(RESULT_LOCK_GRANTED, lockGrantedResponse.getResult());
+   }
+
+
+   public void testCreateLockWaitExpiredResponse() {
+
+      final Response lockWaitExpiredResponse = request.createLockWaitExpiredResponse();
+      assertEquals(RESULT_LOCK_WAIT_EXPIRED, lockWaitExpiredResponse.getResult());
+   }
+
+
+   public void testExecute() {
+
+      // Prepare
+      final ClusterProcessor clusterProcessor = mock(ClusterProcessor.class);
+      final ClusterProcessorState clusterProcessorState = mock(ClusterProcessorState.class);
+      final ReplicatedState replicatedState = mock(ReplicatedState.class);
+      final LockRegistry lockRegistry = mock(LockRegistry.class);
+      final LockQueue lockQueue = mock(LockQueue.class);
+
+      when(lockRegistry.getLockQueue(TEST_LOCK_REGION, LOCK_KEY)).thenReturn(lockQueue);
+      when(replicatedState.getLockRegistry()).thenReturn(lockRegistry);
+      when(clusterProcessorState.getReplicatedState()).thenReturn(replicatedState);
+      when(clusterProcessor.getProcessorState()).thenReturn(clusterProcessorState);
+      when(clusterProcessor.getAddress()).thenReturn(OWNER_ADDRESS);
+      request.setProcessor(clusterProcessor);
+
+
+      // Execute
+      request.execute();
+
+      // Verify
+      verify(lockQueue).grantLockRequest(request);
+      verify(clusterProcessor).post(any(Response.class));
+   }
+
+
    protected void setUp() throws Exception {
 
       super.setUp();
 
       final Thread currentThread = Thread.currentThread();
+      final UUID clusterUUID = UUID.randomUUID();
       threadID = System.identityHashCode(currentThread);
       threadName = currentThread.getName();
       forcedUnlockTime = getClock().currentTime().add(UNLOCK_TIMEOUT_MILLIS);
-      request = new AcquireLockRequest(TEST_LOCK_REGION, toBinary(TEST_LOCK), OWNER_ADDRESS, threadID, threadName, READ_LOCK, forcedUnlockTime);
+      request = new AcquireLockRequest(TEST_LOCK_REGION, LOCK_KEY, OWNER_ADDRESS, threadID, threadName,
+              READ_LOCK, forcedUnlockTime);
+      request.setClusterUUID(clusterUUID);
       request.setSender(OWNER_ADDRESS);
    }
 }

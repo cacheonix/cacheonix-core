@@ -63,7 +63,7 @@ public final class AcquireLockRequest extends LockRequest {
    /**
     * Returned if lock wait has expired.
     */
-   private static final Integer RESULT_LOCK_WAIT_EXPIRED = Integer.valueOf(1);
+   static final Integer RESULT_LOCK_WAIT_EXPIRED = Integer.valueOf(1);
 
    /**
     * Returned if a deadlock is detected
@@ -99,8 +99,8 @@ public final class AcquireLockRequest extends LockRequest {
     * @param forcedUnlockTime the absolute cluster time after that the lock will be forcibly released
     */
    public AcquireLockRequest(final String lockRegionName, final Binary lockKey, final ClusterNodeAddress ownerAddress,
-                             final int ownerThreadID, final String ownerThreadName, final boolean readLock,
-                             final Time forcedUnlockTime) {
+           final int ownerThreadID, final String ownerThreadName, final boolean readLock,
+           final Time forcedUnlockTime) {
       // Call super
       super(TYPE_ACQUIRE_LOCK_REQUEST, lockRegionName, lockKey, ownerAddress, ownerThreadID, ownerThreadName, readLock);
 
@@ -175,15 +175,15 @@ public final class AcquireLockRequest extends LockRequest {
 
                // New write lock, no read or write locks present,
                // upgrade to write (1 or more read locks from the same owner + 1 write lock)
-               grant();
+               grant(lockQueue);
             } else {
 
-               tryToEnqueue();
+               tryToEnqueue(lockQueue);
             }
          } else {
 
             // New write lock, no read or write locks present
-            grant();
+            grant(lockQueue);
          }
       } else {
 
@@ -192,10 +192,10 @@ public final class AcquireLockRequest extends LockRequest {
          if (writeLockOwner.cameFromRequester(this)) {
 
             // Reentrant lock
-            grant();
+            grant(lockQueue);
          } else {
 
-            tryToEnqueue();
+            tryToEnqueue(lockQueue);
          }
       }
    }
@@ -212,7 +212,7 @@ public final class AcquireLockRequest extends LockRequest {
          // Write lock is not granted
 
          // Grant read
-         grant();
+         grant(lockQueue);
       } else {
 
          // Write lock is already granted
@@ -221,10 +221,10 @@ public final class AcquireLockRequest extends LockRequest {
          if (writeLockOwner.cameFromRequester(this)) {
 
             // Lock is granted to requester, piggyback on write lock
-            grant();
+            grant(lockQueue);
          } else {
 
-            tryToEnqueue();
+            tryToEnqueue(lockQueue);
          }
       }
    }
@@ -232,16 +232,13 @@ public final class AcquireLockRequest extends LockRequest {
 
    /**
     * Grants a lock.
+    *
+    * @param lockQueue the lock queue to track the locks.
     */
-   private void grant() {
+   private void grant(final LockQueue lockQueue) {
 
       //noinspection ControlFlowStatementWithoutBraces
       if (LOG.isDebugEnabled()) LOG.debug("Granting lock: " + this); // NOPMD
-
-      final ClusterProcessor processor = getClusterProcessor();
-
-      final LockRegistry lockRegistry = processor.getProcessorState().getReplicatedState().getLockRegistry();
-      final LockQueue lockQueue = lockRegistry.getLockQueue(getLockRegionName(), getLockKey());
 
       lockQueue.grantLockRequest(this);
 
@@ -257,15 +254,10 @@ public final class AcquireLockRequest extends LockRequest {
     * @see #RESULT_DETECTED_DEADLOCK
     * @see #RESULT_LOCK_WAIT_EXPIRED
     */
-   private void tryToEnqueue() {
+   private void tryToEnqueue(final LockQueue lockQueue) {
 
       //noinspection ControlFlowStatementWithoutBraces
       if (LOG.isDebugEnabled()) LOG.debug("Trying to enqueue: " + this); // NOPMD
-
-      final ClusterProcessor processor = getClusterProcessor();
-
-      final LockRegistry lockRegistry = processor.getProcessorState().getReplicatedState().getLockRegistry();
-      final LockQueue lockQueue = lockRegistry.getLockQueue(getLockRegionName(), getLockKey());
 
       if (hasTimeout() && getTimeoutMillis() == 0) {
 
@@ -553,8 +545,10 @@ public final class AcquireLockRequest extends LockRequest {
          // a requested period of time. Post the announcement
          // to release/remove the lock.
          final AcquireLockRequest request = (AcquireLockRequest) getRequest();
-         final WaitForLockExpiredAnnouncement announcement = new WaitForLockExpiredAnnouncement(request.getLockRegionName(),
-                 request.getLockKey(), request.getOwnerAddress(), request.getOwnerThreadID(), request.getOwnerThreadName(),
+         final WaitForLockExpiredAnnouncement announcement = new WaitForLockExpiredAnnouncement(
+                 request.getLockRegionName(),
+                 request.getLockKey(), request.getOwnerAddress(), request.getOwnerThreadID(),
+                 request.getOwnerThreadName(),
                  request.isReadLock());
          announcement.setSender(getRequest().getProcessor().getAddress());
          announcement.setResponseRequired(false);

@@ -25,13 +25,13 @@ import org.cacheonix.impl.net.serializer.SerializerFactory;
 /**
  * Tester for LockQueue.
  */
-public class LockQueueTest extends CacheonixTestCase {
+public class LockQueueImplTest extends CacheonixTestCase {
 
    private static final String TEST_LOCK = "test.lock";
 
    private static final String TEST_REGION = "test.region";
 
-   private LockQueue lockQueue;
+   private LockQueueImpl lockQueue;
 
    private AcquireLockRequest request;
 
@@ -132,6 +132,6 @@ public class LockQueueTest extends CacheonixTestCase {
 
 
       // Registry
-      lockQueue = new LockQueue();
+      lockQueue = new LockQueueImpl();
    }
 }

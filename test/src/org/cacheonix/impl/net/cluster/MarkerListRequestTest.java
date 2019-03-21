@@ -21,6 +21,7 @@ import org.cacheonix.CacheonixTestCase;
 import org.cacheonix.TestConstants;
 import org.cacheonix.TestUtils;
 import org.cacheonix.impl.cluster.node.state.ReplicatedState;
+import org.cacheonix.impl.cluster.node.state.ReplicatedStateImpl;
 import org.cacheonix.impl.net.ClusterNodeAddress;
 import org.cacheonix.impl.net.processor.Frame;
 import org.cacheonix.impl.net.processor.UUID;
@@ -96,7 +97,7 @@ public final class MarkerListRequestTest extends CacheonixTestCase {
       final ClusterView clusterView = new ClusterViewImpl(UUID.randomUUID(), address);
       final ClusterView lastOperationalClusterView = new ClusterViewImpl(UUID.randomUUID(), address);
 
-      final ReplicatedState replicatedState = new ReplicatedState();
+      final ReplicatedState replicatedState = new ReplicatedStateImpl();
 
       final List<Frame> messageAssemblerParts = new LinkedList<Frame>();
       final Frame frame = new Frame(Frame.MAXIMUM_MCAST_MESSAGE_LENGTH);

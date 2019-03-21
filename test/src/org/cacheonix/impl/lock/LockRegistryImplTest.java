@@ -24,7 +24,7 @@ import org.cacheonix.impl.net.serializer.SerializerFactory;
 /**
  * Tester for LockRegistry.
  */
-public class LockRegistryTest extends CacheonixTestCase {
+public class LockRegistryImplTest extends CacheonixTestCase {
 
    private static final String TEST_LOCK = "test.lock";
 
@@ -52,7 +52,7 @@ public class LockRegistryTest extends CacheonixTestCase {
     */
    public void testDefaultConstructor() {
 
-      assertNotNull(new LockRegistry().toString());
+      assertNotNull(new LockRegistryImpl().toString());
    }
 
 
@@ -108,6 +108,6 @@ public class LockRegistryTest extends CacheonixTestCase {
       request.setSender(OWNER_ADDRESS);
 
       // Registry
-      registry = new LockRegistry();
+      registry = new LockRegistryImpl();
    }
 }
