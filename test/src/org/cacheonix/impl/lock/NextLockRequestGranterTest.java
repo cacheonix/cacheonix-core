@@ -19,15 +19,36 @@ import org.cacheonix.impl.net.cluster.ClusterProcessor;
 import static org.mockito.Mockito.mock;
 
 /**
+ * A tester for {@link NextLockRequestGranter}.
  */
 public final class NextLockRequestGranterTest extends CacheonixTestCase {
 
 
+   private final ClusterProcessor clusterProcessor = mock(ClusterProcessor.class);
+
+   private final LockQueue lockQueue = mock(LockQueue.class);
+
+   /**
+    * Object under test.
+    */
+   private final NextLockRequestGranter nextLockRequestGranter = new NextLockRequestGranter(clusterProcessor,
+           lockQueue);
+
+
+   /**
+    * Tests {@link NextLockRequestGranter#toString()}.
+    */
    public void testToString() {
 
-      final LockQueue lockQueue = new LockQueueImpl();
-      final ClusterProcessor clusterProcessor = mock(ClusterProcessor.class);
-      final NextLockRequestGranter nextLockRequestGranter = new NextLockRequestGranter(clusterProcessor, lockQueue);
       assertNotNull(nextLockRequestGranter.toString());
+   }
+
+
+   /**
+    * Tests {@link NextLockRequestGranter#grantNextLockRequests()}.
+    */
+   public void testGrantNextLockRequests() {
+
+      nextLockRequestGranter.grantNextLockRequests();
    }
 }
