@@ -419,6 +419,7 @@
   <component name="InspectionProjectProfileManager">
     <profile version="1.0">
       <option name="myName" value="Project Default" />
+      <option name="myLocal" value="true" />
       <inspection_tool class="AccessToNonThreadSafeStaticFieldFromInstance" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="nonThreadSafeClasses">
           <value />
@@ -429,7 +430,6 @@
       <inspection_tool class="AnonymousClassVariableHidesContainingMethodVariable" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ArchaicSystemPropertyAccess" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ArrayEquality" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="AssignmentOrReturnOfFieldWithMutableType" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="AssignmentToCatchBlockParameter" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="AssignmentToCollectionFieldFromParameter" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="ignorePrivateMethods" value="true" />
@@ -437,17 +437,6 @@
       <inspection_tool class="AssignmentToDateFieldFromParameter" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="ignorePrivateMethods" value="true" />
       </inspection_tool>
-      <inspection_tool class="AssignmentToForLoopParameter" enabled="true" level="WARNING" enabled_by_default="true">
-        <option name="m_checkForeachParameters" value="false" />
-      </inspection_tool>
-      <inspection_tool class="AssignmentToMethodParameter" enabled="true" level="WARNING" enabled_by_default="true">
-        <option name="ignoreTransformationOfOriginalParameter" value="false" />
-      </inspection_tool>
-      <inspection_tool class="AssignmentToNull" enabled="true" level="WARNING" enabled_by_default="true">
-        <option name="ignoreAssignmentsToFields" value="true" />
-      </inspection_tool>
-      <inspection_tool class="AssignmentToStaticFieldFromInstanceMethod" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="AssignmentToSuperclassField" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="AssignmentUsedAsCondition" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="AwaitNotInLoop" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="AwaitWithoutCorrespondingSignal" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -464,6 +453,7 @@
       <inspection_tool class="BooleanMethodIsAlwaysInverted" enabled="false" level="WARNING" enabled_by_default="false" />
       <inspection_tool class="BusyWait" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="CStyleArrayDeclaration" enabled="true" level="WARNING" enabled_by_default="true" />
+      <inspection_tool class="CachedNumberConstructorCall" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="CallToNativeMethodWhileLocked" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="CallToSimpleGetterInClass" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="ignoreGetterCallsOnOtherObjects" value="false" />
@@ -476,15 +466,11 @@
       <inspection_tool class="CallToStringConcatCanBeReplacedByOperator" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="CastConflictsWithInstanceof" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="CastToIncompatibleInterface" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="CatchMayIgnoreException" enabled="true" level="WARNING" enabled_by_default="true">
-        <option name="m_ignoreCatchBlocksWithComments" value="false" />
-        <option name="m_ignoreUsedIgnoredName" value="true" />
-      </inspection_tool>
       <inspection_tool class="ChainedEquality" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ChainedEqualityJS" enabled="true" level="WARNING" enabled_by_default="true" />
+      <inspection_tool class="ClassEscapesItsScope" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ClassInitializer" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ClassNewInstance" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="CodeBlock2Expr" enabled="false" level="WARNING" enabled_by_default="false" />
       <inspection_tool class="CollectionContainsUrl" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="CollectionsFieldAccessReplaceableByMethodCall" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="CollectionsMustHaveInitialCapacity" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -501,7 +487,6 @@
       <inspection_tool class="CovariantEquals" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="DefaultNotLastCaseInSwitch" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="DefaultNotLastCaseInSwitchJS" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="DoubleBraceInitialization" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="DoubleCheckedLocking" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="ignoreOnVolatileVariables" value="false" />
       </inspection_tool>
@@ -536,9 +521,6 @@
       <inspection_tool class="InnerClassMayBeStatic" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="InnerClassVariableHidesOuterClassVariable" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="m_ignoreInvisibleFields" value="true" />
-      </inspection_tool>
-      <inspection_tool class="InstanceVariableInitialization" enabled="true" level="WARNING" enabled_by_default="true">
-        <option name="m_ignorePrimitives" value="true" />
       </inspection_tool>
       <inspection_tool class="InstanceofIncompatibleInterface" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="InstantiationOfUtilityClass" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -627,9 +609,6 @@
             <item value="forEach" />
           </value>
         </option>
-        <option name="ignoredClasses">
-          <value />
-        </option>
       </inspection_tool>
       <inspection_tool class="MisspelledCompareTo" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="MisspelledEquals" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -645,8 +624,8 @@
         <option name="m_ignoreNegatedNullComparison" value="true" />
         <option name="m_ignoreNegatedZeroComparison" value="false" />
       </inspection_tool>
-      <inspection_tool class="NestedAssignment" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="NestedSynchronizedStatement" enabled="true" level="WARNING" enabled_by_default="true" />
+      <inspection_tool class="NonAtomicOperationOnVolatileField" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="NonSerializableFieldInSerializableClass" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="ignorableAnnotations">
           <value />
@@ -699,14 +678,8 @@
         <option name="ignoreCloneable" value="false" />
       </inspection_tool>
       <inspection_tool class="RedundantImport" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="RedundantMethodOverride" enabled="true" level="WARNING" enabled_by_default="false">
-        <scope name="Project Files" level="WARNING" enabled="true" />
-      </inspection_tool>
+      <inspection_tool class="RedundantMethodOverride" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="RedundantThrowsDeclaration" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="ReplaceAssignmentWithOperatorAssignment" enabled="true" level="WARNING" enabled_by_default="true">
-        <option name="ignoreLazyOperators" value="true" />
-        <option name="ignoreObscureOperators" value="false" />
-      </inspection_tool>
       <inspection_tool class="ResultOfObjectAllocationIgnored" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ResultSetIndexZero" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ReturnNull" enabled="true" level="WARNING" enabled_by_default="true">
@@ -744,6 +717,7 @@
       <inspection_tool class="SignalWithoutCorrespondingAwait" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="SimplifiableAnnotation" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="SimplifiableIfStatement" enabled="false" level="WARNING" enabled_by_default="false" />
+      <inspection_tool class="SimplifiableJUnitAssertion" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="SizeReplaceableByIsEmpty" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="SleepWhileHoldingLock" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="StaticGuardedByInstance" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -754,6 +728,9 @@
       </inspection_tool>
       <inspection_tool class="StringBufferMustHaveInitialCapacity" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="StringBufferToStringInConcatenation" enabled="true" level="WARNING" enabled_by_default="true" />
+      <inspection_tool class="StringConcatenationInLoops" enabled="true" level="WARNING" enabled_by_default="true">
+        <option name="m_ignoreUnlessAssigned" value="true" />
+      </inspection_tool>
       <inspection_tool class="StringConcatenationInMessageFormatCall" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="StringEqualsEmptyString" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="StringReplaceableByStringBuffer" enabled="true" level="WARNING" enabled_by_default="true">
@@ -795,7 +772,6 @@
       <inspection_tool class="UnnecessaryConstantArrayCreationExpression" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="UnnecessaryFullyQualifiedName" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="m_ignoreJavadoc" value="false" />
-        <option name="ignoreInModuleStatements" value="true" />
       </inspection_tool>
       <inspection_tool class="UnnecessarySuperConstructor" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="UnusedCatchParameter" enabled="true" level="WARNING" enabled_by_default="true">
@@ -1637,13 +1613,22 @@
       </JAVADOC>
       <SOURCES />
     </library>
-    <library name="Mockito">
+    <library name="mockito-core-2.24.5-sources">
       <CLASSES>
-        <root url="jar://$PROJECT_DIR$/3rdparty/mockito-1.8.5/mockito-all-1.8.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/3rdparty/mockito-2.24.5/mockito-core-2.24.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/3rdparty/mockito-2.24.5/byte-buddy-1.9.10.jar!/" />
+        <root url="jar://$PROJECT_DIR$/3rdparty/mockito-2.24.5/byte-buddy-1.9.10-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/3rdparty/mockito-2.24.5/objenesis-2.6.jar!/" />
       </CLASSES>
-      <JAVADOC />
+      <JAVADOC>
+        <root url="jar://$PROJECT_DIR$/3rdparty/mockito-2.24.5/mockito-core-2.24.5-javadoc.jar!/" />
+        <root url="jar://$PROJECT_DIR$/3rdparty/mockito-2.24.5/byte-buddy-1.9.10-javadoc.jar!/" />
+        <root url="jar://$PROJECT_DIR$/3rdparty/mockito-2.24.5/objenesis-2.6-javadoc.jar!/" />
+      </JAVADOC>
       <SOURCES>
-        <root url="jar://$PROJECT_DIR$/3rdparty/mockito-1.8.5/sources/mockito-all-1.8.5-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/3rdparty/mockito-2.24.5/mockito-core-2.24.5-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/3rdparty/mockito-2.24.5/byte-buddy-1.9.10-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/3rdparty/mockito-2.24.5/objenesis-2.6-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="MX4J">
