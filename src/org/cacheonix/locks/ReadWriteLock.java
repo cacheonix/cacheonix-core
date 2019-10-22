@@ -94,6 +94,4 @@ public interface ReadWriteLock extends java.util.concurrent.locks.ReadWriteLock 
     * @return the lock used for writing.
     */
    Lock writeLock();
-
-
 }
