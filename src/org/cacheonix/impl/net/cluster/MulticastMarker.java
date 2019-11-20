@@ -400,7 +400,7 @@ public final class MulticastMarker extends OperationalMarker {
 
       // Check if this is our our marker or if it comes from another cluster
 
-      if (getClusterProcessor().getProcessorState().getClusterView().getClusterUUID().equals(getClusterUUID())) {
+      if (getProcessorState().getClusterView().getClusterUUID().equals(getClusterUUID())) {
 
          // Receive frames
          receiveFrames();
@@ -1177,7 +1177,7 @@ public final class MulticastMarker extends OperationalMarker {
       // This is detected as the marker having the same clusterUUID as this
       // node becuase the cluster view was stabilized as a part of recovery.
 
-      if (!getClusterProcessor().getProcessorState().getClusterView().getClusterUUID().equals(getClusterUUID())) {
+      if (!getProcessorState().getClusterView().getClusterUUID().equals(getClusterUUID())) {
 
          // Respond with success
          final String errorResult = "Received a marker from a foreign cluster: " + this;

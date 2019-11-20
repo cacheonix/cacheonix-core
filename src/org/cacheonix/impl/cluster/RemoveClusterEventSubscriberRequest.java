@@ -69,7 +69,7 @@ public final class RemoveClusterEventSubscriberRequest extends LocalClusterReque
    protected void processNormal() {
 
       // Use current cluster view
-      removeSubscriber(getClusterProcessor().getProcessorState().getClusterView());
+      removeSubscriber(getProcessorState().getClusterView());
    }
 
 
@@ -79,7 +79,7 @@ public final class RemoveClusterEventSubscriberRequest extends LocalClusterReque
    protected void processBlocked() {
 
       // Use last operational cluster view
-      removeSubscriber(getClusterProcessor().getProcessorState().getLastOperationalClusterView());
+      removeSubscriber(getProcessorState().getLastOperationalClusterView());
    }
 
 
@@ -89,7 +89,7 @@ public final class RemoveClusterEventSubscriberRequest extends LocalClusterReque
    protected void processRecovery() {
 
       // Use last operational cluster view
-      removeSubscriber(getClusterProcessor().getProcessorState().getLastOperationalClusterView());
+      removeSubscriber(getProcessorState().getLastOperationalClusterView());
    }
 
 
@@ -99,7 +99,7 @@ public final class RemoveClusterEventSubscriberRequest extends LocalClusterReque
    protected void processCleanup() {
 
       // Use last operational cluster view
-      removeSubscriber(getClusterProcessor().getProcessorState().getLastOperationalClusterView());
+      removeSubscriber(getProcessorState().getLastOperationalClusterView());
    }
 
 

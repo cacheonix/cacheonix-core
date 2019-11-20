@@ -184,4 +184,15 @@ public abstract class ClusterRequest extends Request {
       return "ClusterRequest{" +
               "} " + super.toString();
    }
+
+
+   /**
+    * A helper method to get a state from the request context processor.
+    *
+    * @return state from the request context processor.
+    */
+   protected final ClusterProcessorState getProcessorState() {
+
+      return getClusterProcessor().getProcessorState();
+   }
 }

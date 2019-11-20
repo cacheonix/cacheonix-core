@@ -49,4 +49,6 @@ public abstract class LocalClusterRequest extends ClusterRequest {
 
       throw new NotSerializableException(this.getClass() + " can be sent only to a local processor");
    }
+
+
 }

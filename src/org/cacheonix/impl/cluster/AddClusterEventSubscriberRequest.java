@@ -64,7 +64,7 @@ public final class AddClusterEventSubscriberRequest extends LocalClusterRequest 
    protected void processNormal() {
 
       // Use current operational cluster view
-      addSubscriber(getClusterProcessor().getProcessorState().getClusterView());
+      addSubscriber(getProcessorState().getClusterView());
    }
 
 
@@ -74,7 +74,7 @@ public final class AddClusterEventSubscriberRequest extends LocalClusterRequest 
    protected void processBlocked() {
 
       // Use last operational cluster view
-      addSubscriber(getClusterProcessor().getProcessorState().getLastOperationalClusterView());
+      addSubscriber(getProcessorState().getLastOperationalClusterView());
    }
 
 
@@ -84,7 +84,7 @@ public final class AddClusterEventSubscriberRequest extends LocalClusterRequest 
    protected void processRecovery() {
 
       // Use last operational cluster view
-      addSubscriber(getClusterProcessor().getProcessorState().getLastOperationalClusterView());
+      addSubscriber(getProcessorState().getLastOperationalClusterView());
    }
 
 
@@ -94,7 +94,7 @@ public final class AddClusterEventSubscriberRequest extends LocalClusterRequest 
    protected void processCleanup() {
 
       // Use last operational cluster view
-      addSubscriber(getClusterProcessor().getProcessorState().getLastOperationalClusterView());
+      addSubscriber(getProcessorState().getLastOperationalClusterView());
    }
 
 

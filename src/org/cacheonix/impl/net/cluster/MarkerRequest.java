@@ -190,7 +190,7 @@ public abstract class MarkerRequest extends ClusterRequest {
 
    protected void logForward(final MulticastMarker marker) {
 
-      if (LOG.isDebugEnabled() && getClusterProcessor().getProcessorState().incrementMarkerCounter() % 100L == 0L) {
+      if (LOG.isDebugEnabled() && getProcessorState().incrementMarkerCounter() % 100L == 0L) {
          LOG.debug("Forwarded marker, seqNum: " + marker.getSeqNum()
                  + ", My port: " + getClusterProcessor().getAddress().getTcpPort()
                  + ", To port: " + marker.getReceiver().getTcpPort()
