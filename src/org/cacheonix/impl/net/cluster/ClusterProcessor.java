@@ -111,6 +111,11 @@ public interface ClusterProcessor extends RequestProcessor, MulticastServerListe
     */
    CacheProcessor unregisterCacheProcessor(String cacheName);
 
+   /**
+    * Returns a cluster processor state.
+    *
+    * @return a cluster processor state.
+    */
    ClusterProcessorState getProcessorState();
 
    /**
