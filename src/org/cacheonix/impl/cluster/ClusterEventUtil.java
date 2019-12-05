@@ -23,8 +23,15 @@ import org.cacheonix.cluster.ClusterMember;
 import org.cacheonix.cluster.ClusterMemberAddress;
 import org.cacheonix.cluster.ClusterState;
 import org.cacheonix.impl.net.ClusterNodeAddress;
-import org.cacheonix.impl.net.cluster.ClusterProcessorState;
 import org.cacheonix.impl.net.cluster.ClusterView;
+
+import static org.cacheonix.cluster.ClusterState.BLOCKED;
+import static org.cacheonix.cluster.ClusterState.OPERATIONAL;
+import static org.cacheonix.cluster.ClusterState.RECONFIGURING;
+import static org.cacheonix.impl.net.cluster.ClusterProcessorState.STATE_BLOCKED;
+import static org.cacheonix.impl.net.cluster.ClusterProcessorState.STATE_CLEANUP;
+import static org.cacheonix.impl.net.cluster.ClusterProcessorState.STATE_NORMAL;
+import static org.cacheonix.impl.net.cluster.ClusterProcessorState.STATE_RECOVERY;
 
 /**
  * Utility class.
@@ -48,6 +55,7 @@ public final class ClusterEventUtil {
       }
 
       // Get UUID
+
       final String uuid = clusterView == null ? null : clusterView.getClusterUUID().toString();
 
       // Get user cluster state
@@ -83,14 +91,14 @@ public final class ClusterEventUtil {
    public static ClusterState convertStateMachineToUserClusterState(final int state) throws IllegalArgumentException {
 
       switch (state) {
-         case ClusterProcessorState.STATE_BLOCKED:
-            return ClusterState.BLOCKED;
-         case ClusterProcessorState.STATE_NORMAL:
-            return ClusterState.OPERATIONAL;
-         case ClusterProcessorState.STATE_RECOVERY:
-            return ClusterState.RECONFIGURING;
-         case ClusterProcessorState.STATE_CLEANUP:
-            return ClusterState.RECONFIGURING;
+         case STATE_BLOCKED:
+            return BLOCKED;
+         case STATE_NORMAL:
+            return OPERATIONAL;
+         case STATE_RECOVERY:
+            return RECONFIGURING;
+         case STATE_CLEANUP:
+            return RECONFIGURING;
          default:
             throw new IllegalArgumentException("Unknown state: " + state);
       }
