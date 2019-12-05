@@ -15,21 +15,14 @@ package org.cacheonix.impl.cluster;
 
 import java.io.IOException;
 import java.io.NotSerializableException;
-import java.util.concurrent.ExecutorService;
 
-import junit.framework.TestCase;
+import org.cacheonix.RequestTestCase;
 import org.cacheonix.cluster.ClusterEventSubscriber;
 import org.cacheonix.impl.net.ClusterNodeAddress;
-import org.cacheonix.impl.net.cluster.ClusterProcessor;
-import org.cacheonix.impl.net.cluster.ClusterProcessorState;
-import org.cacheonix.impl.net.cluster.ClusterView;
-import org.cacheonix.impl.net.processor.Response;
-import org.cacheonix.impl.net.processor.UUID;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
 import org.cacheonix.impl.net.serializer.Wireable;
 import org.cacheonix.impl.net.serializer.WireableFactory;
-import org.mockito.ArgumentCaptor;
 
 import static org.cacheonix.impl.net.ClusterNodeAddress.createAddress;
 import static org.cacheonix.impl.net.cluster.ClusterProcessorState.STATE_BLOCKED;
@@ -45,18 +38,12 @@ import static org.mockito.Mockito.when;
  * Tester for {@link AddClusterEventSubscriberRequest}.
  */
 @SuppressWarnings("Duplicates")
-public final class AddClusterEventSubscriberRequestTest extends TestCase {
+public final class AddClusterEventSubscriberRequestTest extends RequestTestCase {
 
 
-   private final ArgumentCaptor<Response> messageArgumentCaptor = ArgumentCaptor.forClass(Response.class);
+   private ClusterNodeAddress address = createAddress("127.0.0.1", 777);
 
-   private final ClusterProcessorState clusterProcessorState = mock(ClusterProcessorState.class);
-
-   private final ClusterEventSubscriber subscriber = mock(ClusterEventSubscriber.class);
-
-   private final ClusterProcessor clusterProcessor = mock(ClusterProcessor.class);
-
-   private final ClusterNodeAddress address = createAddress("127.0.0.1", 777);
+   private ClusterEventSubscriber subscriber = mock(ClusterEventSubscriber.class);
 
    private AddClusterEventSubscriberRequest request;
 
@@ -166,15 +153,6 @@ public final class AddClusterEventSubscriberRequestTest extends TestCase {
 
       super.setUp();
 
-      // Given
-      final ExecutorService userEventExecutor = mock(ExecutorService.class);
-      final ClusterView clusterView = mock(ClusterView.class);
-
-      when(clusterProcessor.getProcessorState()).thenReturn(clusterProcessorState);
-      when(clusterProcessorState.getClusterView()).thenReturn(clusterView);
-      when(clusterProcessorState.getUserEventExecutor()).thenReturn(userEventExecutor);
-      when(clusterView.getClusterUUID()).thenReturn(UUID.randomUUID());
-
       request = new AddClusterEventSubscriberRequest(subscriber);
       request.setProcessor(clusterProcessor);
       request.setSender(address);
@@ -183,7 +161,10 @@ public final class AddClusterEventSubscriberRequestTest extends TestCase {
 
    public void tearDown() throws Exception {
 
+      subscriber = null;
       request = null;
+      address = null;
+
       super.tearDown();
    }
 }
