@@ -1,6 +1,6 @@
-# Cacheonix Java Cache
+# Cacheonix Distributed Java Cache
 
-Cacheonix is an open source project that provides a fast local cache and a stricly-consistent distributed cache. Cacheonix is being actively deleveloped. Cacheonix v.2.2.2 was released on May 18, 2016.
+Cacheonix is an open source project that provides a stricly-consistent distributed cache and a fast local cache.
 
 ## cacheonix-core
 
