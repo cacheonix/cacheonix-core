@@ -12,9 +12,6 @@
 
    <properties>
 
-      <!-- Setting maven.compiler.source to something different to 1.8
-           needs that you configure the sourceLevel in gwt-maven-plugin since
-           GWT compiler 2.8 requires 1.8 (see gwt-maven-plugin block below) -->
       <maven.compiler.source>1.8</maven.compiler.source>
       <maven.compiler.target>1.8</maven.compiler.target>
 
