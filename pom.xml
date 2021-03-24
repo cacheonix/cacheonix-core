@@ -26,17 +26,6 @@
    <dependencies>
    </dependencies>
 
-   <reporting>
-      <plugins>
-         <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-pmd-plugin</artifactId>
-            <version>${maven-pmd-plugin.version}</version>
-         </plugin>
-      </plugins>
-   </reporting>
-
-   <!-- Reporting -->
    <build>
 
       <!-- FIXME: simeshev@cacheonix.org - 2021-03-10 - Move src and test
@@ -66,6 +55,7 @@
 
          <!-- PMD -->
          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-pmd-plugin</artifactId>
             <version>${maven-pmd-plugin.version}</version>
             <configuration>
@@ -87,4 +77,15 @@
          </plugin>
       </plugins>
    </build>
+
+   <!-- Reporting -->
+   <reporting>
+      <plugins>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-pmd-plugin</artifactId>
+            <version>${maven-pmd-plugin.version}</version>
+         </plugin>
+      </plugins>
+   </reporting>
 </project>
