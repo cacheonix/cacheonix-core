@@ -1010,25 +1010,20 @@ public final class BucketOwnershipAssignment implements Wireable {
 
             // Get address of the owner of this bucket in the storage number being analyzed
             final ClusterNodeAddress address = bucketAssignments[storageNumber].get(bucketNumber);
-            if (address == null) {
-
+            if (address == null && storageNumber > 0) {
                // In this storage bucket is orphaned
-               if (storageNumber > 0) {
 
-                  // Check if this replica is being restored on the prospective address
-                  final BucketOwner primaryOwner = getPrimaryOwner(bucketNumber);
-                  if (primaryOwner != null) {
+               // Check if this replica is being restored on the prospective address
+               final BucketOwner primaryOwner = getPrimaryOwner(bucketNumber);
+               if (primaryOwner != null) {
 
-                     // NOPMD
-                     final BucketTransfer outboundReplicaTransfer = primaryOwner.getOrCreateOutboundReplicas(storageNumber).get(bucketNumber);
-                     if (outboundReplicaTransfer != null) {
+                  // NOPMD
+                  final BucketTransfer outboundReplicaTransfer = primaryOwner.getOrCreateOutboundReplicas(
+                          storageNumber).get(bucketNumber);
+                  if (outboundReplicaTransfer != null && outboundReplicaTransfer.getOwner().equals(prospectiveOwner.getAddress())) {
 
-                        if (outboundReplicaTransfer.getOwner().equals(prospectiveOwner.getAddress())) {
-
-                           safe = false;
-                           break;
-                        }
-                     }
+                     safe = false;
+                     break;
                   }
                }
             }
