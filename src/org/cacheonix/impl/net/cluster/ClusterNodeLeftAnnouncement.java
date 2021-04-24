@@ -173,10 +173,8 @@ public final class ClusterNodeLeftAnnouncement extends Message {
 
             // Clear write lock owner
             final LockOwner writeLockOwner = lockQueue.getWriteLockOwner();
-            if (writeLockOwner != null) {
-               if (writeLockOwner.getAddress().equals(leftAddress)) {
-                  lockQueue.clearWriteLockOwner();
-               }
+            if (writeLockOwner != null && writeLockOwner.getAddress().equals(leftAddress)) {
+               lockQueue.clearWriteLockOwner();
             }
 
             // Clear read lock owner
