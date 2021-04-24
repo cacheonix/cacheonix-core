@@ -221,7 +221,7 @@ public final class JMSAppender extends AppenderSkeleton {
          if (jndi != null) {
             try {
                jndi.close();
-            } catch (final Exception ignore) {
+            } catch (final Exception ignored) {
             }
          }
       }
