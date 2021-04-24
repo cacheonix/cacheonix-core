@@ -90,24 +90,14 @@ public class CategoryAbstractCellEditor implements TableCellEditor, TreeCellEdit
 
    public final boolean isCellEditable(final EventObject anEvent) {
 
-      if (anEvent instanceof MouseEvent) {
-         if (((MouseEvent) anEvent).getClickCount() < _clickCountToStart) {
-            return false;
-         }
-      }
-      return true;
+      return !(anEvent instanceof MouseEvent) || ((MouseEvent) anEvent).getClickCount() >= _clickCountToStart;
    }
 
 
    public final boolean shouldSelectCell(final EventObject anEvent) {
 
-      if (this.isCellEditable(anEvent)) {
-         if (anEvent == null ||
-                 ((MouseEvent) anEvent).getClickCount() >= _clickCountToStart) {
-            return true;
-         }
-      }
-      return false;
+      return this.isCellEditable(
+              anEvent) && anEvent == null || ((MouseEvent) anEvent).getClickCount() >= _clickCountToStart;
    }
 
 
