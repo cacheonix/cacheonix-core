@@ -91,8 +91,6 @@ public final class LogBrokerMonitor {
 
    private JLabel _statusLabel = null;
 
-   private Object _lock = new Object();
-
    private JComboBox _fontSizeCombo = null;
 
    private int _fontSize = 10;
@@ -104,8 +102,6 @@ public final class LogBrokerMonitor {
    private final boolean _loadSystemFonts = false;
 
    private final boolean _trackTableScrollPane = true;
-
-   private Dimension _lastTableViewportSize = null;
 
    private boolean _callSystemExitOnClose = false;
 
