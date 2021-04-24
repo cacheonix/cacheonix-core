@@ -35,7 +35,6 @@ import java.util.regex.Pattern;
 import org.cacheonix.impl.util.array.Hash;
 import org.cacheonix.impl.util.array.HashSet;
 import org.cacheonix.impl.util.array.IntArrayList;
-import org.cacheonix.impl.util.logging.Logger;
 
 import static org.cacheonix.impl.util.exception.ExceptionUtils.ignoreException;
 
@@ -43,12 +42,6 @@ import static org.cacheonix.impl.util.exception.ExceptionUtils.ignoreException;
  * Common string utilities
  */
 public final class StringUtils {
-
-
-   /**
-    * Logger.
-    */
-   private static final Logger LOG = Logger.getLogger(StringUtils.class);
 
 
    private static final char[] HEX_DIGITS = {
