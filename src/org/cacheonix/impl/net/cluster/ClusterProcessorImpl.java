@@ -603,16 +603,13 @@ public final class ClusterProcessorImpl extends AbstractRequestProcessor impleme
             }
 
             // Right now we support only ClusterAnnouncement
-            if (message instanceof ClusterAnnouncement) {
+            if (message instanceof ClusterAnnouncement && !isShutdown()) {
 
-               if (!isShutdown()) {
+               // Adjust time
+               getClock().adjust(message.getTimestamp());
 
-                  // Adjust time
-                  getClock().adjust(message.getTimestamp());
-
-                  // Enqueue
-                  enqueue(message);
-               }
+               // Enqueue
+               enqueue(message);
             }
          } catch (final InterruptedException ignored) {
 
