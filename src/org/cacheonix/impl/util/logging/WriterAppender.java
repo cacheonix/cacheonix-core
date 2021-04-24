@@ -281,7 +281,6 @@ public class WriterAppender extends AppenderSkeleton {
       if (layout.ignoresThrowable()) {
          final String[] s = event.getThrowableStrRep();
          if (s != null) {
-            final int len = s.length;
             for (final String value : s) {
                this.qw.write(value);
                this.qw.write(Layout.LINE_SEP);
