@@ -70,17 +70,6 @@ public final class MD5HashCodeCalculator implements HashCodeCalculator, Wireable
 
 
    /**
-    * Returns MessageDigest.
-    *
-    * @return MD5 MessageDigest
-    */
-   private MessageDigest getMD5() {
-
-      return md5;
-   }
-
-
-   /**
     * Initializes the internal data structures.
     */
    public void init() {
