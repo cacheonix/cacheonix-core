@@ -53,11 +53,6 @@ public final class PlainMulticastSender implements MulticastSender {
    private static final String NO_ROUTE_TO_HOST = "No route to host";
 
    /**
-    * A helper constant used to typify conversation from a list to an array.
-    */
-   private static final MulticastSocket[] MULTICAST_SOCKET_ARRAY_TEMPLATE = new MulticastSocket[0];
-
-   /**
     * Multicast address.
     */
    private final InetAddress mcastAddress;
