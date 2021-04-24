@@ -556,9 +556,6 @@ public final class StringUtils {
          }
       }
 
-      //if (log.isDebugEnabled()) log.debug("st: " + st);
-      //if (log.isDebugEnabled()) log.debug("en: " + en);
-      //if (log.isDebugEnabled()) log.debug("stringToProcess: " + "\"" + stringToProcess + "\"");
       return '\"' + stringToProcess.substring(st, en) + '\"';
    }
 
@@ -713,13 +710,8 @@ public final class StringUtils {
          final byte val3 = (b3 & SIGN) == 0 ? (byte) (b3 >> 6) : (byte) (b3 >> 6 ^ 0xfc);
 
          encodedData[encodedIndex] = lookUpBase64Alphabet[(int) val1];
-         //log.debug( "val2 = " + val2 );
-         //log.debug( "k4   = " + (k<<4) );
-         //log.debug(  "vak  = " + (val2 | (k<<4)) );
-         encodedData[encodedIndex + 1] =
-                 lookUpBase64Alphabet[val2 | k << 4];
-         encodedData[encodedIndex + 2] =
-                 lookUpBase64Alphabet[l << 2 | val3];
+         encodedData[encodedIndex + 1] = lookUpBase64Alphabet[val2 | k << 4];
+         encodedData[encodedIndex + 2] = lookUpBase64Alphabet[l << 2 | val3];
          encodedData[encodedIndex + 3] = lookUpBase64Alphabet[b3 & 0x3f];
       }
 
@@ -729,8 +721,6 @@ public final class StringUtils {
       if (fewerThan24bits == EIGHTBIT) {
          final byte b11 = binaryData[dataIndex1];
          final byte k1 = (byte) (b11 & 0x03);
-         //log.debug("b1=" + b1);
-         //log.debug("b1<<2 = " + (b1>>2) );
          final byte val1 = (b11 & SIGN) == 0 ? (byte) (b11 >> 2) : (byte) (b11 >> 2 ^ 0xc0);
          encodedData[encodedIndex1] = lookUpBase64Alphabet[(int) val1];
          encodedData[encodedIndex1 + 1] = lookUpBase64Alphabet[k1 << 4];
