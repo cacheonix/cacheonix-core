@@ -40,8 +40,6 @@ public final class PropertyPrinter implements PropertyCallback {
 
    private final Hashtable appenderNames = new Hashtable(3);
 
-   private Hashtable layoutNames = new Hashtable(3);
-
    private final PrintWriter out;
 
 
