@@ -147,10 +147,6 @@ public final class SyslogAppender extends AppenderSkeleton {
     */
    public static final int LOG_LOCAL7 = 23 << 3;
 
-   private static final int SYSLOG_HOST_OI = 0;
-
-   private static final int FACILITY_OI = 1;
-
    static final String TAB = "    ";
 
    // Have LOG_USER as default
