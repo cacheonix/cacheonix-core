@@ -522,23 +522,21 @@ public final class BucketOwner implements Wireable {
 
       //
       replicaCount = in.readByte();
-      if (replicaCount > 0) {
-         if (!in.readBoolean()) {
-            // Not null
-            //noinspection unchecked
-            outboundReplicas = new IntObjectHashMap[replicaCount];
-            for (byte i = 0; i < replicaCount; i++) {
-               if (!in.readBoolean()) {
-                  // Not null or empty
-                  final int outboundReplicasSize = in.readInt();
-                  final IntObjectHashMap<BucketTransfer> map = new IntObjectHashMap<BucketTransfer>(outboundReplicasSize);
-                  outboundReplicas[i] = map;
-                  for (int j = 0; j < outboundReplicasSize; j++) {
-                     final int bucketNumber = in.readShort();
-                     final BucketTransfer bt = new BucketTransfer();
-                     bt.readWire(in);
-                     map.put(bucketNumber, bt);
-                  }
+      if (replicaCount > 0 && !in.readBoolean()) {
+         // Not null
+         //noinspection unchecked
+         outboundReplicas = new IntObjectHashMap[replicaCount];
+         for (byte i = 0; i < replicaCount; i++) {
+            if (!in.readBoolean()) {
+               // Not null or empty
+               final int outboundReplicasSize = in.readInt();
+               final IntObjectHashMap<BucketTransfer> map = new IntObjectHashMap<BucketTransfer>(outboundReplicasSize);
+               outboundReplicas[i] = map;
+               for (int j = 0; j < outboundReplicasSize; j++) {
+                  final int bucketNumber = in.readShort();
+                  final BucketTransfer bt = new BucketTransfer();
+                  bt.readWire(in);
+                  map.put(bucketNumber, bt);
                }
             }
          }
