@@ -346,7 +346,7 @@ public final class ClusterProcessorImpl extends AbstractRequestProcessor impleme
          //
          // Start timeout in case this ClusterProcessor does not exit in time
          //
-         if (leaveTimeout.compareAndSet(null, new LeaveTimeout(this))) {
+         if (leaveTimeout.compareAndSet(null, new LeaveTimeout(this))) { // NOPMD
 
             leaveTimeout.get().reset();
          }
