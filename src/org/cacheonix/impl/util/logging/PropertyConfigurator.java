@@ -284,7 +284,7 @@ public final class PropertyConfigurator implements Configurator {
          if (istream != null) {
             try {
                istream.close();
-            } catch (final Throwable ignore) {
+            } catch (final Throwable ignored) {
             }
 
          }
@@ -418,7 +418,7 @@ public final class PropertyConfigurator implements Configurator {
          if (istream != null) {
             try {
                istream.close();
-            } catch (final Exception ignore) {
+            } catch (final Exception ignored) {
             }
          }
       }
