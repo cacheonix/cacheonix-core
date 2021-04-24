@@ -232,7 +232,7 @@ public final class CategoryNodeEditor extends CategoryAbstractCellEditor {
       final JMenuItem result = new JMenuItem("Remove All Empty Categories");
       result.addActionListener(new ActionListener() {
          public void actionPerformed(final ActionEvent e) {
-            while (removeUnusedNodes() > 0) {
+            while (removeUnusedNodes() > 0) { // NOPMD
             }
          }
       });
