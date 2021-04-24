@@ -246,9 +246,7 @@ public final class LogTable extends JTable {
          }
 
          final ListSelectionModel lsm = (ListSelectionModel) e.getSource();
-         if (lsm.isSelectionEmpty()) {
-            //no rows are selected
-         } else {
+         if (!lsm.isSelectionEmpty()) {
             final StringBuilder buf = new StringBuilder(100);
             final int selectedRow = lsm.getMinSelectionIndex();
 
