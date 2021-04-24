@@ -112,7 +112,6 @@ public final class TelnetAppender extends AppenderSkeleton {
       if (layout.ignoresThrowable()) {
          final String[] s = event.getThrowableStrRep();
          if (s != null) {
-            final int len = s.length;
             for (final String value : s) {
                sh.send(value);
                sh.send(Layout.LINE_SEP);
