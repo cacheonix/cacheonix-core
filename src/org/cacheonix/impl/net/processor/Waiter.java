@@ -304,7 +304,7 @@ public class Waiter implements ResponseWaiter {
    private static long calculateTimeoutExpirationTime(final long timeoutMillis) {
 
       return timeoutMillis == Long.MAX_VALUE || timeoutMillis == 0L
-              ? Long.MAX_VALUE : (System.currentTimeMillis() + timeoutMillis);
+              ? Long.MAX_VALUE : System.currentTimeMillis() + timeoutMillis;
    }
 
 
