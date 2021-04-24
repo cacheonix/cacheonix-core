@@ -91,8 +91,6 @@ public final class CategoryImmediateEditor extends DefaultTreeCellEditor {
       if (path == null) {
          return false;
       }
-      final CategoryNode node = (CategoryNode) path.getLastPathComponent();
-
       final Rectangle bounds = tree.getRowBounds(lastRow);
       final Dimension checkBoxOffset =
               renderer.getCheckBoxOffset();
@@ -100,7 +98,6 @@ public final class CategoryImmediateEditor extends DefaultTreeCellEditor {
       bounds.translate(offset + checkBoxOffset.width,
               checkBoxOffset.height);
 
-      final boolean rv = bounds.contains(e.getPoint());
       return true;
    }
 
