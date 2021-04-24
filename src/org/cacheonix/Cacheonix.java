@@ -152,7 +152,6 @@ public abstract class Cacheonix {
     * Shutdowns and deletes the cache.
     *
     * @param cacheName name of the cache to delete.
-    * @noinspection NestedTryStatement
     * @see #getCache(String)
     * @see #createCache(String)
     */
@@ -367,7 +366,7 @@ public abstract class Cacheonix {
     * @return a singleton instance of Cacheonix.
     * @throws IllegalStateException if a cache with a duplicate name is found in the Cacheonix configuration; if the
     *                               cache configuration cannot be found.
-    * @noinspection MethodReturnOfConcreteClass, JavaDoc, deprecation
+    * @noinspection MethodReturnOfConcreteClass
     */
    public static Cacheonix getInstance() throws ConfigurationException {
 
