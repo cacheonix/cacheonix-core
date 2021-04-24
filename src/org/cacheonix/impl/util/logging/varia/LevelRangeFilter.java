@@ -59,21 +59,17 @@ public final class LevelRangeFilter extends Filter {
     * Return the decision of this filter.
     */
    public int decide(final LoggingEvent event) {
-      if (this.levelMin != null) {
-         if (!event.getLevel().isGreaterOrEqual(levelMin)) {
-            // level of event is less than minimum
-            return Filter.DENY;
-         }
+      if (this.levelMin != null && !event.getLevel().isGreaterOrEqual(levelMin)) {
+         // level of event is less than minimum
+         return Filter.DENY;
       }
 
-      if (this.levelMax != null) {
-         if (event.getLevel().toInt() > levelMax.toInt()) {
-            // level of event is greater than maximum
-            // Alas, there is no Level.isGreater method. and using
-            // a combo of isGreaterOrEqual && !Equal seems worse than
-            // checking the int values of the level objects..
-            return Filter.DENY;
-         }
+      if (this.levelMax != null && event.getLevel().toInt() > levelMax.toInt()) {
+         // level of event is greater than maximum
+         // Alas, there is no Level.isGreater method. and using
+         // a combo of isGreaterOrEqual && !Equal seems worse than
+         // checking the int values of the level objects..
+         return Filter.DENY;
       }
 
       if (acceptOnMatch) {
