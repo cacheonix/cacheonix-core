@@ -90,12 +90,9 @@ public final class RetainAllRequest extends BucketSetRequest {
       final List<Bucket> modifiedBuckets = new ArrayList<Bucket>(bucketsToProcess.size());
       for (final Bucket bucket : bucketsToProcess) {
 
-         if (!bucket.isEmpty()) {
+         if (!bucket.isEmpty() && bucket.retainAll(keySet)) {
 
-            if (bucket.retainAll(keySet)) {
-
-               modifiedBuckets.add(bucket);
-            }
+            modifiedBuckets.add(bucket);
          }
       }
 
