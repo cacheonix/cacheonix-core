@@ -439,7 +439,7 @@ public final class StringUtils {
    public static byte[] decodeFromHex(final String hex) {
 
       final int len = hex.length();
-      final byte[] buf = new byte[(len + 1 >> 1)];
+      final byte[] buf = new byte[len + 1 >> 1];
 
       int i = 0;
       int j = 0;
@@ -480,7 +480,7 @@ public final class StringUtils {
    public static String encodeToHex(
            final byte[] ba) { // NOPMD - "A user given array is stored directly"  - we do NOT store anything.
       final int length = ba.length;
-      final char[] buf = new char[(length << 1)];
+      final char[] buf = new char[length << 1];
       for (int i = 0, j = 0; i < length; ) {
          final int k = ba[i++];
          buf[j++] = HEX_DIGITS[k >>> 4 & 0x0F];
@@ -687,7 +687,7 @@ public final class StringUtils {
 
       if (fewerThan24bits == 0) {
          // 16 or 8 bit
-         encodedData = new byte[(numberTriplets << 2)];
+         encodedData = new byte[numberTriplets << 2];
       } else {
          //data not divisible by 24 bit
          encodedData = new byte[(numberTriplets + 1 << 2)];
