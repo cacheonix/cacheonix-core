@@ -51,7 +51,7 @@ public final class NextLockRequestGranter {
 
       // Grant next lock request(s) while possible.
       //noinspection StatementWithEmptyBody
-      while (grantNextLockRequest()) {
+      while (grantNextLockRequest()) { // NOPMD
       }
    }
 
