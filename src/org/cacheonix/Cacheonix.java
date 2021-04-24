@@ -28,7 +28,6 @@ import org.cacheonix.cache.Cache;
 import org.cacheonix.cache.CacheExistsException;
 import org.cacheonix.cache.ConfigurationException;
 import org.cacheonix.cluster.Cluster;
-import org.cacheonix.cluster.ClusterEventSubscriber;
 import org.cacheonix.impl.AbstractCacheonix;
 import org.cacheonix.impl.DistributedCacheonix;
 import org.cacheonix.impl.cache.local.LocalCacheonix;
@@ -82,7 +81,7 @@ public abstract class Cacheonix {
     *
     * @see #getInstance(String)
     */
-   private static final Map<String, AbstractCacheonix> INSTANCES = new HashMap<String, AbstractCacheonix>(1);
+   private static final Map<String, AbstractCacheonix> INSTANCES = new HashMap<>(1);
 
    /**
     * Default configuration file.
@@ -501,12 +500,5 @@ public abstract class Cacheonix {
       return "Cacheonix{" +
               "INSTANCES.size()=" + INSTANCES.size() +
               '}';
-   }
-
-
-   public static Cacheonix getInstance(final String configurationPath,
-           final ClusterEventSubscriber clusterEventSubscriber) {
-
-      return null;
    }
 }
