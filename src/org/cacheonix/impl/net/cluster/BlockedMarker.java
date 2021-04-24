@@ -102,10 +102,8 @@ public final class BlockedMarker extends OperationalMarker {
       final ClusterNodeAddress nextElement = processor.getProcessorState().getClusterView().getNextElement();
       setReceiver(nextElement);
 
-      if (isJoiningNodeSet() && nextElement.equals(getJoiningNode().getAddress())) {
-         if (LOG.isDebugEnabled()) {
-            LOG.debug("Sending first blocked marker to joined: " + this);
-         }
+      if (isJoiningNodeSet() && nextElement.equals(getJoiningNode().getAddress()) && LOG.isDebugEnabled()) {
+         LOG.debug("Sending first blocked marker to joined: " + this);
       }
 
       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -484,7 +482,7 @@ public final class BlockedMarker extends OperationalMarker {
          // to the MarkerListRequest. See bug CACHEONIX-307 for more information.
          if (!self.equals(blockedMarker.getLeave())) {
 
-            if (!blockedMarker.isJoiningNodeSet()) {
+            if (!blockedMarker.isJoiningNodeSet()) { // NOPMD
 
                final JoiningNode joiningNode = joinRequests.removeFirst();
                final ClusterNodeAddress joiningNodeAddress = joiningNode.getAddress();
