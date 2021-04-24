@@ -515,13 +515,11 @@ public final class PropertyConfigurator implements Configurator {
                parseCategory(props, logger, key, loggerName, value);
                parseAdditivityForLogger(props, logger, loggerName);
             }
-         } else if (key.startsWith(RENDERER_PREFIX)) {
-            if (hierarchy instanceof RendererSupport) {
-               final String renderingClass = OptionConverter.findAndSubst(key, props);
-               final String renderedClass = key.substring(RENDERER_PREFIX.length());
-               RendererMap.addRenderer((RendererSupport) hierarchy, renderedClass,
-                       renderingClass);
-            }
+         } else if (key.startsWith(RENDERER_PREFIX) && hierarchy instanceof RendererSupport) {
+            final String renderingClass = OptionConverter.findAndSubst(key, props);
+            final String renderedClass = key.substring(RENDERER_PREFIX.length());
+            RendererMap.addRenderer((RendererSupport) hierarchy, renderedClass,
+                    renderingClass);
          }
       }
    }
