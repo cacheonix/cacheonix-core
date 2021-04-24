@@ -43,7 +43,6 @@ public final class LogTableRowRenderer extends DefaultTableCellRenderer {
    //--------------------------------------------------------------------------
    //   Protected Variables:
    //--------------------------------------------------------------------------
-   private boolean _highlightFatal = true;
    private final Color _color = new Color(230, 230, 230);
 
    //--------------------------------------------------------------------------
