@@ -229,12 +229,8 @@ public final class LF5Appender extends AppenderSkeleton {
 
       if (_defaultLogMonitor == null) {
          try {
-            _defaultLogMonitor =
-                    new LogBrokerMonitor(LogLevel.getLog4JLevels());
-            final AppenderFinalizer _finalizer = new AppenderFinalizer(_defaultLogMonitor);
-
-            _defaultLogMonitor.setFrameSize(getDefaultMonitorWidth(),
-                    getDefaultMonitorHeight());
+            _defaultLogMonitor = new LogBrokerMonitor(LogLevel.getLog4JLevels());
+            _defaultLogMonitor.setFrameSize(getDefaultMonitorWidth(), getDefaultMonitorHeight());
             _defaultLogMonitor.setFontSize(12);
             _defaultLogMonitor.show();
 
