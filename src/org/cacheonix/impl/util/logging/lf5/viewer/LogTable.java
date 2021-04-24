@@ -67,19 +67,11 @@ public final class LogTable extends JTable {
 
    private final int _colThread = 1;
 
-   private int _colMessageNum = 2;
-
    private final int _colLevel = 3;
 
    private final int _colNDC = 4;
 
-   private int _colCategory = 5;
-
    private final int _colMessage = 6;
-
-   private int _colLocation = 7;
-
-   private int _colThrown = 8;
 
    private DateFormatManager _dateFormatManager = null;
 
