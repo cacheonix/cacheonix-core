@@ -582,7 +582,7 @@ public final class ClusterProcessorImpl extends AbstractRequestProcessor impleme
          final int state = processorState.getState();
          if (state == ClusterProcessorState.STATE_NORMAL || state == ClusterProcessorState.STATE_CLEANUP) {
 
-            if (frame.getClusterUUID().equals(processorState.getClusterView().getClusterUUID())) {
+            if (frame.getClusterUUID().equals(processorState.getClusterView().getClusterUUID())) { // NOPMD
 
                receivedFrames.add(frame);
             }
