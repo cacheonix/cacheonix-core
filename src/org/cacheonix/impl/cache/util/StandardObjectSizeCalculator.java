@@ -190,13 +190,11 @@ public final class StandardObjectSizeCalculator implements ObjectSizeCalculator 
 
    private static boolean skipObject(final Object obj, final Map<Object, Object> visited) {
 
-      if (obj instanceof String) {
+      if (obj instanceof String &&obj == ((String) obj).intern()) {
 
          // this will not cause a memory leak since
          // unused interned Strings will be thrown away
-         if (obj == ((String) obj).intern()) {
-            return true;
-         }
+         return true;
       }
       return obj == null || visited.containsKey(obj);
    }
