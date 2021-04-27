@@ -105,7 +105,7 @@
       to a standard  location and remove the custom config below. -->
       <finalName>${project.artifactId}-${project.version}</finalName>
       <sourceDirectory>src</sourceDirectory>
-      <testSourceDirectory>test</testSourceDirectory>
+      <testSourceDirectory>test/src</testSourceDirectory>
       <!--      <directory>target</directory>-->
       <!--      <testOutputDirectory>target/test-classes</testOutputDirectory>-->
       <!--      <scriptSourceDirectory>src/main/scripts</scriptSourceDirectory>-->
