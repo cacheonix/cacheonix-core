@@ -29,6 +29,7 @@ import org.cacheonix.impl.util.IOUtils;
 import org.cacheonix.impl.util.logging.Logger;
 
 import static org.cacheonix.TestUtils.toInetAddresses;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 /**
@@ -116,6 +117,11 @@ public final class MulticastMarkerTest extends RequestTestCase {
       //
       final Queue<Frame> value = new ArrayBlockingQueue<Frame>(1);
       when(clusterProcessor.getReceivedFrames()).thenReturn(value);
+
+      //
+      final Time time = mock(Time.class);
+      when(clock.currentTime()).thenReturn(time);
+      when(clusterProcessor.getClock()).thenReturn(clock);
 
       //
       when(clusterProcessorState.getJoinStatus()).thenReturn(joinStatus);
