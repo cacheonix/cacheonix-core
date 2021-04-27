@@ -140,9 +140,9 @@
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>
-
             <configuration>
                <threadCount>1</threadCount>
+               <forkMode>always</forkMode>
                <excludes>
                   <exclude>**/*TestCase.java</exclude>
                </excludes>
