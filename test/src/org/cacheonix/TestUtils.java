@@ -181,4 +181,9 @@ public final class TestUtils {
 
       return baos.toByteArray();
    }
+
+   public static InetAddress[] toInetAddresses(final InetAddress ipAddress) {
+
+      return new InetAddress[]{ipAddress};
+   }
 }
