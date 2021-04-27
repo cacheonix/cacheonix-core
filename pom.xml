@@ -137,6 +137,38 @@
 
       <plugins>
 
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+
+            <configuration>
+               <threadCount>1</threadCount>
+               <excludes>
+                  <exclude>**/*TestCase.java</exclude>
+               </excludes>
+               <systemProperties>
+                  <property>
+                     <name>cacheonix.client.request.timeout</name>
+                     <value>120s</value>
+                     <name>cacheonix.home.alone.timeout</name>
+                     <value>5000</value>
+                     <name>cacheonix.logging.level</name>
+                     <value>debug</value>
+                     <name>cacheonix.multicast.ttl</name>
+                     <value>0</value>
+                     <name>java.awt.headless</name>
+                     <value>true</value>
+                     <name>java.net.preferIPv4Stack</name>
+                     <value>true</value>
+                     <name>test.data.home</name>
+                     <value>test/data</value>
+<!--                     <name>java.io.tmpdir</name>-->
+<!--                     <value>${test.temp.dir}</value>-->
+                  </property>
+               </systemProperties>
+            </configuration>
+         </plugin>
+
          <!-- PMD -->
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>

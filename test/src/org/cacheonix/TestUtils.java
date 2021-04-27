@@ -101,7 +101,7 @@ public final class TestUtils {
       final StringBuilder sb = new StringBuilder(size);
       int j = 0;
       for (int i = 0; i < size; i++) {
-         sb.append(Integer.toString(j));
+         sb.append(j);
          j++;
          if (j > 9) {
             j = 0;
@@ -151,7 +151,7 @@ public final class TestUtils {
    }
 
 
-   public static boolean equals(final List listOne, final List listTwo) {
+   public static boolean equals(final List<?> listOne, final List<?> listTwo) {
 
       return CollectionUtils.same(listOne, listTwo);
    }
@@ -180,5 +180,11 @@ public final class TestUtils {
       }
 
       return baos.toByteArray();
+   }
+
+
+   public static InetAddress[] toInetAddresses(final InetAddress ipAddress) {
+
+      return new InetAddress[]{ipAddress};
    }
 }

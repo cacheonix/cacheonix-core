@@ -26,7 +26,7 @@ import org.cacheonix.impl.util.time.Timeout;
  *
  * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  */
-interface JoinStatus {
+public interface JoinStatus {
 
    /**
     * Returns the process we are joining to.

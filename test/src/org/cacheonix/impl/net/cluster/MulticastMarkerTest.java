@@ -15,16 +15,21 @@ package org.cacheonix.impl.net.cluster;
 
 import java.io.IOException;
 import java.net.InetAddress;
+import java.util.Queue;
+import java.util.concurrent.ArrayBlockingQueue;
 
-import org.cacheonix.CacheonixTestCase;
+import org.cacheonix.RequestTestCase;
 import org.cacheonix.TestUtils;
 import org.cacheonix.impl.clock.Time;
 import org.cacheonix.impl.net.ClusterNodeAddress;
-import org.cacheonix.impl.net.processor.UUID;
+import org.cacheonix.impl.net.processor.Frame;
 import org.cacheonix.impl.net.serializer.Serializer;
 import org.cacheonix.impl.net.serializer.SerializerFactory;
 import org.cacheonix.impl.util.IOUtils;
 import org.cacheonix.impl.util.logging.Logger;
+
+import static org.cacheonix.TestUtils.toInetAddresses;
+import static org.mockito.Mockito.when;
 
 /**
  * MulticastMarker Tester.
@@ -33,7 +38,7 @@ import org.cacheonix.impl.util.logging.Logger;
  * @version 1.0
  * @since <pre>03/26/2008</pre>
  */
-public final class MulticastMarkerTest extends CacheonixTestCase {
+public final class MulticastMarkerTest extends RequestTestCase {
 
    /**
     * Logger.
@@ -48,17 +53,17 @@ public final class MulticastMarkerTest extends CacheonixTestCase {
 
    private static final int TCP_PORT = 9999;
 
-   private static final ClusterNodeAddress JOIN = new ClusterNodeAddress(TCP_PORT, new InetAddress[]{IP_ADDRESS});
+   private static final ClusterNodeAddress JOIN = new ClusterNodeAddress(TCP_PORT, toInetAddresses(IP_ADDRESS));
 
-   private static final ClusterNodeAddress LEAVE = new ClusterNodeAddress(TCP_PORT, new InetAddress[]{IP_ADDRESS});
+   private static final ClusterNodeAddress LEAVE = new ClusterNodeAddress(TCP_PORT, toInetAddresses(IP_ADDRESS));
 
-   private static final ClusterNodeAddress ORIGINATOR = new ClusterNodeAddress(TCP_PORT, new InetAddress[]{IP_ADDRESS});
+   private static final ClusterNodeAddress ORIGINATOR = new ClusterNodeAddress(TCP_PORT, toInetAddresses(IP_ADDRESS));
 
-   private static final ClusterNodeAddress PREDECESSOR = new ClusterNodeAddress(TCP_PORT, new InetAddress[]{IP_ADDRESS});
+   private static final ClusterNodeAddress PREDECESSOR = new ClusterNodeAddress(TCP_PORT, toInetAddresses(IP_ADDRESS));
 
    private static final int PROFILING_ITERATION_COUNT = 10000;
 
-   private MulticastMarker marker = null;
+   private MulticastMarker marker;
 
 
    public void testSerialize() throws IOException {
@@ -73,7 +78,7 @@ public final class MulticastMarkerTest extends CacheonixTestCase {
 
    public void testSetGetNextAnnouncementTime() {
 
-      final Time nextAnnouncementTime = getClock().currentTime();
+      final Time nextAnnouncementTime = clock.currentTime();
       marker.setNextAnnouncementTime(nextAnnouncementTime);
       assertEquals(nextAnnouncementTime, marker.getNextAnnouncementTime());
    }
@@ -100,15 +105,52 @@ public final class MulticastMarkerTest extends CacheonixTestCase {
    }
 
 
-   protected void setUp() throws Exception {
+   public void testGetSeqNum() {
+
+      assertEquals(0L, marker.getSeqNum());
+   }
+
+
+   public void testProcessNormal() throws InterruptedException, IOException {
+
+      //
+      final Queue<Frame> value = new ArrayBlockingQueue<Frame>(1);
+      when(clusterProcessor.getReceivedFrames()).thenReturn(value);
+
+      //
+      when(clusterProcessorState.getJoinStatus()).thenReturn(joinStatus);
+
+      //
+      marker.setSender(CLUSTER_NODE_ADDRESS);
+
+      marker.processNormal();
+   }
+
+
+   public void testProcessBlocked() {
+
+   }
+
+
+   public void testProcessCleanup() {
+
+   }
+
+
+   public void testProcessRecovery() {
+
+   }
+
+
+   public void setUp() throws Exception {
 
       super.setUp();
 
 
       final JoiningNode joiningNode = new JoiningNode(JOIN);
 
-      marker = new MulticastMarker(UUID.randomUUID());
-      marker.setNextAnnouncementTime(getClock().currentTime());
+      marker = new MulticastMarker(CLUSTER_UUID);
+      marker.setNextAnnouncementTime(clock.currentTime());
       marker.setOriginator(ORIGINATOR);
       marker.setSeqNum(0L);
       marker.setCurrent(1L);
@@ -118,13 +160,8 @@ public final class MulticastMarkerTest extends CacheonixTestCase {
       marker.setLeaveSeqNum(1000L);
       marker.setJoinSeqNum(2000L);
       marker.setPredecessor(PREDECESSOR);
-   }
 
 
-   public String toString() {
-
-      return "MulticastMarkerTest{" +
-              "marker=" + marker +
-              "} " + super.toString();
+      marker.setProcessor(clusterProcessor);
    }
 }

@@ -93,7 +93,7 @@ public abstract class AbstractCacheonix extends Cacheonix {
    /**
     * Holds all caches. Cache name is a key and a {@link Cache} is an object.
     */
-   protected final Map<String, Cache> cacheMap = new ConcurrentHashMap<String, Cache>(INITIAL_CACHE_MAP_CAPACITY);
+   protected final Map<String, Cache<?,?>> cacheMap = new ConcurrentHashMap<>(INITIAL_CACHE_MAP_CAPACITY);
 
    /**
     * A look up map that contains cache configurations.
@@ -298,7 +298,7 @@ public abstract class AbstractCacheonix extends Cacheonix {
    protected abstract Cache createWaitCache(final String cacheName);
 
 
-   public final Collection<Cache> getCaches() {
+   public final Collection<Cache<?,?>> getCaches() {
 
       readLock.lock();
       try {

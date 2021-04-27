@@ -18,8 +18,6 @@
 
    <!-- Results -->
    <property name="test.classes.dir" value="temp/test/classes"/>
-   <property name="annotations.classes.dir" value="temp/annotations/core/classes"/>
-   <property name="annotations.test.classes.dir" value="temp/annotations/test/classes"/>
 
    <!-- Site deployment -->
    <property name="sdar.result" value="temp/deployment/result"/>
@@ -130,34 +128,6 @@
       <pathelement path="test/data"/>
    </path>
 
-   <path id="cacheonix-agent.build.classpath">
-      <pathelement path="${asm.home}/asm-analysis-3.1.jar"/>
-      <pathelement path="${asm.home}/asm-commons-3.1.jar"/>
-      <pathelement path="${asm.home}/asm-tree-3.1.jar"/>
-      <pathelement path="${asm.home}/asm-util-3.1.jar"/>
-      <pathelement path="${asm.home}/asm-xml-3.1.jar"/>
-      <pathelement path="${asm.home}/asm-3.1.jar"/>
-      <pathelement path="${classes.dir}"/>
-   </path>
-
-   <path id="cacheonix-agent.tests.build.classpath">
-      <path refid="cacheonix-agent.build.classpath"/>
-      <pathelement path="${annotations.classes.dir}"/>
-      <pathelement path="${classes.dir}"/>
-      <pathelement path="${junit.jar}"/>
-   </path>
-
-   <!--
-   Defines classpath to run annotations tests
-   -->
-   <path id="junit.annotations.classpath">
-      <path refid="cacheonix-agent.tests.build.classpath"/>
-      <pathelement path="${annotations.test.classes.dir}/"/>
-      <pathelement path="test/annotations/conf"/>
-      <pathelement path="test/annotations/data"/>
-      <pathelement path="conf/jar"/>
-   </path>
-
    <!--
    Outputs usage information
    -->
@@ -173,8 +143,6 @@
    Prepares
    -->
    <target name="init">
-      <mkdir dir="${annotations.test.classes.dir}"/>
-      <mkdir dir="${annotations.classes.dir}"/>
       <mkdir dir="${dist.bin.staging.dir}"/>
       <mkdir dir="${test.classes.dir}"/>
       <mkdir dir="${build.temp.dir}"/>
@@ -319,33 +287,10 @@
    </target>
 
    <!--
-   Compiles Annotations
-   -->
-   <target name="javac.annotations" depends="javac.core">
-      <!--     <mkdir dir="${annotations.classes.dir}"/> -->
-      <javac destdir="${annotations.classes.dir}" classpathref="cacheonix-agent.build.classpath" fork="yes"
-             debug="no">
-         <src path="${annotations.src.dir}"/>
-      </javac>
-   </target>
-
-   <!--
-   Compiles Annotations Tests
-   -->
-   <target name="javac.annotations.tests" depends="javac.annotations">
-      <!-- <mkdir dir="${annotations.test.classes.dir}"/> -->
-      <javac destdir="${annotations.test.classes.dir}"
-             classpathref="cacheonix-agent.tests.build.classpath" fork="yes" debug="yes"
-             includes="**/*.*">
-         <src path="${annotations.tests.src.dir}"/>
-      </javac>
-   </target>
-
-   <!--
    Compiles everything
    -->
    <target name="javac"
-           depends="javac.version, javac.core, javac.tests, javac.annotations, javac.annotations.tests"/>
+           depends="javac.version, javac.core, javac.tests"/>
 
 
    <!-- Runs findbugs -->
@@ -383,8 +328,6 @@
                      org/cacheonix/impl//net/multicast/totem/**/*.java,
                      "/>
          <fileset dir="${test.src.dir}" includes="**/*.java"/>
-         <fileset dir="${annotations.src.dir}" includes="**/*.java"/>
-         <fileset dir="${annotations.tests.src.dir}" includes="**/*.java"/>
          <formatter type="html" toFile="${pmd.html.report}"/>
          <formatter type="xml" toFile="${pmd.xml.report}"/>
          <formatter type="text" toConsole="true"/>
@@ -446,46 +389,7 @@
       </junit>
    </target>
 
-   <!--
-   Annotation Tests
-   -->
-   <target name="test.annotations" depends="javac,jar.agent">
-      <junit fork="yes" printsummary="on" haltonfailure="${fail.fast}" haltonerror="${fail.fast}"
-             errorproperty="test.errors" failureproperty="test.failures">
-         <classpath refid="junit.annotations.classpath"/>
-         <jvmarg value="-Xms300m"/>
-         <jvmarg value="-Xmx300m"/>
-         <jvmarg line="-javaagent:${dist.cacheonix-agent.jar}"/>
-         <jvmarg value="-Dcacheonix.auto.create.cache=true"/>
-         <jvmarg value="-Dcacheonix.home.alone.timeout=5000"/>
-         <jvmarg value="-Dcacheonix.multicast.ttl=0"/>
-         <jvmarg value="-Djava.awt.headless=true"/>
-         <jvmarg value="-Djava.io.tmpdir=${test.temp.dir}"/>
-         <jvmarg value="-Djava.net.preferIPv4Stack=true"/>
-         <jvmarg value="-Dcacheonix.logging.configuration=log4j.properties"/>
-         <jvmarg value="-Dtest.data.home=${test.data.dir}"/>
-
-         <!-- Run only test defined by test.single property -->
-         <batchtest todir="${test.log.dir}" if="test.single">
-            <fileset dir="${annotations.test.classes.dir}">
-               <include name="**/${test.single}*.class"/>
-               <exclude name="org/cacheonix/impl/annotations/tests/*"/>
-               <exclude name="**/*$*.class"/>
-            </fileset>
-         </batchtest>
-
-         <!-- Run all standlalone tests as a batch -->
-         <batchtest todir="${test.log.dir}" unless="test.single">
-            <fileset dir="${annotations.test.classes.dir}">
-               <include name="**/*Test.class"/>
-               <exclude name="org/cacheonix/impl/annotations/tests/*"/>
-               <exclude name="**/*$*.class"/>
-            </fileset>
-         </batchtest>
-      </junit>
-   </target>
-
-   <target name="test" depends="all, test.cacheonix, test.annotations"/>
+   <target name="test" depends="all, test.cacheonix"/>
 
    <!--
    Generates clover report
@@ -518,29 +422,9 @@
    </target>
 
    <!--
-   Generates Annotations Javadoc
-   -->
-   <target name="javadoc.annotations" depends="javac">
-      <mkdir dir="${dist.javadoc.annotations.dir}"/>
-      <javadoc destdir="${dist.javadoc.annotations.dir}" sourcepath="${annotations.src.dir}"
-               packagenames="org.cacheonix.*"
-               windowtitle="Cacheonix Annotations ${release.version}" package="true" author="true" version="true"
-               noindex="true" use="true">
-         <classpath refid="cacheonix-agent.build.classpath"/>
-         <tag name="noinspection" enabled="false"/>
-         <doctitle><![CDATA[<h1>Cacheonix Annotations</h1>]]></doctitle>
-         <bottom>
-            <![CDATA[<a href="http://www.org.cacheonix.org/support.htm">Cacheonix Support</a> |
-            <a href="http://wiki.org.cacheonix.org/display/CCHNX/Cacheonix+Knowledge+Base">Cacheonix Knowledgebase</a> |
-            <i>Copyright &#169; 2006-2012 <a href="http://www.org.cacheonix.org">Cacheonix Systems</a>. All Rights Reserved.</i>]]></bottom>
-      </javadoc>
-   </target>
-
-
-   <!--
    Builds all Javadoc
    -->
-   <target name="javadoc" depends="javadoc.core, javadoc.annotations"/>
+   <target name="javadoc" depends="javadoc.core"/>
 
    <!--
    Generates core Jar
@@ -558,21 +442,6 @@
 
 
    <!--
-   Generates agent Jar
-   -->
-   <target name="jar.agent" depends="javac">
-      <mkdir dir="${dist.lib.dir}"/>
-      <jar jarfile="${dist.cacheonix-agent.jar}" basedir="${annotations.classes.dir}"
-           includes="**/*.class">
-         <manifest>
-            <attribute name="Premain-Class" value="org.cacheonix.impl.transformer.CacheonixAgent"/>
-            <!--  	<attribute name="Class-Path" value="asm-3.1.jar asm-analysis-3.1.jar asm-commons-3.1.jar asm-tree-3.1.jar asm-util-3.1.jar asm-xml-3.1.jar"/> -->
-         </manifest>
-      </jar>
-   </target>
-
-
-   <!--
    Zips Javadoc
    -->
    <target name="zip.javadoc" depends="javadoc.core">
@@ -584,7 +453,7 @@
    <!--
    Creates Cacheonix libraries
    -->
-   <target name="lib" depends="jar.core, jar.agent, zip.javadoc"/>
+   <target name="lib" depends="jar.core, zip.javadoc"/>
 
    <!--
    Builds bin directory

@@ -391,6 +391,17 @@
       <entry name="?*.dtd" />
       <entry name="?*.tld" />
     </wildcardResourcePatterns>
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="cacheonix" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="cacheonix" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="CopyrightManager" default="" />
   <component name="DependenciesAnalyzeManager">
@@ -404,6 +415,8 @@
     <option name="DEPRECATION" value="false" />
   </component>
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/conf/jar" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
   <component name="ExportToHTMLSettings">
@@ -813,26 +826,13 @@
     <option name="DEPRECATION" value="false" />
   </component>
   <component name="JavadocGenerationManager">
-    <option name="OUTPUT_DIRECTORY" />
-    <option name="OPTION_SCOPE" value="protected" />
-    <option name="OPTION_HIERARCHY" value="true" />
-    <option name="OPTION_NAVIGATOR" value="true" />
-    <option name="OPTION_INDEX" value="true" />
-    <option name="OPTION_SEPARATE_INDEX" value="true" />
-    <option name="OPTION_DOCUMENT_TAG_USE" value="false" />
-    <option name="OPTION_DOCUMENT_TAG_AUTHOR" value="false" />
-    <option name="OPTION_DOCUMENT_TAG_VERSION" value="false" />
-    <option name="OPTION_DOCUMENT_TAG_DEPRECATED" value="true" />
-    <option name="OPTION_DEPRECATED_LIST" value="true" />
     <option name="OTHER_OPTIONS" value="" />
-    <option name="HEAP_SIZE" />
-    <option name="LOCALE" />
-    <option name="OPEN_IN_BROWSER" value="true" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
         <option value="file://$PROJECT_DIR$/internal/mybatis-jpetstore-6.0.1/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
@@ -844,24 +844,13 @@
   <component name="PDMPlugin">
     <option name="customRuleSets">
       <list>
-        <option value="C:\WORK\mor2\dev\cacheonix\conf\pmd.xml" />
+        <option value="$PROJECT_DIR$/pmd.xml" />
       </list>
     </option>
     <option name="options">
       <map>
         <entry key="Encoding" value="" />
-        <entry key="Target JDK" value="1.4" />
-      </map>
-    </option>
-    <option name="customRuleSets">
-      <list>
-        <option value="C:\WORK\mor2\dev\cacheonix\conf\pmd.xml" />
-      </list>
-    </option>
-    <option name="options">
-      <map>
-        <entry key="Encoding" value="" />
-        <entry key="Target JDK" value="1.4" />
+        <entry key="Target JDK" value="1.8" />
       </map>
     </option>
   </component>
@@ -996,8 +985,6 @@
   <component name="ProjectCodeStyleConfiguration">
     <option name="USE_PER_PROJECT_SETTINGS" value="true" />
     <code_scheme name="Project" version="173">
-      <option name="USE_SAME_INDENTS" value="true" />
-      <option name="IGNORE_SAME_INDENTS_FOR_LANGUAGES" value="true" />
       <option name="OTHER_INDENT_OPTIONS">
         <value>
           <option name="INDENT_SIZE" value="3" />
@@ -1035,7 +1022,6 @@
       </JavaCodeStyleSettings>
       <XML>
         <option name="XML_TEXT_WRAP" value="0" />
-        <option name="XML_LEGACY_SETTINGS_IMPORTED" value="true" />
       </XML>
       <ADDITIONAL_INDENT_OPTIONS fileType="haml">
         <option name="INDENT_SIZE" value="2" />
@@ -1507,7 +1493,6 @@
   </component>
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/annotations/annotations.iml" filepath="$PROJECT_DIR$/annotations/annotations.iml" />
       <module fileurl="file://$PROJECT_DIR$/cacheonix.iml" filepath="$PROJECT_DIR$/cacheonix.iml" />
       <module fileurl="file://$PROJECT_DIR$/examples/examples.iml" filepath="$PROJECT_DIR$/examples/examples.iml" />
     </modules>
@@ -1515,8 +1500,25 @@
   <component name="ProjectResources">
     <default-html-doctype>http://www.w3.org/1999/xhtml</default-html-doctype>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" default="false" project-jdk-name="1.6" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/temp" />
+  </component>
+  <component name="RemoteRepositoriesConfiguration">
+    <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="Central Repository" />
+      <option name="url" value="https://repo.maven.apache.org/maven2" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="Maven Central repository" />
+      <option name="url" value="https://repo1.maven.org/maven2" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="jboss.community" />
+      <option name="name" value="JBoss Community repository" />
+      <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
+    </remote-repository>
   </component>
   <component name="ResourceManagerContainer">
     <option name="myResourceBundles">
@@ -1536,13 +1538,6 @@
     <library name="Array Utils">
       <CLASSES>
         <root url="jar://$PROJECT_DIR$/3rdparty/cacheonix-array-utils-1.0.3/cacheonix-array-utils-1.0.3.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES />
-    </library>
-    <library name="catalina">
-      <CLASSES>
-        <root url="jar://$PROJECT_DIR$/3rdparty/apache-tomcat-7.0.30/lib/catalina.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />
@@ -1572,24 +1567,6 @@
       <JAVADOC />
       <SOURCES />
     </library>
-    <library name="hibernate3">
-      <CLASSES>
-        <root url="jar://$PROJECT_DIR$/3rdparty/hibernate-3.2/hibernate3.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="file://$PROJECT_DIR$/3rdparty/hibernate-3.2/src" />
-      </SOURCES>
-    </library>
-    <library name="iBatis">
-      <CLASSES>
-        <root url="jar://$PROJECT_DIR$/3rdparty/ibatis-2.3.0.677/lib/ibatis-2.3.0.677.jar!/" />
-      </CLASSES>
-      <JAVADOC />
-      <SOURCES>
-        <root url="jar://$PROJECT_DIR$/3rdparty/ibatis-2.3.0.677/src/ibatis-src.zip!/" />
-      </SOURCES>
-    </library>
     <library name="JMS">
       <CLASSES>
         <root url="jar://$PROJECT_DIR$/3rdparty/jms-1.1/jms.jar!/" />
@@ -1608,6 +1585,13 @@
         <root url="jar://$PROJECT_DIR$/3rdparty/junit3.8.2/src.jar!/" />
       </SOURCES>
     </library>
+    <library name="MX4J">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/3rdparty/mx4j-3.0.2/lib/mx4j-jmx.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
     <library name="Mail">
       <CLASSES>
         <root url="jar://$PROJECT_DIR$/3rdparty/jaf-1.0.2/activation.jar!/" />
@@ -1618,30 +1602,412 @@
       </JAVADOC>
       <SOURCES />
     </library>
-    <library name="mockito-core-2.24.5-sources">
+    <library name="Maven: antlr:antlr:2.7.6">
       <CLASSES>
-        <root url="jar://$PROJECT_DIR$/3rdparty/mockito-2.24.5/mockito-core-2.24.5.jar!/" />
-        <root url="jar://$PROJECT_DIR$/3rdparty/mockito-2.24.5/byte-buddy-1.9.10.jar!/" />
-        <root url="jar://$PROJECT_DIR$/3rdparty/mockito-2.24.5/byte-buddy-1.9.10-sources.jar!/" />
-        <root url="jar://$PROJECT_DIR$/3rdparty/mockito-2.24.5/objenesis-2.6.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/antlr/antlr/2.7.6/antlr-2.7.6.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$PROJECT_DIR$/3rdparty/mockito-2.24.5/mockito-core-2.24.5-javadoc.jar!/" />
-        <root url="jar://$PROJECT_DIR$/3rdparty/mockito-2.24.5/byte-buddy-1.9.10-javadoc.jar!/" />
-        <root url="jar://$PROJECT_DIR$/3rdparty/mockito-2.24.5/objenesis-2.6-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/antlr/antlr/2.7.6/antlr-2.7.6-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$PROJECT_DIR$/3rdparty/mockito-2.24.5/mockito-core-2.24.5-sources.jar!/" />
-        <root url="jar://$PROJECT_DIR$/3rdparty/mockito-2.24.5/byte-buddy-1.9.10-sources.jar!/" />
-        <root url="jar://$PROJECT_DIR$/3rdparty/mockito-2.24.5/objenesis-2.6-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/antlr/antlr/2.7.6/antlr-2.7.6-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="MX4J">
+    <library name="Maven: asm:asm-attrs:1.5.3">
       <CLASSES>
-        <root url="jar://$PROJECT_DIR$/3rdparty/mx4j-3.0.2/lib/mx4j-jmx.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/asm/asm-attrs/1.5.3/asm-attrs-1.5.3.jar!/" />
       </CLASSES>
-      <JAVADOC />
-      <SOURCES />
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/asm/asm-attrs/1.5.3/asm-attrs-1.5.3-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/asm/asm-attrs/1.5.3/asm-attrs-1.5.3-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: asm:asm:1.5.3">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/asm/asm/1.5.3/asm-1.5.3.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/asm/asm/1.5.3/asm-1.5.3-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/asm/asm/1.5.3/asm-1.5.3-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: cglib:cglib:2.1_3">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/cglib/cglib/2.1_3/cglib-2.1_3.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/cglib/cglib/2.1_3/cglib-2.1_3-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/cglib/cglib/2.1_3/cglib-2.1_3-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: com.ibatis:ibatis2-common:2.1.7.597">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/com/ibatis/ibatis2-common/2.1.7.597/ibatis2-common-2.1.7.597.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/com/ibatis/ibatis2-common/2.1.7.597/ibatis2-common-2.1.7.597-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/com/ibatis/ibatis2-common/2.1.7.597/ibatis2-common-2.1.7.597-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: com.ibatis:ibatis2-sqlmap:2.1.7.597">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/com/ibatis/ibatis2-sqlmap/2.1.7.597/ibatis2-sqlmap-2.1.7.597.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/com/ibatis/ibatis2-sqlmap/2.1.7.597/ibatis2-sqlmap-2.1.7.597-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/com/ibatis/ibatis2-sqlmap/2.1.7.597/ibatis2-sqlmap-2.1.7.597-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: commons-collections:commons-collections:2.1.1">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/commons-collections/commons-collections/2.1.1/commons-collections-2.1.1.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/commons-collections/commons-collections/2.1.1/commons-collections-2.1.1-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/commons-collections/commons-collections/2.1.1/commons-collections-2.1.1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: commons-logging:commons-logging:1.0.4">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/commons-logging/commons-logging/1.0.4/commons-logging-1.0.4.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/commons-logging/commons-logging/1.0.4/commons-logging-1.0.4-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/commons-logging/commons-logging/1.0.4/commons-logging-1.0.4-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: dom4j:dom4j:1.6.1">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/dom4j/dom4j/1.6.1/dom4j-1.6.1-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/dom4j/dom4j/1.6.1/dom4j-1.6.1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: gsbase:gsbase:2.0.1">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/gsbase/gsbase/2.0.1/gsbase-2.0.1.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/gsbase/gsbase/2.0.1/gsbase-2.0.1-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/gsbase/gsbase/2.0.1/gsbase-2.0.1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: javax.activation:activation:1.1">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/javax/activation/activation/1.1/activation-1.1.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/javax/activation/activation/1.1/activation-1.1-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/javax/activation/activation/1.1/activation-1.1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: javax.jms:jms-api:1.1-rev-1">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/javax/jms/jms-api/1.1-rev-1/jms-api-1.1-rev-1.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/javax/jms/jms-api/1.1-rev-1/jms-api-1.1-rev-1-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/javax/jms/jms-api/1.1-rev-1/jms-api-1.1-rev-1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: javax.mail:mail:1.4">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/javax/mail/mail/1.4/mail-1.4.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/javax/mail/mail/1.4/mail-1.4-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/javax/mail/mail/1.4/mail-1.4-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: javax.servlet:servlet-api:2.5">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/javax/servlet/servlet-api/2.5/servlet-api-2.5.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/javax/servlet/servlet-api/2.5/servlet-api-2.5-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/javax/servlet/servlet-api/2.5/servlet-api-2.5-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: javax.transaction:jta:1.1">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/javax/transaction/jta/1.1/jta-1.1.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/javax/transaction/jta/1.1/jta-1.1-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/javax/transaction/jta/1.1/jta-1.1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: junit:junit:3.8.2">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/junit/junit/3.8.2/junit-3.8.2.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/junit/junit/3.8.2/junit-3.8.2-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/junit/junit/3.8.2/junit-3.8.2-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: junitperf:junitperf:1.8">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/junitperf/junitperf/1.8/junitperf-1.8.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/junitperf/junitperf/1.8/junitperf-1.8-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/junitperf/junitperf/1.8/junitperf-1.8-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: net.bytebuddy:byte-buddy-agent:1.10.20">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/net/bytebuddy/byte-buddy-agent/1.10.20/byte-buddy-agent-1.10.20.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/net/bytebuddy/byte-buddy-agent/1.10.20/byte-buddy-agent-1.10.20-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/net/bytebuddy/byte-buddy-agent/1.10.20/byte-buddy-agent-1.10.20-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: net.bytebuddy:byte-buddy:1.10.20">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/net/bytebuddy/byte-buddy/1.10.20/byte-buddy-1.10.20.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/net/bytebuddy/byte-buddy/1.10.20/byte-buddy-1.10.20-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/net/bytebuddy/byte-buddy/1.10.20/byte-buddy-1.10.20-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: net.sf.ehcache:ehcache:1.2.3">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/net/sf/ehcache/ehcache/1.2.3/ehcache-1.2.3.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/net/sf/ehcache/ehcache/1.2.3/ehcache-1.2.3-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/net/sf/ehcache/ehcache/1.2.3/ehcache-1.2.3-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.apache.tomcat:tomcat-annotations-api:9.0.22">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-annotations-api/9.0.22/tomcat-annotations-api-9.0.22.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-annotations-api/9.0.22/tomcat-annotations-api-9.0.22-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-annotations-api/9.0.22/tomcat-annotations-api-9.0.22-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.apache.tomcat:tomcat-api:9.0.22">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-api/9.0.22/tomcat-api-9.0.22.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-api/9.0.22/tomcat-api-9.0.22-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-api/9.0.22/tomcat-api-9.0.22-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.apache.tomcat:tomcat-catalina:9.0.22">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-catalina/9.0.22/tomcat-catalina-9.0.22.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-catalina/9.0.22/tomcat-catalina-9.0.22-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-catalina/9.0.22/tomcat-catalina-9.0.22-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.apache.tomcat:tomcat-coyote:9.0.22">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-coyote/9.0.22/tomcat-coyote-9.0.22.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-coyote/9.0.22/tomcat-coyote-9.0.22-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-coyote/9.0.22/tomcat-coyote-9.0.22-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.apache.tomcat:tomcat-el-api:9.0.22">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-el-api/9.0.22/tomcat-el-api-9.0.22.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-el-api/9.0.22/tomcat-el-api-9.0.22-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-el-api/9.0.22/tomcat-el-api-9.0.22-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.apache.tomcat:tomcat-jaspic-api:9.0.22">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-jaspic-api/9.0.22/tomcat-jaspic-api-9.0.22.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-jaspic-api/9.0.22/tomcat-jaspic-api-9.0.22-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-jaspic-api/9.0.22/tomcat-jaspic-api-9.0.22-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.apache.tomcat:tomcat-jni:9.0.22">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-jni/9.0.22/tomcat-jni-9.0.22.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-jni/9.0.22/tomcat-jni-9.0.22-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-jni/9.0.22/tomcat-jni-9.0.22-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.apache.tomcat:tomcat-jsp-api:9.0.22">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-jsp-api/9.0.22/tomcat-jsp-api-9.0.22.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-jsp-api/9.0.22/tomcat-jsp-api-9.0.22-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-jsp-api/9.0.22/tomcat-jsp-api-9.0.22-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.apache.tomcat:tomcat-juli:9.0.22">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-juli/9.0.22/tomcat-juli-9.0.22.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-juli/9.0.22/tomcat-juli-9.0.22-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-juli/9.0.22/tomcat-juli-9.0.22-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.apache.tomcat:tomcat-servlet-api:9.0.22">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-servlet-api/9.0.22/tomcat-servlet-api-9.0.22.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-servlet-api/9.0.22/tomcat-servlet-api-9.0.22-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-servlet-api/9.0.22/tomcat-servlet-api-9.0.22-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.apache.tomcat:tomcat-util-scan:9.0.22">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-util-scan/9.0.22/tomcat-util-scan-9.0.22.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-util-scan/9.0.22/tomcat-util-scan-9.0.22-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-util-scan/9.0.22/tomcat-util-scan-9.0.22-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.apache.tomcat:tomcat-util:9.0.22">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-util/9.0.22/tomcat-util-9.0.22.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-util/9.0.22/tomcat-util-9.0.22-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-util/9.0.22/tomcat-util-9.0.22-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.hibernate:hibernate:3.2.7.ga">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate/3.2.7.ga/hibernate-3.2.7.ga.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate/3.2.7.ga/hibernate-3.2.7.ga-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate/3.2.7.ga/hibernate-3.2.7.ga-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.mockito:mockito-core:3.9.0">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/mockito/mockito-core/3.9.0/mockito-core-3.9.0.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/mockito/mockito-core/3.9.0/mockito-core-3.9.0-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/mockito/mockito-core/3.9.0/mockito-core-3.9.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.mybatis:mybatis:3.5.6">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/mybatis/mybatis/3.5.6/mybatis-3.5.6.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/mybatis/mybatis/3.5.6/mybatis-3.5.6-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/mybatis/mybatis/3.5.6/mybatis-3.5.6-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.objenesis:objenesis:3.2">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/objenesis/objenesis/3.2/objenesis-3.2.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/objenesis/objenesis/3.2/objenesis-3.2-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/objenesis/objenesis/3.2/objenesis-3.2-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.primefaces:primefaces:6.0">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/primefaces/primefaces/6.0/primefaces-6.0.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/primefaces/primefaces/6.0/primefaces-6.0-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/primefaces/primefaces/6.0/primefaces-6.0-sources.jar!/" />
+      </SOURCES>
     </library>
     <library name="MyBatis">
       <CLASSES>
@@ -1680,6 +2046,49 @@
       </CLASSES>
       <JAVADOC />
       <SOURCES />
+    </library>
+    <library name="catalina">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/3rdparty/apache-tomcat-7.0.30/lib/catalina.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="hibernate3">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/3rdparty/hibernate-3.2/hibernate3.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="file://$PROJECT_DIR$/3rdparty/hibernate-3.2/src" />
+      </SOURCES>
+    </library>
+    <library name="iBatis">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/3rdparty/ibatis-2.3.0.677/lib/ibatis-2.3.0.677.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$PROJECT_DIR$/3rdparty/ibatis-2.3.0.677/src/ibatis-src.zip!/" />
+      </SOURCES>
+    </library>
+    <library name="mockito-core-2.24.5-sources">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/3rdparty/mockito-2.24.5/mockito-core-2.24.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/3rdparty/mockito-2.24.5/byte-buddy-1.9.10.jar!/" />
+        <root url="jar://$PROJECT_DIR$/3rdparty/mockito-2.24.5/byte-buddy-1.9.10-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/3rdparty/mockito-2.24.5/objenesis-2.6.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$PROJECT_DIR$/3rdparty/mockito-2.24.5/mockito-core-2.24.5-javadoc.jar!/" />
+        <root url="jar://$PROJECT_DIR$/3rdparty/mockito-2.24.5/byte-buddy-1.9.10-javadoc.jar!/" />
+        <root url="jar://$PROJECT_DIR$/3rdparty/mockito-2.24.5/objenesis-2.6-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$PROJECT_DIR$/3rdparty/mockito-2.24.5/mockito-core-2.24.5-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/3rdparty/mockito-2.24.5/byte-buddy-1.9.10-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/3rdparty/mockito-2.24.5/objenesis-2.6-sources.jar!/" />
+      </SOURCES>
     </library>
   </component>
   <component name="org.twodividedbyzero.idea.findbugs">

@@ -430,7 +430,9 @@ public final class MulticastMarker extends OperationalMarker {
 
       // This method is only executed at a representative so that
       // the unlock requests are sent from an only place
-      if (!processor.getAddress().equals(clusterView.getRepresentative())) {
+      final ClusterNodeAddress address = processor.getAddress();
+      final ClusterNodeAddress representative = clusterView.getRepresentative();
+      if (!address.equals(representative)) {
 
          // Not a representative
          return;

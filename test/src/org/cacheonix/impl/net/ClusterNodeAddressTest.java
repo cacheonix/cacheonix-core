@@ -23,6 +23,8 @@ import org.cacheonix.impl.net.serializer.SerializerFactory;
 import org.cacheonix.impl.util.IOUtils;
 import org.cacheonix.impl.util.logging.Logger;
 
+import static org.cacheonix.TestUtils.toInetAddresses;
+
 /**
  * Tests {@link ClusterNodeAddress}
  */
@@ -44,7 +46,12 @@ public final class ClusterNodeAddressTest extends TestCase {
    private static final Logger LOG = Logger.getLogger(ClusterNodeAddressTest.class); // NOPMD
 
    private static final ClusterNodeAddress DIFFERENT_1 = new ClusterNodeAddress(TCP_PORT_2,
-           new InetAddress[]{IP_ADDRESS});
+           toInetAddresses(IP_ADDRESS));
+
+
+   private static final ClusterNodeAddress SAME_1 = new ClusterNodeAddress(TCP_PORT_1, toInetAddresses(IP_ADDRESS));
+
+   private static final ClusterNodeAddress SAME_2 = new ClusterNodeAddress(TCP_PORT_1, toInetAddresses(IP_ADDRESS));
 
 
    public void testCreateAddress() throws Exception {
@@ -52,13 +59,6 @@ public final class ClusterNodeAddressTest extends TestCase {
       final ClusterNodeAddress address = ClusterNodeAddress.createAddress(null, TCP_PORT_1);
       assertTrue(address.getAddresses().length > 0);
    }
-
-
-   private static final ClusterNodeAddress SAME_1 = new ClusterNodeAddress(TCP_PORT_1,
-           new InetAddress[]{IP_ADDRESS});
-
-   private static final ClusterNodeAddress SAME_2 = new ClusterNodeAddress(TCP_PORT_1,
-           new InetAddress[]{IP_ADDRESS});
 
 
    public void testCompare() {
@@ -71,7 +71,7 @@ public final class ClusterNodeAddressTest extends TestCase {
 
    public void testGetAddress() {
 
-      CacheonixTestCase.assertEquals(new InetAddress[]{IP_ADDRESS}, SAME_1.getAddresses());
+      CacheonixTestCase.assertEquals(toInetAddresses(IP_ADDRESS), SAME_1.getAddresses());
    }
 
 
@@ -97,7 +97,6 @@ public final class ClusterNodeAddressTest extends TestCase {
 
       assertEquals(SAME_1, SAME_2);
    }
-
 
 
    public void testToString() {

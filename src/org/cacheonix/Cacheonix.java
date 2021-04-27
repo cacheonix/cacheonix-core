@@ -145,7 +145,7 @@ public abstract class Cacheonix {
     * @return unmodifiable collection of {@link Cache} instances belonging to this Cacheonix instance.
     * @see Cache
     */
-   public abstract Collection<Cache> getCaches();
+   public abstract Collection<Cache<?,?>> getCaches();
 
 
    /**
@@ -206,7 +206,7 @@ public abstract class Cacheonix {
     * @see #getCache(String)
     * @see #deleteCache(String)
     */
-   public abstract Cache createCache(String cacheName, String templateName) throws IllegalArgumentException;
+   public abstract Cache<?, ?> createCache(String cacheName, String templateName) throws IllegalArgumentException;
 
 
    /**
@@ -266,7 +266,7 @@ public abstract class Cacheonix {
     * @see #getCache(String)
     * @see #deleteCache(String)
     */
-   public abstract Cache createCache(String cacheName);
+   public abstract Cache<?,?> createCache(String cacheName);
 
 
    /**
@@ -387,7 +387,7 @@ public abstract class Cacheonix {
          // Get from current directory
          final File currentDirCacheonixXml = new File(CACHEONIX_XML);
          if (currentDirCacheonixXml.exists()) {
-            return getInstanceFromExternalPath(currentDirCacheonixXml.toURL().toExternalForm());
+            return getInstanceFromExternalPath(currentDirCacheonixXml.toURI().toURL().toExternalForm());
 
          }
 
