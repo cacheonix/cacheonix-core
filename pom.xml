@@ -58,20 +58,46 @@
          <version>1.1-rev-1</version>
       </dependency>
       <dependency>
-          <groupId>org.mybatis</groupId>
-          <artifactId>mybatis</artifactId>
-          <version>3.0.5</version>
+         <groupId>org.mybatis</groupId>
+         <artifactId>mybatis</artifactId>
+         <version>3.0.5</version>
       </dependency>
       <dependency>
-          <groupId>org.primefaces</groupId>
-          <artifactId>primefaces</artifactId>
-          <version>6.0</version>
+         <groupId>org.primefaces</groupId>
+         <artifactId>primefaces</artifactId>
+         <version>6.0</version>
       </dependency>
       <dependency>
          <groupId>javax.mail</groupId>
-             <artifactId>mail</artifactId>
-             <version>1.4</version>
+         <artifactId>mail</artifactId>
+         <version>1.4</version>
       </dependency>
+      <dependency>
+         <groupId>junit</groupId>
+         <artifactId>junit</artifactId>
+         <version>3.8.2</version>
+         <scope>test</scope>
+      </dependency>
+      <!-- Mokito -->
+      <dependency>
+         <groupId>org.mockito</groupId>
+         <artifactId>mockito-core</artifactId>
+         <version>3.9.0</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>gsbase</groupId>
+         <artifactId>gsbase</artifactId>
+         <version>2.0.1</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.apache.tomcat</groupId>
+         <artifactId>tomcat-catalina</artifactId>
+         <version>9.0.22</version>
+         <scope>test</scope>
+      </dependency>
+      <!-- Thanks for using https://jar-download.com -->
    </dependencies>
    <build>
 
@@ -95,6 +121,12 @@
       <!--         </testResource>-->
       <!--      </testResources>-->
 
+      <resources>
+         <resource>
+            <directory>${project.basedir}/conf/jar</directory>
+         </resource>
+      </resources>
+
       <pluginManagement>
       </pluginManagement>
 
@@ -111,11 +143,13 @@
                <analysisCache>true</analysisCache>
                <includeTests>true</includeTests>
                <linkXRef>false</linkXRef>
-               <failurePriority>1</failurePriority>
+               <failurePriority>2</failurePriority>
+               <rulesets>
+                  <ruleset>${project.basedir}/pmd.xml</ruleset>
+               </rulesets>
             </configuration>
             <executions>
                <execution>
-                  <phase>validate</phase>
                   <goals>
                      <goal>check</goal>
                   </goals>
