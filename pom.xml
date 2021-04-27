@@ -126,6 +126,11 @@
             <directory>${project.basedir}/conf/jar</directory>
          </resource>
       </resources>
+      <testResources>
+         <testResource>
+            <directory>test/conf</directory>
+         </testResource>
+      </testResources>
 
       <pluginManagement>
       </pluginManagement>
