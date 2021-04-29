@@ -45,7 +45,7 @@ import org.cacheonix.impl.util.logging.Logger;
  *
  * @author <a href="mailto:simeshev@cacheonix.org">Slava Imeshev</a>
  * @noinspection RedundantIfStatement, NonFinalFieldReferenceInEquals, NonFinalFieldReferencedInHashCode,
- * StandardVariableNames, ImplicitNumericConversion, UnnecessaryUnboxing
+ * StandardVariableNames, ImplicitNumericConversion
  */
 public final class BucketOwnershipAssignment implements Wireable {
 
@@ -88,7 +88,7 @@ public final class BucketOwnershipAssignment implements Wireable {
    /**
     * @noinspection CanBeFinal
     */
-   private transient BucketEventListenerList listeners = new BucketEventListenerList();
+   private BucketEventListenerList listeners = new BucketEventListenerList();
 
 
    /**
@@ -119,7 +119,6 @@ public final class BucketOwnershipAssignment implements Wireable {
     *
     * @param addr bucket owner address to add.
     */
-   @SuppressWarnings("unchecked")
    public void addBucketOwner(final ClusterNodeAddress addr) {
 
       final byte replicaCount = getReplicaCount();
@@ -288,11 +287,10 @@ public final class BucketOwnershipAssignment implements Wireable {
    }
 
 
-   @SuppressWarnings("unchecked")
    public List<ClusterNodeAddress> getPartitionContributorsAddresses() {
 
       final Map<ClusterNodeAddress, BucketOwner> primaryBucketOwners = bucketOwners[0];
-      final List<ClusterNodeAddress> result = new ArrayList<ClusterNodeAddress>(primaryBucketOwners.size());
+      final List<ClusterNodeAddress> result = new ArrayList<>(primaryBucketOwners.size());
       final Set<Entry<ClusterNodeAddress, BucketOwner>> entries = primaryBucketOwners.entrySet();
       for (final Entry<ClusterNodeAddress, BucketOwner> entry : entries) {
          result.add(entry.getKey());
@@ -337,7 +335,6 @@ public final class BucketOwnershipAssignment implements Wireable {
                                     final ClusterNodeAddress previousOwnerAddress,
                                     final ClusterNodeAddress newOwnerAddress, final List<Integer> bucketNumbers) {
 
-      //noinspection ControlFlowStatementWithoutBraces
 //      if (LOG.isDebugEnabled())
 //         LOG.debug("Finishing bucket transfer: sourceStorage: " + sourceStorageNumber + ", destinationStorage: " + destinationStorageNumber + ", previousOwner: " + previousOwnerAddress + ", newOwner: " + newOwnerAddress + ", buckets: " + bucketNumbers); // NOPMD
 
@@ -587,7 +584,7 @@ public final class BucketOwnershipAssignment implements Wireable {
          //
          // --------------------------------------------------------------------------
 
-         final List<Integer> orphans = new LinkedList<Integer>();
+         final List<Integer> orphans = new LinkedList<>();
          final AtomicReferenceArray<ClusterNodeAddress> bucketAssignment = bucketAssignments[storageNumber];
          for (int bucketNumber = 0; bucketNumber < bucketCount; bucketNumber++) {
 
@@ -679,8 +676,8 @@ public final class BucketOwnershipAssignment implements Wireable {
          // Collect overloadedMap and underloadedMap; transfer leaving.
          //
          // --------------------------------------------------------------------------
-         final HashMap<ClusterNodeAddress, BucketOwner> underloadedOwners = new HashMap<ClusterNodeAddress, BucketOwner>(1);
-         final HashMap<ClusterNodeAddress, BucketOwner> overloadedOwners = new HashMap<ClusterNodeAddress, BucketOwner>(1);
+         final HashMap<ClusterNodeAddress, BucketOwner> underloadedOwners = new HashMap<>(1);
+         final HashMap<ClusterNodeAddress, BucketOwner> overloadedOwners = new HashMap<>(1);
          for (final Entry<ClusterNodeAddress, BucketOwner> entry : storageOwnerMap.entrySet()) {
 
             final ClusterNodeAddress ownerAddress = entry.getKey();
@@ -1350,7 +1347,6 @@ public final class BucketOwnershipAssignment implements Wireable {
             final ClusterNodeAddress receiverAddress = transfer.getOwner();
             final BucketOwner receiver = bucketOwnership.get(receiverAddress);
 
-            //noinspection ControlFlowStatementWithoutBraces
 //            if (LOG.isDebugEnabled()) {
 //               LOG.debug("Canceling inbound transfer, owner: '" + bucketOwner.getAddress() + "' storageNumber: " + storageNumber + ", bucketNumber: " + bucketNumber + ", receiver: " + receiver); // NOPMD
 //            }
@@ -1496,13 +1492,12 @@ public final class BucketOwnershipAssignment implements Wireable {
    private static AtomicReferenceArray<ClusterNodeAddress>[] createBucketAssignments(final int replicaCount,
                                                                                      final int bucketCount) {
 
-      final AtomicReferenceArray[] atomicReferenceArrays = new AtomicReferenceArray[replicaCount + 1];
+      final AtomicReferenceArray<ClusterNodeAddress>[] atomicReferenceArrays = new AtomicReferenceArray[replicaCount + 1];
       for (int i = 0; i < atomicReferenceArrays.length; i++) {
 
-         atomicReferenceArrays[i] = new AtomicReferenceArray<ClusterNodeAddress>(bucketCount);
+         atomicReferenceArrays[i] = new AtomicReferenceArray<>(bucketCount);
 
       }
-      //noinspection unchecked
       return atomicReferenceArrays;
    }
 
@@ -1523,7 +1518,7 @@ public final class BucketOwnershipAssignment implements Wireable {
          // assignment that the TreeMap (using natural sort order of keys) is used. HashMap does not work
          // order of traversal depends on order of insertion, and it is not always guaranteed that the
          // nodes are inserted in the same order. See bug CACHEONIX-168 for more information.
-         maps[i] = new TreeMap<ClusterNodeAddress, BucketOwner>();
+         maps[i] = new TreeMap<>();
       }
       return maps;
    }
@@ -1544,7 +1539,7 @@ public final class BucketOwnershipAssignment implements Wireable {
             bucketAssignments[i].set(j, SerializerUtils.readAddress(in));
          }
          final int size = in.readInt();
-         final TreeMap<ClusterNodeAddress, BucketOwner> result = new TreeMap<ClusterNodeAddress, BucketOwner>();
+         final TreeMap<ClusterNodeAddress, BucketOwner> result = new TreeMap<>();
          for (int i1 = 0; i1 < size; i1++) {
             final ClusterNodeAddress ownerAddress = SerializerUtils.readAddress(in);
             final BucketOwner bucketOwner = new BucketOwner();
