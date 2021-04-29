@@ -80,7 +80,7 @@ import org.cacheonix.impl.util.logging.spi.LoggingEvent;
  * @author Ceki G&uuml;lc&uuml;
  * @author Anders Kristensen
  */
-@SuppressWarnings("FieldAccessedSynchronizedAndUnsynchronized")
+@SuppressWarnings({"FieldAccessedSynchronizedAndUnsynchronized", "unchecked"})
 public class Category implements AppenderAttachable {
 
    /*
