@@ -76,7 +76,7 @@ public final class ThrowableInformation implements Serializable {
       pw.flush();
       final LineNumberReader reader = new LineNumberReader(
               new StringReader(sw.toString()));
-      final Collection lines = new ArrayList(11);
+      final Collection<String> lines = new ArrayList<>(11);
       try {
          String line = reader.readLine();
          while (line != null) {
