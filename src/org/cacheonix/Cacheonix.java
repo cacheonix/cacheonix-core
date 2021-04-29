@@ -320,7 +320,7 @@ public abstract class Cacheonix {
 
       try {
 
-         return getInstanceFromExternalPath(configurationPath.getCanonicalFile().toURL().toExternalForm());
+         return getInstanceFromExternalPath(configurationPath.getCanonicalFile().toURI().toURL().toExternalForm());
       } catch (final IOException e) {
 
          throw new ConfigurationException("Unexpected error while getting Cacheonix instance: " + e, e);

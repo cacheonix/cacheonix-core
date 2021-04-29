@@ -41,6 +41,7 @@ import static org.cacheonix.impl.util.exception.ExceptionUtils.ignoreException;
 /**
  * Common string utilities
  */
+@SuppressWarnings("unchecked")
 public final class StringUtils {
 
 

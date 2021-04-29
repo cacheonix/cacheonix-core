@@ -45,6 +45,7 @@ import static org.cacheonix.impl.util.StringUtils.isBlank;
 /**
  * This filter provides an ability to cache web app requests.
  */
+@SuppressWarnings("deprecation")
 public final class RequestCacheFilterImpl implements Filter {
 
    static final String HEADER_IF_MODIFIED_SINCE = "If-Modified-Since";

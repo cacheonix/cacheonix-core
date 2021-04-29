@@ -136,7 +136,11 @@
       </pluginManagement>
 
       <plugins>
-
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.8.1</version>
+         </plugin>
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>
@@ -163,8 +167,8 @@
                      <value>true</value>
                      <name>test.data.home</name>
                      <value>test/data</value>
-<!--                     <name>java.io.tmpdir</name>-->
-<!--                     <value>${test.temp.dir}</value>-->
+                     <!--                     <name>java.io.tmpdir</name>-->
+                     <!--                     <value>${test.temp.dir}</value>-->
                   </property>
                </systemProperties>
             </configuration>
