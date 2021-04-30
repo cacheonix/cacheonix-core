@@ -72,7 +72,7 @@
     <orderEntry type="library" name="Maven: com.ibatis:ibatis2-sqlmap:2.1.7.597" level="project" />
     <orderEntry type="library" name="Maven: com.ibatis:ibatis2-common:2.1.7.597" level="project" />
     <orderEntry type="library" name="Maven: javax.jms:jms-api:1.1-rev-1" level="project" />
-    <orderEntry type="library" name="Maven: org.mybatis:mybatis:3.5.6" level="project" />
+    <orderEntry type="library" name="Maven: org.mybatis:mybatis:3.5.7" level="project" />
     <orderEntry type="library" name="Maven: org.primefaces:primefaces:6.0" level="project" />
     <orderEntry type="library" name="Maven: javax.mail:mail:1.4" level="project" />
     <orderEntry type="library" name="Maven: javax.activation:activation:1.1" level="project" />
