@@ -14,12 +14,8 @@
       <maven.compiler.useIncrementalCompilation>true</maven.compiler.useIncrementalCompilation>
       <maven.compiler.source>1.8</maven.compiler.source>
       <maven.compiler.target>1.8</maven.compiler.target>
-
-      <!-- Don't let your Mac use a crazy non-standard encoding -->
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
       <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
-      <!-- PMD plugin version -->
       <maven-pmd-plugin.version>3.14.0</maven-pmd-plugin.version>
    </properties>
 
@@ -35,6 +31,12 @@
          <groupId>org.hibernate</groupId>
          <artifactId>hibernate</artifactId>
          <version>3.2.7.ga</version>
+         <exclusions>
+         <exclusion>
+            <groupId>javax.transaction</groupId>
+            <artifactId>jta</artifactId>
+         </exclusion>
+         </exclusions>
       </dependency>
       <dependency>
          <groupId>javax.transaction</groupId>
