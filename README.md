@@ -1,6 +1,6 @@
 # Cacheonix Distributed Java Cache
 
-Cacheonix is an open source project that provides a stricly-consistent distributed cache and a fast local cache.
+Cacheonix is an open source project that provides a stricly-consistent distributed Java cache, a fast local cache and a servlet request cache.
 
 ## cacheonix-core
 
