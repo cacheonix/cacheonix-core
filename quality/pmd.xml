@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <ruleset name="cacheonix">
-   <description>Parabuild PMD rule set</description>
+   <description>Cacheonix PMD rule set</description>
 
    <rule ref="rulesets/basic.xml">
       <exclude name="UnnecessaryFinalModifier"/>
