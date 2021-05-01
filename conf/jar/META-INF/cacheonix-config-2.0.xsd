@@ -11,6 +11,9 @@
       </xsd:documentation>
    </xsd:annotation>
 
+   <!--
+      The root element.
+   -->
    <xsd:element name="cacheonix" type="CacheonixConfigurationType">
 
       <xsd:annotation>
