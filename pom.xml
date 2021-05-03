@@ -10,13 +10,12 @@
    <name>Cacheonix Core</name>
 
    <properties>
-
       <maven.compiler.useIncrementalCompilation>true</maven.compiler.useIncrementalCompilation>
+      <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <maven-pmd-plugin.version>3.14.0</maven-pmd-plugin.version>
       <maven.compiler.source>1.8</maven.compiler.source>
       <maven.compiler.target>1.8</maven.compiler.target>
-      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-      <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-      <maven-pmd-plugin.version>3.14.0</maven-pmd-plugin.version>
    </properties>
 
    <dependencies>
@@ -99,7 +98,6 @@
          <version>9.0.22</version>
          <scope>test</scope>
       </dependency>
-      <!-- Thanks for using https://jar-download.com -->
    </dependencies>
    <build>
 
