@@ -30,9 +30,6 @@ import org.cacheonix.impl.util.time.TimeoutImpl;
 /**
  * Tests clustered cache
  *
- * @noinspection ProhibitedExceptionDeclared, ProhibitedExceptionDeclared, ConstantNamingConvention,
- * ConstantNamingConvention, ConstantNamingConvention, ConstantNamingConvention, ConstantNamingConvention,
- * ControlFlowStatementWithoutBraces
  */
 public final class ClearRequestWithReplicasTest extends CacheonixTestCase {
 
@@ -59,12 +56,12 @@ public final class ClearRequestWithReplicasTest extends CacheonixTestCase {
    /**
     * List of cache managers.
     */
-   private final List<Cacheonix> cacheManagerList = new ArrayList<Cacheonix>(5);
+   private final List<Cacheonix> cacheManagerList = new ArrayList<>(5);
 
    /**
     * List of clustered caches.
     */
-   private final List<CacheonixCache> cacheList = new ArrayList<CacheonixCache>(5);
+   private final List<CacheonixCache> cacheList = new ArrayList<>(5);
 
    /**
     * Number of keys to try.
@@ -91,13 +88,13 @@ public final class ClearRequestWithReplicasTest extends CacheonixTestCase {
       LOG.debug("================================================================================================");
       LOG.debug("=============== Populate =======================================================================");
       LOG.debug("================================================================================================");
-      final Map<String, String> map = new HashMap<String, String>(3);
+      final Map<String, String> map = new HashMap<>(3);
       for (int i = 0; i < (int) KEY_COUNT; i++) {
          map.put(TEST_KEY_PREFIX + i, TEST_OBJECT_PREFIX + i);
       }
       cache(0).putAll(map);
       for (final CacheonixCache cache : cacheList) {
-         assertTrue("Cache " + cache.getName() + " should be non-empty", !cache.isEmpty());
+         assertFalse("Cache " + cache.getName() + " should be non-empty", cache.isEmpty());
       }
 
       LOG.debug("================================================================================================");
@@ -143,7 +140,7 @@ public final class ClearRequestWithReplicasTest extends CacheonixTestCase {
 
       // Call to a get method makes sure the cache exists
       for (int i = 0; i < NODE_COUNT; i++) {
-         cache(i).get(createTestKey((long) i));
+         cache(i).get(createTestKey(i));
       }
    }
 
