@@ -8,6 +8,41 @@
    <packaging>jar</packaging>
    <version>1.0-SNAPSHOT</version>
    <name>Cacheonix Core</name>
+   <description>Cacheonix is an open source, strictly-consistent distributed key-value store and a cache. Cacheonix is written in Java and can run reliably on clusters of thousands machines.</description>
+   <url>https://www.cacheonix.org</url>
+
+   <licenses>
+      <license>
+         <name>GNU Lesser General Public License version 3</name>
+         <url>https://opensource.org/licenses/LGPL-3.0</url>
+      </license>
+   </licenses>
+
+   <developers>
+      <developer>
+         <name>Slava Imeshev</name>
+         <email>simeshev@cacheonix.org</email>
+         <organization>Cacheonix Project</organization>
+         <organizationUrl>https://www.cacheonix.org</organizationUrl>
+      </developer>
+   </developers>
+
+   <scm>
+      <connection>scm:git:git://github.com/cacheonix/cacheonix-core.gitt</connection>
+      <developerConnection>scm:git:ssh:https://github.com/cacheonix/cacheonix-core.git</developerConnection>
+      <url>https:https://github.com/cacheonix/cacheonix-core.git/tree/master</url>
+   </scm>
+
+   <distributionManagement>
+      <snapshotRepository>
+         <id>ossrh</id>
+         <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+      </snapshotRepository>
+      <repository>
+         <id>ossrh</id>
+         <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+      </repository>
+   </distributionManagement>
 
    <properties>
       <maven.compiler.useIncrementalCompilation>true</maven.compiler.useIncrementalCompilation>
@@ -99,6 +134,9 @@
          <scope>test</scope>
       </dependency>
    </dependencies>
+
+
+   <!-- Build -->
    <build>
 
       <!-- FIXME: simeshev@cacheonix.org - 2021-03-10 - Move src and test
@@ -240,6 +278,88 @@
          </plugin>
       </plugins>
    </build>
+
+   <profiles>
+      <profile>
+         <!-- Release https://central.sonatype.org/publish/publish-maven/ -->
+         <id>release</id>
+         <build>
+            <plugins>
+               <!-- Cacheonix source code -->
+               <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-source-plugin</artifactId>
+                  <version>3.2.1</version>
+                  <executions>
+                     <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                           <goal>jar-no-fork</goal>
+                        </goals>
+                     </execution>
+                  </executions>
+               </plugin>
+
+               <!--  Cacheonix Javadoc -->
+               <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-javadoc-plugin</artifactId>
+                  <version>2.9.1</version>
+                  <executions>
+                     <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                           <goal>jar</goal>
+                        </goals>
+                     </execution>
+                  </executions>
+               </plugin>
+
+               <!-- Nexus staging -->
+               <plugin>
+                  <groupId>org.sonatype.plugins</groupId>
+                  <artifactId>nexus-staging-maven-plugin</artifactId>
+                  <version>1.6.7</version>
+                  <extensions>true</extensions>
+                  <configuration>
+                     <serverId>ossrh</serverId>
+                     <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                  </configuration>
+               </plugin>
+
+               <!-- GPG Signed Components -->
+               <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-gpg-plugin</artifactId>
+                  <version>1.6</version>
+                  <executions>
+                     <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                           <goal>sign</goal>
+                        </goals>
+                     </execution>
+                  </executions>
+               </plugin>
+
+               <!-- Nexus Staging Maven Plugin for Deployment and Release -->
+               <plugin>
+                  <groupId>org.sonatype.plugins</groupId>
+                  <artifactId>nexus-staging-maven-plugin</artifactId>
+                  <version>1.6.7</version>
+                  <extensions>true</extensions>
+                  <configuration>
+                     <serverId>ossrh</serverId>
+                     <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                  </configuration>
+               </plugin>
+            </plugins>
+         </build>
+      </profile>
+   </profiles>
 
    <!-- Reporting -->
    <reporting>
