@@ -464,8 +464,6 @@
       </inspection_tool>
       <inspection_tool class="BigDecimalEquals" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="BooleanMethodIsAlwaysInverted" enabled="false" level="WARNING" enabled_by_default="false" />
-      <inspection_tool class="BusyWait" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="CStyleArrayDeclaration" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="CallToNativeMethodWhileLocked" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="CallToSimpleGetterInClass" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="ignoreGetterCallsOnOtherObjects" value="false" />
@@ -491,12 +489,12 @@
       <inspection_tool class="ComparableImplementedButEqualsNotOverridden" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ComparatorNotSerializable" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ComparisonOfShortAndChar" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="ComparisonToNaN" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ConditionSignal" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ConfusingOctalEscape" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ConstantAssertCondition" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ConstantJUnitAssertArgument" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ControlFlowStatementWithoutBraces" enabled="true" level="WARNING" enabled_by_default="true" />
+      <inspection_tool class="Convert2Lambda" enabled="false" level="WARNING" enabled_by_default="false" />
       <inspection_tool class="CovariantCompareTo" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="CovariantEquals" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="DefaultNotLastCaseInSwitch" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -506,7 +504,6 @@
       </inspection_tool>
       <inspection_tool class="DuplicateConditionJS" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="DynamicRegexReplaceableByCompiledPattern" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="EmptyInitializer" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="EmptySynchronizedStatement" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="EqualsAndHashcode" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="EqualsHashCodeCalledOnUrl" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -517,7 +514,6 @@
       <inspection_tool class="FieldHidesSuperclassField" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="m_ignoreInvisibleFields" value="true" />
       </inspection_tool>
-      <inspection_tool class="FieldMayBeFinal" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="FieldMayBeStatic" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="FinalPrivateMethod" enabled="false" level="WARNING" enabled_by_default="false" />
       <inspection_tool class="FinalStaticMethod" enabled="false" level="WARNING" enabled_by_default="false" />
@@ -532,13 +528,10 @@
       <inspection_tool class="GroovyUntypedAccess" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="IfStatementWithIdenticalBranchesJS" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="IncrementDecrementUsedAsExpression" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="InnerClassMayBeStatic" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="InnerClassVariableHidesOuterClassVariable" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="m_ignoreInvisibleFields" value="true" />
       </inspection_tool>
       <inspection_tool class="InstanceofIncompatibleInterface" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="InstantiationOfUtilityClass" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="IteratorHasNextCallsIteratorNext" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="IteratorNextDoesNotThrowNoSuchElementException" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="JavaDoc" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="TOP_LEVEL_CLASS_OPTIONS">
@@ -576,7 +569,6 @@
       <inspection_tool class="KeySetIterationMayUseEntrySet" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="LengthOneStringInIndexOf" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="LengthOneStringsInConcatenation" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="ListIndexOfReplaceableByContains" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="LiteralAsArgToStringEquals" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="LocalCanBeFinal" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="REPORT_VARIABLES" value="true" />
@@ -627,6 +619,7 @@
           <value />
         </option>
       </inspection_tool>
+      <inspection_tool class="MissingDeprecatedAnnotation" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="MisspelledCompareTo" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="MisspelledEquals" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="MisspelledHashcode" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -636,6 +629,7 @@
       <inspection_tool class="MultipleDeclaration" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="ignoreForLoopDeclarations" value="true" />
       </inspection_tool>
+      <inspection_tool class="MultipleVariablesInDeclaration" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="NakedNotify" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="NegatedIfElse" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="m_ignoreNegatedNullComparison" value="true" />
@@ -737,7 +731,6 @@
       <inspection_tool class="SleepWhileHoldingLock" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="StaticGuardedByInstance" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="StaticNonFinalField" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="StaticSuite" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="StaticVariableUninitializedUse" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="m_ignorePrimitives" value="false" />
       </inspection_tool>
@@ -759,14 +752,10 @@
       <inspection_tool class="TeardownIsPublicVoidNoArg" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="TestCaseInProductCode" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="TestCaseWithConstructor" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="TestMethodIsPublicVoidNoArg" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="TextLabelInSwitchStatement" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ThreadLocalNotStaticFinal" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ThreadPriority" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="ThreadRun" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ThreadStartInConstruction" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ThreadStopSuspendResume" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="ThreadWithDefaultRunMethod" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ThreadYield" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ThrowCaughtLocally" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="ignoreRethrownExceptions" value="true" />
@@ -824,6 +813,9 @@
   <component name="JavacSettings">
     <option name="GENERATE_NO_WARNINGS" value="true" />
     <option name="DEPRECATION" value="false" />
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="cacheonix" options="" />
+    </option>
   </component>
   <component name="JavadocGenerationManager">
     <option name="OTHER_OPTIONS" value="" />
@@ -835,11 +827,6 @@
         <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
-    <option name="ignoredFiles">
-      <set>
-        <option value="file://$PROJECT_DIR$/internal/mybatis-jpetstore-6.0.1/pom.xml" />
-      </set>
-    </option>
   </component>
   <component name="PDMPlugin">
     <option name="customRuleSets">
@@ -849,7 +836,7 @@
     </option>
     <option name="options">
       <map>
-        <entry key="Encoding" value="" />
+        <entry key="Statistics URL" value="" />
         <entry key="Target JDK" value="1.8" />
       </map>
     </option>
