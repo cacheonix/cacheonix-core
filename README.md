@@ -1,6 +1,6 @@
 # Cacheonix Distributed Strictly-Consistent Key-Value Store
 
-Cacheonix is an open source project that provides a stricly-consistent dsitributed key-value store written in Java. The main use cases include a general distributed Java cache, a distributed Hibernate cache, a fast local cache, a servlet request-response cache, and a large-scale, distributed, strictly-consistent key-value store.
+Cacheonix is an open source project that provides a strictly-consistent distributed key-value store written in Java. The main use cases include a general distributed Java cache, a distributed Hibernate cache, a fast local cache, a servlet request-response cache, and a large-scale, distributed, strictly-consistent key-value store.
 
 ## cacheonix-core
 
@@ -18,15 +18,15 @@ Please visit Cacheonix wiki section [Cacheonix Java web cache](http://wiki.cache
 
 ## Local Cache
 
-Cacheonix local cache improves application performance and verifical scalability by servicing a high-demand data from memory and by avoiding running into bottlenecks in the dababase and business tiers.
+Cacheonix local cache improves application performance and vertical scalability by servicing a high-demand data from memory and by avoiding running into bottlenecks in the database and business tiers.
 
 ## Strictly-consistent Distributed Cache
 
-One of the most important Cacheonix features is strict data consistency in a cluster. Cacheonix guarantees that once an update to a key happend, it's impossible to get an old value for that key. This makese Cacheonix suitable for mission critical applications such as e-commerce and banking. Also, Cacheonix allows developing a highly-performant applications using Hibernate that have to run in a cluster.   
+One of the most important Cacheonix features is strict data consistency in a cluster. Cacheonix guarantees that once an update to a key happened, it's impossible to get an old value for that key. This makes Cacheonix suitable for mission critical applications such as e-commerce and banking. Also, Cacheonix allows developing a highly-performant applications using Hibernate that have to run in a cluster.   
 
 ## Cacheonix and Maven
 
-Adding Cachenix to your project is easy. Just add the following to the dependencies section of your pom.xml:
+Adding Cacheonix to your project is easy. Just add the following to the dependencies section of your pom.xml:
 
 ```xml
 <dependency>
@@ -38,11 +38,11 @@ Adding Cachenix to your project is easy. Just add the following to the dependenc
 
 ## Cacheonix Downloads
 
-You can aslo add Cacheonix to your project directly by downloading Cacheonix jar, sources and the complete distribution from htttp://downloads.cacheonix.org.
+You can also add Cacheonix to your project directly by downloading Cacheonix jar, sources and the complete distribution from http://downloads.cacheonix.org.
 
 ## Documentation 
 
-Chechk [Cacheonix Wiki](http://wiki.cacheonix.org/display/CCHNX/Cacheonix+Knowledge+Base) for detailed documentation.
+Check [Cacheonix Wiki](http://wiki.cacheonix.org/display/CCHNX/Cacheonix+Knowledge+Base) for detailed documentation.
 
 ## Contact Us
 
