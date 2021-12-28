@@ -35,7 +35,7 @@ Adding Cacheonix to your project is easy. Just add the following to the dependen
    <groupId>org.cacheonix</groupId>
    <artifactId>cacheonix-core</artifactId>
    <version>2.2.2</version>
-<dependency>
+</dependency>
 ```
 
 ## Cacheonix Downloads
