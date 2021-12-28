@@ -38,8 +38,6 @@ public final class RequestCacheFilterImplTest extends TestCase {
 
    private static final String TEST_REQUEST_URI = "test/request/uri";
 
-   public static final String TEXT_HTML = "text/html";
-
    private RequestCacheFilterImpl requestCacheFilter;
 
 
