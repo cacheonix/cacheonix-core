@@ -1,6 +1,8 @@
 # Cacheonix Distributed Strictly-Consistent Key-Value Store
 
-Cacheonix is an open source project that provides a strictly-consistent distributed key-value store written in Java. The main use cases include a general distributed Java cache, a distributed Hibernate cache, a fast local cache, a servlet request-response cache, and a large-scale, distributed, strictly-consistent key-value store.
+Cacheonix is an open source project that provides a strictly-consistent distributed key-value store written in Java. The main use cases include a distributed Java cache, a cloud-ready distributed Hibernate cache, a fast local JVM cache, a servlet HTTP request-response cache, and a large-scale, distributed, strictly-consistent key-value store.
+
+Cacheonix supports clusters up to 1024 nodes.
 
 ## cacheonix-core
 
