@@ -96,12 +96,12 @@ public final class PlainMulticastSender implements MulticastSender {
     * @param mcastTTL multicast TTL.
     * @return an array of multicast sockets to broadcast on.
     * @throws IOException if I/O error occurred while creating a multicast socket.
-    * @noinspection SocketOpenedButNotSafelyClosed, ConstantConditions
+    * @noinspection SocketOpenedButNotSafelyClosed
     */
    private static MulticastSocket[] createSockets(final int mcastTTL) throws IOException {
 
       Exception lastException = null; // Records last error in case we could not create any sockets
-      final List<MulticastSocket> socketList = new ArrayList<MulticastSocket>(11);
+      final List<MulticastSocket> socketList = new ArrayList<>(11);
       final Enumeration<NetworkInterface> enumeration = NetworkInterface.getNetworkInterfaces();
       while (enumeration.hasMoreElements()) {
          try {
@@ -123,7 +123,7 @@ public final class PlainMulticastSender implements MulticastSender {
       if (socketList.isEmpty()) {
          throw new IOException("Could not create at least one multicast socket. Last error: " + lastException);
       }
-      return socketList.toArray(new MulticastSocket[socketList.size()]);
+      return socketList.toArray(new MulticastSocket[0]);
    }
 
 
