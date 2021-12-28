@@ -156,7 +156,6 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
    /**
     * Cache processor map.
     */
-   @SuppressWarnings("unchecked")
    private final Map<String, CacheProcessor> cacheProcessorMap = new ConcurrentHashMap<String, CacheProcessor>(11);
 
 
@@ -248,8 +247,7 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
          }
 
          // Gat a list of receivers addresses
-         final List<ReceiverAddress> knownReceiverAddresses = new ArrayList<ReceiverAddress>(
-                 knownAddressConfigs.size());
+         final List<ReceiverAddress> knownReceiverAddresses = new ArrayList<>(knownAddressConfigs.size());
          for (final KnownAddressBroadcastConfiguration knownAddressConfiguration : knownAddressConfigs) {
 
             knownAddressConfiguration.limitToLocalAddresses();
@@ -547,8 +545,7 @@ public final class DistributedCacheonix extends AbstractCacheonix implements Mul
    protected final Map createCacheConfigMap(final CacheonixConfiguration configuration) {
 
       final List<PartitionedCacheConfiguration> cacheConfigs = configuration.getServer().getPartitionedCacheList();
-      final Map<String, PartitionedCacheConfiguration> result = new HashMap<String, PartitionedCacheConfiguration>(
-              cacheConfigs.size());
+      final Map<String, PartitionedCacheConfiguration> result = new HashMap<>(cacheConfigs.size());
       for (final PartitionedCacheConfiguration cacheConfig : cacheConfigs) {
 
          if (result.containsKey(cacheConfig.getName())) {
