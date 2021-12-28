@@ -50,7 +50,7 @@ public final class TCPMulticastSender implements MulticastSender {
            final List<ReceiverAddress> receiverAddresses) {
 
       this.loopbackReceiverAddress = new ReceiverAddress(localAddress.getAddresses(), localAddress.getTcpPort());
-      this.receiverAddresses = new ArrayList<ReceiverAddress>(receiverAddresses);
+      this.receiverAddresses = new ArrayList<>(receiverAddresses);
       this.localAddress = localAddress;
       this.router = router;
    }
