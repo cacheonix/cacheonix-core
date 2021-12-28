@@ -8,7 +8,7 @@
    <packaging>jar</packaging>
    <version>1.0-SNAPSHOT</version>
    <name>Cacheonix Core</name>
-   <description>Cacheonix is an open source, strictly-consistent distributed key-value store and a cache. Cacheonix is written in Java and can run reliably on clusters of thousands machines.</description>
+   <description>Cacheonix is an open source project that provides a strictly-consistent distributed key-value store written in Java. The main use cases include a distributed Java cache, a cloud-ready distributed Hibernate cache, a fast local JVM cache, a servlet HTTP request-response cache, and a large-scale, distributed, strictly-consistent key-value store.</description>
    <url>https://www.cacheonix.org</url>
 
    <licenses>
