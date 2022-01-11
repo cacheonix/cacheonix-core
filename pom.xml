@@ -28,7 +28,7 @@
    </developers>
 
    <scm>
-      <connection>scm:git:git://github.com/cacheonix/cacheonix-core.gitt</connection>
+      <connection>scm:git:git://github.com/cacheonix/cacheonix-core.git</connection>
       <developerConnection>scm:git:ssh:https://github.com/cacheonix/cacheonix-core.git</developerConnection>
       <url>https:https://github.com/cacheonix/cacheonix-core.git/tree/master</url>
    </scm>
@@ -114,7 +114,7 @@
          <version>3.8.2</version>
          <scope>test</scope>
       </dependency>
-      <!-- Mokito -->
+      <!-- Mockito -->
       <dependency>
          <groupId>org.mockito</groupId>
          <artifactId>mockito-core</artifactId>
