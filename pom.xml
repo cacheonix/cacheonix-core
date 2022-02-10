@@ -243,6 +243,7 @@
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-jar-plugin</artifactId>
+            <version>2.4</version>
             <configuration>
                <archive>
                   <manifest>
@@ -289,7 +290,6 @@
                <plugin>
                   <groupId>org.apache.maven.plugins</groupId>
                   <artifactId>maven-source-plugin</artifactId>
-                  <version>3.2.1</version>
                   <executions>
                      <execution>
                         <id>attach-sources</id>

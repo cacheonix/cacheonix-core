@@ -443,14 +443,12 @@
       <inspection_tool class="ArchaicSystemPropertyAccess" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ArrayEquality" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="AssignmentOrReturnOfFieldWithMutableType" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="AssignmentToCatchBlockParameter" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="AssignmentToCollectionFieldFromParameter" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="ignorePrivateMethods" value="true" />
       </inspection_tool>
       <inspection_tool class="AssignmentToDateFieldFromParameter" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="ignorePrivateMethods" value="true" />
       </inspection_tool>
-      <inspection_tool class="AssignmentUsedAsCondition" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="AwaitNotInLoop" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="AwaitWithoutCorrespondingSignal" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="BadExceptionCaught" enabled="true" level="WARNING" enabled_by_default="true">
@@ -499,12 +497,8 @@
       <inspection_tool class="CovariantEquals" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="DefaultNotLastCaseInSwitch" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="DefaultNotLastCaseInSwitchJS" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="DoubleCheckedLocking" enabled="true" level="WARNING" enabled_by_default="true">
-        <option name="ignoreOnVolatileVariables" value="false" />
-      </inspection_tool>
       <inspection_tool class="DuplicateConditionJS" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="DynamicRegexReplaceableByCompiledPattern" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="EmptySynchronizedStatement" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="EqualsAndHashcode" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="EqualsHashCodeCalledOnUrl" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ExtendsThread" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -517,7 +511,6 @@
       <inspection_tool class="FieldMayBeStatic" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="FinalPrivateMethod" enabled="false" level="WARNING" enabled_by_default="false" />
       <inspection_tool class="FinalStaticMethod" enabled="false" level="WARNING" enabled_by_default="false" />
-      <inspection_tool class="FinalizeNotProtected" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="ForLoopReplaceableByWhileJS" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="m_ignoreLoopsWithoutConditions" value="false" />
       </inspection_tool>
@@ -575,6 +568,7 @@
         <option name="REPORT_PARAMETERS" value="true" />
       </inspection_tool>
       <inspection_tool class="MapReplaceableByEnumMap" enabled="true" level="WARNING" enabled_by_default="true" />
+      <inspection_tool class="MavenPackageUpdate" enabled="false" level="WARNING" enabled_by_default="false" />
       <inspection_tool class="MethodMayBeStatic" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="m_onlyPrivateOrFinal" value="false" />
         <option name="m_ignoreEmptyMethods" value="true" />
@@ -746,7 +740,6 @@
       <inspection_tool class="SynchronizeOnLock" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="SynchronizeOnThis" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="SynchronizedOnLiteralObject" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="SystemRunFinalizersOnExit" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="TailRecursion" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="TeardownCallsSuperTeardown" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="TeardownIsPublicVoidNoArg" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -767,7 +760,6 @@
       <inspection_tool class="TransientFieldInNonSerializableClass" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="TransientFieldNotInitialized" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="TrivialStringConcatenation" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="UnaryPlus" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="UnconditionalWait" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="UnnecessaryBoxing" enabled="false" level="WARNING" enabled_by_default="false" />
       <inspection_tool class="UnnecessaryConstantArrayCreationExpression" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -788,7 +780,6 @@
       <inspection_tool class="WaitNotInLoop" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="WaitNotInSynchronizedContext" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="WaitOrAwaitWithoutTimeout" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="WaitWhileHoldingTwoLocks" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="WaitWithoutCorrespondingNotify" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="WeakerAccess" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="SUGGEST_PACKAGE_LOCAL_FOR_MEMBERS" value="false" />
@@ -1250,6 +1241,8 @@
     <dictionary name="simeshev">
       <words>
         <w>deleteme</w>
+        <w>ossrh</w>
+        <w>rdparty</w>
         <w>revieme</w>
       </words>
     </dictionary>
@@ -1512,6 +1505,13 @@
       <value>
         <list size="0" />
       </value>
+    </option>
+  </component>
+  <component name="RunConfigurationProducerService">
+    <option name="ignoredProducers">
+      <set>
+        <option value="com.android.tools.idea.compose.preview.runconfiguration.ComposePreviewRunConfigurationProducer" />
+      </set>
     </option>
   </component>
   <component name="SvnBranchConfigurationManager">
