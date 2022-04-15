@@ -45,7 +45,7 @@
    </distributionManagement>
 
    <properties>
-      <maven.compiler.useIncrementalCompilation>true</maven.compiler.useIncrementalCompilation>
+      <maven.compiler.useIncrementalCompilation>false</maven.compiler.useIncrementalCompilation>
       <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
       <maven-pmd-plugin.version>3.14.0</maven-pmd-plugin.version>
