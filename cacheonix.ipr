@@ -7,7 +7,6 @@
         <entry path="file://$PROJECT_DIR$/3rdparty/junit3.8.2/junit.jar" />
       </additionalClassPath>
       <antReference bundledAnt="true" />
-      <customJdkName value="1.5" />
       <maximumStackSize value="32" />
     </buildFile>
   </component>
