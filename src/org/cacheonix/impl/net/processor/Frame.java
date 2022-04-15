@@ -455,11 +455,9 @@ public final class Frame {
 
    private byte[] validatePayloadSize(final byte[] p) {
 
-      if (p != null) {
-         if (p.length + HEADER_LENGTH > maximumMessageLength) {
+      if (p != null && (p.length + HEADER_LENGTH > maximumMessageLength)) {
             throw new IllegalArgumentException(
                     "Part length cannot be longer then " + maximumMessageLength + " but it was " + p.length);
-         }
       }
       return p;
    }
