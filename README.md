@@ -48,4 +48,4 @@ Check [Cacheonix Wiki](http://wiki.cacheonix.org/display/CCHNX/Cacheonix+Knowled
 
 ## Contact Us
 
-Shoot us an email at simeshev@cacheonix.org
+Shoot us an email at simeshev@cacheonix.org.
