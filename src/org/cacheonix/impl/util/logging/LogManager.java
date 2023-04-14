@@ -61,7 +61,7 @@ public final class LogManager {
 
    public static final String RESOURCE_INFO = "/META-INF/cacheonix-logging-info.properties";
 
-   public static final String RESOURCE_WARN = "/META-INF/cacheonix-logging-warn.properties";
+   public static final String RESOURCE_WARN = "/META-INF/cacheonix-logging-warning.properties";
 
    @SuppressWarnings("StaticNonFinalField")
    private static Object guard = null;

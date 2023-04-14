@@ -168,6 +168,9 @@ public final class LoggingLevel implements Serializable {
       InputStream is = null;
       try {
          is = getClass().getResourceAsStream(resourceName);
+         if (is == null) {
+            throw new IOException("Resource \"" + resourceName + "\" not found");
+         }
          final Properties properties = new Properties();
          properties.load(is);
          return properties;
