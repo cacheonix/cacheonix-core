@@ -53,8 +53,8 @@ public final class LoggingLevelTest extends CacheonixTestCase {
       readResource(LoggingLevel.DEBUG);
       readResource(LoggingLevel.INFO);
       readResource(LoggingLevel.ERROR);
+      readResource(LoggingLevel.WARN);
    }
-
 
    /**
     * Fails if resource cannot be read.
